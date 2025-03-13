@@ -25,6 +25,7 @@ class BackendConfigCmpv2Args:
                  audit_fields: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  authenticators: Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']] = None,
                  default_path_policy: Optional[pulumi.Input[str]] = None,
+                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
@@ -33,10 +34,11 @@ class BackendConfigCmpv2Args:
         :param pulumi.Input[str] backend: The path to the PKI secret backend to
                read the CMPv2 configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-               
-               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs'] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[str] default_path_policy: Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disabled_validations: A comma-separated list of validations not to perform on CMPv2 messages.
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether CMPv2 is enabled.
         :param pulumi.Input[str] namespace: The namespace of the target resource.
@@ -51,6 +53,8 @@ class BackendConfigCmpv2Args:
             pulumi.set(__self__, "authenticators", authenticators)
         if default_path_policy is not None:
             pulumi.set(__self__, "default_path_policy", default_path_policy)
+        if disabled_validations is not None:
+            pulumi.set(__self__, "disabled_validations", disabled_validations)
         if enable_sentinel_parsing is not None:
             pulumi.set(__self__, "enable_sentinel_parsing", enable_sentinel_parsing)
         if enabled is not None:
@@ -76,8 +80,6 @@ class BackendConfigCmpv2Args:
     def audit_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-
-        <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "audit_fields")
 
@@ -108,6 +110,20 @@ class BackendConfigCmpv2Args:
     @default_path_policy.setter
     def default_path_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "default_path_policy", value)
+
+    @property
+    @pulumi.getter(name="disabledValidations")
+    def disabled_validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A comma-separated list of validations not to perform on CMPv2 messages.
+
+        <a id="nestedatt--authenticators"></a>
+        """
+        return pulumi.get(self, "disabled_validations")
+
+    @disabled_validations.setter
+    def disabled_validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "disabled_validations", value)
 
     @property
     @pulumi.getter(name="enableSentinelParsing")
@@ -156,6 +172,7 @@ class _BackendConfigCmpv2State:
                  authenticators: Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  default_path_policy: Optional[pulumi.Input[str]] = None,
+                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  last_updated: Optional[pulumi.Input[str]] = None,
@@ -163,12 +180,13 @@ class _BackendConfigCmpv2State:
         """
         Input properties used for looking up and filtering BackendConfigCmpv2 resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-               
-               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs'] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[str] backend: The path to the PKI secret backend to
                read the CMPv2 configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[str] default_path_policy: Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disabled_validations: A comma-separated list of validations not to perform on CMPv2 messages.
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether CMPv2 is enabled.
         :param pulumi.Input[str] last_updated: A read-only timestamp representing the last time the configuration was updated.
@@ -185,6 +203,8 @@ class _BackendConfigCmpv2State:
             pulumi.set(__self__, "backend", backend)
         if default_path_policy is not None:
             pulumi.set(__self__, "default_path_policy", default_path_policy)
+        if disabled_validations is not None:
+            pulumi.set(__self__, "disabled_validations", disabled_validations)
         if enable_sentinel_parsing is not None:
             pulumi.set(__self__, "enable_sentinel_parsing", enable_sentinel_parsing)
         if enabled is not None:
@@ -199,8 +219,6 @@ class _BackendConfigCmpv2State:
     def audit_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-
-        <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "audit_fields")
 
@@ -244,6 +262,20 @@ class _BackendConfigCmpv2State:
     @default_path_policy.setter
     def default_path_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "default_path_policy", value)
+
+    @property
+    @pulumi.getter(name="disabledValidations")
+    def disabled_validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A comma-separated list of validations not to perform on CMPv2 messages.
+
+        <a id="nestedatt--authenticators"></a>
+        """
+        return pulumi.get(self, "disabled_validations")
+
+    @disabled_validations.setter
+    def disabled_validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "disabled_validations", value)
 
     @property
     @pulumi.getter(name="enableSentinelParsing")
@@ -306,6 +338,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
                  authenticators: Optional[pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  default_path_policy: Optional[pulumi.Input[str]] = None,
+                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -326,12 +359,13 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-               
-               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[str] backend: The path to the PKI secret backend to
                read the CMPv2 configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[str] default_path_policy: Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disabled_validations: A comma-separated list of validations not to perform on CMPv2 messages.
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether CMPv2 is enabled.
         :param pulumi.Input[str] namespace: The namespace of the target resource.
@@ -377,6 +411,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
                  authenticators: Optional[pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  default_path_policy: Optional[pulumi.Input[str]] = None,
+                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -395,6 +430,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["default_path_policy"] = default_path_policy
+            __props__.__dict__["disabled_validations"] = disabled_validations
             __props__.__dict__["enable_sentinel_parsing"] = enable_sentinel_parsing
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["namespace"] = namespace
@@ -413,6 +449,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
             authenticators: Optional[pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             default_path_policy: Optional[pulumi.Input[str]] = None,
+            disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             last_updated: Optional[pulumi.Input[str]] = None,
@@ -425,12 +462,13 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-               
-               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[str] backend: The path to the PKI secret backend to
                read the CMPv2 configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[str] default_path_policy: Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disabled_validations: A comma-separated list of validations not to perform on CMPv2 messages.
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether CMPv2 is enabled.
         :param pulumi.Input[str] last_updated: A read-only timestamp representing the last time the configuration was updated.
@@ -447,6 +485,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         __props__.__dict__["authenticators"] = authenticators
         __props__.__dict__["backend"] = backend
         __props__.__dict__["default_path_policy"] = default_path_policy
+        __props__.__dict__["disabled_validations"] = disabled_validations
         __props__.__dict__["enable_sentinel_parsing"] = enable_sentinel_parsing
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["last_updated"] = last_updated
@@ -458,8 +497,6 @@ class BackendConfigCmpv2(pulumi.CustomResource):
     def audit_fields(self) -> pulumi.Output[Sequence[str]]:
         """
         Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-
-        <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "audit_fields")
 
@@ -487,6 +524,16 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
         """
         return pulumi.get(self, "default_path_policy")
+
+    @property
+    @pulumi.getter(name="disabledValidations")
+    def disabled_validations(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A comma-separated list of validations not to perform on CMPv2 messages.
+
+        <a id="nestedatt--authenticators"></a>
+        """
+        return pulumi.get(self, "disabled_validations")
 
     @property
     @pulumi.getter(name="enableSentinelParsing")

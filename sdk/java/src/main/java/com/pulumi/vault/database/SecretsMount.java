@@ -74,6 +74,8 @@ import javax.annotation.Nullable;
  *                 .password("super_secret_1")
  *                 .connectionUrl("sqlserver://}{{{@code username}}}{@code :}{{{@code password}}}{@literal @}{@code 127.0.0.1:1433")
  *                 .allowedRoles("dev1")
+ *                 .rotationSchedule("0 * * * SAT")
+ *                 .rotationWindow(3600)
  *                 .build())
  *             .postgresqls(SecretsMountPostgresqlArgs.builder()
  *                 .name("db2")
@@ -82,6 +84,8 @@ import javax.annotation.Nullable;
  *                 .connectionUrl("postgresql://}{{{@code username}}}{@code :}{{{@code password}}}{@literal @}{@code 127.0.0.1:5432/postgres")
  *                 .verifyConnection(true)
  *                 .allowedRoles("dev2")
+ *                 .rotationSchedule("0 * * * SAT")
+ *                 .rotationWindow(3600)
  *                 .build())
  *             .build());
  * 

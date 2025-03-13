@@ -7,9 +7,11 @@ import typing
 # Export this package's modules as members:
 from .backend_acme_eab import *
 from .backend_config_acme import *
+from .backend_config_auto_tidy import *
 from .backend_config_cluster import *
 from .backend_config_cmpv2 import *
 from .backend_config_est import *
+from .get_backend_cert_metadata import *
 from .get_backend_config_cmpv2 import *
 from .get_backend_config_est import *
 from .get_backend_issuer import *

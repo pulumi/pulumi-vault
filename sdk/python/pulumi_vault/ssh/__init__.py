@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_secret_backend_sign import *
 from .secret_backend_ca import *
 from .secret_backend_role import *
 from ._inputs import *

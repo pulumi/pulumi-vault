@@ -23,6 +23,25 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.aws.SecretBackend("aws", {
+ *     path: "my-aws",
+ *     description: "Obtain AWS credentials.",
+ * });
+ * const assume_role = new vault.aws.SecretBackendStaticRole("assume-role", {
+ *     backend: aws.path,
+ *     name: "assume-role-test",
+ *     username: "my-assume-role-user",
+ *     assumeRoleArn: "arn:aws:iam::123456789012:role/assume-role",
+ *     assumeRoleSessionName: "assume-role-session",
+ *     externalId: "test-id",
+ *     rotationPeriod: 3600,
+ * });
+ * ```
+ *
  * ## Import
  *
  * AWS secret backend static role can be imported using the full path to the role
@@ -61,10 +80,28 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     }
 
     /**
+     * Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    public readonly assumeRoleArn!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the session name to use when assuming the role.
+     * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    public readonly assumeRoleSessionName!: pulumi.Output<string | undefined>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      */
     public readonly backend!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    public readonly externalId!: pulumi.Output<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
@@ -99,7 +136,10 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
+            resourceInputs["assumeRoleArn"] = state ? state.assumeRoleArn : undefined;
+            resourceInputs["assumeRoleSessionName"] = state ? state.assumeRoleSessionName : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["externalId"] = state ? state.externalId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
@@ -112,7 +152,10 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
+            resourceInputs["assumeRoleArn"] = args ? args.assumeRoleArn : undefined;
+            resourceInputs["assumeRoleSessionName"] = args ? args.assumeRoleSessionName : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["externalId"] = args ? args.externalId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
@@ -128,10 +171,28 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
  */
 export interface SecretBackendStaticRoleState {
     /**
+     * Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    assumeRoleArn?: pulumi.Input<string>;
+    /**
+     * Specifies the session name to use when assuming the role.
+     * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    assumeRoleSessionName?: pulumi.Input<string>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      */
     backend?: pulumi.Input<string>;
+    /**
+     * Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    externalId?: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
@@ -159,10 +220,28 @@ export interface SecretBackendStaticRoleState {
  */
 export interface SecretBackendStaticRoleArgs {
     /**
+     * Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    assumeRoleArn?: pulumi.Input<string>;
+    /**
+     * Specifies the session name to use when assuming the role.
+     * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    assumeRoleSessionName?: pulumi.Input<string>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      */
     backend?: pulumi.Input<string>;
+    /**
+     * Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     */
+    externalId?: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.

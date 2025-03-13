@@ -27,12 +27,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ldap.NewSecretBackend(ctx, "config", &ldap.SecretBackendArgs{
-//				Path:        pulumi.String("my-custom-ldap"),
-//				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
-//				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-//				Url:         pulumi.String("ldaps://localhost"),
-//				InsecureTls: pulumi.Bool(true),
-//				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+//				Path:             pulumi.String("my-custom-ldap"),
+//				Binddn:           pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
+//				Bindpass:         pulumi.String("SuperSecretPassw0rd"),
+//				Url:              pulumi.String("ldaps://localhost"),
+//				InsecureTls:      pulumi.Bool(true),
+//				Userdn:           pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -83,6 +85,8 @@ type SecretBackend struct {
 	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Enable the secrets engine to access Vault's external entropy source
@@ -118,6 +122,16 @@ type SecretBackend struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout pulumi.IntOutput `pulumi:"requestTimeout"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -219,6 +233,8 @@ type secretBackendState struct {
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Enable the secrets engine to access Vault's external entropy source
@@ -254,6 +270,16 @@ type secretBackendState struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout *int `pulumi:"requestTimeout"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -305,6 +331,8 @@ type SecretBackendState struct {
 	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	DisableRemount pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
@@ -340,6 +368,16 @@ type SecretBackendState struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout pulumi.IntPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -393,6 +431,8 @@ type secretBackendArgs struct {
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Enable the secrets engine to access Vault's external entropy source
@@ -428,6 +468,16 @@ type secretBackendArgs struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout *int `pulumi:"requestTimeout"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -478,6 +528,8 @@ type SecretBackendArgs struct {
 	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount for the Active Directory backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	DisableRemount pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
@@ -513,6 +565,16 @@ type SecretBackendArgs struct {
 	// Timeout, in seconds, for the connection when making requests against the server
 	// before returning back an error.
 	RequestTimeout pulumi.IntPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -692,6 +754,11 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // If set, opts out of mount migration on path updates.
 func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
@@ -767,6 +834,25 @@ func (o SecretBackendOutput) PluginVersion() pulumi.StringPtrOutput {
 // before returning back an error.
 func (o SecretBackendOutput) RequestTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.RequestTimeout }).(pulumi.IntOutput)
+}
+
+// The amount of time in seconds Vault should wait before rotating the root credential.
+// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.

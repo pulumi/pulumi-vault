@@ -27,8 +27,6 @@ type BackendConfigCmpv2 struct {
 	pulumi.CustomResourceState
 
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	AuditFields pulumi.StringArrayOutput `pulumi:"auditFields"`
 	// Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
 	Authenticators BackendConfigCmpv2AuthenticatorsOutput `pulumi:"authenticators"`
@@ -37,6 +35,10 @@ type BackendConfigCmpv2 struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
 	DefaultPathPolicy pulumi.StringPtrOutput `pulumi:"defaultPathPolicy"`
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	DisabledValidations pulumi.StringArrayOutput `pulumi:"disabledValidations"`
 	// If set, parse out fields from the provided CSR making them available for Sentinel policies.
 	EnableSentinelParsing pulumi.BoolPtrOutput `pulumi:"enableSentinelParsing"`
 	// Specifies whether CMPv2 is enabled.
@@ -84,8 +86,6 @@ func GetBackendConfigCmpv2(ctx *pulumi.Context,
 // Input properties used for looking up and filtering BackendConfigCmpv2 resources.
 type backendConfigCmpv2State struct {
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	AuditFields []string `pulumi:"auditFields"`
 	// Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
 	Authenticators *BackendConfigCmpv2Authenticators `pulumi:"authenticators"`
@@ -94,6 +94,10 @@ type backendConfigCmpv2State struct {
 	Backend *string `pulumi:"backend"`
 	// Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
 	DefaultPathPolicy *string `pulumi:"defaultPathPolicy"`
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	DisabledValidations []string `pulumi:"disabledValidations"`
 	// If set, parse out fields from the provided CSR making them available for Sentinel policies.
 	EnableSentinelParsing *bool `pulumi:"enableSentinelParsing"`
 	// Specifies whether CMPv2 is enabled.
@@ -109,8 +113,6 @@ type backendConfigCmpv2State struct {
 
 type BackendConfigCmpv2State struct {
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	AuditFields pulumi.StringArrayInput
 	// Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
 	Authenticators BackendConfigCmpv2AuthenticatorsPtrInput
@@ -119,6 +121,10 @@ type BackendConfigCmpv2State struct {
 	Backend pulumi.StringPtrInput
 	// Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
 	DefaultPathPolicy pulumi.StringPtrInput
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	DisabledValidations pulumi.StringArrayInput
 	// If set, parse out fields from the provided CSR making them available for Sentinel policies.
 	EnableSentinelParsing pulumi.BoolPtrInput
 	// Specifies whether CMPv2 is enabled.
@@ -138,8 +144,6 @@ func (BackendConfigCmpv2State) ElementType() reflect.Type {
 
 type backendConfigCmpv2Args struct {
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	AuditFields []string `pulumi:"auditFields"`
 	// Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
 	Authenticators *BackendConfigCmpv2Authenticators `pulumi:"authenticators"`
@@ -148,6 +152,10 @@ type backendConfigCmpv2Args struct {
 	Backend string `pulumi:"backend"`
 	// Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
 	DefaultPathPolicy *string `pulumi:"defaultPathPolicy"`
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	DisabledValidations []string `pulumi:"disabledValidations"`
 	// If set, parse out fields from the provided CSR making them available for Sentinel policies.
 	EnableSentinelParsing *bool `pulumi:"enableSentinelParsing"`
 	// Specifies whether CMPv2 is enabled.
@@ -162,8 +170,6 @@ type backendConfigCmpv2Args struct {
 // The set of arguments for constructing a BackendConfigCmpv2 resource.
 type BackendConfigCmpv2Args struct {
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	AuditFields pulumi.StringArrayInput
 	// Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
 	Authenticators BackendConfigCmpv2AuthenticatorsPtrInput
@@ -172,6 +178,10 @@ type BackendConfigCmpv2Args struct {
 	Backend pulumi.StringInput
 	// Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
 	DefaultPathPolicy pulumi.StringPtrInput
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	DisabledValidations pulumi.StringArrayInput
 	// If set, parse out fields from the provided CSR making them available for Sentinel policies.
 	EnableSentinelParsing pulumi.BoolPtrInput
 	// Specifies whether CMPv2 is enabled.
@@ -271,8 +281,6 @@ func (o BackendConfigCmpv2Output) ToBackendConfigCmpv2OutputWithContext(ctx cont
 }
 
 // Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-//
-// <a id="nestedatt--authenticators"></a>
 func (o BackendConfigCmpv2Output) AuditFields() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *BackendConfigCmpv2) pulumi.StringArrayOutput { return v.AuditFields }).(pulumi.StringArrayOutput)
 }
@@ -291,6 +299,13 @@ func (o BackendConfigCmpv2Output) Backend() pulumi.StringOutput {
 // Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
 func (o BackendConfigCmpv2Output) DefaultPathPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackendConfigCmpv2) pulumi.StringPtrOutput { return v.DefaultPathPolicy }).(pulumi.StringPtrOutput)
+}
+
+// A comma-separated list of validations not to perform on CMPv2 messages.
+//
+// <a id="nestedatt--authenticators"></a>
+func (o BackendConfigCmpv2Output) DisabledValidations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BackendConfigCmpv2) pulumi.StringArrayOutput { return v.DisabledValidations }).(pulumi.StringArrayOutput)
 }
 
 // If set, parse out fields from the provided CSR making them available for Sentinel policies.

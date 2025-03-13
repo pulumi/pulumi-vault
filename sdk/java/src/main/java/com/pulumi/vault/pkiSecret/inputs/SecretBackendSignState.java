@@ -79,6 +79,21 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * 
+     */
+    @Import(name="certMetadata")
+    private @Nullable Output<String> certMetadata;
+
+    /**
+     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * 
+     */
+    public Optional<Output<String>> certMetadata() {
+        return Optional.ofNullable(this.certMetadata);
+    }
+
+    /**
      * The certificate
      * 
      */
@@ -271,6 +286,21 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    @Import(name="notAfter")
+    private @Nullable Output<String> notAfter;
+
+    /**
+     * @return Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    public Optional<Output<String>> notAfter() {
+        return Optional.ofNullable(this.notAfter);
+    }
+
+    /**
      * List of other SANs
      * 
      */
@@ -352,6 +382,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         this.autoRenew = $.autoRenew;
         this.backend = $.backend;
         this.caChains = $.caChains;
+        this.certMetadata = $.certMetadata;
         this.certificate = $.certificate;
         this.commonName = $.commonName;
         this.csr = $.csr;
@@ -364,6 +395,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         this.minSecondsRemaining = $.minSecondsRemaining;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.notAfter = $.notAfter;
         this.otherSans = $.otherSans;
         this.renewPending = $.renewPending;
         this.serialNumber = $.serialNumber;
@@ -491,6 +523,27 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
          */
         public Builder caChains(String... caChains) {
             return caChains(List.of(caChains));
+        }
+
+        /**
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certMetadata(@Nullable Output<String> certMetadata) {
+            $.certMetadata = certMetadata;
+            return this;
+        }
+
+        /**
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certMetadata(String certMetadata) {
+            return certMetadata(Output.of(certMetadata));
         }
 
         /**
@@ -765,6 +818,27 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param notAfter Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notAfter(@Nullable Output<String> notAfter) {
+            $.notAfter = notAfter;
+            return this;
+        }
+
+        /**
+         * @param notAfter Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notAfter(String notAfter) {
+            return notAfter(Output.of(notAfter));
         }
 
         /**

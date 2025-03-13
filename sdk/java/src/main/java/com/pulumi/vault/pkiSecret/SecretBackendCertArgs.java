@@ -65,6 +65,21 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * 
+     */
+    @Import(name="certMetadata")
+    private @Nullable Output<String> certMetadata;
+
+    /**
+     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * 
+     */
+    public Optional<Output<String>> certMetadata() {
+        return Optional.ofNullable(this.certMetadata);
+    }
+
+    /**
      * CN of certificate to create
      * 
      */
@@ -191,6 +206,21 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    @Import(name="notAfter")
+    private @Nullable Output<String> notAfter;
+
+    /**
+     * @return Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    public Optional<Output<String>> notAfter() {
+        return Optional.ofNullable(this.notAfter);
+    }
+
+    /**
      * List of other SANs
      * 
      */
@@ -221,18 +251,33 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * If set to `true`, the certificate will be revoked on resource destruction.
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
      * 
      */
     @Import(name="revoke")
     private @Nullable Output<Boolean> revoke;
 
     /**
-     * @return If set to `true`, the certificate will be revoked on resource destruction.
+     * @return If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
      * 
      */
     public Optional<Output<Boolean>> revoke() {
         return Optional.ofNullable(this.revoke);
+    }
+
+    /**
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+     * 
+     */
+    @Import(name="revokeWithKey")
+    private @Nullable Output<Boolean> revokeWithKey;
+
+    /**
+     * @return If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+     * 
+     */
+    public Optional<Output<Boolean>> revokeWithKey() {
+        return Optional.ofNullable(this.revokeWithKey);
     }
 
     /**
@@ -286,6 +331,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         this.altNames = $.altNames;
         this.autoRenew = $.autoRenew;
         this.backend = $.backend;
+        this.certMetadata = $.certMetadata;
         this.commonName = $.commonName;
         this.excludeCnFromSans = $.excludeCnFromSans;
         this.format = $.format;
@@ -294,9 +340,11 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         this.minSecondsRemaining = $.minSecondsRemaining;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.notAfter = $.notAfter;
         this.otherSans = $.otherSans;
         this.privateKeyFormat = $.privateKeyFormat;
         this.revoke = $.revoke;
+        this.revokeWithKey = $.revokeWithKey;
         this.ttl = $.ttl;
         this.uriSans = $.uriSans;
         this.userIds = $.userIds;
@@ -391,6 +439,27 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certMetadata(@Nullable Output<String> certMetadata) {
+            $.certMetadata = certMetadata;
+            return this;
+        }
+
+        /**
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certMetadata(String certMetadata) {
+            return certMetadata(Output.of(certMetadata));
         }
 
         /**
@@ -578,6 +647,27 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param notAfter Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notAfter(@Nullable Output<String> notAfter) {
+            $.notAfter = notAfter;
+            return this;
+        }
+
+        /**
+         * @param notAfter Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notAfter(String notAfter) {
+            return notAfter(Output.of(notAfter));
+        }
+
+        /**
          * @param otherSans List of other SANs
          * 
          * @return builder
@@ -630,7 +720,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param revoke If set to `true`, the certificate will be revoked on resource destruction.
+         * @param revoke If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
          * 
          * @return builder
          * 
@@ -641,13 +731,34 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param revoke If set to `true`, the certificate will be revoked on resource destruction.
+         * @param revoke If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
          * 
          * @return builder
          * 
          */
         public Builder revoke(Boolean revoke) {
             return revoke(Output.of(revoke));
+        }
+
+        /**
+         * @param revokeWithKey If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder revokeWithKey(@Nullable Output<Boolean> revokeWithKey) {
+            $.revokeWithKey = revokeWithKey;
+            return this;
+        }
+
+        /**
+         * @param revokeWithKey If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder revokeWithKey(Boolean revokeWithKey) {
+            return revokeWithKey(Output.of(revokeWithKey));
         }
 
         /**

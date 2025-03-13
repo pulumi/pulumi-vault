@@ -26,11 +26,14 @@ class SecretBackendKeyArgs:
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
                  exportable: Optional[pulumi.Input[bool]] = None,
+                 hybrid_key_type_ec: Optional[pulumi.Input[str]] = None,
+                 hybrid_key_type_pqc: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 parameter_set: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
@@ -43,6 +46,10 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        :param pulumi.Input[str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
+               Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        :param pulumi.Input[str] hybrid_key_type_pqc: The post-quantum algorithm to use for hybrid signatures.
+               Currently, ML-DSA is the only supported key type.
         :param pulumi.Input[int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
@@ -51,6 +58,8 @@ class SecretBackendKeyArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] parameter_set: The parameter set to use for ML-DSA. Required for
+               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
@@ -67,6 +76,10 @@ class SecretBackendKeyArgs:
             pulumi.set(__self__, "derived", derived)
         if exportable is not None:
             pulumi.set(__self__, "exportable", exportable)
+        if hybrid_key_type_ec is not None:
+            pulumi.set(__self__, "hybrid_key_type_ec", hybrid_key_type_ec)
+        if hybrid_key_type_pqc is not None:
+            pulumi.set(__self__, "hybrid_key_type_pqc", hybrid_key_type_pqc)
         if key_size is not None:
             pulumi.set(__self__, "key_size", key_size)
         if min_decryption_version is not None:
@@ -77,6 +90,8 @@ class SecretBackendKeyArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -167,6 +182,32 @@ class SecretBackendKeyArgs:
         pulumi.set(self, "exportable", value)
 
     @property
+    @pulumi.getter(name="hybridKeyTypeEc")
+    def hybrid_key_type_ec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The elliptic curve algorithm to use for hybrid signatures.
+        Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        """
+        return pulumi.get(self, "hybrid_key_type_ec")
+
+    @hybrid_key_type_ec.setter
+    def hybrid_key_type_ec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hybrid_key_type_ec", value)
+
+    @property
+    @pulumi.getter(name="hybridKeyTypePqc")
+    def hybrid_key_type_pqc(self) -> Optional[pulumi.Input[str]]:
+        """
+        The post-quantum algorithm to use for hybrid signatures.
+        Currently, ML-DSA is the only supported key type.
+        """
+        return pulumi.get(self, "hybrid_key_type_pqc")
+
+    @hybrid_key_type_pqc.setter
+    def hybrid_key_type_pqc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hybrid_key_type_pqc", value)
+
+    @property
     @pulumi.getter(name="keySize")
     def key_size(self) -> Optional[pulumi.Input[int]]:
         """
@@ -230,6 +271,19 @@ class SecretBackendKeyArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        The parameter set to use for ML-DSA. Required for
+        ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -253,6 +307,8 @@ class _SecretBackendKeyState:
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
                  exportable: Optional[pulumi.Input[bool]] = None,
+                 hybrid_key_type_ec: Optional[pulumi.Input[str]] = None,
+                 hybrid_key_type_pqc: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
                  latest_version: Optional[pulumi.Input[int]] = None,
@@ -261,6 +317,7 @@ class _SecretBackendKeyState:
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 parameter_set: Optional[pulumi.Input[str]] = None,
                  supports_decryption: Optional[pulumi.Input[bool]] = None,
                  supports_derivation: Optional[pulumi.Input[bool]] = None,
                  supports_encryption: Optional[pulumi.Input[bool]] = None,
@@ -277,6 +334,10 @@ class _SecretBackendKeyState:
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        :param pulumi.Input[str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
+               Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        :param pulumi.Input[str] hybrid_key_type_pqc: The post-quantum algorithm to use for hybrid signatures.
+               Currently, ML-DSA is the only supported key type.
         :param pulumi.Input[int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -290,6 +351,8 @@ class _SecretBackendKeyState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] parameter_set: The parameter set to use for ML-DSA. Required for
+               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
@@ -311,6 +374,10 @@ class _SecretBackendKeyState:
             pulumi.set(__self__, "derived", derived)
         if exportable is not None:
             pulumi.set(__self__, "exportable", exportable)
+        if hybrid_key_type_ec is not None:
+            pulumi.set(__self__, "hybrid_key_type_ec", hybrid_key_type_ec)
+        if hybrid_key_type_pqc is not None:
+            pulumi.set(__self__, "hybrid_key_type_pqc", hybrid_key_type_pqc)
         if key_size is not None:
             pulumi.set(__self__, "key_size", key_size)
         if keys is not None:
@@ -327,6 +394,8 @@ class _SecretBackendKeyState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if supports_decryption is not None:
             pulumi.set(__self__, "supports_decryption", supports_decryption)
         if supports_derivation is not None:
@@ -423,6 +492,32 @@ class _SecretBackendKeyState:
     @exportable.setter
     def exportable(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exportable", value)
+
+    @property
+    @pulumi.getter(name="hybridKeyTypeEc")
+    def hybrid_key_type_ec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The elliptic curve algorithm to use for hybrid signatures.
+        Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        """
+        return pulumi.get(self, "hybrid_key_type_ec")
+
+    @hybrid_key_type_ec.setter
+    def hybrid_key_type_ec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hybrid_key_type_ec", value)
+
+    @property
+    @pulumi.getter(name="hybridKeyTypePqc")
+    def hybrid_key_type_pqc(self) -> Optional[pulumi.Input[str]]:
+        """
+        The post-quantum algorithm to use for hybrid signatures.
+        Currently, ML-DSA is the only supported key type.
+        """
+        return pulumi.get(self, "hybrid_key_type_pqc")
+
+    @hybrid_key_type_pqc.setter
+    def hybrid_key_type_pqc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hybrid_key_type_pqc", value)
 
     @property
     @pulumi.getter(name="keySize")
@@ -526,6 +621,19 @@ class _SecretBackendKeyState:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        The parameter set to use for ML-DSA. Required for
+        ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @property
     @pulumi.getter(name="supportsDecryption")
     def supports_decryption(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -599,11 +707,14 @@ class SecretBackendKey(pulumi.CustomResource):
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
                  exportable: Optional[pulumi.Input[bool]] = None,
+                 hybrid_key_type_ec: Optional[pulumi.Input[str]] = None,
+                 hybrid_key_type_pqc: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 parameter_set: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -645,6 +756,10 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        :param pulumi.Input[str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
+               Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        :param pulumi.Input[str] hybrid_key_type_pqc: The post-quantum algorithm to use for hybrid signatures.
+               Currently, ML-DSA is the only supported key type.
         :param pulumi.Input[int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         :param pulumi.Input[int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[int] min_encryption_version: Minimum key version to use for encryption
@@ -653,6 +768,8 @@ class SecretBackendKey(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] parameter_set: The parameter set to use for ML-DSA. Required for
+               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
@@ -712,11 +829,14 @@ class SecretBackendKey(pulumi.CustomResource):
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
                  derived: Optional[pulumi.Input[bool]] = None,
                  exportable: Optional[pulumi.Input[bool]] = None,
+                 hybrid_key_type_ec: Optional[pulumi.Input[str]] = None,
+                 hybrid_key_type_pqc: Optional[pulumi.Input[str]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
                  min_encryption_version: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 parameter_set: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -736,11 +856,14 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__.__dict__["deletion_allowed"] = deletion_allowed
             __props__.__dict__["derived"] = derived
             __props__.__dict__["exportable"] = exportable
+            __props__.__dict__["hybrid_key_type_ec"] = hybrid_key_type_ec
+            __props__.__dict__["hybrid_key_type_pqc"] = hybrid_key_type_pqc
             __props__.__dict__["key_size"] = key_size
             __props__.__dict__["min_decryption_version"] = min_decryption_version
             __props__.__dict__["min_encryption_version"] = min_encryption_version
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["parameter_set"] = parameter_set
             __props__.__dict__["type"] = type
             __props__.__dict__["keys"] = None
             __props__.__dict__["latest_version"] = None
@@ -766,6 +889,8 @@ class SecretBackendKey(pulumi.CustomResource):
             deletion_allowed: Optional[pulumi.Input[bool]] = None,
             derived: Optional[pulumi.Input[bool]] = None,
             exportable: Optional[pulumi.Input[bool]] = None,
+            hybrid_key_type_ec: Optional[pulumi.Input[str]] = None,
+            hybrid_key_type_pqc: Optional[pulumi.Input[str]] = None,
             key_size: Optional[pulumi.Input[int]] = None,
             keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
             latest_version: Optional[pulumi.Input[int]] = None,
@@ -774,6 +899,7 @@ class SecretBackendKey(pulumi.CustomResource):
             min_encryption_version: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            parameter_set: Optional[pulumi.Input[str]] = None,
             supports_decryption: Optional[pulumi.Input[bool]] = None,
             supports_derivation: Optional[pulumi.Input[bool]] = None,
             supports_encryption: Optional[pulumi.Input[bool]] = None,
@@ -795,6 +921,10 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
+        :param pulumi.Input[str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
+               Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        :param pulumi.Input[str] hybrid_key_type_pqc: The post-quantum algorithm to use for hybrid signatures.
+               Currently, ML-DSA is the only supported key type.
         :param pulumi.Input[int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -808,6 +938,8 @@ class SecretBackendKey(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] parameter_set: The parameter set to use for ML-DSA. Required for
+               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[bool] supports_encryption: Whether or not the key supports encryption, based on key type.
@@ -826,6 +958,8 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["deletion_allowed"] = deletion_allowed
         __props__.__dict__["derived"] = derived
         __props__.__dict__["exportable"] = exportable
+        __props__.__dict__["hybrid_key_type_ec"] = hybrid_key_type_ec
+        __props__.__dict__["hybrid_key_type_pqc"] = hybrid_key_type_pqc
         __props__.__dict__["key_size"] = key_size
         __props__.__dict__["keys"] = keys
         __props__.__dict__["latest_version"] = latest_version
@@ -834,6 +968,7 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["min_encryption_version"] = min_encryption_version
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["parameter_set"] = parameter_set
         __props__.__dict__["supports_decryption"] = supports_decryption
         __props__.__dict__["supports_derivation"] = supports_derivation
         __props__.__dict__["supports_encryption"] = supports_encryption
@@ -898,6 +1033,24 @@ class SecretBackendKey(pulumi.CustomResource):
         Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         """
         return pulumi.get(self, "exportable")
+
+    @property
+    @pulumi.getter(name="hybridKeyTypeEc")
+    def hybrid_key_type_ec(self) -> pulumi.Output[Optional[str]]:
+        """
+        The elliptic curve algorithm to use for hybrid signatures.
+        Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        """
+        return pulumi.get(self, "hybrid_key_type_ec")
+
+    @property
+    @pulumi.getter(name="hybridKeyTypePqc")
+    def hybrid_key_type_pqc(self) -> pulumi.Output[Optional[str]]:
+        """
+        The post-quantum algorithm to use for hybrid signatures.
+        Currently, ML-DSA is the only supported key type.
+        """
+        return pulumi.get(self, "hybrid_key_type_pqc")
 
     @property
     @pulumi.getter(name="keySize")
@@ -967,6 +1120,15 @@ class SecretBackendKey(pulumi.CustomResource):
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Output[Optional[str]]:
+        """
+        The parameter set to use for ML-DSA. Required for
+        ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        """
+        return pulumi.get(self, "parameter_set")
 
     @property
     @pulumi.getter(name="supportsDecryption")

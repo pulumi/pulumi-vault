@@ -1289,10 +1289,14 @@ export namespace database {
         connectTimeout?: pulumi.Input<number>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Cassandra hosts to connect to.
          */
@@ -1334,6 +1338,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
          */
         skipVerification?: pulumi.Input<boolean>;
@@ -1368,10 +1388,14 @@ export namespace database {
         bucketName?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
@@ -1396,6 +1420,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * Specifies whether to use TLS when connecting to Couchbase.
          */
@@ -1439,10 +1479,14 @@ export namespace database {
         clientKey?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Whether to disable certificate verification
          */
@@ -1463,6 +1507,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * This, if set, is used to set the SNI host when connecting via TLS
          */
@@ -1498,10 +1558,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Disable special character escaping in username and password
          */
@@ -1535,6 +1599,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -1557,10 +1637,14 @@ export namespace database {
         connectTimeout?: pulumi.Input<number>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Influxdb host to connect to.
          */
@@ -1598,6 +1682,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * Whether to use TLS when connecting to Influxdb.
          */
         tls?: pulumi.Input<boolean>;
@@ -1628,10 +1728,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1661,6 +1765,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -1683,10 +1803,14 @@ export namespace database {
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Name of the database connection.
          */
@@ -1712,6 +1836,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
@@ -1734,10 +1874,14 @@ export namespace database {
         containedDb?: pulumi.Input<boolean>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Disable special character escaping in username and password
          */
@@ -1771,6 +1915,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -1801,10 +1961,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1833,6 +1997,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -1876,10 +2056,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1908,6 +2092,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -1951,10 +2151,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1983,6 +2187,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -2026,10 +2246,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2058,6 +2282,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -2097,10 +2337,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
@@ -2133,6 +2377,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * Set to true in order to split statements after semi-colons.
          */
@@ -2168,10 +2428,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Disable special character escaping in username and password
          */
@@ -2212,6 +2476,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
@@ -2255,10 +2535,14 @@ export namespace database {
         caCert?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Specifies the host to connect to
          */
@@ -2288,6 +2572,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * Specifies whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
@@ -2310,10 +2610,14 @@ export namespace database {
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Name of the database connection.
          */
@@ -2334,6 +2638,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * The configuration endpoint for the ElastiCache cluster to connect to.
          */
@@ -2361,10 +2681,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Disable special character escaping in username and password
          */
@@ -2398,6 +2722,22 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -2424,10 +2764,14 @@ export namespace database {
         connectionUrl?: pulumi.Input<string>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        disableAutomatedRotation?: pulumi.Input<boolean>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2456,6 +2800,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: pulumi.Input<number>;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: pulumi.Input<string>;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: pulumi.Input<number>;
         /**
          * The root credential username used in the connection URL
          */
@@ -2928,8 +3288,6 @@ export namespace pkiSecret {
     export interface SecretBackendRolePolicyIdentifier {
         /**
          * The URL of the CPS for the policy identifier
-         *
-         * Example usage:
          */
         cps?: pulumi.Input<string>;
         /**

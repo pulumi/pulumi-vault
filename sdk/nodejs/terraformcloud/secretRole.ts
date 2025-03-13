@@ -76,7 +76,7 @@ export class SecretRole extends pulumi.CustomResource {
     public readonly organization!: pulumi.Output<string | undefined>;
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the TTL for this role.
+     * Specifies the TTL for this role, in seconds.
      */
     public readonly ttl!: pulumi.Output<number | undefined>;
     public readonly userId!: pulumi.Output<string | undefined>;
@@ -138,7 +138,7 @@ export interface SecretRoleState {
     organization?: pulumi.Input<string>;
     teamId?: pulumi.Input<string>;
     /**
-     * Specifies the TTL for this role.
+     * Specifies the TTL for this role, in seconds.
      */
     ttl?: pulumi.Input<number>;
     userId?: pulumi.Input<string>;
@@ -164,7 +164,7 @@ export interface SecretRoleArgs {
     organization?: pulumi.Input<string>;
     teamId?: pulumi.Input<string>;
     /**
-     * Specifies the TTL for this role.
+     * Specifies the TTL for this role, in seconds.
      */
     ttl?: pulumi.Input<number>;
     userId?: pulumi.Input<string>;

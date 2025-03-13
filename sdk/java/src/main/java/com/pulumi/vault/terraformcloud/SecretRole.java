@@ -132,14 +132,14 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.teamId);
     }
     /**
-     * Specifies the TTL for this role.
+     * Specifies the TTL for this role, in seconds.
      * 
      */
     @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**
-     * @return Specifies the TTL for this role.
+     * @return Specifies the TTL for this role, in seconds.
      * 
      */
     public Output<Optional<Integer>> ttl() {

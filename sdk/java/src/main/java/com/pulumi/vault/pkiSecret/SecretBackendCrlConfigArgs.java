@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -140,6 +141,23 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * The maximum number of entries a CRL can contain. This option exists to prevent
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     * 
+     */
+    @Import(name="maxCrlEntries")
+    private @Nullable Output<Integer> maxCrlEntries;
+
+    /**
+     * @return The maximum number of entries a CRL can contain. This option exists to prevent
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     * 
+     */
+    public Optional<Output<Integer>> maxCrlEntries() {
+        return Optional.ofNullable(this.maxCrlEntries);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -235,6 +253,7 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
         this.disable = $.disable;
         this.enableDelta = $.enableDelta;
         this.expiry = $.expiry;
+        this.maxCrlEntries = $.maxCrlEntries;
         this.namespace = $.namespace;
         this.ocspDisable = $.ocspDisable;
         this.ocspExpiry = $.ocspExpiry;
@@ -428,6 +447,29 @@ public final class SecretBackendCrlConfigArgs extends com.pulumi.resources.Resou
          */
         public Builder expiry(String expiry) {
             return expiry(Output.of(expiry));
+        }
+
+        /**
+         * @param maxCrlEntries The maximum number of entries a CRL can contain. This option exists to prevent
+         * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxCrlEntries(@Nullable Output<Integer> maxCrlEntries) {
+            $.maxCrlEntries = maxCrlEntries;
+            return this;
+        }
+
+        /**
+         * @param maxCrlEntries The maximum number of entries a CRL can contain. This option exists to prevent
+         * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxCrlEntries(Integer maxCrlEntries) {
+            return maxCrlEntries(Output.of(maxCrlEntries));
         }
 
         /**

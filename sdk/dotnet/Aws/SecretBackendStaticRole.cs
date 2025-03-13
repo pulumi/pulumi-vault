@@ -37,6 +37,34 @@ namespace Pulumi.Vault.Aws
     /// });
     /// ```
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var aws = new Vault.Aws.SecretBackend("aws", new()
+    ///     {
+    ///         Path = "my-aws",
+    ///         Description = "Obtain AWS credentials.",
+    ///     });
+    /// 
+    ///     var assume_role = new Vault.Aws.SecretBackendStaticRole("assume-role", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         Name = "assume-role-test",
+    ///         Username = "my-assume-role-user",
+    ///         AssumeRoleArn = "arn:aws:iam::123456789012:role/assume-role",
+    ///         AssumeRoleSessionName = "assume-role-session",
+    ///         ExternalId = "test-id",
+    ///         RotationPeriod = 3600,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS secret backend static role can be imported using the full path to the role
@@ -50,11 +78,35 @@ namespace Pulumi.Vault.Aws
     public partial class SecretBackendStaticRole : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Specifies the ARN of the role that Vault should assume.
+        /// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+        /// If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("assumeRoleArn")]
+        public Output<string?> AssumeRoleArn { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the session name to use when assuming the role.
+        /// If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("assumeRoleSessionName")]
+        public Output<string?> AssumeRoleSessionName { get; private set; } = null!;
+
+        /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `aws`
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the external ID to use when assuming the role.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("externalId")]
+        public Output<string?> ExternalId { get; private set; } = null!;
 
         /// <summary>
         /// The name to identify this role within the backend.
@@ -131,11 +183,35 @@ namespace Pulumi.Vault.Aws
     public sealed class SecretBackendStaticRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Specifies the ARN of the role that Vault should assume.
+        /// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+        /// If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("assumeRoleArn")]
+        public Input<string>? AssumeRoleArn { get; set; }
+
+        /// <summary>
+        /// Specifies the session name to use when assuming the role.
+        /// If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("assumeRoleSessionName")]
+        public Input<string>? AssumeRoleSessionName { get; set; }
+
+        /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `aws`
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// Specifies the external ID to use when assuming the role.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
 
         /// <summary>
         /// The name to identify this role within the backend.
@@ -174,11 +250,35 @@ namespace Pulumi.Vault.Aws
     public sealed class SecretBackendStaticRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Specifies the ARN of the role that Vault should assume.
+        /// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+        /// If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("assumeRoleArn")]
+        public Input<string>? AssumeRoleArn { get; set; }
+
+        /// <summary>
+        /// Specifies the session name to use when assuming the role.
+        /// If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("assumeRoleSessionName")]
+        public Input<string>? AssumeRoleSessionName { get; set; }
+
+        /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `aws`
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// Specifies the external ID to use when assuming the role.
+        /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
 
         /// <summary>
         /// The name to identify this role within the backend.

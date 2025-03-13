@@ -19,6 +19,7 @@ public final class GetBackendConfigCmpv2Result {
     private List<GetBackendConfigCmpv2Authenticator> authenticators;
     private String backend;
     private String defaultPathPolicy;
+    private @Nullable List<String> disabledValidations;
     private Boolean enableSentinelParsing;
     private Boolean enabled;
     /**
@@ -41,6 +42,9 @@ public final class GetBackendConfigCmpv2Result {
     }
     public String defaultPathPolicy() {
         return this.defaultPathPolicy;
+    }
+    public List<String> disabledValidations() {
+        return this.disabledValidations == null ? List.of() : this.disabledValidations;
     }
     public Boolean enableSentinelParsing() {
         return this.enableSentinelParsing;
@@ -75,6 +79,7 @@ public final class GetBackendConfigCmpv2Result {
         private List<GetBackendConfigCmpv2Authenticator> authenticators;
         private String backend;
         private String defaultPathPolicy;
+        private @Nullable List<String> disabledValidations;
         private Boolean enableSentinelParsing;
         private Boolean enabled;
         private String id;
@@ -87,6 +92,7 @@ public final class GetBackendConfigCmpv2Result {
     	      this.authenticators = defaults.authenticators;
     	      this.backend = defaults.backend;
     	      this.defaultPathPolicy = defaults.defaultPathPolicy;
+    	      this.disabledValidations = defaults.disabledValidations;
     	      this.enableSentinelParsing = defaults.enableSentinelParsing;
     	      this.enabled = defaults.enabled;
     	      this.id = defaults.id;
@@ -133,6 +139,15 @@ public final class GetBackendConfigCmpv2Result {
             return this;
         }
         @CustomType.Setter
+        public Builder disabledValidations(@Nullable List<String> disabledValidations) {
+
+            this.disabledValidations = disabledValidations;
+            return this;
+        }
+        public Builder disabledValidations(String... disabledValidations) {
+            return disabledValidations(List.of(disabledValidations));
+        }
+        @CustomType.Setter
         public Builder enableSentinelParsing(Boolean enableSentinelParsing) {
             if (enableSentinelParsing == null) {
               throw new MissingRequiredPropertyException("GetBackendConfigCmpv2Result", "enableSentinelParsing");
@@ -176,6 +191,7 @@ public final class GetBackendConfigCmpv2Result {
             _resultValue.authenticators = authenticators;
             _resultValue.backend = backend;
             _resultValue.defaultPathPolicy = defaultPathPolicy;
+            _resultValue.disabledValidations = disabledValidations;
             _resultValue.enableSentinelParsing = enableSentinelParsing;
             _resultValue.enabled = enabled;
             _resultValue.id = id;

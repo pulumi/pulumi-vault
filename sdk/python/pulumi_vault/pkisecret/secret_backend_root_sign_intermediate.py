@@ -25,23 +25,35 @@ class SecretBackendRootSignIntermediateArgs:
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  country: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
+                 skid: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 use_csr_values: Optional[pulumi.Input[bool]] = None):
+                 use_csr_values: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackendRootSignIntermediate resource.
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
@@ -50,6 +62,10 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_dns_domains: List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -62,17 +78,27 @@ class SecretBackendRootSignIntermediateArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. 
+               The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+               for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
+        :param pulumi.Input[str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "common_name", common_name)
@@ -83,6 +109,14 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "country", country)
         if exclude_cn_from_sans is not None:
             pulumi.set(__self__, "exclude_cn_from_sans", exclude_cn_from_sans)
+        if excluded_dns_domains is not None:
+            pulumi.set(__self__, "excluded_dns_domains", excluded_dns_domains)
+        if excluded_email_addresses is not None:
+            pulumi.set(__self__, "excluded_email_addresses", excluded_email_addresses)
+        if excluded_ip_ranges is not None:
+            pulumi.set(__self__, "excluded_ip_ranges", excluded_ip_ranges)
+        if excluded_uri_domains is not None:
+            pulumi.set(__self__, "excluded_uri_domains", excluded_uri_domains)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if ip_sans is not None:
@@ -95,6 +129,10 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "max_path_length", max_path_length)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if not_after is not None:
+            pulumi.set(__self__, "not_after", not_after)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -103,12 +141,22 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "ou", ou)
         if permitted_dns_domains is not None:
             pulumi.set(__self__, "permitted_dns_domains", permitted_dns_domains)
+        if permitted_email_addresses is not None:
+            pulumi.set(__self__, "permitted_email_addresses", permitted_email_addresses)
+        if permitted_ip_ranges is not None:
+            pulumi.set(__self__, "permitted_ip_ranges", permitted_ip_ranges)
+        if permitted_uri_domains is not None:
+            pulumi.set(__self__, "permitted_uri_domains", permitted_uri_domains)
         if postal_code is not None:
             pulumi.set(__self__, "postal_code", postal_code)
         if province is not None:
             pulumi.set(__self__, "province", province)
         if revoke is not None:
             pulumi.set(__self__, "revoke", revoke)
+        if signature_bits is not None:
+            pulumi.set(__self__, "signature_bits", signature_bits)
+        if skid is not None:
+            pulumi.set(__self__, "skid", skid)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if ttl is not None:
@@ -117,6 +165,8 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "uri_sans", uri_sans)
         if use_csr_values is not None:
             pulumi.set(__self__, "use_csr_values", use_csr_values)
+        if use_pss is not None:
+            pulumi.set(__self__, "use_pss", use_pss)
 
     @property
     @pulumi.getter
@@ -189,6 +239,54 @@ class SecretBackendRootSignIntermediateArgs:
     @exclude_cn_from_sans.setter
     def exclude_cn_from_sans(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "exclude_cn_from_sans", value)
+
+    @property
+    @pulumi.getter(name="excludedDnsDomains")
+    def excluded_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_dns_domains")
+
+    @excluded_dns_domains.setter
+    def excluded_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_dns_domains", value)
+
+    @property
+    @pulumi.getter(name="excludedEmailAddresses")
+    def excluded_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_email_addresses")
+
+    @excluded_email_addresses.setter
+    def excluded_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_email_addresses", value)
+
+    @property
+    @pulumi.getter(name="excludedIpRanges")
+    def excluded_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_ip_ranges")
+
+    @excluded_ip_ranges.setter
+    def excluded_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_ip_ranges", value)
+
+    @property
+    @pulumi.getter(name="excludedUriDomains")
+    def excluded_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_uri_domains")
+
+    @excluded_uri_domains.setter
+    def excluded_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_uri_domains", value)
 
     @property
     @pulumi.getter
@@ -269,6 +367,32 @@ class SecretBackendRootSignIntermediateArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. 
+        The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+        for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @not_after.setter
+    def not_after(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_after", value)
+
+    @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[str]]:
         """
@@ -317,6 +441,42 @@ class SecretBackendRootSignIntermediateArgs:
         pulumi.set(self, "permitted_dns_domains", value)
 
     @property
+    @pulumi.getter(name="permittedEmailAddresses")
+    def permitted_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_email_addresses")
+
+    @permitted_email_addresses.setter
+    def permitted_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_email_addresses", value)
+
+    @property
+    @pulumi.getter(name="permittedIpRanges")
+    def permitted_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_ip_ranges")
+
+    @permitted_ip_ranges.setter
+    def permitted_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_ip_ranges", value)
+
+    @property
+    @pulumi.getter(name="permittedUriDomains")
+    def permitted_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_uri_domains")
+
+    @permitted_uri_domains.setter
+    def permitted_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_uri_domains", value)
+
+    @property
     @pulumi.getter(name="postalCode")
     def postal_code(self) -> Optional[pulumi.Input[str]]:
         """
@@ -351,6 +511,30 @@ class SecretBackendRootSignIntermediateArgs:
     @revoke.setter
     def revoke(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "revoke", value)
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @signature_bits.setter
+    def signature_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "signature_bits", value)
+
+    @property
+    @pulumi.getter
+    def skid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        """
+        return pulumi.get(self, "skid")
+
+    @skid.setter
+    def skid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "skid", value)
 
     @property
     @pulumi.getter(name="streetAddress")
@@ -400,6 +584,18 @@ class SecretBackendRootSignIntermediateArgs:
     def use_csr_values(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_csr_values", value)
 
+    @property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        """
+        return pulumi.get(self, "use_pss")
+
+    @use_pss.setter
+    def use_pss(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_pss", value)
+
 
 @pulumi.input_type
 class _SecretBackendRootSignIntermediateState:
@@ -413,6 +609,10 @@ class _SecretBackendRootSignIntermediateState:
                  country: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -420,18 +620,26 @@ class _SecretBackendRootSignIntermediateState:
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
+                 skid: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 use_csr_values: Optional[pulumi.Input[bool]] = None):
+                 use_csr_values: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRootSignIntermediate resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
@@ -444,6 +652,10 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_dns_domains: List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -457,18 +669,28 @@ class _SecretBackendRootSignIntermediateState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. 
+               The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+               for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
+        :param pulumi.Input[str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
         """
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
@@ -488,6 +710,14 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "csr", csr)
         if exclude_cn_from_sans is not None:
             pulumi.set(__self__, "exclude_cn_from_sans", exclude_cn_from_sans)
+        if excluded_dns_domains is not None:
+            pulumi.set(__self__, "excluded_dns_domains", excluded_dns_domains)
+        if excluded_email_addresses is not None:
+            pulumi.set(__self__, "excluded_email_addresses", excluded_email_addresses)
+        if excluded_ip_ranges is not None:
+            pulumi.set(__self__, "excluded_ip_ranges", excluded_ip_ranges)
+        if excluded_uri_domains is not None:
+            pulumi.set(__self__, "excluded_uri_domains", excluded_uri_domains)
         if format is not None:
             pulumi.set(__self__, "format", format)
         if ip_sans is not None:
@@ -502,6 +732,10 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "max_path_length", max_path_length)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if not_after is not None:
+            pulumi.set(__self__, "not_after", not_after)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -510,6 +744,12 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "ou", ou)
         if permitted_dns_domains is not None:
             pulumi.set(__self__, "permitted_dns_domains", permitted_dns_domains)
+        if permitted_email_addresses is not None:
+            pulumi.set(__self__, "permitted_email_addresses", permitted_email_addresses)
+        if permitted_ip_ranges is not None:
+            pulumi.set(__self__, "permitted_ip_ranges", permitted_ip_ranges)
+        if permitted_uri_domains is not None:
+            pulumi.set(__self__, "permitted_uri_domains", permitted_uri_domains)
         if postal_code is not None:
             pulumi.set(__self__, "postal_code", postal_code)
         if province is not None:
@@ -518,6 +758,10 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "revoke", revoke)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
+        if signature_bits is not None:
+            pulumi.set(__self__, "signature_bits", signature_bits)
+        if skid is not None:
+            pulumi.set(__self__, "skid", skid)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if ttl is not None:
@@ -526,6 +770,8 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "uri_sans", uri_sans)
         if use_csr_values is not None:
             pulumi.set(__self__, "use_csr_values", use_csr_values)
+        if use_pss is not None:
+            pulumi.set(__self__, "use_pss", use_pss)
 
     @property
     @pulumi.getter(name="altNames")
@@ -637,6 +883,54 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "exclude_cn_from_sans", value)
 
     @property
+    @pulumi.getter(name="excludedDnsDomains")
+    def excluded_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_dns_domains")
+
+    @excluded_dns_domains.setter
+    def excluded_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_dns_domains", value)
+
+    @property
+    @pulumi.getter(name="excludedEmailAddresses")
+    def excluded_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_email_addresses")
+
+    @excluded_email_addresses.setter
+    def excluded_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_email_addresses", value)
+
+    @property
+    @pulumi.getter(name="excludedIpRanges")
+    def excluded_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_ip_ranges")
+
+    @excluded_ip_ranges.setter
+    def excluded_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_ip_ranges", value)
+
+    @property
+    @pulumi.getter(name="excludedUriDomains")
+    def excluded_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_uri_domains")
+
+    @excluded_uri_domains.setter
+    def excluded_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "excluded_uri_domains", value)
+
+    @property
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
@@ -727,6 +1021,32 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. 
+        The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+        for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @not_after.setter
+    def not_after(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_after", value)
+
+    @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[str]]:
         """
@@ -773,6 +1093,42 @@ class _SecretBackendRootSignIntermediateState:
     @permitted_dns_domains.setter
     def permitted_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "permitted_dns_domains", value)
+
+    @property
+    @pulumi.getter(name="permittedEmailAddresses")
+    def permitted_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_email_addresses")
+
+    @permitted_email_addresses.setter
+    def permitted_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_email_addresses", value)
+
+    @property
+    @pulumi.getter(name="permittedIpRanges")
+    def permitted_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_ip_ranges")
+
+    @permitted_ip_ranges.setter
+    def permitted_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_ip_ranges", value)
+
+    @property
+    @pulumi.getter(name="permittedUriDomains")
+    def permitted_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_uri_domains")
+
+    @permitted_uri_domains.setter
+    def permitted_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "permitted_uri_domains", value)
 
     @property
     @pulumi.getter(name="postalCode")
@@ -823,6 +1179,30 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "serial_number", value)
 
     @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @signature_bits.setter
+    def signature_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "signature_bits", value)
+
+    @property
+    @pulumi.getter
+    def skid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        """
+        return pulumi.get(self, "skid")
+
+    @skid.setter
+    def skid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "skid", value)
+
+    @property
     @pulumi.getter(name="streetAddress")
     def street_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -870,6 +1250,18 @@ class _SecretBackendRootSignIntermediateState:
     def use_csr_values(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_csr_values", value)
 
+    @property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        """
+        return pulumi.get(self, "use_pss")
+
+    @use_pss.setter
+    def use_pss(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_pss", value)
+
 
 class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @overload
@@ -882,23 +1274,35 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  country: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
+                 skid: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  use_csr_values: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Creates PKI certificate.
@@ -927,6 +1331,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_dns_domains: List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -939,17 +1347,27 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. 
+               The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+               for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
+        :param pulumi.Input[str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
         """
         ...
     @overload
@@ -997,23 +1415,35 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  country: Optional[pulumi.Input[str]] = None,
                  csr: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  max_path_length: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
+                 not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ou: Optional[pulumi.Input[str]] = None,
                  permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_code: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
+                 skid: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  use_csr_values: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1035,23 +1465,35 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                 raise TypeError("Missing required property 'csr'")
             __props__.__dict__["csr"] = csr
             __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
+            __props__.__dict__["excluded_dns_domains"] = excluded_dns_domains
+            __props__.__dict__["excluded_email_addresses"] = excluded_email_addresses
+            __props__.__dict__["excluded_ip_ranges"] = excluded_ip_ranges
+            __props__.__dict__["excluded_uri_domains"] = excluded_uri_domains
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["issuer_ref"] = issuer_ref
             __props__.__dict__["locality"] = locality
             __props__.__dict__["max_path_length"] = max_path_length
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["not_after"] = not_after
+            __props__.__dict__["not_before_duration"] = not_before_duration
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
             __props__.__dict__["permitted_dns_domains"] = permitted_dns_domains
+            __props__.__dict__["permitted_email_addresses"] = permitted_email_addresses
+            __props__.__dict__["permitted_ip_ranges"] = permitted_ip_ranges
+            __props__.__dict__["permitted_uri_domains"] = permitted_uri_domains
             __props__.__dict__["postal_code"] = postal_code
             __props__.__dict__["province"] = province
             __props__.__dict__["revoke"] = revoke
+            __props__.__dict__["signature_bits"] = signature_bits
+            __props__.__dict__["skid"] = skid
             __props__.__dict__["street_address"] = street_address
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
             __props__.__dict__["use_csr_values"] = use_csr_values
+            __props__.__dict__["use_pss"] = use_pss
             __props__.__dict__["ca_chains"] = None
             __props__.__dict__["certificate"] = None
             __props__.__dict__["certificate_bundle"] = None
@@ -1076,6 +1518,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             country: Optional[pulumi.Input[str]] = None,
             csr: Optional[pulumi.Input[str]] = None,
             exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
+            excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             format: Optional[pulumi.Input[str]] = None,
             ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -1083,18 +1529,26 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             locality: Optional[pulumi.Input[str]] = None,
             max_path_length: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            not_after: Optional[pulumi.Input[str]] = None,
+            not_before_duration: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ou: Optional[pulumi.Input[str]] = None,
             permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             postal_code: Optional[pulumi.Input[str]] = None,
             province: Optional[pulumi.Input[str]] = None,
             revoke: Optional[pulumi.Input[bool]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
+            signature_bits: Optional[pulumi.Input[int]] = None,
+            skid: Optional[pulumi.Input[str]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            use_csr_values: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendRootSignIntermediate':
+            use_csr_values: Optional[pulumi.Input[bool]] = None,
+            use_pss: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendRootSignIntermediate':
         """
         Get an existing SecretBackendRootSignIntermediate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1112,6 +1566,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] country: The country
         :param pulumi.Input[str] csr: The CSR
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_dns_domains: List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -1125,18 +1583,28 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. 
+               The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+               for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ou: The organization unit
         :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] province: The province
         :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
+        :param pulumi.Input[str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[bool] use_csr_values: Preserve CSR values
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1151,6 +1619,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["country"] = country
         __props__.__dict__["csr"] = csr
         __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
+        __props__.__dict__["excluded_dns_domains"] = excluded_dns_domains
+        __props__.__dict__["excluded_email_addresses"] = excluded_email_addresses
+        __props__.__dict__["excluded_ip_ranges"] = excluded_ip_ranges
+        __props__.__dict__["excluded_uri_domains"] = excluded_uri_domains
         __props__.__dict__["format"] = format
         __props__.__dict__["ip_sans"] = ip_sans
         __props__.__dict__["issuer_ref"] = issuer_ref
@@ -1158,18 +1630,26 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["locality"] = locality
         __props__.__dict__["max_path_length"] = max_path_length
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["not_after"] = not_after
+        __props__.__dict__["not_before_duration"] = not_before_duration
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
         __props__.__dict__["permitted_dns_domains"] = permitted_dns_domains
+        __props__.__dict__["permitted_email_addresses"] = permitted_email_addresses
+        __props__.__dict__["permitted_ip_ranges"] = permitted_ip_ranges
+        __props__.__dict__["permitted_uri_domains"] = permitted_uri_domains
         __props__.__dict__["postal_code"] = postal_code
         __props__.__dict__["province"] = province
         __props__.__dict__["revoke"] = revoke
         __props__.__dict__["serial_number"] = serial_number
+        __props__.__dict__["signature_bits"] = signature_bits
+        __props__.__dict__["skid"] = skid
         __props__.__dict__["street_address"] = street_address
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
         __props__.__dict__["use_csr_values"] = use_csr_values
+        __props__.__dict__["use_pss"] = use_pss
         return SecretBackendRootSignIntermediate(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1246,6 +1726,38 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         return pulumi.get(self, "exclude_cn_from_sans")
 
     @property
+    @pulumi.getter(name="excludedDnsDomains")
+    def excluded_dns_domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_dns_domains")
+
+    @property
+    @pulumi.getter(name="excludedEmailAddresses")
+    def excluded_email_addresses(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_email_addresses")
+
+    @property
+    @pulumi.getter(name="excludedIpRanges")
+    def excluded_ip_ranges(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_ip_ranges")
+
+    @property
+    @pulumi.getter(name="excludedUriDomains")
+    def excluded_uri_domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "excluded_uri_domains")
+
+    @property
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1308,6 +1820,24 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> pulumi.Output[Optional[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. 
+        The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+        for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @property
     @pulumi.getter
     def organization(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1338,6 +1868,30 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         List of domains for which certificates are allowed to be issued
         """
         return pulumi.get(self, "permitted_dns_domains")
+
+    @property
+    @pulumi.getter(name="permittedEmailAddresses")
+    def permitted_email_addresses(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_email_addresses")
+
+    @property
+    @pulumi.getter(name="permittedIpRanges")
+    def permitted_ip_ranges(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_ip_ranges")
+
+    @property
+    @pulumi.getter(name="permittedUriDomains")
+    def permitted_uri_domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        """
+        return pulumi.get(self, "permitted_uri_domains")
 
     @property
     @pulumi.getter(name="postalCode")
@@ -1372,6 +1926,22 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         return pulumi.get(self, "serial_number")
 
     @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> pulumi.Output[Optional[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @property
+    @pulumi.getter
+    def skid(self) -> pulumi.Output[Optional[str]]:
+        """
+        Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        """
+        return pulumi.get(self, "skid")
+
+    @property
     @pulumi.getter(name="streetAddress")
     def street_address(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1402,4 +1972,12 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         Preserve CSR values
         """
         return pulumi.get(self, "use_csr_values")
+
+    @property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        """
+        return pulumi.get(self, "use_pss")
 

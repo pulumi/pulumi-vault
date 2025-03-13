@@ -24,6 +24,8 @@ import * as utilities from "../utilities";
  *         "dev",
  *         "prod",
  *     ],
+ *     rotationSchedule: "0 * * * SAT",
+ *     rotationWindow: 3600,
  *     postgresql: {
  *         connectionUrl: "postgres://username:password@host:port/database",
  *     },
@@ -87,6 +89,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
     public readonly data!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
@@ -169,6 +175,22 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     public readonly rootRotationStatements!: pulumi.Output<string[] | undefined>;
     /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    /**
      * A nested block containing configuration options for Snowflake connections.
      */
     public readonly snowflake!: pulumi.Output<outputs.database.SecretBackendConnectionSnowflake | undefined>;
@@ -196,6 +218,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["cassandra"] = state ? state.cassandra : undefined;
             resourceInputs["couchbase"] = state ? state.couchbase : undefined;
             resourceInputs["data"] = state ? state.data : undefined;
+            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
             resourceInputs["elasticsearch"] = state ? state.elasticsearch : undefined;
             resourceInputs["hana"] = state ? state.hana : undefined;
             resourceInputs["influxdb"] = state ? state.influxdb : undefined;
@@ -215,6 +238,9 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["redisElasticache"] = state ? state.redisElasticache : undefined;
             resourceInputs["redshift"] = state ? state.redshift : undefined;
             resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
+            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["snowflake"] = state ? state.snowflake : undefined;
             resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
         } else {
@@ -227,6 +253,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["cassandra"] = args ? args.cassandra : undefined;
             resourceInputs["couchbase"] = args ? args.couchbase : undefined;
             resourceInputs["data"] = args ? args.data : undefined;
+            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
             resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
             resourceInputs["hana"] = args ? args.hana : undefined;
             resourceInputs["influxdb"] = args ? args.influxdb : undefined;
@@ -246,6 +273,9 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["redisElasticache"] = args ? args.redisElasticache : undefined;
             resourceInputs["redshift"] = args ? args.redshift : undefined;
             resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
+            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["snowflake"] = args ? args.snowflake : undefined;
             resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
         }
@@ -279,6 +309,10 @@ export interface SecretBackendConnectionState {
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
     data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
@@ -360,6 +394,22 @@ export interface SecretBackendConnectionState {
      * A list of database statements to be executed to rotate the root user's credentials.
      */
     rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
@@ -397,6 +447,10 @@ export interface SecretBackendConnectionArgs {
      */
     data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
     elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
@@ -477,6 +531,22 @@ export interface SecretBackendConnectionArgs {
      * A list of database statements to be executed to rotate the root user's credentials.
      */
     rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */

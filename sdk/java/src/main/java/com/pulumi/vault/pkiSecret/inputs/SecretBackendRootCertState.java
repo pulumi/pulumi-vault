@@ -109,6 +109,66 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
     }
 
     /**
+     * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="excludedDnsDomains")
+    private @Nullable Output<List<String>> excludedDnsDomains;
+
+    /**
+     * @return List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> excludedDnsDomains() {
+        return Optional.ofNullable(this.excludedDnsDomains);
+    }
+
+    /**
+     * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="excludedEmailAddresses")
+    private @Nullable Output<List<String>> excludedEmailAddresses;
+
+    /**
+     * @return List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> excludedEmailAddresses() {
+        return Optional.ofNullable(this.excludedEmailAddresses);
+    }
+
+    /**
+     * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="excludedIpRanges")
+    private @Nullable Output<List<String>> excludedIpRanges;
+
+    /**
+     * @return List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> excludedIpRanges() {
+        return Optional.ofNullable(this.excludedIpRanges);
+    }
+
+    /**
+     * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="excludedUriDomains")
+    private @Nullable Output<List<String>> excludedUriDomains;
+
+    /**
+     * @return List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> excludedUriDomains() {
+        return Optional.ofNullable(this.excludedUriDomains);
+    }
+
+    /**
      * The format of data
      * 
      */
@@ -350,6 +410,21 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
     }
 
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    @Import(name="notAfter")
+    private @Nullable Output<String> notAfter;
+
+    /**
+     * @return Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    public Optional<Output<String>> notAfter() {
+        return Optional.ofNullable(this.notAfter);
+    }
+
+    /**
      * The organization
      * 
      */
@@ -410,6 +485,51 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
     }
 
     /**
+     * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="permittedEmailAddresses")
+    private @Nullable Output<List<String>> permittedEmailAddresses;
+
+    /**
+     * @return List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> permittedEmailAddresses() {
+        return Optional.ofNullable(this.permittedEmailAddresses);
+    }
+
+    /**
+     * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="permittedIpRanges")
+    private @Nullable Output<List<String>> permittedIpRanges;
+
+    /**
+     * @return List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> permittedIpRanges() {
+        return Optional.ofNullable(this.permittedIpRanges);
+    }
+
+    /**
+     * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Import(name="permittedUriDomains")
+    private @Nullable Output<List<String>> permittedUriDomains;
+
+    /**
+     * @return List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> permittedUriDomains() {
+        return Optional.ofNullable(this.permittedUriDomains);
+    }
+
+    /**
      * The postal code
      * 
      */
@@ -467,6 +587,21 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> serialNumber() {
         return Optional.ofNullable(this.serialNumber);
+    }
+
+    /**
+     * The number of bits to use in the signature algorithm
+     * 
+     */
+    @Import(name="signatureBits")
+    private @Nullable Output<Integer> signatureBits;
+
+    /**
+     * @return The number of bits to use in the signature algorithm
+     * 
+     */
+    public Optional<Output<Integer>> signatureBits() {
+        return Optional.ofNullable(this.signatureBits);
     }
 
     /**
@@ -540,6 +675,10 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         this.commonName = $.commonName;
         this.country = $.country;
         this.excludeCnFromSans = $.excludeCnFromSans;
+        this.excludedDnsDomains = $.excludedDnsDomains;
+        this.excludedEmailAddresses = $.excludedEmailAddresses;
+        this.excludedIpRanges = $.excludedIpRanges;
+        this.excludedUriDomains = $.excludedUriDomains;
         this.format = $.format;
         this.ipSans = $.ipSans;
         this.issuerId = $.issuerId;
@@ -555,14 +694,19 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         this.managedKeyName = $.managedKeyName;
         this.maxPathLength = $.maxPathLength;
         this.namespace = $.namespace;
+        this.notAfter = $.notAfter;
         this.organization = $.organization;
         this.otherSans = $.otherSans;
         this.ou = $.ou;
         this.permittedDnsDomains = $.permittedDnsDomains;
+        this.permittedEmailAddresses = $.permittedEmailAddresses;
+        this.permittedIpRanges = $.permittedIpRanges;
+        this.permittedUriDomains = $.permittedUriDomains;
         this.postalCode = $.postalCode;
         this.privateKeyFormat = $.privateKeyFormat;
         this.province = $.province;
         this.serialNumber = $.serialNumber;
+        this.signatureBits = $.signatureBits;
         this.streetAddress = $.streetAddress;
         this.ttl = $.ttl;
         this.type = $.type;
@@ -721,6 +865,130 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
          */
         public Builder excludeCnFromSans(Boolean excludeCnFromSans) {
             return excludeCnFromSans(Output.of(excludeCnFromSans));
+        }
+
+        /**
+         * @param excludedDnsDomains List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedDnsDomains(@Nullable Output<List<String>> excludedDnsDomains) {
+            $.excludedDnsDomains = excludedDnsDomains;
+            return this;
+        }
+
+        /**
+         * @param excludedDnsDomains List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedDnsDomains(List<String> excludedDnsDomains) {
+            return excludedDnsDomains(Output.of(excludedDnsDomains));
+        }
+
+        /**
+         * @param excludedDnsDomains List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedDnsDomains(String... excludedDnsDomains) {
+            return excludedDnsDomains(List.of(excludedDnsDomains));
+        }
+
+        /**
+         * @param excludedEmailAddresses List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedEmailAddresses(@Nullable Output<List<String>> excludedEmailAddresses) {
+            $.excludedEmailAddresses = excludedEmailAddresses;
+            return this;
+        }
+
+        /**
+         * @param excludedEmailAddresses List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedEmailAddresses(List<String> excludedEmailAddresses) {
+            return excludedEmailAddresses(Output.of(excludedEmailAddresses));
+        }
+
+        /**
+         * @param excludedEmailAddresses List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedEmailAddresses(String... excludedEmailAddresses) {
+            return excludedEmailAddresses(List.of(excludedEmailAddresses));
+        }
+
+        /**
+         * @param excludedIpRanges List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedIpRanges(@Nullable Output<List<String>> excludedIpRanges) {
+            $.excludedIpRanges = excludedIpRanges;
+            return this;
+        }
+
+        /**
+         * @param excludedIpRanges List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedIpRanges(List<String> excludedIpRanges) {
+            return excludedIpRanges(Output.of(excludedIpRanges));
+        }
+
+        /**
+         * @param excludedIpRanges List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedIpRanges(String... excludedIpRanges) {
+            return excludedIpRanges(List.of(excludedIpRanges));
+        }
+
+        /**
+         * @param excludedUriDomains List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedUriDomains(@Nullable Output<List<String>> excludedUriDomains) {
+            $.excludedUriDomains = excludedUriDomains;
+            return this;
+        }
+
+        /**
+         * @param excludedUriDomains List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedUriDomains(List<String> excludedUriDomains) {
+            return excludedUriDomains(Output.of(excludedUriDomains));
+        }
+
+        /**
+         * @param excludedUriDomains List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludedUriDomains(String... excludedUriDomains) {
+            return excludedUriDomains(List.of(excludedUriDomains));
         }
 
         /**
@@ -1065,6 +1333,27 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param notAfter Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notAfter(@Nullable Output<String> notAfter) {
+            $.notAfter = notAfter;
+            return this;
+        }
+
+        /**
+         * @param notAfter Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notAfter(String notAfter) {
+            return notAfter(Output.of(notAfter));
+        }
+
+        /**
          * @param organization The organization
          * 
          * @return builder
@@ -1169,6 +1458,99 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param permittedEmailAddresses List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedEmailAddresses(@Nullable Output<List<String>> permittedEmailAddresses) {
+            $.permittedEmailAddresses = permittedEmailAddresses;
+            return this;
+        }
+
+        /**
+         * @param permittedEmailAddresses List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedEmailAddresses(List<String> permittedEmailAddresses) {
+            return permittedEmailAddresses(Output.of(permittedEmailAddresses));
+        }
+
+        /**
+         * @param permittedEmailAddresses List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedEmailAddresses(String... permittedEmailAddresses) {
+            return permittedEmailAddresses(List.of(permittedEmailAddresses));
+        }
+
+        /**
+         * @param permittedIpRanges List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedIpRanges(@Nullable Output<List<String>> permittedIpRanges) {
+            $.permittedIpRanges = permittedIpRanges;
+            return this;
+        }
+
+        /**
+         * @param permittedIpRanges List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedIpRanges(List<String> permittedIpRanges) {
+            return permittedIpRanges(Output.of(permittedIpRanges));
+        }
+
+        /**
+         * @param permittedIpRanges List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedIpRanges(String... permittedIpRanges) {
+            return permittedIpRanges(List.of(permittedIpRanges));
+        }
+
+        /**
+         * @param permittedUriDomains List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedUriDomains(@Nullable Output<List<String>> permittedUriDomains) {
+            $.permittedUriDomains = permittedUriDomains;
+            return this;
+        }
+
+        /**
+         * @param permittedUriDomains List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedUriDomains(List<String> permittedUriDomains) {
+            return permittedUriDomains(Output.of(permittedUriDomains));
+        }
+
+        /**
+         * @param permittedUriDomains List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder permittedUriDomains(String... permittedUriDomains) {
+            return permittedUriDomains(List.of(permittedUriDomains));
+        }
+
+        /**
          * @param postalCode The postal code
          * 
          * @return builder
@@ -1250,6 +1632,27 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
          */
         public Builder serialNumber(String serialNumber) {
             return serialNumber(Output.of(serialNumber));
+        }
+
+        /**
+         * @param signatureBits The number of bits to use in the signature algorithm
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureBits(@Nullable Output<Integer> signatureBits) {
+            $.signatureBits = signatureBits;
+            return this;
+        }
+
+        /**
+         * @param signatureBits The number of bits to use in the signature algorithm
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureBits(Integer signatureBits) {
+            return signatureBits(Output.of(signatureBits));
         }
 
         /**

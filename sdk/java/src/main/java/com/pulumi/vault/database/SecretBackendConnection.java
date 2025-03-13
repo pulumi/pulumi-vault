@@ -29,6 +29,7 @@ import com.pulumi.vault.database.outputs.SecretBackendConnectionRedisElasticache
 import com.pulumi.vault.database.outputs.SecretBackendConnectionRedshift;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionSnowflake;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +76,8 @@ import javax.annotation.Nullable;
  *             .allowedRoles(            
  *                 "dev",
  *                 "prod")
+ *             .rotationSchedule("0 * * * SAT")
+ *             .rotationWindow(3600)
  *             .postgresql(SecretBackendConnectionPostgresqlArgs.builder()
  *                 .connectionUrl("postgres://username:password}{@literal @}{@code host:port/database")
  *                 .build())
@@ -168,6 +171,20 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<Map<String,String>>> data() {
         return Codegen.optional(this.data);
+    }
+    /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="disableAutomatedRotation", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableAutomatedRotation;
+
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<Boolean>> disableAutomatedRotation() {
+        return Codegen.optional(this.disableAutomatedRotation);
     }
     /**
      * A nested block containing configuration options for Elasticsearch connections.
@@ -444,6 +461,56 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<List<String>>> rootRotationStatements() {
         return Codegen.optional(this.rootRotationStatements);
+    }
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationPeriod;
+
+    /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<Integer>> rotationPeriod() {
+        return Codegen.optional(this.rotationPeriod);
+    }
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="rotationSchedule", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> rotationSchedule;
+
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<String>> rotationSchedule() {
+        return Codegen.optional(this.rotationSchedule);
+    }
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="rotationWindow", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationWindow;
+
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<Integer>> rotationWindow() {
+        return Codegen.optional(this.rotationWindow);
     }
     /**
      * A nested block containing configuration options for Snowflake connections.

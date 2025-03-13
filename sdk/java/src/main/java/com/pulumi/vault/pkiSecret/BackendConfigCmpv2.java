@@ -36,16 +36,12 @@ public class BackendConfigCmpv2 extends com.pulumi.resources.CustomResource {
     /**
      * Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
      * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-     * 
      */
     @Export(name="auditFields", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> auditFields;
 
     /**
      * @return Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-     * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
      * 
      */
     public Output<List<String>> auditFields() {
@@ -94,6 +90,24 @@ public class BackendConfigCmpv2 extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> defaultPathPolicy() {
         return Codegen.optional(this.defaultPathPolicy);
+    }
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    @Export(name="disabledValidations", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> disabledValidations;
+
+    /**
+     * @return A comma-separated list of validations not to perform on CMPv2 messages.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    public Output<Optional<List<String>>> disabledValidations() {
+        return Codegen.optional(this.disabledValidations);
     }
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.

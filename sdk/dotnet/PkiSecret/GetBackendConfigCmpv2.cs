@@ -111,6 +111,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
+        [Input("disabledValidations")]
+        private List<string>? _disabledValidations;
+
+        /// <summary>
+        /// A comma-separated list of validations not to perform on CMPv2 messages.
+        /// </summary>
+        public List<string> DisabledValidations
+        {
+            get => _disabledValidations ?? (_disabledValidations = new List<string>());
+            set => _disabledValidations = value;
+        }
+
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
@@ -137,6 +149,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
+        [Input("disabledValidations")]
+        private InputList<string>? _disabledValidations;
+
+        /// <summary>
+        /// A comma-separated list of validations not to perform on CMPv2 messages.
+        /// </summary>
+        public InputList<string> DisabledValidations
+        {
+            get => _disabledValidations ?? (_disabledValidations = new InputList<string>());
+            set => _disabledValidations = value;
+        }
+
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
@@ -160,6 +184,7 @@ namespace Pulumi.Vault.PkiSecret
         public readonly ImmutableArray<Outputs.GetBackendConfigCmpv2AuthenticatorResult> Authenticators;
         public readonly string Backend;
         public readonly string DefaultPathPolicy;
+        public readonly ImmutableArray<string> DisabledValidations;
         public readonly bool EnableSentinelParsing;
         public readonly bool Enabled;
         /// <summary>
@@ -179,6 +204,8 @@ namespace Pulumi.Vault.PkiSecret
 
             string defaultPathPolicy,
 
+            ImmutableArray<string> disabledValidations,
+
             bool enableSentinelParsing,
 
             bool enabled,
@@ -193,6 +220,7 @@ namespace Pulumi.Vault.PkiSecret
             Authenticators = authenticators;
             Backend = backend;
             DefaultPathPolicy = defaultPathPolicy;
+            DisabledValidations = disabledValidations;
             EnableSentinelParsing = enableSentinelParsing;
             Enabled = enabled;
             Id = id;

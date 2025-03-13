@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetSecretBackendSignArgs, GetSecretBackendSignResult, GetSecretBackendSignOutputArgs } from "./getSecretBackendSign";
+export const getSecretBackendSign: typeof import("./getSecretBackendSign").getSecretBackendSign = null as any;
+export const getSecretBackendSignOutput: typeof import("./getSecretBackendSign").getSecretBackendSignOutput = null as any;
+utilities.lazyLoad(exports, ["getSecretBackendSign","getSecretBackendSignOutput"], () => require("./getSecretBackendSign"));
+
 export { SecretBackendCaArgs, SecretBackendCaState } from "./secretBackendCa";
 export type SecretBackendCa = import("./secretBackendCa").SecretBackendCa;
 export const SecretBackendCa: typeof import("./secretBackendCa").SecretBackendCa = null as any;

@@ -42,6 +42,12 @@ namespace Pulumi.Vault.Aws
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("disableAutomatedRotation")]
+        public Output<bool?> DisableAutomatedRotation { get; private set; } = null!;
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
@@ -109,18 +115,31 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        /// 
-        /// ```
-        /// {{ if (eq .Type "STS") }}
-        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
-        /// {{ else }}
-        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
-        /// {{ end }}
-        /// 
-        /// ```
         /// </summary>
         [Output("roleArn")]
         public Output<string?> RoleArn { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential. 
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationPeriod")]
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
         /// The AWS Secret Access Key to use when generating new credentials.
@@ -154,6 +173,15 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        /// 
+        /// ```
+        /// {{ if (eq .Type "STS") }}
+        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        /// {{ else }}
+        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        /// {{ end }}
+        /// 
+        /// ```
         /// </summary>
         [Output("usernameTemplate")]
         public Output<string> UsernameTemplate { get; private set; } = null!;
@@ -240,6 +268,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
@@ -307,18 +341,31 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        /// 
-        /// ```
-        /// {{ if (eq .Type "STS") }}
-        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
-        /// {{ else }}
-        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
-        /// {{ end }}
-        /// 
-        /// ```
         /// </summary>
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential. 
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;
@@ -374,6 +421,15 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        /// 
+        /// ```
+        /// {{ if (eq .Type "STS") }}
+        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        /// {{ else }}
+        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        /// {{ end }}
+        /// 
+        /// ```
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }
@@ -417,6 +473,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
@@ -484,18 +546,31 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        /// 
-        /// ```
-        /// {{ if (eq .Type "STS") }}
-        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
-        /// {{ else }}
-        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
-        /// {{ end }}
-        /// 
-        /// ```
         /// </summary>
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential. 
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;
@@ -551,6 +626,15 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+        /// 
+        /// ```
+        /// {{ if (eq .Type "STS") }}
+        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        /// {{ else }}
+        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        /// {{ end }}
+        /// 
+        /// ```
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }

@@ -22,6 +22,8 @@ import * as utilities from "../utilities";
  *     discoverdn: false,
  *     groupdn: "OU=Groups,DC=example,DC=org",
  *     groupfilter: "(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
+ *     rotationSchedule: "0 * * * SAT",
+ *     rotationWindow: 3600,
  * });
  * ```
  *
@@ -96,6 +98,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
@@ -140,6 +146,22 @@ export class AuthBackend extends pulumi.CustomResource {
      * Path to mount the LDAP auth backend under
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationWindow!: pulumi.Output<number | undefined>;
     /**
      * Control use of TLS when conecting to LDAP
      */
@@ -240,6 +262,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
             resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["discoverdn"] = state ? state.discoverdn : undefined;
             resourceInputs["groupattr"] = state ? state.groupattr : undefined;
@@ -250,6 +273,9 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["maxPageSize"] = state ? state.maxPageSize : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["starttls"] = state ? state.starttls : undefined;
             resourceInputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
             resourceInputs["tlsMinVersion"] = state ? state.tlsMinVersion : undefined;
@@ -283,6 +309,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
             resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["discoverdn"] = args ? args.discoverdn : undefined;
             resourceInputs["groupattr"] = args ? args.groupattr : undefined;
@@ -293,6 +320,9 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["maxPageSize"] = args ? args.maxPageSize : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["starttls"] = args ? args.starttls : undefined;
             resourceInputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
             resourceInputs["tlsMinVersion"] = args ? args.tlsMinVersion : undefined;
@@ -360,6 +390,10 @@ export interface AuthBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
@@ -404,6 +438,22 @@ export interface AuthBackendState {
      * Path to mount the LDAP auth backend under
      */
     path?: pulumi.Input<string>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * Control use of TLS when conecting to LDAP
      */
@@ -517,6 +567,10 @@ export interface AuthBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
@@ -561,6 +615,22 @@ export interface AuthBackendArgs {
      * Path to mount the LDAP auth backend under
      */
     path?: pulumi.Input<string>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * Control use of TLS when conecting to LDAP
      */

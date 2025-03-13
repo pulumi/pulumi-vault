@@ -52,6 +52,8 @@ type SecretBackendCert struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// The CA chain
 	CaChain pulumi.StringOutput `pulumi:"caChain"`
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata pulumi.StringPtrOutput `pulumi:"certMetadata"`
 	// The certificate
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// CN of certificate to create
@@ -77,6 +79,8 @@ type SecretBackendCert struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
 	// The private key
@@ -87,8 +91,10 @@ type SecretBackendCert struct {
 	PrivateKeyType pulumi.StringOutput `pulumi:"privateKeyType"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolOutput `pulumi:"renewPending"`
-	// If set to `true`, the certificate will be revoked on resource destruction.
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke pulumi.BoolPtrOutput `pulumi:"revoke"`
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+	RevokeWithKey pulumi.BoolPtrOutput `pulumi:"revokeWithKey"`
 	// The serial number
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Time to live
@@ -147,6 +153,8 @@ type secretBackendCertState struct {
 	Backend *string `pulumi:"backend"`
 	// The CA chain
 	CaChain *string `pulumi:"caChain"`
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata *string `pulumi:"certMetadata"`
 	// The certificate
 	Certificate *string `pulumi:"certificate"`
 	// CN of certificate to create
@@ -172,6 +180,8 @@ type secretBackendCertState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// The private key
@@ -182,8 +192,10 @@ type secretBackendCertState struct {
 	PrivateKeyType *string `pulumi:"privateKeyType"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending *bool `pulumi:"renewPending"`
-	// If set to `true`, the certificate will be revoked on resource destruction.
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke *bool `pulumi:"revoke"`
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+	RevokeWithKey *bool `pulumi:"revokeWithKey"`
 	// The serial number
 	SerialNumber *string `pulumi:"serialNumber"`
 	// Time to live
@@ -203,6 +215,8 @@ type SecretBackendCertState struct {
 	Backend pulumi.StringPtrInput
 	// The CA chain
 	CaChain pulumi.StringPtrInput
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata pulumi.StringPtrInput
 	// The certificate
 	Certificate pulumi.StringPtrInput
 	// CN of certificate to create
@@ -228,6 +242,8 @@ type SecretBackendCertState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// The private key
@@ -238,8 +254,10 @@ type SecretBackendCertState struct {
 	PrivateKeyType pulumi.StringPtrInput
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolPtrInput
-	// If set to `true`, the certificate will be revoked on resource destruction.
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke pulumi.BoolPtrInput
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+	RevokeWithKey pulumi.BoolPtrInput
 	// The serial number
 	SerialNumber pulumi.StringPtrInput
 	// Time to live
@@ -261,6 +279,8 @@ type secretBackendCertArgs struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata *string `pulumi:"certMetadata"`
 	// CN of certificate to create
 	CommonName string `pulumi:"commonName"`
 	// Flag to exclude CN from SANs
@@ -280,12 +300,16 @@ type secretBackendCertArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// The private key format
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
-	// If set to `true`, the certificate will be revoked on resource destruction.
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke *bool `pulumi:"revoke"`
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+	RevokeWithKey *bool `pulumi:"revokeWithKey"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
 	// List of alternative URIs
@@ -302,6 +326,8 @@ type SecretBackendCertArgs struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata pulumi.StringPtrInput
 	// CN of certificate to create
 	CommonName pulumi.StringInput
 	// Flag to exclude CN from SANs
@@ -321,12 +347,16 @@ type SecretBackendCertArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// The private key format
 	PrivateKeyFormat pulumi.StringPtrInput
-	// If set to `true`, the certificate will be revoked on resource destruction.
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke pulumi.BoolPtrInput
+	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+	RevokeWithKey pulumi.BoolPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
 	// List of alternative URIs
@@ -442,6 +472,11 @@ func (o SecretBackendCertOutput) CaChain() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.CaChain }).(pulumi.StringOutput)
 }
 
+// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+func (o SecretBackendCertOutput) CertMetadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.CertMetadata }).(pulumi.StringPtrOutput)
+}
+
 // The certificate
 func (o SecretBackendCertOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
@@ -500,6 +535,11 @@ func (o SecretBackendCertOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+func (o SecretBackendCertOutput) NotAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
+}
+
 // List of other SANs
 func (o SecretBackendCertOutput) OtherSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
@@ -525,9 +565,14 @@ func (o SecretBackendCertOutput) RenewPending() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolOutput { return v.RenewPending }).(pulumi.BoolOutput)
 }
 
-// If set to `true`, the certificate will be revoked on resource destruction.
+// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 func (o SecretBackendCertOutput) Revoke() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolPtrOutput { return v.Revoke }).(pulumi.BoolPtrOutput)
+}
+
+// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+func (o SecretBackendCertOutput) RevokeWithKey() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolPtrOutput { return v.RevokeWithKey }).(pulumi.BoolPtrOutput)
 }
 
 // The serial number

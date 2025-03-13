@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiSecret.SecretBackendCrlConfigArgs;
 import com.pulumi.vault.pkiSecret.inputs.SecretBackendCrlConfigState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -180,6 +181,22 @@ public class SecretBackendCrlConfig extends com.pulumi.resources.CustomResource 
      */
     public Output<Optional<String>> expiry() {
         return Codegen.optional(this.expiry);
+    }
+    /**
+     * The maximum number of entries a CRL can contain. This option exists to prevent
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     * 
+     */
+    @Export(name="maxCrlEntries", refs={Integer.class}, tree="[0]")
+    private Output<Integer> maxCrlEntries;
+
+    /**
+     * @return The maximum number of entries a CRL can contain. This option exists to prevent
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     * 
+     */
+    public Output<Integer> maxCrlEntries() {
+        return this.maxCrlEntries;
     }
     /**
      * The namespace to provision the resource in.

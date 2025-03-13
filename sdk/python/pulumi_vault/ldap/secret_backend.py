@@ -32,6 +32,7 @@ class SecretBackendArgs:
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  identity_token_key: Optional[pulumi.Input[str]] = None,
@@ -46,6 +47,9 @@ class SecretBackendArgs:
                  path: Optional[pulumi.Input[str]] = None,
                  plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
@@ -71,6 +75,7 @@ class SecretBackendArgs:
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -92,6 +97,13 @@ class SecretBackendArgs:
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
@@ -127,6 +139,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if external_entropy_access is not None:
@@ -155,6 +169,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "plugin_version", plugin_version)
         if request_timeout is not None:
             pulumi.set(__self__, "request_timeout", request_timeout)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
         if seal_wrap is not None:
@@ -329,6 +349,18 @@ class SecretBackendArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableRemount")
@@ -506,6 +538,46 @@ class SecretBackendArgs:
         pulumi.set(self, "request_timeout", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
         """
@@ -621,6 +693,7 @@ class _SecretBackendState:
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  identity_token_key: Optional[pulumi.Input[str]] = None,
@@ -635,6 +708,9 @@ class _SecretBackendState:
                  path: Optional[pulumi.Input[str]] = None,
                  plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
@@ -661,6 +737,7 @@ class _SecretBackendState:
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -682,6 +759,13 @@ class _SecretBackendState:
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
@@ -721,6 +805,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if external_entropy_access is not None:
@@ -749,6 +835,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "plugin_version", plugin_version)
         if request_timeout is not None:
             pulumi.set(__self__, "request_timeout", request_timeout)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if schema is not None:
             pulumi.set(__self__, "schema", schema)
         if seal_wrap is not None:
@@ -937,6 +1029,18 @@ class _SecretBackendState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
+
+    @property
     @pulumi.getter(name="disableRemount")
     def disable_remount(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1112,6 +1216,46 @@ class _SecretBackendState:
         pulumi.set(self, "request_timeout", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def schema(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1228,6 +1372,7 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  identity_token_key: Optional[pulumi.Input[str]] = None,
@@ -1242,6 +1387,9 @@ class SecretBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
@@ -1264,7 +1412,9 @@ class SecretBackend(pulumi.CustomResource):
             bindpass="SuperSecretPassw0rd",
             url="ldaps://localhost",
             insecure_tls=True,
-            userdn="CN=Users,DC=corp,DC=example,DC=net")
+            userdn="CN=Users,DC=corp,DC=example,DC=net",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
         ```
 
         ## Import
@@ -1292,6 +1442,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -1313,6 +1464,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
@@ -1343,7 +1501,9 @@ class SecretBackend(pulumi.CustomResource):
             bindpass="SuperSecretPassw0rd",
             url="ldaps://localhost",
             insecure_tls=True,
-            userdn="CN=Users,DC=corp,DC=example,DC=net")
+            userdn="CN=Users,DC=corp,DC=example,DC=net",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
         ```
 
         ## Import
@@ -1382,6 +1542,7 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  identity_token_key: Optional[pulumi.Input[str]] = None,
@@ -1396,6 +1557,9 @@ class SecretBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
@@ -1430,6 +1594,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["external_entropy_access"] = external_entropy_access
             __props__.__dict__["identity_token_key"] = identity_token_key
@@ -1444,6 +1609,9 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["path"] = path
             __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["request_timeout"] = request_timeout
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["rotation_schedule"] = rotation_schedule
+            __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["schema"] = schema
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
@@ -1479,6 +1647,7 @@ class SecretBackend(pulumi.CustomResource):
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
             identity_token_key: Optional[pulumi.Input[str]] = None,
@@ -1493,6 +1662,9 @@ class SecretBackend(pulumi.CustomResource):
             path: Optional[pulumi.Input[str]] = None,
             plugin_version: Optional[pulumi.Input[str]] = None,
             request_timeout: Optional[pulumi.Input[int]] = None,
+            rotation_period: Optional[pulumi.Input[int]] = None,
+            rotation_schedule: Optional[pulumi.Input[str]] = None,
+            rotation_window: Optional[pulumi.Input[int]] = None,
             schema: Optional[pulumi.Input[str]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
             skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
@@ -1524,6 +1696,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -1545,6 +1718,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
@@ -1574,6 +1754,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["external_entropy_access"] = external_entropy_access
         __props__.__dict__["identity_token_key"] = identity_token_key
@@ -1588,6 +1769,9 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["request_timeout"] = request_timeout
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["rotation_schedule"] = rotation_schedule
+        __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["schema"] = schema
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
@@ -1713,6 +1897,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @property
     @pulumi.getter(name="disableRemount")
     def disable_remount(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1830,6 +2022,34 @@ class SecretBackend(pulumi.CustomResource):
         before returning back an error.
         """
         return pulumi.get(self, "request_timeout")
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Output[Optional[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Output[Optional[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
 
     @property
     @pulumi.getter

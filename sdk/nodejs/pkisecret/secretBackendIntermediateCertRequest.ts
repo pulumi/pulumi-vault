@@ -109,6 +109,10 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      */
     public readonly keyType!: pulumi.Output<string | undefined>;
     /**
+     * Specifies keyUsage to encode in the generated certificate.
+     */
+    public readonly keyUsages!: pulumi.Output<string[] | undefined>;
+    /**
      * The locality
      */
     public readonly locality!: pulumi.Output<string | undefined>;
@@ -162,6 +166,14 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      */
     public readonly province!: pulumi.Output<string | undefined>;
     /**
+     * The requested Subject's named Serial Number
+     */
+    public readonly serialNumber!: pulumi.Output<string | undefined>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    public readonly signatureBits!: pulumi.Output<number | undefined>;
+    /**
      * The street address
      */
     public readonly streetAddress!: pulumi.Output<string | undefined>;
@@ -202,6 +214,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["keyName"] = state ? state.keyName : undefined;
             resourceInputs["keyRef"] = state ? state.keyRef : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
+            resourceInputs["keyUsages"] = state ? state.keyUsages : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
             resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
@@ -214,6 +227,8 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
             resourceInputs["privateKeyType"] = state ? state.privateKeyType : undefined;
             resourceInputs["province"] = state ? state.province : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["signatureBits"] = state ? state.signatureBits : undefined;
             resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
@@ -240,6 +255,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["keyName"] = args ? args.keyName : undefined;
             resourceInputs["keyRef"] = args ? args.keyRef : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
+            resourceInputs["keyUsages"] = args ? args.keyUsages : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
             resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
@@ -250,6 +266,8 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["postalCode"] = args ? args.postalCode : undefined;
             resourceInputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
             resourceInputs["province"] = args ? args.province : undefined;
+            resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
+            resourceInputs["signatureBits"] = args ? args.signatureBits : undefined;
             resourceInputs["streetAddress"] = args ? args.streetAddress : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
@@ -330,6 +348,10 @@ export interface SecretBackendIntermediateCertRequestState {
      */
     keyType?: pulumi.Input<string>;
     /**
+     * Specifies keyUsage to encode in the generated certificate.
+     */
+    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The locality
      */
     locality?: pulumi.Input<string>;
@@ -382,6 +404,14 @@ export interface SecretBackendIntermediateCertRequestState {
      * The province
      */
     province?: pulumi.Input<string>;
+    /**
+     * The requested Subject's named Serial Number
+     */
+    serialNumber?: pulumi.Input<string>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    signatureBits?: pulumi.Input<number>;
     /**
      * The street address
      */
@@ -454,6 +484,10 @@ export interface SecretBackendIntermediateCertRequestArgs {
      */
     keyType?: pulumi.Input<string>;
     /**
+     * Specifies keyUsage to encode in the generated certificate.
+     */
+    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The locality
      */
     locality?: pulumi.Input<string>;
@@ -498,6 +532,14 @@ export interface SecretBackendIntermediateCertRequestArgs {
      * The province
      */
     province?: pulumi.Input<string>;
+    /**
+     * The requested Subject's named Serial Number
+     */
+    serialNumber?: pulumi.Input<string>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    signatureBits?: pulumi.Input<number>;
     /**
      * The street address
      */

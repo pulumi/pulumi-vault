@@ -97,7 +97,11 @@ type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
 
 	// The unique name of the Vault mount to configure.
-	Backend pulumi.StringOutput `pulumi:"backend"`
+	Backend          pulumi.StringOutput    `pulumi:"backend"`
+	CredentialConfig pulumi.StringMapOutput `pulumi:"credentialConfig"`
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+	// be done in `credentialConfig`.
+	CredentialType pulumi.StringOutput `pulumi:"credentialType"`
 	// The unique name of the database connection to use for the static role.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
 	// A unique name to give the static role.
@@ -125,6 +129,9 @@ type SecretBackendStaticRole struct {
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
 	SelfManagedPassword pulumi.StringPtrOutput `pulumi:"selfManagedPassword"`
+	// If set to true, Vault will skip the
+	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+	SkipImportRotation pulumi.BoolPtrOutput `pulumi:"skipImportRotation"`
 	// The database username that this static role corresponds to.
 	Username pulumi.StringOutput `pulumi:"username"`
 }
@@ -176,7 +183,11 @@ func GetSecretBackendStaticRole(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SecretBackendStaticRole resources.
 type secretBackendStaticRoleState struct {
 	// The unique name of the Vault mount to configure.
-	Backend *string `pulumi:"backend"`
+	Backend          *string           `pulumi:"backend"`
+	CredentialConfig map[string]string `pulumi:"credentialConfig"`
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+	// be done in `credentialConfig`.
+	CredentialType *string `pulumi:"credentialType"`
 	// The unique name of the database connection to use for the static role.
 	DbName *string `pulumi:"dbName"`
 	// A unique name to give the static role.
@@ -204,13 +215,20 @@ type secretBackendStaticRoleState struct {
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
 	SelfManagedPassword *string `pulumi:"selfManagedPassword"`
+	// If set to true, Vault will skip the
+	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+	SkipImportRotation *bool `pulumi:"skipImportRotation"`
 	// The database username that this static role corresponds to.
 	Username *string `pulumi:"username"`
 }
 
 type SecretBackendStaticRoleState struct {
 	// The unique name of the Vault mount to configure.
-	Backend pulumi.StringPtrInput
+	Backend          pulumi.StringPtrInput
+	CredentialConfig pulumi.StringMapInput
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+	// be done in `credentialConfig`.
+	CredentialType pulumi.StringPtrInput
 	// The unique name of the database connection to use for the static role.
 	DbName pulumi.StringPtrInput
 	// A unique name to give the static role.
@@ -238,6 +256,9 @@ type SecretBackendStaticRoleState struct {
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
 	SelfManagedPassword pulumi.StringPtrInput
+	// If set to true, Vault will skip the
+	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+	SkipImportRotation pulumi.BoolPtrInput
 	// The database username that this static role corresponds to.
 	Username pulumi.StringPtrInput
 }
@@ -248,7 +269,11 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 
 type secretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
-	Backend string `pulumi:"backend"`
+	Backend          string            `pulumi:"backend"`
+	CredentialConfig map[string]string `pulumi:"credentialConfig"`
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+	// be done in `credentialConfig`.
+	CredentialType *string `pulumi:"credentialType"`
 	// The unique name of the database connection to use for the static role.
 	DbName string `pulumi:"dbName"`
 	// A unique name to give the static role.
@@ -276,6 +301,9 @@ type secretBackendStaticRoleArgs struct {
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
 	SelfManagedPassword *string `pulumi:"selfManagedPassword"`
+	// If set to true, Vault will skip the
+	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+	SkipImportRotation *bool `pulumi:"skipImportRotation"`
 	// The database username that this static role corresponds to.
 	Username string `pulumi:"username"`
 }
@@ -283,7 +311,11 @@ type secretBackendStaticRoleArgs struct {
 // The set of arguments for constructing a SecretBackendStaticRole resource.
 type SecretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
-	Backend pulumi.StringInput
+	Backend          pulumi.StringInput
+	CredentialConfig pulumi.StringMapInput
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+	// be done in `credentialConfig`.
+	CredentialType pulumi.StringPtrInput
 	// The unique name of the database connection to use for the static role.
 	DbName pulumi.StringInput
 	// A unique name to give the static role.
@@ -311,6 +343,9 @@ type SecretBackendStaticRoleArgs struct {
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
 	SelfManagedPassword pulumi.StringPtrInput
+	// If set to true, Vault will skip the
+	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+	SkipImportRotation pulumi.BoolPtrInput
 	// The database username that this static role corresponds to.
 	Username pulumi.StringInput
 }
@@ -407,6 +442,16 @@ func (o SecretBackendStaticRoleOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
+func (o SecretBackendStaticRoleOutput) CredentialConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringMapOutput { return v.CredentialConfig }).(pulumi.StringMapOutput)
+}
+
+// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+// be done in `credentialConfig`.
+func (o SecretBackendStaticRoleOutput) CredentialType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringOutput { return v.CredentialType }).(pulumi.StringOutput)
+}
+
 // The unique name of the database connection to use for the static role.
 func (o SecretBackendStaticRoleOutput) DbName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringOutput { return v.DbName }).(pulumi.StringOutput)
@@ -456,6 +501,12 @@ func (o SecretBackendStaticRoleOutput) RotationWindow() pulumi.IntPtrOutput {
 // select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
 func (o SecretBackendStaticRoleOutput) SelfManagedPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.SelfManagedPassword }).(pulumi.StringPtrOutput)
+}
+
+// If set to true, Vault will skip the
+// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+func (o SecretBackendStaticRoleOutput) SkipImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.BoolPtrOutput { return v.SkipImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The database username that this static role corresponds to.

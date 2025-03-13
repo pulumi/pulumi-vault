@@ -18,6 +18,8 @@ import * as utilities from "../utilities";
  *     url: "ldaps://localhost",
  *     insecureTls: true,
  *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
+ *     rotationSchedule: "0 * * * SAT",
+ *     rotationWindow: 3600,
  * });
  * ```
  *
@@ -116,6 +118,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    /**
      * If set, opts out of mount migration on path updates.
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
@@ -179,6 +185,22 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly requestTimeout!: pulumi.Output<number>;
     /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    /**
      * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */
     public readonly schema!: pulumi.Output<string>;
@@ -240,6 +262,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
@@ -254,6 +277,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
             resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
+            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["schema"] = state ? state.schema : undefined;
             resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
             resourceInputs["skipStaticRoleImportRotation"] = state ? state.skipStaticRoleImportRotation : undefined;
@@ -283,6 +309,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
@@ -297,6 +324,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
             resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
+            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["schema"] = args ? args.schema : undefined;
             resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
             resourceInputs["skipStaticRoleImportRotation"] = args ? args.skipStaticRoleImportRotation : undefined;
@@ -377,6 +407,10 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * If set, opts out of mount migration on path updates.
      */
     disableRemount?: pulumi.Input<boolean>;
@@ -439,6 +473,22 @@ export interface SecretBackendState {
      * before returning back an error.
      */
     requestTimeout?: pulumi.Input<number>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */
@@ -534,6 +584,10 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * If set, opts out of mount migration on path updates.
      */
     disableRemount?: pulumi.Input<boolean>;
@@ -596,6 +650,22 @@ export interface SecretBackendArgs {
      * before returning back an error.
      */
     requestTimeout?: pulumi.Input<number>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */

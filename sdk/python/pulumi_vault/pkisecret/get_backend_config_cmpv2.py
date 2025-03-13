@@ -27,7 +27,7 @@ class GetBackendConfigCmpv2Result:
     """
     A collection of values returned by getBackendConfigCmpv2.
     """
-    def __init__(__self__, audit_fields=None, authenticators=None, backend=None, default_path_policy=None, enable_sentinel_parsing=None, enabled=None, id=None, last_updated=None, namespace=None):
+    def __init__(__self__, audit_fields=None, authenticators=None, backend=None, default_path_policy=None, disabled_validations=None, enable_sentinel_parsing=None, enabled=None, id=None, last_updated=None, namespace=None):
         if audit_fields and not isinstance(audit_fields, list):
             raise TypeError("Expected argument 'audit_fields' to be a list")
         pulumi.set(__self__, "audit_fields", audit_fields)
@@ -40,6 +40,9 @@ class GetBackendConfigCmpv2Result:
         if default_path_policy and not isinstance(default_path_policy, str):
             raise TypeError("Expected argument 'default_path_policy' to be a str")
         pulumi.set(__self__, "default_path_policy", default_path_policy)
+        if disabled_validations and not isinstance(disabled_validations, list):
+            raise TypeError("Expected argument 'disabled_validations' to be a list")
+        pulumi.set(__self__, "disabled_validations", disabled_validations)
         if enable_sentinel_parsing and not isinstance(enable_sentinel_parsing, bool):
             raise TypeError("Expected argument 'enable_sentinel_parsing' to be a bool")
         pulumi.set(__self__, "enable_sentinel_parsing", enable_sentinel_parsing)
@@ -75,6 +78,11 @@ class GetBackendConfigCmpv2Result:
     @pulumi.getter(name="defaultPathPolicy")
     def default_path_policy(self) -> str:
         return pulumi.get(self, "default_path_policy")
+
+    @property
+    @pulumi.getter(name="disabledValidations")
+    def disabled_validations(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "disabled_validations")
 
     @property
     @pulumi.getter(name="enableSentinelParsing")
@@ -115,6 +123,7 @@ class AwaitableGetBackendConfigCmpv2Result(GetBackendConfigCmpv2Result):
             authenticators=self.authenticators,
             backend=self.backend,
             default_path_policy=self.default_path_policy,
+            disabled_validations=self.disabled_validations,
             enable_sentinel_parsing=self.enable_sentinel_parsing,
             enabled=self.enabled,
             id=self.id,
@@ -123,6 +132,7 @@ class AwaitableGetBackendConfigCmpv2Result(GetBackendConfigCmpv2Result):
 
 
 def get_backend_config_cmpv2(backend: Optional[str] = None,
+                             disabled_validations: Optional[Sequence[str]] = None,
                              namespace: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendConfigCmpv2Result:
     """
@@ -144,6 +154,7 @@ def get_backend_config_cmpv2(backend: Optional[str] = None,
            read the CMPv2 configuration from, with no leading or trailing `/`s.
            
            # Attributes Reference
+    :param Sequence[str] disabled_validations: A comma-separated list of validations not to perform on CMPv2 messages.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -151,6 +162,7 @@ def get_backend_config_cmpv2(backend: Optional[str] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['disabledValidations'] = disabled_validations
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2', __args__, opts=opts, typ=GetBackendConfigCmpv2Result).value
@@ -160,12 +172,14 @@ def get_backend_config_cmpv2(backend: Optional[str] = None,
         authenticators=pulumi.get(__ret__, 'authenticators'),
         backend=pulumi.get(__ret__, 'backend'),
         default_path_policy=pulumi.get(__ret__, 'default_path_policy'),
+        disabled_validations=pulumi.get(__ret__, 'disabled_validations'),
         enable_sentinel_parsing=pulumi.get(__ret__, 'enable_sentinel_parsing'),
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         last_updated=pulumi.get(__ret__, 'last_updated'),
         namespace=pulumi.get(__ret__, 'namespace'))
 def get_backend_config_cmpv2_output(backend: Optional[pulumi.Input[str]] = None,
+                                    disabled_validations: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                     namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendConfigCmpv2Result]:
     """
@@ -187,6 +201,7 @@ def get_backend_config_cmpv2_output(backend: Optional[pulumi.Input[str]] = None,
            read the CMPv2 configuration from, with no leading or trailing `/`s.
            
            # Attributes Reference
+    :param Sequence[str] disabled_validations: A comma-separated list of validations not to perform on CMPv2 messages.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -194,6 +209,7 @@ def get_backend_config_cmpv2_output(backend: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['disabledValidations'] = disabled_validations
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2', __args__, opts=opts, typ=GetBackendConfigCmpv2Result)
@@ -202,6 +218,7 @@ def get_backend_config_cmpv2_output(backend: Optional[pulumi.Input[str]] = None,
         authenticators=pulumi.get(__response__, 'authenticators'),
         backend=pulumi.get(__response__, 'backend'),
         default_path_policy=pulumi.get(__response__, 'default_path_policy'),
+        disabled_validations=pulumi.get(__response__, 'disabled_validations'),
         enable_sentinel_parsing=pulumi.get(__response__, 'enable_sentinel_parsing'),
         enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),

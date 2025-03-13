@@ -118,8 +118,6 @@ if not MYPY:
         cps: NotRequired[pulumi.Input[str]]
         """
         The URL of the CPS for the policy identifier
-
-        Example usage:
         """
         notice: NotRequired[pulumi.Input[str]]
         """
@@ -137,8 +135,6 @@ class SecretBackendRolePolicyIdentifierArgs:
         """
         :param pulumi.Input[str] oid: The OID for the policy identifier
         :param pulumi.Input[str] cps: The URL of the CPS for the policy identifier
-               
-               Example usage:
         :param pulumi.Input[str] notice: A notice for the policy identifier
         """
         pulumi.set(__self__, "oid", oid)
@@ -164,8 +160,6 @@ class SecretBackendRolePolicyIdentifierArgs:
     def cps(self) -> Optional[pulumi.Input[str]]:
         """
         The URL of the CPS for the policy identifier
-
-        Example usage:
         """
         return pulumi.get(self, "cps")
 

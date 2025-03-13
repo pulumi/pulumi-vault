@@ -27,6 +27,7 @@ export function getBackendConfigCmpv2(args: GetBackendConfigCmpv2Args, opts?: pu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2", {
         "backend": args.backend,
+        "disabledValidations": args.disabledValidations,
         "namespace": args.namespace,
     }, opts);
 }
@@ -42,6 +43,10 @@ export interface GetBackendConfigCmpv2Args {
      * # Attributes Reference
      */
     backend: string;
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     */
+    disabledValidations?: string[];
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
@@ -59,6 +64,7 @@ export interface GetBackendConfigCmpv2Result {
     readonly authenticators: outputs.pkiSecret.GetBackendConfigCmpv2Authenticator[];
     readonly backend: string;
     readonly defaultPathPolicy: string;
+    readonly disabledValidations?: string[];
     readonly enableSentinelParsing: boolean;
     readonly enabled: boolean;
     /**
@@ -89,6 +95,7 @@ export function getBackendConfigCmpv2Output(args: GetBackendConfigCmpv2OutputArg
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2", {
         "backend": args.backend,
+        "disabledValidations": args.disabledValidations,
         "namespace": args.namespace,
     }, opts);
 }
@@ -104,6 +111,10 @@ export interface GetBackendConfigCmpv2OutputArgs {
      * # Attributes Reference
      */
     backend: pulumi.Input<string>;
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     */
+    disabledValidations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.

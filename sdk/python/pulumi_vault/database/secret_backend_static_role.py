@@ -22,18 +22,23 @@ class SecretBackendStaticRoleArgs:
                  backend: pulumi.Input[str],
                  db_name: pulumi.Input[str],
                  username: pulumi.Input[str],
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_schedule: Optional[pulumi.Input[str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
-                 self_managed_password: Optional[pulumi.Input[str]] = None):
+                 self_managed_password: Optional[pulumi.Input[str]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
+        :param pulumi.Input[str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+               can be done in `credential_config`.
         :param pulumi.Input[str] name: A unique name to give the static role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -52,10 +57,16 @@ class SecretBackendStaticRoleArgs:
         :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        :param pulumi.Input[bool] skip_import_rotation: If set to true, Vault will skip the
+               initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "db_name", db_name)
         pulumi.set(__self__, "username", username)
+        if credential_config is not None:
+            pulumi.set(__self__, "credential_config", credential_config)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -70,6 +81,8 @@ class SecretBackendStaticRoleArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if self_managed_password is not None:
             pulumi.set(__self__, "self_managed_password", self_managed_password)
+        if skip_import_rotation is not None:
+            pulumi.set(__self__, "skip_import_rotation", skip_import_rotation)
 
     @property
     @pulumi.getter
@@ -106,6 +119,28 @@ class SecretBackendStaticRoleArgs:
     @username.setter
     def username(self, value: pulumi.Input[str]):
         pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter(name="credentialConfig")
+    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "credential_config")
+
+    @credential_config.setter
+    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "credential_config", value)
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+        can be done in `credential_config`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credential_type", value)
 
     @property
     @pulumi.getter
@@ -202,11 +237,26 @@ class SecretBackendStaticRoleArgs:
     def self_managed_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "self_managed_password", value)
 
+    @property
+    @pulumi.getter(name="skipImportRotation")
+    def skip_import_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, Vault will skip the
+        initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+        """
+        return pulumi.get(self, "skip_import_rotation")
+
+    @skip_import_rotation.setter
+    def skip_import_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_import_rotation", value)
+
 
 @pulumi.input_type
 class _SecretBackendStaticRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -215,10 +265,13 @@ class _SecretBackendStaticRoleState:
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
                  self_managed_password: Optional[pulumi.Input[str]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+               can be done in `credential_config`.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -238,10 +291,16 @@ class _SecretBackendStaticRoleState:
         :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        :param pulumi.Input[bool] skip_import_rotation: If set to true, Vault will skip the
+               initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if credential_config is not None:
+            pulumi.set(__self__, "credential_config", credential_config)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
         if name is not None:
@@ -258,6 +317,8 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if self_managed_password is not None:
             pulumi.set(__self__, "self_managed_password", self_managed_password)
+        if skip_import_rotation is not None:
+            pulumi.set(__self__, "skip_import_rotation", skip_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -272,6 +333,28 @@ class _SecretBackendStaticRoleState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="credentialConfig")
+    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "credential_config")
+
+    @credential_config.setter
+    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "credential_config", value)
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+        can be done in `credential_config`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credential_type", value)
 
     @property
     @pulumi.getter(name="dbName")
@@ -381,6 +464,19 @@ class _SecretBackendStaticRoleState:
         pulumi.set(self, "self_managed_password", value)
 
     @property
+    @pulumi.getter(name="skipImportRotation")
+    def skip_import_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, Vault will skip the
+        initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+        """
+        return pulumi.get(self, "skip_import_rotation")
+
+    @skip_import_rotation.setter
+    def skip_import_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_import_rotation", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -399,6 +495,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -407,6 +505,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
                  self_managed_password: Optional[pulumi.Input[str]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -460,6 +559,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+               can be done in `credential_config`.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -479,6 +580,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        :param pulumi.Input[bool] skip_import_rotation: If set to true, Vault will skip the
+               initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         ...
@@ -551,6 +654,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -559,6 +664,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
                  self_managed_password: Optional[pulumi.Input[str]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -572,6 +678,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["credential_config"] = credential_config
+            __props__.__dict__["credential_type"] = credential_type
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
@@ -582,6 +690,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             __props__.__dict__["rotation_statements"] = rotation_statements
             __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["self_managed_password"] = None if self_managed_password is None else pulumi.Output.secret(self_managed_password)
+            __props__.__dict__["skip_import_rotation"] = skip_import_rotation
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
@@ -598,6 +707,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            credential_type: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -606,6 +717,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             rotation_window: Optional[pulumi.Input[int]] = None,
             self_managed_password: Optional[pulumi.Input[str]] = None,
+            skip_import_rotation: Optional[pulumi.Input[bool]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'SecretBackendStaticRole':
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
@@ -615,6 +727,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+               can be done in `credential_config`.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[str] name: A unique name to give the static role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -634,6 +748,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        :param pulumi.Input[bool] skip_import_rotation: If set to true, Vault will skip the
+               initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -641,6 +757,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__ = _SecretBackendStaticRoleState.__new__(_SecretBackendStaticRoleState)
 
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["credential_config"] = credential_config
+        __props__.__dict__["credential_type"] = credential_type
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -649,6 +767,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["rotation_statements"] = rotation_statements
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["self_managed_password"] = self_managed_password
+        __props__.__dict__["skip_import_rotation"] = skip_import_rotation
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
@@ -659,6 +778,20 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         The unique name of the Vault mount to configure.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="credentialConfig")
+    def credential_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        return pulumi.get(self, "credential_config")
+
+    @property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> pulumi.Output[str]:
+        """
+        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+        can be done in `credential_config`.
+        """
+        return pulumi.get(self, "credential_type")
 
     @property
     @pulumi.getter(name="dbName")
@@ -734,6 +867,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
         """
         return pulumi.get(self, "self_managed_password")
+
+    @property
+    @pulumi.getter(name="skipImportRotation")
+    def skip_import_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to true, Vault will skip the
+        initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+        """
+        return pulumi.get(self, "skip_import_rotation")
 
     @property
     @pulumi.getter

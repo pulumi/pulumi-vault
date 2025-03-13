@@ -1354,6 +1354,8 @@ class SecretsMount(pulumi.CustomResource):
                 "password": "super_secret_1",
                 "connection_url": "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
                 "allowed_roles": ["dev1"],
+                "rotation_schedule": "0 * * * SAT",
+                "rotation_window": 3600,
             }],
             postgresqls=[{
                 "name": "db2",
@@ -1362,6 +1364,8 @@ class SecretsMount(pulumi.CustomResource):
                 "connection_url": "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
                 "verify_connection": True,
                 "allowed_roles": ["dev2"],
+                "rotation_schedule": "0 * * * SAT",
+                "rotation_window": 3600,
             }])
         dev1 = vault.database.SecretBackendRole("dev1",
             name="dev1",
@@ -1470,6 +1474,8 @@ class SecretsMount(pulumi.CustomResource):
                 "password": "super_secret_1",
                 "connection_url": "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
                 "allowed_roles": ["dev1"],
+                "rotation_schedule": "0 * * * SAT",
+                "rotation_window": 3600,
             }],
             postgresqls=[{
                 "name": "db2",
@@ -1478,6 +1484,8 @@ class SecretsMount(pulumi.CustomResource):
                 "connection_url": "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
                 "verify_connection": True,
                 "allowed_roles": ["dev2"],
+                "rotation_schedule": "0 * * * SAT",
+                "rotation_window": 3600,
             }])
         dev1 = vault.database.SecretBackendRole("dev1",
             name="dev1",

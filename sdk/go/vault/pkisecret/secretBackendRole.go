@@ -147,6 +147,10 @@ type SecretBackendRole struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrOutput `pulumi:"noStore"`
+	// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+	NoStoreMetadata pulumi.BoolPtrOutput `pulumi:"noStoreMetadata"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringOutput `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
@@ -163,8 +167,14 @@ type SecretBackendRole struct {
 	Provinces pulumi.StringArrayOutput `pulumi:"provinces"`
 	// Flag to force CN usage
 	RequireCn pulumi.BoolPtrOutput `pulumi:"requireCn"`
+	// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+	//
+	// Example usage:
+	SerialNumberSource pulumi.StringOutput `pulumi:"serialNumberSource"`
 	// Flag to specify certificates for server use
 	ServerFlag pulumi.BoolPtrOutput `pulumi:"serverFlag"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntOutput `pulumi:"signatureBits"`
 	// The street address of generated certificates
 	StreetAddresses pulumi.StringArrayOutput `pulumi:"streetAddresses"`
 	// The TTL, in seconds, for any certificate issued against this role.
@@ -173,6 +183,8 @@ type SecretBackendRole struct {
 	UseCsrCommonName pulumi.BoolPtrOutput `pulumi:"useCsrCommonName"`
 	// Flag to use the SANs in the CSR
 	UseCsrSans pulumi.BoolPtrOutput `pulumi:"useCsrSans"`
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+	UsePss pulumi.BoolPtrOutput `pulumi:"usePss"`
 }
 
 // NewSecretBackendRole registers a new resource with the given unique name, arguments, and options.
@@ -285,6 +297,10 @@ type secretBackendRoleState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
+	// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+	NoStoreMetadata *bool `pulumi:"noStoreMetadata"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
@@ -301,8 +317,14 @@ type secretBackendRoleState struct {
 	Provinces []string `pulumi:"provinces"`
 	// Flag to force CN usage
 	RequireCn *bool `pulumi:"requireCn"`
+	// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+	//
+	// Example usage:
+	SerialNumberSource *string `pulumi:"serialNumberSource"`
 	// Flag to specify certificates for server use
 	ServerFlag *bool `pulumi:"serverFlag"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
 	// The street address of generated certificates
 	StreetAddresses []string `pulumi:"streetAddresses"`
 	// The TTL, in seconds, for any certificate issued against this role.
@@ -311,6 +333,8 @@ type secretBackendRoleState struct {
 	UseCsrCommonName *bool `pulumi:"useCsrCommonName"`
 	// Flag to use the SANs in the CSR
 	UseCsrSans *bool `pulumi:"useCsrSans"`
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+	UsePss *bool `pulumi:"usePss"`
 }
 
 type SecretBackendRoleState struct {
@@ -391,6 +415,10 @@ type SecretBackendRoleState struct {
 	Namespace pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
+	// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+	NoStoreMetadata pulumi.BoolPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
@@ -407,8 +435,14 @@ type SecretBackendRoleState struct {
 	Provinces pulumi.StringArrayInput
 	// Flag to force CN usage
 	RequireCn pulumi.BoolPtrInput
+	// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+	//
+	// Example usage:
+	SerialNumberSource pulumi.StringPtrInput
 	// Flag to specify certificates for server use
 	ServerFlag pulumi.BoolPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
 	// The street address of generated certificates
 	StreetAddresses pulumi.StringArrayInput
 	// The TTL, in seconds, for any certificate issued against this role.
@@ -417,6 +451,8 @@ type SecretBackendRoleState struct {
 	UseCsrCommonName pulumi.BoolPtrInput
 	// Flag to use the SANs in the CSR
 	UseCsrSans pulumi.BoolPtrInput
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+	UsePss pulumi.BoolPtrInput
 }
 
 func (SecretBackendRoleState) ElementType() reflect.Type {
@@ -501,6 +537,10 @@ type secretBackendRoleArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
+	// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+	NoStoreMetadata *bool `pulumi:"noStoreMetadata"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
@@ -517,8 +557,14 @@ type secretBackendRoleArgs struct {
 	Provinces []string `pulumi:"provinces"`
 	// Flag to force CN usage
 	RequireCn *bool `pulumi:"requireCn"`
+	// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+	//
+	// Example usage:
+	SerialNumberSource *string `pulumi:"serialNumberSource"`
 	// Flag to specify certificates for server use
 	ServerFlag *bool `pulumi:"serverFlag"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
 	// The street address of generated certificates
 	StreetAddresses []string `pulumi:"streetAddresses"`
 	// The TTL, in seconds, for any certificate issued against this role.
@@ -527,6 +573,8 @@ type secretBackendRoleArgs struct {
 	UseCsrCommonName *bool `pulumi:"useCsrCommonName"`
 	// Flag to use the SANs in the CSR
 	UseCsrSans *bool `pulumi:"useCsrSans"`
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+	UsePss *bool `pulumi:"usePss"`
 }
 
 // The set of arguments for constructing a SecretBackendRole resource.
@@ -608,6 +656,10 @@ type SecretBackendRoleArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
+	// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+	NoStoreMetadata pulumi.BoolPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
@@ -624,8 +676,14 @@ type SecretBackendRoleArgs struct {
 	Provinces pulumi.StringArrayInput
 	// Flag to force CN usage
 	RequireCn pulumi.BoolPtrInput
+	// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+	//
+	// Example usage:
+	SerialNumberSource pulumi.StringPtrInput
 	// Flag to specify certificates for server use
 	ServerFlag pulumi.BoolPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
 	// The street address of generated certificates
 	StreetAddresses pulumi.StringArrayInput
 	// The TTL, in seconds, for any certificate issued against this role.
@@ -634,6 +692,8 @@ type SecretBackendRoleArgs struct {
 	UseCsrCommonName pulumi.BoolPtrInput
 	// Flag to use the SANs in the CSR
 	UseCsrSans pulumi.BoolPtrInput
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+	UsePss pulumi.BoolPtrInput
 }
 
 func (SecretBackendRoleArgs) ElementType() reflect.Type {
@@ -902,6 +962,16 @@ func (o SecretBackendRoleOutput) NoStore() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.NoStore }).(pulumi.BoolPtrOutput)
 }
 
+// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+func (o SecretBackendRoleOutput) NoStoreMetadata() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.NoStoreMetadata }).(pulumi.BoolPtrOutput)
+}
+
+// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+func (o SecretBackendRoleOutput) NotAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the duration by which to backdate the NotBefore property.
 func (o SecretBackendRoleOutput) NotBeforeDuration() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.NotBeforeDuration }).(pulumi.StringOutput)
@@ -942,9 +1012,21 @@ func (o SecretBackendRoleOutput) RequireCn() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.RequireCn }).(pulumi.BoolPtrOutput)
 }
 
+// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+//
+// Example usage:
+func (o SecretBackendRoleOutput) SerialNumberSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.SerialNumberSource }).(pulumi.StringOutput)
+}
+
 // Flag to specify certificates for server use
 func (o SecretBackendRoleOutput) ServerFlag() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.ServerFlag }).(pulumi.BoolPtrOutput)
+}
+
+// The number of bits to use in the signature algorithm
+func (o SecretBackendRoleOutput) SignatureBits() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntOutput { return v.SignatureBits }).(pulumi.IntOutput)
 }
 
 // The street address of generated certificates
@@ -965,6 +1047,11 @@ func (o SecretBackendRoleOutput) UseCsrCommonName() pulumi.BoolPtrOutput {
 // Flag to use the SANs in the CSR
 func (o SecretBackendRoleOutput) UseCsrSans() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.UseCsrSans }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+func (o SecretBackendRoleOutput) UsePss() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.UsePss }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendRoleArrayOutput struct{ *pulumi.OutputState }

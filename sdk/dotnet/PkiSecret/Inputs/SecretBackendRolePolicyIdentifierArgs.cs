@@ -14,8 +14,6 @@ namespace Pulumi.Vault.PkiSecret.Inputs
     {
         /// <summary>
         /// The URL of the CPS for the policy identifier
-        /// 
-        /// Example usage:
         /// </summary>
         [Input("cps")]
         public Input<string>? Cps { get; set; }

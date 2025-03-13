@@ -61,6 +61,52 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.aws.SecretBackend;
+ * import com.pulumi.vault.aws.SecretBackendArgs;
+ * import com.pulumi.vault.aws.SecretBackendStaticRole;
+ * import com.pulumi.vault.aws.SecretBackendStaticRoleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()
+ *             .path("my-aws")
+ *             .description("Obtain AWS credentials.")
+ *             .build());
+ * 
+ *         var assume_role = new SecretBackendStaticRole("assume-role", SecretBackendStaticRoleArgs.builder()
+ *             .backend(aws.path())
+ *             .name("assume-role-test")
+ *             .username("my-assume-role-user")
+ *             .assumeRoleArn("arn:aws:iam::123456789012:role/assume-role")
+ *             .assumeRoleSessionName("assume-role-session")
+ *             .externalId("test-id")
+ *             .rotationPeriod("3600")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * AWS secret backend static role can be imported using the full path to the role
@@ -73,6 +119,44 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:aws/secretBackendStaticRole:SecretBackendStaticRole")
 public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource {
+    /**
+     * Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="assumeRoleArn", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> assumeRoleArn;
+
+    /**
+     * @return Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> assumeRoleArn() {
+        return Codegen.optional(this.assumeRoleArn);
+    }
+    /**
+     * Specifies the session name to use when assuming the role.
+     * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="assumeRoleSessionName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> assumeRoleSessionName;
+
+    /**
+     * @return Specifies the session name to use when assuming the role.
+     * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> assumeRoleSessionName() {
+        return Codegen.optional(this.assumeRoleSessionName);
+    }
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
@@ -88,6 +172,22 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<String>> backend() {
         return Codegen.optional(this.backend);
+    }
+    /**
+     * Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="externalId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> externalId;
+
+    /**
+     * @return Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> externalId() {
+        return Codegen.optional(this.externalId);
     }
     /**
      * The name to identify this role within the backend.

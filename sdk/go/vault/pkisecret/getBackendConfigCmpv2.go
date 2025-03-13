@@ -59,6 +59,8 @@ type LookupBackendConfigCmpv2Args struct {
 	//
 	// # Attributes Reference
 	Backend string `pulumi:"backend"`
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	DisabledValidations []string `pulumi:"disabledValidations"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -72,6 +74,7 @@ type LookupBackendConfigCmpv2Result struct {
 	Authenticators        []GetBackendConfigCmpv2Authenticator `pulumi:"authenticators"`
 	Backend               string                               `pulumi:"backend"`
 	DefaultPathPolicy     string                               `pulumi:"defaultPathPolicy"`
+	DisabledValidations   []string                             `pulumi:"disabledValidations"`
 	EnableSentinelParsing bool                                 `pulumi:"enableSentinelParsing"`
 	Enabled               bool                                 `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
@@ -96,6 +99,8 @@ type LookupBackendConfigCmpv2OutputArgs struct {
 	//
 	// # Attributes Reference
 	Backend pulumi.StringInput `pulumi:"backend"`
+	// A comma-separated list of validations not to perform on CMPv2 messages.
+	DisabledValidations pulumi.StringArrayInput `pulumi:"disabledValidations"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -136,6 +141,10 @@ func (o LookupBackendConfigCmpv2ResultOutput) Backend() pulumi.StringOutput {
 
 func (o LookupBackendConfigCmpv2ResultOutput) DefaultPathPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackendConfigCmpv2Result) string { return v.DefaultPathPolicy }).(pulumi.StringOutput)
+}
+
+func (o LookupBackendConfigCmpv2ResultOutput) DisabledValidations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupBackendConfigCmpv2Result) []string { return v.DisabledValidations }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupBackendConfigCmpv2ResultOutput) EnableSentinelParsing() pulumi.BoolOutput {

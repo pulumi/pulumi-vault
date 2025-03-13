@@ -110,6 +110,10 @@ export class BackendConfigAcme extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean>;
     /**
+     * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     */
+    public readonly maxTtl!: pulumi.Output<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -138,6 +142,7 @@ export class BackendConfigAcme extends pulumi.CustomResource {
             resourceInputs["dnsResolver"] = state ? state.dnsResolver : undefined;
             resourceInputs["eabPolicy"] = state ? state.eabPolicy : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
             const args = argsOrState as BackendConfigAcmeArgs | undefined;
@@ -155,6 +160,7 @@ export class BackendConfigAcme extends pulumi.CustomResource {
             resourceInputs["dnsResolver"] = args ? args.dnsResolver : undefined;
             resourceInputs["eabPolicy"] = args ? args.eabPolicy : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -201,6 +207,10 @@ export interface BackendConfigAcmeState {
      * Specifies whether ACME is enabled.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     */
+    maxTtl?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -249,6 +259,10 @@ export interface BackendConfigAcmeArgs {
      * Specifies whether ACME is enabled.
      */
     enabled: pulumi.Input<boolean>;
+    /**
+     * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     */
+    maxTtl?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

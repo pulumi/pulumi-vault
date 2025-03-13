@@ -48,6 +48,43 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//				Path:        pulumi.String("my-aws"),
+//				Description: pulumi.String("Obtain AWS credentials."),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewSecretBackendStaticRole(ctx, "assume-role", &aws.SecretBackendStaticRoleArgs{
+//				Backend:               aws.Path,
+//				Name:                  pulumi.String("assume-role-test"),
+//				Username:              pulumi.String("my-assume-role-user"),
+//				AssumeRoleArn:         pulumi.String("arn:aws:iam::123456789012:role/assume-role"),
+//				AssumeRoleSessionName: pulumi.String("assume-role-session"),
+//				ExternalId:            pulumi.String("test-id"),
+//				RotationPeriod:        pulumi.Int(3600),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // AWS secret backend static role can be imported using the full path to the role
@@ -59,9 +96,21 @@ import (
 type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
 
+	// Specifies the ARN of the role that Vault should assume.
+	// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+	// If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleArn pulumi.StringPtrOutput `pulumi:"assumeRoleArn"`
+	// Specifies the session name to use when assuming the role.
+	// If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleSessionName pulumi.StringPtrOutput `pulumi:"assumeRoleSessionName"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// Specifies the external ID to use when assuming the role.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	ExternalId pulumi.StringPtrOutput `pulumi:"externalId"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -112,9 +161,21 @@ func GetSecretBackendStaticRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendStaticRole resources.
 type secretBackendStaticRoleState struct {
+	// Specifies the ARN of the role that Vault should assume.
+	// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+	// If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleArn *string `pulumi:"assumeRoleArn"`
+	// Specifies the session name to use when assuming the role.
+	// If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleSessionName *string `pulumi:"assumeRoleSessionName"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`
 	Backend *string `pulumi:"backend"`
+	// Specifies the external ID to use when assuming the role.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	ExternalId *string `pulumi:"externalId"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
@@ -130,9 +191,21 @@ type secretBackendStaticRoleState struct {
 }
 
 type SecretBackendStaticRoleState struct {
+	// Specifies the ARN of the role that Vault should assume.
+	// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+	// If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleArn pulumi.StringPtrInput
+	// Specifies the session name to use when assuming the role.
+	// If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleSessionName pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`
 	Backend pulumi.StringPtrInput
+	// Specifies the external ID to use when assuming the role.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	ExternalId pulumi.StringPtrInput
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
@@ -152,9 +225,21 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 }
 
 type secretBackendStaticRoleArgs struct {
+	// Specifies the ARN of the role that Vault should assume.
+	// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+	// If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleArn *string `pulumi:"assumeRoleArn"`
+	// Specifies the session name to use when assuming the role.
+	// If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleSessionName *string `pulumi:"assumeRoleSessionName"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`
 	Backend *string `pulumi:"backend"`
+	// Specifies the external ID to use when assuming the role.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	ExternalId *string `pulumi:"externalId"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
@@ -171,9 +256,21 @@ type secretBackendStaticRoleArgs struct {
 
 // The set of arguments for constructing a SecretBackendStaticRole resource.
 type SecretBackendStaticRoleArgs struct {
+	// Specifies the ARN of the role that Vault should assume.
+	// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+	// If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleArn pulumi.StringPtrInput
+	// Specifies the session name to use when assuming the role.
+	// If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	AssumeRoleSessionName pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`
 	Backend pulumi.StringPtrInput
+	// Specifies the external ID to use when assuming the role.
+	// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+	ExternalId pulumi.StringPtrInput
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
@@ -275,10 +372,31 @@ func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutputWithContex
 	return o
 }
 
+// Specifies the ARN of the role that Vault should assume.
+// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+// If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
+// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+func (o SecretBackendStaticRoleOutput) AssumeRoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.AssumeRoleArn }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the session name to use when assuming the role.
+// If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
+// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+func (o SecretBackendStaticRoleOutput) AssumeRoleSessionName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.AssumeRoleSessionName }).(pulumi.StringPtrOutput)
+}
+
 // The unique path this backend should be mounted at. Must
 // not begin or end with a `/`. Defaults to `aws`
 func (o SecretBackendStaticRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the external ID to use when assuming the role.
+// Requires Vault 1.19+. *Available only for Vault Enterprise*.
+func (o SecretBackendStaticRoleOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
 // The name to identify this role within the backend.

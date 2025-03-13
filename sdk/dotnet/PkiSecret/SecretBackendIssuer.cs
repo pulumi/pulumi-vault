@@ -72,6 +72,41 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> CrlDistributionPoints { get; private set; } = null!;
 
         /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// issued certificate) contain critical extensions not processed by Vault.
+        /// </summary>
+        [Output("disableCriticalExtensionChecks")]
+        public Output<bool?> DisableCriticalExtensionChecks { get; private set; } = null!;
+
+        /// <summary>
+        /// This determines whether this issuer is able
+        /// to issue certificates where the chain of trust (including the final issued
+        /// certificate) contains a link in which the subject of the issuing certificate
+        /// does not match the named issuer of the certificate it signed.
+        /// </summary>
+        [Output("disableNameChecks")]
+        public Output<bool?> DisableNameChecks { get; private set; } = null!;
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// final issued certificate) violates the name constraints critical extension of
+        /// one of the issuer certificates in the chain.
+        /// </summary>
+        [Output("disableNameConstraintChecks")]
+        public Output<bool?> DisableNameConstraintChecks { get; private set; } = null!;
+
+        /// <summary>
+        /// This determines whether this issuer
+        /// is able to issue certificates where the chain of trust (including the final
+        /// issued certificate) is longer than allowed by a certificate authority in that
+        /// chain.
+        /// </summary>
+        [Output("disablePathLengthChecks")]
+        public Output<bool?> DisablePathLengthChecks { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies that the AIA URL values should
         /// be templated.
         /// </summary>
@@ -212,6 +247,41 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// issued certificate) contain critical extensions not processed by Vault.
+        /// </summary>
+        [Input("disableCriticalExtensionChecks")]
+        public Input<bool>? DisableCriticalExtensionChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer is able
+        /// to issue certificates where the chain of trust (including the final issued
+        /// certificate) contains a link in which the subject of the issuing certificate
+        /// does not match the named issuer of the certificate it signed.
+        /// </summary>
+        [Input("disableNameChecks")]
+        public Input<bool>? DisableNameChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// final issued certificate) violates the name constraints critical extension of
+        /// one of the issuer certificates in the chain.
+        /// </summary>
+        [Input("disableNameConstraintChecks")]
+        public Input<bool>? DisableNameConstraintChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer
+        /// is able to issue certificates where the chain of trust (including the final
+        /// issued certificate) is longer than allowed by a certificate authority in that
+        /// chain.
+        /// </summary>
+        [Input("disablePathLengthChecks")]
+        public Input<bool>? DisablePathLengthChecks { get; set; }
+
+        /// <summary>
         /// Specifies that the AIA URL values should
         /// be templated.
         /// </summary>
@@ -324,6 +394,41 @@ namespace Pulumi.Vault.PkiSecret
             get => _crlDistributionPoints ?? (_crlDistributionPoints = new InputList<string>());
             set => _crlDistributionPoints = value;
         }
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// issued certificate) contain critical extensions not processed by Vault.
+        /// </summary>
+        [Input("disableCriticalExtensionChecks")]
+        public Input<bool>? DisableCriticalExtensionChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer is able
+        /// to issue certificates where the chain of trust (including the final issued
+        /// certificate) contains a link in which the subject of the issuing certificate
+        /// does not match the named issuer of the certificate it signed.
+        /// </summary>
+        [Input("disableNameChecks")]
+        public Input<bool>? DisableNameChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// final issued certificate) violates the name constraints critical extension of
+        /// one of the issuer certificates in the chain.
+        /// </summary>
+        [Input("disableNameConstraintChecks")]
+        public Input<bool>? DisableNameConstraintChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer
+        /// is able to issue certificates where the chain of trust (including the final
+        /// issued certificate) is longer than allowed by a certificate authority in that
+        /// chain.
+        /// </summary>
+        [Input("disablePathLengthChecks")]
+        public Input<bool>? DisablePathLengthChecks { get; set; }
 
         /// <summary>
         /// Specifies that the AIA URL values should

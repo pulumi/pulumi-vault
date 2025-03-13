@@ -27,6 +27,7 @@ class BackendConfigAcmeArgs:
                  default_directory_policy: Optional[pulumi.Input[str]] = None,
                  dns_resolver: Optional[pulumi.Input[str]] = None,
                  eab_policy: Optional[pulumi.Input[str]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackendConfigAcme resource.
@@ -41,6 +42,7 @@ class BackendConfigAcmeArgs:
                Must be in the format `<host>:<port>`, with both parts mandatory.
         :param pulumi.Input[str] eab_policy: Specifies the policy to use for external account binding behaviour.
                Allowed values are `not-required`, `new-account-required` or `always-required`.
+        :param pulumi.Input[int] max_ttl: The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -60,6 +62,8 @@ class BackendConfigAcmeArgs:
             pulumi.set(__self__, "dns_resolver", dns_resolver)
         if eab_policy is not None:
             pulumi.set(__self__, "eab_policy", eab_policy)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
 
@@ -163,6 +167,18 @@ class BackendConfigAcmeArgs:
         pulumi.set(self, "eab_policy", value)
 
     @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -189,6 +205,7 @@ class _BackendConfigAcmeState:
                  dns_resolver: Optional[pulumi.Input[str]] = None,
                  eab_policy: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BackendConfigAcme resources.
@@ -203,6 +220,7 @@ class _BackendConfigAcmeState:
         :param pulumi.Input[str] eab_policy: Specifies the policy to use for external account binding behaviour.
                Allowed values are `not-required`, `new-account-required` or `always-required`.
         :param pulumi.Input[bool] enabled: Specifies whether ACME is enabled.
+        :param pulumi.Input[int] max_ttl: The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -224,6 +242,8 @@ class _BackendConfigAcmeState:
             pulumi.set(__self__, "eab_policy", eab_policy)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
 
@@ -327,6 +347,18 @@ class _BackendConfigAcmeState:
         pulumi.set(self, "enabled", value)
 
     @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -355,6 +387,7 @@ class BackendConfigAcme(pulumi.CustomResource):
                  dns_resolver: Optional[pulumi.Input[str]] = None,
                  eab_policy: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -409,6 +442,7 @@ class BackendConfigAcme(pulumi.CustomResource):
         :param pulumi.Input[str] eab_policy: Specifies the policy to use for external account binding behaviour.
                Allowed values are `not-required`, `new-account-required` or `always-required`.
         :param pulumi.Input[bool] enabled: Specifies whether ACME is enabled.
+        :param pulumi.Input[int] max_ttl: The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -482,6 +516,7 @@ class BackendConfigAcme(pulumi.CustomResource):
                  dns_resolver: Optional[pulumi.Input[str]] = None,
                  eab_policy: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
+                 max_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -504,6 +539,7 @@ class BackendConfigAcme(pulumi.CustomResource):
             if enabled is None and not opts.urn:
                 raise TypeError("Missing required property 'enabled'")
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["namespace"] = namespace
         super(BackendConfigAcme, __self__).__init__(
             'vault:pkiSecret/backendConfigAcme:BackendConfigAcme',
@@ -523,6 +559,7 @@ class BackendConfigAcme(pulumi.CustomResource):
             dns_resolver: Optional[pulumi.Input[str]] = None,
             eab_policy: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
+            max_ttl: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None) -> 'BackendConfigAcme':
         """
         Get an existing BackendConfigAcme resource's state with the given name, id, and optional extra
@@ -542,6 +579,7 @@ class BackendConfigAcme(pulumi.CustomResource):
         :param pulumi.Input[str] eab_policy: Specifies the policy to use for external account binding behaviour.
                Allowed values are `not-required`, `new-account-required` or `always-required`.
         :param pulumi.Input[bool] enabled: Specifies whether ACME is enabled.
+        :param pulumi.Input[int] max_ttl: The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -559,6 +597,7 @@ class BackendConfigAcme(pulumi.CustomResource):
         __props__.__dict__["dns_resolver"] = dns_resolver
         __props__.__dict__["eab_policy"] = eab_policy
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["namespace"] = namespace
         return BackendConfigAcme(resource_name, opts=opts, __props__=__props__)
 
@@ -628,6 +667,14 @@ class BackendConfigAcme(pulumi.CustomResource):
         Specifies whether ACME is enabled.
         """
         return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> pulumi.Output[int]:
+        """
+        The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+        """
+        return pulumi.get(self, "max_ttl")
 
     @property
     @pulumi.getter

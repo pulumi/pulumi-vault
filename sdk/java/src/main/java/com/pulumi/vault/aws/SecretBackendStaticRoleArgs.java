@@ -18,6 +18,46 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     public static final SecretBackendStaticRoleArgs Empty = new SecretBackendStaticRoleArgs();
 
     /**
+     * Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="assumeRoleArn")
+    private @Nullable Output<String> assumeRoleArn;
+
+    /**
+     * @return Specifies the ARN of the role that Vault should assume.
+     * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+     * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> assumeRoleArn() {
+        return Optional.ofNullable(this.assumeRoleArn);
+    }
+
+    /**
+     * Specifies the session name to use when assuming the role.
+     * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="assumeRoleSessionName")
+    private @Nullable Output<String> assumeRoleSessionName;
+
+    /**
+     * @return Specifies the session name to use when assuming the role.
+     * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> assumeRoleSessionName() {
+        return Optional.ofNullable(this.assumeRoleSessionName);
+    }
+
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      * 
@@ -32,6 +72,23 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
+    }
+
+    /**
+     * Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="externalId")
+    private @Nullable Output<String> externalId;
+
+    /**
+     * @return Specifies the external ID to use when assuming the role.
+     * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> externalId() {
+        return Optional.ofNullable(this.externalId);
     }
 
     /**
@@ -105,7 +162,10 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     private SecretBackendStaticRoleArgs() {}
 
     private SecretBackendStaticRoleArgs(SecretBackendStaticRoleArgs $) {
+        this.assumeRoleArn = $.assumeRoleArn;
+        this.assumeRoleSessionName = $.assumeRoleSessionName;
         this.backend = $.backend;
+        this.externalId = $.externalId;
         this.name = $.name;
         this.namespace = $.namespace;
         this.rotationPeriod = $.rotationPeriod;
@@ -131,6 +191,58 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param assumeRoleArn Specifies the ARN of the role that Vault should assume.
+         * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+         * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+         * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assumeRoleArn(@Nullable Output<String> assumeRoleArn) {
+            $.assumeRoleArn = assumeRoleArn;
+            return this;
+        }
+
+        /**
+         * @param assumeRoleArn Specifies the ARN of the role that Vault should assume.
+         * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+         * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+         * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assumeRoleArn(String assumeRoleArn) {
+            return assumeRoleArn(Output.of(assumeRoleArn));
+        }
+
+        /**
+         * @param assumeRoleSessionName Specifies the session name to use when assuming the role.
+         * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+         * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assumeRoleSessionName(@Nullable Output<String> assumeRoleSessionName) {
+            $.assumeRoleSessionName = assumeRoleSessionName;
+            return this;
+        }
+
+        /**
+         * @param assumeRoleSessionName Specifies the session name to use when assuming the role.
+         * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+         * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assumeRoleSessionName(String assumeRoleSessionName) {
+            return assumeRoleSessionName(Output.of(assumeRoleSessionName));
+        }
+
+        /**
          * @param backend The unique path this backend should be mounted at. Must
          * not begin or end with a `/`. Defaults to `aws`
          * 
@@ -151,6 +263,29 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param externalId Specifies the external ID to use when assuming the role.
+         * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(@Nullable Output<String> externalId) {
+            $.externalId = externalId;
+            return this;
+        }
+
+        /**
+         * @param externalId Specifies the external ID to use when assuming the role.
+         * Requires Vault 1.19+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(String externalId) {
+            return externalId(Output.of(externalId));
         }
 
         /**

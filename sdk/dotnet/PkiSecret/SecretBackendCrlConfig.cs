@@ -93,6 +93,13 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Expiry { get; private set; } = null!;
 
         /// <summary>
+        /// The maximum number of entries a CRL can contain. This option exists to prevent 
+        /// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+        /// </summary>
+        [Output("maxCrlEntries")]
+        public Output<int> MaxCrlEntries { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -223,6 +230,13 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Expiry { get; set; }
 
         /// <summary>
+        /// The maximum number of entries a CRL can contain. This option exists to prevent 
+        /// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+        /// </summary>
+        [Input("maxCrlEntries")]
+        public Input<int>? MaxCrlEntries { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -313,6 +327,13 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("expiry")]
         public Input<string>? Expiry { get; set; }
+
+        /// <summary>
+        /// The maximum number of entries a CRL can contain. This option exists to prevent 
+        /// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+        /// </summary>
+        [Input("maxCrlEntries")]
+        public Input<int>? MaxCrlEntries { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

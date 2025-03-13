@@ -580,6 +580,34 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.noStore);
     }
     /**
+     * Allows metadata to be stored keyed on the certificate&#39;s serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+     * 
+     */
+    @Export(name="noStoreMetadata", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> noStoreMetadata;
+
+    /**
+     * @return Allows metadata to be stored keyed on the certificate&#39;s serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+     * 
+     */
+    public Output<Optional<Boolean>> noStoreMetadata() {
+        return Codegen.optional(this.noStoreMetadata);
+    }
+    /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    @Export(name="notAfter", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> notAfter;
+
+    /**
+     * @return Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    public Output<Optional<String>> notAfter() {
+        return Codegen.optional(this.notAfter);
+    }
+    /**
      * Specifies the duration by which to backdate the NotBefore property.
      * 
      */
@@ -692,6 +720,142 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.requireCn);
     }
     /**
+     * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     * 
+     * Example usage:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(86400)
+     *             .build());
+     * 
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
+     *             .backend(pki.path())
+     *             .name("my_role")
+     *             .ttl(3600)
+     *             .allowIpSans(true)
+     *             .keyType("rsa")
+     *             .keyBits(4096)
+     *             .allowedDomains(            
+     *                 "example.com",
+     *                 "my.domain")
+     *             .allowSubdomains(true)
+     *             .policyIdentifiers(            
+     *                 Map.ofEntries(
+     *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
+     *                     Map.entry("notice", "I am a user Notice")
+     *                 ),
+     *                 Map.ofEntries(
+     *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
+     *                     Map.entry("cps", "https://example.com")
+     *                 ))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    @Export(name="serialNumberSource", refs={String.class}, tree="[0]")
+    private Output<String> serialNumberSource;
+
+    /**
+     * @return Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     * 
+     * Example usage:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(86400)
+     *             .build());
+     * 
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
+     *             .backend(pki.path())
+     *             .name("my_role")
+     *             .ttl(3600)
+     *             .allowIpSans(true)
+     *             .keyType("rsa")
+     *             .keyBits(4096)
+     *             .allowedDomains(            
+     *                 "example.com",
+     *                 "my.domain")
+     *             .allowSubdomains(true)
+     *             .policyIdentifiers(            
+     *                 Map.ofEntries(
+     *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
+     *                     Map.entry("notice", "I am a user Notice")
+     *                 ),
+     *                 Map.ofEntries(
+     *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
+     *                     Map.entry("cps", "https://example.com")
+     *                 ))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public Output<String> serialNumberSource() {
+        return this.serialNumberSource;
+    }
+    /**
      * Flag to specify certificates for server use
      * 
      */
@@ -704,6 +868,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> serverFlag() {
         return Codegen.optional(this.serverFlag);
+    }
+    /**
+     * The number of bits to use in the signature algorithm
+     * 
+     */
+    @Export(name="signatureBits", refs={Integer.class}, tree="[0]")
+    private Output<Integer> signatureBits;
+
+    /**
+     * @return The number of bits to use in the signature algorithm
+     * 
+     */
+    public Output<Integer> signatureBits() {
+        return this.signatureBits;
     }
     /**
      * The street address of generated certificates
@@ -760,6 +938,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> useCsrSans() {
         return Codegen.optional(this.useCsrSans);
+    }
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+     * 
+     */
+    @Export(name="usePss", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> usePss;
+
+    /**
+     * @return Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+     * 
+     */
+    public Output<Optional<Boolean>> usePss() {
+        return Codegen.optional(this.usePss);
     }
 
     /**

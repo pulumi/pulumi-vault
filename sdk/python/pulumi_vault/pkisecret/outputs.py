@@ -81,8 +81,6 @@ class SecretBackendRolePolicyIdentifier(dict):
         """
         :param str oid: The OID for the policy identifier
         :param str cps: The URL of the CPS for the policy identifier
-               
-               Example usage:
         :param str notice: A notice for the policy identifier
         """
         pulumi.set(__self__, "oid", oid)
@@ -104,8 +102,6 @@ class SecretBackendRolePolicyIdentifier(dict):
     def cps(self) -> Optional[str]:
         """
         The URL of the CPS for the policy identifier
-
-        Example usage:
         """
         return pulumi.get(self, "cps")
 

@@ -71,6 +71,9 @@ type SecretBackendCrlConfig struct {
 	EnableDelta pulumi.BoolPtrOutput `pulumi:"enableDelta"`
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrOutput `pulumi:"expiry"`
+	// The maximum number of entries a CRL can contain. This option exists to prevent
+	// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+	MaxCrlEntries pulumi.IntOutput `pulumi:"maxCrlEntries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -138,6 +141,9 @@ type secretBackendCrlConfigState struct {
 	EnableDelta *bool `pulumi:"enableDelta"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
+	// The maximum number of entries a CRL can contain. This option exists to prevent
+	// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+	MaxCrlEntries *int `pulumi:"maxCrlEntries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -173,6 +179,9 @@ type SecretBackendCrlConfigState struct {
 	EnableDelta pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
+	// The maximum number of entries a CRL can contain. This option exists to prevent
+	// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+	MaxCrlEntries pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -212,6 +221,9 @@ type secretBackendCrlConfigArgs struct {
 	EnableDelta *bool `pulumi:"enableDelta"`
 	// Specifies the time until expiration.
 	Expiry *string `pulumi:"expiry"`
+	// The maximum number of entries a CRL can contain. This option exists to prevent
+	// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+	MaxCrlEntries *int `pulumi:"maxCrlEntries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -248,6 +260,9 @@ type SecretBackendCrlConfigArgs struct {
 	EnableDelta pulumi.BoolPtrInput
 	// Specifies the time until expiration.
 	Expiry pulumi.StringPtrInput
+	// The maximum number of entries a CRL can contain. This option exists to prevent
+	// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+	MaxCrlEntries pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -391,6 +406,12 @@ func (o SecretBackendCrlConfigOutput) EnableDelta() pulumi.BoolPtrOutput {
 // Specifies the time until expiration.
 func (o SecretBackendCrlConfigOutput) Expiry() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.StringPtrOutput { return v.Expiry }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of entries a CRL can contain. This option exists to prevent
+// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+func (o SecretBackendCrlConfigOutput) MaxCrlEntries() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendCrlConfig) pulumi.IntOutput { return v.MaxCrlEntries }).(pulumi.IntOutput)
 }
 
 // The namespace to provision the resource in.

@@ -41,6 +41,8 @@ import (
 //				ClientId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
 //				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
 //				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
+//				RotationSchedule:      pulumi.String("0 * * * SAT"),
+//				RotationWindow:        pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -71,11 +73,13 @@ import (
 //				return err
 //			}
 //			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
-//				Backend:      example.Path,
-//				TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientSecret: pulumi.String("01234567890123456789"),
-//				Resource:     pulumi.String("https://vault.hashicorp.com"),
+//				Backend:          example.Path,
+//				TenantId:         pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId:         pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientSecret:     pulumi.String("01234567890123456789"),
+//				Resource:         pulumi.String("https://vault.hashicorp.com"),
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -105,6 +109,9 @@ type AuthBackendConfig struct {
 	// The client secret for credentials to query the
 	// Azure APIs.
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// The Azure cloud environment. Valid values:
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
@@ -122,6 +129,19 @@ type AuthBackendConfig struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringOutput `pulumi:"resource"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// The tenant id for the Azure Active Directory
 	// organization.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
@@ -187,6 +207,9 @@ type authBackendConfigState struct {
 	// The client secret for credentials to query the
 	// Azure APIs.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// The Azure cloud environment. Valid values:
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
@@ -204,6 +227,19 @@ type authBackendConfigState struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource *string `pulumi:"resource"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The tenant id for the Azure Active Directory
 	// organization.
 	TenantId *string `pulumi:"tenantId"`
@@ -219,6 +255,9 @@ type AuthBackendConfigState struct {
 	// The client secret for credentials to query the
 	// Azure APIs.
 	ClientSecret pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// The Azure cloud environment. Valid values:
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
@@ -236,6 +275,19 @@ type AuthBackendConfigState struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationWindow pulumi.IntPtrInput
 	// The tenant id for the Azure Active Directory
 	// organization.
 	TenantId pulumi.StringPtrInput
@@ -255,6 +307,9 @@ type authBackendConfigArgs struct {
 	// The client secret for credentials to query the
 	// Azure APIs.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// The Azure cloud environment. Valid values:
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
@@ -272,6 +327,19 @@ type authBackendConfigArgs struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource string `pulumi:"resource"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The tenant id for the Azure Active Directory
 	// organization.
 	TenantId string `pulumi:"tenantId"`
@@ -288,6 +356,9 @@ type AuthBackendConfigArgs struct {
 	// The client secret for credentials to query the
 	// Azure APIs.
 	ClientSecret pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// The Azure cloud environment. Valid values:
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
@@ -305,6 +376,19 @@ type AuthBackendConfigArgs struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*
+	RotationWindow pulumi.IntPtrInput
 	// The tenant id for the Azure Active Directory
 	// organization.
 	TenantId pulumi.StringInput
@@ -415,6 +499,12 @@ func (o AuthBackendConfigOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
+// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendConfigOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // The Azure cloud environment. Valid values:
 // AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 // AzureGermanCloud.  Defaults to `AzurePublicCloud`.
@@ -445,6 +535,28 @@ func (o AuthBackendConfigOutput) Namespace() pulumi.StringPtrOutput {
 // Azure Active Directory.
 func (o AuthBackendConfigOutput) Resource() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.Resource }).(pulumi.StringOutput)
+}
+
+// The amount of time in seconds Vault should wait before rotating the root credential.
+// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendConfigOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendConfigOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendConfigOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // The tenant id for the Azure Active Directory

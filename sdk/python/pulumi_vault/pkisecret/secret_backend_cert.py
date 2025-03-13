@@ -23,6 +23,7 @@ class SecretBackendCertArgs:
                  common_name: pulumi.Input[str],
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
+                 cert_metadata: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -30,9 +31,11 @@ class SecretBackendCertArgs:
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 revoke_with_key: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -42,6 +45,7 @@ class SecretBackendCertArgs:
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        :param pulumi.Input[str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_sans: List of alternative IPs
@@ -52,9 +56,11 @@ class SecretBackendCertArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key_format: The private key format
-        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        :param pulumi.Input[bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: List of Subject User IDs
@@ -65,6 +71,8 @@ class SecretBackendCertArgs:
             pulumi.set(__self__, "alt_names", alt_names)
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
+        if cert_metadata is not None:
+            pulumi.set(__self__, "cert_metadata", cert_metadata)
         if exclude_cn_from_sans is not None:
             pulumi.set(__self__, "exclude_cn_from_sans", exclude_cn_from_sans)
         if format is not None:
@@ -79,12 +87,16 @@ class SecretBackendCertArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if not_after is not None:
+            pulumi.set(__self__, "not_after", not_after)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
         if private_key_format is not None:
             pulumi.set(__self__, "private_key_format", private_key_format)
         if revoke is not None:
             pulumi.set(__self__, "revoke", revoke)
+        if revoke_with_key is not None:
+            pulumi.set(__self__, "revoke_with_key", revoke_with_key)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
@@ -139,6 +151,18 @@ class SecretBackendCertArgs:
     @auto_renew.setter
     def auto_renew(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter(name="certMetadata")
+    def cert_metadata(self) -> Optional[pulumi.Input[str]]:
+        """
+        A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        """
+        return pulumi.get(self, "cert_metadata")
+
+    @cert_metadata.setter
+    def cert_metadata(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_metadata", value)
 
     @property
     @pulumi.getter(name="excludeCnFromSans")
@@ -228,6 +252,18 @@ class SecretBackendCertArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @not_after.setter
+    def not_after(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_after", value)
+
+    @property
     @pulumi.getter(name="otherSans")
     def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -255,13 +291,25 @@ class SecretBackendCertArgs:
     @pulumi.getter
     def revoke(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set to `true`, the certificate will be revoked on resource destruction.
+        If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         """
         return pulumi.get(self, "revoke")
 
     @revoke.setter
     def revoke(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "revoke", value)
+
+    @property
+    @pulumi.getter(name="revokeWithKey")
+    def revoke_with_key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        """
+        return pulumi.get(self, "revoke_with_key")
+
+    @revoke_with_key.setter
+    def revoke_with_key(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "revoke_with_key", value)
 
     @property
     @pulumi.getter
@@ -307,6 +355,7 @@ class _SecretBackendCertState:
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  ca_chain: Optional[pulumi.Input[str]] = None,
+                 cert_metadata: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
@@ -318,12 +367,14 @@ class _SecretBackendCertState:
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  private_key_type: Optional[pulumi.Input[str]] = None,
                  renew_pending: Optional[pulumi.Input[bool]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 revoke_with_key: Optional[pulumi.Input[bool]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -334,6 +385,7 @@ class _SecretBackendCertState:
         :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] ca_chain: The CA chain
+        :param pulumi.Input[str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[str] certificate: The certificate
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -348,12 +400,14 @@ class _SecretBackendCertState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key: The private key
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] private_key_type: The private key type
         :param pulumi.Input[bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
-        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        :param pulumi.Input[bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -367,6 +421,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "backend", backend)
         if ca_chain is not None:
             pulumi.set(__self__, "ca_chain", ca_chain)
+        if cert_metadata is not None:
+            pulumi.set(__self__, "cert_metadata", cert_metadata)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if common_name is not None:
@@ -389,6 +445,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if not_after is not None:
+            pulumi.set(__self__, "not_after", not_after)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
         if private_key is not None:
@@ -401,6 +459,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "renew_pending", renew_pending)
         if revoke is not None:
             pulumi.set(__self__, "revoke", revoke)
+        if revoke_with_key is not None:
+            pulumi.set(__self__, "revoke_with_key", revoke_with_key)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if ttl is not None:
@@ -457,6 +517,18 @@ class _SecretBackendCertState:
     @ca_chain.setter
     def ca_chain(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_chain", value)
+
+    @property
+    @pulumi.getter(name="certMetadata")
+    def cert_metadata(self) -> Optional[pulumi.Input[str]]:
+        """
+        A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        """
+        return pulumi.get(self, "cert_metadata")
+
+    @cert_metadata.setter
+    def cert_metadata(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_metadata", value)
 
     @property
     @pulumi.getter
@@ -594,6 +666,18 @@ class _SecretBackendCertState:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @not_after.setter
+    def not_after(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_after", value)
+
+    @property
     @pulumi.getter(name="otherSans")
     def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -657,13 +741,25 @@ class _SecretBackendCertState:
     @pulumi.getter
     def revoke(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set to `true`, the certificate will be revoked on resource destruction.
+        If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         """
         return pulumi.get(self, "revoke")
 
     @revoke.setter
     def revoke(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "revoke", value)
+
+    @property
+    @pulumi.getter(name="revokeWithKey")
+    def revoke_with_key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        """
+        return pulumi.get(self, "revoke_with_key")
+
+    @revoke_with_key.setter
+    def revoke_with_key(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "revoke_with_key", value)
 
     @property
     @pulumi.getter(name="serialNumber")
@@ -722,6 +818,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 cert_metadata: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
@@ -730,9 +827,11 @@ class SecretBackendCert(pulumi.CustomResource):
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 revoke_with_key: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -756,6 +855,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
         :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
+        :param pulumi.Input[str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[str] format: The format of data
@@ -767,9 +867,11 @@ class SecretBackendCert(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key_format: The private key format
-        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        :param pulumi.Input[bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: List of Subject User IDs
@@ -812,6 +914,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 cert_metadata: Optional[pulumi.Input[str]] = None,
                  common_name: Optional[pulumi.Input[str]] = None,
                  exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
                  format: Optional[pulumi.Input[str]] = None,
@@ -820,9 +923,11 @@ class SecretBackendCert(pulumi.CustomResource):
                  min_seconds_remaining: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  revoke: Optional[pulumi.Input[bool]] = None,
+                 revoke_with_key: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -840,6 +945,7 @@ class SecretBackendCert(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["cert_metadata"] = cert_metadata
             if common_name is None and not opts.urn:
                 raise TypeError("Missing required property 'common_name'")
             __props__.__dict__["common_name"] = common_name
@@ -850,9 +956,11 @@ class SecretBackendCert(pulumi.CustomResource):
             __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["not_after"] = not_after
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["private_key_format"] = private_key_format
             __props__.__dict__["revoke"] = revoke
+            __props__.__dict__["revoke_with_key"] = revoke_with_key
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
             __props__.__dict__["user_ids"] = user_ids
@@ -880,6 +988,7 @@ class SecretBackendCert(pulumi.CustomResource):
             auto_renew: Optional[pulumi.Input[bool]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             ca_chain: Optional[pulumi.Input[str]] = None,
+            cert_metadata: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             common_name: Optional[pulumi.Input[str]] = None,
             exclude_cn_from_sans: Optional[pulumi.Input[bool]] = None,
@@ -891,12 +1000,14 @@ class SecretBackendCert(pulumi.CustomResource):
             min_seconds_remaining: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            not_after: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             private_key_format: Optional[pulumi.Input[str]] = None,
             private_key_type: Optional[pulumi.Input[str]] = None,
             renew_pending: Optional[pulumi.Input[bool]] = None,
             revoke: Optional[pulumi.Input[bool]] = None,
+            revoke_with_key: Optional[pulumi.Input[bool]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -912,6 +1023,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[str] ca_chain: The CA chain
+        :param pulumi.Input[str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[str] certificate: The certificate
         :param pulumi.Input[str] common_name: CN of certificate to create
         :param pulumi.Input[bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -926,12 +1038,14 @@ class SecretBackendCert(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] private_key: The private key
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] private_key_type: The private key type
         :param pulumi.Input[bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
-        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
+        :param pulumi.Input[bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        :param pulumi.Input[bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
         :param pulumi.Input[str] serial_number: The serial number
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -945,6 +1059,7 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["backend"] = backend
         __props__.__dict__["ca_chain"] = ca_chain
+        __props__.__dict__["cert_metadata"] = cert_metadata
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["common_name"] = common_name
         __props__.__dict__["exclude_cn_from_sans"] = exclude_cn_from_sans
@@ -956,12 +1071,14 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["not_after"] = not_after
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_format"] = private_key_format
         __props__.__dict__["private_key_type"] = private_key_type
         __props__.__dict__["renew_pending"] = renew_pending
         __props__.__dict__["revoke"] = revoke
+        __props__.__dict__["revoke_with_key"] = revoke_with_key
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
@@ -999,6 +1116,14 @@ class SecretBackendCert(pulumi.CustomResource):
         The CA chain
         """
         return pulumi.get(self, "ca_chain")
+
+    @property
+    @pulumi.getter(name="certMetadata")
+    def cert_metadata(self) -> pulumi.Output[Optional[str]]:
+        """
+        A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        """
+        return pulumi.get(self, "cert_metadata")
 
     @property
     @pulumi.getter
@@ -1092,6 +1217,14 @@ class SecretBackendCert(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> pulumi.Output[Optional[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @property
     @pulumi.getter(name="otherSans")
     def other_sans(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -1135,9 +1268,17 @@ class SecretBackendCert(pulumi.CustomResource):
     @pulumi.getter
     def revoke(self) -> pulumi.Output[Optional[bool]]:
         """
-        If set to `true`, the certificate will be revoked on resource destruction.
+        If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         """
         return pulumi.get(self, "revoke")
+
+    @property
+    @pulumi.getter(name="revokeWithKey")
+    def revoke_with_key(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        """
+        return pulumi.get(self, "revoke_with_key")
 
     @property
     @pulumi.getter(name="serialNumber")

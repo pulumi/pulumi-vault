@@ -75,6 +75,25 @@ type SecretBackendIssuer struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayOutput `pulumi:"crlDistributionPoints"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks pulumi.BoolPtrOutput `pulumi:"disableCriticalExtensionChecks"`
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks pulumi.BoolPtrOutput `pulumi:"disableNameChecks"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks pulumi.BoolPtrOutput `pulumi:"disableNameConstraintChecks"`
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks pulumi.BoolPtrOutput `pulumi:"disablePathLengthChecks"`
 	// Specifies that the AIA URL values should
 	// be templated.
 	EnableAiaUrlTemplating pulumi.BoolPtrOutput `pulumi:"enableAiaUrlTemplating"`
@@ -149,6 +168,25 @@ type secretBackendIssuerState struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks *bool `pulumi:"disableCriticalExtensionChecks"`
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks *bool `pulumi:"disableNameChecks"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks *bool `pulumi:"disableNameConstraintChecks"`
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks *bool `pulumi:"disablePathLengthChecks"`
 	// Specifies that the AIA URL values should
 	// be templated.
 	EnableAiaUrlTemplating *bool `pulumi:"enableAiaUrlTemplating"`
@@ -188,6 +226,25 @@ type SecretBackendIssuerState struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayInput
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks pulumi.BoolPtrInput
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks pulumi.BoolPtrInput
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks pulumi.BoolPtrInput
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks pulumi.BoolPtrInput
 	// Specifies that the AIA URL values should
 	// be templated.
 	EnableAiaUrlTemplating pulumi.BoolPtrInput
@@ -231,6 +288,25 @@ type secretBackendIssuerArgs struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks *bool `pulumi:"disableCriticalExtensionChecks"`
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks *bool `pulumi:"disableNameChecks"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks *bool `pulumi:"disableNameConstraintChecks"`
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks *bool `pulumi:"disablePathLengthChecks"`
 	// Specifies that the AIA URL values should
 	// be templated.
 	EnableAiaUrlTemplating *bool `pulumi:"enableAiaUrlTemplating"`
@@ -269,6 +345,25 @@ type SecretBackendIssuerArgs struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayInput
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks pulumi.BoolPtrInput
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks pulumi.BoolPtrInput
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks pulumi.BoolPtrInput
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks pulumi.BoolPtrInput
 	// Specifies that the AIA URL values should
 	// be templated.
 	EnableAiaUrlTemplating pulumi.BoolPtrInput
@@ -396,6 +491,37 @@ func (o SecretBackendIssuerOutput) Backend() pulumi.StringOutput {
 // Distribution Points field.
 func (o SecretBackendIssuerOutput) CrlDistributionPoints() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.StringArrayOutput { return v.CrlDistributionPoints }).(pulumi.StringArrayOutput)
+}
+
+// This determines whether this
+// issuer is able to issue certificates where the chain of trust (including the
+// issued certificate) contain critical extensions not processed by Vault.
+func (o SecretBackendIssuerOutput) DisableCriticalExtensionChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.BoolPtrOutput { return v.DisableCriticalExtensionChecks }).(pulumi.BoolPtrOutput)
+}
+
+// This determines whether this issuer is able
+// to issue certificates where the chain of trust (including the final issued
+// certificate) contains a link in which the subject of the issuing certificate
+// does not match the named issuer of the certificate it signed.
+func (o SecretBackendIssuerOutput) DisableNameChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.BoolPtrOutput { return v.DisableNameChecks }).(pulumi.BoolPtrOutput)
+}
+
+// This determines whether this
+// issuer is able to issue certificates where the chain of trust (including the
+// final issued certificate) violates the name constraints critical extension of
+// one of the issuer certificates in the chain.
+func (o SecretBackendIssuerOutput) DisableNameConstraintChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.BoolPtrOutput { return v.DisableNameConstraintChecks }).(pulumi.BoolPtrOutput)
+}
+
+// This determines whether this issuer
+// is able to issue certificates where the chain of trust (including the final
+// issued certificate) is longer than allowed by a certificate authority in that
+// chain.
+func (o SecretBackendIssuerOutput) DisablePathLengthChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.BoolPtrOutput { return v.DisablePathLengthChecks }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies that the AIA URL values should

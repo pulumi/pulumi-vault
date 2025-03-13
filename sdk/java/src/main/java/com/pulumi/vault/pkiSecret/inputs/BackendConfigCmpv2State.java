@@ -21,16 +21,12 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
     /**
      * Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
      * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-     * 
      */
     @Import(name="auditFields")
     private @Nullable Output<List<String>> auditFields;
 
     /**
      * @return Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-     * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
      * 
      */
     public Optional<Output<List<String>>> auditFields() {
@@ -82,6 +78,25 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
      */
     public Optional<Output<String>> defaultPathPolicy() {
         return Optional.ofNullable(this.defaultPathPolicy);
+    }
+
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    @Import(name="disabledValidations")
+    private @Nullable Output<List<String>> disabledValidations;
+
+    /**
+     * @return A comma-separated list of validations not to perform on CMPv2 messages.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    public Optional<Output<List<String>>> disabledValidations() {
+        return Optional.ofNullable(this.disabledValidations);
     }
 
     /**
@@ -157,6 +172,7 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
         this.authenticators = $.authenticators;
         this.backend = $.backend;
         this.defaultPathPolicy = $.defaultPathPolicy;
+        this.disabledValidations = $.disabledValidations;
         this.enableSentinelParsing = $.enableSentinelParsing;
         this.enabled = $.enabled;
         this.lastUpdated = $.lastUpdated;
@@ -184,8 +200,6 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
         /**
          * @param auditFields Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
          * 
-         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-         * 
          * @return builder
          * 
          */
@@ -197,8 +211,6 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
         /**
          * @param auditFields Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
          * 
-         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-         * 
          * @return builder
          * 
          */
@@ -208,8 +220,6 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
 
         /**
          * @param auditFields Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-         * 
-         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
          * 
          * @return builder
          * 
@@ -281,6 +291,43 @@ public final class BackendConfigCmpv2State extends com.pulumi.resources.Resource
          */
         public Builder defaultPathPolicy(String defaultPathPolicy) {
             return defaultPathPolicy(Output.of(defaultPathPolicy));
+        }
+
+        /**
+         * @param disabledValidations A comma-separated list of validations not to perform on CMPv2 messages.
+         * 
+         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledValidations(@Nullable Output<List<String>> disabledValidations) {
+            $.disabledValidations = disabledValidations;
+            return this;
+        }
+
+        /**
+         * @param disabledValidations A comma-separated list of validations not to perform on CMPv2 messages.
+         * 
+         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledValidations(List<String> disabledValidations) {
+            return disabledValidations(Output.of(disabledValidations));
+        }
+
+        /**
+         * @param disabledValidations A comma-separated list of validations not to perform on CMPv2 messages.
+         * 
+         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledValidations(String... disabledValidations) {
+            return disabledValidations(List.of(disabledValidations));
         }
 
         /**

@@ -29,14 +29,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
-//				Path:        pulumi.String("ldap"),
-//				Url:         pulumi.String("ldaps://dc-01.example.org"),
-//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
-//				Userattr:    pulumi.String("sAMAccountName"),
-//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
-//				Discoverdn:  pulumi.Bool(false),
-//				Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
-//				Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+//				Path:             pulumi.String("ldap"),
+//				Url:              pulumi.String("ldaps://dc-01.example.org"),
+//				Userdn:           pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+//				Userattr:         pulumi.String("sAMAccountName"),
+//				Upndomain:        pulumi.String("EXAMPLE.ORG"),
+//				Discoverdn:       pulumi.Bool(false),
+//				Groupdn:          pulumi.String("OU=Groups,DC=example,DC=org"),
+//				Groupfilter:      pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -75,6 +77,8 @@ type AuthBackend struct {
 	DenyNullBind pulumi.BoolOutput `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringOutput `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
@@ -100,6 +104,16 @@ type AuthBackend struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// Control use of TLS when conecting to LDAP
 	Starttls pulumi.BoolOutput `pulumi:"starttls"`
 	// Maximum acceptable version of TLS
@@ -202,6 +216,8 @@ type authBackendState struct {
 	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
@@ -227,6 +243,16 @@ type authBackendState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// Control use of TLS when conecting to LDAP
 	Starttls *bool `pulumi:"starttls"`
 	// Maximum acceptable version of TLS
@@ -286,6 +312,8 @@ type AuthBackendState struct {
 	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
@@ -311,6 +339,16 @@ type AuthBackendState struct {
 	Namespace pulumi.StringPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// Control use of TLS when conecting to LDAP
 	Starttls pulumi.BoolPtrInput
 	// Maximum acceptable version of TLS
@@ -372,6 +410,8 @@ type authBackendArgs struct {
 	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
@@ -397,6 +437,16 @@ type authBackendArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// Control use of TLS when conecting to LDAP
 	Starttls *bool `pulumi:"starttls"`
 	// Maximum acceptable version of TLS
@@ -455,6 +505,8 @@ type AuthBackendArgs struct {
 	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
@@ -480,6 +532,16 @@ type AuthBackendArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// Control use of TLS when conecting to LDAP
 	Starttls pulumi.BoolPtrInput
 	// Maximum acceptable version of TLS
@@ -655,6 +717,11 @@ func (o AuthBackendOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+func (o AuthBackendOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // If set, opts out of mount migration on path updates.
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
@@ -708,6 +775,25 @@ func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
 // Path to mount the LDAP auth backend under
 func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time in seconds Vault should wait before rotating the root credential.
+// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+func (o AuthBackendOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+func (o AuthBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+func (o AuthBackendOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // Control use of TLS when conecting to LDAP

@@ -140,6 +140,41 @@ namespace Pulumi.Vault.PkiSecret
         public string Backend { get; set; } = null!;
 
         /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// issued certificate) contain critical extensions not processed by Vault.
+        /// </summary>
+        [Input("disableCriticalExtensionChecks")]
+        public bool? DisableCriticalExtensionChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer is able
+        /// to issue certificates where the chain of trust (including the final issued
+        /// certificate) contains a link in which the subject of the issuing certificate
+        /// does not match the named issuer of the certificate it signed.
+        /// </summary>
+        [Input("disableNameChecks")]
+        public bool? DisableNameChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// final issued certificate) violates the name constraints critical extension of
+        /// one of the issuer certificates in the chain.
+        /// </summary>
+        [Input("disableNameConstraintChecks")]
+        public bool? DisableNameConstraintChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer
+        /// is able to issue certificates where the chain of trust (including the final
+        /// issued certificate) is longer than allowed by a certificate authority in that
+        /// chain.
+        /// </summary>
+        [Input("disablePathLengthChecks")]
+        public bool? DisablePathLengthChecks { get; set; }
+
+        /// <summary>
         /// Reference to an existing issuer.
         /// </summary>
         [Input("issuerRef", required: true)]
@@ -168,6 +203,41 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// issued certificate) contain critical extensions not processed by Vault.
+        /// </summary>
+        [Input("disableCriticalExtensionChecks")]
+        public Input<bool>? DisableCriticalExtensionChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer is able
+        /// to issue certificates where the chain of trust (including the final issued
+        /// certificate) contains a link in which the subject of the issuing certificate
+        /// does not match the named issuer of the certificate it signed.
+        /// </summary>
+        [Input("disableNameChecks")]
+        public Input<bool>? DisableNameChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// final issued certificate) violates the name constraints critical extension of
+        /// one of the issuer certificates in the chain.
+        /// </summary>
+        [Input("disableNameConstraintChecks")]
+        public Input<bool>? DisableNameConstraintChecks { get; set; }
+
+        /// <summary>
+        /// This determines whether this issuer
+        /// is able to issue certificates where the chain of trust (including the final
+        /// issued certificate) is longer than allowed by a certificate authority in that
+        /// chain.
+        /// </summary>
+        [Input("disablePathLengthChecks")]
+        public Input<bool>? DisablePathLengthChecks { get; set; }
 
         /// <summary>
         /// Reference to an existing issuer.
@@ -203,6 +273,33 @@ namespace Pulumi.Vault.PkiSecret
         /// Certificate associated with this issuer.
         /// </summary>
         public readonly string Certificate;
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// issued certificate) contain critical extensions not processed by Vault.
+        /// </summary>
+        public readonly bool? DisableCriticalExtensionChecks;
+        /// <summary>
+        /// This determines whether this issuer is able
+        /// to issue certificates where the chain of trust (including the final issued
+        /// certificate) contains a link in which the subject of the issuing certificate
+        /// does not match the named issuer of the certificate it signed.
+        /// </summary>
+        public readonly bool? DisableNameChecks;
+        /// <summary>
+        /// This determines whether this
+        /// issuer is able to issue certificates where the chain of trust (including the
+        /// final issued certificate) violates the name constraints critical extension of
+        /// one of the issuer certificates in the chain.
+        /// </summary>
+        public readonly bool? DisableNameConstraintChecks;
+        /// <summary>
+        /// This determines whether this issuer
+        /// is able to issue certificates where the chain of trust (including the final
+        /// issued certificate) is longer than allowed by a certificate authority in that
+        /// chain.
+        /// </summary>
+        public readonly bool? DisablePathLengthChecks;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -243,6 +340,14 @@ namespace Pulumi.Vault.PkiSecret
 
             string certificate,
 
+            bool? disableCriticalExtensionChecks,
+
+            bool? disableNameChecks,
+
+            bool? disableNameConstraintChecks,
+
+            bool? disablePathLengthChecks,
+
             string id,
 
             string issuerId,
@@ -264,6 +369,10 @@ namespace Pulumi.Vault.PkiSecret
             Backend = backend;
             CaChains = caChains;
             Certificate = certificate;
+            DisableCriticalExtensionChecks = disableCriticalExtensionChecks;
+            DisableNameChecks = disableNameChecks;
+            DisableNameConstraintChecks = disableNameConstraintChecks;
+            DisablePathLengthChecks = disablePathLengthChecks;
             Id = id;
             IssuerId = issuerId;
             IssuerName = issuerName;

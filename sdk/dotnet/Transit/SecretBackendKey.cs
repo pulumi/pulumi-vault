@@ -96,6 +96,20 @@ namespace Pulumi.Vault.Transit
         public Output<bool?> Exportable { get; private set; } = null!;
 
         /// <summary>
+        /// The elliptic curve algorithm to use for hybrid signatures.
+        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        /// </summary>
+        [Output("hybridKeyTypeEc")]
+        public Output<string?> HybridKeyTypeEc { get; private set; } = null!;
+
+        /// <summary>
+        /// The post-quantum algorithm to use for hybrid signatures.
+        /// Currently, ML-DSA is the only supported key type.
+        /// </summary>
+        [Output("hybridKeyTypePqc")]
+        public Output<string?> HybridKeyTypePqc { get; private set; } = null!;
+
+        /// <summary>
         /// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         /// </summary>
         [Output("keySize")]
@@ -147,6 +161,13 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// The parameter set to use for ML-DSA. Required for
+        /// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        /// </summary>
+        [Output("parameterSet")]
+        public Output<string?> ParameterSet { get; private set; } = null!;
 
         /// <summary>
         /// Whether or not the key supports decryption, based on key type.
@@ -270,6 +291,20 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? Exportable { get; set; }
 
         /// <summary>
+        /// The elliptic curve algorithm to use for hybrid signatures.
+        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        /// </summary>
+        [Input("hybridKeyTypeEc")]
+        public Input<string>? HybridKeyTypeEc { get; set; }
+
+        /// <summary>
+        /// The post-quantum algorithm to use for hybrid signatures.
+        /// Currently, ML-DSA is the only supported key type.
+        /// </summary>
+        [Input("hybridKeyTypePqc")]
+        public Input<string>? HybridKeyTypePqc { get; set; }
+
+        /// <summary>
         /// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         /// </summary>
         [Input("keySize")]
@@ -301,6 +336,13 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// The parameter set to use for ML-DSA. Required for
+        /// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        /// </summary>
+        [Input("parameterSet")]
+        public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
         /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
@@ -362,6 +404,20 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? Exportable { get; set; }
 
         /// <summary>
+        /// The elliptic curve algorithm to use for hybrid signatures.
+        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        /// </summary>
+        [Input("hybridKeyTypeEc")]
+        public Input<string>? HybridKeyTypeEc { get; set; }
+
+        /// <summary>
+        /// The post-quantum algorithm to use for hybrid signatures.
+        /// Currently, ML-DSA is the only supported key type.
+        /// </summary>
+        [Input("hybridKeyTypePqc")]
+        public Input<string>? HybridKeyTypePqc { get; set; }
+
+        /// <summary>
         /// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         /// </summary>
         [Input("keySize")]
@@ -419,6 +475,13 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// The parameter set to use for ML-DSA. Required for
+        /// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        /// </summary>
+        [Input("parameterSet")]
+        public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
         /// Whether or not the key supports decryption, based on key type.

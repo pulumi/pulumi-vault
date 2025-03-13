@@ -6,6 +6,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -144,6 +145,21 @@ public final class BackendConfigAcmeState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     * 
+     */
+    @Import(name="maxTtl")
+    private @Nullable Output<Integer> maxTtl;
+
+    /**
+     * @return The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     * 
+     */
+    public Optional<Output<Integer>> maxTtl() {
+        return Optional.ofNullable(this.maxTtl);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -175,6 +191,7 @@ public final class BackendConfigAcmeState extends com.pulumi.resources.ResourceA
         this.dnsResolver = $.dnsResolver;
         this.eabPolicy = $.eabPolicy;
         this.enabled = $.enabled;
+        this.maxTtl = $.maxTtl;
         this.namespace = $.namespace;
     }
 
@@ -388,6 +405,27 @@ public final class BackendConfigAcmeState extends com.pulumi.resources.ResourceA
          */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
+        }
+
+        /**
+         * @param maxTtl The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTtl(@Nullable Output<Integer> maxTtl) {
+            $.maxTtl = maxTtl;
+            return this;
+        }
+
+        /**
+         * @param maxTtl The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTtl(Integer maxTtl) {
+            return maxTtl(Output.of(maxTtl));
         }
 
         /**

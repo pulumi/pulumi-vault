@@ -147,6 +147,20 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return this.caChains;
     }
     /**
+     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * 
+     */
+    @Export(name="certMetadata", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> certMetadata;
+
+    /**
+     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * 
+     */
+    public Output<Optional<String>> certMetadata() {
+        return Codegen.optional(this.certMetadata);
+    }
+    /**
      * The certificate
      * 
      */
@@ -325,6 +339,20 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    @Export(name="notAfter", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> notAfter;
+
+    /**
+     * @return Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    public Output<Optional<String>> notAfter() {
+        return Codegen.optional(this.notAfter);
     }
     /**
      * List of other SANs

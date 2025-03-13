@@ -218,6 +218,14 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly noStore!: pulumi.Output<boolean | undefined>;
     /**
+     * Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+     */
+    public readonly noStoreMetadata!: pulumi.Output<boolean | undefined>;
+    /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    public readonly notAfter!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
     public readonly notBeforeDuration!: pulumi.Output<string>;
@@ -250,9 +258,19 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly requireCn!: pulumi.Output<boolean | undefined>;
     /**
+     * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     *
+     * Example usage:
+     */
+    public readonly serialNumberSource!: pulumi.Output<string>;
+    /**
      * Flag to specify certificates for server use
      */
     public readonly serverFlag!: pulumi.Output<boolean | undefined>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    public readonly signatureBits!: pulumi.Output<number>;
     /**
      * The street address of generated certificates
      */
@@ -269,6 +287,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Flag to use the SANs in the CSR
      */
     public readonly useCsrSans!: pulumi.Output<boolean | undefined>;
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+     */
+    public readonly usePss!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -317,6 +339,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["noStore"] = state ? state.noStore : undefined;
+            resourceInputs["noStoreMetadata"] = state ? state.noStoreMetadata : undefined;
+            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
             resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
             resourceInputs["organizationUnit"] = state ? state.organizationUnit : undefined;
             resourceInputs["organizations"] = state ? state.organizations : undefined;
@@ -325,11 +349,14 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["postalCodes"] = state ? state.postalCodes : undefined;
             resourceInputs["provinces"] = state ? state.provinces : undefined;
             resourceInputs["requireCn"] = state ? state.requireCn : undefined;
+            resourceInputs["serialNumberSource"] = state ? state.serialNumberSource : undefined;
             resourceInputs["serverFlag"] = state ? state.serverFlag : undefined;
+            resourceInputs["signatureBits"] = state ? state.signatureBits : undefined;
             resourceInputs["streetAddresses"] = state ? state.streetAddresses : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["useCsrCommonName"] = state ? state.useCsrCommonName : undefined;
             resourceInputs["useCsrSans"] = state ? state.useCsrSans : undefined;
+            resourceInputs["usePss"] = state ? state.usePss : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -369,6 +396,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["noStore"] = args ? args.noStore : undefined;
+            resourceInputs["noStoreMetadata"] = args ? args.noStoreMetadata : undefined;
+            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
             resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
             resourceInputs["organizationUnit"] = args ? args.organizationUnit : undefined;
             resourceInputs["organizations"] = args ? args.organizations : undefined;
@@ -377,11 +406,14 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["postalCodes"] = args ? args.postalCodes : undefined;
             resourceInputs["provinces"] = args ? args.provinces : undefined;
             resourceInputs["requireCn"] = args ? args.requireCn : undefined;
+            resourceInputs["serialNumberSource"] = args ? args.serialNumberSource : undefined;
             resourceInputs["serverFlag"] = args ? args.serverFlag : undefined;
+            resourceInputs["signatureBits"] = args ? args.signatureBits : undefined;
             resourceInputs["streetAddresses"] = args ? args.streetAddresses : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["useCsrCommonName"] = args ? args.useCsrCommonName : undefined;
             resourceInputs["useCsrSans"] = args ? args.useCsrSans : undefined;
+            resourceInputs["usePss"] = args ? args.usePss : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
@@ -538,6 +570,14 @@ export interface SecretBackendRoleState {
      */
     noStore?: pulumi.Input<boolean>;
     /**
+     * Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+     */
+    noStoreMetadata?: pulumi.Input<boolean>;
+    /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
     notBeforeDuration?: pulumi.Input<string>;
@@ -570,9 +610,19 @@ export interface SecretBackendRoleState {
      */
     requireCn?: pulumi.Input<boolean>;
     /**
+     * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     *
+     * Example usage:
+     */
+    serialNumberSource?: pulumi.Input<string>;
+    /**
      * Flag to specify certificates for server use
      */
     serverFlag?: pulumi.Input<boolean>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    signatureBits?: pulumi.Input<number>;
     /**
      * The street address of generated certificates
      */
@@ -589,6 +639,10 @@ export interface SecretBackendRoleState {
      * Flag to use the SANs in the CSR
      */
     useCsrSans?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+     */
+    usePss?: pulumi.Input<boolean>;
 }
 
 /**
@@ -741,6 +795,14 @@ export interface SecretBackendRoleArgs {
      */
     noStore?: pulumi.Input<boolean>;
     /**
+     * Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+     */
+    noStoreMetadata?: pulumi.Input<boolean>;
+    /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
     notBeforeDuration?: pulumi.Input<string>;
@@ -773,9 +835,19 @@ export interface SecretBackendRoleArgs {
      */
     requireCn?: pulumi.Input<boolean>;
     /**
+     * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     *
+     * Example usage:
+     */
+    serialNumberSource?: pulumi.Input<string>;
+    /**
      * Flag to specify certificates for server use
      */
     serverFlag?: pulumi.Input<boolean>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    signatureBits?: pulumi.Input<number>;
     /**
      * The street address of generated certificates
      */
@@ -792,4 +864,8 @@ export interface SecretBackendRoleArgs {
      * Flag to use the SANs in the CSR
      */
     useCsrSans?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+     */
+    usePss?: pulumi.Input<boolean>;
 }

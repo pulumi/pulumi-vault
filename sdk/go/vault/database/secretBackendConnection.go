@@ -41,6 +41,8 @@ import (
 //					pulumi.String("dev"),
 //					pulumi.String("prod"),
 //				},
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
 //				Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
 //					ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
 //				},
@@ -75,6 +77,8 @@ type SecretBackendConnection struct {
 	Couchbase SecretBackendConnectionCouchbasePtrOutput `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.StringMapOutput `pulumi:"data"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch SecretBackendConnectionElasticsearchPtrOutput `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -118,6 +122,16 @@ type SecretBackendConnection struct {
 	Redshift SecretBackendConnectionRedshiftPtrOutput `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayOutput `pulumi:"rootRotationStatements"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake SecretBackendConnectionSnowflakePtrOutput `pulumi:"snowflake"`
 	// Whether the connection should be verified on
@@ -169,6 +183,8 @@ type secretBackendConnectionState struct {
 	Couchbase *SecretBackendConnectionCouchbase `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]string `pulumi:"data"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -212,6 +228,16 @@ type secretBackendConnectionState struct {
 	Redshift *SecretBackendConnectionRedshift `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake *SecretBackendConnectionSnowflake `pulumi:"snowflake"`
 	// Whether the connection should be verified on
@@ -231,6 +257,8 @@ type SecretBackendConnectionState struct {
 	Couchbase SecretBackendConnectionCouchbasePtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.StringMapInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -274,6 +302,16 @@ type SecretBackendConnectionState struct {
 	Redshift SecretBackendConnectionRedshiftPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake SecretBackendConnectionSnowflakePtrInput
 	// Whether the connection should be verified on
@@ -297,6 +335,8 @@ type secretBackendConnectionArgs struct {
 	Couchbase *SecretBackendConnectionCouchbase `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]string `pulumi:"data"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -340,6 +380,16 @@ type secretBackendConnectionArgs struct {
 	Redshift *SecretBackendConnectionRedshift `pulumi:"redshift"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake *SecretBackendConnectionSnowflake `pulumi:"snowflake"`
 	// Whether the connection should be verified on
@@ -360,6 +410,8 @@ type SecretBackendConnectionArgs struct {
 	Couchbase SecretBackendConnectionCouchbasePtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.StringMapInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -403,6 +455,16 @@ type SecretBackendConnectionArgs struct {
 	Redshift SecretBackendConnectionRedshiftPtrInput
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake SecretBackendConnectionSnowflakePtrInput
 	// Whether the connection should be verified on
@@ -523,6 +585,11 @@ func (o SecretBackendConnectionOutput) Data() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringMapOutput { return v.Data }).(pulumi.StringMapOutput)
 }
 
+// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+func (o SecretBackendConnectionOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // A nested block containing configuration options for Elasticsearch connections.
 func (o SecretBackendConnectionOutput) Elasticsearch() SecretBackendConnectionElasticsearchPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionElasticsearchPtrOutput { return v.Elasticsearch }).(SecretBackendConnectionElasticsearchPtrOutput)
@@ -623,6 +690,25 @@ func (o SecretBackendConnectionOutput) Redshift() SecretBackendConnectionRedshif
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretBackendConnectionOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringArrayOutput { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// The amount of time in seconds Vault should wait before rotating the root credential.
+// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+func (o SecretBackendConnectionOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+func (o SecretBackendConnectionOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+func (o SecretBackendConnectionOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // A nested block containing configuration options for Snowflake connections.

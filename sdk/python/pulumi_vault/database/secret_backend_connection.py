@@ -26,6 +26,7 @@ class SecretBackendConnectionArgs:
                  cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
                  couchbase: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
                  influxdb: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']] = None,
@@ -45,6 +46,9 @@ class SecretBackendConnectionArgs:
                  redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
@@ -55,6 +59,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input['SecretBackendConnectionCouchbaseArgs'] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input['SecretBackendConnectionInfluxdbArgs'] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -79,6 +84,13 @@ class SecretBackendConnectionArgs:
                Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -92,6 +104,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "couchbase", couchbase)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if elasticsearch is not None:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
         if hana is not None:
@@ -130,6 +144,12 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "redshift", redshift)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
         if verify_connection is not None:
@@ -197,6 +217,18 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "data", value)
 
     @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
+
+    @property
     @pulumi.getter
     def elasticsearch(self) -> Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']]:
         """
@@ -430,6 +462,46 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]:
         """
@@ -463,6 +535,7 @@ class _SecretBackendConnectionState:
                  cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
                  couchbase: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
                  influxdb: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']] = None,
@@ -482,6 +555,9 @@ class _SecretBackendConnectionState:
                  redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
                  redshift: Optional[pulumi.Input['SecretBackendConnectionRedshiftArgs']] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
@@ -492,6 +568,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input['SecretBackendConnectionCouchbaseArgs'] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input['SecretBackendConnectionInfluxdbArgs'] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -516,6 +593,13 @@ class _SecretBackendConnectionState:
                Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input['SecretBackendConnectionRedshiftArgs'] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -530,6 +614,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "couchbase", couchbase)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if elasticsearch is not None:
             pulumi.set(__self__, "elasticsearch", elasticsearch)
         if hana is not None:
@@ -568,6 +654,12 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "redshift", redshift)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
         if verify_connection is not None:
@@ -635,6 +727,18 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "data", value)
 
     @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
+
+    @property
     @pulumi.getter
     def elasticsearch(self) -> Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']]:
         """
@@ -868,6 +972,46 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]:
         """
@@ -903,6 +1047,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
                  couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
                  hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
                  influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
@@ -922,6 +1067,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                  redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
                  redshift: Optional[pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -942,6 +1090,8 @@ class SecretBackendConnection(pulumi.CustomResource):
                 "dev",
                 "prod",
             ],
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600,
             postgresql={
                 "connection_url": "postgres://username:password@host:port/database",
             })
@@ -963,6 +1113,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -987,6 +1138,13 @@ class SecretBackendConnection(pulumi.CustomResource):
                Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -1014,6 +1172,8 @@ class SecretBackendConnection(pulumi.CustomResource):
                 "dev",
                 "prod",
             ],
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600,
             postgresql={
                 "connection_url": "postgres://username:password@host:port/database",
             })
@@ -1047,6 +1207,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
                  couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
                  hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
                  influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
@@ -1066,6 +1227,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                  redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
                  redshift: Optional[pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -1084,6 +1248,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["cassandra"] = cassandra
             __props__.__dict__["couchbase"] = couchbase
             __props__.__dict__["data"] = data
+            __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["elasticsearch"] = elasticsearch
             __props__.__dict__["hana"] = hana
             __props__.__dict__["influxdb"] = influxdb
@@ -1103,6 +1268,9 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["redis_elasticache"] = redis_elasticache
             __props__.__dict__["redshift"] = redshift
             __props__.__dict__["root_rotation_statements"] = root_rotation_statements
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["rotation_schedule"] = rotation_schedule
+            __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["snowflake"] = snowflake
             __props__.__dict__["verify_connection"] = verify_connection
         super(SecretBackendConnection, __self__).__init__(
@@ -1120,6 +1288,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
             couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
             data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
             elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
             hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
             influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
@@ -1139,6 +1308,9 @@ class SecretBackendConnection(pulumi.CustomResource):
             redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
             redshift: Optional[pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            rotation_period: Optional[pulumi.Input[int]] = None,
+            rotation_schedule: Optional[pulumi.Input[str]] = None,
+            rotation_window: Optional[pulumi.Input[int]] = None,
             snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
             verify_connection: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendConnection':
         """
@@ -1154,6 +1326,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -1178,6 +1351,13 @@ class SecretBackendConnection(pulumi.CustomResource):
                Exactly one of the nested blocks of configuration options must be supplied.
         :param pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -1191,6 +1371,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["cassandra"] = cassandra
         __props__.__dict__["couchbase"] = couchbase
         __props__.__dict__["data"] = data
+        __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["elasticsearch"] = elasticsearch
         __props__.__dict__["hana"] = hana
         __props__.__dict__["influxdb"] = influxdb
@@ -1210,6 +1391,9 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["redis_elasticache"] = redis_elasticache
         __props__.__dict__["redshift"] = redshift
         __props__.__dict__["root_rotation_statements"] = root_rotation_statements
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["rotation_schedule"] = rotation_schedule
+        __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["snowflake"] = snowflake
         __props__.__dict__["verify_connection"] = verify_connection
         return SecretBackendConnection(resource_name, opts=opts, __props__=__props__)
@@ -1254,6 +1438,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
 
     @property
     @pulumi.getter
@@ -1411,6 +1603,34 @@ class SecretBackendConnection(pulumi.CustomResource):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Output[Optional[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Output[Optional[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
 
     @property
     @pulumi.getter
