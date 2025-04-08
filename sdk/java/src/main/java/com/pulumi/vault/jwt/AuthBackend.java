@@ -139,9 +139,9 @@ import javax.annotation.Nullable;
  *             .type("oidc")
  *             .providerConfig(Map.ofEntries(
  *                 Map.entry("provider", "gsuite"),
- *                 Map.entry("fetch_groups", true),
- *                 Map.entry("fetch_user_info", true),
- *                 Map.entry("groups_recurse_max_depth", 1)
+ *                 Map.entry("fetch_groups", "true"),
+ *                 Map.entry("fetch_user_info", "true"),
+ *                 Map.entry("groups_recurse_max_depth", "1")
  *             ))
  *             .build());
  * 

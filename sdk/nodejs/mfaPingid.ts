@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new pulumi.Config();
- * const settingsFile = config.requireObject("settingsFile");
+ * const settingsFile = config.requireObject<any>("settingsFile");
  * const userpass = new vault.AuthBackend("userpass", {
  *     type: "userpass",
  *     path: "userpass",
