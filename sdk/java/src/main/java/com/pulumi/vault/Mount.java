@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *             .path("transit-example")
  *             .type("transit")
  *             .description("This is an example transit secret engine mount")
- *             .options(Map.of("convergent_encryption", false))
+ *             .options(Map.of("convergent_encryption", "false"))
  *             .build());
  * 
  *     }

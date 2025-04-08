@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  * -----END CERTIFICATE-----            """)
  *             .tokenReviewerJwt("ZXhhbXBsZQo=")
  *             .issuer("api")
- *             .disableIssValidation("true")
+ *             .disableIssValidation(true)
  *             .build());
  * 
  *     }

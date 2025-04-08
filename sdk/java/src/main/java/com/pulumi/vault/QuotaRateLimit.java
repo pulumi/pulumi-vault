@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *         var global = new QuotaRateLimit("global", QuotaRateLimitArgs.builder()
  *             .name("global")
  *             .path("")
- *             .rate(100)
+ *             .rate(100.0)
  *             .build());
  * 
  *     }

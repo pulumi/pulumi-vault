@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *             .backend(aws.path())
  *             .name("test")
  *             .username("my-test-user")
- *             .rotationPeriod("3600")
+ *             .rotationPeriod(3600)
  *             .build());
  * 
  *     }
@@ -98,7 +98,7 @@ import javax.annotation.Nullable;
  *             .assumeRoleArn("arn:aws:iam::123456789012:role/assume-role")
  *             .assumeRoleSessionName("assume-role-session")
  *             .externalId("test-id")
- *             .rotationPeriod("3600")
+ *             .rotationPeriod(3600)
  *             .build());
  * 
  *     }

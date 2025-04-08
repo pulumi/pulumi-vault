@@ -55,9 +55,9 @@ import javax.annotation.Nullable;
  *             .disallowedPolicies("default")
  *             .allowedEntityAliases("test_entity")
  *             .orphan(true)
- *             .tokenPeriod("86400")
+ *             .tokenPeriod(86400)
  *             .renewable(true)
- *             .tokenExplicitMaxTtl("115200")
+ *             .tokenExplicitMaxTtl(115200)
  *             .pathSuffix("path-suffix")
  *             .build());
  * 

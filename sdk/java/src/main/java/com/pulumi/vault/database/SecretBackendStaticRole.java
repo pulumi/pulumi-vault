@@ -73,7 +73,7 @@ import javax.annotation.Nullable;
  *             .name("my-period-role")
  *             .dbName(postgres.name())
  *             .username("example")
- *             .rotationPeriod("3600")
+ *             .rotationPeriod(3600)
  *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
  *             .build());
  * 
@@ -84,7 +84,7 @@ import javax.annotation.Nullable;
  *             .dbName(postgres.name())
  *             .username("example")
  *             .rotationSchedule("0 0 * * SAT")
- *             .rotationWindow("172800")
+ *             .rotationWindow(172800)
  *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
  *             .build());
  * 
