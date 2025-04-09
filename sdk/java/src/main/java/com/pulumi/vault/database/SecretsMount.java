@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  *         var dev1 = new SecretBackendRole("dev1", SecretBackendRoleArgs.builder()
  *             .name("dev1")
  *             .backend(db.path())
- *             .dbName(db.mssqls().applyValue(mssqls -> mssqls[0].name()))
+ *             .dbName(db.mssqls().applyValue(_mssqls -> _mssqls[0].name()))
  *             .creationStatements(            
  *                 "CREATE LOGIN [}{{{@code name}}}{@code ] WITH PASSWORD = '}{{{@code password}}}{@code ';",
  *                 "CREATE USER [}{{{@code name}}}{@code ] FOR LOGIN [}{{{@code name}}}{@code ];",
@@ -102,7 +102,7 @@ import javax.annotation.Nullable;
  *         var dev2 = new SecretBackendRole("dev2", SecretBackendRoleArgs.builder()
  *             .name("dev2")
  *             .backend(db.path())
- *             .dbName(db.postgresqls().applyValue(postgresqls -> postgresqls[0].name()))
+ *             .dbName(db.postgresqls().applyValue(_postgresqls -> _postgresqls[0].name()))
  *             .creationStatements(            
  *                 "CREATE ROLE \"}{{{@code name}}}{@code \" WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';",
  *                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"}{{{@code name}}}{@code \";")

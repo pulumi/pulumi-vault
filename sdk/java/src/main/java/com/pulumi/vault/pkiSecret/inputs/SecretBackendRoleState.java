@@ -702,63 +702,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * 
      * Example usage:
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.Mount;
-     * import com.pulumi.vault.MountArgs;
-     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
-     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()
-     *             .path("pki")
-     *             .type("pki")
-     *             .defaultLeaseTtlSeconds(3600)
-     *             .maxLeaseTtlSeconds(86400)
-     *             .build());
-     * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
-     *             .backend(pki.path())
-     *             .name("my_role")
-     *             .ttl(3600)
-     *             .allowIpSans(true)
-     *             .keyType("rsa")
-     *             .keyBits(4096)
-     *             .allowedDomains(            
-     *                 "example.com",
-     *                 "my.domain")
-     *             .allowSubdomains(true)
-     *             .policyIdentifiers(            
-     *                 Map.ofEntries(
-     *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
-     *                     Map.entry("notice", "I am a user Notice")
-     *                 ),
-     *                 Map.ofEntries(
-     *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
-     *                     Map.entry("cps", "https://example.com")
-     *                 ))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -770,63 +713,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * 
      * Example usage:
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.Mount;
-     * import com.pulumi.vault.MountArgs;
-     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
-     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()
-     *             .path("pki")
-     *             .type("pki")
-     *             .defaultLeaseTtlSeconds(3600)
-     *             .maxLeaseTtlSeconds(86400)
-     *             .build());
-     * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
-     *             .backend(pki.path())
-     *             .name("my_role")
-     *             .ttl(3600)
-     *             .allowIpSans(true)
-     *             .keyType("rsa")
-     *             .keyBits(4096)
-     *             .allowedDomains(            
-     *                 "example.com",
-     *                 "my.domain")
-     *             .allowSubdomains(true)
-     *             .policyIdentifiers(            
-     *                 Map.ofEntries(
-     *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
-     *                     Map.entry("notice", "I am a user Notice")
-     *                 ),
-     *                 Map.ofEntries(
-     *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
-     *                     Map.entry("cps", "https://example.com")
-     *                 ))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2133,63 +2019,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * 
          * Example usage:
          * &lt;!--Start PulumiCodeChooser --&gt;
-         * <pre>
-         * {@code
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import com.pulumi.vault.Mount;
-         * import com.pulumi.vault.MountArgs;
-         * import com.pulumi.vault.pkiSecret.SecretBackendRole;
-         * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *         var pki = new Mount("pki", MountArgs.builder()
-         *             .path("pki")
-         *             .type("pki")
-         *             .defaultLeaseTtlSeconds(3600)
-         *             .maxLeaseTtlSeconds(86400)
-         *             .build());
-         * 
-         *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
-         *             .backend(pki.path())
-         *             .name("my_role")
-         *             .ttl(3600)
-         *             .allowIpSans(true)
-         *             .keyType("rsa")
-         *             .keyBits(4096)
-         *             .allowedDomains(            
-         *                 "example.com",
-         *                 "my.domain")
-         *             .allowSubdomains(true)
-         *             .policyIdentifiers(            
-         *                 Map.ofEntries(
-         *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
-         *                     Map.entry("notice", "I am a user Notice")
-         *                 ),
-         *                 Map.ofEntries(
-         *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
-         *                     Map.entry("cps", "https://example.com")
-         *                 ))
-         *             .build());
-         * 
-         *     }
-         * }
-         * }
-         * </pre>
          * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
@@ -2205,63 +2034,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * 
          * Example usage:
          * &lt;!--Start PulumiCodeChooser --&gt;
-         * <pre>
-         * {@code
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import com.pulumi.vault.Mount;
-         * import com.pulumi.vault.MountArgs;
-         * import com.pulumi.vault.pkiSecret.SecretBackendRole;
-         * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *         var pki = new Mount("pki", MountArgs.builder()
-         *             .path("pki")
-         *             .type("pki")
-         *             .defaultLeaseTtlSeconds(3600)
-         *             .maxLeaseTtlSeconds(86400)
-         *             .build());
-         * 
-         *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
-         *             .backend(pki.path())
-         *             .name("my_role")
-         *             .ttl(3600)
-         *             .allowIpSans(true)
-         *             .keyType("rsa")
-         *             .keyBits(4096)
-         *             .allowedDomains(            
-         *                 "example.com",
-         *                 "my.domain")
-         *             .allowSubdomains(true)
-         *             .policyIdentifiers(            
-         *                 Map.ofEntries(
-         *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
-         *                     Map.entry("notice", "I am a user Notice")
-         *                 ),
-         *                 Map.ofEntries(
-         *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
-         *                     Map.entry("cps", "https://example.com")
-         *                 ))
-         *             .build());
-         * 
-         *     }
-         * }
-         * }
-         * </pre>
          * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder

@@ -46,12 +46,12 @@ import javax.annotation.Nullable;
  *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
  *             .backend("nomad")
  *             .description("test description")
- *             .defaultLeaseTtlSeconds("3600")
- *             .maxLeaseTtlSeconds("7200")
- *             .maxTtl("240")
+ *             .defaultLeaseTtlSeconds(3600)
+ *             .maxLeaseTtlSeconds(7200)
+ *             .maxTtl(240)
  *             .address("https://127.0.0.1:4646")
  *             .token("ae20ceaa-...")
- *             .ttl("120")
+ *             .ttl(120)
  *             .build());
  * 
  *     }

@@ -285,38 +285,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetSignArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -329,38 +297,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetSignArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -373,38 +309,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetSignArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -417,38 +321,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetSignArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -461,38 +333,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetSignArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -505,39 +345,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -550,39 +357,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -595,39 +369,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -640,39 +381,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -685,39 +393,6 @@ public final class TransitFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.transit.TransitFunctions;
-     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
-     *             .path("transit")
-     *             .key("test")
-     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
-     *             .input("aGVsbG8gd29ybGQ=")
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

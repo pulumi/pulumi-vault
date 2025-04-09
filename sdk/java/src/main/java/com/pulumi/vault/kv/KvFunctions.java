@@ -66,7 +66,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var secret = new Secret("secret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap"),
@@ -131,7 +131,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var secret = new Secret("secret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap"),
@@ -196,7 +196,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var secret = new Secret("secret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap"),
@@ -261,7 +261,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var secret = new Secret("secret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap"),
@@ -326,7 +326,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var secret = new Secret("secret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap"),
@@ -1066,7 +1066,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/aws-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap")
@@ -1074,7 +1074,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/azure-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("foo", "bar")
@@ -1138,7 +1138,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/aws-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap")
@@ -1146,7 +1146,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/azure-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("foo", "bar")
@@ -1210,7 +1210,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/aws-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap")
@@ -1218,7 +1218,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/azure-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("foo", "bar")
@@ -1282,7 +1282,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/aws-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap")
@@ -1290,7 +1290,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/azure-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("foo", "bar")
@@ -1354,7 +1354,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/aws-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("zip", "zap")
@@ -1362,7 +1362,7 @@ public final class KvFunctions {
      *             .build());
      * 
      *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
-     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
+     *             .path(kvv1.path().applyValue(_path -> String.format("%s/azure-secret", _path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("foo", "bar")
@@ -1445,7 +1445,7 @@ public final class KvFunctions {
      * 
      *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
+     *             .name(azureSecret.name().applyValue(_name -> String.format("%s/dev", _name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("password", "test")
@@ -1456,10 +1456,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(kvv2.path())
+     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(_path)
      *             .name(test2.name())
-     *             .build());
+     *             .build()));
      * 
      *     }
      * }
@@ -1533,7 +1533,7 @@ public final class KvFunctions {
      * 
      *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
+     *             .name(azureSecret.name().applyValue(_name -> String.format("%s/dev", _name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("password", "test")
@@ -1544,10 +1544,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(kvv2.path())
+     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(_path)
      *             .name(test2.name())
-     *             .build());
+     *             .build()));
      * 
      *     }
      * }
@@ -1621,7 +1621,7 @@ public final class KvFunctions {
      * 
      *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
+     *             .name(azureSecret.name().applyValue(_name -> String.format("%s/dev", _name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("password", "test")
@@ -1632,10 +1632,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(kvv2.path())
+     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(_path)
      *             .name(test2.name())
-     *             .build());
+     *             .build()));
      * 
      *     }
      * }
@@ -1709,7 +1709,7 @@ public final class KvFunctions {
      * 
      *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
+     *             .name(azureSecret.name().applyValue(_name -> String.format("%s/dev", _name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("password", "test")
@@ -1720,10 +1720,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(kvv2.path())
+     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(_path)
      *             .name(test2.name())
-     *             .build());
+     *             .build()));
      * 
      *     }
      * }
@@ -1797,7 +1797,7 @@ public final class KvFunctions {
      * 
      *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
+     *             .name(azureSecret.name().applyValue(_name -> String.format("%s/dev", _name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
      *                     jsonProperty("password", "test")
@@ -1808,10 +1808,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(kvv2.path())
+     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(_path)
      *             .name(test2.name())
-     *             .build());
+     *             .build()));
      * 
      *     }
      * }
