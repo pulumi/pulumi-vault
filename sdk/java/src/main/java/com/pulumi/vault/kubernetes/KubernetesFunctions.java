@@ -142,6 +142,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.SecretBackend;
      * import com.pulumi.vault.kubernetes.SecretBackendArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.std.inputs.FileArgs;
      * import com.pulumi.vault.kubernetes.SecretBackendRole;
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
@@ -220,6 +222,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.SecretBackend;
      * import com.pulumi.vault.kubernetes.SecretBackendArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.std.inputs.FileArgs;
      * import com.pulumi.vault.kubernetes.SecretBackendRole;
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
@@ -298,6 +302,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.SecretBackend;
      * import com.pulumi.vault.kubernetes.SecretBackendArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.std.inputs.FileArgs;
      * import com.pulumi.vault.kubernetes.SecretBackendRole;
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
@@ -376,6 +382,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.SecretBackend;
      * import com.pulumi.vault.kubernetes.SecretBackendArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.std.inputs.FileArgs;
      * import com.pulumi.vault.kubernetes.SecretBackendRole;
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
@@ -454,6 +462,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.SecretBackend;
      * import com.pulumi.vault.kubernetes.SecretBackendArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.std.inputs.FileArgs;
      * import com.pulumi.vault.kubernetes.SecretBackendRole;
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;

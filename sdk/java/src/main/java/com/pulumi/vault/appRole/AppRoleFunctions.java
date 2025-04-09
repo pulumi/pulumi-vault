@@ -48,7 +48,7 @@ public final class AppRoleFunctions {
      *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.roleId());
      *     }
      * }
      * }
@@ -92,7 +92,7 @@ public final class AppRoleFunctions {
      *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.roleId());
      *     }
      * }
      * }
@@ -136,7 +136,7 @@ public final class AppRoleFunctions {
      *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.roleId());
      *     }
      * }
      * }
@@ -180,7 +180,7 @@ public final class AppRoleFunctions {
      *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.roleId());
      *     }
      * }
      * }
@@ -224,7 +224,7 @@ public final class AppRoleFunctions {
      *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.roleId());
      *     }
      * }
      * }

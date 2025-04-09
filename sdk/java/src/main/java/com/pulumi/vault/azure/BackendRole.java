@@ -61,8 +61,8 @@ import javax.annotation.Nullable;
  *             .tags(            
  *                 "team:engineering",
  *                 "environment:development")
- *             .ttl(300)
- *             .maxTtl(600)
+ *             .ttl("300")
+ *             .maxTtl("600")
  *             .azureRoles(BackendRoleAzureRoleArgs.builder()
  *                 .roleName("Reader")
  *                 .scope(String.format("/subscriptions/%s/resourceGroups/azure-vault-group", subscriptionId))
@@ -73,8 +73,8 @@ import javax.annotation.Nullable;
  *             .backend(azure.path())
  *             .role("existing_object_id")
  *             .applicationObjectId("11111111-2222-3333-4444-44444444444")
- *             .ttl(300)
- *             .maxTtl(600)
+ *             .ttl("300")
+ *             .maxTtl("600")
  *             .build());
  * 
  *     }

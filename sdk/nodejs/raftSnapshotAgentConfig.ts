@@ -29,8 +29,8 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new pulumi.Config();
- * const awsAccessKeyId = config.requireObject("awsAccessKeyId");
- * const awsSecretAccessKey = config.requireObject("awsSecretAccessKey");
+ * const awsAccessKeyId = config.requireObject<any>("awsAccessKeyId");
+ * const awsSecretAccessKey = config.requireObject<any>("awsSecretAccessKey");
  * const current = aws.getRegion({});
  * const s3Backups = new vault.RaftSnapshotAgentConfig("s3_backups", {
  *     name: "s3",
@@ -53,8 +53,8 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new pulumi.Config();
- * const azureAccountName = config.requireObject("azureAccountName");
- * const azureAccountKey = config.requireObject("azureAccountKey");
+ * const azureAccountName = config.requireObject<any>("azureAccountName");
+ * const azureAccountKey = config.requireObject<any>("azureAccountKey");
  * const azureBackups = new vault.RaftSnapshotAgentConfig("azure_backups", {
  *     name: "azure_backup",
  *     intervalSeconds: 86400,

@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *             .binddn("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net")
  *             .bindpass("SuperSecretPassw0rd")
  *             .url("ldaps://localhost")
- *             .insecureTls("true")
+ *             .insecureTls(true)
  *             .userdn("CN=Users,DC=corp,DC=example,DC=net")
  *             .rotationSchedule("0 * * * SAT")
  *             .rotationWindow(3600)

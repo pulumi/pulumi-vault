@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var secret = new Secret("secret", SecretArgs.builder()
- *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+ *             .path(kvv1.path().applyValue(_path -> String.format("%s/secret", _path)))
  *             .dataJson(serializeJson(
  *                 jsonObject(
  *                     jsonProperty("zip", "zap"),

@@ -259,7 +259,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -330,7 +331,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -401,7 +403,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -472,7 +475,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -543,7 +547,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -614,7 +619,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -685,7 +691,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = VaultFunctions.getAuthBackends();
+     *         final var example = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -758,7 +765,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -831,10 +839,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -874,7 +882,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -947,10 +956,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -990,7 +999,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1063,10 +1073,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -1106,7 +1116,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1179,10 +1190,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -1222,7 +1233,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1295,10 +1307,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -1338,7 +1350,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1411,10 +1424,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -1454,7 +1467,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var current = VaultFunctions.getNamespace();
+     *         final var current = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1527,10 +1541,10 @@ public final class VaultFunctions {
      *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
+     *         final var fullPath = child.id();
      * 
      *         // -> foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
+     *         final var pathFq = child.pathFq();
      * 
      *     }
      * }
@@ -1570,7 +1584,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1617,7 +1632,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1664,7 +1680,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1711,7 +1728,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1758,7 +1776,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1805,7 +1824,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1852,7 +1872,8 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces();
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1904,8 +1925,8 @@ public final class VaultFunctions {
      *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
-     *             .defaultLeaseTtlSeconds("3600")
-     *             .maxLeaseTtlSeconds("7200")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(7200)
      *             .address("https://127.0.0.1:4646")
      *             .token("ae20ceaa-...")
      *             .build());
@@ -1917,10 +1938,14 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *             .backend(config.backend())
-     *             .role(test.role())
-     *             .build());
+     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
+     *             var backend = values.t1;
+     *             var role = values.t2;
+     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *                 .backend(backend)
+     *                 .role(role)
+     *                 .build());
+     *         });
      * 
      *     }
      * }
@@ -1965,8 +1990,8 @@ public final class VaultFunctions {
      *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
-     *             .defaultLeaseTtlSeconds("3600")
-     *             .maxLeaseTtlSeconds("7200")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(7200)
      *             .address("https://127.0.0.1:4646")
      *             .token("ae20ceaa-...")
      *             .build());
@@ -1978,10 +2003,14 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *             .backend(config.backend())
-     *             .role(test.role())
-     *             .build());
+     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
+     *             var backend = values.t1;
+     *             var role = values.t2;
+     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *                 .backend(backend)
+     *                 .role(role)
+     *                 .build());
+     *         });
      * 
      *     }
      * }
@@ -2026,8 +2055,8 @@ public final class VaultFunctions {
      *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
-     *             .defaultLeaseTtlSeconds("3600")
-     *             .maxLeaseTtlSeconds("7200")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(7200)
      *             .address("https://127.0.0.1:4646")
      *             .token("ae20ceaa-...")
      *             .build());
@@ -2039,10 +2068,14 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *             .backend(config.backend())
-     *             .role(test.role())
-     *             .build());
+     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
+     *             var backend = values.t1;
+     *             var role = values.t2;
+     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *                 .backend(backend)
+     *                 .role(role)
+     *                 .build());
+     *         });
      * 
      *     }
      * }
@@ -2087,8 +2120,8 @@ public final class VaultFunctions {
      *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
-     *             .defaultLeaseTtlSeconds("3600")
-     *             .maxLeaseTtlSeconds("7200")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(7200)
      *             .address("https://127.0.0.1:4646")
      *             .token("ae20ceaa-...")
      *             .build());
@@ -2100,10 +2133,14 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *             .backend(config.backend())
-     *             .role(test.role())
-     *             .build());
+     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
+     *             var backend = values.t1;
+     *             var role = values.t2;
+     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *                 .backend(backend)
+     *                 .role(role)
+     *                 .build());
+     *         });
      * 
      *     }
      * }
@@ -2148,8 +2185,8 @@ public final class VaultFunctions {
      *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
-     *             .defaultLeaseTtlSeconds("3600")
-     *             .maxLeaseTtlSeconds("7200")
+     *             .defaultLeaseTtlSeconds(3600)
+     *             .maxLeaseTtlSeconds(7200)
      *             .address("https://127.0.0.1:4646")
      *             .token("ae20ceaa-...")
      *             .build());
@@ -2161,10 +2198,14 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *             .backend(config.backend())
-     *             .role(test.role())
-     *             .build());
+     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
+     *             var backend = values.t1;
+     *             var role = values.t2;
+     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *                 .backend(backend)
+     *                 .role(role)
+     *                 .build());
+     *         });
      * 
      *     }
      * }
@@ -2221,7 +2262,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2279,7 +2320,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2337,7 +2378,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2395,7 +2436,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2453,7 +2494,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2511,7 +2552,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2569,7 +2610,7 @@ public final class VaultFunctions {
      * 
      *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
-     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
+     *             .policy(example.hcl())
      *             .build());
      * 
      *     }
@@ -2608,9 +2649,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }
@@ -2647,9 +2689,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }
@@ -2686,9 +2729,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }
@@ -2725,9 +2769,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }
@@ -2764,9 +2809,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }
@@ -2803,9 +2849,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }
@@ -2842,9 +2889,10 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var main = VaultFunctions.getRaftAutopilotState();
+     *         final var main = VaultFunctions.getRaftAutopilotState(GetRaftAutopilotStateArgs.builder()
+     *             .build());
      * 
-     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.failureTolerance());
      *     }
      * }
      * }

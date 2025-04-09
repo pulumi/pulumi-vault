@@ -87,7 +87,8 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         final var awsAccessKeyId = config.get("awsAccessKeyId");
  *         final var awsSecretAccessKey = config.get("awsSecretAccessKey");
- *         final var current = AwsFunctions.getRegion();
+ *         final var current = AwsFunctions.getRegion(GetRegionArgs.builder()
+ *             .build());
  * 
  *         var s3Backups = new RaftSnapshotAgentConfig("s3Backups", RaftSnapshotAgentConfigArgs.builder()
  *             .name("s3")
@@ -96,7 +97,7 @@ import javax.annotation.Nullable;
  *             .pathPrefix("/path/in/bucket")
  *             .storageType("aws-s3")
  *             .awsS3Bucket("my-bucket")
- *             .awsS3Region(current.applyValue(getRegionResult -> getRegionResult.name()))
+ *             .awsS3Region(current.name())
  *             .awsAccessKeyId(awsAccessKeyId)
  *             .awsSecretAccessKey(awsSecretAccessKey)
  *             .awsS3EnableKms(true)

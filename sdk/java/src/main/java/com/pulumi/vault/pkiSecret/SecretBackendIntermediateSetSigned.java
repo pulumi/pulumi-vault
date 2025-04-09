@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *             .backend(root.path())
  *             .type("internal")
  *             .commonName("RootOrg Root CA")
- *             .ttl(86400)
+ *             .ttl("86400")
  *             .format("pem")
  *             .privateKeyFormat("der")
  *             .keyType("rsa")
