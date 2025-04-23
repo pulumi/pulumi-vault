@@ -433,6 +433,9 @@ class _MfaTotpState:
 
 
 class MfaTotp(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/mfaTotp:MfaTotp"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

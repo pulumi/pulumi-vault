@@ -1080,6 +1080,9 @@ class _AuthBackendRoleState:
 
 
 class AuthBackendRole(pulumi.CustomResource):
+
+    pulumi_type = "vault:jwt/authBackendRole:AuthBackendRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

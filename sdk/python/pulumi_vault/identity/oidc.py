@@ -122,6 +122,9 @@ class _OidcState:
 
 
 class Oidc(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidc:Oidc"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -243,6 +243,9 @@ class _SecretImpersonatedAccountState:
 
 
 class SecretImpersonatedAccount(pulumi.CustomResource):
+
+    pulumi_type = "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

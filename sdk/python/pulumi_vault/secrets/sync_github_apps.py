@@ -184,6 +184,9 @@ class _SyncGithubAppsState:
 
 
 class SyncGithubApps(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncGithubApps:SyncGithubApps"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

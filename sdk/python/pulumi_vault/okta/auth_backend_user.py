@@ -204,6 +204,9 @@ class _AuthBackendUserState:
 
 
 class AuthBackendUser(pulumi.CustomResource):
+
+    pulumi_type = "vault:okta/authBackendUser:AuthBackendUser"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -606,6 +606,9 @@ class _TokenState:
 
 
 class Token(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/token:Token"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

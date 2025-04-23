@@ -138,6 +138,9 @@ class _SyncConfigState:
 
 
 class SyncConfig(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncConfig:SyncConfig"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
