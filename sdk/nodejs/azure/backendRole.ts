@@ -93,6 +93,10 @@ export class BackendRole extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     */
+    public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
+    /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
@@ -146,6 +150,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["azureRoles"] = state ? state.azureRoles : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
             resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["permanentlyDelete"] = state ? state.permanentlyDelete : undefined;
@@ -163,6 +168,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["azureRoles"] = args ? args.azureRoles : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
             resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["permanentlyDelete"] = args ? args.permanentlyDelete : undefined;
@@ -201,6 +207,10 @@ export interface BackendRoleState {
      * Human-friendly description of the mount for the backend.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     */
+    explicitMaxTtl?: pulumi.Input<string>;
     /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
@@ -263,6 +273,10 @@ export interface BackendRoleArgs {
      * Human-friendly description of the mount for the backend.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     */
+    explicitMaxTtl?: pulumi.Input<string>;
     /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.

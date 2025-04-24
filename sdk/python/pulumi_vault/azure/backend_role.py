@@ -28,6 +28,7 @@ class BackendRoleArgs:
                  azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
                  backend: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[builtins.bool]] = None,
@@ -43,6 +44,7 @@ class BackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[builtins.str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -68,6 +70,8 @@ class BackendRoleArgs:
             pulumi.set(__self__, "backend", backend)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if explicit_max_ttl is not None:
+            pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
@@ -153,6 +157,18 @@ class BackendRoleArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @explicit_max_ttl.setter
+    def explicit_max_ttl(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "explicit_max_ttl", value)
 
     @property
     @pulumi.getter(name="maxTtl")
@@ -242,6 +258,7 @@ class _BackendRoleState:
                  azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
                  backend: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[builtins.bool]] = None,
@@ -257,6 +274,7 @@ class _BackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[builtins.str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -282,6 +300,8 @@ class _BackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if explicit_max_ttl is not None:
+            pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
@@ -357,6 +377,18 @@ class _BackendRoleState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @explicit_max_ttl.setter
+    def explicit_max_ttl(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "explicit_max_ttl", value)
 
     @property
     @pulumi.getter(name="maxTtl")
@@ -460,6 +492,7 @@ class BackendRole(pulumi.CustomResource):
                  azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
                  backend: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[builtins.bool]] = None,
@@ -510,6 +543,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[builtins.str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -585,6 +619,7 @@ class BackendRole(pulumi.CustomResource):
                  azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
                  backend: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
+                 explicit_max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[builtins.bool]] = None,
@@ -606,6 +641,7 @@ class BackendRole(pulumi.CustomResource):
             __props__.__dict__["azure_roles"] = azure_roles
             __props__.__dict__["backend"] = backend
             __props__.__dict__["description"] = description
+            __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["permanently_delete"] = permanently_delete
@@ -630,6 +666,7 @@ class BackendRole(pulumi.CustomResource):
             azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
             backend: Optional[pulumi.Input[builtins.str]] = None,
             description: Optional[pulumi.Input[builtins.str]] = None,
+            explicit_max_ttl: Optional[pulumi.Input[builtins.str]] = None,
             max_ttl: Optional[pulumi.Input[builtins.str]] = None,
             namespace: Optional[pulumi.Input[builtins.str]] = None,
             permanently_delete: Optional[pulumi.Input[builtins.bool]] = None,
@@ -650,6 +687,7 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[builtins.str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -674,6 +712,7 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["azure_roles"] = azure_roles
         __props__.__dict__["backend"] = backend
         __props__.__dict__["description"] = description
+        __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["permanently_delete"] = permanently_delete
@@ -723,6 +762,14 @@ class BackendRole(pulumi.CustomResource):
         Human-friendly description of the mount for the backend.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
 
     @property
     @pulumi.getter(name="maxTtl")

@@ -27,7 +27,7 @@ class GetNamespacesResult:
     """
     A collection of values returned by getNamespaces.
     """
-    def __init__(__self__, id=None, namespace=None, paths=None):
+    def __init__(__self__, id=None, namespace=None, paths=None, paths_fqs=None, recursive=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,6 +37,12 @@ class GetNamespacesResult:
         if paths and not isinstance(paths, list):
             raise TypeError("Expected argument 'paths' to be a list")
         pulumi.set(__self__, "paths", paths)
+        if paths_fqs and not isinstance(paths_fqs, list):
+            raise TypeError("Expected argument 'paths_fqs' to be a list")
+        pulumi.set(__self__, "paths_fqs", paths_fqs)
+        if recursive and not isinstance(recursive, bool):
+            raise TypeError("Expected argument 'recursive' to be a bool")
+        pulumi.set(__self__, "recursive", recursive)
 
     @property
     @pulumi.getter
@@ -55,9 +61,22 @@ class GetNamespacesResult:
     @pulumi.getter
     def paths(self) -> Sequence[builtins.str]:
         """
-        Set of the paths of direct child namespaces.
+        Set of the paths of child namespaces.
         """
         return pulumi.get(self, "paths")
+
+    @property
+    @pulumi.getter(name="pathsFqs")
+    def paths_fqs(self) -> Sequence[builtins.str]:
+        """
+        Set of the fully qualified paths of child namespaces.
+        """
+        return pulumi.get(self, "paths_fqs")
+
+    @property
+    @pulumi.getter
+    def recursive(self) -> Optional[builtins.bool]:
+        return pulumi.get(self, "recursive")
 
 
 class AwaitableGetNamespacesResult(GetNamespacesResult):
@@ -68,15 +87,18 @@ class AwaitableGetNamespacesResult(GetNamespacesResult):
         return GetNamespacesResult(
             id=self.id,
             namespace=self.namespace,
-            paths=self.paths)
+            paths=self.paths,
+            paths_fqs=self.paths_fqs,
+            recursive=self.recursive)
 
 
 def get_namespaces(namespace: Optional[builtins.str] = None,
+                   recursive: Optional[builtins.bool] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNamespacesResult:
     """
     ## Example Usage
 
-    ### Child namespaces
+    ### Direct child namespaces
 
     ```python
     import pulumi
@@ -85,9 +107,18 @@ def get_namespaces(namespace: Optional[builtins.str] = None,
     children = vault.get_namespaces()
     ```
 
-    ### Nested namespace
+    ### All child namespaces
 
-    To fetch the details of nested namespaces:
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    children = vault.get_namespaces(recursive=True)
+    ```
+
+    ### Child namespace details
+
+    To fetch the details of child namespaces:
 
     ```python
     import pulumi
@@ -102,22 +133,27 @@ def get_namespaces(namespace: Optional[builtins.str] = None,
     :param builtins.str namespace: The namespace to provision the resource in.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+    :param builtins.bool recursive: If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
     """
     __args__ = dict()
     __args__['namespace'] = namespace
+    __args__['recursive'] = recursive
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:index/getNamespaces:getNamespaces', __args__, opts=opts, typ=GetNamespacesResult).value
 
     return AwaitableGetNamespacesResult(
         id=pulumi.get(__ret__, 'id'),
         namespace=pulumi.get(__ret__, 'namespace'),
-        paths=pulumi.get(__ret__, 'paths'))
+        paths=pulumi.get(__ret__, 'paths'),
+        paths_fqs=pulumi.get(__ret__, 'paths_fqs'),
+        recursive=pulumi.get(__ret__, 'recursive'))
 def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+                          recursive: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespacesResult]:
     """
     ## Example Usage
 
-    ### Child namespaces
+    ### Direct child namespaces
 
     ```python
     import pulumi
@@ -126,9 +162,18 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[builtins.str
     children = vault.get_namespaces()
     ```
 
-    ### Nested namespace
+    ### All child namespaces
 
-    To fetch the details of nested namespaces:
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    children = vault.get_namespaces(recursive=True)
+    ```
+
+    ### Child namespace details
+
+    To fetch the details of child namespaces:
 
     ```python
     import pulumi
@@ -143,12 +188,16 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[builtins.str
     :param builtins.str namespace: The namespace to provision the resource in.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+    :param builtins.bool recursive: If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
     """
     __args__ = dict()
     __args__['namespace'] = namespace
+    __args__['recursive'] = recursive
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:index/getNamespaces:getNamespaces', __args__, opts=opts, typ=GetNamespacesResult)
     return __ret__.apply(lambda __response__: GetNamespacesResult(
         id=pulumi.get(__response__, 'id'),
         namespace=pulumi.get(__response__, 'namespace'),
-        paths=pulumi.get(__response__, 'paths')))
+        paths=pulumi.get(__response__, 'paths'),
+        paths_fqs=pulumi.get(__response__, 'paths_fqs'),
+        recursive=pulumi.get(__response__, 'recursive')))

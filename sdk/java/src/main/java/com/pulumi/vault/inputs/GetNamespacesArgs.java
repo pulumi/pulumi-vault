@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,10 +35,26 @@ public final class GetNamespacesArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+     * 
+     */
+    @Import(name="recursive")
+    private @Nullable Output<Boolean> recursive;
+
+    /**
+     * @return If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+     * 
+     */
+    public Optional<Output<Boolean>> recursive() {
+        return Optional.ofNullable(this.recursive);
+    }
+
     private GetNamespacesArgs() {}
 
     private GetNamespacesArgs(GetNamespacesArgs $) {
         this.namespace = $.namespace;
+        this.recursive = $.recursive;
     }
 
     public static Builder builder() {
@@ -81,6 +98,27 @@ public final class GetNamespacesArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param recursive If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recursive(@Nullable Output<Boolean> recursive) {
+            $.recursive = recursive;
+            return this;
+        }
+
+        /**
+         * @param recursive If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recursive(Boolean recursive) {
+            return recursive(Output.of(recursive));
         }
 
         public GetNamespacesArgs build() {

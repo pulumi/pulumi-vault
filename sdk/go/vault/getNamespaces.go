@@ -13,7 +13,7 @@ import (
 
 // ## Example Usage
 //
-// ### Child namespaces
+// ### Direct child namespaces
 //
 // ```go
 // package main
@@ -28,6 +28,32 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.GetNamespaces(ctx, &vault.GetNamespacesArgs{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### All child namespaces
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.GetNamespaces(ctx, &vault.GetNamespacesArgs{
+//				Recursive: pulumi.BoolRef(true),
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -52,6 +78,8 @@ type GetNamespacesArgs struct {
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	Namespace *string `pulumi:"namespace"`
+	// If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+	Recursive *bool `pulumi:"recursive"`
 }
 
 // A collection of values returned by getNamespaces.
@@ -59,8 +87,11 @@ type GetNamespacesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Namespace *string `pulumi:"namespace"`
-	// Set of the paths of direct child namespaces.
+	// Set of the paths of child namespaces.
 	Paths []string `pulumi:"paths"`
+	// Set of the fully qualified paths of child namespaces.
+	PathsFqs  []string `pulumi:"pathsFqs"`
+	Recursive *bool    `pulumi:"recursive"`
 }
 
 func GetNamespacesOutput(ctx *pulumi.Context, args GetNamespacesOutputArgs, opts ...pulumi.InvokeOption) GetNamespacesResultOutput {
@@ -78,6 +109,8 @@ type GetNamespacesOutputArgs struct {
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	// If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+	Recursive pulumi.BoolPtrInput `pulumi:"recursive"`
 }
 
 func (GetNamespacesOutputArgs) ElementType() reflect.Type {
@@ -108,9 +141,18 @@ func (o GetNamespacesResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetNamespacesResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Set of the paths of direct child namespaces.
+// Set of the paths of child namespaces.
 func (o GetNamespacesResultOutput) Paths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetNamespacesResult) []string { return v.Paths }).(pulumi.StringArrayOutput)
+}
+
+// Set of the fully qualified paths of child namespaces.
+func (o GetNamespacesResultOutput) PathsFqs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespacesResult) []string { return v.PathsFqs }).(pulumi.StringArrayOutput)
+}
+
+func (o GetNamespacesResultOutput) Recursive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetNamespacesResult) *bool { return v.Recursive }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

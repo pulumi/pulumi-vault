@@ -14,11 +14,11 @@ namespace Pulumi.Vault.Outputs
     public sealed class GetPolicyDocumentRuleAllowedParameterResult
     {
         /// <summary>
-        /// name of permitted or denied parameter.
+        /// Name of permitted key.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// list of values what are permitted or denied by policy rule.
+        /// A list of values what are permitted by policy rule.
         /// </summary>
         public readonly ImmutableArray<string> Values;
 

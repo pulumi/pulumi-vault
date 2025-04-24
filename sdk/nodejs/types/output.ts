@@ -83,26 +83,30 @@ export interface GetPolicyDocumentRule {
      * A list of parameters that must be specified.
      */
     requiredParameters?: string[];
+    /**
+     * A list of event types to subscribe to when using `subscribe` capability.
+     */
+    subscribeEventTypes?: string[];
 }
 
 export interface GetPolicyDocumentRuleAllowedParameter {
     /**
-     * name of permitted or denied parameter.
+     * Name of permitted key.
      */
     key: string;
     /**
-     * list of values what are permitted or denied by policy rule.
+     * A list of values what are permitted by policy rule.
      */
     values: string[];
 }
 
 export interface GetPolicyDocumentRuleDeniedParameter {
     /**
-     * name of permitted or denied parameter.
+     * Name of denied key.
      */
     key: string;
     /**
-     * list of values what are permitted or denied by policy rule.
+     * A list of values what are denied by policy rule.
      */
     values: string[];
 }

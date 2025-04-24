@@ -138,6 +138,21 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
         return Optional.ofNullable(this.requiredParameters);
     }
 
+    /**
+     * A list of event types to subscribe to when using `subscribe` capability.
+     * 
+     */
+    @Import(name="subscribeEventTypes")
+    private @Nullable List<String> subscribeEventTypes;
+
+    /**
+     * @return A list of event types to subscribe to when using `subscribe` capability.
+     * 
+     */
+    public Optional<List<String>> subscribeEventTypes() {
+        return Optional.ofNullable(this.subscribeEventTypes);
+    }
+
     private GetPolicyDocumentRule() {}
 
     private GetPolicyDocumentRule(GetPolicyDocumentRule $) {
@@ -149,6 +164,7 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
         this.minWrappingTtl = $.minWrappingTtl;
         this.path = $.path;
         this.requiredParameters = $.requiredParameters;
+        this.subscribeEventTypes = $.subscribeEventTypes;
     }
 
     public static Builder builder() {
@@ -295,6 +311,27 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
          */
         public Builder requiredParameters(String... requiredParameters) {
             return requiredParameters(List.of(requiredParameters));
+        }
+
+        /**
+         * @param subscribeEventTypes A list of event types to subscribe to when using `subscribe` capability.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscribeEventTypes(@Nullable List<String> subscribeEventTypes) {
+            $.subscribeEventTypes = subscribeEventTypes;
+            return this;
+        }
+
+        /**
+         * @param subscribeEventTypes A list of event types to subscribe to when using `subscribe` capability.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscribeEventTypes(String... subscribeEventTypes) {
+            return subscribeEventTypes(List.of(subscribeEventTypes));
         }
 
         public GetPolicyDocumentRule build() {

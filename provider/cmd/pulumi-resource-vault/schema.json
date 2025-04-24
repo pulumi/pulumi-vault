@@ -4382,6 +4382,13 @@
                         "type": "string"
                     },
                     "description": "A list of parameters that must be specified.\n"
+                },
+                "subscribeEventTypes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of event types to subscribe to when using `subscribe` capability.\n"
                 }
             },
             "type": "object",
@@ -4394,14 +4401,14 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "name of permitted or denied parameter.\n"
+                    "description": "Name of permitted key.\n"
                 },
                 "values": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "list of values what are permitted or denied by policy rule.\n"
+                    "description": "A list of values what are permitted by policy rule.\n"
                 }
             },
             "type": "object",
@@ -4414,14 +4421,14 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "description": "name of permitted or denied parameter.\n"
+                    "description": "Name of denied key.\n"
                 },
                 "values": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "list of values what are permitted or denied by policy rule.\n"
+                    "description": "A list of values what are denied by policy rule.\n"
                 }
             },
             "type": "object",
@@ -9845,6 +9852,10 @@
                     "type": "string",
                     "description": "Human-friendly description of the mount for the backend.\n"
                 },
+                "explicitMaxTtl": {
+                    "type": "string",
+                    "description": "Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.\n"
+                },
                 "maxTtl": {
                     "type": "string",
                     "description": "Specifies the maximum TTL for service principals generated using this role. Accepts time\nsuffixed strings (\"1h\") or an integer number of seconds. Defaults to the system/engine max TTL time.\n"
@@ -9908,6 +9919,10 @@
                 "description": {
                     "type": "string",
                     "description": "Human-friendly description of the mount for the backend.\n"
+                },
+                "explicitMaxTtl": {
+                    "type": "string",
+                    "description": "Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.\n"
                 },
                 "maxTtl": {
                     "type": "string",
@@ -9975,6 +9990,10 @@
                     "description": {
                         "type": "string",
                         "description": "Human-friendly description of the mount for the backend.\n"
+                    },
+                    "explicitMaxTtl": {
+                        "type": "string",
+                        "description": "Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.\n"
                     },
                     "maxTtl": {
                         "type": "string",
@@ -35915,7 +35934,7 @@
             }
         },
         "vault:index/getNamespaces:getNamespaces": {
-            "description": "## Example Usage\n\n### Child namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.GetNamespaces(ctx, \u0026vault.GetNamespacesArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespacesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  children:\n    fn::invoke:\n      function: vault:getNamespaces\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\nTo fetch the details of nested namespaces:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({\n    namespace: \"parent\",\n});\nconst child = .reduce((__obj, [__key, __value]) =\u003e ({ ...__obj, [__key]: vault.getNamespace({\n    namespace: _arg0_.namespace,\n    path: __key,\n}) }));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces(namespace=\"parent\")\nchild = {__key: vault.get_namespace(namespace=children.namespace,\n    path=__key) for __key, __value in children.paths}\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke(new()\n    {\n        Namespace = \"parent\",\n    });\n\n    var child = .ToDictionary(item =\u003e {\n        var __key = item.Key;\n        return __key;\n    }, item =\u003e {\n        var __key = item.Key;\n        return Vault.GetNamespace.Invoke(new()\n        {\n            Namespace = _arg0_.Namespace,\n            Path = __key,\n        });\n    });\n\n});\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n### Direct child namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.GetNamespaces(ctx, \u0026vault.GetNamespacesArgs{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespacesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  children:\n    fn::invoke:\n      function: vault:getNamespaces\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### All child namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({\n    recursive: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces(recursive=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke(new()\n    {\n        Recursive = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.GetNamespaces(ctx, \u0026vault.GetNamespacesArgs{\n\t\t\tRecursive: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespacesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()\n            .recursive(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  children:\n    fn::invoke:\n      function: vault:getNamespaces\n      arguments:\n        recursive: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Child namespace details\n\nTo fetch the details of child namespaces:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({\n    namespace: \"parent\",\n});\nconst child = .reduce((__obj, [__key, __value]) =\u003e ({ ...__obj, [__key]: vault.getNamespace({\n    namespace: _arg0_.namespace,\n    path: __key,\n}) }));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces(namespace=\"parent\")\nchild = {__key: vault.get_namespace(namespace=children.namespace,\n    path=__key) for __key, __value in children.paths}\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke(new()\n    {\n        Namespace = \"parent\",\n    });\n\n    var child = .ToDictionary(item =\u003e {\n        var __key = item.Key;\n        return __key;\n    }, item =\u003e {\n        var __key = item.Key;\n        return Vault.GetNamespace.Invoke(new()\n        {\n            Namespace = _arg0_.Namespace,\n            Path = __key,\n        });\n    });\n\n});\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getNamespaces.\n",
                 "properties": {
@@ -35923,6 +35942,10 @@
                         "type": "string",
                         "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
                         "willReplaceOnChanges": true
+                    },
+                    "recursive": {
+                        "type": "boolean",
+                        "description": "If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.\n"
                     }
                 },
                 "type": "object"
@@ -35938,15 +35961,26 @@
                         "type": "string"
                     },
                     "paths": {
-                        "description": "Set of the paths of direct child namespaces.\n",
+                        "description": "Set of the paths of child namespaces.\n",
                         "items": {
                             "type": "string"
                         },
                         "type": "array"
+                    },
+                    "pathsFqs": {
+                        "description": "Set of the fully qualified paths of child namespaces.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "recursive": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
                     "paths",
+                    "pathsFqs",
                     "id"
                 ],
                 "type": "object"

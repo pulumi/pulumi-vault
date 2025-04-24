@@ -4,6 +4,7 @@
 package com.pulumi.vault.inputs;
 
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,10 +34,26 @@ public final class GetNamespacesPlainArgs extends com.pulumi.resources.InvokeArg
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+     * 
+     */
+    @Import(name="recursive")
+    private @Nullable Boolean recursive;
+
+    /**
+     * @return If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+     * 
+     */
+    public Optional<Boolean> recursive() {
+        return Optional.ofNullable(this.recursive);
+    }
+
     private GetNamespacesPlainArgs() {}
 
     private GetNamespacesPlainArgs(GetNamespacesPlainArgs $) {
         this.namespace = $.namespace;
+        this.recursive = $.recursive;
     }
 
     public static Builder builder() {
@@ -67,6 +84,17 @@ public final class GetNamespacesPlainArgs extends com.pulumi.resources.InvokeArg
          */
         public Builder namespace(@Nullable String namespace) {
             $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param recursive If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recursive(@Nullable Boolean recursive) {
+            $.recursive = recursive;
             return this;
         }
 

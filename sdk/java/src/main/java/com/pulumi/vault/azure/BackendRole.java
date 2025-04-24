@@ -159,6 +159,20 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
+     * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     * 
+     */
+    @Export(name="explicitMaxTtl", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> explicitMaxTtl;
+
+    /**
+     * @return Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     * 
+     */
+    public Output<Optional<String>> explicitMaxTtl() {
+        return Codegen.optional(this.explicitMaxTtl);
+    }
+    /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine max TTL time.
      * 

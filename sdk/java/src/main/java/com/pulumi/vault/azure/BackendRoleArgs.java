@@ -98,6 +98,21 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     * 
+     */
+    @Import(name="explicitMaxTtl")
+    private @Nullable Output<String> explicitMaxTtl;
+
+    /**
+     * @return Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+     * 
+     */
+    public Optional<Output<String>> explicitMaxTtl() {
+        return Optional.ofNullable(this.explicitMaxTtl);
+    }
+
+    /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine max TTL time.
      * 
@@ -224,6 +239,7 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
         this.azureRoles = $.azureRoles;
         this.backend = $.backend;
         this.description = $.description;
+        this.explicitMaxTtl = $.explicitMaxTtl;
         this.maxTtl = $.maxTtl;
         this.namespace = $.namespace;
         this.permanentlyDelete = $.permanentlyDelete;
@@ -376,6 +392,27 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param explicitMaxTtl Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder explicitMaxTtl(@Nullable Output<String> explicitMaxTtl) {
+            $.explicitMaxTtl = explicitMaxTtl;
+            return this;
+        }
+
+        /**
+         * @param explicitMaxTtl Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder explicitMaxTtl(String explicitMaxTtl) {
+            return explicitMaxTtl(Output.of(explicitMaxTtl));
         }
 
         /**

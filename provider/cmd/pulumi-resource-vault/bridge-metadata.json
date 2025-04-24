@@ -2245,6 +2245,9 @@
                 "fields": {
                     "paths": {
                         "maxItemsOne": false
+                    },
+                    "paths_fq": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2349,6 +2352,9 @@
                                     }
                                 },
                                 "required_parameters": {
+                                    "maxItemsOne": false
+                                },
+                                "subscribe_event_types": {
                                     "maxItemsOne": false
                                 }
                             }

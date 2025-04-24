@@ -12,26 +12,26 @@ import java.util.Objects;
 @CustomType
 public final class GetPolicyDocumentRuleDeniedParameter {
     /**
-     * @return name of permitted or denied parameter.
+     * @return Name of denied key.
      * 
      */
     private String key;
     /**
-     * @return list of values what are permitted or denied by policy rule.
+     * @return A list of values what are denied by policy rule.
      * 
      */
     private List<String> values;
 
     private GetPolicyDocumentRuleDeniedParameter() {}
     /**
-     * @return name of permitted or denied parameter.
+     * @return Name of denied key.
      * 
      */
     public String key() {
         return this.key;
     }
     /**
-     * @return list of values what are permitted or denied by policy rule.
+     * @return A list of values what are denied by policy rule.
      * 
      */
     public List<String> values() {

@@ -97,6 +97,12 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+        /// </summary>
+        [Output("explicitMaxTtl")]
+        public Output<string?> ExplicitMaxTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the maximum TTL for service principals generated using this role. Accepts time
         /// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         /// </summary>
@@ -235,6 +241,12 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+        /// </summary>
+        [Input("explicitMaxTtl")]
+        public Input<string>? ExplicitMaxTtl { get; set; }
+
+        /// <summary>
         /// Specifies the maximum TTL for service principals generated using this role. Accepts time
         /// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         /// </summary>
@@ -339,6 +351,12 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+        /// </summary>
+        [Input("explicitMaxTtl")]
+        public Input<string>? ExplicitMaxTtl { get; set; }
 
         /// <summary>
         /// Specifies the maximum TTL for service principals generated using this role. Accepts time

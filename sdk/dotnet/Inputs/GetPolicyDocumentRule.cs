@@ -84,6 +84,18 @@ namespace Pulumi.Vault.Inputs
             set => _requiredParameters = value;
         }
 
+        [Input("subscribeEventTypes")]
+        private List<string>? _subscribeEventTypes;
+
+        /// <summary>
+        /// A list of event types to subscribe to when using `subscribe` capability.
+        /// </summary>
+        public List<string> SubscribeEventTypes
+        {
+            get => _subscribeEventTypes ?? (_subscribeEventTypes = new List<string>());
+            set => _subscribeEventTypes = value;
+        }
+
         public GetPolicyDocumentRuleArgs()
         {
         }
