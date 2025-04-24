@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### Child namespaces
+ * ### Direct child namespaces
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -16,9 +16,20 @@ import * as utilities from "./utilities";
  * const children = vault.getNamespaces({});
  * ```
  *
- * ### Nested namespace
+ * ### All child namespaces
  *
- * To fetch the details of nested namespaces:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const children = vault.getNamespaces({
+ *     recursive: true,
+ * });
+ * ```
+ *
+ * ### Child namespace details
+ *
+ * To fetch the details of child namespaces:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,6 +49,7 @@ export function getNamespaces(args?: GetNamespacesArgs, opts?: pulumi.InvokeOpti
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getNamespaces:getNamespaces", {
         "namespace": args.namespace,
+        "recursive": args.recursive,
     }, opts);
 }
 
@@ -51,6 +63,10 @@ export interface GetNamespacesArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      */
     namespace?: string;
+    /**
+     * If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+     */
+    recursive?: boolean;
 }
 
 /**
@@ -63,14 +79,19 @@ export interface GetNamespacesResult {
     readonly id: string;
     readonly namespace?: string;
     /**
-     * Set of the paths of direct child namespaces.
+     * Set of the paths of child namespaces.
      */
     readonly paths: string[];
+    /**
+     * Set of the fully qualified paths of child namespaces.
+     */
+    readonly pathsFqs: string[];
+    readonly recursive?: boolean;
 }
 /**
  * ## Example Usage
  *
- * ### Child namespaces
+ * ### Direct child namespaces
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -79,9 +100,20 @@ export interface GetNamespacesResult {
  * const children = vault.getNamespaces({});
  * ```
  *
- * ### Nested namespace
+ * ### All child namespaces
  *
- * To fetch the details of nested namespaces:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const children = vault.getNamespaces({
+ *     recursive: true,
+ * });
+ * ```
+ *
+ * ### Child namespace details
+ *
+ * To fetch the details of child namespaces:
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -101,6 +133,7 @@ export function getNamespacesOutput(args?: GetNamespacesOutputArgs, opts?: pulum
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:index/getNamespaces:getNamespaces", {
         "namespace": args.namespace,
+        "recursive": args.recursive,
     }, opts);
 }
 
@@ -114,4 +147,8 @@ export interface GetNamespacesOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+     */
+    recursive?: pulumi.Input<boolean>;
 }

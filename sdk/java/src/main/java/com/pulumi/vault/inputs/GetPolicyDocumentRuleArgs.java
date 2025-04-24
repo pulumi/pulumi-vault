@@ -139,6 +139,21 @@ public final class GetPolicyDocumentRuleArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.requiredParameters);
     }
 
+    /**
+     * A list of event types to subscribe to when using `subscribe` capability.
+     * 
+     */
+    @Import(name="subscribeEventTypes")
+    private @Nullable Output<List<String>> subscribeEventTypes;
+
+    /**
+     * @return A list of event types to subscribe to when using `subscribe` capability.
+     * 
+     */
+    public Optional<Output<List<String>>> subscribeEventTypes() {
+        return Optional.ofNullable(this.subscribeEventTypes);
+    }
+
     private GetPolicyDocumentRuleArgs() {}
 
     private GetPolicyDocumentRuleArgs(GetPolicyDocumentRuleArgs $) {
@@ -150,6 +165,7 @@ public final class GetPolicyDocumentRuleArgs extends com.pulumi.resources.Resour
         this.minWrappingTtl = $.minWrappingTtl;
         this.path = $.path;
         this.requiredParameters = $.requiredParameters;
+        this.subscribeEventTypes = $.subscribeEventTypes;
     }
 
     public static Builder builder() {
@@ -376,6 +392,37 @@ public final class GetPolicyDocumentRuleArgs extends com.pulumi.resources.Resour
          */
         public Builder requiredParameters(String... requiredParameters) {
             return requiredParameters(List.of(requiredParameters));
+        }
+
+        /**
+         * @param subscribeEventTypes A list of event types to subscribe to when using `subscribe` capability.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscribeEventTypes(@Nullable Output<List<String>> subscribeEventTypes) {
+            $.subscribeEventTypes = subscribeEventTypes;
+            return this;
+        }
+
+        /**
+         * @param subscribeEventTypes A list of event types to subscribe to when using `subscribe` capability.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscribeEventTypes(List<String> subscribeEventTypes) {
+            return subscribeEventTypes(Output.of(subscribeEventTypes));
+        }
+
+        /**
+         * @param subscribeEventTypes A list of event types to subscribe to when using `subscribe` capability.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder subscribeEventTypes(String... subscribeEventTypes) {
+            return subscribeEventTypes(List.of(subscribeEventTypes));
         }
 
         public GetPolicyDocumentRuleArgs build() {

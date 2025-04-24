@@ -14,7 +14,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Child namespaces
+        /// ### Direct child namespaces
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,9 +29,27 @@ namespace Pulumi.Vault
         /// });
         /// ```
         /// 
-        /// ### Nested namespace
+        /// ### All child namespaces
         /// 
-        /// To fetch the details of nested namespaces:
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var children = Vault.GetNamespaces.Invoke(new()
+        ///     {
+        ///         Recursive = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Child namespace details
+        /// 
+        /// To fetch the details of child namespaces:
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,7 +85,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Child namespaces
+        /// ### Direct child namespaces
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -82,9 +100,27 @@ namespace Pulumi.Vault
         /// });
         /// ```
         /// 
-        /// ### Nested namespace
+        /// ### All child namespaces
         /// 
-        /// To fetch the details of nested namespaces:
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var children = Vault.GetNamespaces.Invoke(new()
+        ///     {
+        ///         Recursive = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Child namespace details
+        /// 
+        /// To fetch the details of child namespaces:
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -120,7 +156,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Child namespaces
+        /// ### Direct child namespaces
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -135,9 +171,27 @@ namespace Pulumi.Vault
         /// });
         /// ```
         /// 
-        /// ### Nested namespace
+        /// ### All child namespaces
         /// 
-        /// To fetch the details of nested namespaces:
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var children = Vault.GetNamespaces.Invoke(new()
+        ///     {
+        ///         Recursive = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Child namespace details
+        /// 
+        /// To fetch the details of child namespaces:
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -182,6 +236,12 @@ namespace Pulumi.Vault
         [Input("namespace")]
         public string? Namespace { get; set; }
 
+        /// <summary>
+        /// If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+        /// </summary>
+        [Input("recursive")]
+        public bool? Recursive { get; set; }
+
         public GetNamespacesArgs()
         {
         }
@@ -197,6 +257,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+        /// </summary>
+        [Input("recursive")]
+        public Input<bool>? Recursive { get; set; }
 
         public GetNamespacesInvokeArgs()
         {
@@ -214,9 +280,14 @@ namespace Pulumi.Vault
         public readonly string Id;
         public readonly string? Namespace;
         /// <summary>
-        /// Set of the paths of direct child namespaces.
+        /// Set of the paths of child namespaces.
         /// </summary>
         public readonly ImmutableArray<string> Paths;
+        /// <summary>
+        /// Set of the fully qualified paths of child namespaces.
+        /// </summary>
+        public readonly ImmutableArray<string> PathsFqs;
+        public readonly bool? Recursive;
 
         [OutputConstructor]
         private GetNamespacesResult(
@@ -224,11 +295,17 @@ namespace Pulumi.Vault
 
             string? @namespace,
 
-            ImmutableArray<string> paths)
+            ImmutableArray<string> paths,
+
+            ImmutableArray<string> pathsFqs,
+
+            bool? recursive)
         {
             Id = id;
             Namespace = @namespace;
             Paths = paths;
+            PathsFqs = pathsFqs;
+            Recursive = recursive;
         }
     }
 }

@@ -86,6 +86,8 @@ type BackendRole struct {
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+	ExplicitMaxTtl pulumi.StringPtrOutput `pulumi:"explicitMaxTtl"`
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
@@ -153,6 +155,8 @@ type backendRoleState struct {
 	Backend *string `pulumi:"backend"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
+	// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl *string `pulumi:"maxTtl"`
@@ -188,6 +192,8 @@ type BackendRoleState struct {
 	Backend pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
+	// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+	ExplicitMaxTtl pulumi.StringPtrInput
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrInput
@@ -227,6 +233,8 @@ type backendRoleArgs struct {
 	Backend *string `pulumi:"backend"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
+	// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+	ExplicitMaxTtl *string `pulumi:"explicitMaxTtl"`
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl *string `pulumi:"maxTtl"`
@@ -263,6 +271,8 @@ type BackendRoleArgs struct {
 	Backend pulumi.StringPtrInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
+	// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+	ExplicitMaxTtl pulumi.StringPtrInput
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrInput
@@ -397,6 +407,11 @@ func (o BackendRoleOutput) Backend() pulumi.StringPtrOutput {
 // Human-friendly description of the mount for the backend.
 func (o BackendRoleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
+func (o BackendRoleOutput) ExplicitMaxTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.ExplicitMaxTtl }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the maximum TTL for service principals generated using this role. Accepts time

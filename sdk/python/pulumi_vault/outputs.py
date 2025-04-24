@@ -187,7 +187,8 @@ class GetPolicyDocumentRuleResult(dict):
                  description: Optional[builtins.str] = None,
                  max_wrapping_ttl: Optional[builtins.str] = None,
                  min_wrapping_ttl: Optional[builtins.str] = None,
-                 required_parameters: Optional[Sequence[builtins.str]] = None):
+                 required_parameters: Optional[Sequence[builtins.str]] = None,
+                 subscribe_event_types: Optional[Sequence[builtins.str]] = None):
         """
         :param Sequence[builtins.str] capabilities: A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
         :param builtins.str path: A path in Vault that this rule applies to.
@@ -197,6 +198,7 @@ class GetPolicyDocumentRuleResult(dict):
         :param builtins.str max_wrapping_ttl: The maximum allowed TTL that clients can specify for a wrapped response.
         :param builtins.str min_wrapping_ttl: The minimum allowed TTL that clients can specify for a wrapped response.
         :param Sequence[builtins.str] required_parameters: A list of parameters that must be specified.
+        :param Sequence[builtins.str] subscribe_event_types: A list of event types to subscribe to when using `subscribe` capability.
         """
         pulumi.set(__self__, "capabilities", capabilities)
         pulumi.set(__self__, "path", path)
@@ -212,6 +214,8 @@ class GetPolicyDocumentRuleResult(dict):
             pulumi.set(__self__, "min_wrapping_ttl", min_wrapping_ttl)
         if required_parameters is not None:
             pulumi.set(__self__, "required_parameters", required_parameters)
+        if subscribe_event_types is not None:
+            pulumi.set(__self__, "subscribe_event_types", subscribe_event_types)
 
     @property
     @pulumi.getter
@@ -277,6 +281,14 @@ class GetPolicyDocumentRuleResult(dict):
         """
         return pulumi.get(self, "required_parameters")
 
+    @property
+    @pulumi.getter(name="subscribeEventTypes")
+    def subscribe_event_types(self) -> Optional[Sequence[builtins.str]]:
+        """
+        A list of event types to subscribe to when using `subscribe` capability.
+        """
+        return pulumi.get(self, "subscribe_event_types")
+
 
 @pulumi.output_type
 class GetPolicyDocumentRuleAllowedParameterResult(dict):
@@ -284,8 +296,8 @@ class GetPolicyDocumentRuleAllowedParameterResult(dict):
                  key: builtins.str,
                  values: Sequence[builtins.str]):
         """
-        :param builtins.str key: name of permitted or denied parameter.
-        :param Sequence[builtins.str] values: list of values what are permitted or denied by policy rule.
+        :param builtins.str key: Name of permitted key.
+        :param Sequence[builtins.str] values: A list of values what are permitted by policy rule.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
@@ -294,7 +306,7 @@ class GetPolicyDocumentRuleAllowedParameterResult(dict):
     @pulumi.getter
     def key(self) -> builtins.str:
         """
-        name of permitted or denied parameter.
+        Name of permitted key.
         """
         return pulumi.get(self, "key")
 
@@ -302,7 +314,7 @@ class GetPolicyDocumentRuleAllowedParameterResult(dict):
     @pulumi.getter
     def values(self) -> Sequence[builtins.str]:
         """
-        list of values what are permitted or denied by policy rule.
+        A list of values what are permitted by policy rule.
         """
         return pulumi.get(self, "values")
 
@@ -313,8 +325,8 @@ class GetPolicyDocumentRuleDeniedParameterResult(dict):
                  key: builtins.str,
                  values: Sequence[builtins.str]):
         """
-        :param builtins.str key: name of permitted or denied parameter.
-        :param Sequence[builtins.str] values: list of values what are permitted or denied by policy rule.
+        :param builtins.str key: Name of denied key.
+        :param Sequence[builtins.str] values: A list of values what are denied by policy rule.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
@@ -323,7 +335,7 @@ class GetPolicyDocumentRuleDeniedParameterResult(dict):
     @pulumi.getter
     def key(self) -> builtins.str:
         """
-        name of permitted or denied parameter.
+        Name of denied key.
         """
         return pulumi.get(self, "key")
 
@@ -331,7 +343,7 @@ class GetPolicyDocumentRuleDeniedParameterResult(dict):
     @pulumi.getter
     def values(self) -> Sequence[builtins.str]:
         """
-        list of values what are permitted or denied by policy rule.
+        A list of values what are denied by policy rule.
         """
         return pulumi.get(self, "values")
 

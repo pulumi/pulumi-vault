@@ -55,6 +55,11 @@ public final class GetPolicyDocumentRule {
      * 
      */
     private @Nullable List<String> requiredParameters;
+    /**
+     * @return A list of event types to subscribe to when using `subscribe` capability.
+     * 
+     */
+    private @Nullable List<String> subscribeEventTypes;
 
     private GetPolicyDocumentRule() {}
     /**
@@ -113,6 +118,13 @@ public final class GetPolicyDocumentRule {
     public List<String> requiredParameters() {
         return this.requiredParameters == null ? List.of() : this.requiredParameters;
     }
+    /**
+     * @return A list of event types to subscribe to when using `subscribe` capability.
+     * 
+     */
+    public List<String> subscribeEventTypes() {
+        return this.subscribeEventTypes == null ? List.of() : this.subscribeEventTypes;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -131,6 +143,7 @@ public final class GetPolicyDocumentRule {
         private @Nullable String minWrappingTtl;
         private String path;
         private @Nullable List<String> requiredParameters;
+        private @Nullable List<String> subscribeEventTypes;
         public Builder() {}
         public Builder(GetPolicyDocumentRule defaults) {
     	      Objects.requireNonNull(defaults);
@@ -142,6 +155,7 @@ public final class GetPolicyDocumentRule {
     	      this.minWrappingTtl = defaults.minWrappingTtl;
     	      this.path = defaults.path;
     	      this.requiredParameters = defaults.requiredParameters;
+    	      this.subscribeEventTypes = defaults.subscribeEventTypes;
         }
 
         @CustomType.Setter
@@ -208,6 +222,15 @@ public final class GetPolicyDocumentRule {
         public Builder requiredParameters(String... requiredParameters) {
             return requiredParameters(List.of(requiredParameters));
         }
+        @CustomType.Setter
+        public Builder subscribeEventTypes(@Nullable List<String> subscribeEventTypes) {
+
+            this.subscribeEventTypes = subscribeEventTypes;
+            return this;
+        }
+        public Builder subscribeEventTypes(String... subscribeEventTypes) {
+            return subscribeEventTypes(List.of(subscribeEventTypes));
+        }
         public GetPolicyDocumentRule build() {
             final var _resultValue = new GetPolicyDocumentRule();
             _resultValue.allowedParameters = allowedParameters;
@@ -218,6 +241,7 @@ public final class GetPolicyDocumentRule {
             _resultValue.minWrappingTtl = minWrappingTtl;
             _resultValue.path = path;
             _resultValue.requiredParameters = requiredParameters;
+            _resultValue.subscribeEventTypes = subscribeEventTypes;
             return _resultValue;
         }
     }

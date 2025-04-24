@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Inputs
     public sealed class GetPolicyDocumentRuleAllowedParameterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// name of permitted or denied parameter.
+        /// Name of permitted key.
         /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
@@ -22,7 +22,7 @@ namespace Pulumi.Vault.Inputs
         private List<string>? _values;
 
         /// <summary>
-        /// list of values what are permitted or denied by policy rule.
+        /// A list of values what are permitted by policy rule.
         /// </summary>
         public List<string> Values
         {

@@ -1559,7 +1559,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1593,9 +1593,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -1607,7 +1642,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1641,9 +1676,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -1655,7 +1725,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1689,9 +1759,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -1703,7 +1808,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1737,9 +1842,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -1751,7 +1891,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1785,9 +1925,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -1799,7 +1974,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1833,9 +2008,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;
@@ -1847,7 +2057,7 @@ public final class VaultFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Child namespaces
+     * ### Direct child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -1881,9 +2091,44 @@ public final class VaultFunctions {
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
-     * ### Nested namespace
+     * ### All child namespaces
      * 
-     * To fetch the details of nested namespaces:
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .recursive(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * &lt;!--End PulumiCodeChooser --&gt;

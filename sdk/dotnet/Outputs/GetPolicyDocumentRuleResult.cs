@@ -45,6 +45,10 @@ namespace Pulumi.Vault.Outputs
         /// A list of parameters that must be specified.
         /// </summary>
         public readonly ImmutableArray<string> RequiredParameters;
+        /// <summary>
+        /// A list of event types to subscribe to when using `subscribe` capability.
+        /// </summary>
+        public readonly ImmutableArray<string> SubscribeEventTypes;
 
         [OutputConstructor]
         private GetPolicyDocumentRuleResult(
@@ -62,7 +66,9 @@ namespace Pulumi.Vault.Outputs
 
             string path,
 
-            ImmutableArray<string> requiredParameters)
+            ImmutableArray<string> requiredParameters,
+
+            ImmutableArray<string> subscribeEventTypes)
         {
             AllowedParameters = allowedParameters;
             Capabilities = capabilities;
@@ -72,6 +78,7 @@ namespace Pulumi.Vault.Outputs
             MinWrappingTtl = minWrappingTtl;
             Path = path;
             RequiredParameters = requiredParameters;
+            SubscribeEventTypes = subscribeEventTypes;
         }
     }
 }

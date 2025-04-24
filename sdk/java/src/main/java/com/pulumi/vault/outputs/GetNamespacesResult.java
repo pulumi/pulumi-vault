@@ -5,6 +5,7 @@ package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -20,10 +21,16 @@ public final class GetNamespacesResult {
     private String id;
     private @Nullable String namespace;
     /**
-     * @return Set of the paths of direct child namespaces.
+     * @return Set of the paths of child namespaces.
      * 
      */
     private List<String> paths;
+    /**
+     * @return Set of the fully qualified paths of child namespaces.
+     * 
+     */
+    private List<String> pathsFqs;
+    private @Nullable Boolean recursive;
 
     private GetNamespacesResult() {}
     /**
@@ -37,11 +44,21 @@ public final class GetNamespacesResult {
         return Optional.ofNullable(this.namespace);
     }
     /**
-     * @return Set of the paths of direct child namespaces.
+     * @return Set of the paths of child namespaces.
      * 
      */
     public List<String> paths() {
         return this.paths;
+    }
+    /**
+     * @return Set of the fully qualified paths of child namespaces.
+     * 
+     */
+    public List<String> pathsFqs() {
+        return this.pathsFqs;
+    }
+    public Optional<Boolean> recursive() {
+        return Optional.ofNullable(this.recursive);
     }
 
     public static Builder builder() {
@@ -56,12 +73,16 @@ public final class GetNamespacesResult {
         private String id;
         private @Nullable String namespace;
         private List<String> paths;
+        private List<String> pathsFqs;
+        private @Nullable Boolean recursive;
         public Builder() {}
         public Builder(GetNamespacesResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.namespace = defaults.namespace;
     	      this.paths = defaults.paths;
+    	      this.pathsFqs = defaults.pathsFqs;
+    	      this.recursive = defaults.recursive;
         }
 
         @CustomType.Setter
@@ -89,11 +110,30 @@ public final class GetNamespacesResult {
         public Builder paths(String... paths) {
             return paths(List.of(paths));
         }
+        @CustomType.Setter
+        public Builder pathsFqs(List<String> pathsFqs) {
+            if (pathsFqs == null) {
+              throw new MissingRequiredPropertyException("GetNamespacesResult", "pathsFqs");
+            }
+            this.pathsFqs = pathsFqs;
+            return this;
+        }
+        public Builder pathsFqs(String... pathsFqs) {
+            return pathsFqs(List.of(pathsFqs));
+        }
+        @CustomType.Setter
+        public Builder recursive(@Nullable Boolean recursive) {
+
+            this.recursive = recursive;
+            return this;
+        }
         public GetNamespacesResult build() {
             final var _resultValue = new GetNamespacesResult();
             _resultValue.id = id;
             _resultValue.namespace = namespace;
             _resultValue.paths = paths;
+            _resultValue.pathsFqs = pathsFqs;
+            _resultValue.recursive = recursive;
             return _resultValue;
         }
     }

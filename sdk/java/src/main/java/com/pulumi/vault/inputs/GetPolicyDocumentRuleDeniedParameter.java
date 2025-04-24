@@ -15,14 +15,14 @@ public final class GetPolicyDocumentRuleDeniedParameter extends com.pulumi.resou
     public static final GetPolicyDocumentRuleDeniedParameter Empty = new GetPolicyDocumentRuleDeniedParameter();
 
     /**
-     * name of permitted or denied parameter.
+     * Name of denied key.
      * 
      */
     @Import(name="key", required=true)
     private String key;
 
     /**
-     * @return name of permitted or denied parameter.
+     * @return Name of denied key.
      * 
      */
     public String key() {
@@ -30,14 +30,14 @@ public final class GetPolicyDocumentRuleDeniedParameter extends com.pulumi.resou
     }
 
     /**
-     * list of values what are permitted or denied by policy rule.
+     * A list of values what are denied by policy rule.
      * 
      */
     @Import(name="values", required=true)
     private List<String> values;
 
     /**
-     * @return list of values what are permitted or denied by policy rule.
+     * @return A list of values what are denied by policy rule.
      * 
      */
     public List<String> values() {
@@ -70,7 +70,7 @@ public final class GetPolicyDocumentRuleDeniedParameter extends com.pulumi.resou
         }
 
         /**
-         * @param key name of permitted or denied parameter.
+         * @param key Name of denied key.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetPolicyDocumentRuleDeniedParameter extends com.pulumi.resou
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are denied by policy rule.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GetPolicyDocumentRuleDeniedParameter extends com.pulumi.resou
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are denied by policy rule.
          * 
          * @return builder
          * 

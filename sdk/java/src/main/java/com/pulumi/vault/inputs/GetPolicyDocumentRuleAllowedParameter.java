@@ -15,14 +15,14 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
     public static final GetPolicyDocumentRuleAllowedParameter Empty = new GetPolicyDocumentRuleAllowedParameter();
 
     /**
-     * name of permitted or denied parameter.
+     * Name of permitted key.
      * 
      */
     @Import(name="key", required=true)
     private String key;
 
     /**
-     * @return name of permitted or denied parameter.
+     * @return Name of permitted key.
      * 
      */
     public String key() {
@@ -30,14 +30,14 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
     }
 
     /**
-     * list of values what are permitted or denied by policy rule.
+     * A list of values what are permitted by policy rule.
      * 
      */
     @Import(name="values", required=true)
     private List<String> values;
 
     /**
-     * @return list of values what are permitted or denied by policy rule.
+     * @return A list of values what are permitted by policy rule.
      * 
      */
     public List<String> values() {
@@ -70,7 +70,7 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
         }
 
         /**
-         * @param key name of permitted or denied parameter.
+         * @param key Name of permitted key.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are permitted by policy rule.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are permitted by policy rule.
          * 
          * @return builder
          * 

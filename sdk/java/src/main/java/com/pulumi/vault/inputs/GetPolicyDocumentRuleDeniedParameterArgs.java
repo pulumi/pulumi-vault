@@ -16,14 +16,14 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
     public static final GetPolicyDocumentRuleDeniedParameterArgs Empty = new GetPolicyDocumentRuleDeniedParameterArgs();
 
     /**
-     * name of permitted or denied parameter.
+     * Name of denied key.
      * 
      */
     @Import(name="key", required=true)
     private Output<String> key;
 
     /**
-     * @return name of permitted or denied parameter.
+     * @return Name of denied key.
      * 
      */
     public Output<String> key() {
@@ -31,14 +31,14 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
     }
 
     /**
-     * list of values what are permitted or denied by policy rule.
+     * A list of values what are denied by policy rule.
      * 
      */
     @Import(name="values", required=true)
     private Output<List<String>> values;
 
     /**
-     * @return list of values what are permitted or denied by policy rule.
+     * @return A list of values what are denied by policy rule.
      * 
      */
     public Output<List<String>> values() {
@@ -71,7 +71,7 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
         }
 
         /**
-         * @param key name of permitted or denied parameter.
+         * @param key Name of denied key.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
         }
 
         /**
-         * @param key name of permitted or denied parameter.
+         * @param key Name of denied key.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are denied by policy rule.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are denied by policy rule.
          * 
          * @return builder
          * 
@@ -113,7 +113,7 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
         }
 
         /**
-         * @param values list of values what are permitted or denied by policy rule.
+         * @param values A list of values what are denied by policy rule.
          * 
          * @return builder
          * 
