@@ -706,6 +706,9 @@ class _AuthBackendClientState:
 
 
 class AuthBackendClient(pulumi.CustomResource):
+
+    pulumi_type = "vault:aws/authBackendClient:AuthBackendClient"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

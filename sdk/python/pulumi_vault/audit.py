@@ -244,6 +244,9 @@ class _AuditState:
 
 
 class Audit(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/audit:Audit"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

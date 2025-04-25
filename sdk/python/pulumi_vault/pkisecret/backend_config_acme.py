@@ -376,6 +376,9 @@ class _BackendConfigAcmeState:
 
 
 class BackendConfigAcme(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/backendConfigAcme:BackendConfigAcme"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

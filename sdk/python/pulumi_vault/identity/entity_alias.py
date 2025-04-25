@@ -204,6 +204,9 @@ class _EntityAliasState:
 
 
 class EntityAlias(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/entityAlias:EntityAlias"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

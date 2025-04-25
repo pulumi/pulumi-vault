@@ -398,6 +398,9 @@ class _EndpointState:
 
 
 class Endpoint(pulumi.CustomResource):
+
+    pulumi_type = "vault:generic/endpoint:Endpoint"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

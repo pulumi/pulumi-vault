@@ -164,6 +164,9 @@ class _KeysState:
 
 
 class Keys(pulumi.CustomResource):
+
+    pulumi_type = "vault:managed/keys:Keys"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

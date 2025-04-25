@@ -204,6 +204,9 @@ class _GroupPoliciesState:
 
 
 class GroupPolicies(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/groupPolicies:GroupPolicies"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

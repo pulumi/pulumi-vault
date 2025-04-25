@@ -345,6 +345,9 @@ class _MfaTotpState:
 
 
 class MfaTotp(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/mfaTotp:MfaTotp"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -554,6 +554,9 @@ class _NomadSecretBackendState:
 
 
 class NomadSecretBackend(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/nomadSecretBackend:NomadSecretBackend"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

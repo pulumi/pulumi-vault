@@ -348,6 +348,9 @@ class _MfaPingidState:
 
 
 class MfaPingid(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/mfaPingid:MfaPingid"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

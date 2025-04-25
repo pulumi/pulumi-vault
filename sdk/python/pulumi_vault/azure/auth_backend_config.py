@@ -524,6 +524,9 @@ class _AuthBackendConfigState:
 
 
 class AuthBackendConfig(pulumi.CustomResource):
+
+    pulumi_type = "vault:azure/authBackendConfig:AuthBackendConfig"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

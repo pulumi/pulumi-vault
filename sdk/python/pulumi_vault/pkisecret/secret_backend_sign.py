@@ -695,6 +695,9 @@ class _SecretBackendSignState:
 
 
 class SecretBackendSign(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/secretBackendSign:SecretBackendSign"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -289,6 +289,9 @@ class _SecretBackendLibrarySetState:
 
 
 class SecretBackendLibrarySet(pulumi.CustomResource):
+
+    pulumi_type = "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

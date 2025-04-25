@@ -284,6 +284,9 @@ class _SecretLibraryState:
 
 
 class SecretLibrary(pulumi.CustomResource):
+
+    pulumi_type = "vault:ad/secretLibrary:SecretLibrary"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

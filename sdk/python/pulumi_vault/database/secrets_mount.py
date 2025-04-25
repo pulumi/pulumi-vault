@@ -1299,6 +1299,9 @@ class _SecretsMountState:
 
 
 class SecretsMount(pulumi.CustomResource):
+
+    pulumi_type = "vault:database/secretsMount:SecretsMount"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

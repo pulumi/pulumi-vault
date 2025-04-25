@@ -262,6 +262,9 @@ class _OidcProviderState:
 
 
 class OidcProvider(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidcProvider:OidcProvider"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

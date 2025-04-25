@@ -284,6 +284,9 @@ class _SecretRolesetState:
 
 
 class SecretRoleset(pulumi.CustomResource):
+
+    pulumi_type = "vault:gcp/secretRoleset:SecretRoleset"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

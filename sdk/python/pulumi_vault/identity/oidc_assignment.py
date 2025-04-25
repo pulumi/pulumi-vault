@@ -174,6 +174,9 @@ class _OidcAssignmentState:
 
 
 class OidcAssignment(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidcAssignment:OidcAssignment"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

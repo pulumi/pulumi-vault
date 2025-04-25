@@ -181,6 +181,9 @@ class _SecretBackendConfigIssuersState:
 
 
 class SecretBackendConfigIssuers(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

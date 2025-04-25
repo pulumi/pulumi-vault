@@ -254,6 +254,9 @@ class _AuthBackendConfigIdentityState:
 
 
 class AuthBackendConfigIdentity(pulumi.CustomResource):
+
+    pulumi_type = "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
