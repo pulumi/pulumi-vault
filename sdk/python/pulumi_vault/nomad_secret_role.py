@@ -252,6 +252,9 @@ class _NomadSecretRoleState:
 
 
 class NomadSecretRole(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/nomadSecretRole:NomadSecretRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -491,6 +491,9 @@ class _SecretBackendStaticRoleState:
 
 
 class SecretBackendStaticRole(pulumi.CustomResource):
+
+    pulumi_type = "vault:database/secretBackendStaticRole:SecretBackendStaticRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

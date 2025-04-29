@@ -321,6 +321,9 @@ class _UiCustomMessageState:
 
 
 class UiCustomMessage(pulumi.CustomResource):
+
+    pulumi_type = "vault:config/uiCustomMessage:UiCustomMessage"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

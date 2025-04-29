@@ -261,6 +261,9 @@ class _QuotaLeaseCountState:
 
 
 class QuotaLeaseCount(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/quotaLeaseCount:QuotaLeaseCount"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -305,6 +305,9 @@ class _MfaLoginEnforcementState:
 
 
 class MfaLoginEnforcement(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/mfaLoginEnforcement:MfaLoginEnforcement"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

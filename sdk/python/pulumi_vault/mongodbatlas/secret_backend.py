@@ -187,6 +187,9 @@ class _SecretBackendState:
 
 
 class SecretBackend(pulumi.CustomResource):
+
+    pulumi_type = "vault:mongodbatlas/secretBackend:SecretBackend"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

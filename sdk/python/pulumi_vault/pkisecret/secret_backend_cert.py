@@ -812,6 +812,9 @@ class _SecretBackendCertState:
 
 
 class SecretBackendCert(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/secretBackendCert:SecretBackendCert"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

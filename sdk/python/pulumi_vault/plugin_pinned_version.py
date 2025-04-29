@@ -128,6 +128,9 @@ class _PluginPinnedVersionState:
 
 
 class PluginPinnedVersion(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/pluginPinnedVersion:PluginPinnedVersion"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

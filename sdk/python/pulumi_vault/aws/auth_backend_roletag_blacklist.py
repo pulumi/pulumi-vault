@@ -189,6 +189,9 @@ class _AuthBackendRoletagBlacklistState:
 
 
 class AuthBackendRoletagBlacklist(pulumi.CustomResource):
+
+    pulumi_type = "vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

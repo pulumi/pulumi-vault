@@ -172,6 +172,9 @@ class _RgpPolicyState:
 
 
 class RgpPolicy(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/rgpPolicy:RgpPolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

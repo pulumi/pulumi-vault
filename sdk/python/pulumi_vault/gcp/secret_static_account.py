@@ -285,6 +285,9 @@ class _SecretStaticAccountState:
 
 
 class SecretStaticAccount(pulumi.CustomResource):
+
+    pulumi_type = "vault:gcp/secretStaticAccount:SecretStaticAccount"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

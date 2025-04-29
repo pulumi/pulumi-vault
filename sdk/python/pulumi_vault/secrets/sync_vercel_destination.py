@@ -327,6 +327,9 @@ class _SyncVercelDestinationState:
 
 
 class SyncVercelDestination(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncVercelDestination:SyncVercelDestination"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

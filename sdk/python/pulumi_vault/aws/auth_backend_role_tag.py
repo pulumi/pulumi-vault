@@ -341,6 +341,9 @@ class _AuthBackendRoleTagState:
 
 
 class AuthBackendRoleTag(pulumi.CustomResource):
+
+    pulumi_type = "vault:aws/authBackendRoleTag:AuthBackendRoleTag"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

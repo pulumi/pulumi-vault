@@ -929,6 +929,9 @@ class _CertAuthBackendRoleState:
 
 
 class CertAuthBackendRole(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/certAuthBackendRole:CertAuthBackendRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

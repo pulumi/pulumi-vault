@@ -856,6 +856,9 @@ class _BackendConfigAutoTidyState:
 
 
 class BackendConfigAutoTidy(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

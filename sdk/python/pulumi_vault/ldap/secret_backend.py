@@ -1356,6 +1356,9 @@ class _SecretBackendState:
 
 
 class SecretBackend(pulumi.CustomResource):
+
+    pulumi_type = "vault:ldap/secretBackend:SecretBackend"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

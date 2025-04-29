@@ -360,6 +360,9 @@ class _OidcClientState:
 
 
 class OidcClient(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidcClient:OidcClient"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

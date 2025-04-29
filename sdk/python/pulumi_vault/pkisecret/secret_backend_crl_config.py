@@ -509,6 +509,9 @@ class _SecretBackendCrlConfigState:
 
 
 class SecretBackendCrlConfig(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

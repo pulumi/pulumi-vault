@@ -213,6 +213,9 @@ class _SecretBackendV2State:
 
 
 class SecretBackendV2(pulumi.CustomResource):
+
+    pulumi_type = "vault:kv/secretBackendV2:SecretBackendV2"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

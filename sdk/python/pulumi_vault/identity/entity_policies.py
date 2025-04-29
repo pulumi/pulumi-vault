@@ -204,6 +204,9 @@ class _EntityPoliciesState:
 
 
 class EntityPolicies(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/entityPolicies:EntityPolicies"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

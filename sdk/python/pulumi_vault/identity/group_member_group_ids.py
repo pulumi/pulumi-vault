@@ -201,6 +201,9 @@ class _GroupMemberGroupIdsState:
 
 
 class GroupMemberGroupIds(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/groupMemberGroupIds:GroupMemberGroupIds"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -1265,6 +1265,9 @@ class _SecretBackendRootSignIntermediateState:
 
 
 class SecretBackendRootSignIntermediate(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
