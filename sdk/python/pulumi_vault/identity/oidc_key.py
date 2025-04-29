@@ -250,6 +250,9 @@ class _OidcKeyState:
 
 
 class OidcKey(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidcKey:OidcKey"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -174,6 +174,9 @@ class _OidcScopeState:
 
 
 class OidcScope(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidcScope:OidcScope"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

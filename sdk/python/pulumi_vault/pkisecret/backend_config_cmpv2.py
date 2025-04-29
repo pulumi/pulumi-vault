@@ -331,6 +331,9 @@ class _BackendConfigCmpv2State:
 
 
 class BackendConfigCmpv2(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

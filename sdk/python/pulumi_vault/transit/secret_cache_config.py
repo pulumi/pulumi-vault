@@ -140,6 +140,9 @@ class _SecretCacheConfigState:
 
 
 class SecretCacheConfig(pulumi.CustomResource):
+
+    pulumi_type = "vault:transit/secretCacheConfig:SecretCacheConfig"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -289,6 +289,9 @@ class _AuthBackendLoginState:
 
 
 class AuthBackendLogin(pulumi.CustomResource):
+
+    pulumi_type = "vault:appRole/authBackendLogin:AuthBackendLogin"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

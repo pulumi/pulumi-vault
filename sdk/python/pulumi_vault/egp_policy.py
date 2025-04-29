@@ -203,6 +203,9 @@ class _EgpPolicyState:
 
 
 class EgpPolicy(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/egpPolicy:EgpPolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

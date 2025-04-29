@@ -310,6 +310,9 @@ class _SyncGcpDestinationState:
 
 
 class SyncGcpDestination(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncGcpDestination:SyncGcpDestination"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

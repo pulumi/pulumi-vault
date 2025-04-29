@@ -373,6 +373,9 @@ class _TransformationState:
 
 
 class Transformation(pulumi.CustomResource):
+
+    pulumi_type = "vault:transform/transformation:Transformation"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

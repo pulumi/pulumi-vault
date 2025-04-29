@@ -442,6 +442,9 @@ class _SyncAwsDestinationState:
 
 
 class SyncAwsDestination(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncAwsDestination:SyncAwsDestination"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

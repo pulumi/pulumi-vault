@@ -1039,6 +1039,9 @@ class _SecretBackendConnectionState:
 
 
 class SecretBackendConnection(pulumi.CustomResource):
+
+    pulumi_type = "vault:database/secretBackendConnection:SecretBackendConnection"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

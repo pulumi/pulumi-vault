@@ -257,6 +257,9 @@ class _OidcRoleState:
 
 
 class OidcRole(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/oidcRole:OidcRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

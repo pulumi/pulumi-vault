@@ -228,6 +228,9 @@ class _AuthBackendCertState:
 
 
 class AuthBackendCert(pulumi.CustomResource):
+
+    pulumi_type = "vault:aws/authBackendCert:AuthBackendCert"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

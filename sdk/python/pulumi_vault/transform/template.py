@@ -309,6 +309,9 @@ class _TemplateState:
 
 
 class Template(pulumi.CustomResource):
+
+    pulumi_type = "vault:transform/template:Template"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

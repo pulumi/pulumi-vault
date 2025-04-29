@@ -428,6 +428,9 @@ class _AuthBackendState:
 
 
 class AuthBackend(pulumi.CustomResource):
+
+    pulumi_type = "vault:saml/authBackend:AuthBackend"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

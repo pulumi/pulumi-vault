@@ -270,6 +270,9 @@ class _SecretBackendCaState:
 
 
 class SecretBackendCa(pulumi.CustomResource):
+
+    pulumi_type = "vault:ssh/secretBackendCa:SecretBackendCa"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

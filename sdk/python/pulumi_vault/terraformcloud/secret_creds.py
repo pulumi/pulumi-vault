@@ -218,6 +218,9 @@ class _SecretCredsState:
 
 
 class SecretCreds(pulumi.CustomResource):
+
+    pulumi_type = "vault:terraformcloud/secretCreds:SecretCreds"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -166,6 +166,9 @@ class _SecretState:
 
 
 class Secret(pulumi.CustomResource):
+
+    pulumi_type = "vault:kv/secret:Secret"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -237,6 +237,9 @@ class _SecretBackendConfigUrlsState:
 
 
 class SecretBackendConfigUrls(pulumi.CustomResource):
+
+    pulumi_type = "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

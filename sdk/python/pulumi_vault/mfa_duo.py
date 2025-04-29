@@ -314,6 +314,9 @@ class _MfaDuoState:
 
 
 class MfaDuo(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/mfaDuo:MfaDuo"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

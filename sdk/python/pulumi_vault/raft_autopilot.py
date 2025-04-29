@@ -334,6 +334,9 @@ class _RaftAutopilotState:
 
 
 class RaftAutopilot(pulumi.CustomResource):
+
+    pulumi_type = "vault:index/raftAutopilot:RaftAutopilot"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

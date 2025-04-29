@@ -217,6 +217,9 @@ class _SyncAssociationState:
 
 
 class SyncAssociation(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncAssociation:SyncAssociation"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

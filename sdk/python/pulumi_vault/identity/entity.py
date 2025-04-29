@@ -238,6 +238,9 @@ class _EntityState:
 
 
 class Entity(pulumi.CustomResource):
+
+    pulumi_type = "vault:identity/entity:Entity"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

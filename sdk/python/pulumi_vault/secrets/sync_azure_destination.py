@@ -418,6 +418,9 @@ class _SyncAzureDestinationState:
 
 
 class SyncAzureDestination(pulumi.CustomResource):
+
+    pulumi_type = "vault:secrets/syncAzureDestination:SyncAzureDestination"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
