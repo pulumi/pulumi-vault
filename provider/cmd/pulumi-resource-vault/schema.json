@@ -5156,10 +5156,6 @@
                 "description": "Override the Vault server version, which is normally determined dynamically from the target Vault server\n"
             }
         },
-        "required": [
-            "address",
-            "token"
-        ],
         "inputProperties": {
             "addAddressToEnv": {
                 "type": "string"
@@ -5303,10 +5299,9 @@
                 "description": "Override the Vault server version, which is normally determined dynamically from the target Vault server\n"
             }
         },
-        "requiredInputs": [
-            "address",
-            "token"
-        ]
+        "methods": {
+            "terraformConfig": "pulumi:providers:vault/terraformConfig"
+        }
     },
     "resources": {
         "vault:ad/secretBackend:SecretBackend": {
@@ -34491,6 +34486,35 @@
         }
     },
     "functions": {
+        "pulumi:providers:vault/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:vault"
+                    }
+                },
+                "type": "pulumi:providers:vault/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
+                ],
+                "type": "object"
+            }
+        },
         "vault:ad/getAccessCredentials:getAccessCredentials": {
             "description": "## Example Usage\n\n",
             "inputs": {
