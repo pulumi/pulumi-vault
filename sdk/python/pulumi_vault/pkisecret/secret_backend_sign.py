@@ -694,10 +694,8 @@ class _SecretBackendSignState:
         pulumi.set(self, "uri_sans", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendSign:SecretBackendSign")
 class SecretBackendSign(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendSign:SecretBackendSign"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

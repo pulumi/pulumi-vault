@@ -320,10 +320,8 @@ class _UiCustomMessageState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:config/uiCustomMessage:UiCustomMessage")
 class UiCustomMessage(pulumi.CustomResource):
-
-    pulumi_type = "vault:config/uiCustomMessage:UiCustomMessage"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

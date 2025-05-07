@@ -202,10 +202,8 @@ class _EgpPolicyState:
         pulumi.set(self, "policy", value)
 
 
+@pulumi.type_token("vault:index/egpPolicy:EgpPolicy")
 class EgpPolicy(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/egpPolicy:EgpPolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

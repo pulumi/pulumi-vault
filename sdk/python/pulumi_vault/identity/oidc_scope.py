@@ -173,10 +173,8 @@ class _OidcScopeState:
         pulumi.set(self, "template", value)
 
 
+@pulumi.type_token("vault:identity/oidcScope:OidcScope")
 class OidcScope(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidcScope:OidcScope"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

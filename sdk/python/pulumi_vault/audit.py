@@ -243,10 +243,8 @@ class _AuditState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:index/audit:Audit")
 class Audit(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/audit:Audit"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

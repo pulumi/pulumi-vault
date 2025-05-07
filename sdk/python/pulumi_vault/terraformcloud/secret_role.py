@@ -261,10 +261,8 @@ class _SecretRoleState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("vault:terraformcloud/secretRole:SecretRole")
 class SecretRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:terraformcloud/secretRole:SecretRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

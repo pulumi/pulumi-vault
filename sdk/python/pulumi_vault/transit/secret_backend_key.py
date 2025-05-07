@@ -696,10 +696,8 @@ class _SecretBackendKeyState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:transit/secretBackendKey:SecretBackendKey")
 class SecretBackendKey(pulumi.CustomResource):
-
-    pulumi_type = "vault:transit/secretBackendKey:SecretBackendKey"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

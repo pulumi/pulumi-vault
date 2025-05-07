@@ -185,10 +185,8 @@ class _AuthBackendIdentityWhitelistState:
         pulumi.set(self, "safety_buffer", value)
 
 
+@pulumi.type_token("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist")
 class AuthBackendIdentityWhitelist(pulumi.CustomResource):
-
-    pulumi_type = "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -216,10 +216,8 @@ class _SyncAssociationState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:secrets/syncAssociation:SyncAssociation")
 class SyncAssociation(pulumi.CustomResource):
-
-    pulumi_type = "vault:secrets/syncAssociation:SyncAssociation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

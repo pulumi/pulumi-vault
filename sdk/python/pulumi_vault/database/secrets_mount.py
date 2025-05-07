@@ -1298,10 +1298,8 @@ class _SecretsMountState:
         pulumi.set(self, "snowflakes", value)
 
 
+@pulumi.type_token("vault:database/secretsMount:SecretsMount")
 class SecretsMount(pulumi.CustomResource):
-
-    pulumi_type = "vault:database/secretsMount:SecretsMount"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -1030,10 +1030,8 @@ class _SecretBackendIntermediateCertRequestState:
         pulumi.set(self, "uri_sans", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest")
 class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

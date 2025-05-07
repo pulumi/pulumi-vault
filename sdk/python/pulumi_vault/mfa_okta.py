@@ -334,10 +334,8 @@ class _MfaOktaState:
         pulumi.set(self, "username_format", value)
 
 
+@pulumi.type_token("vault:index/mfaOkta:MfaOkta")
 class MfaOkta(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/mfaOkta:MfaOkta"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

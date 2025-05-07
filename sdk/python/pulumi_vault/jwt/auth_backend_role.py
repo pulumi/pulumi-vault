@@ -1079,10 +1079,8 @@ class _AuthBackendRoleState:
         pulumi.set(self, "verbose_oidc_logging", value)
 
 
+@pulumi.type_token("vault:jwt/authBackendRole:AuthBackendRole")
 class AuthBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:jwt/authBackendRole:AuthBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

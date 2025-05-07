@@ -31,7 +31,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * URL of the root of the target Vault server.
      */
-    public readonly address!: pulumi.Output<string>;
+    public readonly address!: pulumi.Output<string | undefined>;
     /**
      * Path to directory containing CA certificate files to validate the server's certificate.
      */
@@ -51,7 +51,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * Token to use to authenticate to Vault.
      */
-    public readonly token!: pulumi.Output<string>;
+    public readonly token!: pulumi.Output<string | undefined>;
     /**
      * Token name to use for creating the Vault child token.
      */
@@ -68,16 +68,10 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.address === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'address'");
-            }
-            if ((!args || args.token === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'token'");
-            }
             resourceInputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
             resourceInputs["address"] = args ? args.address : undefined;
             resourceInputs["authLogin"] = pulumi.output(args ? args.authLogin : undefined).apply(JSON.stringify);
@@ -112,6 +106,15 @@ export class Provider extends pulumi.ProviderResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
+
+    /**
+     * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+     */
+    terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
+        return pulumi.runtime.call("pulumi:providers:vault/terraformConfig", {
+            "__self__": this,
+        }, this);
+    }
 }
 
 /**
@@ -122,7 +125,7 @@ export interface ProviderArgs {
     /**
      * URL of the root of the target Vault server.
      */
-    address: pulumi.Input<string>;
+    address?: pulumi.Input<string>;
     /**
      * Login to vault with an existing auth method using auth/<mount>/login
      */
@@ -229,7 +232,7 @@ export interface ProviderArgs {
     /**
      * Token to use to authenticate to Vault.
      */
-    token: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
     /**
      * Token name to use for creating the Vault child token.
      */
@@ -238,4 +241,14 @@ export interface ProviderArgs {
      * Override the Vault server version, which is normally determined dynamically from the target Vault server
      */
     vaultVersionOverride?: pulumi.Input<string>;
+}
+
+export namespace Provider {
+    /**
+     * The results of the Provider.terraformConfig method.
+     */
+    export interface TerraformConfigResult {
+        readonly result: {[key: string]: any};
+    }
+
 }

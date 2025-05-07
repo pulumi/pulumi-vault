@@ -446,10 +446,8 @@ class _AuthBackendRoleSecretIdState:
         pulumi.set(self, "wrapping_ttl", value)
 
 
+@pulumi.type_token("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId")
 class AuthBackendRoleSecretId(pulumi.CustomResource):
-
-    pulumi_type = "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

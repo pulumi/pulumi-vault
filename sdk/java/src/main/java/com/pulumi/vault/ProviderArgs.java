@@ -6,7 +6,6 @@ package com.pulumi.vault;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.inputs.ProviderAuthLoginArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginAwsArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginAzureArgs;
@@ -45,15 +44,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * URL of the root of the target Vault server.
      * 
      */
-    @Import(name="address", required=true)
-    private Output<String> address;
+    @Import(name="address")
+    private @Nullable Output<String> address;
 
     /**
      * @return URL of the root of the target Vault server.
      * 
      */
-    public Output<String> address() {
-        return this.address;
+    public Optional<Output<String>> address() {
+        return Optional.ofNullable(this.address);
     }
 
     /**
@@ -445,15 +444,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * Token to use to authenticate to Vault.
      * 
      */
-    @Import(name="token", required=true)
-    private Output<String> token;
+    @Import(name="token")
+    private @Nullable Output<String> token;
 
     /**
      * @return Token to use to authenticate to Vault.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Optional<Output<String>> token() {
+        return Optional.ofNullable(this.token);
     }
 
     /**
@@ -554,7 +553,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder address(Output<String> address) {
+        public Builder address(@Nullable Output<String> address) {
             $.address = address;
             return this;
         }
@@ -1120,7 +1119,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder token(Output<String> token) {
+        public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
@@ -1178,15 +1177,9 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            if ($.address == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "address");
-            }
             $.maxLeaseTtlSeconds = Codegen.integerProp("maxLeaseTtlSeconds").output().arg($.maxLeaseTtlSeconds).env("TERRAFORM_VAULT_MAX_TTL").def(1200).getNullable();
             $.maxRetries = Codegen.integerProp("maxRetries").output().arg($.maxRetries).env("VAULT_MAX_RETRIES").def(2).getNullable();
             $.skipTlsVerify = Codegen.booleanProp("skipTlsVerify").output().arg($.skipTlsVerify).env("VAULT_SKIP_VERIFY").getNullable();
-            if ($.token == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "token");
-            }
             return $;
         }
     }

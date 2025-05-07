@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -21,7 +20,7 @@ type Provider struct {
 
 	AddAddressToEnv pulumi.StringPtrOutput `pulumi:"addAddressToEnv"`
 	// URL of the root of the target Vault server.
-	Address pulumi.StringOutput `pulumi:"address"`
+	Address pulumi.StringPtrOutput `pulumi:"address"`
 	// Path to directory containing CA certificate files to validate the server's certificate.
 	CaCertDir pulumi.StringPtrOutput `pulumi:"caCertDir"`
 	// Path to a CA certificate file to validate the server's certificate.
@@ -31,7 +30,7 @@ type Provider struct {
 	// Name to use as the SNI host when connecting via TLS.
 	TlsServerName pulumi.StringPtrOutput `pulumi:"tlsServerName"`
 	// Token to use to authenticate to Vault.
-	Token pulumi.StringOutput `pulumi:"token"`
+	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrOutput `pulumi:"tokenName"`
 	// Override the Vault server version, which is normally determined dynamically from the target Vault server
@@ -42,15 +41,9 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.Address == nil {
-		return nil, errors.New("invalid value for required argument 'Address'")
-	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
-	}
 	if args.MaxLeaseTtlSeconds == nil {
 		if d := internal.GetEnvOrDefault(1200, internal.ParseEnvInt, "TERRAFORM_VAULT_MAX_TTL"); d != nil {
 			args.MaxLeaseTtlSeconds = pulumi.IntPtr(d.(int))
@@ -81,7 +74,7 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	AddAddressToEnv *string `pulumi:"addAddressToEnv"`
 	// URL of the root of the target Vault server.
-	Address string `pulumi:"address"`
+	Address *string `pulumi:"address"`
 	// Login to vault with an existing auth method using auth/<mount>/login
 	AuthLogin *ProviderAuthLogin `pulumi:"authLogin"`
 	// Login to vault using the AWS method
@@ -136,7 +129,7 @@ type providerArgs struct {
 	// Name to use as the SNI host when connecting via TLS.
 	TlsServerName *string `pulumi:"tlsServerName"`
 	// Token to use to authenticate to Vault.
-	Token string `pulumi:"token"`
+	Token *string `pulumi:"token"`
 	// Token name to use for creating the Vault child token.
 	TokenName *string `pulumi:"tokenName"`
 	// Override the Vault server version, which is normally determined dynamically from the target Vault server
@@ -147,7 +140,7 @@ type providerArgs struct {
 type ProviderArgs struct {
 	AddAddressToEnv pulumi.StringPtrInput
 	// URL of the root of the target Vault server.
-	Address pulumi.StringInput
+	Address pulumi.StringPtrInput
 	// Login to vault with an existing auth method using auth/<mount>/login
 	AuthLogin ProviderAuthLoginPtrInput
 	// Login to vault using the AWS method
@@ -202,7 +195,7 @@ type ProviderArgs struct {
 	// Name to use as the SNI host when connecting via TLS.
 	TlsServerName pulumi.StringPtrInput
 	// Token to use to authenticate to Vault.
-	Token pulumi.StringInput
+	Token pulumi.StringPtrInput
 	// Token name to use for creating the Vault child token.
 	TokenName pulumi.StringPtrInput
 	// Override the Vault server version, which is normally determined dynamically from the target Vault server
@@ -211,6 +204,29 @@ type ProviderArgs struct {
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+func (r *Provider) TerraformConfig(ctx *pulumi.Context) (ProviderTerraformConfigResultOutput, error) {
+	out, err := ctx.Call("pulumi:providers:vault/terraformConfig", nil, ProviderTerraformConfigResultOutput{}, r)
+	if err != nil {
+		return ProviderTerraformConfigResultOutput{}, err
+	}
+	return out.(ProviderTerraformConfigResultOutput), nil
+}
+
+type ProviderTerraformConfigResult struct {
+	Result map[string]interface{} `pulumi:"result"`
+}
+
+type ProviderTerraformConfigResultOutput struct{ *pulumi.OutputState }
+
+func (ProviderTerraformConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderTerraformConfigResult)(nil)).Elem()
+}
+
+func (o ProviderTerraformConfigResultOutput) Result() pulumi.MapOutput {
+	return o.ApplyT(func(v ProviderTerraformConfigResult) map[string]interface{} { return v.Result }).(pulumi.MapOutput)
 }
 
 type ProviderInput interface {
@@ -251,8 +267,8 @@ func (o ProviderOutput) AddAddressToEnv() pulumi.StringPtrOutput {
 }
 
 // URL of the root of the target Vault server.
-func (o ProviderOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+func (o ProviderOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Address }).(pulumi.StringPtrOutput)
 }
 
 // Path to directory containing CA certificate files to validate the server's certificate.
@@ -276,8 +292,8 @@ func (o ProviderOutput) TlsServerName() pulumi.StringPtrOutput {
 }
 
 // Token to use to authenticate to Vault.
-func (o ProviderOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+func (o ProviderOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
 
 // Token name to use for creating the Vault child token.
@@ -293,4 +309,5 @@ func (o ProviderOutput) VaultVersionOverride() pulumi.StringPtrOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderTerraformConfigResultOutput{})
 }

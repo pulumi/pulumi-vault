@@ -180,10 +180,8 @@ class _AuthBackendGroupState:
         pulumi.set(self, "policies", value)
 
 
+@pulumi.type_token("vault:ldap/authBackendGroup:AuthBackendGroup")
 class AuthBackendGroup(pulumi.CustomResource):
-
-    pulumi_type = "vault:ldap/authBackendGroup:AuthBackendGroup"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -284,10 +284,8 @@ class _BackendAcmeEabState:
         pulumi.set(self, "role", value)
 
 
+@pulumi.type_token("vault:pkiSecret/backendAcmeEab:BackendAcmeEab")
 class BackendAcmeEab(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/backendAcmeEab:BackendAcmeEab"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

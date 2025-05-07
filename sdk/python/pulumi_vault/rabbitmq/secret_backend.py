@@ -446,10 +446,8 @@ class _SecretBackendState:
         pulumi.set(self, "verify_connection", value)
 
 
+@pulumi.type_token("vault:rabbitMq/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:rabbitMq/secretBackend:SecretBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

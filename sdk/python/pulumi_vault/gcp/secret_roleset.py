@@ -283,10 +283,8 @@ class _SecretRolesetState:
         pulumi.set(self, "token_scopes", value)
 
 
+@pulumi.type_token("vault:gcp/secretRoleset:SecretRoleset")
 class SecretRoleset(pulumi.CustomResource):
-
-    pulumi_type = "vault:gcp/secretRoleset:SecretRoleset"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -181,10 +181,8 @@ class _SecretBackendIntermediateSetSignedState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned")
 class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

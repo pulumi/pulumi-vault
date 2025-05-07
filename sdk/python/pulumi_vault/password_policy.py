@@ -140,10 +140,8 @@ class _PasswordPolicyState:
         pulumi.set(self, "policy", value)
 
 
+@pulumi.type_token("vault:index/passwordPolicy:PasswordPolicy")
 class PasswordPolicy(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/passwordPolicy:PasswordPolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

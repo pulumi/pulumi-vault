@@ -344,10 +344,8 @@ class _MfaTotpState:
         pulumi.set(self, "skew", value)
 
 
+@pulumi.type_token("vault:index/mfaTotp:MfaTotp")
 class MfaTotp(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/mfaTotp:MfaTotp"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

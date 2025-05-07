@@ -175,10 +175,8 @@ class _SecretScopeState:
         pulumi.set(self, "scope", value)
 
 
+@pulumi.type_token("vault:kmip/secretScope:SecretScope")
 class SecretScope(pulumi.CustomResource):
-
-    pulumi_type = "vault:kmip/secretScope:SecretScope"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

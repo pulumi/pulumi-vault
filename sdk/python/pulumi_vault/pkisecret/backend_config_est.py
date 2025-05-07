@@ -362,10 +362,8 @@ class _BackendConfigEstState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:pkiSecret/backendConfigEst:BackendConfigEst")
 class BackendConfigEst(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/backendConfigEst:BackendConfigEst"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

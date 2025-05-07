@@ -811,10 +811,8 @@ class _SecretBackendCertState:
         pulumi.set(self, "user_ids", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendCert:SecretBackendCert")
 class SecretBackendCert(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendCert:SecretBackendCert"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

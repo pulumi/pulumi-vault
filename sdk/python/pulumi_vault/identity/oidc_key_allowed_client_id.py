@@ -139,10 +139,8 @@ class _OidcKeyAllowedClientIDState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID")
 class OidcKeyAllowedClientID(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

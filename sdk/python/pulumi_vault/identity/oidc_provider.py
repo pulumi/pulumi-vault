@@ -261,10 +261,8 @@ class _OidcProviderState:
         pulumi.set(self, "scopes_supporteds", value)
 
 
+@pulumi.type_token("vault:identity/oidcProvider:OidcProvider")
 class OidcProvider(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidcProvider:OidcProvider"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
