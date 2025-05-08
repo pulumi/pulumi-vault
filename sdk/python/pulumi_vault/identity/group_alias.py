@@ -170,10 +170,8 @@ class _GroupAliasState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:identity/groupAlias:GroupAlias")
 class GroupAlias(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/groupAlias:GroupAlias"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

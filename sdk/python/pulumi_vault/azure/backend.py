@@ -639,10 +639,8 @@ class _BackendState:
         pulumi.set(self, "use_microsoft_graph_api", value)
 
 
+@pulumi.type_token("vault:azure/backend:Backend")
 class Backend(pulumi.CustomResource):
-
-    pulumi_type = "vault:azure/backend:Backend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -403,10 +403,8 @@ class _SecretRoleState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:mongodbatlas/secretRole:SecretRole")
 class SecretRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:mongodbatlas/secretRole:SecretRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

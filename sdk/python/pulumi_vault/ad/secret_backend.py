@@ -1215,10 +1215,8 @@ class _SecretBackendState:
         pulumi.set(self, "userdn", value)
 
 
+@pulumi.type_token("vault:ad/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:ad/secretBackend:SecretBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

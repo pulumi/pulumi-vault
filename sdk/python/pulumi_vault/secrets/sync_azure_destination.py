@@ -417,10 +417,8 @@ class _SyncAzureDestinationState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:secrets/syncAzureDestination:SyncAzureDestination")
 class SyncAzureDestination(pulumi.CustomResource):
-
-    pulumi_type = "vault:secrets/syncAzureDestination:SyncAzureDestination"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

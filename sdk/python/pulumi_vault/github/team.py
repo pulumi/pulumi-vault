@@ -180,10 +180,8 @@ class _TeamState:
         pulumi.set(self, "team", value)
 
 
+@pulumi.type_token("vault:github/team:Team")
 class Team(pulumi.CustomResource):
-
-    pulumi_type = "vault:github/team:Team"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

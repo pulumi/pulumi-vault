@@ -236,10 +236,8 @@ class _SecretBackendConfigUrlsState:
         pulumi.set(self, "ocsp_servers", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls")
 class SecretBackendConfigUrls(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

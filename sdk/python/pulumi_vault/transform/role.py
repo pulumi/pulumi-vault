@@ -172,10 +172,8 @@ class _RoleState:
         pulumi.set(self, "transformations", value)
 
 
+@pulumi.type_token("vault:transform/role:Role")
 class Role(pulumi.CustomResource):
-
-    pulumi_type = "vault:transform/role:Role"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

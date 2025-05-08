@@ -410,10 +410,8 @@ class _SecretBackendDynamicRoleState:
         pulumi.set(self, "username_template", value)
 
 
+@pulumi.type_token("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole")
 class SecretBackendDynamicRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

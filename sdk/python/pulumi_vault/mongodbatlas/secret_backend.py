@@ -186,10 +186,8 @@ class _SecretBackendState:
         pulumi.set(self, "public_key", value)
 
 
+@pulumi.type_token("vault:mongodbatlas/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:mongodbatlas/secretBackend:SecretBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -691,10 +691,8 @@ class _AuthBackendRoleState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:gcp/authBackendRole:AuthBackendRole")
 class AuthBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:gcp/authBackendRole:AuthBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

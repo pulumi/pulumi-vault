@@ -796,10 +796,8 @@ class _SecretBackendState:
         pulumi.set(self, "service_account_jwt", value)
 
 
+@pulumi.type_token("vault:kubernetes/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:kubernetes/secretBackend:SecretBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

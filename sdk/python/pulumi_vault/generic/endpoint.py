@@ -397,10 +397,8 @@ class _EndpointState:
         pulumi.set(self, "write_fields", value)
 
 
+@pulumi.type_token("vault:generic/endpoint:Endpoint")
 class Endpoint(pulumi.CustomResource):
-
-    pulumi_type = "vault:generic/endpoint:Endpoint"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -283,10 +283,8 @@ class _SecretLibraryState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:ad/secretLibrary:SecretLibrary")
 class SecretLibrary(pulumi.CustomResource):
-
-    pulumi_type = "vault:ad/secretLibrary:SecretLibrary"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

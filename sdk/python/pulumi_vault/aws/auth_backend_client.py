@@ -705,10 +705,8 @@ class _AuthBackendClientState:
         pulumi.set(self, "use_sts_region_from_client", value)
 
 
+@pulumi.type_token("vault:aws/authBackendClient:AuthBackendClient")
 class AuthBackendClient(pulumi.CustomResource):
-
-    pulumi_type = "vault:aws/authBackendClient:AuthBackendClient"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

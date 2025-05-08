@@ -196,10 +196,8 @@ class _NamespaceState:
         pulumi.set(self, "path_fq", value)
 
 
+@pulumi.type_token("vault:index/namespace:Namespace")
 class Namespace(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/namespace:Namespace"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

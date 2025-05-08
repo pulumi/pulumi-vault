@@ -246,10 +246,8 @@ class _SecretBackendRoleState:
         pulumi.set(self, "vhosts", value)
 
 
+@pulumi.type_token("vault:rabbitMq/secretBackendRole:SecretBackendRole")
 class SecretBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:rabbitMq/secretBackendRole:SecretBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

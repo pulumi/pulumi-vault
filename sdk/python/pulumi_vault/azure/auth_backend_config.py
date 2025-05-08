@@ -523,10 +523,8 @@ class _AuthBackendConfigState:
         pulumi.set(self, "tenant_id", value)
 
 
+@pulumi.type_token("vault:azure/authBackendConfig:AuthBackendConfig")
 class AuthBackendConfig(pulumi.CustomResource):
-
-    pulumi_type = "vault:azure/authBackendConfig:AuthBackendConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

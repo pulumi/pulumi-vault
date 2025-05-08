@@ -326,10 +326,8 @@ class _SyncVercelDestinationState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:secrets/syncVercelDestination:SyncVercelDestination")
 class SyncVercelDestination(pulumi.CustomResource):
-
-    pulumi_type = "vault:secrets/syncVercelDestination:SyncVercelDestination"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

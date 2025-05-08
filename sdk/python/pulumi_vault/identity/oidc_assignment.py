@@ -173,10 +173,8 @@ class _OidcAssignmentState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:identity/oidcAssignment:OidcAssignment")
 class OidcAssignment(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidcAssignment:OidcAssignment"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

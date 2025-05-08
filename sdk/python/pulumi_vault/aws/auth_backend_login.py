@@ -581,10 +581,8 @@ class _AuthBackendLoginState:
         pulumi.set(self, "signature", value)
 
 
+@pulumi.type_token("vault:aws/authBackendLogin:AuthBackendLogin")
 class AuthBackendLogin(pulumi.CustomResource):
-
-    pulumi_type = "vault:aws/authBackendLogin:AuthBackendLogin"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

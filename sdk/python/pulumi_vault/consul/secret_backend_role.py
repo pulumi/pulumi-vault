@@ -489,10 +489,8 @@ class _SecretBackendRoleState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:consul/secretBackendRole:SecretBackendRole")
 class SecretBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:consul/secretBackendRole:SecretBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

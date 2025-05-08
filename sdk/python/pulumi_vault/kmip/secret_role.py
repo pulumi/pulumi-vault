@@ -718,10 +718,8 @@ class _SecretRoleState:
         pulumi.set(self, "tls_client_ttl", value)
 
 
+@pulumi.type_token("vault:kmip/secretRole:SecretRole")
 class SecretRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:kmip/secretRole:SecretRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

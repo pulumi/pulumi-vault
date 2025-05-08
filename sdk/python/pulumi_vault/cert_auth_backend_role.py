@@ -928,10 +928,8 @@ class _CertAuthBackendRoleState:
         pulumi.set(self, "token_type", value)
 
 
+@pulumi.type_token("vault:index/certAuthBackendRole:CertAuthBackendRole")
 class CertAuthBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/certAuthBackendRole:CertAuthBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

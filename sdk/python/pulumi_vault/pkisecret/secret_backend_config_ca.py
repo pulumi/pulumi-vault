@@ -139,10 +139,8 @@ class _SecretBackendConfigCaState:
         pulumi.set(self, "pem_bundle", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa")
 class SecretBackendConfigCa(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

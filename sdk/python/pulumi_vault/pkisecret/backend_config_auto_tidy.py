@@ -855,10 +855,8 @@ class _BackendConfigAutoTidyState:
         pulumi.set(self, "tidy_revoked_certs", value)
 
 
+@pulumi.type_token("vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy")
 class BackendConfigAutoTidy(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

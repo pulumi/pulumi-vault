@@ -309,10 +309,8 @@ class _SecretBackendState:
         pulumi.set(self, "token", value)
 
 
+@pulumi.type_token("vault:terraformcloud/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:terraformcloud/secretBackend:SecretBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

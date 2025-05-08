@@ -129,10 +129,8 @@ class _AuditRequestHeaderState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:index/auditRequestHeader:AuditRequestHeader")
 class AuditRequestHeader(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/auditRequestHeader:AuditRequestHeader"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

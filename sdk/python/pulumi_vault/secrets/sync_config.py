@@ -137,10 +137,8 @@ class _SyncConfigState:
         pulumi.set(self, "queue_capacity", value)
 
 
+@pulumi.type_token("vault:secrets/syncConfig:SyncConfig")
 class SyncConfig(pulumi.CustomResource):
-
-    pulumi_type = "vault:secrets/syncConfig:SyncConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

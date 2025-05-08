@@ -929,10 +929,8 @@ class _SecretBackendRoleState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:ssh/secretBackendRole:SecretBackendRole")
 class SecretBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:ssh/secretBackendRole:SecretBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

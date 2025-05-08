@@ -188,10 +188,8 @@ class _AuthBackendRoletagBlacklistState:
         pulumi.set(self, "safety_buffer", value)
 
 
+@pulumi.type_token("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist")
 class AuthBackendRoletagBlacklist(pulumi.CustomResource):
-
-    pulumi_type = "vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

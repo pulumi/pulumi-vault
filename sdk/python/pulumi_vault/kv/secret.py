@@ -165,10 +165,8 @@ class _SecretState:
         pulumi.set(self, "path", value)
 
 
+@pulumi.type_token("vault:kv/secret:Secret")
 class Secret(pulumi.CustomResource):
-
-    pulumi_type = "vault:kv/secret:Secret"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

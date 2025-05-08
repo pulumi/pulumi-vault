@@ -242,10 +242,8 @@ class _SecretImpersonatedAccountState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount")
 class SecretImpersonatedAccount(pulumi.CustomResource):
-
-    pulumi_type = "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

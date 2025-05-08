@@ -474,10 +474,8 @@ class _SecretBackendRoleState:
         pulumi.set(self, "rollback_statements", value)
 
 
+@pulumi.type_token("vault:database/secretBackendRole:SecretBackendRole")
 class SecretBackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:database/secretBackendRole:SecretBackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

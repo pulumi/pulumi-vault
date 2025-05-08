@@ -284,10 +284,8 @@ class _SecretStaticAccountState:
         pulumi.set(self, "token_scopes", value)
 
 
+@pulumi.type_token("vault:gcp/secretStaticAccount:SecretStaticAccount")
 class SecretStaticAccount(pulumi.CustomResource):
-
-    pulumi_type = "vault:gcp/secretStaticAccount:SecretStaticAccount"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
