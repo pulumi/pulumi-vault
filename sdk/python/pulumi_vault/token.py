@@ -605,10 +605,8 @@ class _TokenState:
         pulumi.set(self, "wrapping_ttl", value)
 
 
+@pulumi.type_token("vault:index/token:Token")
 class Token(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/token:Token"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

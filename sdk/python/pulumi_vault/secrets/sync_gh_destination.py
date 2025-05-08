@@ -389,10 +389,8 @@ class _SyncGhDestinationState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:secrets/syncGhDestination:SyncGhDestination")
 class SyncGhDestination(pulumi.CustomResource):
-
-    pulumi_type = "vault:secrets/syncGhDestination:SyncGhDestination"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

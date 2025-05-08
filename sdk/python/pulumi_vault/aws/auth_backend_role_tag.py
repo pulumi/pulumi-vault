@@ -340,10 +340,8 @@ class _AuthBackendRoleTagState:
         pulumi.set(self, "tag_value", value)
 
 
+@pulumi.type_token("vault:aws/authBackendRoleTag:AuthBackendRoleTag")
 class AuthBackendRoleTag(pulumi.CustomResource):
-
-    pulumi_type = "vault:aws/authBackendRoleTag:AuthBackendRoleTag"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

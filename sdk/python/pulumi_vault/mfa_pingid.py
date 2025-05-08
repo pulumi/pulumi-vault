@@ -347,10 +347,8 @@ class _MfaPingidState:
         pulumi.set(self, "username_format", value)
 
 
+@pulumi.type_token("vault:index/mfaPingid:MfaPingid")
 class MfaPingid(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/mfaPingid:MfaPingid"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

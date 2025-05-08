@@ -121,10 +121,8 @@ class _OidcState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:identity/oidc:Oidc")
 class Oidc(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidc:Oidc"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -251,10 +251,8 @@ class _NomadSecretRoleState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("vault:index/nomadSecretRole:NomadSecretRole")
 class NomadSecretRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/nomadSecretRole:NomadSecretRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

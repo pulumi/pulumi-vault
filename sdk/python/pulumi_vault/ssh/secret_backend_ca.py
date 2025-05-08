@@ -269,10 +269,8 @@ class _SecretBackendCaState:
         pulumi.set(self, "public_key", value)
 
 
+@pulumi.type_token("vault:ssh/secretBackendCa:SecretBackendCa")
 class SecretBackendCa(pulumi.CustomResource):
-
-    pulumi_type = "vault:ssh/secretBackendCa:SecretBackendCa"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -359,10 +359,8 @@ class _OidcClientState:
         pulumi.set(self, "redirect_uris", value)
 
 
+@pulumi.type_token("vault:identity/oidcClient:OidcClient")
 class OidcClient(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidcClient:OidcClient"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

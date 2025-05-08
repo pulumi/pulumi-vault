@@ -508,10 +508,8 @@ class _SecretBackendCrlConfigState:
         pulumi.set(self, "unified_crl_on_existing_paths", value)
 
 
+@pulumi.type_token("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig")
 class SecretBackendCrlConfig(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

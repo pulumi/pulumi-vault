@@ -974,10 +974,8 @@ class _RaftSnapshotAgentConfigState:
         pulumi.set(self, "storage_type", value)
 
 
+@pulumi.type_token("vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig")
 class RaftSnapshotAgentConfig(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

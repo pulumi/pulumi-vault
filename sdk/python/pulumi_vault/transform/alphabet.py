@@ -172,10 +172,8 @@ class _AlphabetState:
         pulumi.set(self, "path", value)
 
 
+@pulumi.type_token("vault:transform/alphabet:Alphabet")
 class Alphabet(pulumi.CustomResource):
-
-    pulumi_type = "vault:transform/alphabet:Alphabet"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

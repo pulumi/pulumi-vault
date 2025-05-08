@@ -288,10 +288,8 @@ class _SecretBackendLibrarySetState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet")
 class SecretBackendLibrarySet(pulumi.CustomResource):
-
-    pulumi_type = "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

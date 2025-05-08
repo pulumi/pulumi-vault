@@ -328,10 +328,8 @@ class _QuotaRateLimitState:
         pulumi.set(self, "role", value)
 
 
+@pulumi.type_token("vault:index/quotaRateLimit:QuotaRateLimit")
 class QuotaRateLimit(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/quotaRateLimit:QuotaRateLimit"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -364,10 +364,8 @@ class _AuthBackendConfigState:
         pulumi.set(self, "use_annotations_as_alias_metadata", value)
 
 
+@pulumi.type_token("vault:kubernetes/authBackendConfig:AuthBackendConfig")
 class AuthBackendConfig(pulumi.CustomResource):
-
-    pulumi_type = "vault:kubernetes/authBackendConfig:AuthBackendConfig"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

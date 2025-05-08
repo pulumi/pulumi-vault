@@ -163,10 +163,8 @@ class _KeysState:
         pulumi.set(self, "pkcs", value)
 
 
+@pulumi.type_token("vault:managed/keys:Keys")
 class Keys(pulumi.CustomResource):
-
-    pulumi_type = "vault:managed/keys:Keys"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

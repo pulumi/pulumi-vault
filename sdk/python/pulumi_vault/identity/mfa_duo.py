@@ -366,10 +366,8 @@ class _MfaDuoState:
         pulumi.set(self, "uuid", value)
 
 
+@pulumi.type_token("vault:identity/mfaDuo:MfaDuo")
 class MfaDuo(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/mfaDuo:MfaDuo"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -172,10 +172,8 @@ class _BackendConfigClusterState:
         pulumi.set(self, "path", value)
 
 
+@pulumi.type_token("vault:pkiSecret/backendConfigCluster:BackendConfigCluster")
 class BackendConfigCluster(pulumi.CustomResource):
-
-    pulumi_type = "vault:pkiSecret/backendConfigCluster:BackendConfigCluster"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

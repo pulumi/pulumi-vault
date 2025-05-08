@@ -249,10 +249,8 @@ class _OidcKeyState:
         pulumi.set(self, "verification_ttl", value)
 
 
+@pulumi.type_token("vault:identity/oidcKey:OidcKey")
 class OidcKey(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/oidcKey:OidcKey"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

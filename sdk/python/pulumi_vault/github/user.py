@@ -180,10 +180,8 @@ class _UserState:
         pulumi.set(self, "user", value)
 
 
+@pulumi.type_token("vault:github/user:User")
 class User(pulumi.CustomResource):
-
-    pulumi_type = "vault:github/user:User"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

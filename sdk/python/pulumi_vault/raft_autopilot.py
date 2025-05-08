@@ -333,10 +333,8 @@ class _RaftAutopilotState:
         pulumi.set(self, "server_stabilization_time", value)
 
 
+@pulumi.type_token("vault:index/raftAutopilot:RaftAutopilot")
 class RaftAutopilot(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/raftAutopilot:RaftAutopilot"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

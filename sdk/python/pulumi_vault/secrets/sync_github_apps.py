@@ -183,10 +183,8 @@ class _SyncGithubAppsState:
         pulumi.set(self, "private_key", value)
 
 
+@pulumi.type_token("vault:secrets/syncGithubApps:SyncGithubApps")
 class SyncGithubApps(pulumi.CustomResource):
-
-    pulumi_type = "vault:secrets/syncGithubApps:SyncGithubApps"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

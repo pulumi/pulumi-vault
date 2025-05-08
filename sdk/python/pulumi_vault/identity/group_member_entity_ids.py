@@ -188,10 +188,8 @@ class _GroupMemberEntityIdsState:
         pulumi.set(self, "namespace", value)
 
 
+@pulumi.type_token("vault:identity/groupMemberEntityIds:GroupMemberEntityIds")
 class GroupMemberEntityIds(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/groupMemberEntityIds:GroupMemberEntityIds"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -326,10 +326,8 @@ class _PluginState:
         pulumi.set(self, "version", value)
 
 
+@pulumi.type_token("vault:index/plugin:Plugin")
 class Plugin(pulumi.CustomResource):
-
-    pulumi_type = "vault:index/plugin:Plugin"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -1038,10 +1038,8 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "verify_connection", value)
 
 
+@pulumi.type_token("vault:database/secretBackendConnection:SecretBackendConnection")
 class SecretBackendConnection(pulumi.CustomResource):
-
-    pulumi_type = "vault:database/secretBackendConnection:SecretBackendConnection"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

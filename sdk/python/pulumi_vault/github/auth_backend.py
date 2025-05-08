@@ -690,10 +690,8 @@ class _AuthBackendState:
         pulumi.set(self, "tune", value)
 
 
+@pulumi.type_token("vault:github/authBackend:AuthBackend")
 class AuthBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:github/authBackend:AuthBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

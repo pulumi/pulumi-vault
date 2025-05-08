@@ -482,10 +482,8 @@ class _BackendRoleState:
         pulumi.set(self, "ttl", value)
 
 
+@pulumi.type_token("vault:azure/backendRole:BackendRole")
 class BackendRole(pulumi.CustomResource):
-
-    pulumi_type = "vault:azure/backendRole:BackendRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

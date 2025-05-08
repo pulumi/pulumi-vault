@@ -1412,10 +1412,8 @@ class _AuthBackendState:
         pulumi.set(self, "username_as_alias", value)
 
 
+@pulumi.type_token("vault:ldap/authBackend:AuthBackend")
 class AuthBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:ldap/authBackend:AuthBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

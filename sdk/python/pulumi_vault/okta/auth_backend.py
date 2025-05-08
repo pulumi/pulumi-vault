@@ -774,10 +774,8 @@ class _AuthBackendState:
         pulumi.set(self, "users", value)
 
 
+@pulumi.type_token("vault:okta/authBackend:AuthBackend")
 class AuthBackend(pulumi.CustomResource):
-
-    pulumi_type = "vault:okta/authBackend:AuthBackend"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

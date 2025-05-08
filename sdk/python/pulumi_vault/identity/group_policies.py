@@ -203,10 +203,8 @@ class _GroupPoliciesState:
         pulumi.set(self, "policies", value)
 
 
+@pulumi.type_token("vault:identity/groupPolicies:GroupPolicies")
 class GroupPolicies(pulumi.CustomResource):
-
-    pulumi_type = "vault:identity/groupPolicies:GroupPolicies"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
