@@ -25,7 +25,7 @@ namespace Pulumi.Vault
         /// URL of the root of the target Vault server.
         /// </summary>
         [Output("address")]
-        public Output<string> Address { get; private set; } = null!;
+        public Output<string?> Address { get; private set; } = null!;
 
         /// <summary>
         /// Path to directory containing CA certificate files to validate the server's certificate.
@@ -55,7 +55,7 @@ namespace Pulumi.Vault
         /// Token to use to authenticate to Vault.
         /// </summary>
         [Output("token")]
-        public Output<string> Token { get; private set; } = null!;
+        public Output<string?> Token { get; private set; } = null!;
 
         /// <summary>
         /// Token name to use for creating the Vault child token.
@@ -77,7 +77,7 @@ namespace Pulumi.Vault
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("vault", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -109,8 +109,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// URL of the root of the target Vault server.
         /// </summary>
-        [Input("address", required: true)]
-        public Input<string> Address { get; set; } = null!;
+        [Input("address")]
+        public Input<string>? Address { get; set; }
 
         /// <summary>
         /// Login to vault with an existing auth method using auth/&lt;mount&gt;/login
@@ -276,8 +276,8 @@ namespace Pulumi.Vault
         /// <summary>
         /// Token to use to authenticate to Vault.
         /// </summary>
-        [Input("token", required: true)]
-        public Input<string> Token { get; set; } = null!;
+        [Input("token")]
+        public Input<string>? Token { get; set; }
 
         /// <summary>
         /// Token name to use for creating the Vault child token.

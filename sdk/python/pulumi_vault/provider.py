@@ -21,9 +21,8 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 address: pulumi.Input[builtins.str],
-                 token: pulumi.Input[builtins.str],
                  add_address_to_env: Optional[pulumi.Input[builtins.str]] = None,
+                 address: Optional[pulumi.Input[builtins.str]] = None,
                  auth_login: Optional[pulumi.Input['ProviderAuthLoginArgs']] = None,
                  auth_login_aws: Optional[pulumi.Input['ProviderAuthLoginAwsArgs']] = None,
                  auth_login_azure: Optional[pulumi.Input['ProviderAuthLoginAzureArgs']] = None,
@@ -49,12 +48,12 @@ class ProviderArgs:
                  skip_get_vault_version: Optional[pulumi.Input[builtins.bool]] = None,
                  skip_tls_verify: Optional[pulumi.Input[builtins.bool]] = None,
                  tls_server_name: Optional[pulumi.Input[builtins.str]] = None,
+                 token: Optional[pulumi.Input[builtins.str]] = None,
                  token_name: Optional[pulumi.Input[builtins.str]] = None,
                  vault_version_override: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[builtins.str] address: URL of the root of the target Vault server.
-        :param pulumi.Input[builtins.str] token: Token to use to authenticate to Vault.
         :param pulumi.Input['ProviderAuthLoginArgs'] auth_login: Login to vault with an existing auth method using auth/<mount>/login
         :param pulumi.Input['ProviderAuthLoginAwsArgs'] auth_login_aws: Login to vault using the AWS method
         :param pulumi.Input['ProviderAuthLoginAzureArgs'] auth_login_azure: Login to vault using the azure method
@@ -81,13 +80,14 @@ class ProviderArgs:
         :param pulumi.Input[builtins.bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[builtins.bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
         :param pulumi.Input[builtins.str] tls_server_name: Name to use as the SNI host when connecting via TLS.
+        :param pulumi.Input[builtins.str] token: Token to use to authenticate to Vault.
         :param pulumi.Input[builtins.str] token_name: Token name to use for creating the Vault child token.
         :param pulumi.Input[builtins.str] vault_version_override: Override the Vault server version, which is normally determined dynamically from the target Vault server
         """
-        pulumi.set(__self__, "address", address)
-        pulumi.set(__self__, "token", token)
         if add_address_to_env is not None:
             pulumi.set(__self__, "add_address_to_env", add_address_to_env)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
         if auth_login is not None:
             pulumi.set(__self__, "auth_login", auth_login)
         if auth_login_aws is not None:
@@ -147,34 +147,12 @@ class ProviderArgs:
             pulumi.set(__self__, "skip_tls_verify", skip_tls_verify)
         if tls_server_name is not None:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
         if token_name is not None:
             pulumi.set(__self__, "token_name", token_name)
         if vault_version_override is not None:
             pulumi.set(__self__, "vault_version_override", vault_version_override)
-
-    @property
-    @pulumi.getter
-    def address(self) -> pulumi.Input[builtins.str]:
-        """
-        URL of the root of the target Vault server.
-        """
-        return pulumi.get(self, "address")
-
-    @address.setter
-    def address(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "address", value)
-
-    @property
-    @pulumi.getter
-    def token(self) -> pulumi.Input[builtins.str]:
-        """
-        Token to use to authenticate to Vault.
-        """
-        return pulumi.get(self, "token")
-
-    @token.setter
-    def token(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "token", value)
 
     @property
     @pulumi.getter(name="addAddressToEnv")
@@ -184,6 +162,18 @@ class ProviderArgs:
     @add_address_to_env.setter
     def add_address_to_env(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "add_address_to_env", value)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        URL of the root of the target Vault server.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "address", value)
 
     @property
     @pulumi.getter(name="authLogin")
@@ -488,6 +478,18 @@ class ProviderArgs:
         pulumi.set(self, "tls_server_name", value)
 
     @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Token to use to authenticate to Vault.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "token", value)
+
+    @property
     @pulumi.getter(name="tokenName")
     def token_name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -592,7 +594,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
@@ -655,8 +657,6 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["add_address_to_env"] = add_address_to_env
-            if address is None and not opts.urn:
-                raise TypeError("Missing required property 'address'")
             __props__.__dict__["address"] = address
             __props__.__dict__["auth_login"] = pulumi.Output.from_input(auth_login).apply(pulumi.runtime.to_json) if auth_login is not None else None
             __props__.__dict__["auth_login_aws"] = pulumi.Output.from_input(auth_login_aws).apply(pulumi.runtime.to_json) if auth_login_aws is not None else None
@@ -689,8 +689,6 @@ class Provider(pulumi.ProviderResource):
                 skip_tls_verify = _utilities.get_env_bool('VAULT_SKIP_VERIFY')
             __props__.__dict__["skip_tls_verify"] = pulumi.Output.from_input(skip_tls_verify).apply(pulumi.runtime.to_json) if skip_tls_verify is not None else None
             __props__.__dict__["tls_server_name"] = tls_server_name
-            if token is None and not opts.urn:
-                raise TypeError("Missing required property 'token'")
             __props__.__dict__["token"] = token
             __props__.__dict__["token_name"] = token_name
             __props__.__dict__["vault_version_override"] = vault_version_override
@@ -707,7 +705,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def address(self) -> pulumi.Output[builtins.str]:
+    def address(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         URL of the root of the target Vault server.
         """
@@ -747,7 +745,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def token(self) -> pulumi.Output[builtins.str]:
+    def token(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         Token to use to authenticate to Vault.
         """
