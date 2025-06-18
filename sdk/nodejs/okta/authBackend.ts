@@ -97,13 +97,6 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly groups!: pulumi.Output<outputs.okta.AuthBackendGroup[]>;
     /**
-     * Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     *
-     * @deprecated Deprecated. Please use `tokenMaxTtl` instead.
-     */
-    public readonly maxTtl!: pulumi.Output<string | undefined>;
-    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -160,13 +153,6 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
-     * Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     *
-     * @deprecated Deprecated. Please use `tokenTtl` instead.
-     */
-    public readonly ttl!: pulumi.Output<string | undefined>;
-    /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      */
@@ -191,7 +177,6 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -205,7 +190,6 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
             resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
             resourceInputs["tokenType"] = state ? state.tokenType : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
@@ -217,7 +201,6 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
@@ -231,7 +214,6 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
             resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
             resourceInputs["tokenType"] = args ? args.tokenType : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
@@ -272,13 +254,6 @@ export interface AuthBackendState {
      * See below for more details.
      */
     groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
-    /**
-     * Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     *
-     * @deprecated Deprecated. Please use `tokenMaxTtl` instead.
-     */
-    maxTtl?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -336,13 +311,6 @@ export interface AuthBackendState {
      */
     tokenType?: pulumi.Input<string>;
     /**
-     * Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     *
-     * @deprecated Deprecated. Please use `tokenTtl` instead.
-     */
-    ttl?: pulumi.Input<string>;
-    /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      */
@@ -375,13 +343,6 @@ export interface AuthBackendArgs {
      * See below for more details.
      */
     groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
-    /**
-     * Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     *
-     * @deprecated Deprecated. Please use `tokenMaxTtl` instead.
-     */
-    maxTtl?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -438,13 +399,6 @@ export interface AuthBackendArgs {
      * The type of token to generate, service or batch
      */
     tokenType?: pulumi.Input<string>;
-    /**
-     * Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     *
-     * @deprecated Deprecated. Please use `tokenTtl` instead.
-     */
-    ttl?: pulumi.Input<string>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.

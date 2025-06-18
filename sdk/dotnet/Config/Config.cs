@@ -533,7 +533,7 @@ namespace Pulumi.Vault
             /// <summary>
             /// A signed JSON Web Token.
             /// </summary>
-                public string Jwt { get; set; }
+                public string? Jwt { get; set; } = null!;
             /// <summary>
             /// The path where the authentication engine is mounted.
             /// </summary>
@@ -665,7 +665,7 @@ namespace Pulumi.Vault
             /// <summary>
             /// The Radius password for username.
             /// </summary>
-                public string Password { get; set; }
+                public string? Password { get; set; } = null!;
             /// <summary>
             /// Authenticate to the root Vault namespace. Conflicts with namespace
             /// </summary>
@@ -673,7 +673,7 @@ namespace Pulumi.Vault
             /// <summary>
             /// The Radius username.
             /// </summary>
-                public string Username { get; set; }
+                public string? Username { get; set; } = null!;
             }
 
              public class AuthLoginTokenFile
@@ -681,7 +681,7 @@ namespace Pulumi.Vault
             /// <summary>
             /// The name of a file containing a single line that is a valid Vault token
             /// </summary>
-                public string Filename { get; set; }
+                public string? Filename { get; set; } = null!;
             /// <summary>
             /// The authentication engine's namespace. Conflicts with use_root_namespace
             /// </summary>
@@ -717,7 +717,7 @@ namespace Pulumi.Vault
             /// <summary>
             /// Login with username
             /// </summary>
-                public string Username { get; set; }
+                public string? Username { get; set; } = null!;
             }
 
              public class ClientAuth

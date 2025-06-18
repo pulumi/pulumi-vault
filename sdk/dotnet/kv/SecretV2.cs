@@ -81,6 +81,13 @@ namespace Pulumi.Vault.kv
     /// 
     /// * `data` - (Optional) A string to string map describing the secret.
     /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+    ///   **Note**: This property is write-only and will not be read from the API.
+    /// 
     /// ## Import
     /// 
     /// KV-V2 secrets can be imported using the `path`, e.g.
@@ -110,10 +117,10 @@ namespace Pulumi.Vault.kv
         public Output<Outputs.SecretV2CustomMetadata> CustomMetadata { get; private set; } = null!;
 
         /// <summary>
-        /// A mapping whose keys are the top-level data keys returned from
-        /// Vault and whose values are the corresponding values. This map can only
-        /// represent string data, so any non-string values returned from Vault are
-        /// serialized as JSON.
+        /// **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+        /// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        /// Vault and whose values are the corresponding values. This map can only represent string data,
+        /// so any non-string values returned from Vault are serialized as JSON.
         /// </summary>
         [Output("data")]
         public Output<ImmutableDictionary<string, string>> Data { get; private set; } = null!;
@@ -123,7 +130,13 @@ namespace Pulumi.Vault.kv
         /// written as the secret data at the given path.
         /// </summary>
         [Output("dataJson")]
-        public Output<string> DataJson { get; private set; } = null!;
+        public Output<string?> DataJson { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the `data_json_wo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Output("dataJsonWoVersion")]
+        public Output<int?> DataJsonWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// If set to true, permanently deletes all
@@ -249,7 +262,7 @@ namespace Pulumi.Vault.kv
         [Input("customMetadata")]
         public Input<Inputs.SecretV2CustomMetadataArgs>? CustomMetadata { get; set; }
 
-        [Input("dataJson", required: true)]
+        [Input("dataJson")]
         private Input<string>? _dataJson;
 
         /// <summary>
@@ -265,6 +278,12 @@ namespace Pulumi.Vault.kv
                 _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The version of the `data_json_wo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("dataJsonWoVersion")]
+        public Input<int>? DataJsonWoVersion { get; set; }
 
         /// <summary>
         /// If set to true, permanently deletes all
@@ -345,11 +364,12 @@ namespace Pulumi.Vault.kv
         private InputMap<string>? _data;
 
         /// <summary>
-        /// A mapping whose keys are the top-level data keys returned from
-        /// Vault and whose values are the corresponding values. This map can only
-        /// represent string data, so any non-string values returned from Vault are
-        /// serialized as JSON.
+        /// **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+        /// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        /// Vault and whose values are the corresponding values. This map can only represent string data,
+        /// so any non-string values returned from Vault are serialized as JSON.
         /// </summary>
+        [Obsolete(@"Deprecated. Will no longer be set on a read.")]
         public InputMap<string> Data
         {
             get => _data ?? (_data = new InputMap<string>());
@@ -376,6 +396,12 @@ namespace Pulumi.Vault.kv
                 _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The version of the `data_json_wo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("dataJsonWoVersion")]
+        public Input<int>? DataJsonWoVersion { get; set; }
 
         /// <summary>
         /// If set to true, permanently deletes all

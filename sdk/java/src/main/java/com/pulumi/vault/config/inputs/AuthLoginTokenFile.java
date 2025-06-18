@@ -4,7 +4,6 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -17,7 +16,7 @@ public final class AuthLoginTokenFile {
      * @return The name of a file containing a single line that is a valid Vault token
      * 
      */
-    private String filename;
+    private @Nullable String filename;
     /**
      * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
      * 
@@ -34,8 +33,8 @@ public final class AuthLoginTokenFile {
      * @return The name of a file containing a single line that is a valid Vault token
      * 
      */
-    public String filename() {
-        return this.filename;
+    public Optional<String> filename() {
+        return Optional.ofNullable(this.filename);
     }
     /**
      * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
@@ -61,7 +60,7 @@ public final class AuthLoginTokenFile {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String filename;
+        private @Nullable String filename;
         private @Nullable String namespace;
         private @Nullable Boolean useRootNamespace;
         public Builder() {}
@@ -73,10 +72,8 @@ public final class AuthLoginTokenFile {
         }
 
         @CustomType.Setter
-        public Builder filename(String filename) {
-            if (filename == null) {
-              throw new MissingRequiredPropertyException("AuthLoginTokenFile", "filename");
-            }
+        public Builder filename(@Nullable String filename) {
+
             this.filename = filename;
             return this;
         }

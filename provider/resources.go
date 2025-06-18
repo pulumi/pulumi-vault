@@ -34,7 +34,7 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
-	"github.com/pulumi/pulumi-vault/provider/v6/pkg/version"
+	"github.com/pulumi/pulumi-vault/provider/v7/pkg/version"
 )
 
 // all of the token components used below.
@@ -221,7 +221,6 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_quota_rate_limit":           {Tok: makeResource(mainMod, "QuotaRateLimit")},
 			"vault_nomad_secret_backend":       {Tok: makeResource(mainMod, "NomadSecretBackend")},
 			"vault_nomad_secret_role":          {Tok: makeResource(mainMod, "NomadSecretRole")},
-			"vault_password_policy":            {Tok: makeResource(mainMod, "PasswordPolicy")},
 			"vault_quota_lease_count":          {Tok: makeResource(mainMod, "QuotaLeaseCount")},
 			"vault_raft_snapshot_agent_config": {Tok: makeResource(mainMod, "RaftSnapshotAgentConfig")},
 			"vault_raft_autopilot":             {Tok: makeResource(mainMod, "RaftAutopilot")},

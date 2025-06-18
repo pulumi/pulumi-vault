@@ -286,29 +286,6 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
         return this.tenantId;
     }
 
-    /**
-     * Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     * 
-     * @deprecated
-     * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-     * 
-     */
-    @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
-    @Import(name="useMicrosoftGraphApi")
-    private @Nullable Output<Boolean> useMicrosoftGraphApi;
-
-    /**
-     * @return Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     * 
-     * @deprecated
-     * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-     * 
-     */
-    @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
-    public Optional<Output<Boolean>> useMicrosoftGraphApi() {
-        return Optional.ofNullable(this.useMicrosoftGraphApi);
-    }
-
     private BackendArgs() {}
 
     private BackendArgs(BackendArgs $) {
@@ -328,7 +305,6 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
         this.rotationWindow = $.rotationWindow;
         this.subscriptionId = $.subscriptionId;
         this.tenantId = $.tenantId;
-        this.useMicrosoftGraphApi = $.useMicrosoftGraphApi;
     }
 
     public static Builder builder() {
@@ -711,35 +687,6 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tenantId(String tenantId) {
             return tenantId(Output.of(tenantId));
-        }
-
-        /**
-         * @param useMicrosoftGraphApi Use the Microsoft Graph API. Should be set to true on vault-1.10+
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-         * 
-         */
-        @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
-        public Builder useMicrosoftGraphApi(@Nullable Output<Boolean> useMicrosoftGraphApi) {
-            $.useMicrosoftGraphApi = useMicrosoftGraphApi;
-            return this;
-        }
-
-        /**
-         * @param useMicrosoftGraphApi Use the Microsoft Graph API. Should be set to true on vault-1.10+
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-         * 
-         */
-        @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
-        public Builder useMicrosoftGraphApi(Boolean useMicrosoftGraphApi) {
-            return useMicrosoftGraphApi(Output.of(useMicrosoftGraphApi));
         }
 
         public BackendArgs build() {

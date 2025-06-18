@@ -27,8 +27,8 @@ namespace Pulumi.Vault.Inputs
         /// <summary>
         /// The Radius password for username.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        [Input("password")]
+        public Input<string>? Password { get; set; }
 
         /// <summary>
         /// Authenticate to the root Vault namespace. Conflicts with namespace
@@ -39,8 +39,8 @@ namespace Pulumi.Vault.Inputs
         /// <summary>
         /// The Radius username.
         /// </summary>
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         public ProviderAuthLoginRadiusArgs()
         {

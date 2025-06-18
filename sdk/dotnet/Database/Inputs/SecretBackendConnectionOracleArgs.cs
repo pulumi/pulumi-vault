@@ -59,6 +59,12 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
+        /// <summary>
         /// Set to true in order to split statements after semi-colons.
         /// </summary>
         [Input("splitStatements")]

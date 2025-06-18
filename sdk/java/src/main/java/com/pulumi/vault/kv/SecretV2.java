@@ -105,6 +105,13 @@ import javax.annotation.Nullable;
  * 
  * * `data` - (Optional) A string to string map describing the secret.
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * KV-V2 secrets can be imported using the `path`, e.g.
@@ -155,20 +162,24 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
         return this.customMetadata;
     }
     /**
-     * A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
+     * 
+     * @deprecated
+     * Deprecated. Will no longer be set on a read.
      * 
      */
+    @Deprecated /* Deprecated. Will no longer be set on a read. */
     @Export(name="data", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> data;
 
     /**
-     * @return A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * @return **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
      * 
      */
     public Output<Map<String,String>> data() {
@@ -180,15 +191,29 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="dataJson", refs={String.class}, tree="[0]")
-    private Output<String> dataJson;
+    private Output</* @Nullable */ String> dataJson;
 
     /**
      * @return JSON-encoded string that will be
      * written as the secret data at the given path.
      * 
      */
-    public Output<String> dataJson() {
-        return this.dataJson;
+    public Output<Optional<String>> dataJson() {
+        return Codegen.optional(this.dataJson);
+    }
+    /**
+     * The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Export(name="dataJsonWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> dataJsonWoVersion;
+
+    /**
+     * @return The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Output<Optional<Integer>> dataJsonWoVersion() {
+        return Codegen.optional(this.dataJsonWoVersion);
     }
     /**
      * If set to true, permanently deletes all

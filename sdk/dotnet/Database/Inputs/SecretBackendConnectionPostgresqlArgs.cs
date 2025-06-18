@@ -70,6 +70,12 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("passwordAuthentication")]
         public Input<string>? PasswordAuthentication { get; set; }
 
+        /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         [Input("privateKey")]
         private Input<string>? _privateKey;
 

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,7 +19,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/database"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/database"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -93,6 +93,13 @@ import (
 //	}
 //
 // ```
+//
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported for all DBs that support username/password:
+//
+//   - `passwordWo` - (Optional) The password for the user. Can be updated.
+//     **Note**: This property is write-only and will not be read from the API.
 //
 // ## Import
 //

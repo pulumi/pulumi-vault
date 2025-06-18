@@ -38,6 +38,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        public readonly int? PasswordWoVersion;
+        /// <summary>
         /// A JSON encoded credential for use with IAM authorization
         /// </summary>
         public readonly string? ServiceAccountJson;
@@ -72,6 +76,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            int? passwordWoVersion,
+
             string? serviceAccountJson,
 
             string? tlsCa,
@@ -88,6 +94,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            PasswordWoVersion = passwordWoVersion;
             ServiceAccountJson = serviceAccountJson;
             TlsCa = tlsCa;
             TlsCertificateKey = tlsCertificateKey;

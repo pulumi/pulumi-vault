@@ -115,31 +115,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     * @deprecated
-     * Deprecated. Please use `token_max_ttl` instead.
-     * 
-     */
-    @Deprecated /* Deprecated. Please use `token_max_ttl` instead. */
-    @Import(name="maxTtl")
-    private @Nullable Output<String> maxTtl;
-
-    /**
-     * @return Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     * @deprecated
-     * Deprecated. Please use `token_max_ttl` instead.
-     * 
-     */
-    @Deprecated /* Deprecated. Please use `token_max_ttl` instead. */
-    public Optional<Output<String>> maxTtl() {
-        return Optional.ofNullable(this.maxTtl);
-    }
-
-    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -343,31 +318,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     * @deprecated
-     * Deprecated. Please use `token_ttl` instead.
-     * 
-     */
-    @Deprecated /* Deprecated. Please use `token_ttl` instead. */
-    @Import(name="ttl")
-    private @Nullable Output<String> ttl;
-
-    /**
-     * @return Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     * @deprecated
-     * Deprecated. Please use `token_ttl` instead.
-     * 
-     */
-    @Deprecated /* Deprecated. Please use `token_ttl` instead. */
-    public Optional<Output<String>> ttl() {
-        return Optional.ofNullable(this.ttl);
-    }
-
-    /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      * 
@@ -393,7 +343,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.groups = $.groups;
-        this.maxTtl = $.maxTtl;
         this.namespace = $.namespace;
         this.organization = $.organization;
         this.path = $.path;
@@ -407,7 +356,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.tokenPolicies = $.tokenPolicies;
         this.tokenTtl = $.tokenTtl;
         this.tokenType = $.tokenType;
-        this.ttl = $.ttl;
         this.users = $.users;
     }
 
@@ -568,37 +516,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder groups(AuthBackendGroupArgs... groups) {
             return groups(List.of(groups));
-        }
-
-        /**
-         * @param maxTtl Maximum duration after which authentication will be expired
-         * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Deprecated. Please use `token_max_ttl` instead.
-         * 
-         */
-        @Deprecated /* Deprecated. Please use `token_max_ttl` instead. */
-        public Builder maxTtl(@Nullable Output<String> maxTtl) {
-            $.maxTtl = maxTtl;
-            return this;
-        }
-
-        /**
-         * @param maxTtl Maximum duration after which authentication will be expired
-         * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Deprecated. Please use `token_max_ttl` instead.
-         * 
-         */
-        @Deprecated /* Deprecated. Please use `token_max_ttl` instead. */
-        public Builder maxTtl(String maxTtl) {
-            return maxTtl(Output.of(maxTtl));
         }
 
         /**
@@ -900,37 +817,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tokenType(String tokenType) {
             return tokenType(Output.of(tokenType));
-        }
-
-        /**
-         * @param ttl Duration after which authentication will be expired.
-         * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Deprecated. Please use `token_ttl` instead.
-         * 
-         */
-        @Deprecated /* Deprecated. Please use `token_ttl` instead. */
-        public Builder ttl(@Nullable Output<String> ttl) {
-            $.ttl = ttl;
-            return this;
-        }
-
-        /**
-         * @param ttl Duration after which authentication will be expired.
-         * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Deprecated. Please use `token_ttl` instead.
-         * 
-         */
-        @Deprecated /* Deprecated. Please use `token_ttl` instead. */
-        public Builder ttl(String ttl) {
-            return ttl(Output.of(ttl));
         }
 
         /**

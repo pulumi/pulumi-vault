@@ -65,6 +65,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? PasswordAuthentication;
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        public readonly int? PasswordWoVersion;
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
@@ -148,6 +152,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? passwordAuthentication,
 
+            int? passwordWoVersion,
+
             string? pluginName,
 
             string? privateKey,
@@ -186,6 +192,7 @@ namespace Pulumi.Vault.Database.Outputs
             Name = name;
             Password = password;
             PasswordAuthentication = passwordAuthentication;
+            PasswordWoVersion = passwordWoVersion;
             PluginName = pluginName;
             PrivateKey = privateKey;
             RootRotationStatements = rootRotationStatements;

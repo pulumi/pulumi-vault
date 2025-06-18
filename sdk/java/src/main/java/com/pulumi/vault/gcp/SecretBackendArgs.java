@@ -33,6 +33,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Import(name="credentialsWoVersion")
+    private @Nullable Output<Integer> credentialsWoVersion;
+
+    /**
+     * @return The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> credentialsWoVersion() {
+        return Optional.ofNullable(this.credentialsWoVersion);
+    }
+
+    /**
      * The default TTL for credentials
      * issued by this backend. Defaults to &#39;0&#39;.
      * 
@@ -295,6 +310,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     private SecretBackendArgs(SecretBackendArgs $) {
         this.credentials = $.credentials;
+        this.credentialsWoVersion = $.credentialsWoVersion;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.description = $.description;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
@@ -349,6 +365,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder credentials(String credentials) {
             return credentials(Output.of(credentials));
+        }
+
+        /**
+         * @param credentialsWoVersion The version of the `credentials_wo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWoVersion(@Nullable Output<Integer> credentialsWoVersion) {
+            $.credentialsWoVersion = credentialsWoVersion;
+            return this;
+        }
+
+        /**
+         * @param credentialsWoVersion The version of the `credentials_wo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWoVersion(Integer credentialsWoVersion) {
+            return credentialsWoVersion(Output.of(credentialsWoVersion));
         }
 
         /**

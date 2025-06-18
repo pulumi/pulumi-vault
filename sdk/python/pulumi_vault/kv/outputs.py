@@ -49,10 +49,10 @@ class SecretV2CustomMetadata(dict):
                  max_versions: Optional[builtins.int] = None):
         """
         :param builtins.bool cas_required: If true, all keys will require the cas parameter to be set on all write requests.
-        :param Mapping[str, builtins.str] data: A mapping whose keys are the top-level data keys returned from
-               Vault and whose values are the corresponding values. This map can only
-               represent string data, so any non-string values returned from Vault are
-               serialized as JSON.
+        :param Mapping[str, builtins.str] data: **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+               secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+               Vault and whose values are the corresponding values. This map can only represent string data,
+               so any non-string values returned from Vault are serialized as JSON.
         :param builtins.int delete_version_after: If set, specifies the length of time before a version is deleted.
         :param builtins.int max_versions: The number of versions to keep per key.
         """
@@ -77,10 +77,10 @@ class SecretV2CustomMetadata(dict):
     @pulumi.getter
     def data(self) -> Optional[Mapping[str, builtins.str]]:
         """
-        A mapping whose keys are the top-level data keys returned from
-        Vault and whose values are the corresponding values. This map can only
-        represent string data, so any non-string values returned from Vault are
-        serialized as JSON.
+        **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+        secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only represent string data,
+        so any non-string values returned from Vault are serialized as JSON.
         """
         return pulumi.get(self, "data")
 

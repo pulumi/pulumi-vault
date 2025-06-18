@@ -38,6 +38,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        public readonly int? PasswordWoVersion;
+        /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
@@ -56,6 +60,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            int? passwordWoVersion,
+
             string? username)
         {
             ConnectionUrl = connectionUrl;
@@ -64,6 +70,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            PasswordWoVersion = passwordWoVersion;
             Username = username;
         }
     }

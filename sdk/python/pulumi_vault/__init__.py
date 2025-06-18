@@ -26,7 +26,6 @@ from .mount import *
 from .namespace import *
 from .nomad_secret_backend import *
 from .nomad_secret_role import *
-from .password_policy import *
 from .plugin import *
 from .plugin_pinned_version import *
 from .policy import *
@@ -732,14 +731,6 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/nomadSecretRole:NomadSecretRole": "NomadSecretRole"
-  }
- },
- {
-  "pkg": "vault",
-  "mod": "index/passwordPolicy",
-  "fqn": "pulumi_vault",
-  "classes": {
-   "vault:index/passwordPolicy:PasswordPolicy": "PasswordPolicy"
   }
  },
  {

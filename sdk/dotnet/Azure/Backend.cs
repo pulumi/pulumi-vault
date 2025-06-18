@@ -12,7 +12,7 @@ namespace Pulumi.Vault.Azure
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### *Vault-1.9 And Above*
+    /// ### 
     /// 
     /// You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
     /// ```csharp
@@ -47,7 +47,6 @@ namespace Pulumi.Vault.Azure
     /// {
     ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
-    ///         UseMicrosoftGraphApi = true,
     ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
     ///         TenantId = "11111111-2222-3333-4444-222222222222",
     ///         ClientId = "11111111-2222-3333-4444-333333333333",
@@ -55,29 +54,6 @@ namespace Pulumi.Vault.Azure
     ///         Environment = "AzurePublicCloud",
     ///         RotationSchedule = "0 * * * SAT",
     ///         RotationWindow = 3600,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### *Vault-1.8 And Below*
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var azure = new Vault.Azure.Backend("azure", new()
-    ///     {
-    ///         UseMicrosoftGraphApi = false,
-    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///         TenantId = "11111111-2222-3333-4444-222222222222",
-    ///         ClientId = "11111111-2222-3333-4444-333333333333",
-    ///         ClientSecret = "12345678901234567890",
-    ///         Environment = "AzurePublicCloud",
     ///     });
     /// 
     /// });
@@ -195,12 +171,6 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("tenantId")]
         public Output<string> TenantId { get; private set; } = null!;
-
-        /// <summary>
-        /// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-        /// </summary>
-        [Output("useMicrosoftGraphApi")]
-        public Output<bool> UseMicrosoftGraphApi { get; private set; } = null!;
 
 
         /// <summary>
@@ -405,12 +375,6 @@ namespace Pulumi.Vault.Azure
             }
         }
 
-        /// <summary>
-        /// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-        /// </summary>
-        [Input("useMicrosoftGraphApi")]
-        public Input<bool>? UseMicrosoftGraphApi { get; set; }
-
         public BackendArgs()
         {
         }
@@ -568,12 +532,6 @@ namespace Pulumi.Vault.Azure
                 _tenantId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
-
-        /// <summary>
-        /// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-        /// </summary>
-        [Input("useMicrosoftGraphApi")]
-        public Input<bool>? UseMicrosoftGraphApi { get; set; }
 
         public BackendState()
         {

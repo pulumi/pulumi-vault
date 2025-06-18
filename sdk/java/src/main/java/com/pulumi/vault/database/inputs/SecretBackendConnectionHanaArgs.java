@@ -108,6 +108,21 @@ public final class SecretBackendConnectionHanaArgs extends com.pulumi.resources.
     }
 
     /**
+     * Version counter for root credential password write-only field
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
      * The root credential username used in the connection URL
      * 
      */
@@ -131,6 +146,7 @@ public final class SecretBackendConnectionHanaArgs extends com.pulumi.resources.
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.username = $.username;
     }
 
@@ -276,6 +292,27 @@ public final class SecretBackendConnectionHanaArgs extends com.pulumi.resources.
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

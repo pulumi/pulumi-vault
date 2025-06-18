@@ -5,7 +5,6 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -96,15 +95,15 @@ public final class ProviderAuthLoginUserpassArgs extends com.pulumi.resources.Re
      * Login with username
      * 
      */
-    @Import(name="username", required=true)
-    private Output<String> username;
+    @Import(name="username")
+    private @Nullable Output<String> username;
 
     /**
      * @return Login with username
      * 
      */
-    public Output<String> username() {
-        return this.username;
+    public Optional<Output<String>> username() {
+        return Optional.ofNullable(this.username);
     }
 
     private ProviderAuthLoginUserpassArgs() {}
@@ -247,7 +246,7 @@ public final class ProviderAuthLoginUserpassArgs extends com.pulumi.resources.Re
          * @return builder
          * 
          */
-        public Builder username(Output<String> username) {
+        public Builder username(@Nullable Output<String> username) {
             $.username = username;
             return this;
         }
@@ -263,9 +262,6 @@ public final class ProviderAuthLoginUserpassArgs extends com.pulumi.resources.Re
         }
 
         public ProviderAuthLoginUserpassArgs build() {
-            if ($.username == null) {
-                throw new MissingRequiredPropertyException("ProviderAuthLoginUserpassArgs", "username");
-            }
             return $;
         }
     }

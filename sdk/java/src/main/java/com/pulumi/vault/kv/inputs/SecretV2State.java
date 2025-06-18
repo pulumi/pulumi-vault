@@ -60,22 +60,30 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
+     * 
+     * @deprecated
+     * Deprecated. Will no longer be set on a read.
      * 
      */
+    @Deprecated /* Deprecated. Will no longer be set on a read. */
     @Import(name="data")
     private @Nullable Output<Map<String,String>> data;
 
     /**
-     * @return A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * @return **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
+     * 
+     * @deprecated
+     * Deprecated. Will no longer be set on a read.
      * 
      */
+    @Deprecated /* Deprecated. Will no longer be set on a read. */
     public Optional<Output<Map<String,String>>> data() {
         return Optional.ofNullable(this.data);
     }
@@ -95,6 +103,21 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> dataJson() {
         return Optional.ofNullable(this.dataJson);
+    }
+
+    /**
+     * The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Import(name="dataJsonWoVersion")
+    private @Nullable Output<Integer> dataJsonWoVersion;
+
+    /**
+     * @return The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> dataJsonWoVersion() {
+        return Optional.ofNullable(this.dataJsonWoVersion);
     }
 
     /**
@@ -240,6 +263,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
         this.customMetadata = $.customMetadata;
         this.data = $.data;
         this.dataJson = $.dataJson;
+        this.dataJsonWoVersion = $.dataJsonWoVersion;
         this.deleteAllVersions = $.deleteAllVersions;
         this.disableRead = $.disableRead;
         this.metadata = $.metadata;
@@ -321,28 +345,36 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param data A mapping whose keys are the top-level data keys returned from
-         * Vault and whose values are the corresponding values. This map can only
-         * represent string data, so any non-string values returned from Vault are
-         * serialized as JSON.
+         * @param data **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+         * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only represent string data,
+         * so any non-string values returned from Vault are serialized as JSON.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated. Will no longer be set on a read.
+         * 
          */
+        @Deprecated /* Deprecated. Will no longer be set on a read. */
         public Builder data(@Nullable Output<Map<String,String>> data) {
             $.data = data;
             return this;
         }
 
         /**
-         * @param data A mapping whose keys are the top-level data keys returned from
-         * Vault and whose values are the corresponding values. This map can only
-         * represent string data, so any non-string values returned from Vault are
-         * serialized as JSON.
+         * @param data **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+         * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only represent string data,
+         * so any non-string values returned from Vault are serialized as JSON.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated. Will no longer be set on a read.
+         * 
          */
+        @Deprecated /* Deprecated. Will no longer be set on a read. */
         public Builder data(Map<String,String> data) {
             return data(Output.of(data));
         }
@@ -368,6 +400,27 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dataJson(String dataJson) {
             return dataJson(Output.of(dataJson));
+        }
+
+        /**
+         * @param dataJsonWoVersion The version of the `data_json_wo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataJsonWoVersion(@Nullable Output<Integer> dataJsonWoVersion) {
+            $.dataJsonWoVersion = dataJsonWoVersion;
+            return this;
+        }
+
+        /**
+         * @param dataJsonWoVersion The version of the `data_json_wo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataJsonWoVersion(Integer dataJsonWoVersion) {
+            return dataJsonWoVersion(Output.of(dataJsonWoVersion));
         }
 
         /**

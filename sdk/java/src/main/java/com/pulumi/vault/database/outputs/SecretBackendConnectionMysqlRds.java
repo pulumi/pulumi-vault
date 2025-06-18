@@ -43,6 +43,11 @@ public final class SecretBackendConnectionMysqlRds {
      */
     private @Nullable String password;
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
+    /**
      * @return A JSON encoded credential for use with IAM authorization
      * 
      */
@@ -112,6 +117,13 @@ public final class SecretBackendConnectionMysqlRds {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+    /**
      * @return A JSON encoded credential for use with IAM authorization
      * 
      */
@@ -162,6 +174,7 @@ public final class SecretBackendConnectionMysqlRds {
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable Integer passwordWoVersion;
         private @Nullable String serviceAccountJson;
         private @Nullable String tlsCa;
         private @Nullable String tlsCertificateKey;
@@ -176,6 +189,7 @@ public final class SecretBackendConnectionMysqlRds {
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.serviceAccountJson = defaults.serviceAccountJson;
     	      this.tlsCa = defaults.tlsCa;
     	      this.tlsCertificateKey = defaults.tlsCertificateKey;
@@ -220,6 +234,12 @@ public final class SecretBackendConnectionMysqlRds {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
 
             this.serviceAccountJson = serviceAccountJson;
@@ -257,6 +277,7 @@ public final class SecretBackendConnectionMysqlRds {
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.serviceAccountJson = serviceAccountJson;
             _resultValue.tlsCa = tlsCa;
             _resultValue.tlsCertificateKey = tlsCertificateKey;

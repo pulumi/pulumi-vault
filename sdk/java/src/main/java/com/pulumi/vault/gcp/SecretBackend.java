@@ -98,6 +98,13 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  */
 @ResourceType(type="vault:gcp/secretBackend:SecretBackend")
 public class SecretBackend extends com.pulumi.resources.CustomResource {
@@ -128,6 +135,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> credentials() {
         return Codegen.optional(this.credentials);
+    }
+    /**
+     * The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Export(name="credentialsWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> credentialsWoVersion;
+
+    /**
+     * @return The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Output<Optional<Integer>> credentialsWoVersion() {
+        return Codegen.optional(this.credentialsWoVersion);
     }
     /**
      * The default TTL for credentials

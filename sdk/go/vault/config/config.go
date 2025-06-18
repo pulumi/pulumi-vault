@@ -4,7 +4,7 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
@@ -91,8 +91,6 @@ func GetCaCertFile(ctx *pulumi.Context) string {
 }
 
 // Client authentication credentials.
-//
-// Deprecated: Use authLoginCert instead
 func GetClientAuth(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:clientAuth")
 }

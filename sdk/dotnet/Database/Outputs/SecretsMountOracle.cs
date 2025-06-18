@@ -57,6 +57,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        public readonly int? PasswordWoVersion;
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
@@ -120,6 +124,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            int? passwordWoVersion,
+
             string? pluginName,
 
             ImmutableArray<string> rootRotationStatements,
@@ -148,6 +154,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             Name = name;
             Password = password;
+            PasswordWoVersion = passwordWoVersion;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;

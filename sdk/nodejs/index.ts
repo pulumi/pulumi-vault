@@ -105,11 +105,6 @@ export type NomadSecretRole = import("./nomadSecretRole").NomadSecretRole;
 export const NomadSecretRole: typeof import("./nomadSecretRole").NomadSecretRole = null as any;
 utilities.lazyLoad(exports, ["NomadSecretRole"], () => require("./nomadSecretRole"));
 
-export { PasswordPolicyArgs, PasswordPolicyState } from "./passwordPolicy";
-export type PasswordPolicy = import("./passwordPolicy").PasswordPolicy;
-export const PasswordPolicy: typeof import("./passwordPolicy").PasswordPolicy = null as any;
-utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
-
 export { PluginArgs, PluginState } from "./plugin";
 export type Plugin = import("./plugin").Plugin;
 export const Plugin: typeof import("./plugin").Plugin = null as any;
@@ -254,8 +249,6 @@ const _module = {
                 return new NomadSecretBackend(name, <any>undefined, { urn })
             case "vault:index/nomadSecretRole:NomadSecretRole":
                 return new NomadSecretRole(name, <any>undefined, { urn })
-            case "vault:index/passwordPolicy:PasswordPolicy":
-                return new PasswordPolicy(name, <any>undefined, { urn })
             case "vault:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
             case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
@@ -292,7 +285,6 @@ pulumi.runtime.registerResourceModule("vault", "index/mount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/namespace", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretRole", _module)
-pulumi.runtime.registerResourceModule("vault", "index/passwordPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("vault", "index/pluginPinnedVersion", _module)
 pulumi.runtime.registerResourceModule("vault", "index/policy", _module)

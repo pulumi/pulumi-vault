@@ -7,7 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * ### *Vault-1.9 And Above*
+ * ### 
  *
  * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
  * ```typescript
@@ -30,7 +30,6 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const azure = new vault.azure.Backend("azure", {
- *     useMicrosoftGraphApi: true,
  *     subscriptionId: "11111111-2222-3333-4444-111111111111",
  *     tenantId: "11111111-2222-3333-4444-222222222222",
  *     clientId: "11111111-2222-3333-4444-333333333333",
@@ -38,22 +37,6 @@ import * as utilities from "../utilities";
  *     environment: "AzurePublicCloud",
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
- * });
- * ```
- *
- * ### *Vault-1.8 And Below*
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const azure = new vault.azure.Backend("azure", {
- *     useMicrosoftGraphApi: false,
- *     subscriptionId: "11111111-2222-3333-4444-111111111111",
- *     tenantId: "11111111-2222-3333-4444-222222222222",
- *     clientId: "11111111-2222-3333-4444-333333333333",
- *     clientSecret: "12345678901234567890",
- *     environment: "AzurePublicCloud",
  * });
  * ```
  */
@@ -163,12 +146,6 @@ export class Backend extends pulumi.CustomResource {
      * The tenant id for the Azure Active Directory.
      */
     public readonly tenantId!: pulumi.Output<string>;
-    /**
-     * Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     *
-     * @deprecated This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-     */
-    public readonly useMicrosoftGraphApi!: pulumi.Output<boolean>;
 
     /**
      * Create a Backend resource with the given unique name, arguments, and options.
@@ -199,7 +176,6 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["subscriptionId"] = state ? state.subscriptionId : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
-            resourceInputs["useMicrosoftGraphApi"] = state ? state.useMicrosoftGraphApi : undefined;
         } else {
             const args = argsOrState as BackendArgs | undefined;
             if ((!args || args.subscriptionId === undefined) && !opts.urn) {
@@ -224,7 +200,6 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["subscriptionId"] = args?.subscriptionId ? pulumi.secret(args.subscriptionId) : undefined;
             resourceInputs["tenantId"] = args?.tenantId ? pulumi.secret(args.tenantId) : undefined;
-            resourceInputs["useMicrosoftGraphApi"] = args ? args.useMicrosoftGraphApi : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["clientId", "clientSecret", "subscriptionId", "tenantId"] };
@@ -315,12 +290,6 @@ export interface BackendState {
      * The tenant id for the Azure Active Directory.
      */
     tenantId?: pulumi.Input<string>;
-    /**
-     * Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     *
-     * @deprecated This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-     */
-    useMicrosoftGraphApi?: pulumi.Input<boolean>;
 }
 
 /**
@@ -405,10 +374,4 @@ export interface BackendArgs {
      * The tenant id for the Azure Active Directory.
      */
     tenantId: pulumi.Input<string>;
-    /**
-     * Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     *
-     * @deprecated This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-     */
-    useMicrosoftGraphApi?: pulumi.Input<boolean>;
 }

@@ -20,10 +20,10 @@ public final class SecretV2CustomMetadata {
      */
     private @Nullable Boolean casRequired;
     /**
-     * @return A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * @return **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
      * 
      */
     private @Nullable Map<String,String> data;
@@ -47,10 +47,10 @@ public final class SecretV2CustomMetadata {
         return Optional.ofNullable(this.casRequired);
     }
     /**
-     * @return A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * @return **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
      * 
      */
     public Map<String,String> data() {

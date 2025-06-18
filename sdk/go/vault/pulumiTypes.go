@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -1777,7 +1777,7 @@ func (o ProviderAuthLoginGcpPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 
 type ProviderAuthLoginJwt struct {
 	// A signed JSON Web Token.
-	Jwt string `pulumi:"jwt"`
+	Jwt *string `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
 	Mount *string `pulumi:"mount"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
@@ -1801,7 +1801,7 @@ type ProviderAuthLoginJwtInput interface {
 
 type ProviderAuthLoginJwtArgs struct {
 	// A signed JSON Web Token.
-	Jwt pulumi.StringInput `pulumi:"jwt"`
+	Jwt pulumi.StringPtrInput `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
 	Mount pulumi.StringPtrInput `pulumi:"mount"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
@@ -1890,8 +1890,8 @@ func (o ProviderAuthLoginJwtOutput) ToProviderAuthLoginJwtPtrOutputWithContext(c
 }
 
 // A signed JSON Web Token.
-func (o ProviderAuthLoginJwtOutput) Jwt() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAuthLoginJwt) string { return v.Jwt }).(pulumi.StringOutput)
+func (o ProviderAuthLoginJwtOutput) Jwt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginJwt) *string { return v.Jwt }).(pulumi.StringPtrOutput)
 }
 
 // The path where the authentication engine is mounted.
@@ -1944,7 +1944,7 @@ func (o ProviderAuthLoginJwtPtrOutput) Jwt() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Jwt
+		return v.Jwt
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2766,11 +2766,11 @@ type ProviderAuthLoginRadius struct {
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace *string `pulumi:"namespace"`
 	// The Radius password for username.
-	Password string `pulumi:"password"`
+	Password *string `pulumi:"password"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace *bool `pulumi:"useRootNamespace"`
 	// The Radius username.
-	Username string `pulumi:"username"`
+	Username *string `pulumi:"username"`
 }
 
 // ProviderAuthLoginRadiusInput is an input type that accepts ProviderAuthLoginRadiusArgs and ProviderAuthLoginRadiusOutput values.
@@ -2790,11 +2790,11 @@ type ProviderAuthLoginRadiusArgs struct {
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The Radius password for username.
-	Password pulumi.StringInput `pulumi:"password"`
+	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace pulumi.BoolPtrInput `pulumi:"useRootNamespace"`
 	// The Radius username.
-	Username pulumi.StringInput `pulumi:"username"`
+	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
 func (ProviderAuthLoginRadiusArgs) ElementType() reflect.Type {
@@ -2885,8 +2885,8 @@ func (o ProviderAuthLoginRadiusOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // The Radius password for username.
-func (o ProviderAuthLoginRadiusOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAuthLoginRadius) string { return v.Password }).(pulumi.StringOutput)
+func (o ProviderAuthLoginRadiusOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginRadius) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // Authenticate to the root Vault namespace. Conflicts with namespace
@@ -2895,8 +2895,8 @@ func (o ProviderAuthLoginRadiusOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 }
 
 // The Radius username.
-func (o ProviderAuthLoginRadiusOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAuthLoginRadius) string { return v.Username }).(pulumi.StringOutput)
+func (o ProviderAuthLoginRadiusOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginRadius) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 type ProviderAuthLoginRadiusPtrOutput struct{ *pulumi.OutputState }
@@ -2949,7 +2949,7 @@ func (o ProviderAuthLoginRadiusPtrOutput) Password() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Password
+		return v.Password
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2969,13 +2969,13 @@ func (o ProviderAuthLoginRadiusPtrOutput) Username() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Username
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
 type ProviderAuthLoginTokenFile struct {
 	// The name of a file containing a single line that is a valid Vault token
-	Filename string `pulumi:"filename"`
+	Filename *string `pulumi:"filename"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace *string `pulumi:"namespace"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
@@ -2995,7 +2995,7 @@ type ProviderAuthLoginTokenFileInput interface {
 
 type ProviderAuthLoginTokenFileArgs struct {
 	// The name of a file containing a single line that is a valid Vault token
-	Filename pulumi.StringInput `pulumi:"filename"`
+	Filename pulumi.StringPtrInput `pulumi:"filename"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
@@ -3080,8 +3080,8 @@ func (o ProviderAuthLoginTokenFileOutput) ToProviderAuthLoginTokenFilePtrOutputW
 }
 
 // The name of a file containing a single line that is a valid Vault token
-func (o ProviderAuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAuthLoginTokenFile) string { return v.Filename }).(pulumi.StringOutput)
+func (o ProviderAuthLoginTokenFileOutput) Filename() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginTokenFile) *string { return v.Filename }).(pulumi.StringPtrOutput)
 }
 
 // The authentication engine's namespace. Conflicts with use_root_namespace
@@ -3124,7 +3124,7 @@ func (o ProviderAuthLoginTokenFilePtrOutput) Filename() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Filename
+		return v.Filename
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3160,7 +3160,7 @@ type ProviderAuthLoginUserpass struct {
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace *bool `pulumi:"useRootNamespace"`
 	// Login with username
-	Username string `pulumi:"username"`
+	Username *string `pulumi:"username"`
 }
 
 // ProviderAuthLoginUserpassInput is an input type that accepts ProviderAuthLoginUserpassArgs and ProviderAuthLoginUserpassOutput values.
@@ -3186,7 +3186,7 @@ type ProviderAuthLoginUserpassArgs struct {
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace pulumi.BoolPtrInput `pulumi:"useRootNamespace"`
 	// Login with username
-	Username pulumi.StringInput `pulumi:"username"`
+	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
 func (ProviderAuthLoginUserpassArgs) ElementType() reflect.Type {
@@ -3292,8 +3292,8 @@ func (o ProviderAuthLoginUserpassOutput) UseRootNamespace() pulumi.BoolPtrOutput
 }
 
 // Login with username
-func (o ProviderAuthLoginUserpassOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v ProviderAuthLoginUserpass) string { return v.Username }).(pulumi.StringOutput)
+func (o ProviderAuthLoginUserpassOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginUserpass) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 type ProviderAuthLoginUserpassPtrOutput struct{ *pulumi.OutputState }
@@ -3376,7 +3376,7 @@ func (o ProviderAuthLoginUserpassPtrOutput) Username() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.Username
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 

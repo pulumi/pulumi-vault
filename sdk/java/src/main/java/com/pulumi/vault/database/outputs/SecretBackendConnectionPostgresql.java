@@ -54,6 +54,11 @@ public final class SecretBackendConnectionPostgresql {
      */
     private @Nullable String passwordAuthentication;
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
+    /**
      * @return The secret key used for the x509 client certificate. Must be PEM encoded.
      * 
      */
@@ -147,6 +152,13 @@ public final class SecretBackendConnectionPostgresql {
         return Optional.ofNullable(this.passwordAuthentication);
     }
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+    /**
      * @return The secret key used for the x509 client certificate. Must be PEM encoded.
      * 
      */
@@ -213,6 +225,7 @@ public final class SecretBackendConnectionPostgresql {
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
         private @Nullable String passwordAuthentication;
+        private @Nullable Integer passwordWoVersion;
         private @Nullable String privateKey;
         private @Nullable Boolean selfManaged;
         private @Nullable String serviceAccountJson;
@@ -231,6 +244,7 @@ public final class SecretBackendConnectionPostgresql {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
     	      this.passwordAuthentication = defaults.passwordAuthentication;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.privateKey = defaults.privateKey;
     	      this.selfManaged = defaults.selfManaged;
     	      this.serviceAccountJson = defaults.serviceAccountJson;
@@ -289,6 +303,12 @@ public final class SecretBackendConnectionPostgresql {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder privateKey(@Nullable String privateKey) {
 
             this.privateKey = privateKey;
@@ -340,6 +360,7 @@ public final class SecretBackendConnectionPostgresql {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
             _resultValue.passwordAuthentication = passwordAuthentication;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.privateKey = privateKey;
             _resultValue.selfManaged = selfManaged;
             _resultValue.serviceAccountJson = serviceAccountJson;

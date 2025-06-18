@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### *Vault-1.9 And Above*
+ * ### 
  * 
  * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -86,7 +86,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azure = new Backend("azure", BackendArgs.builder()
- *             .useMicrosoftGraphApi(true)
  *             .subscriptionId("11111111-2222-3333-4444-111111111111")
  *             .tenantId("11111111-2222-3333-4444-222222222222")
  *             .clientId("11111111-2222-3333-4444-333333333333")
@@ -94,46 +93,6 @@ import javax.annotation.Nullable;
  *             .environment("AzurePublicCloud")
  *             .rotationSchedule("0 * * * SAT")
  *             .rotationWindow(3600)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ### *Vault-1.8 And Below*
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.azure.Backend;
- * import com.pulumi.vault.azure.BackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var azure = new Backend("azure", BackendArgs.builder()
- *             .useMicrosoftGraphApi(false)
- *             .subscriptionId("11111111-2222-3333-4444-111111111111")
- *             .tenantId("11111111-2222-3333-4444-222222222222")
- *             .clientId("11111111-2222-3333-4444-333333333333")
- *             .clientSecret("12345678901234567890")
- *             .environment("AzurePublicCloud")
  *             .build());
  * 
  *     }
@@ -396,24 +355,6 @@ public class Backend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> tenantId() {
         return this.tenantId;
-    }
-    /**
-     * Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     * 
-     * @deprecated
-     * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-     * 
-     */
-    @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
-    @Export(name="useMicrosoftGraphApi", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> useMicrosoftGraphApi;
-
-    /**
-     * @return Use the Microsoft Graph API. Should be set to true on vault-1.10+
-     * 
-     */
-    public Output<Boolean> useMicrosoftGraphApi() {
-        return this.useMicrosoftGraphApi;
     }
 
     /**

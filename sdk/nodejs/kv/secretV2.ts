@@ -64,6 +64,13 @@ import * as utilities from "../utilities";
  *
  * * `data` - (Optional) A string to string map describing the secret.
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `dataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * KV-V2 secrets can be imported using the `path`, e.g.
@@ -114,17 +121,23 @@ export class SecretV2 extends pulumi.CustomResource {
      */
     public readonly customMetadata!: pulumi.Output<outputs.kv.SecretV2CustomMetadata>;
     /**
-     * A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
+     *
+     * @deprecated Deprecated. Will no longer be set on a read.
      */
     public /*out*/ readonly data!: pulumi.Output<{[key: string]: string}>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path.
      */
-    public readonly dataJson!: pulumi.Output<string>;
+    public readonly dataJson!: pulumi.Output<string | undefined>;
+    /**
+     * The version of the `dataJsonWo`. For more info see updating write-only attributes.
+     */
+    public readonly dataJsonWoVersion!: pulumi.Output<number | undefined>;
     /**
      * If set to true, permanently deletes all
      * versions for the specified key.
@@ -183,6 +196,7 @@ export class SecretV2 extends pulumi.CustomResource {
             resourceInputs["customMetadata"] = state ? state.customMetadata : undefined;
             resourceInputs["data"] = state ? state.data : undefined;
             resourceInputs["dataJson"] = state ? state.dataJson : undefined;
+            resourceInputs["dataJsonWoVersion"] = state ? state.dataJsonWoVersion : undefined;
             resourceInputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
             resourceInputs["disableRead"] = state ? state.disableRead : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
@@ -193,15 +207,13 @@ export class SecretV2 extends pulumi.CustomResource {
             resourceInputs["path"] = state ? state.path : undefined;
         } else {
             const args = argsOrState as SecretV2Args | undefined;
-            if ((!args || args.dataJson === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'dataJson'");
-            }
             if ((!args || args.mount === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
             resourceInputs["cas"] = args ? args.cas : undefined;
             resourceInputs["customMetadata"] = args ? args.customMetadata : undefined;
             resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
+            resourceInputs["dataJsonWoVersion"] = args ? args.dataJsonWoVersion : undefined;
             resourceInputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
             resourceInputs["disableRead"] = args ? args.disableRead : undefined;
             resourceInputs["mount"] = args ? args.mount : undefined;
@@ -237,10 +249,12 @@ export interface SecretV2State {
      */
     customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata>;
     /**
-     * A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
+     *
+     * @deprecated Deprecated. Will no longer be set on a read.
      */
     data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -248,6 +262,10 @@ export interface SecretV2State {
      * written as the secret data at the given path.
      */
     dataJson?: pulumi.Input<string>;
+    /**
+     * The version of the `dataJsonWo`. For more info see updating write-only attributes.
+     */
+    dataJsonWoVersion?: pulumi.Input<number>;
     /**
      * If set to true, permanently deletes all
      * versions for the specified key.
@@ -311,7 +329,11 @@ export interface SecretV2Args {
      * JSON-encoded string that will be
      * written as the secret data at the given path.
      */
-    dataJson: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string>;
+    /**
+     * The version of the `dataJsonWo`. For more info see updating write-only attributes.
+     */
+    dataJsonWoVersion?: pulumi.Input<number>;
     /**
      * If set to true, permanently deletes all
      * versions for the specified key.

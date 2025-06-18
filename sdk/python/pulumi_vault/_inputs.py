@@ -1211,13 +1211,13 @@ class ProviderAuthLoginGcpArgs:
 
 if not MYPY:
     class ProviderAuthLoginJwtArgsDict(TypedDict):
-        jwt: pulumi.Input[builtins.str]
-        """
-        A signed JSON Web Token.
-        """
         role: pulumi.Input[builtins.str]
         """
         Name of the login role.
+        """
+        jwt: NotRequired[pulumi.Input[builtins.str]]
+        """
+        A signed JSON Web Token.
         """
         mount: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -1237,38 +1237,27 @@ elif False:
 @pulumi.input_type
 class ProviderAuthLoginJwtArgs:
     def __init__(__self__, *,
-                 jwt: pulumi.Input[builtins.str],
                  role: pulumi.Input[builtins.str],
+                 jwt: Optional[pulumi.Input[builtins.str]] = None,
                  mount: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  use_root_namespace: Optional[pulumi.Input[builtins.bool]] = None):
         """
-        :param pulumi.Input[builtins.str] jwt: A signed JSON Web Token.
         :param pulumi.Input[builtins.str] role: Name of the login role.
+        :param pulumi.Input[builtins.str] jwt: A signed JSON Web Token.
         :param pulumi.Input[builtins.str] mount: The path where the authentication engine is mounted.
         :param pulumi.Input[builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param pulumi.Input[builtins.bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
         """
-        pulumi.set(__self__, "jwt", jwt)
         pulumi.set(__self__, "role", role)
+        if jwt is not None:
+            pulumi.set(__self__, "jwt", jwt)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if use_root_namespace is not None:
             pulumi.set(__self__, "use_root_namespace", use_root_namespace)
-
-    @property
-    @pulumi.getter
-    def jwt(self) -> pulumi.Input[builtins.str]:
-        """
-        A signed JSON Web Token.
-        """
-        return pulumi.get(self, "jwt")
-
-    @jwt.setter
-    def jwt(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "jwt", value)
 
     @property
     @pulumi.getter
@@ -1281,6 +1270,18 @@ class ProviderAuthLoginJwtArgs:
     @role.setter
     def role(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter
+    def jwt(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        A signed JSON Web Token.
+        """
+        return pulumi.get(self, "jwt")
+
+    @jwt.setter
+    def jwt(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "jwt", value)
 
     @property
     @pulumi.getter
@@ -1794,14 +1795,6 @@ class ProviderAuthLoginOidcArgs:
 
 if not MYPY:
     class ProviderAuthLoginRadiusArgsDict(TypedDict):
-        password: pulumi.Input[builtins.str]
-        """
-        The Radius password for username.
-        """
-        username: pulumi.Input[builtins.str]
-        """
-        The Radius username.
-        """
         mount: NotRequired[pulumi.Input[builtins.str]]
         """
         The path where the authentication engine is mounted.
@@ -1810,9 +1803,17 @@ if not MYPY:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
+        password: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The Radius password for username.
+        """
         use_root_namespace: NotRequired[pulumi.Input[builtins.bool]]
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
+        """
+        username: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The Radius username.
         """
 elif False:
     ProviderAuthLoginRadiusArgsDict: TypeAlias = Mapping[str, Any]
@@ -1820,50 +1821,28 @@ elif False:
 @pulumi.input_type
 class ProviderAuthLoginRadiusArgs:
     def __init__(__self__, *,
-                 password: pulumi.Input[builtins.str],
-                 username: pulumi.Input[builtins.str],
                  mount: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[builtins.bool]] = None):
+                 password: Optional[pulumi.Input[builtins.str]] = None,
+                 use_root_namespace: Optional[pulumi.Input[builtins.bool]] = None,
+                 username: Optional[pulumi.Input[builtins.str]] = None):
         """
-        :param pulumi.Input[builtins.str] password: The Radius password for username.
-        :param pulumi.Input[builtins.str] username: The Radius username.
         :param pulumi.Input[builtins.str] mount: The path where the authentication engine is mounted.
         :param pulumi.Input[builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[builtins.str] password: The Radius password for username.
         :param pulumi.Input[builtins.bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param pulumi.Input[builtins.str] username: The Radius username.
         """
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if use_root_namespace is not None:
             pulumi.set(__self__, "use_root_namespace", use_root_namespace)
-
-    @property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[builtins.str]:
-        """
-        The Radius password for username.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "password", value)
-
-    @property
-    @pulumi.getter
-    def username(self) -> pulumi.Input[builtins.str]:
-        """
-        The Radius username.
-        """
-        return pulumi.get(self, "username")
-
-    @username.setter
-    def username(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "username", value)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -1890,6 +1869,18 @@ class ProviderAuthLoginRadiusArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The Radius password for username.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -1901,10 +1892,22 @@ class ProviderAuthLoginRadiusArgs:
     def use_root_namespace(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The Radius username.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "username", value)
+
 
 if not MYPY:
     class ProviderAuthLoginTokenFileArgsDict(TypedDict):
-        filename: pulumi.Input[builtins.str]
+        filename: NotRequired[pulumi.Input[builtins.str]]
         """
         The name of a file containing a single line that is a valid Vault token
         """
@@ -1922,7 +1925,7 @@ elif False:
 @pulumi.input_type
 class ProviderAuthLoginTokenFileArgs:
     def __init__(__self__, *,
-                 filename: pulumi.Input[builtins.str],
+                 filename: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  use_root_namespace: Optional[pulumi.Input[builtins.bool]] = None):
         """
@@ -1930,7 +1933,8 @@ class ProviderAuthLoginTokenFileArgs:
         :param pulumi.Input[builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param pulumi.Input[builtins.bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
         """
-        pulumi.set(__self__, "filename", filename)
+        if filename is not None:
+            pulumi.set(__self__, "filename", filename)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if use_root_namespace is not None:
@@ -1938,14 +1942,14 @@ class ProviderAuthLoginTokenFileArgs:
 
     @property
     @pulumi.getter
-    def filename(self) -> pulumi.Input[builtins.str]:
+    def filename(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The name of a file containing a single line that is a valid Vault token
         """
         return pulumi.get(self, "filename")
 
     @filename.setter
-    def filename(self, value: pulumi.Input[builtins.str]):
+    def filename(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "filename", value)
 
     @property
@@ -1975,10 +1979,6 @@ class ProviderAuthLoginTokenFileArgs:
 
 if not MYPY:
     class ProviderAuthLoginUserpassArgsDict(TypedDict):
-        username: pulumi.Input[builtins.str]
-        """
-        Login with username
-        """
         mount: NotRequired[pulumi.Input[builtins.str]]
         """
         The path where the authentication engine is mounted.
@@ -1999,27 +1999,30 @@ if not MYPY:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
+        username: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Login with username
+        """
 elif False:
     ProviderAuthLoginUserpassArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ProviderAuthLoginUserpassArgs:
     def __init__(__self__, *,
-                 username: pulumi.Input[builtins.str],
                  mount: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  password_file: Optional[pulumi.Input[builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[builtins.bool]] = None):
+                 use_root_namespace: Optional[pulumi.Input[builtins.bool]] = None,
+                 username: Optional[pulumi.Input[builtins.str]] = None):
         """
-        :param pulumi.Input[builtins.str] username: Login with username
         :param pulumi.Input[builtins.str] mount: The path where the authentication engine is mounted.
         :param pulumi.Input[builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param pulumi.Input[builtins.str] password: Login with password
         :param pulumi.Input[builtins.str] password_file: Login with password from a file
         :param pulumi.Input[builtins.bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param pulumi.Input[builtins.str] username: Login with username
         """
-        pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
@@ -2030,18 +2033,8 @@ class ProviderAuthLoginUserpassArgs:
             pulumi.set(__self__, "password_file", password_file)
         if use_root_namespace is not None:
             pulumi.set(__self__, "use_root_namespace", use_root_namespace)
-
-    @property
-    @pulumi.getter
-    def username(self) -> pulumi.Input[builtins.str]:
-        """
-        Login with username
-        """
-        return pulumi.get(self, "username")
-
-    @username.setter
-    def username(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "username", value)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -2102,6 +2095,18 @@ class ProviderAuthLoginUserpassArgs:
     @use_root_namespace.setter
     def use_root_namespace(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Login with username
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "username", value)
 
 
 if not MYPY:

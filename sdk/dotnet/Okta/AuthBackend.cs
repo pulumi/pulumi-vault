@@ -106,13 +106,6 @@ namespace Pulumi.Vault.Okta
         public Output<ImmutableArray<Outputs.AuthBackendGroup>> Groups { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum duration after which authentication will be expired
-        /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Output("maxTtl")]
-        public Output<string?> MaxTtl { get; private set; } = null!;
-
-        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -193,13 +186,6 @@ namespace Pulumi.Vault.Okta
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
-
-        /// <summary>
-        /// Duration after which authentication will be expired.
-        /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Output("ttl")]
-        public Output<string?> Ttl { get; private set; } = null!;
 
         /// <summary>
         /// Associate Okta users with groups or policies within Vault.
@@ -295,13 +281,6 @@ namespace Pulumi.Vault.Okta
             get => _groups ?? (_groups = new InputList<Inputs.AuthBackendGroupArgs>());
             set => _groups = value;
         }
-
-        /// <summary>
-        /// Maximum duration after which authentication will be expired
-        /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -407,13 +386,6 @@ namespace Pulumi.Vault.Okta
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
-        /// <summary>
-        /// Duration after which authentication will be expired.
-        /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("ttl")]
-        public Input<string>? Ttl { get; set; }
-
         [Input("users")]
         private InputList<Inputs.AuthBackendUserArgs>? _users;
 
@@ -478,13 +450,6 @@ namespace Pulumi.Vault.Okta
             get => _groups ?? (_groups = new InputList<Inputs.AuthBackendGroupGetArgs>());
             set => _groups = value;
         }
-
-        /// <summary>
-        /// Maximum duration after which authentication will be expired
-        /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("maxTtl")]
-        public Input<string>? MaxTtl { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -589,13 +554,6 @@ namespace Pulumi.Vault.Okta
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
-
-        /// <summary>
-        /// Duration after which authentication will be expired.
-        /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        /// </summary>
-        [Input("ttl")]
-        public Input<string>? Ttl { get; set; }
 
         [Input("users")]
         private InputList<Inputs.AuthBackendUserGetArgs>? _users;

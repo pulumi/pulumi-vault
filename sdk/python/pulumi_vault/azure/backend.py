@@ -35,8 +35,7 @@ class BackendArgs:
                  path: Optional[pulumi.Input[builtins.str]] = None,
                  rotation_period: Optional[pulumi.Input[builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[builtins.int]] = None,
-                 use_microsoft_graph_api: Optional[pulumi.Input[builtins.bool]] = None):
+                 rotation_window: Optional[pulumi.Input[builtins.int]] = None):
         """
         The set of arguments for constructing a Backend resource.
         :param pulumi.Input[builtins.str] subscription_id: The subscription id for the Azure Active Directory.
@@ -69,7 +68,6 @@ class BackendArgs:
         :param pulumi.Input[builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
-        :param pulumi.Input[builtins.bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         pulumi.set(__self__, "subscription_id", subscription_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -101,11 +99,6 @@ class BackendArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
-        if use_microsoft_graph_api is not None:
-            warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
-            pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-        if use_microsoft_graph_api is not None:
-            pulumi.set(__self__, "use_microsoft_graph_api", use_microsoft_graph_api)
 
     @property
     @pulumi.getter(name="subscriptionId")
@@ -313,19 +306,6 @@ class BackendArgs:
     def rotation_window(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
-    @property
-    @pulumi.getter(name="useMicrosoftGraphApi")
-    @_utilities.deprecated("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-    def use_microsoft_graph_api(self) -> Optional[pulumi.Input[builtins.bool]]:
-        """
-        Use the Microsoft Graph API. Should be set to true on vault-1.10+
-        """
-        return pulumi.get(self, "use_microsoft_graph_api")
-
-    @use_microsoft_graph_api.setter
-    def use_microsoft_graph_api(self, value: Optional[pulumi.Input[builtins.bool]]):
-        pulumi.set(self, "use_microsoft_graph_api", value)
-
 
 @pulumi.input_type
 class _BackendState:
@@ -345,8 +325,7 @@ class _BackendState:
                  rotation_schedule: Optional[pulumi.Input[builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[builtins.int]] = None,
                  subscription_id: Optional[pulumi.Input[builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[builtins.str]] = None,
-                 use_microsoft_graph_api: Optional[pulumi.Input[builtins.bool]] = None):
+                 tenant_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backend resources.
         :param pulumi.Input[builtins.str] client_id: The OAuth2 client id to connect to Azure.
@@ -379,7 +358,6 @@ class _BackendState:
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[builtins.str] tenant_id: The tenant id for the Azure Active Directory.
-        :param pulumi.Input[builtins.bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -413,11 +391,6 @@ class _BackendState:
             pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
-        if use_microsoft_graph_api is not None:
-            warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
-            pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-        if use_microsoft_graph_api is not None:
-            pulumi.set(__self__, "use_microsoft_graph_api", use_microsoft_graph_api)
 
     @property
     @pulumi.getter(name="clientId")
@@ -625,19 +598,6 @@ class _BackendState:
     def tenant_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
-    @property
-    @pulumi.getter(name="useMicrosoftGraphApi")
-    @_utilities.deprecated("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-    def use_microsoft_graph_api(self) -> Optional[pulumi.Input[builtins.bool]]:
-        """
-        Use the Microsoft Graph API. Should be set to true on vault-1.10+
-        """
-        return pulumi.get(self, "use_microsoft_graph_api")
-
-    @use_microsoft_graph_api.setter
-    def use_microsoft_graph_api(self, value: Optional[pulumi.Input[builtins.bool]]):
-        pulumi.set(self, "use_microsoft_graph_api", value)
-
 
 @pulumi.type_token("vault:azure/backend:Backend")
 class Backend(pulumi.CustomResource):
@@ -661,12 +621,11 @@ class Backend(pulumi.CustomResource):
                  rotation_window: Optional[pulumi.Input[builtins.int]] = None,
                  subscription_id: Optional[pulumi.Input[builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[builtins.str]] = None,
-                 use_microsoft_graph_api: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         """
         ## Example Usage
 
-        ### *Vault-1.9 And Above*
+        ### 
 
         You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
         ```python
@@ -688,7 +647,6 @@ class Backend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            use_microsoft_graph_api=True,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
             client_id="11111111-2222-3333-4444-333333333333",
@@ -696,21 +654,6 @@ class Backend(pulumi.CustomResource):
             environment="AzurePublicCloud",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
-        ```
-
-        ### *Vault-1.8 And Below*
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        azure = vault.azure.Backend("azure",
-            use_microsoft_graph_api=False,
-            subscription_id="11111111-2222-3333-4444-111111111111",
-            tenant_id="11111111-2222-3333-4444-222222222222",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud")
         ```
 
         :param str resource_name: The name of the resource.
@@ -745,7 +688,6 @@ class Backend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[builtins.str] tenant_id: The tenant id for the Azure Active Directory.
-        :param pulumi.Input[builtins.bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         ...
     @overload
@@ -756,7 +698,7 @@ class Backend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### *Vault-1.9 And Above*
+        ### 
 
         You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
         ```python
@@ -778,7 +720,6 @@ class Backend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            use_microsoft_graph_api=True,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
             client_id="11111111-2222-3333-4444-333333333333",
@@ -786,21 +727,6 @@ class Backend(pulumi.CustomResource):
             environment="AzurePublicCloud",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
-        ```
-
-        ### *Vault-1.8 And Below*
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        azure = vault.azure.Backend("azure",
-            use_microsoft_graph_api=False,
-            subscription_id="11111111-2222-3333-4444-111111111111",
-            tenant_id="11111111-2222-3333-4444-222222222222",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud")
         ```
 
         :param str resource_name: The name of the resource.
@@ -834,7 +760,6 @@ class Backend(pulumi.CustomResource):
                  rotation_window: Optional[pulumi.Input[builtins.int]] = None,
                  subscription_id: Optional[pulumi.Input[builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[builtins.str]] = None,
-                 use_microsoft_graph_api: Optional[pulumi.Input[builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -864,7 +789,6 @@ class Backend(pulumi.CustomResource):
             if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__.__dict__["tenant_id"] = None if tenant_id is None else pulumi.Output.secret(tenant_id)
-            __props__.__dict__["use_microsoft_graph_api"] = use_microsoft_graph_api
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "subscriptionId", "tenantId"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Backend, __self__).__init__(
@@ -892,8 +816,7 @@ class Backend(pulumi.CustomResource):
             rotation_schedule: Optional[pulumi.Input[builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[builtins.int]] = None,
             subscription_id: Optional[pulumi.Input[builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[builtins.str]] = None,
-            use_microsoft_graph_api: Optional[pulumi.Input[builtins.bool]] = None) -> 'Backend':
+            tenant_id: Optional[pulumi.Input[builtins.str]] = None) -> 'Backend':
         """
         Get an existing Backend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -931,7 +854,6 @@ class Backend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[builtins.str] tenant_id: The tenant id for the Azure Active Directory.
-        :param pulumi.Input[builtins.bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -953,7 +875,6 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["subscription_id"] = subscription_id
         __props__.__dict__["tenant_id"] = tenant_id
-        __props__.__dict__["use_microsoft_graph_api"] = use_microsoft_graph_api
         return Backend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1097,13 +1018,4 @@ class Backend(pulumi.CustomResource):
         The tenant id for the Azure Active Directory.
         """
         return pulumi.get(self, "tenant_id")
-
-    @property
-    @pulumi.getter(name="useMicrosoftGraphApi")
-    @_utilities.deprecated("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-    def use_microsoft_graph_api(self) -> pulumi.Output[builtins.bool]:
-        """
-        Use the Microsoft Graph API. Should be set to true on vault-1.10+
-        """
-        return pulumi.get(self, "use_microsoft_graph_api")
 

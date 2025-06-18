@@ -55,6 +55,13 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+    ///   **Note**: This property is write-only and will not be read from the API.
     /// </summary>
     [VaultResourceType("vault:gcp/secretBackend:SecretBackend")]
     public partial class SecretBackend : global::Pulumi.CustomResource
@@ -70,6 +77,12 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the `credentials_wo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Output("credentialsWoVersion")]
+        public Output<int?> CredentialsWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The default TTL for credentials
@@ -245,6 +258,12 @@ namespace Pulumi.Vault.Gcp
         }
 
         /// <summary>
+        /// The version of the `credentials_wo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("credentialsWoVersion")]
+        public Input<int>? CredentialsWoVersion { get; set; }
+
+        /// <summary>
         /// The default TTL for credentials
         /// issued by this backend. Defaults to '0'.
         /// </summary>
@@ -380,6 +399,12 @@ namespace Pulumi.Vault.Gcp
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The version of the `credentials_wo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("credentialsWoVersion")]
+        public Input<int>? CredentialsWoVersion { get; set; }
 
         /// <summary>
         /// The default TTL for credentials

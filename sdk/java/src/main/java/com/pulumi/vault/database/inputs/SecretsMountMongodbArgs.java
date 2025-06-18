@@ -162,6 +162,21 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * Version counter for root credential password write-only field
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
      * Specifies the name of the plugin to use.
      * 
      */
@@ -303,6 +318,7 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
         this.maxOpenConnections = $.maxOpenConnections;
         this.name = $.name;
         this.password = $.password;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
         this.rootRotationStatements = $.rootRotationStatements;
         this.rotationPeriod = $.rotationPeriod;
@@ -535,6 +551,27 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

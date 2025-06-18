@@ -5,7 +5,6 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -51,15 +50,15 @@ public final class ProviderAuthLoginRadiusArgs extends com.pulumi.resources.Reso
      * The Radius password for username.
      * 
      */
-    @Import(name="password", required=true)
-    private Output<String> password;
+    @Import(name="password")
+    private @Nullable Output<String> password;
 
     /**
      * @return The Radius password for username.
      * 
      */
-    public Output<String> password() {
-        return this.password;
+    public Optional<Output<String>> password() {
+        return Optional.ofNullable(this.password);
     }
 
     /**
@@ -81,15 +80,15 @@ public final class ProviderAuthLoginRadiusArgs extends com.pulumi.resources.Reso
      * The Radius username.
      * 
      */
-    @Import(name="username", required=true)
-    private Output<String> username;
+    @Import(name="username")
+    private @Nullable Output<String> username;
 
     /**
      * @return The Radius username.
      * 
      */
-    public Output<String> username() {
-        return this.username;
+    public Optional<Output<String>> username() {
+        return Optional.ofNullable(this.username);
     }
 
     private ProviderAuthLoginRadiusArgs() {}
@@ -168,7 +167,7 @@ public final class ProviderAuthLoginRadiusArgs extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder password(Output<String> password) {
+        public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
         }
@@ -210,7 +209,7 @@ public final class ProviderAuthLoginRadiusArgs extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder username(Output<String> username) {
+        public Builder username(@Nullable Output<String> username) {
             $.username = username;
             return this;
         }
@@ -226,12 +225,6 @@ public final class ProviderAuthLoginRadiusArgs extends com.pulumi.resources.Reso
         }
 
         public ProviderAuthLoginRadiusArgs build() {
-            if ($.password == null) {
-                throw new MissingRequiredPropertyException("ProviderAuthLoginRadiusArgs", "password");
-            }
-            if ($.username == null) {
-                throw new MissingRequiredPropertyException("ProviderAuthLoginRadiusArgs", "username");
-            }
             return $;
         }
     }

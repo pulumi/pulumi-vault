@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -791,7 +791,7 @@ func (o AuthLoginGcpOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 
 type AuthLoginJwt struct {
 	// A signed JSON Web Token.
-	Jwt string `pulumi:"jwt"`
+	Jwt *string `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
 	Mount *string `pulumi:"mount"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
@@ -815,7 +815,7 @@ type AuthLoginJwtInput interface {
 
 type AuthLoginJwtArgs struct {
 	// A signed JSON Web Token.
-	Jwt pulumi.StringInput `pulumi:"jwt"`
+	Jwt pulumi.StringPtrInput `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
 	Mount pulumi.StringPtrInput `pulumi:"mount"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
@@ -853,8 +853,8 @@ func (o AuthLoginJwtOutput) ToAuthLoginJwtOutputWithContext(ctx context.Context)
 }
 
 // A signed JSON Web Token.
-func (o AuthLoginJwtOutput) Jwt() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthLoginJwt) string { return v.Jwt }).(pulumi.StringOutput)
+func (o AuthLoginJwtOutput) Jwt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginJwt) *string { return v.Jwt }).(pulumi.StringPtrOutput)
 }
 
 // The path where the authentication engine is mounted.
@@ -1210,11 +1210,11 @@ type AuthLoginRadius struct {
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace *string `pulumi:"namespace"`
 	// The Radius password for username.
-	Password string `pulumi:"password"`
+	Password *string `pulumi:"password"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace *bool `pulumi:"useRootNamespace"`
 	// The Radius username.
-	Username string `pulumi:"username"`
+	Username *string `pulumi:"username"`
 }
 
 // AuthLoginRadiusInput is an input type that accepts AuthLoginRadiusArgs and AuthLoginRadiusOutput values.
@@ -1234,11 +1234,11 @@ type AuthLoginRadiusArgs struct {
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The Radius password for username.
-	Password pulumi.StringInput `pulumi:"password"`
+	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace pulumi.BoolPtrInput `pulumi:"useRootNamespace"`
 	// The Radius username.
-	Username pulumi.StringInput `pulumi:"username"`
+	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
 func (AuthLoginRadiusArgs) ElementType() reflect.Type {
@@ -1278,8 +1278,8 @@ func (o AuthLoginRadiusOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // The Radius password for username.
-func (o AuthLoginRadiusOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthLoginRadius) string { return v.Password }).(pulumi.StringOutput)
+func (o AuthLoginRadiusOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginRadius) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // Authenticate to the root Vault namespace. Conflicts with namespace
@@ -1288,13 +1288,13 @@ func (o AuthLoginRadiusOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 }
 
 // The Radius username.
-func (o AuthLoginRadiusOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthLoginRadius) string { return v.Username }).(pulumi.StringOutput)
+func (o AuthLoginRadiusOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginRadius) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 type AuthLoginTokenFile struct {
 	// The name of a file containing a single line that is a valid Vault token
-	Filename string `pulumi:"filename"`
+	Filename *string `pulumi:"filename"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace *string `pulumi:"namespace"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
@@ -1314,7 +1314,7 @@ type AuthLoginTokenFileInput interface {
 
 type AuthLoginTokenFileArgs struct {
 	// The name of a file containing a single line that is a valid Vault token
-	Filename pulumi.StringInput `pulumi:"filename"`
+	Filename pulumi.StringPtrInput `pulumi:"filename"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Authenticate to the root Vault namespace. Conflicts with namespace
@@ -1348,8 +1348,8 @@ func (o AuthLoginTokenFileOutput) ToAuthLoginTokenFileOutputWithContext(ctx cont
 }
 
 // The name of a file containing a single line that is a valid Vault token
-func (o AuthLoginTokenFileOutput) Filename() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthLoginTokenFile) string { return v.Filename }).(pulumi.StringOutput)
+func (o AuthLoginTokenFileOutput) Filename() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginTokenFile) *string { return v.Filename }).(pulumi.StringPtrOutput)
 }
 
 // The authentication engine's namespace. Conflicts with use_root_namespace
@@ -1374,7 +1374,7 @@ type AuthLoginUserpass struct {
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace *bool `pulumi:"useRootNamespace"`
 	// Login with username
-	Username string `pulumi:"username"`
+	Username *string `pulumi:"username"`
 }
 
 // AuthLoginUserpassInput is an input type that accepts AuthLoginUserpassArgs and AuthLoginUserpassOutput values.
@@ -1400,7 +1400,7 @@ type AuthLoginUserpassArgs struct {
 	// Authenticate to the root Vault namespace. Conflicts with namespace
 	UseRootNamespace pulumi.BoolPtrInput `pulumi:"useRootNamespace"`
 	// Login with username
-	Username pulumi.StringInput `pulumi:"username"`
+	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
 func (AuthLoginUserpassArgs) ElementType() reflect.Type {
@@ -1455,8 +1455,8 @@ func (o AuthLoginUserpassOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 }
 
 // Login with username
-func (o AuthLoginUserpassOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v AuthLoginUserpass) string { return v.Username }).(pulumi.StringOutput)
+func (o AuthLoginUserpassOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginUserpass) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 type ClientAuth struct {

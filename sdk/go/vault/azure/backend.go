@@ -8,13 +8,13 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // ## Example Usage
 //
-// ### *Vault-1.9 And Above*
+// ###
 //
 // You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
 // ```go
@@ -22,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/azure"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -52,7 +52,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/azure"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -60,45 +60,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				UseMicrosoftGraphApi: pulumi.Bool(true),
-//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
-//				ClientSecret:         pulumi.String("12345678901234567890"),
-//				Environment:          pulumi.String("AzurePublicCloud"),
-//				RotationSchedule:     pulumi.String("0 * * * SAT"),
-//				RotationWindow:       pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### *Vault-1.8 And Below*
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				UseMicrosoftGraphApi: pulumi.Bool(false),
-//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
-//				ClientSecret:         pulumi.String("12345678901234567890"),
-//				Environment:          pulumi.String("AzurePublicCloud"),
+//				SubscriptionId:   pulumi.String("11111111-2222-3333-4444-111111111111"),
+//				TenantId:         pulumi.String("11111111-2222-3333-4444-222222222222"),
+//				ClientId:         pulumi.String("11111111-2222-3333-4444-333333333333"),
+//				ClientSecret:     pulumi.String("12345678901234567890"),
+//				Environment:      pulumi.String("AzurePublicCloud"),
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -157,10 +125,6 @@ type Backend struct {
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
-	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-	//
-	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-	UseMicrosoftGraphApi pulumi.BoolOutput `pulumi:"useMicrosoftGraphApi"`
 }
 
 // NewBackend registers a new resource with the given unique name, arguments, and options.
@@ -264,10 +228,6 @@ type backendState struct {
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
 	TenantId *string `pulumi:"tenantId"`
-	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-	//
-	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
 type BackendState struct {
@@ -317,10 +277,6 @@ type BackendState struct {
 	SubscriptionId pulumi.StringPtrInput
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringPtrInput
-	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-	//
-	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
 func (BackendState) ElementType() reflect.Type {
@@ -374,10 +330,6 @@ type backendArgs struct {
 	SubscriptionId string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
 	TenantId string `pulumi:"tenantId"`
-	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-	//
-	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
 // The set of arguments for constructing a Backend resource.
@@ -428,10 +380,6 @@ type BackendArgs struct {
 	SubscriptionId pulumi.StringInput
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringInput
-	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-	//
-	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
 func (BackendArgs) ElementType() reflect.Type {
@@ -613,13 +561,6 @@ func (o BackendOutput) SubscriptionId() pulumi.StringOutput {
 // The tenant id for the Azure Active Directory.
 func (o BackendOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
-}
-
-// Use the Microsoft Graph API. Should be set to true on vault-1.10+
-//
-// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
-func (o BackendOutput) UseMicrosoftGraphApi() pulumi.BoolOutput {
-	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.UseMicrosoftGraphApi }).(pulumi.BoolOutput)
 }
 
 type BackendArrayOutput struct{ *pulumi.OutputState }
