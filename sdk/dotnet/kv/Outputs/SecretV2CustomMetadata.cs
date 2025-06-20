@@ -18,10 +18,10 @@ namespace Pulumi.Vault.kv.Outputs
         /// </summary>
         public readonly bool? CasRequired;
         /// <summary>
-        /// A mapping whose keys are the top-level data keys returned from
-        /// Vault and whose values are the corresponding values. This map can only
-        /// represent string data, so any non-string values returned from Vault are
-        /// serialized as JSON.
+        /// **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+        /// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        /// Vault and whose values are the corresponding values. This map can only represent string data,
+        /// so any non-string values returned from Vault are serialized as JSON.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>

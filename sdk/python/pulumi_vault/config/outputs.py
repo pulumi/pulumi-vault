@@ -632,20 +632,21 @@ class AuthLoginGcp(dict):
 @pulumi.output_type
 class AuthLoginJwt(dict):
     def __init__(__self__, *,
-                 jwt: builtins.str,
                  role: builtins.str,
+                 jwt: Optional[builtins.str] = None,
                  mount: Optional[builtins.str] = None,
                  namespace: Optional[builtins.str] = None,
                  use_root_namespace: Optional[builtins.bool] = None):
         """
-        :param builtins.str jwt: A signed JSON Web Token.
         :param builtins.str role: Name of the login role.
+        :param builtins.str jwt: A signed JSON Web Token.
         :param builtins.str mount: The path where the authentication engine is mounted.
         :param builtins.str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param builtins.bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
         """
-        pulumi.set(__self__, "jwt", jwt)
         pulumi.set(__self__, "role", role)
+        if jwt is not None:
+            pulumi.set(__self__, "jwt", jwt)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
@@ -655,19 +656,19 @@ class AuthLoginJwt(dict):
 
     @property
     @pulumi.getter
-    def jwt(self) -> builtins.str:
-        """
-        A signed JSON Web Token.
-        """
-        return pulumi.get(self, "jwt")
-
-    @property
-    @pulumi.getter
     def role(self) -> builtins.str:
         """
         Name of the login role.
         """
         return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def jwt(self) -> Optional[builtins.str]:
+        """
+        A signed JSON Web Token.
+        """
+        return pulumi.get(self, "jwt")
 
     @property
     @pulumi.getter
@@ -979,42 +980,28 @@ class AuthLoginOidc(dict):
 @pulumi.output_type
 class AuthLoginRadius(dict):
     def __init__(__self__, *,
-                 password: builtins.str,
-                 username: builtins.str,
                  mount: Optional[builtins.str] = None,
                  namespace: Optional[builtins.str] = None,
-                 use_root_namespace: Optional[builtins.bool] = None):
+                 password: Optional[builtins.str] = None,
+                 use_root_namespace: Optional[builtins.bool] = None,
+                 username: Optional[builtins.str] = None):
         """
-        :param builtins.str password: The Radius password for username.
-        :param builtins.str username: The Radius username.
         :param builtins.str mount: The path where the authentication engine is mounted.
         :param builtins.str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param builtins.str password: The Radius password for username.
         :param builtins.bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param builtins.str username: The Radius username.
         """
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if use_root_namespace is not None:
             pulumi.set(__self__, "use_root_namespace", use_root_namespace)
-
-    @property
-    @pulumi.getter
-    def password(self) -> builtins.str:
-        """
-        The Radius password for username.
-        """
-        return pulumi.get(self, "password")
-
-    @property
-    @pulumi.getter
-    def username(self) -> builtins.str:
-        """
-        The Radius username.
-        """
-        return pulumi.get(self, "username")
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -1033,6 +1020,14 @@ class AuthLoginRadius(dict):
         return pulumi.get(self, "namespace")
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[builtins.str]:
+        """
+        The Radius password for username.
+        """
+        return pulumi.get(self, "password")
+
+    @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[builtins.bool]:
         """
@@ -1040,11 +1035,19 @@ class AuthLoginRadius(dict):
         """
         return pulumi.get(self, "use_root_namespace")
 
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[builtins.str]:
+        """
+        The Radius username.
+        """
+        return pulumi.get(self, "username")
+
 
 @pulumi.output_type
 class AuthLoginTokenFile(dict):
     def __init__(__self__, *,
-                 filename: builtins.str,
+                 filename: Optional[builtins.str] = None,
                  namespace: Optional[builtins.str] = None,
                  use_root_namespace: Optional[builtins.bool] = None):
         """
@@ -1052,7 +1055,8 @@ class AuthLoginTokenFile(dict):
         :param builtins.str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param builtins.bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
         """
-        pulumi.set(__self__, "filename", filename)
+        if filename is not None:
+            pulumi.set(__self__, "filename", filename)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if use_root_namespace is not None:
@@ -1060,7 +1064,7 @@ class AuthLoginTokenFile(dict):
 
     @property
     @pulumi.getter
-    def filename(self) -> builtins.str:
+    def filename(self) -> Optional[builtins.str]:
         """
         The name of a file containing a single line that is a valid Vault token
         """
@@ -1086,21 +1090,20 @@ class AuthLoginTokenFile(dict):
 @pulumi.output_type
 class AuthLoginUserpass(dict):
     def __init__(__self__, *,
-                 username: builtins.str,
                  mount: Optional[builtins.str] = None,
                  namespace: Optional[builtins.str] = None,
                  password: Optional[builtins.str] = None,
                  password_file: Optional[builtins.str] = None,
-                 use_root_namespace: Optional[builtins.bool] = None):
+                 use_root_namespace: Optional[builtins.bool] = None,
+                 username: Optional[builtins.str] = None):
         """
-        :param builtins.str username: Login with username
         :param builtins.str mount: The path where the authentication engine is mounted.
         :param builtins.str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param builtins.str password: Login with password
         :param builtins.str password_file: Login with password from a file
         :param builtins.bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param builtins.str username: Login with username
         """
-        pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
@@ -1111,14 +1114,8 @@ class AuthLoginUserpass(dict):
             pulumi.set(__self__, "password_file", password_file)
         if use_root_namespace is not None:
             pulumi.set(__self__, "use_root_namespace", use_root_namespace)
-
-    @property
-    @pulumi.getter
-    def username(self) -> builtins.str:
-        """
-        Login with username
-        """
-        return pulumi.get(self, "username")
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -1159,6 +1156,14 @@ class AuthLoginUserpass(dict):
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
+
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[builtins.str]:
+        """
+        Login with username
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

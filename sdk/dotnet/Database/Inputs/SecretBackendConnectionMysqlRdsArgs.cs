@@ -58,6 +58,12 @@ namespace Pulumi.Vault.Database.Inputs
             }
         }
 
+        /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         [Input("serviceAccountJson")]
         private Input<string>? _serviceAccountJson;
 

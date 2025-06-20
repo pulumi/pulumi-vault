@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,7 +19,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -49,7 +49,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -75,6 +75,13 @@ import (
 //	}
 //
 // ```
+//
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+//   - `credentialsWo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+//     **Note**: This property is write-only and will not be read from the API.
 type SecretBackend struct {
 	pulumi.CustomResourceState
 
@@ -82,6 +89,8 @@ type SecretBackend struct {
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
+	// The version of the `credentialsWo`. For more info see updating write-only attributes.
+	CredentialsWoVersion pulumi.IntPtrOutput `pulumi:"credentialsWoVersion"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
@@ -172,6 +181,8 @@ type secretBackendState struct {
 	Accessor *string `pulumi:"accessor"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
+	// The version of the `credentialsWo`. For more info see updating write-only attributes.
+	CredentialsWoVersion *int `pulumi:"credentialsWoVersion"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
@@ -226,6 +237,8 @@ type SecretBackendState struct {
 	Accessor pulumi.StringPtrInput
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
+	// The version of the `credentialsWo`. For more info see updating write-only attributes.
+	CredentialsWoVersion pulumi.IntPtrInput
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
@@ -282,6 +295,8 @@ func (SecretBackendState) ElementType() reflect.Type {
 type secretBackendArgs struct {
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
+	// The version of the `credentialsWo`. For more info see updating write-only attributes.
+	CredentialsWoVersion *int `pulumi:"credentialsWoVersion"`
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
@@ -335,6 +350,8 @@ type secretBackendArgs struct {
 type SecretBackendArgs struct {
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
+	// The version of the `credentialsWo`. For more info see updating write-only attributes.
+	CredentialsWoVersion pulumi.IntPtrInput
 	// The default TTL for credentials
 	// issued by this backend. Defaults to '0'.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
@@ -479,6 +496,11 @@ func (o SecretBackendOutput) Accessor() pulumi.StringOutput {
 // JSON-encoded credentials to use to connect to GCP
 func (o SecretBackendOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+// The version of the `credentialsWo`. For more info see updating write-only attributes.
+func (o SecretBackendOutput) CredentialsWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.CredentialsWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The default TTL for credentials

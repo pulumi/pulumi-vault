@@ -509,6 +509,8 @@ class SecretBackendConnectionHana(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionHana. Access the value via the '{suggest}' property getter instead.")
@@ -528,6 +530,7 @@ class SecretBackendConnectionHana(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  username: Optional[builtins.str] = None):
         """
         :param builtins.str connection_url: Connection string to use to connect to the database.
@@ -536,6 +539,7 @@ class SecretBackendConnectionHana(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str username: The root credential username used in the connection URL
         """
         if connection_url is not None:
@@ -550,6 +554,8 @@ class SecretBackendConnectionHana(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -600,6 +606,14 @@ class SecretBackendConnectionHana(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter
@@ -772,6 +786,8 @@ class SecretBackendConnectionMongodb(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -792,6 +808,7 @@ class SecretBackendConnectionMongodb(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  username: Optional[builtins.str] = None,
                  username_template: Optional[builtins.str] = None):
         """
@@ -800,6 +817,7 @@ class SecretBackendConnectionMongodb(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str username: The root credential username used in the connection URL
         :param builtins.str username_template: Username generation template.
         """
@@ -813,6 +831,8 @@ class SecretBackendConnectionMongodb(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -857,6 +877,14 @@ class SecretBackendConnectionMongodb(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter
@@ -953,6 +981,8 @@ class SecretBackendConnectionMssql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -975,6 +1005,7 @@ class SecretBackendConnectionMssql(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  username: Optional[builtins.str] = None,
                  username_template: Optional[builtins.str] = None):
         """
@@ -985,6 +1016,7 @@ class SecretBackendConnectionMssql(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str username: The root credential username used in the connection URL
         :param builtins.str username_template: Username generation template.
         """
@@ -1002,6 +1034,8 @@ class SecretBackendConnectionMssql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -1064,6 +1098,14 @@ class SecretBackendConnectionMssql(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[builtins.str]:
         """
@@ -1095,6 +1137,8 @@ class SecretBackendConnectionMysql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "serviceAccountJson":
             suggest = "service_account_json"
         elif key == "tlsCa":
@@ -1122,6 +1166,7 @@ class SecretBackendConnectionMysql(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  service_account_json: Optional[builtins.str] = None,
                  tls_ca: Optional[builtins.str] = None,
                  tls_certificate_key: Optional[builtins.str] = None,
@@ -1134,6 +1179,7 @@ class SecretBackendConnectionMysql(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str service_account_json: A JSON encoded credential for use with IAM authorization
         :param builtins.str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param builtins.str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -1152,6 +1198,8 @@ class SecretBackendConnectionMysql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -1210,6 +1258,14 @@ class SecretBackendConnectionMysql(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -1267,6 +1323,8 @@ class SecretBackendConnectionMysqlAurora(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "serviceAccountJson":
             suggest = "service_account_json"
         elif key == "tlsCa":
@@ -1294,6 +1352,7 @@ class SecretBackendConnectionMysqlAurora(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  service_account_json: Optional[builtins.str] = None,
                  tls_ca: Optional[builtins.str] = None,
                  tls_certificate_key: Optional[builtins.str] = None,
@@ -1306,6 +1365,7 @@ class SecretBackendConnectionMysqlAurora(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str service_account_json: A JSON encoded credential for use with IAM authorization
         :param builtins.str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param builtins.str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -1324,6 +1384,8 @@ class SecretBackendConnectionMysqlAurora(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -1382,6 +1444,14 @@ class SecretBackendConnectionMysqlAurora(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -1439,6 +1509,8 @@ class SecretBackendConnectionMysqlLegacy(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "serviceAccountJson":
             suggest = "service_account_json"
         elif key == "tlsCa":
@@ -1466,6 +1538,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  service_account_json: Optional[builtins.str] = None,
                  tls_ca: Optional[builtins.str] = None,
                  tls_certificate_key: Optional[builtins.str] = None,
@@ -1478,6 +1551,7 @@ class SecretBackendConnectionMysqlLegacy(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str service_account_json: A JSON encoded credential for use with IAM authorization
         :param builtins.str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param builtins.str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -1496,6 +1570,8 @@ class SecretBackendConnectionMysqlLegacy(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -1554,6 +1630,14 @@ class SecretBackendConnectionMysqlLegacy(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -1611,6 +1695,8 @@ class SecretBackendConnectionMysqlRds(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "serviceAccountJson":
             suggest = "service_account_json"
         elif key == "tlsCa":
@@ -1638,6 +1724,7 @@ class SecretBackendConnectionMysqlRds(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  service_account_json: Optional[builtins.str] = None,
                  tls_ca: Optional[builtins.str] = None,
                  tls_certificate_key: Optional[builtins.str] = None,
@@ -1650,6 +1737,7 @@ class SecretBackendConnectionMysqlRds(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str service_account_json: A JSON encoded credential for use with IAM authorization
         :param builtins.str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param builtins.str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -1668,6 +1756,8 @@ class SecretBackendConnectionMysqlRds(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -1728,6 +1818,14 @@ class SecretBackendConnectionMysqlRds(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[builtins.str]:
         """
@@ -1783,6 +1881,8 @@ class SecretBackendConnectionOracle(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "splitStatements":
             suggest = "split_statements"
         elif key == "usernameTemplate":
@@ -1806,6 +1906,7 @@ class SecretBackendConnectionOracle(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  split_statements: Optional[builtins.bool] = None,
                  username: Optional[builtins.str] = None,
                  username_template: Optional[builtins.str] = None):
@@ -1816,6 +1917,7 @@ class SecretBackendConnectionOracle(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.bool split_statements: Set to true in order to split statements after semi-colons.
         :param builtins.str username: The root credential username used in the connection URL
         :param builtins.str username_template: Username generation template.
@@ -1832,6 +1934,8 @@ class SecretBackendConnectionOracle(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -1888,6 +1992,14 @@ class SecretBackendConnectionOracle(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter(name="splitStatements")
     def split_statements(self) -> Optional[builtins.bool]:
         """
@@ -1931,6 +2043,8 @@ class SecretBackendConnectionPostgresql(dict):
             suggest = "max_open_connections"
         elif key == "passwordAuthentication":
             suggest = "password_authentication"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "privateKey":
             suggest = "private_key"
         elif key == "selfManaged":
@@ -1964,6 +2078,7 @@ class SecretBackendConnectionPostgresql(dict):
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
                  password_authentication: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  private_key: Optional[builtins.str] = None,
                  self_managed: Optional[builtins.bool] = None,
                  service_account_json: Optional[builtins.str] = None,
@@ -1980,6 +2095,7 @@ class SecretBackendConnectionPostgresql(dict):
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
         :param builtins.str password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param builtins.bool self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param builtins.str service_account_json: A JSON encoded credential for use with IAM authorization
@@ -2004,6 +2120,8 @@ class SecretBackendConnectionPostgresql(dict):
             pulumi.set(__self__, "password", password)
         if password_authentication is not None:
             pulumi.set(__self__, "password_authentication", password_authentication)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if self_managed is not None:
@@ -2082,6 +2200,14 @@ class SecretBackendConnectionPostgresql(dict):
         When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         """
         return pulumi.get(self, "password_authentication")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -2316,6 +2442,8 @@ class SecretBackendConnectionRedshift(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -2337,6 +2465,7 @@ class SecretBackendConnectionRedshift(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  username: Optional[builtins.str] = None,
                  username_template: Optional[builtins.str] = None):
         """
@@ -2346,6 +2475,7 @@ class SecretBackendConnectionRedshift(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str username: The root credential username used in the connection URL
         :param builtins.str username_template: Username generation template.
         """
@@ -2361,6 +2491,8 @@ class SecretBackendConnectionRedshift(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -2415,6 +2547,14 @@ class SecretBackendConnectionRedshift(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[builtins.str]:
         """
@@ -2444,6 +2584,8 @@ class SecretBackendConnectionSnowflake(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -2464,6 +2606,7 @@ class SecretBackendConnectionSnowflake(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  username: Optional[builtins.str] = None,
                  username_template: Optional[builtins.str] = None):
         """
@@ -2472,6 +2615,7 @@ class SecretBackendConnectionSnowflake(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str username: The root credential username used in the connection URL
         :param builtins.str username_template: Username generation template.
         """
@@ -2485,6 +2629,8 @@ class SecretBackendConnectionSnowflake(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -2529,6 +2675,14 @@ class SecretBackendConnectionSnowflake(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter
@@ -3459,6 +3613,8 @@ class SecretsMountHana(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -3494,6 +3650,7 @@ class SecretsMountHana(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -3515,6 +3672,7 @@ class SecretsMountHana(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -3547,6 +3705,8 @@ class SecretsMountHana(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -3644,6 +3804,14 @@ class SecretsMountHana(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -4024,6 +4192,8 @@ class SecretsMountMongodb(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -4060,6 +4230,7 @@ class SecretsMountMongodb(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -4081,6 +4252,7 @@ class SecretsMountMongodb(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -4112,6 +4284,8 @@ class SecretsMountMongodb(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -4203,6 +4377,14 @@ class SecretsMountMongodb(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -4507,6 +4689,8 @@ class SecretsMountMssql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -4545,6 +4729,7 @@ class SecretsMountMssql(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -4568,6 +4753,7 @@ class SecretsMountMssql(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -4603,6 +4789,8 @@ class SecretsMountMssql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -4712,6 +4900,14 @@ class SecretsMountMssql(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[builtins.str]:
         """
@@ -4800,6 +4996,8 @@ class SecretsMountMysql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -4843,6 +5041,7 @@ class SecretsMountMysql(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -4868,6 +5067,7 @@ class SecretsMountMysql(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -4904,6 +5104,8 @@ class SecretsMountMysql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -5009,6 +5211,14 @@ class SecretsMountMysql(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -5123,6 +5333,8 @@ class SecretsMountMysqlAurora(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -5166,6 +5378,7 @@ class SecretsMountMysqlAurora(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -5191,6 +5404,7 @@ class SecretsMountMysqlAurora(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -5227,6 +5441,8 @@ class SecretsMountMysqlAurora(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -5332,6 +5548,14 @@ class SecretsMountMysqlAurora(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -5446,6 +5670,8 @@ class SecretsMountMysqlLegacy(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -5489,6 +5715,7 @@ class SecretsMountMysqlLegacy(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -5514,6 +5741,7 @@ class SecretsMountMysqlLegacy(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -5550,6 +5778,8 @@ class SecretsMountMysqlLegacy(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -5655,6 +5885,14 @@ class SecretsMountMysqlLegacy(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -5769,6 +6007,8 @@ class SecretsMountMysqlRd(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -5812,6 +6052,7 @@ class SecretsMountMysqlRd(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -5837,6 +6078,7 @@ class SecretsMountMysqlRd(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -5873,6 +6115,8 @@ class SecretsMountMysqlRd(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -5978,6 +6222,14 @@ class SecretsMountMysqlRd(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -6092,6 +6344,8 @@ class SecretsMountOracle(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -6131,6 +6385,7 @@ class SecretsMountOracle(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -6154,6 +6409,7 @@ class SecretsMountOracle(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6188,6 +6444,8 @@ class SecretsMountOracle(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -6291,6 +6549,14 @@ class SecretsMountOracle(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[builtins.str]:
         """
@@ -6391,6 +6657,8 @@ class SecretsMountPostgresql(dict):
             suggest = "max_open_connections"
         elif key == "passwordAuthentication":
             suggest = "password_authentication"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "privateKey":
@@ -6440,6 +6708,7 @@ class SecretsMountPostgresql(dict):
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
                  password_authentication: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  private_key: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
@@ -6469,6 +6738,7 @@ class SecretsMountPostgresql(dict):
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
         :param builtins.str password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param builtins.str private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -6511,6 +6781,8 @@ class SecretsMountPostgresql(dict):
             pulumi.set(__self__, "password", password)
         if password_authentication is not None:
             pulumi.set(__self__, "password_authentication", password_authentication)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if private_key is not None:
@@ -6636,6 +6908,14 @@ class SecretsMountPostgresql(dict):
         When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         """
         return pulumi.get(self, "password_authentication")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")
@@ -7244,6 +7524,8 @@ class SecretsMountRedshift(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -7281,6 +7563,7 @@ class SecretsMountRedshift(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -7303,6 +7586,7 @@ class SecretsMountRedshift(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -7336,6 +7620,8 @@ class SecretsMountRedshift(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -7437,6 +7723,14 @@ class SecretsMountRedshift(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[builtins.str]:
         """
@@ -7523,6 +7817,8 @@ class SecretsMountSnowflake(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordWoVersion":
+            suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
@@ -7559,6 +7855,7 @@ class SecretsMountSnowflake(dict):
                  max_idle_connections: Optional[builtins.int] = None,
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
+                 password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
@@ -7580,6 +7877,7 @@ class SecretsMountSnowflake(dict):
         :param builtins.int max_idle_connections: Maximum number of idle connections to the database.
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
+        :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -7611,6 +7909,8 @@ class SecretsMountSnowflake(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
@@ -7702,6 +8002,14 @@ class SecretsMountSnowflake(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for root credential password write-only field
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @property
     @pulumi.getter(name="pluginName")

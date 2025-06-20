@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -931,6 +931,8 @@ type SecretBackendConnectionHana struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 }
@@ -959,6 +961,8 @@ type SecretBackendConnectionHanaArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
@@ -1070,6 +1074,11 @@ func (o SecretBackendConnectionHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionHanaOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionHanaOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -1157,6 +1166,16 @@ func (o SecretBackendConnectionHanaPtrOutput) Password() pulumi.StringPtrOutput 
 		}
 		return v.Password
 	}).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionHanaPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -1488,6 +1507,8 @@ type SecretBackendConnectionMongodb struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -1516,6 +1537,8 @@ type SecretBackendConnectionMongodbArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -1624,6 +1647,11 @@ func (o SecretBackendConnectionMongodbOutput) Password() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMongodbOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionMongodbOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -1706,6 +1734,16 @@ func (o SecretBackendConnectionMongodbPtrOutput) Password() pulumi.StringPtrOutp
 		}
 		return v.Password
 	}).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMongodbPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -1918,6 +1956,8 @@ type SecretBackendConnectionMssql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -1950,6 +1990,8 @@ type SecretBackendConnectionMssqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -2068,6 +2110,11 @@ func (o SecretBackendConnectionMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMssqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionMssqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -2172,6 +2219,16 @@ func (o SecretBackendConnectionMssqlPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMssqlPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionMssqlPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
@@ -2205,6 +2262,8 @@ type SecretBackendConnectionMysql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -2241,6 +2300,8 @@ type SecretBackendConnectionMysqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -2360,6 +2421,11 @@ func (o SecretBackendConnectionMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
@@ -2469,6 +2535,16 @@ func (o SecretBackendConnectionMysqlPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
@@ -2532,6 +2608,8 @@ type SecretBackendConnectionMysqlAurora struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -2568,6 +2646,8 @@ type SecretBackendConnectionMysqlAuroraArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -2687,6 +2767,11 @@ func (o SecretBackendConnectionMysqlAuroraOutput) Password() pulumi.StringPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlAuroraOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlAuroraOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
@@ -2796,6 +2881,16 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
@@ -2859,6 +2954,8 @@ type SecretBackendConnectionMysqlLegacy struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -2895,6 +2992,8 @@ type SecretBackendConnectionMysqlLegacyArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -3014,6 +3113,11 @@ func (o SecretBackendConnectionMysqlLegacyOutput) Password() pulumi.StringPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlLegacyOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlLegacyOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
@@ -3123,6 +3227,16 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
@@ -3186,6 +3300,8 @@ type SecretBackendConnectionMysqlRds struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -3222,6 +3338,8 @@ type SecretBackendConnectionMysqlRdsArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -3341,6 +3459,11 @@ func (o SecretBackendConnectionMysqlRdsOutput) Password() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlRdsOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlRdsOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
@@ -3450,6 +3573,16 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionMysqlRdsPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlRdsPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
@@ -3513,6 +3646,8 @@ type SecretBackendConnectionOracle struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements *bool `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -3545,6 +3680,8 @@ type SecretBackendConnectionOracleArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -3660,6 +3797,11 @@ func (o SecretBackendConnectionOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionOracleOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Set to true in order to split statements after semi-colons.
 func (o SecretBackendConnectionOracleOutput) SplitStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.SplitStatements }).(pulumi.BoolPtrOutput)
@@ -3759,6 +3901,16 @@ func (o SecretBackendConnectionOraclePtrOutput) Password() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionOraclePtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // Set to true in order to split statements after semi-colons.
 func (o SecretBackendConnectionOraclePtrOutput) SplitStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *bool {
@@ -3806,6 +3958,8 @@ type SecretBackendConnectionPostgresql struct {
 	Password *string `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
 	PrivateKey *string `pulumi:"privateKey"`
 	// If set, allows onboarding static roles with a rootless connection configuration.
@@ -3850,6 +4004,8 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
 	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
 	// If set, allows onboarding static roles with a rootless connection configuration.
@@ -3981,6 +4137,11 @@ func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutp
 // When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 func (o SecretBackendConnectionPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionPostgresqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -4120,6 +4281,16 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) PasswordAuthentication() pul
 		}
 		return v.PasswordAuthentication
 	}).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionPostgresqlPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -4650,6 +4821,8 @@ type SecretBackendConnectionRedshift struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -4680,6 +4853,8 @@ type SecretBackendConnectionRedshiftArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -4793,6 +4968,11 @@ func (o SecretBackendConnectionRedshiftOutput) Password() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionRedshiftOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionRedshiftOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -4887,6 +5067,16 @@ func (o SecretBackendConnectionRedshiftPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionRedshiftPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionRedshiftPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *string {
@@ -4918,6 +5108,8 @@ type SecretBackendConnectionSnowflake struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -4946,6 +5138,8 @@ type SecretBackendConnectionSnowflakeArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -5054,6 +5248,11 @@ func (o SecretBackendConnectionSnowflakeOutput) Password() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionSnowflakeOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -5136,6 +5335,16 @@ func (o SecretBackendConnectionSnowflakePtrOutput) Password() pulumi.StringPtrOu
 		}
 		return v.Password
 	}).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretBackendConnectionSnowflakePtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -6049,6 +6258,8 @@ type SecretsMountHana struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -6105,6 +6316,8 @@ type SecretsMountHanaArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -6228,6 +6441,11 @@ func (o SecretsMountHanaOutput) Name() pulumi.StringOutput {
 // The root credential password used in the connection URL
 func (o SecretsMountHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretsMountHanaOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the name of the plugin to use.
@@ -6604,6 +6822,8 @@ type SecretsMountMongodb struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -6660,6 +6880,8 @@ type SecretsMountMongodbArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -6780,6 +7002,11 @@ func (o SecretsMountMongodbOutput) Name() pulumi.StringOutput {
 // The root credential password used in the connection URL
 func (o SecretsMountMongodbOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretsMountMongodbOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the name of the plugin to use.
@@ -7102,6 +7329,8 @@ type SecretsMountMssql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7162,6 +7391,8 @@ type SecretsMountMssqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7294,6 +7525,11 @@ func (o SecretsMountMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountMssqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountMssqlOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -7383,6 +7619,8 @@ type SecretsMountMysql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7447,6 +7685,8 @@ type SecretsMountMysqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7580,6 +7820,11 @@ func (o SecretsMountMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountMysqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -7684,6 +7929,8 @@ type SecretsMountMysqlAurora struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7748,6 +7995,8 @@ type SecretsMountMysqlAuroraArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7881,6 +8130,11 @@ func (o SecretsMountMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountMysqlAuroraOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlAuroraOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -7985,6 +8239,8 @@ type SecretsMountMysqlLegacy struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -8049,6 +8305,8 @@ type SecretsMountMysqlLegacyArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -8182,6 +8440,11 @@ func (o SecretsMountMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountMysqlLegacyOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlLegacyOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -8286,6 +8549,8 @@ type SecretsMountMysqlRd struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -8350,6 +8615,8 @@ type SecretsMountMysqlRdArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -8483,6 +8750,11 @@ func (o SecretsMountMysqlRdOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountMysqlRdOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlRdOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -8587,6 +8859,8 @@ type SecretsMountOracle struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -8647,6 +8921,8 @@ type SecretsMountOracleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -8776,6 +9052,11 @@ func (o SecretsMountOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountOracleOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountOracleOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -8874,6 +9155,8 @@ type SecretsMountPostgresql struct {
 	Password *string `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -8946,6 +9229,8 @@ type SecretsMountPostgresqlArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -9091,6 +9376,11 @@ func (o SecretsMountPostgresqlOutput) Password() pulumi.StringPtrOutput {
 // When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 func (o SecretsMountPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretsMountPostgresqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the name of the plugin to use.
@@ -9710,6 +10000,8 @@ type SecretsMountRedshift struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -9768,6 +10060,8 @@ type SecretsMountRedshiftArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -9895,6 +10189,11 @@ func (o SecretsMountRedshiftOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Version counter for root credential password write-only field
+func (o SecretsMountRedshiftOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountRedshiftOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.PluginName }).(pulumi.StringPtrOutput)
@@ -9982,6 +10281,8 @@ type SecretsMountSnowflake struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10038,6 +10339,8 @@ type SecretsMountSnowflakeArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version counter for root credential password write-only field
+	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10158,6 +10461,11 @@ func (o SecretsMountSnowflakeOutput) Name() pulumi.StringOutput {
 // The root credential password used in the connection URL
 func (o SecretsMountSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for root credential password write-only field
+func (o SecretsMountSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the name of the plugin to use.

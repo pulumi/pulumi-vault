@@ -108,6 +108,21 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     }
 
     /**
+     * Version counter for root credential password write-only field
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
      * Set to true in order to split statements after semi-colons.
      * 
      */
@@ -161,6 +176,7 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.splitStatements = $.splitStatements;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
@@ -308,6 +324,27 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

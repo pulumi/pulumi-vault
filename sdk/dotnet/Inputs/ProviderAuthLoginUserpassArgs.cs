@@ -45,8 +45,8 @@ namespace Pulumi.Vault.Inputs
         /// <summary>
         /// Login with username
         /// </summary>
-        [Input("username", required: true)]
-        public Input<string> Username { get; set; } = null!;
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         public ProviderAuthLoginUserpassArgs()
         {

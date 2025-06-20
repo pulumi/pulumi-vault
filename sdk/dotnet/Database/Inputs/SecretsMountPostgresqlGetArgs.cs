@@ -110,6 +110,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? PasswordAuthentication { get; set; }
 
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]

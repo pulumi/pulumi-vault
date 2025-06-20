@@ -44,6 +44,11 @@ public final class SecretBackendConnectionHana {
      */
     private @Nullable String password;
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -93,6 +98,13 @@ public final class SecretBackendConnectionHana {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -115,6 +127,7 @@ public final class SecretBackendConnectionHana {
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable Integer passwordWoVersion;
         private @Nullable String username;
         public Builder() {}
         public Builder(SecretBackendConnectionHana defaults) {
@@ -125,6 +138,7 @@ public final class SecretBackendConnectionHana {
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.username = defaults.username;
         }
 
@@ -165,6 +179,12 @@ public final class SecretBackendConnectionHana {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -178,6 +198,7 @@ public final class SecretBackendConnectionHana {
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.username = username;
             return _resultValue;
         }

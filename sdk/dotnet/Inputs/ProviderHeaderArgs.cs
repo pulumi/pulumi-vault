@@ -12,17 +12,37 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderHeaderArgs : global::Pulumi.ResourceArgs
     {
+        [Input("name", required: true)]
+        private Input<string>? _name;
+
         /// <summary>
         /// The header name
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        public Input<string>? Name
+        {
+            get => _name;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _name = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("value", required: true)]
+        private Input<string>? _value;
 
         /// <summary>
         /// The header value
         /// </summary>
-        [Input("value", required: true)]
-        public Input<string> Value { get; set; } = null!;
+        public Input<string>? Value
+        {
+            get => _value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ProviderHeaderArgs()
         {

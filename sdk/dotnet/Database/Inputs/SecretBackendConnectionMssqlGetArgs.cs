@@ -65,6 +65,12 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
+        /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
         [Input("username")]

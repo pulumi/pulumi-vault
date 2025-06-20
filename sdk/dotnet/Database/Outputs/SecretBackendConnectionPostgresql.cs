@@ -46,6 +46,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? PasswordAuthentication;
         /// <summary>
+        /// Version counter for root credential password write-only field
+        /// </summary>
+        public readonly int? PasswordWoVersion;
+        /// <summary>
         /// The secret key used for the x509 client certificate. Must be PEM encoded.
         /// </summary>
         public readonly string? PrivateKey;
@@ -92,6 +96,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? passwordAuthentication,
 
+            int? passwordWoVersion,
+
             string? privateKey,
 
             bool? selfManaged,
@@ -114,6 +120,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             Password = password;
             PasswordAuthentication = passwordAuthentication;
+            PasswordWoVersion = passwordWoVersion;
             PrivateKey = privateKey;
             SelfManaged = selfManaged;
             ServiceAccountJson = serviceAccountJson;

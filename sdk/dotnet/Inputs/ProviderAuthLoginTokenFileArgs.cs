@@ -15,8 +15,8 @@ namespace Pulumi.Vault.Inputs
         /// <summary>
         /// The name of a file containing a single line that is a valid Vault token
         /// </summary>
-        [Input("filename", required: true)]
-        public Input<string> Filename { get; set; } = null!;
+        [Input("filename")]
+        public Input<string>? Filename { get; set; }
 
         /// <summary>
         /// The authentication engine's namespace. Conflicts with use_root_namespace

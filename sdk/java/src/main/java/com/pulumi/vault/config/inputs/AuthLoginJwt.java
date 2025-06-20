@@ -17,7 +17,7 @@ public final class AuthLoginJwt {
      * @return A signed JSON Web Token.
      * 
      */
-    private String jwt;
+    private @Nullable String jwt;
     /**
      * @return The path where the authentication engine is mounted.
      * 
@@ -44,8 +44,8 @@ public final class AuthLoginJwt {
      * @return A signed JSON Web Token.
      * 
      */
-    public String jwt() {
-        return this.jwt;
+    public Optional<String> jwt() {
+        return Optional.ofNullable(this.jwt);
     }
     /**
      * @return The path where the authentication engine is mounted.
@@ -85,7 +85,7 @@ public final class AuthLoginJwt {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String jwt;
+        private @Nullable String jwt;
         private @Nullable String mount;
         private @Nullable String namespace;
         private String role;
@@ -101,10 +101,8 @@ public final class AuthLoginJwt {
         }
 
         @CustomType.Setter
-        public Builder jwt(String jwt) {
-            if (jwt == null) {
-              throw new MissingRequiredPropertyException("AuthLoginJwt", "jwt");
-            }
+        public Builder jwt(@Nullable String jwt) {
+
             this.jwt = jwt;
             return this;
         }

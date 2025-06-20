@@ -21,6 +21,7 @@ __all__ = ['SecretBackendArgs', 'SecretBackend']
 class SecretBackendArgs:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input[builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[builtins.int]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[builtins.bool]] = None,
@@ -39,6 +40,7 @@ class SecretBackendArgs:
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[builtins.str] description: A human-friendly description for this backend.
@@ -74,6 +76,8 @@ class SecretBackendArgs:
         """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if credentials_wo_version is not None:
+            pulumi.set(__self__, "credentials_wo_version", credentials_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
@@ -116,6 +120,18 @@ class SecretBackendArgs:
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter(name="credentialsWoVersion")
+    def credentials_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The version of the `credentials_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "credentials_wo_version")
+
+    @credentials_wo_version.setter
+    def credentials_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credentials_wo_version", value)
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -320,6 +336,7 @@ class _SecretBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[builtins.str]] = None,
                  credentials: Optional[pulumi.Input[builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[builtins.int]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[builtins.bool]] = None,
@@ -339,6 +356,7 @@ class _SecretBackendState:
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[builtins.str] accessor: The accessor of the created GCP mount.
         :param pulumi.Input[builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[builtins.str] description: A human-friendly description for this backend.
@@ -376,6 +394,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "accessor", accessor)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if credentials_wo_version is not None:
+            pulumi.set(__self__, "credentials_wo_version", credentials_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
@@ -430,6 +450,18 @@ class _SecretBackendState:
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "credentials", value)
+
+    @property
+    @pulumi.getter(name="credentialsWoVersion")
+    def credentials_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The version of the `credentials_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "credentials_wo_version")
+
+    @credentials_wo_version.setter
+    def credentials_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "credentials_wo_version", value)
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -636,6 +668,7 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  credentials: Optional[pulumi.Input[builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[builtins.int]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[builtins.bool]] = None,
@@ -680,9 +713,17 @@ class SecretBackend(pulumi.CustomResource):
             rotation_window=3600)
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+          **Note**: This property is write-only and will not be read from the API.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[builtins.str] description: A human-friendly description for this backend.
@@ -750,6 +791,13 @@ class SecretBackend(pulumi.CustomResource):
             rotation_window=3600)
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+          **Note**: This property is write-only and will not be read from the API.
+
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -766,6 +814,7 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  credentials: Optional[pulumi.Input[builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[builtins.int]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[builtins.bool]] = None,
@@ -791,6 +840,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__ = SecretBackendArgs.__new__(SecretBackendArgs)
 
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
+            __props__.__dict__["credentials_wo_version"] = credentials_wo_version
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
@@ -821,6 +871,7 @@ class SecretBackend(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[builtins.str]] = None,
             credentials: Optional[pulumi.Input[builtins.str]] = None,
+            credentials_wo_version: Optional[pulumi.Input[builtins.int]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[builtins.int]] = None,
             description: Optional[pulumi.Input[builtins.str]] = None,
             disable_automated_rotation: Optional[pulumi.Input[builtins.bool]] = None,
@@ -845,6 +896,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] accessor: The accessor of the created GCP mount.
         :param pulumi.Input[builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[builtins.str] description: A human-friendly description for this backend.
@@ -884,6 +936,7 @@ class SecretBackend(pulumi.CustomResource):
 
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["credentials"] = credentials
+        __props__.__dict__["credentials_wo_version"] = credentials_wo_version
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
@@ -916,6 +969,14 @@ class SecretBackend(pulumi.CustomResource):
         JSON-encoded credentials to use to connect to GCP
         """
         return pulumi.get(self, "credentials")
+
+    @property
+    @pulumi.getter(name="credentialsWoVersion")
+    def credentials_wo_version(self) -> pulumi.Output[Optional[builtins.int]]:
+        """
+        The version of the `credentials_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "credentials_wo_version")
 
     @property
     @pulumi.getter(name="defaultLeaseTtlSeconds")

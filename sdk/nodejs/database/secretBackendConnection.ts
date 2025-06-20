@@ -32,6 +32,13 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported for all DBs that support username/password:
+ *
+ * * `passwordWo` - (Optional) The password for the user. Can be updated.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.

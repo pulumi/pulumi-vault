@@ -207,6 +207,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Version counter for root credential password write-only field
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
      * Specifies the name of the plugin to use.
      * 
      */
@@ -426,6 +441,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.name = $.name;
         this.password = $.password;
         this.passwordAuthentication = $.passwordAuthentication;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
         this.privateKey = $.privateKey;
         this.rootRotationStatements = $.rootRotationStatements;
@@ -726,6 +742,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder passwordAuthentication(String passwordAuthentication) {
             return passwordAuthentication(Output.of(passwordAuthentication));
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Version counter for root credential password write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

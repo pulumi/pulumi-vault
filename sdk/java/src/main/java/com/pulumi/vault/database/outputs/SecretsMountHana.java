@@ -70,6 +70,11 @@ public final class SecretsMountHana {
      */
     private @Nullable String password;
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
@@ -185,6 +190,13 @@ public final class SecretsMountHana {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
@@ -258,6 +270,7 @@ public final class SecretsMountHana {
         private @Nullable Integer maxOpenConnections;
         private String name;
         private @Nullable String password;
+        private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
@@ -278,6 +291,7 @@ public final class SecretsMountHana {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
@@ -353,6 +367,12 @@ public final class SecretsMountHana {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
@@ -409,6 +429,7 @@ public final class SecretsMountHana {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;

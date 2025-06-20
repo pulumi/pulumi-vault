@@ -22,10 +22,11 @@ __all__ = ['SecretV2Args', 'SecretV2']
 @pulumi.input_type
 class SecretV2Args:
     def __init__(__self__, *,
-                 data_json: pulumi.Input[builtins.str],
                  mount: pulumi.Input[builtins.str],
                  cas: Optional[pulumi.Input[builtins.int]] = None,
                  custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
+                 data_json: Optional[pulumi.Input[builtins.str]] = None,
+                 data_json_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -33,8 +34,6 @@ class SecretV2Args:
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretV2 resource.
-        :param pulumi.Input[builtins.str] data_json: JSON-encoded string that will be
-               written as the secret data at the given path.
         :param pulumi.Input[builtins.str] mount: Path where KV-V2 engine is mounted.
         :param pulumi.Input[builtins.int] cas: This flag is required if `cas_required` is set to true
                on either the secret or the engine's config. In order for a
@@ -43,6 +42,9 @@ class SecretV2Args:
         :param pulumi.Input['SecretV2CustomMetadataArgs'] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
+        :param pulumi.Input[builtins.str] data_json: JSON-encoded string that will be
+               written as the secret data at the given path.
+        :param pulumi.Input[builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
         :param pulumi.Input[builtins.bool] disable_read: If set to true, disables reading secret from Vault;
@@ -57,12 +59,15 @@ class SecretV2Args:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] options: An object that holds option settings.
         """
-        pulumi.set(__self__, "data_json", data_json)
         pulumi.set(__self__, "mount", mount)
         if cas is not None:
             pulumi.set(__self__, "cas", cas)
         if custom_metadata is not None:
             pulumi.set(__self__, "custom_metadata", custom_metadata)
+        if data_json is not None:
+            pulumi.set(__self__, "data_json", data_json)
+        if data_json_wo_version is not None:
+            pulumi.set(__self__, "data_json_wo_version", data_json_wo_version)
         if delete_all_versions is not None:
             pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
@@ -73,19 +78,6 @@ class SecretV2Args:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
-
-    @property
-    @pulumi.getter(name="dataJson")
-    def data_json(self) -> pulumi.Input[builtins.str]:
-        """
-        JSON-encoded string that will be
-        written as the secret data at the given path.
-        """
-        return pulumi.get(self, "data_json")
-
-    @data_json.setter
-    def data_json(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "data_json", value)
 
     @property
     @pulumi.getter
@@ -127,6 +119,31 @@ class SecretV2Args:
     @custom_metadata.setter
     def custom_metadata(self, value: Optional[pulumi.Input['SecretV2CustomMetadataArgs']]):
         pulumi.set(self, "custom_metadata", value)
+
+    @property
+    @pulumi.getter(name="dataJson")
+    def data_json(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        JSON-encoded string that will be
+        written as the secret data at the given path.
+        """
+        return pulumi.get(self, "data_json")
+
+    @data_json.setter
+    def data_json(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "data_json", value)
+
+    @property
+    @pulumi.getter(name="dataJsonWoVersion")
+    def data_json_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The version of the `data_json_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "data_json_wo_version")
+
+    @data_json_wo_version.setter
+    def data_json_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "data_json_wo_version", value)
 
     @property
     @pulumi.getter(name="deleteAllVersions")
@@ -204,6 +221,7 @@ class _SecretV2State:
                  custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  data_json: Optional[pulumi.Input[builtins.str]] = None,
+                 data_json_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[builtins.bool]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
@@ -221,12 +239,13 @@ class _SecretV2State:
         :param pulumi.Input['SecretV2CustomMetadataArgs'] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] data: A mapping whose keys are the top-level data keys returned from
-               Vault and whose values are the corresponding values. This map can only
-               represent string data, so any non-string values returned from Vault are
-               serialized as JSON.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] data: **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+               secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+               Vault and whose values are the corresponding values. This map can only represent string data,
+               so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
         :param pulumi.Input[builtins.bool] disable_read: If set to true, disables reading secret from Vault;
@@ -249,9 +268,14 @@ class _SecretV2State:
         if custom_metadata is not None:
             pulumi.set(__self__, "custom_metadata", custom_metadata)
         if data is not None:
+            warnings.warn("""Deprecated. Will no longer be set on a read.""", DeprecationWarning)
+            pulumi.log.warn("""data is deprecated: Deprecated. Will no longer be set on a read.""")
+        if data is not None:
             pulumi.set(__self__, "data", data)
         if data_json is not None:
             pulumi.set(__self__, "data_json", data_json)
+        if data_json_wo_version is not None:
+            pulumi.set(__self__, "data_json_wo_version", data_json_wo_version)
         if delete_all_versions is not None:
             pulumi.set(__self__, "delete_all_versions", delete_all_versions)
         if disable_read is not None:
@@ -300,12 +324,13 @@ class _SecretV2State:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Deprecated. Will no longer be set on a read.""")
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
         """
-        A mapping whose keys are the top-level data keys returned from
-        Vault and whose values are the corresponding values. This map can only
-        represent string data, so any non-string values returned from Vault are
-        serialized as JSON.
+        **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+        secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only represent string data,
+        so any non-string values returned from Vault are serialized as JSON.
         """
         return pulumi.get(self, "data")
 
@@ -325,6 +350,18 @@ class _SecretV2State:
     @data_json.setter
     def data_json(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "data_json", value)
+
+    @property
+    @pulumi.getter(name="dataJsonWoVersion")
+    def data_json_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The version of the `data_json_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "data_json_wo_version")
+
+    @data_json_wo_version.setter
+    def data_json_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "data_json_wo_version", value)
 
     @property
     @pulumi.getter(name="deleteAllVersions")
@@ -440,6 +477,7 @@ class SecretV2(pulumi.CustomResource):
                  cas: Optional[pulumi.Input[builtins.int]] = None,
                  custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
                  data_json: Optional[pulumi.Input[builtins.str]] = None,
+                 data_json_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[builtins.bool]] = None,
                  mount: Optional[pulumi.Input[builtins.str]] = None,
@@ -504,6 +542,13 @@ class SecretV2(pulumi.CustomResource):
 
         * `data` - (Optional) A string to string map describing the secret.
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         KV-V2 secrets can be imported using the `path`, e.g.
@@ -523,6 +568,7 @@ class SecretV2(pulumi.CustomResource):
                Configuration Options for more info.
         :param pulumi.Input[builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
         :param pulumi.Input[builtins.bool] disable_read: If set to true, disables reading secret from Vault;
@@ -601,6 +647,13 @@ class SecretV2(pulumi.CustomResource):
 
         * `data` - (Optional) A string to string map describing the secret.
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         KV-V2 secrets can be imported using the `path`, e.g.
@@ -627,6 +680,7 @@ class SecretV2(pulumi.CustomResource):
                  cas: Optional[pulumi.Input[builtins.int]] = None,
                  custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
                  data_json: Optional[pulumi.Input[builtins.str]] = None,
+                 data_json_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[builtins.bool]] = None,
                  mount: Optional[pulumi.Input[builtins.str]] = None,
@@ -644,9 +698,8 @@ class SecretV2(pulumi.CustomResource):
 
             __props__.__dict__["cas"] = cas
             __props__.__dict__["custom_metadata"] = custom_metadata
-            if data_json is None and not opts.urn:
-                raise TypeError("Missing required property 'data_json'")
             __props__.__dict__["data_json"] = None if data_json is None else pulumi.Output.secret(data_json)
+            __props__.__dict__["data_json_wo_version"] = data_json_wo_version
             __props__.__dict__["delete_all_versions"] = delete_all_versions
             __props__.__dict__["disable_read"] = disable_read
             if mount is None and not opts.urn:
@@ -674,6 +727,7 @@ class SecretV2(pulumi.CustomResource):
             custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
             data: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             data_json: Optional[pulumi.Input[builtins.str]] = None,
+            data_json_wo_version: Optional[pulumi.Input[builtins.int]] = None,
             delete_all_versions: Optional[pulumi.Input[builtins.bool]] = None,
             disable_read: Optional[pulumi.Input[builtins.bool]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
@@ -696,12 +750,13 @@ class SecretV2(pulumi.CustomResource):
         :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] data: A mapping whose keys are the top-level data keys returned from
-               Vault and whose values are the corresponding values. This map can only
-               represent string data, so any non-string values returned from Vault are
-               serialized as JSON.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] data: **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+               secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+               Vault and whose values are the corresponding values. This map can only represent string data,
+               so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
         :param pulumi.Input[builtins.bool] disable_read: If set to true, disables reading secret from Vault;
@@ -727,6 +782,7 @@ class SecretV2(pulumi.CustomResource):
         __props__.__dict__["custom_metadata"] = custom_metadata
         __props__.__dict__["data"] = data
         __props__.__dict__["data_json"] = data_json
+        __props__.__dict__["data_json_wo_version"] = data_json_wo_version
         __props__.__dict__["delete_all_versions"] = delete_all_versions
         __props__.__dict__["disable_read"] = disable_read
         __props__.__dict__["metadata"] = metadata
@@ -760,23 +816,32 @@ class SecretV2(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Deprecated. Will no longer be set on a read.""")
     def data(self) -> pulumi.Output[Mapping[str, builtins.str]]:
         """
-        A mapping whose keys are the top-level data keys returned from
-        Vault and whose values are the corresponding values. This map can only
-        represent string data, so any non-string values returned from Vault are
-        serialized as JSON.
+        **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+        secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only represent string data,
+        so any non-string values returned from Vault are serialized as JSON.
         """
         return pulumi.get(self, "data")
 
     @property
     @pulumi.getter(name="dataJson")
-    def data_json(self) -> pulumi.Output[builtins.str]:
+    def data_json(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         JSON-encoded string that will be
         written as the secret data at the given path.
         """
         return pulumi.get(self, "data_json")
+
+    @property
+    @pulumi.getter(name="dataJsonWoVersion")
+    def data_json_wo_version(self) -> pulumi.Output[Optional[builtins.int]]:
+        """
+        The version of the `data_json_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "data_json_wo_version")
 
     @property
     @pulumi.getter(name="deleteAllVersions")

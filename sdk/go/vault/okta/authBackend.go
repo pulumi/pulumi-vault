@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/okta"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/okta"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -84,11 +84,6 @@ type AuthBackend struct {
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups AuthBackendGroupTypeArrayOutput `pulumi:"groups"`
-	// Maximum duration after which authentication will be expired
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
-	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -119,11 +114,6 @@ type AuthBackend struct {
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
-	// Duration after which authentication will be expired.
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenTtl` instead.
-	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users AuthBackendUserTypeArrayOutput `pulumi:"users"`
@@ -183,11 +173,6 @@ type authBackendState struct {
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups []AuthBackendGroupType `pulumi:"groups"`
-	// Maximum duration after which authentication will be expired
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
-	MaxTtl *string `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -218,11 +203,6 @@ type authBackendState struct {
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
 	TokenType *string `pulumi:"tokenType"`
-	// Duration after which authentication will be expired.
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenTtl` instead.
-	Ttl *string `pulumi:"ttl"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users []AuthBackendUserType `pulumi:"users"`
@@ -243,11 +223,6 @@ type AuthBackendState struct {
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups AuthBackendGroupTypeArrayInput
-	// Maximum duration after which authentication will be expired
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
-	MaxTtl pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -278,11 +253,6 @@ type AuthBackendState struct {
 	TokenTtl pulumi.IntPtrInput
 	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
-	// Duration after which authentication will be expired.
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenTtl` instead.
-	Ttl pulumi.StringPtrInput
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users AuthBackendUserTypeArrayInput
@@ -305,11 +275,6 @@ type authBackendArgs struct {
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups []AuthBackendGroupType `pulumi:"groups"`
-	// Maximum duration after which authentication will be expired
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
-	MaxTtl *string `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -340,11 +305,6 @@ type authBackendArgs struct {
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
 	TokenType *string `pulumi:"tokenType"`
-	// Duration after which authentication will be expired.
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenTtl` instead.
-	Ttl *string `pulumi:"ttl"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users []AuthBackendUserType `pulumi:"users"`
@@ -364,11 +324,6 @@ type AuthBackendArgs struct {
 	// Associate Okta groups with policies within Vault.
 	// See below for more details.
 	Groups AuthBackendGroupTypeArrayInput
-	// Maximum duration after which authentication will be expired
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
-	MaxTtl pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -399,11 +354,6 @@ type AuthBackendArgs struct {
 	TokenTtl pulumi.IntPtrInput
 	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
-	// Duration after which authentication will be expired.
-	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-	//
-	// Deprecated: Deprecated. Please use `tokenTtl` instead.
-	Ttl pulumi.StringPtrInput
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users AuthBackendUserTypeArrayInput
@@ -528,14 +478,6 @@ func (o AuthBackendOutput) Groups() AuthBackendGroupTypeArrayOutput {
 	return o.ApplyT(func(v *AuthBackend) AuthBackendGroupTypeArrayOutput { return v.Groups }).(AuthBackendGroupTypeArrayOutput)
 }
 
-// Maximum duration after which authentication will be expired
-// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-//
-// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
-func (o AuthBackendOutput) MaxTtl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
-}
-
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -603,14 +545,6 @@ func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
 // The type of token to generate, service or batch
 func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
-}
-
-// Duration after which authentication will be expired.
-// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-//
-// Deprecated: Deprecated. Please use `tokenTtl` instead.
-func (o AuthBackendOutput) Ttl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
 }
 
 // Associate Okta users with groups or policies within Vault.

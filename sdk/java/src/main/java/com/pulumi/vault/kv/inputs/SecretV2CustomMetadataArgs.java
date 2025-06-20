@@ -34,20 +34,20 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
      * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,String>> data;
 
     /**
-     * @return A mapping whose keys are the top-level data keys returned from
-     * Vault and whose values are the corresponding values. This map can only
-     * represent string data, so any non-string values returned from Vault are
-     * serialized as JSON.
+     * @return **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+     * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+     * Vault and whose values are the corresponding values. This map can only represent string data,
+     * so any non-string values returned from Vault are serialized as JSON.
      * 
      */
     public Optional<Output<Map<String,String>>> data() {
@@ -133,10 +133,10 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param data A mapping whose keys are the top-level data keys returned from
-         * Vault and whose values are the corresponding values. This map can only
-         * represent string data, so any non-string values returned from Vault are
-         * serialized as JSON.
+         * @param data **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+         * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only represent string data,
+         * so any non-string values returned from Vault are serialized as JSON.
          * 
          * @return builder
          * 
@@ -147,10 +147,10 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param data A mapping whose keys are the top-level data keys returned from
-         * Vault and whose values are the corresponding values. This map can only
-         * represent string data, so any non-string values returned from Vault are
-         * serialized as JSON.
+         * @param data **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+         * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only represent string data,
+         * so any non-string values returned from Vault are serialized as JSON.
          * 
          * @return builder
          * 

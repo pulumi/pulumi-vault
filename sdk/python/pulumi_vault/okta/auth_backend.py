@@ -28,7 +28,6 @@ class AuthBackendArgs:
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
-                 max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  path: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
@@ -41,7 +40,6 @@ class AuthBackendArgs:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[builtins.int]] = None,
                  token_type: Optional[pulumi.Input[builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
@@ -53,8 +51,6 @@ class AuthBackendArgs:
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
-        :param pulumi.Input[builtins.str] max_ttl: Maximum duration after which authentication will be expired
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -71,8 +67,6 @@ class AuthBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[builtins.str] token_type: The type of token to generate, service or batch
-        :param pulumi.Input[builtins.str] ttl: Duration after which authentication will be expired.
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
@@ -87,11 +81,6 @@ class AuthBackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
-        if max_ttl is not None:
-            warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
@@ -116,11 +105,6 @@ class AuthBackendArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
         if users is not None:
             pulumi.set(__self__, "users", users)
 
@@ -197,20 +181,6 @@ class AuthBackendArgs:
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
         pulumi.set(self, "groups", value)
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    @_utilities.deprecated("""Deprecated. Please use `token_max_ttl` instead.""")
-    def max_ttl(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        Maximum duration after which authentication will be expired
-        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "max_ttl", value)
 
     @property
     @pulumi.getter
@@ -362,20 +332,6 @@ class AuthBackendArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Deprecated. Please use `token_ttl` instead.""")
-    def ttl(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        Duration after which authentication will be expired.
-        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "ttl", value)
-
-    @property
-    @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
         """
         Associate Okta users with groups or policies within Vault.
@@ -397,7 +353,6 @@ class _AuthBackendState:
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
-                 max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  organization: Optional[pulumi.Input[builtins.str]] = None,
                  path: Optional[pulumi.Input[builtins.str]] = None,
@@ -411,7 +366,6 @@ class _AuthBackendState:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[builtins.int]] = None,
                  token_type: Optional[pulumi.Input[builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
@@ -423,8 +377,6 @@ class _AuthBackendState:
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
-        :param pulumi.Input[builtins.str] max_ttl: Maximum duration after which authentication will be expired
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -442,8 +394,6 @@ class _AuthBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[builtins.str] token_type: The type of token to generate, service or batch
-        :param pulumi.Input[builtins.str] ttl: Duration after which authentication will be expired.
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
@@ -459,11 +409,6 @@ class _AuthBackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
-        if max_ttl is not None:
-            warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
-            pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
-        if max_ttl is not None:
-            pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if organization is not None:
@@ -490,11 +435,6 @@ class _AuthBackendState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-        if ttl is not None:
-            warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
-            pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
-        if ttl is not None:
-            pulumi.set(__self__, "ttl", ttl)
         if users is not None:
             pulumi.set(__self__, "users", users)
 
@@ -571,20 +511,6 @@ class _AuthBackendState:
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
         pulumi.set(self, "groups", value)
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    @_utilities.deprecated("""Deprecated. Please use `token_max_ttl` instead.""")
-    def max_ttl(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        Maximum duration after which authentication will be expired
-        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "max_ttl")
-
-    @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "max_ttl", value)
 
     @property
     @pulumi.getter
@@ -748,20 +674,6 @@ class _AuthBackendState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""Deprecated. Please use `token_ttl` instead.""")
-    def ttl(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        Duration after which authentication will be expired.
-        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "ttl")
-
-    @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "ttl", value)
-
-    @property
-    @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
         """
         Associate Okta users with groups or policies within Vault.
@@ -785,7 +697,6 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
-                 max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  organization: Optional[pulumi.Input[builtins.str]] = None,
                  path: Optional[pulumi.Input[builtins.str]] = None,
@@ -799,7 +710,6 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[builtins.int]] = None,
                  token_type: Optional[pulumi.Input[builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
                  __props__=None):
         """
@@ -846,8 +756,6 @@ class AuthBackend(pulumi.CustomResource):
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
-        :param pulumi.Input[builtins.str] max_ttl: Maximum duration after which authentication will be expired
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -865,8 +773,6 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[builtins.str] token_type: The type of token to generate, service or batch
-        :param pulumi.Input[builtins.str] ttl: Duration after which authentication will be expired.
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
@@ -931,7 +837,6 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
-                 max_ttl: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  organization: Optional[pulumi.Input[builtins.str]] = None,
                  path: Optional[pulumi.Input[builtins.str]] = None,
@@ -945,7 +850,6 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[builtins.int]] = None,
                  token_type: Optional[pulumi.Input[builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[builtins.str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -961,7 +865,6 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["groups"] = groups
-            __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["namespace"] = namespace
             if organization is None and not opts.urn:
                 raise TypeError("Missing required property 'organization'")
@@ -977,7 +880,6 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
-            __props__.__dict__["ttl"] = ttl
             __props__.__dict__["users"] = users
             __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
@@ -998,7 +900,6 @@ class AuthBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[builtins.str]] = None,
             disable_remount: Optional[pulumi.Input[builtins.bool]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
-            max_ttl: Optional[pulumi.Input[builtins.str]] = None,
             namespace: Optional[pulumi.Input[builtins.str]] = None,
             organization: Optional[pulumi.Input[builtins.str]] = None,
             path: Optional[pulumi.Input[builtins.str]] = None,
@@ -1012,7 +913,6 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
             token_ttl: Optional[pulumi.Input[builtins.int]] = None,
             token_type: Optional[pulumi.Input[builtins.str]] = None,
-            ttl: Optional[pulumi.Input[builtins.str]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
@@ -1029,8 +929,6 @@ class AuthBackend(pulumi.CustomResource):
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
-        :param pulumi.Input[builtins.str] max_ttl: Maximum duration after which authentication will be expired
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1048,8 +946,6 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[builtins.str] token_type: The type of token to generate, service or batch
-        :param pulumi.Input[builtins.str] ttl: Duration after which authentication will be expired.
-               [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
@@ -1063,7 +959,6 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["groups"] = groups
-        __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization"] = organization
         __props__.__dict__["path"] = path
@@ -1077,7 +972,6 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["token_policies"] = token_policies
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
-        __props__.__dict__["ttl"] = ttl
         __props__.__dict__["users"] = users
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -1130,16 +1024,6 @@ class AuthBackend(pulumi.CustomResource):
         See below for more details.
         """
         return pulumi.get(self, "groups")
-
-    @property
-    @pulumi.getter(name="maxTtl")
-    @_utilities.deprecated("""Deprecated. Please use `token_max_ttl` instead.""")
-    def max_ttl(self) -> pulumi.Output[Optional[builtins.str]]:
-        """
-        Maximum duration after which authentication will be expired
-        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "max_ttl")
 
     @property
     @pulumi.getter
@@ -1248,16 +1132,6 @@ class AuthBackend(pulumi.CustomResource):
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
-
-    @property
-    @pulumi.getter
-    @_utilities.deprecated("""Deprecated. Please use `token_ttl` instead.""")
-    def ttl(self) -> pulumi.Output[Optional[builtins.str]]:
-        """
-        Duration after which authentication will be expired.
-        [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-        """
-        return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter

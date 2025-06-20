@@ -320,7 +320,7 @@ export namespace config {
         /**
          * A signed JSON Web Token.
          */
-        jwt: string;
+        jwt?: string;
         /**
          * The path where the authentication engine is mounted.
          */
@@ -448,7 +448,7 @@ export namespace config {
         /**
          * The Radius password for username.
          */
-        password: string;
+        password?: string;
         /**
          * Authenticate to the root Vault namespace. Conflicts with namespace
          */
@@ -456,14 +456,14 @@ export namespace config {
         /**
          * The Radius username.
          */
-        username: string;
+        username?: string;
     }
 
     export interface AuthLoginTokenFile {
         /**
          * The name of a file containing a single line that is a valid Vault token
          */
-        filename: string;
+        filename?: string;
         /**
          * The authentication engine's namespace. Conflicts with use_root_namespace
          */
@@ -498,7 +498,7 @@ export namespace config {
         /**
          * Login with username
          */
-        username: string;
+        username?: string;
     }
 
     export interface ClientAuth {
@@ -688,6 +688,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -758,6 +762,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -812,6 +820,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -846,6 +858,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -894,6 +910,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: string;
@@ -940,6 +960,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -988,6 +1012,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: string;
@@ -1035,6 +1063,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Set to true in order to split statements after semi-colons.
          */
         splitStatements?: boolean;
@@ -1081,6 +1113,10 @@ export namespace database {
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
         passwordAuthentication?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
@@ -1187,6 +1223,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -1217,6 +1257,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * The root credential username used in the connection URL
          */
@@ -1541,6 +1585,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -1707,6 +1755,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -1857,6 +1909,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -1939,6 +1995,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -2035,6 +2095,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -2129,6 +2193,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -2225,6 +2293,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -2320,6 +2392,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -2414,6 +2490,10 @@ export namespace database {
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
         passwordAuthentication?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -2664,6 +2744,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -2742,6 +2826,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: number;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -3027,10 +3115,10 @@ export namespace kv {
          */
         casRequired?: boolean;
         /**
-         * A mapping whose keys are the top-level data keys returned from
-         * Vault and whose values are the corresponding values. This map can only
-         * represent string data, so any non-string values returned from Vault are
-         * serialized as JSON.
+         * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+         * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only represent string data,
+         * so any non-string values returned from Vault are serialized as JSON.
          */
         data?: {[key: string]: string};
         /**

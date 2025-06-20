@@ -15,8 +15,8 @@ namespace Pulumi.Vault.Inputs
         /// <summary>
         /// A signed JSON Web Token.
         /// </summary>
-        [Input("jwt", required: true)]
-        public Input<string> Jwt { get; set; } = null!;
+        [Input("jwt")]
+        public Input<string>? Jwt { get; set; }
 
         /// <summary>
         /// The path where the authentication engine is mounted.

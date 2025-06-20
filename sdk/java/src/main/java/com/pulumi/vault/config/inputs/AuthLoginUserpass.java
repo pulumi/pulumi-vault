@@ -4,7 +4,6 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -42,7 +41,7 @@ public final class AuthLoginUserpass {
      * @return Login with username
      * 
      */
-    private String username;
+    private @Nullable String username;
 
     private AuthLoginUserpass() {}
     /**
@@ -84,8 +83,8 @@ public final class AuthLoginUserpass {
      * @return Login with username
      * 
      */
-    public String username() {
-        return this.username;
+    public Optional<String> username() {
+        return Optional.ofNullable(this.username);
     }
 
     public static Builder builder() {
@@ -102,7 +101,7 @@ public final class AuthLoginUserpass {
         private @Nullable String password;
         private @Nullable String passwordFile;
         private @Nullable Boolean useRootNamespace;
-        private String username;
+        private @Nullable String username;
         public Builder() {}
         public Builder(AuthLoginUserpass defaults) {
     	      Objects.requireNonNull(defaults);
@@ -145,10 +144,8 @@ public final class AuthLoginUserpass {
             return this;
         }
         @CustomType.Setter
-        public Builder username(String username) {
-            if (username == null) {
-              throw new MissingRequiredPropertyException("AuthLoginUserpass", "username");
-            }
+        public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }

@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -47,8 +47,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NomadSecretBackend{}
 	case "vault:index/nomadSecretRole:NomadSecretRole":
 		r = &NomadSecretRole{}
-	case "vault:index/passwordPolicy:PasswordPolicy":
-		r = &PasswordPolicy{}
 	case "vault:index/plugin:Plugin":
 		r = &Plugin{}
 	case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
@@ -161,11 +159,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/nomadSecretRole",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/passwordPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

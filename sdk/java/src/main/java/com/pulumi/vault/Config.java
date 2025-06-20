@@ -35,8 +35,8 @@ public final class Config {
  * URL of the root of the target Vault server.
  * 
  */
-    public String address() {
-        return Codegen.stringProp("address").config(config).require();
+    public Optional<String> address() {
+        return Codegen.stringProp("address").config(config).get();
     }
 /**
  * Login to vault with an existing auth method using auth/&lt;mount&gt;/login
@@ -218,8 +218,8 @@ public final class Config {
  * Token to use to authenticate to Vault.
  * 
  */
-    public String token() {
-        return Codegen.stringProp("token").config(config).require();
+    public Optional<String> token() {
+        return Codegen.stringProp("token").config(config).get();
     }
 /**
  * Token name to use for creating the Vault child token.

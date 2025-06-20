@@ -80,6 +80,11 @@ public final class SecretsMountPostgresql {
      */
     private @Nullable String passwordAuthentication;
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    private @Nullable Integer passwordWoVersion;
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
@@ -239,6 +244,13 @@ public final class SecretsMountPostgresql {
         return Optional.ofNullable(this.passwordAuthentication);
     }
     /**
+     * @return Version counter for root credential password write-only field
+     * 
+     */
+    public Optional<Integer> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
@@ -356,6 +368,7 @@ public final class SecretsMountPostgresql {
         private String name;
         private @Nullable String password;
         private @Nullable String passwordAuthentication;
+        private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
         private @Nullable String privateKey;
         private @Nullable List<String> rootRotationStatements;
@@ -384,6 +397,7 @@ public final class SecretsMountPostgresql {
     	      this.name = defaults.name;
     	      this.password = defaults.password;
     	      this.passwordAuthentication = defaults.passwordAuthentication;
+    	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
     	      this.privateKey = defaults.privateKey;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
@@ -474,6 +488,12 @@ public final class SecretsMountPostgresql {
         public Builder passwordAuthentication(@Nullable String passwordAuthentication) {
 
             this.passwordAuthentication = passwordAuthentication;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
+
+            this.passwordWoVersion = passwordWoVersion;
             return this;
         }
         @CustomType.Setter
@@ -571,6 +591,7 @@ public final class SecretsMountPostgresql {
             _resultValue.name = name;
             _resultValue.password = password;
             _resultValue.passwordAuthentication = passwordAuthentication;
+            _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
             _resultValue.privateKey = privateKey;
             _resultValue.rootRotationStatements = rootRotationStatements;

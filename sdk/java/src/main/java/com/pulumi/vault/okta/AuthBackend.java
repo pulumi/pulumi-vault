@@ -172,26 +172,6 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.groups;
     }
     /**
-     * Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     * @deprecated
-     * Deprecated. Please use `token_max_ttl` instead.
-     * 
-     */
-    @Deprecated /* Deprecated. Please use `token_max_ttl` instead. */
-    @Export(name="maxTtl", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> maxTtl;
-
-    /**
-     * @return Maximum duration after which authentication will be expired
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     */
-    public Output<Optional<String>> maxTtl() {
-        return Codegen.optional(this.maxTtl);
-    }
-    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -380,26 +360,6 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> tokenType() {
         return Codegen.optional(this.tokenType);
-    }
-    /**
-     * Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     * @deprecated
-     * Deprecated. Please use `token_ttl` instead.
-     * 
-     */
-    @Deprecated /* Deprecated. Please use `token_ttl` instead. */
-    @Export(name="ttl", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> ttl;
-
-    /**
-     * @return Duration after which authentication will be expired.
-     * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
-     * 
-     */
-    public Output<Optional<String>> ttl() {
-        return Codegen.optional(this.ttl);
     }
     /**
      * Associate Okta users with groups or policies within Vault.

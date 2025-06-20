@@ -366,7 +366,7 @@ export interface ProviderAuthLoginJwt {
     /**
      * A signed JSON Web Token.
      */
-    jwt: pulumi.Input<string>;
+    jwt?: pulumi.Input<string>;
     /**
      * The path where the authentication engine is mounted.
      */
@@ -494,7 +494,7 @@ export interface ProviderAuthLoginRadius {
     /**
      * The Radius password for username.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
@@ -502,14 +502,14 @@ export interface ProviderAuthLoginRadius {
     /**
      * The Radius username.
      */
-    username: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }
 
 export interface ProviderAuthLoginTokenFile {
     /**
      * The name of a file containing a single line that is a valid Vault token
      */
-    filename: pulumi.Input<string>;
+    filename?: pulumi.Input<string>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
@@ -544,7 +544,7 @@ export interface ProviderAuthLoginUserpass {
     /**
      * Login with username
      */
-    username: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
 }
 
 export interface ProviderClientAuth {
@@ -746,6 +746,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -816,6 +820,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -870,6 +878,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -904,6 +916,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -952,6 +968,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
@@ -998,6 +1018,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -1046,6 +1070,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
@@ -1093,6 +1121,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Set to true in order to split statements after semi-colons.
          */
         splitStatements?: pulumi.Input<boolean>;
@@ -1139,6 +1171,10 @@ export namespace database {
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
         passwordAuthentication?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
@@ -1245,6 +1281,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -1275,6 +1315,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * The root credential username used in the connection URL
          */
@@ -1599,6 +1643,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -1765,6 +1813,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -1915,6 +1967,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -1997,6 +2053,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -2093,6 +2153,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -2187,6 +2251,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -2283,6 +2351,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -2378,6 +2450,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -2472,6 +2548,10 @@ export namespace database {
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
         passwordAuthentication?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -2722,6 +2802,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -2800,6 +2884,10 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
+        /**
+         * Version counter for root credential password write-only field
+         */
+        passwordWoVersion?: pulumi.Input<number>;
         /**
          * Specifies the name of the plugin to use.
          */
@@ -3038,10 +3126,10 @@ export namespace kv {
          */
         casRequired?: pulumi.Input<boolean>;
         /**
-         * A mapping whose keys are the top-level data keys returned from
-         * Vault and whose values are the corresponding values. This map can only
-         * represent string data, so any non-string values returned from Vault are
-         * serialized as JSON.
+         * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
+         * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+         * Vault and whose values are the corresponding values. This map can only represent string data,
+         * so any non-string values returned from Vault are serialized as JSON.
          */
         data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**

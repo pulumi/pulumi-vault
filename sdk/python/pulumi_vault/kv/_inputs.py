@@ -30,10 +30,10 @@ if not MYPY:
         """
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
         """
-        A mapping whose keys are the top-level data keys returned from
-        Vault and whose values are the corresponding values. This map can only
-        represent string data, so any non-string values returned from Vault are
-        serialized as JSON.
+        **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+        secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only represent string data,
+        so any non-string values returned from Vault are serialized as JSON.
         """
         delete_version_after: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -55,10 +55,10 @@ class SecretV2CustomMetadataArgs:
                  max_versions: Optional[pulumi.Input[builtins.int]] = None):
         """
         :param pulumi.Input[builtins.bool] cas_required: If true, all keys will require the cas parameter to be set on all write requests.
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] data: A mapping whose keys are the top-level data keys returned from
-               Vault and whose values are the corresponding values. This map can only
-               represent string data, so any non-string values returned from Vault are
-               serialized as JSON.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] data: **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+               secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+               Vault and whose values are the corresponding values. This map can only represent string data,
+               so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[builtins.int] delete_version_after: If set, specifies the length of time before a version is deleted.
         :param pulumi.Input[builtins.int] max_versions: The number of versions to keep per key.
         """
@@ -87,10 +87,10 @@ class SecretV2CustomMetadataArgs:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
         """
-        A mapping whose keys are the top-level data keys returned from
-        Vault and whose values are the corresponding values. This map can only
-        represent string data, so any non-string values returned from Vault are
-        serialized as JSON.
+        **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+        secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only represent string data,
+        so any non-string values returned from Vault are serialized as JSON.
         """
         return pulumi.get(self, "data")
 

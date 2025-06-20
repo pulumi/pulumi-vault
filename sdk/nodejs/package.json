@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/vault",
-    "version": "6.0.0-alpha.0+dev",
+    "version": "7.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
     "keywords": [
         "pulumi",
@@ -23,6 +23,6 @@
     "pulumi": {
         "resource": true,
         "name": "vault",
-        "version": "6.0.0-alpha.0+dev"
+        "version": "7.0.0-alpha.0+dev"
     }
 }

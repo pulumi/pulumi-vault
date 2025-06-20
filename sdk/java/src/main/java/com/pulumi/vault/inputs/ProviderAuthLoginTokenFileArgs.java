@@ -5,7 +5,6 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -21,15 +20,15 @@ public final class ProviderAuthLoginTokenFileArgs extends com.pulumi.resources.R
      * The name of a file containing a single line that is a valid Vault token
      * 
      */
-    @Import(name="filename", required=true)
-    private Output<String> filename;
+    @Import(name="filename")
+    private @Nullable Output<String> filename;
 
     /**
      * @return The name of a file containing a single line that is a valid Vault token
      * 
      */
-    public Output<String> filename() {
-        return this.filename;
+    public Optional<Output<String>> filename() {
+        return Optional.ofNullable(this.filename);
     }
 
     /**
@@ -94,7 +93,7 @@ public final class ProviderAuthLoginTokenFileArgs extends com.pulumi.resources.R
          * @return builder
          * 
          */
-        public Builder filename(Output<String> filename) {
+        public Builder filename(@Nullable Output<String> filename) {
             $.filename = filename;
             return this;
         }
@@ -152,9 +151,6 @@ public final class ProviderAuthLoginTokenFileArgs extends com.pulumi.resources.R
         }
 
         public ProviderAuthLoginTokenFileArgs build() {
-            if ($.filename == null) {
-                throw new MissingRequiredPropertyException("ProviderAuthLoginTokenFileArgs", "filename");
-            }
             return $;
         }
     }

@@ -65,16 +65,31 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
      * written as the secret data at the given path.
      * 
      */
-    @Import(name="dataJson", required=true)
-    private Output<String> dataJson;
+    @Import(name="dataJson")
+    private @Nullable Output<String> dataJson;
 
     /**
      * @return JSON-encoded string that will be
      * written as the secret data at the given path.
      * 
      */
-    public Output<String> dataJson() {
-        return this.dataJson;
+    public Optional<Output<String>> dataJson() {
+        return Optional.ofNullable(this.dataJson);
+    }
+
+    /**
+     * The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Import(name="dataJsonWoVersion")
+    private @Nullable Output<Integer> dataJsonWoVersion;
+
+    /**
+     * @return The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> dataJsonWoVersion() {
+        return Optional.ofNullable(this.dataJsonWoVersion);
     }
 
     /**
@@ -189,6 +204,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
         this.cas = $.cas;
         this.customMetadata = $.customMetadata;
         this.dataJson = $.dataJson;
+        this.dataJsonWoVersion = $.dataJsonWoVersion;
         this.deleteAllVersions = $.deleteAllVersions;
         this.disableRead = $.disableRead;
         this.mount = $.mount;
@@ -274,7 +290,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder dataJson(Output<String> dataJson) {
+        public Builder dataJson(@Nullable Output<String> dataJson) {
             $.dataJson = dataJson;
             return this;
         }
@@ -288,6 +304,27 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dataJson(String dataJson) {
             return dataJson(Output.of(dataJson));
+        }
+
+        /**
+         * @param dataJsonWoVersion The version of the `data_json_wo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataJsonWoVersion(@Nullable Output<Integer> dataJsonWoVersion) {
+            $.dataJsonWoVersion = dataJsonWoVersion;
+            return this;
+        }
+
+        /**
+         * @param dataJsonWoVersion The version of the `data_json_wo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataJsonWoVersion(Integer dataJsonWoVersion) {
+            return dataJsonWoVersion(Output.of(dataJsonWoVersion));
         }
 
         /**
@@ -433,9 +470,6 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretV2Args build() {
-            if ($.dataJson == null) {
-                throw new MissingRequiredPropertyException("SecretV2Args", "dataJson");
-            }
             if ($.mount == null) {
                 throw new MissingRequiredPropertyException("SecretV2Args", "mount");
             }

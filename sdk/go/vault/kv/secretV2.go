@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,8 +26,8 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kv"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/kv"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -95,6 +95,13 @@ import (
 //
 // * `data` - (Optional) A string to string map describing the secret.
 //
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+//   - `dataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+//     **Note**: This property is write-only and will not be read from the API.
+//
 // ## Import
 //
 // KV-V2 secrets can be imported using the `path`, e.g.
@@ -114,14 +121,18 @@ type SecretV2 struct {
 	// KV secret. Refer to the
 	// Configuration Options for more info.
 	CustomMetadata SecretV2CustomMetadataOutput `pulumi:"customMetadata"`
-	// A mapping whose keys are the top-level data keys returned from
-	// Vault and whose values are the corresponding values. This map can only
-	// represent string data, so any non-string values returned from Vault are
-	// serialized as JSON.
+	// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+	// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+	// Vault and whose values are the corresponding values. This map can only represent string data,
+	// so any non-string values returned from Vault are serialized as JSON.
+	//
+	// Deprecated: Deprecated. Will no longer be set on a read.
 	Data pulumi.StringMapOutput `pulumi:"data"`
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
-	DataJson pulumi.StringOutput `pulumi:"dataJson"`
+	DataJson pulumi.StringPtrOutput `pulumi:"dataJson"`
+	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
+	DataJsonWoVersion pulumi.IntPtrOutput `pulumi:"dataJsonWoVersion"`
 	// If set to true, permanently deletes all
 	// versions for the specified key.
 	DeleteAllVersions pulumi.BoolPtrOutput `pulumi:"deleteAllVersions"`
@@ -155,14 +166,11 @@ func NewSecretV2(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DataJson == nil {
-		return nil, errors.New("invalid value for required argument 'DataJson'")
-	}
 	if args.Mount == nil {
 		return nil, errors.New("invalid value for required argument 'Mount'")
 	}
 	if args.DataJson != nil {
-		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringInput)
+		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"data",
@@ -201,14 +209,18 @@ type secretV2State struct {
 	// KV secret. Refer to the
 	// Configuration Options for more info.
 	CustomMetadata *SecretV2CustomMetadata `pulumi:"customMetadata"`
-	// A mapping whose keys are the top-level data keys returned from
-	// Vault and whose values are the corresponding values. This map can only
-	// represent string data, so any non-string values returned from Vault are
-	// serialized as JSON.
+	// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+	// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+	// Vault and whose values are the corresponding values. This map can only represent string data,
+	// so any non-string values returned from Vault are serialized as JSON.
+	//
+	// Deprecated: Deprecated. Will no longer be set on a read.
 	Data map[string]string `pulumi:"data"`
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson *string `pulumi:"dataJson"`
+	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
+	DataJsonWoVersion *int `pulumi:"dataJsonWoVersion"`
 	// If set to true, permanently deletes all
 	// versions for the specified key.
 	DeleteAllVersions *bool `pulumi:"deleteAllVersions"`
@@ -245,14 +257,18 @@ type SecretV2State struct {
 	// KV secret. Refer to the
 	// Configuration Options for more info.
 	CustomMetadata SecretV2CustomMetadataPtrInput
-	// A mapping whose keys are the top-level data keys returned from
-	// Vault and whose values are the corresponding values. This map can only
-	// represent string data, so any non-string values returned from Vault are
-	// serialized as JSON.
+	// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+	// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+	// Vault and whose values are the corresponding values. This map can only represent string data,
+	// so any non-string values returned from Vault are serialized as JSON.
+	//
+	// Deprecated: Deprecated. Will no longer be set on a read.
 	Data pulumi.StringMapInput
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrInput
+	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
+	DataJsonWoVersion pulumi.IntPtrInput
 	// If set to true, permanently deletes all
 	// versions for the specified key.
 	DeleteAllVersions pulumi.BoolPtrInput
@@ -295,7 +311,9 @@ type secretV2Args struct {
 	CustomMetadata *SecretV2CustomMetadata `pulumi:"customMetadata"`
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
-	DataJson string `pulumi:"dataJson"`
+	DataJson *string `pulumi:"dataJson"`
+	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
+	DataJsonWoVersion *int `pulumi:"dataJsonWoVersion"`
 	// If set to true, permanently deletes all
 	// versions for the specified key.
 	DeleteAllVersions *bool `pulumi:"deleteAllVersions"`
@@ -331,7 +349,9 @@ type SecretV2Args struct {
 	CustomMetadata SecretV2CustomMetadataPtrInput
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
-	DataJson pulumi.StringInput
+	DataJson pulumi.StringPtrInput
+	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
+	DataJsonWoVersion pulumi.IntPtrInput
 	// If set to true, permanently deletes all
 	// versions for the specified key.
 	DeleteAllVersions pulumi.BoolPtrInput
@@ -456,18 +476,25 @@ func (o SecretV2Output) CustomMetadata() SecretV2CustomMetadataOutput {
 	return o.ApplyT(func(v *SecretV2) SecretV2CustomMetadataOutput { return v.CustomMetadata }).(SecretV2CustomMetadataOutput)
 }
 
-// A mapping whose keys are the top-level data keys returned from
-// Vault and whose values are the corresponding values. This map can only
-// represent string data, so any non-string values returned from Vault are
-// serialized as JSON.
+// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+// Vault and whose values are the corresponding values. This map can only represent string data,
+// so any non-string values returned from Vault are serialized as JSON.
+//
+// Deprecated: Deprecated. Will no longer be set on a read.
 func (o SecretV2Output) Data() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecretV2) pulumi.StringMapOutput { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // JSON-encoded string that will be
 // written as the secret data at the given path.
-func (o SecretV2Output) DataJson() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretV2) pulumi.StringOutput { return v.DataJson }).(pulumi.StringOutput)
+func (o SecretV2Output) DataJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretV2) pulumi.StringPtrOutput { return v.DataJson }).(pulumi.StringPtrOutput)
+}
+
+// The version of the `dataJsonWo`. For more info see updating write-only attributes.
+func (o SecretV2Output) DataJsonWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretV2) pulumi.IntPtrOutput { return v.DataJsonWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // If set to true, permanently deletes all

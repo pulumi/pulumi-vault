@@ -35,6 +35,13 @@ import * as utilities from "../utilities";
  *     rotationWindow: 3600,
  * });
  * ```
+ *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `credentialsWo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+ *   **Note**: This property is write-only and will not be read from the API.
  */
 export class SecretBackend extends pulumi.CustomResource {
     /**
@@ -72,6 +79,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * JSON-encoded credentials to use to connect to GCP
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
+    /**
+     * The version of the `credentialsWo`. For more info see updating write-only attributes.
+     */
+    public readonly credentialsWoVersion!: pulumi.Output<number | undefined>;
     /**
      * The default TTL for credentials
      * issued by this backend. Defaults to '0'.
@@ -165,6 +176,7 @@ export class SecretBackend extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
+            resourceInputs["credentialsWoVersion"] = state ? state.credentialsWoVersion : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
@@ -183,6 +195,7 @@ export class SecretBackend extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
+            resourceInputs["credentialsWoVersion"] = args ? args.credentialsWoVersion : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
@@ -219,6 +232,10 @@ export interface SecretBackendState {
      * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * The version of the `credentialsWo`. For more info see updating write-only attributes.
+     */
+    credentialsWoVersion?: pulumi.Input<number>;
     /**
      * The default TTL for credentials
      * issued by this backend. Defaults to '0'.
@@ -306,6 +323,10 @@ export interface SecretBackendArgs {
      * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * The version of the `credentialsWo`. For more info see updating write-only attributes.
+     */
+    credentialsWoVersion?: pulumi.Input<number>;
     /**
      * The default TTL for credentials
      * issued by this backend. Defaults to '0'.

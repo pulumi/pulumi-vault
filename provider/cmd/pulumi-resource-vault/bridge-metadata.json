@@ -3,11 +3,11 @@
         "resources": {
             "vault_ad_secret_backend": {
                 "current": "vault:ad/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_ad_secret_library": {
                 "current": "vault:ad/secretLibrary:SecretLibrary",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "service_account_names": {
                         "maxItemsOne": false
@@ -16,11 +16,11 @@
             },
             "vault_ad_secret_role": {
                 "current": "vault:ad/secretRole:SecretRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_alicloud_auth_backend_role": {
                 "current": "vault:alicloud/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "token_bound_cidrs": {
                         "maxItemsOne": false
@@ -32,7 +32,7 @@
             },
             "vault_approle_auth_backend_login": {
                 "current": "vault:appRole/authBackendLogin:AuthBackendLogin",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -41,7 +41,7 @@
             },
             "vault_approle_auth_backend_role": {
                 "current": "vault:appRole/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "secret_id_bound_cidrs": {
                         "maxItemsOne": false
@@ -56,7 +56,7 @@
             },
             "vault_approle_auth_backend_role_secret_id": {
                 "current": "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "cidr_list": {
                         "maxItemsOne": false
@@ -65,15 +65,15 @@
             },
             "vault_audit": {
                 "current": "vault:index/audit:Audit",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_audit_request_header": {
                 "current": "vault:index/auditRequestHeader:AuditRequestHeader",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_auth_backend": {
                 "current": "vault:index/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "tune": {
                         "maxItemsOne": true,
@@ -98,15 +98,15 @@
             },
             "vault_aws_auth_backend_cert": {
                 "current": "vault:aws/authBackendCert:AuthBackendCert",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_aws_auth_backend_client": {
                 "current": "vault:aws/authBackendClient:AuthBackendClient",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_aws_auth_backend_config_identity": {
                 "current": "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "ec2_metadata": {
                         "maxItemsOne": false
@@ -118,11 +118,11 @@
             },
             "vault_aws_auth_backend_identity_whitelist": {
                 "current": "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_aws_auth_backend_login": {
                 "current": "vault:aws/authBackendLogin:AuthBackendLogin",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -131,7 +131,7 @@
             },
             "vault_aws_auth_backend_role": {
                 "current": "vault:aws/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_account_ids": {
                         "maxItemsOne": false
@@ -170,7 +170,7 @@
             },
             "vault_aws_auth_backend_role_tag": {
                 "current": "vault:aws/authBackendRoleTag:AuthBackendRoleTag",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -179,15 +179,15 @@
             },
             "vault_aws_auth_backend_roletag_blacklist": {
                 "current": "vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_aws_auth_backend_sts_role": {
                 "current": "vault:aws/authBackendStsRole:AuthBackendStsRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_aws_secret_backend": {
                 "current": "vault:aws/secretBackend:SecretBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "sts_fallback_endpoints": {
                         "maxItemsOne": false
@@ -199,7 +199,7 @@
             },
             "vault_aws_secret_backend_role": {
                 "current": "vault:aws/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "iam_groups": {
                         "maxItemsOne": false
@@ -214,15 +214,15 @@
             },
             "vault_aws_secret_backend_static_role": {
                 "current": "vault:aws/secretBackendStaticRole:SecretBackendStaticRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_azure_auth_backend_config": {
                 "current": "vault:azure/authBackendConfig:AuthBackendConfig",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_azure_auth_backend_role": {
                 "current": "vault:azure/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_group_ids": {
                         "maxItemsOne": false
@@ -252,11 +252,11 @@
             },
             "vault_azure_secret_backend": {
                 "current": "vault:azure/backend:Backend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_azure_secret_backend_role": {
                 "current": "vault:azure/backendRole:BackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "azure_groups": {
                         "maxItemsOne": false
@@ -271,7 +271,7 @@
             },
             "vault_cert_auth_backend_role": {
                 "current": "vault:index/certAuthBackendRole:CertAuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_common_names": {
                         "maxItemsOne": false
@@ -307,7 +307,7 @@
             },
             "vault_config_ui_custom_message": {
                 "current": "vault:config/uiCustomMessage:UiCustomMessage",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "link": {
                         "maxItemsOne": true
@@ -316,11 +316,11 @@
             },
             "vault_consul_secret_backend": {
                 "current": "vault:consul/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_consul_secret_backend_role": {
                 "current": "vault:consul/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "consul_policies": {
                         "maxItemsOne": false
@@ -341,7 +341,7 @@
             },
             "vault_database_secret_backend_connection": {
                 "current": "vault:database/secretBackendConnection:SecretBackendConnection",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_roles": {
                         "maxItemsOne": false
@@ -421,7 +421,7 @@
             },
             "vault_database_secret_backend_role": {
                 "current": "vault:database/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "creation_statements": {
                         "maxItemsOne": false
@@ -439,7 +439,7 @@
             },
             "vault_database_secret_backend_static_role": {
                 "current": "vault:database/secretBackendStaticRole:SecretBackendStaticRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "rotation_statements": {
                         "maxItemsOne": false
@@ -448,7 +448,7 @@
             },
             "vault_database_secrets_mount": {
                 "current": "vault:database/secretsMount:SecretsMount",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_managed_keys": {
                         "maxItemsOne": false
@@ -712,7 +712,7 @@
             },
             "vault_egp_policy": {
                 "current": "vault:index/egpPolicy:EgpPolicy",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "paths": {
                         "maxItemsOne": false
@@ -721,7 +721,7 @@
             },
             "vault_gcp_auth_backend": {
                 "current": "vault:gcp/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "custom_endpoint": {
                         "maxItemsOne": true
@@ -749,7 +749,7 @@
             },
             "vault_gcp_auth_backend_role": {
                 "current": "vault:gcp/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_instance_groups": {
                         "maxItemsOne": false
@@ -779,11 +779,11 @@
             },
             "vault_gcp_secret_backend": {
                 "current": "vault:gcp/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_gcp_secret_impersonated_account": {
                 "current": "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "token_scopes": {
                         "maxItemsOne": false
@@ -792,7 +792,7 @@
             },
             "vault_gcp_secret_roleset": {
                 "current": "vault:gcp/secretRoleset:SecretRoleset",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "binding": {
                         "maxItemsOne": false,
@@ -811,7 +811,7 @@
             },
             "vault_gcp_secret_static_account": {
                 "current": "vault:gcp/secretStaticAccount:SecretStaticAccount",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "binding": {
                         "maxItemsOne": false,
@@ -830,7 +830,7 @@
             },
             "vault_generic_endpoint": {
                 "current": "vault:generic/endpoint:Endpoint",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "write_fields": {
                         "maxItemsOne": false
@@ -839,11 +839,11 @@
             },
             "vault_generic_secret": {
                 "current": "vault:generic/secret:Secret",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_github_auth_backend": {
                 "current": "vault:github/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "token_bound_cidrs": {
                         "maxItemsOne": false
@@ -874,7 +874,7 @@
             },
             "vault_github_team": {
                 "current": "vault:github/team:Team",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -883,7 +883,7 @@
             },
             "vault_github_user": {
                 "current": "vault:github/user:User",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -892,7 +892,7 @@
             },
             "vault_identity_entity": {
                 "current": "vault:identity/entity:Entity",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -901,11 +901,11 @@
             },
             "vault_identity_entity_alias": {
                 "current": "vault:identity/entityAlias:EntityAlias",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_entity_policies": {
                 "current": "vault:identity/entityPolicies:EntityPolicies",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -914,7 +914,7 @@
             },
             "vault_identity_group": {
                 "current": "vault:identity/group:Group",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "member_entity_ids": {
                         "maxItemsOne": false
@@ -929,11 +929,11 @@
             },
             "vault_identity_group_alias": {
                 "current": "vault:identity/groupAlias:GroupAlias",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_group_member_entity_ids": {
                 "current": "vault:identity/groupMemberEntityIds:GroupMemberEntityIds",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "member_entity_ids": {
                         "maxItemsOne": false
@@ -942,7 +942,7 @@
             },
             "vault_identity_group_member_group_ids": {
                 "current": "vault:identity/groupMemberGroupIds:GroupMemberGroupIds",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "member_group_ids": {
                         "maxItemsOne": false
@@ -951,7 +951,7 @@
             },
             "vault_identity_group_policies": {
                 "current": "vault:identity/groupPolicies:GroupPolicies",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -960,11 +960,11 @@
             },
             "vault_identity_mfa_duo": {
                 "current": "vault:identity/mfaDuo:MfaDuo",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_mfa_login_enforcement": {
                 "current": "vault:identity/mfaLoginEnforcement:MfaLoginEnforcement",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "auth_method_accessors": {
                         "maxItemsOne": false
@@ -985,23 +985,23 @@
             },
             "vault_identity_mfa_okta": {
                 "current": "vault:identity/mfaOkta:MfaOkta",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_mfa_pingid": {
                 "current": "vault:identity/mfaPingid:MfaPingid",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_mfa_totp": {
                 "current": "vault:identity/mfaTotp:MfaTotp",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_oidc": {
                 "current": "vault:identity/oidc:Oidc",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_oidc_assignment": {
                 "current": "vault:identity/oidcAssignment:OidcAssignment",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "entity_ids": {
                         "maxItemsOne": false
@@ -1013,7 +1013,7 @@
             },
             "vault_identity_oidc_client": {
                 "current": "vault:identity/oidcClient:OidcClient",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "assignments": {
                         "maxItemsOne": false
@@ -1025,7 +1025,7 @@
             },
             "vault_identity_oidc_key": {
                 "current": "vault:identity/oidcKey:OidcKey",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_client_ids": {
                         "maxItemsOne": false
@@ -1034,11 +1034,11 @@
             },
             "vault_identity_oidc_key_allowed_client_id": {
                 "current": "vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_oidc_provider": {
                 "current": "vault:identity/oidcProvider:OidcProvider",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_client_ids": {
                         "maxItemsOne": false
@@ -1050,15 +1050,15 @@
             },
             "vault_identity_oidc_role": {
                 "current": "vault:identity/oidcRole:OidcRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_oidc_scope": {
                 "current": "vault:identity/oidcScope:OidcScope",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_jwt_auth_backend": {
                 "current": "vault:jwt/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "jwt_supported_algs": {
                         "maxItemsOne": false
@@ -1092,7 +1092,7 @@
             },
             "vault_jwt_auth_backend_role": {
                 "current": "vault:jwt/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_redirect_uris": {
                         "maxItemsOne": false
@@ -1113,7 +1113,7 @@
             },
             "vault_kmip_secret_backend": {
                 "current": "vault:kmip/secretBackend:SecretBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "listen_addrs": {
                         "maxItemsOne": false
@@ -1128,15 +1128,15 @@
             },
             "vault_kmip_secret_role": {
                 "current": "vault:kmip/secretRole:SecretRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kmip_secret_scope": {
                 "current": "vault:kmip/secretScope:SecretScope",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kubernetes_auth_backend_config": {
                 "current": "vault:kubernetes/authBackendConfig:AuthBackendConfig",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "pem_keys": {
                         "maxItemsOne": false
@@ -1145,7 +1145,7 @@
             },
             "vault_kubernetes_auth_backend_role": {
                 "current": "vault:kubernetes/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_service_account_names": {
                         "maxItemsOne": false
@@ -1163,7 +1163,7 @@
             },
             "vault_kubernetes_secret_backend": {
                 "current": "vault:kubernetes/secretBackend:SecretBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_managed_keys": {
                         "maxItemsOne": false
@@ -1187,7 +1187,7 @@
             },
             "vault_kubernetes_secret_backend_role": {
                 "current": "vault:kubernetes/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_kubernetes_namespaces": {
                         "maxItemsOne": false
@@ -1196,15 +1196,15 @@
             },
             "vault_kv_secret": {
                 "current": "vault:kv/secret:Secret",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kv_secret_backend_v2": {
                 "current": "vault:kv/secretBackendV2:SecretBackendV2",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kv_secret_v2": {
                 "current": "vault:kv/secretV2:SecretV2",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "custom_metadata": {
                         "maxItemsOne": true
@@ -1213,7 +1213,7 @@
             },
             "vault_ldap_auth_backend": {
                 "current": "vault:ldap/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "token_bound_cidrs": {
                         "maxItemsOne": false
@@ -1225,7 +1225,7 @@
             },
             "vault_ldap_auth_backend_group": {
                 "current": "vault:ldap/authBackendGroup:AuthBackendGroup",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -1234,7 +1234,7 @@
             },
             "vault_ldap_auth_backend_user": {
                 "current": "vault:ldap/authBackendUser:AuthBackendUser",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "groups": {
                         "maxItemsOne": false
@@ -1246,7 +1246,7 @@
             },
             "vault_ldap_secret_backend": {
                 "current": "vault:ldap/secretBackend:SecretBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_managed_keys": {
                         "maxItemsOne": false
@@ -1270,11 +1270,11 @@
             },
             "vault_ldap_secret_backend_dynamic_role": {
                 "current": "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_ldap_secret_backend_library_set": {
                 "current": "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "service_account_names": {
                         "maxItemsOne": false
@@ -1283,11 +1283,11 @@
             },
             "vault_ldap_secret_backend_static_role": {
                 "current": "vault:ldap/secretBackendStaticRole:SecretBackendStaticRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_managed_keys": {
                 "current": "vault:managed/keys:Keys",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "aws": {
                         "maxItemsOne": false
@@ -1302,27 +1302,27 @@
             },
             "vault_mfa_duo": {
                 "current": "vault:index/mfaDuo:MfaDuo",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_mfa_okta": {
                 "current": "vault:index/mfaOkta:MfaOkta",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_mfa_pingid": {
                 "current": "vault:index/mfaPingid:MfaPingid",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_mfa_totp": {
                 "current": "vault:index/mfaTotp:MfaTotp",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_mongodbatlas_secret_backend": {
                 "current": "vault:mongodbatlas/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_mongodbatlas_secret_role": {
                 "current": "vault:mongodbatlas/secretRole:SecretRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "cidr_blocks": {
                         "maxItemsOne": false
@@ -1340,7 +1340,7 @@
             },
             "vault_mount": {
                 "current": "vault:index/mount:Mount",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_managed_keys": {
                         "maxItemsOne": false
@@ -1364,15 +1364,15 @@
             },
             "vault_namespace": {
                 "current": "vault:index/namespace:Namespace",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_nomad_secret_backend": {
                 "current": "vault:index/nomadSecretBackend:NomadSecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_nomad_secret_role": {
                 "current": "vault:index/nomadSecretRole:NomadSecretRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -1381,7 +1381,7 @@
             },
             "vault_okta_auth_backend": {
                 "current": "vault:okta/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "group": {
                         "maxItemsOne": false,
@@ -1416,7 +1416,7 @@
             },
             "vault_okta_auth_backend_group": {
                 "current": "vault:okta/authBackendGroup:AuthBackendGroup",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -1425,7 +1425,7 @@
             },
             "vault_okta_auth_backend_user": {
                 "current": "vault:okta/authBackendUser:AuthBackendUser",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "groups": {
                         "maxItemsOne": false
@@ -1435,17 +1435,13 @@
                     }
                 }
             },
-            "vault_password_policy": {
-                "current": "vault:index/passwordPolicy:PasswordPolicy",
-                "majorVersion": 6
-            },
             "vault_pki_secret_backend_acme_eab": {
                 "current": "vault:pkiSecret/backendAcmeEab:BackendAcmeEab",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_cert": {
                 "current": "vault:pkiSecret/secretBackendCert:SecretBackendCert",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "alt_names": {
                         "maxItemsOne": false
@@ -1466,7 +1462,7 @@
             },
             "vault_pki_secret_backend_config_acme": {
                 "current": "vault:pkiSecret/backendConfigAcme:BackendConfigAcme",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_issuers": {
                         "maxItemsOne": false
@@ -1478,19 +1474,19 @@
             },
             "vault_pki_secret_backend_config_auto_tidy": {
                 "current": "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_config_ca": {
                 "current": "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_config_cluster": {
                 "current": "vault:pkiSecret/backendConfigCluster:BackendConfigCluster",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_config_cmpv2": {
                 "current": "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "audit_fields": {
                         "maxItemsOne": false
@@ -1505,7 +1501,7 @@
             },
             "vault_pki_secret_backend_config_est": {
                 "current": "vault:pkiSecret/backendConfigEst:BackendConfigEst",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "audit_fields": {
                         "maxItemsOne": false
@@ -1517,11 +1513,11 @@
             },
             "vault_pki_secret_backend_config_issuers": {
                 "current": "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_config_urls": {
                 "current": "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "crl_distribution_points": {
                         "maxItemsOne": false
@@ -1536,11 +1532,11 @@
             },
             "vault_pki_secret_backend_crl_config": {
                 "current": "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_intermediate_cert_request": {
                 "current": "vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "alt_names": {
                         "maxItemsOne": false
@@ -1561,7 +1557,7 @@
             },
             "vault_pki_secret_backend_intermediate_set_signed": {
                 "current": "vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "imported_issuers": {
                         "maxItemsOne": false
@@ -1573,7 +1569,7 @@
             },
             "vault_pki_secret_backend_issuer": {
                 "current": "vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "crl_distribution_points": {
                         "maxItemsOne": false
@@ -1591,11 +1587,11 @@
             },
             "vault_pki_secret_backend_key": {
                 "current": "vault:pkiSecret/secretBackendKey:SecretBackendKey",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_role": {
                 "current": "vault:pkiSecret/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_domains": {
                         "maxItemsOne": false
@@ -1655,7 +1651,7 @@
             },
             "vault_pki_secret_backend_root_cert": {
                 "current": "vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "alt_names": {
                         "maxItemsOne": false
@@ -1697,7 +1693,7 @@
             },
             "vault_pki_secret_backend_root_sign_intermediate": {
                 "current": "vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "alt_names": {
                         "maxItemsOne": false
@@ -1742,7 +1738,7 @@
             },
             "vault_pki_secret_backend_sign": {
                 "current": "vault:pkiSecret/secretBackendSign:SecretBackendSign",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "alt_names": {
                         "maxItemsOne": false
@@ -1763,7 +1759,7 @@
             },
             "vault_plugin": {
                 "current": "vault:index/plugin:Plugin",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "args": {
                         "maxItemsOne": false
@@ -1775,27 +1771,27 @@
             },
             "vault_plugin_pinned_version": {
                 "current": "vault:index/pluginPinnedVersion:PluginPinnedVersion",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_policy": {
                 "current": "vault:index/policy:Policy",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_quota_lease_count": {
                 "current": "vault:index/quotaLeaseCount:QuotaLeaseCount",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_quota_rate_limit": {
                 "current": "vault:index/quotaRateLimit:QuotaRateLimit",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_rabbitmq_secret_backend": {
                 "current": "vault:rabbitMq/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_rabbitmq_secret_backend_role": {
                 "current": "vault:rabbitMq/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "vhost": {
                         "maxItemsOne": false
@@ -1814,19 +1810,19 @@
             },
             "vault_raft_autopilot": {
                 "current": "vault:index/raftAutopilot:RaftAutopilot",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_raft_snapshot_agent_config": {
                 "current": "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_rgp_policy": {
                 "current": "vault:index/rgpPolicy:RgpPolicy",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_saml_auth_backend": {
                 "current": "vault:saml/authBackend:AuthBackend",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "acs_urls": {
                         "maxItemsOne": false
@@ -1835,7 +1831,7 @@
             },
             "vault_saml_auth_backend_role": {
                 "current": "vault:saml/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_subjects": {
                         "maxItemsOne": false
@@ -1850,7 +1846,7 @@
             },
             "vault_secrets_sync_association": {
                 "current": "vault:secrets/syncAssociation:SyncAssociation",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "metadata": {
                         "maxItemsOne": false
@@ -1859,31 +1855,31 @@
             },
             "vault_secrets_sync_aws_destination": {
                 "current": "vault:secrets/syncAwsDestination:SyncAwsDestination",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_secrets_sync_azure_destination": {
                 "current": "vault:secrets/syncAzureDestination:SyncAzureDestination",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_secrets_sync_config": {
                 "current": "vault:secrets/syncConfig:SyncConfig",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_secrets_sync_gcp_destination": {
                 "current": "vault:secrets/syncGcpDestination:SyncGcpDestination",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_secrets_sync_gh_destination": {
                 "current": "vault:secrets/syncGhDestination:SyncGhDestination",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_secrets_sync_github_apps": {
                 "current": "vault:secrets/syncGithubApps:SyncGithubApps",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_secrets_sync_vercel_destination": {
                 "current": "vault:secrets/syncVercelDestination:SyncVercelDestination",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "deployment_environments": {
                         "maxItemsOne": false
@@ -1892,11 +1888,11 @@
             },
             "vault_ssh_secret_backend_ca": {
                 "current": "vault:ssh/secretBackendCa:SecretBackendCa",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_ssh_secret_backend_role": {
                 "current": "vault:ssh/secretBackendRole:SecretBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_user_key_config": {
                         "maxItemsOne": false,
@@ -1912,19 +1908,19 @@
             },
             "vault_terraform_cloud_secret_backend": {
                 "current": "vault:terraformcloud/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_terraform_cloud_secret_creds": {
                 "current": "vault:terraformcloud/secretCreds:SecretCreds",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_terraform_cloud_secret_role": {
                 "current": "vault:terraformcloud/secretRole:SecretRole",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_token": {
                 "current": "vault:index/token:Token",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -1933,7 +1929,7 @@
             },
             "vault_token_auth_backend_role": {
                 "current": "vault:tokenauth/authBackendRole:AuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_entity_aliases": {
                         "maxItemsOne": false
@@ -1960,11 +1956,11 @@
             },
             "vault_transform_alphabet": {
                 "current": "vault:transform/alphabet:Alphabet",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_transform_role": {
                 "current": "vault:transform/role:Role",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "transformations": {
                         "maxItemsOne": false
@@ -1973,11 +1969,11 @@
             },
             "vault_transform_template": {
                 "current": "vault:transform/template:Template",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_transform_transformation": {
                 "current": "vault:transform/transformation:Transformation",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "allowed_roles": {
                         "maxItemsOne": false
@@ -1989,7 +1985,7 @@
             },
             "vault_transit_secret_backend_key": {
                 "current": "vault:transit/secretBackendKey:SecretBackendKey",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "keys": {
                         "maxItemsOne": false
@@ -1998,25 +1994,25 @@
             },
             "vault_transit_secret_cache_config": {
                 "current": "vault:transit/secretCacheConfig:SecretCacheConfig",
-                "majorVersion": 6
+                "majorVersion": 7
             }
         },
         "datasources": {
             "vault_ad_access_credentials": {
                 "current": "vault:ad/getAccessCredentials:getAccessCredentials",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_approle_auth_backend_role_id": {
                 "current": "vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_auth_backend": {
                 "current": "vault:index/getAuthBackend:getAuthBackend",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_auth_backends": {
                 "current": "vault:index/getAuthBackends:getAuthBackends",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "accessors": {
                         "maxItemsOne": false
@@ -2028,19 +2024,19 @@
             },
             "vault_aws_access_credentials": {
                 "current": "vault:aws/getAccessCredentials:getAccessCredentials",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_aws_static_access_credentials": {
                 "current": "vault:aws/getStaticAccessCredentials:getStaticAccessCredentials",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_azure_access_credentials": {
                 "current": "vault:azure/getAccessCredentials:getAccessCredentials",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_gcp_auth_backend_role": {
                 "current": "vault:gcp/getAuthBackendRole:getAuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_instance_groups": {
                         "maxItemsOne": false
@@ -2070,11 +2066,11 @@
             },
             "vault_generic_secret": {
                 "current": "vault:generic/getSecret:getSecret",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_entity": {
                 "current": "vault:identity/getEntity:getEntity",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "aliases": {
                         "maxItemsOne": false,
@@ -2105,7 +2101,7 @@
             },
             "vault_identity_group": {
                 "current": "vault:identity/getGroup:getGroup",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "alias_merged_from_canonical_ids": {
                         "maxItemsOne": false
@@ -2126,11 +2122,11 @@
             },
             "vault_identity_oidc_client_creds": {
                 "current": "vault:identity/getOidcClientCreds:getOidcClientCreds",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_identity_oidc_openid_config": {
                 "current": "vault:identity/getOidcOpenidConfig:getOidcOpenidConfig",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "grant_types_supported": {
                         "maxItemsOne": false
@@ -2154,7 +2150,7 @@
             },
             "vault_identity_oidc_public_keys": {
                 "current": "vault:identity/getOidcPublicKeys:getOidcPublicKeys",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "keys": {
                         "maxItemsOne": false
@@ -2163,7 +2159,7 @@
             },
             "vault_kubernetes_auth_backend_config": {
                 "current": "vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "pem_keys": {
                         "maxItemsOne": false
@@ -2172,7 +2168,7 @@
             },
             "vault_kubernetes_auth_backend_role": {
                 "current": "vault:kubernetes/getAuthBackendRole:getAuthBackendRole",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "bound_service_account_names": {
                         "maxItemsOne": false
@@ -2190,23 +2186,23 @@
             },
             "vault_kubernetes_service_account_token": {
                 "current": "vault:kubernetes/getServiceAccountToken:getServiceAccountToken",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kv_secret": {
                 "current": "vault:kv/getSecret:getSecret",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kv_secret_subkeys_v2": {
                 "current": "vault:kv/getSecretSubkeysV2:getSecretSubkeysV2",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kv_secret_v2": {
                 "current": "vault:kv/getSecretV2:getSecretV2",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_kv_secrets_list": {
                 "current": "vault:kv/getSecretsList:getSecretsList",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "names": {
                         "maxItemsOne": false
@@ -2215,7 +2211,7 @@
             },
             "vault_kv_secrets_list_v2": {
                 "current": "vault:kv/getSecretsListV2:getSecretsListV2",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "names": {
                         "maxItemsOne": false
@@ -2224,7 +2220,7 @@
             },
             "vault_ldap_dynamic_credentials": {
                 "current": "vault:ldap/getDynamicCredentials:getDynamicCredentials",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "distinguished_names": {
                         "maxItemsOne": false
@@ -2233,15 +2229,15 @@
             },
             "vault_ldap_static_credentials": {
                 "current": "vault:ldap/getStaticCredentials:getStaticCredentials",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_namespace": {
                 "current": "vault:index/getNamespace:getNamespace",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_namespaces": {
                 "current": "vault:index/getNamespaces:getNamespaces",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "paths": {
                         "maxItemsOne": false
@@ -2253,15 +2249,15 @@
             },
             "vault_nomad_access_token": {
                 "current": "vault:index/getNomadAccessToken:getNomadAccessToken",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_cert_metadata": {
                 "current": "vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_config_cmpv2": {
                 "current": "vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "audit_fields": {
                         "maxItemsOne": false
@@ -2276,7 +2272,7 @@
             },
             "vault_pki_secret_backend_config_est": {
                 "current": "vault:pkiSecret/getBackendConfigEst:getBackendConfigEst",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "audit_fields": {
                         "maxItemsOne": false
@@ -2288,7 +2284,7 @@
             },
             "vault_pki_secret_backend_issuer": {
                 "current": "vault:pkiSecret/getBackendIssuer:getBackendIssuer",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "ca_chain": {
                         "maxItemsOne": false
@@ -2300,7 +2296,7 @@
             },
             "vault_pki_secret_backend_issuers": {
                 "current": "vault:pkiSecret/getBackendIssuers:getBackendIssuers",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "keys": {
                         "maxItemsOne": false
@@ -2309,11 +2305,11 @@
             },
             "vault_pki_secret_backend_key": {
                 "current": "vault:pkiSecret/getBackendKey:getBackendKey",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_pki_secret_backend_keys": {
                 "current": "vault:pkiSecret/getBackendKeys:getBackendKeys",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "keys": {
                         "maxItemsOne": false
@@ -2322,7 +2318,7 @@
             },
             "vault_policy_document": {
                 "current": "vault:index/getPolicyDocument:getPolicyDocument",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false,
@@ -2364,7 +2360,7 @@
             },
             "vault_raft_autopilot_state": {
                 "current": "vault:index/getRaftAutopilotState:getRaftAutopilotState",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "voters": {
                         "maxItemsOne": false
@@ -2373,11 +2369,11 @@
             },
             "vault_ssh_secret_backend_sign": {
                 "current": "vault:ssh/getSecretBackendSign:getSecretBackendSign",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_transform_decode": {
                 "current": "vault:transform/getDecode:getDecode",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "batch_input": {
                         "maxItemsOne": false
@@ -2389,7 +2385,7 @@
             },
             "vault_transform_encode": {
                 "current": "vault:transform/getEncode:getEncode",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "batch_input": {
                         "maxItemsOne": false
@@ -2401,15 +2397,15 @@
             },
             "vault_transit_decrypt": {
                 "current": "vault:transit/getDecrypt:getDecrypt",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_transit_encrypt": {
                 "current": "vault:transit/getEncrypt:getEncrypt",
-                "majorVersion": 6
+                "majorVersion": 7
             },
             "vault_transit_sign": {
                 "current": "vault:transit/getSign:getSign",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "batch_input": {
                         "maxItemsOne": false
@@ -2421,7 +2417,7 @@
             },
             "vault_transit_verify": {
                 "current": "vault:transit/getVerify:getVerify",
-                "majorVersion": 6,
+                "majorVersion": 7,
                 "fields": {
                     "batch_input": {
                         "maxItemsOne": false
@@ -2510,7 +2506,6 @@
             "vault:index/namespace:Namespace": "vault_namespace",
             "vault:index/nomadSecretBackend:NomadSecretBackend": "vault_nomad_secret_backend",
             "vault:index/nomadSecretRole:NomadSecretRole": "vault_nomad_secret_role",
-            "vault:index/passwordPolicy:PasswordPolicy": "vault_password_policy",
             "vault:index/policy:Policy": "vault_policy",
             "vault:index/quotaLeaseCount:QuotaLeaseCount": "vault_quota_lease_count",
             "vault:index/quotaRateLimit:QuotaRateLimit": "vault_quota_rate_limit",

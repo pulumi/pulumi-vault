@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,10 +16,10 @@ var _ = internal.GetEnvOrDefault
 type SecretV2CustomMetadata struct {
 	// If true, all keys will require the cas parameter to be set on all write requests.
 	CasRequired *bool `pulumi:"casRequired"`
-	// A mapping whose keys are the top-level data keys returned from
-	// Vault and whose values are the corresponding values. This map can only
-	// represent string data, so any non-string values returned from Vault are
-	// serialized as JSON.
+	// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+	// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+	// Vault and whose values are the corresponding values. This map can only represent string data,
+	// so any non-string values returned from Vault are serialized as JSON.
 	Data map[string]string `pulumi:"data"`
 	// If set, specifies the length of time before a version is deleted.
 	DeleteVersionAfter *int `pulumi:"deleteVersionAfter"`
@@ -41,10 +41,10 @@ type SecretV2CustomMetadataInput interface {
 type SecretV2CustomMetadataArgs struct {
 	// If true, all keys will require the cas parameter to be set on all write requests.
 	CasRequired pulumi.BoolPtrInput `pulumi:"casRequired"`
-	// A mapping whose keys are the top-level data keys returned from
-	// Vault and whose values are the corresponding values. This map can only
-	// represent string data, so any non-string values returned from Vault are
-	// serialized as JSON.
+	// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+	// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+	// Vault and whose values are the corresponding values. This map can only represent string data,
+	// so any non-string values returned from Vault are serialized as JSON.
 	Data pulumi.StringMapInput `pulumi:"data"`
 	// If set, specifies the length of time before a version is deleted.
 	DeleteVersionAfter pulumi.IntPtrInput `pulumi:"deleteVersionAfter"`
@@ -134,10 +134,10 @@ func (o SecretV2CustomMetadataOutput) CasRequired() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretV2CustomMetadata) *bool { return v.CasRequired }).(pulumi.BoolPtrOutput)
 }
 
-// A mapping whose keys are the top-level data keys returned from
-// Vault and whose values are the corresponding values. This map can only
-// represent string data, so any non-string values returned from Vault are
-// serialized as JSON.
+// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+// Vault and whose values are the corresponding values. This map can only represent string data,
+// so any non-string values returned from Vault are serialized as JSON.
 func (o SecretV2CustomMetadataOutput) Data() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SecretV2CustomMetadata) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
@@ -186,10 +186,10 @@ func (o SecretV2CustomMetadataPtrOutput) CasRequired() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// A mapping whose keys are the top-level data keys returned from
-// Vault and whose values are the corresponding values. This map can only
-// represent string data, so any non-string values returned from Vault are
-// serialized as JSON.
+// **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+// secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+// Vault and whose values are the corresponding values. This map can only represent string data,
+// so any non-string values returned from Vault are serialized as JSON.
 func (o SecretV2CustomMetadataPtrOutput) Data() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecretV2CustomMetadata) map[string]string {
 		if v == nil {

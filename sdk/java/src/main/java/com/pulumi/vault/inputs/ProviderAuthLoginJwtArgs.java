@@ -21,15 +21,15 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
      * A signed JSON Web Token.
      * 
      */
-    @Import(name="jwt", required=true)
-    private Output<String> jwt;
+    @Import(name="jwt")
+    private @Nullable Output<String> jwt;
 
     /**
      * @return A signed JSON Web Token.
      * 
      */
-    public Output<String> jwt() {
-        return this.jwt;
+    public Optional<Output<String>> jwt() {
+        return Optional.ofNullable(this.jwt);
     }
 
     /**
@@ -126,7 +126,7 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder jwt(Output<String> jwt) {
+        public Builder jwt(@Nullable Output<String> jwt) {
             $.jwt = jwt;
             return this;
         }
@@ -226,9 +226,6 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
         }
 
         public ProviderAuthLoginJwtArgs build() {
-            if ($.jwt == null) {
-                throw new MissingRequiredPropertyException("ProviderAuthLoginJwtArgs", "jwt");
-            }
             if ($.role == null) {
                 throw new MissingRequiredPropertyException("ProviderAuthLoginJwtArgs", "role");
             }
