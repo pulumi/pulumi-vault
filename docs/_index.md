@@ -4,15 +4,17 @@ title: HashiCorp Vault Provider
 meta_desc: Provides an overview on how to configure the Pulumi HashiCorp Vault provider.
 layout: package
 ---
+
 ## Installation
 
 The HashiCorp Vault provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/vault`](https://www.npmjs.com/package/@pulumi/vault)
 * Python: [`pulumi-vault`](https://pypi.org/project/pulumi-vault/)
-* Go: [`github.com/pulumi/pulumi-vault/sdk/v6/go/vault`](https://github.com/pulumi/pulumi-vault)
+* Go: [`github.com/pulumi/pulumi-vault/sdk/v7/go/vault`](https://github.com/pulumi/pulumi-vault)
 * .NET: [`Pulumi.Vault`](https://www.nuget.org/packages/Pulumi.Vault)
 * Java: [`com.pulumi/vault`](https://central.sonatype.com/artifact/com.pulumi/vault)
+
 ## Overview
 
 The Vault provider allows Pulumi to read from, write to, and configure
@@ -112,12 +114,6 @@ variables in order to keep credential information out of the configuration.
   a limited child token using auth/token/create in order to enforce a short
   TTL and limit exposure. *See usage details below.*
 
-* `clientAuth` - (Optional) A configuration block, described below, that
-  provides credentials used by Pulumi to authenticate with the Vault
-  server. At present there is little reason to set this, because Pulumi
-  does not support the TLS certificate authentication mechanism.
-  *Deprecated, use `authLoginCert` instead.
-
 * `skipTlsVerify` - (Optional) Set this to `true` to disable verification
   of the Vault server's TLS certificate. This is strongly discouraged except
   in prototype or development environments, since it exposes the possibility
@@ -165,10 +161,6 @@ variables in order to keep credential information out of the configuration.
 
 * `useRootNamespace` - (Optional) Authenticate to the root Vault namespace. Conflicts with `namespace`.
 
-* `setNamespaceFromToken` -(Optional) Defaults to `true`. In the case where the Vault token is
-  for a specific namespace and the provider namespace is not configured, use the token namespace
-  as the root namespace for all resources.
-
 * `skipGetVaultVersion` - (Optional) Skip the dynamic fetching of the Vault server version.
   Set to `true` when the */sys/seal-status* API endpoint is not available. See vaultVersionOverride
   for related info
@@ -184,14 +176,6 @@ only ever use this option in the case where the server version cannot be dynamic
 * `headers` - (Optional) A configuration block, described below, that provides headers
   to be sent along with all requests to the Vault server.  This block can be specified
   multiple times.
-
-The `clientAuth` configuration block accepts the following arguments:
-
-* `certFile` - (Required) Path to a file on local disk that contains the
-  PEM-encoded certificate to present to the server.
-
-* `keyFile` - (Required) Path to a file on local disk that contains the
-  PEM-encoded private key for which the authentication certificate was issued.
 
 The `headers` configuration block accepts the following arguments:
 
@@ -621,7 +605,7 @@ package main
 import (
 	"encoding/json"
 
-	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/generic"
+	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/generic"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -724,8 +708,8 @@ runtime: nodejs
 import * as pulumi from "@pulumi/pulumi";
 
 const config = new pulumi.Config();
-const loginUsername = config.requireObject("loginUsername");
-const loginPassword = config.requireObject("loginPassword");
+const loginUsername = config.requireObject<any>("loginUsername");
+const loginPassword = config.requireObject<any>("loginPassword");
 ```
 {{% /choosable %}}
 {{% choosable language python %}}
@@ -853,8 +837,8 @@ runtime: nodejs
 import * as pulumi from "@pulumi/pulumi";
 
 const config = new pulumi.Config();
-const loginApproleRoleId = config.requireObject("loginApproleRoleId");
-const loginApproleSecretId = config.requireObject("loginApproleSecretId");
+const loginApproleRoleId = config.requireObject<any>("loginApproleRoleId");
+const loginApproleSecretId = config.requireObject<any>("loginApproleSecretId");
 ```
 {{% /choosable %}}
 {{% choosable language python %}}
@@ -971,154 +955,24 @@ public class App {
 
 Sign AWS metadata for instance profile login requests:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
-{{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
 name: configuration-example
-runtime: nodejs
+runtime:
 config:
     vault:address:
         value: http://127.0.0.1:8200
 
 ```
-
-{{% /choosable %}}
-{{% choosable language python %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: python
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language csharp %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: dotnet
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language go %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: go
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language yaml %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: yaml
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language java %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: java
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{< /chooser >}}
 
 If the Vault server's AWS auth method requires the `X-Vault-AWS-IAM-Server-ID` header to be set by clients, specify the server ID in `headerValue` within the `parameters` block:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
-{{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
 name: configuration-example
-runtime: nodejs
+runtime:
 config:
     vault:address:
         value: http://127.0.0.1:8200
 
 ```
-
-{{% /choosable %}}
-{{% choosable language python %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: python
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language csharp %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: dotnet
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language go %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: go
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language yaml %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: yaml
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{% choosable language java %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: java
-config:
-    vault:address:
-        value: http://127.0.0.1:8200
-
-```
-
-{{% /choosable %}}
-{{< /chooser >}}

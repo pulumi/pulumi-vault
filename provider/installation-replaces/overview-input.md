@@ -1,5 +1,5 @@
 The Vault provider allows Terraform to read from, write to, and configure
-[HashiCorp Vault](https://vaultproject.io/).
+[HashiCorp Vault](https://developer.hashicorp.com/vault).
 
 ~> **Important** Interacting with Vault from Terraform causes any secrets
 that you read and write to be persisted in both Terraform's state file
