@@ -17,6 +17,7 @@ export function getVerify(args: GetVerifyArgs, opts?: pulumi.InvokeOptions): Pro
         "hashAlgorithm": args.hashAlgorithm,
         "hmac": args.hmac,
         "input": args.input,
+        "macLength": args.macLength,
         "marshalingAlgorithm": args.marshalingAlgorithm,
         "name": args.name,
         "namespace": args.namespace,
@@ -45,6 +46,7 @@ export interface GetVerifyArgs {
     hashAlgorithm?: string;
     hmac?: string;
     input?: string;
+    macLength?: number;
     marshalingAlgorithm?: string;
     name: string;
     namespace?: string;
@@ -79,6 +81,7 @@ export interface GetVerifyResult {
      */
     readonly id: string;
     readonly input?: string;
+    readonly macLength?: number;
     readonly marshalingAlgorithm?: string;
     readonly name: string;
     readonly namespace?: string;
@@ -107,6 +110,7 @@ export function getVerifyOutput(args: GetVerifyOutputArgs, opts?: pulumi.InvokeO
         "hashAlgorithm": args.hashAlgorithm,
         "hmac": args.hmac,
         "input": args.input,
+        "macLength": args.macLength,
         "marshalingAlgorithm": args.marshalingAlgorithm,
         "name": args.name,
         "namespace": args.namespace,
@@ -135,6 +139,7 @@ export interface GetVerifyOutputArgs {
     hashAlgorithm?: pulumi.Input<string>;
     hmac?: pulumi.Input<string>;
     input?: pulumi.Input<string>;
+    macLength?: pulumi.Input<number>;
     marshalingAlgorithm?: pulumi.Input<string>;
     name: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;

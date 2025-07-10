@@ -96,6 +96,11 @@ import javax.annotation.Nullable;
  * * `password_wo` - (Optional) The password for the user. Can be updated.
  *   **Note**: This property is write-only and will not be read from the API.
  * 
+ * The following write-only attribute is supported only for Snowflake DB:
+ * 
+ * * `private_key_wo` - (Optional) The private key associated with the Snowflake user.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.

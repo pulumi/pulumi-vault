@@ -87,6 +87,8 @@ type SecretBackendRootSignIntermediate struct {
 	IssuerRef pulumi.StringPtrOutput `pulumi:"issuerRef"`
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	KeyUsages pulumi.StringArrayOutput `pulumi:"keyUsages"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
@@ -126,7 +128,7 @@ type SecretBackendRootSignIntermediate struct {
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// The number of bits to use in the signature algorithm
 	SignatureBits pulumi.IntPtrOutput `pulumi:"signatureBits"`
-	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
 	Skid pulumi.StringPtrOutput `pulumi:"skid"`
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
@@ -136,7 +138,7 @@ type SecretBackendRootSignIntermediate struct {
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
 	// Preserve CSR values
 	UseCsrValues pulumi.BoolPtrOutput `pulumi:"useCsrValues"`
-	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
 	UsePss pulumi.BoolPtrOutput `pulumi:"usePss"`
 }
 
@@ -217,6 +219,8 @@ type secretBackendRootSignIntermediateState struct {
 	IssuerRef *string `pulumi:"issuerRef"`
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa *string `pulumi:"issuingCa"`
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
@@ -256,7 +260,7 @@ type secretBackendRootSignIntermediateState struct {
 	SerialNumber *string `pulumi:"serialNumber"`
 	// The number of bits to use in the signature algorithm
 	SignatureBits *int `pulumi:"signatureBits"`
-	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
 	Skid *string `pulumi:"skid"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
@@ -266,7 +270,7 @@ type secretBackendRootSignIntermediateState struct {
 	UriSans []string `pulumi:"uriSans"`
 	// Preserve CSR values
 	UseCsrValues *bool `pulumi:"useCsrValues"`
-	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
 	UsePss *bool `pulumi:"usePss"`
 }
 
@@ -309,6 +313,8 @@ type SecretBackendRootSignIntermediateState struct {
 	IssuerRef pulumi.StringPtrInput
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringPtrInput
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
@@ -348,7 +354,7 @@ type SecretBackendRootSignIntermediateState struct {
 	SerialNumber pulumi.StringPtrInput
 	// The number of bits to use in the signature algorithm
 	SignatureBits pulumi.IntPtrInput
-	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
 	Skid pulumi.StringPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
@@ -358,7 +364,7 @@ type SecretBackendRootSignIntermediateState struct {
 	UriSans pulumi.StringArrayInput
 	// Preserve CSR values
 	UseCsrValues pulumi.BoolPtrInput
-	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
 	UsePss pulumi.BoolPtrInput
 }
 
@@ -396,6 +402,8 @@ type secretBackendRootSignIntermediateArgs struct {
 	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
 	// overriding the role's `issuerRef` value.
 	IssuerRef *string `pulumi:"issuerRef"`
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The maximum path length to encode in the generated certificate
@@ -433,7 +441,7 @@ type secretBackendRootSignIntermediateArgs struct {
 	Revoke *bool `pulumi:"revoke"`
 	// The number of bits to use in the signature algorithm
 	SignatureBits *int `pulumi:"signatureBits"`
-	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
 	Skid *string `pulumi:"skid"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
@@ -443,7 +451,7 @@ type secretBackendRootSignIntermediateArgs struct {
 	UriSans []string `pulumi:"uriSans"`
 	// Preserve CSR values
 	UseCsrValues *bool `pulumi:"useCsrValues"`
-	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
 	UsePss *bool `pulumi:"usePss"`
 }
 
@@ -478,6 +486,8 @@ type SecretBackendRootSignIntermediateArgs struct {
 	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
 	// overriding the role's `issuerRef` value.
 	IssuerRef pulumi.StringPtrInput
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
@@ -515,7 +525,7 @@ type SecretBackendRootSignIntermediateArgs struct {
 	Revoke pulumi.BoolPtrInput
 	// The number of bits to use in the signature algorithm
 	SignatureBits pulumi.IntPtrInput
-	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
 	Skid pulumi.StringPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
@@ -525,7 +535,7 @@ type SecretBackendRootSignIntermediateArgs struct {
 	UriSans pulumi.StringArrayInput
 	// Preserve CSR values
 	UseCsrValues pulumi.BoolPtrInput
-	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
 	UsePss pulumi.BoolPtrInput
 }
 
@@ -705,6 +715,11 @@ func (o SecretBackendRootSignIntermediateOutput) IssuingCa() pulumi.StringOutput
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
 }
 
+// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+func (o SecretBackendRootSignIntermediateOutput) KeyUsages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.KeyUsages }).(pulumi.StringArrayOutput)
+}
+
 // The locality
 func (o SecretBackendRootSignIntermediateOutput) Locality() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Locality }).(pulumi.StringPtrOutput)
@@ -795,7 +810,7 @@ func (o SecretBackendRootSignIntermediateOutput) SignatureBits() pulumi.IntPtrOu
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.IntPtrOutput { return v.SignatureBits }).(pulumi.IntPtrOutput)
 }
 
-// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
 func (o SecretBackendRootSignIntermediateOutput) Skid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Skid }).(pulumi.StringPtrOutput)
 }
@@ -820,7 +835,7 @@ func (o SecretBackendRootSignIntermediateOutput) UseCsrValues() pulumi.BoolPtrOu
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.UseCsrValues }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
 func (o SecretBackendRootSignIntermediateOutput) UsePss() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.UsePss }).(pulumi.BoolPtrOutput)
 }

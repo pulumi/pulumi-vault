@@ -3546,6 +3546,10 @@ if not MYPY:
         """
         Version counter for root credential password write-only field
         """
+        private_key_wo_version: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Version counter for the private key key-pair credentials write-only field
+        """
         username: NotRequired[pulumi.Input[builtins.str]]
         """
         The root credential username used in the connection URL
@@ -3566,6 +3570,7 @@ class SecretBackendConnectionSnowflakeArgs:
                  max_open_connections: Optional[pulumi.Input[builtins.int]] = None,
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[builtins.int]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  username: Optional[pulumi.Input[builtins.str]] = None,
                  username_template: Optional[pulumi.Input[builtins.str]] = None):
         """
@@ -3575,6 +3580,7 @@ class SecretBackendConnectionSnowflakeArgs:
         :param pulumi.Input[builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[builtins.str] password: The root credential password used in the connection URL
         :param pulumi.Input[builtins.int] password_wo_version: Version counter for root credential password write-only field
+        :param pulumi.Input[builtins.int] private_key_wo_version: Version counter for the private key key-pair credentials write-only field
         :param pulumi.Input[builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[builtins.str] username_template: Username generation template.
         """
@@ -3587,9 +3593,14 @@ class SecretBackendConnectionSnowflakeArgs:
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
+            warnings.warn("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""", DeprecationWarning)
+            pulumi.log.warn("""password is deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
+        if password is not None:
             pulumi.set(__self__, "password", password)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -3645,6 +3656,7 @@ class SecretBackendConnectionSnowflakeArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
     def password(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The root credential password used in the connection URL
@@ -3666,6 +3678,18 @@ class SecretBackendConnectionSnowflakeArgs:
     @password_wo_version.setter
     def password_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
+
+    @property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Version counter for the private key key-pair credentials write-only field
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @property
     @pulumi.getter
@@ -10960,6 +10984,10 @@ if not MYPY:
         """
         Specifies the name of the plugin to use.
         """
+        private_key_wo_version: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Version counter for the private key key-pair credentials write-only field
+        """
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
@@ -11010,6 +11038,7 @@ class SecretsMountSnowflakeArgs:
                  password: Optional[pulumi.Input[builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[builtins.str]] = None,
@@ -11032,6 +11061,7 @@ class SecretsMountSnowflakeArgs:
         :param pulumi.Input[builtins.str] password: The root credential password used in the connection URL
         :param pulumi.Input[builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[builtins.int] private_key_wo_version: Version counter for the private key key-pair credentials write-only field
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -11061,11 +11091,16 @@ class SecretsMountSnowflakeArgs:
         if max_open_connections is not None:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
+            warnings.warn("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""", DeprecationWarning)
+            pulumi.log.warn("""password is deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
+        if password is not None:
             pulumi.set(__self__, "password", password)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -11182,6 +11217,7 @@ class SecretsMountSnowflakeArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
     def password(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The root credential password used in the connection URL
@@ -11215,6 +11251,18 @@ class SecretsMountSnowflakeArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Version counter for the private key key-pair credentials write-only field
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @property
     @pulumi.getter(name="rootRotationStatements")

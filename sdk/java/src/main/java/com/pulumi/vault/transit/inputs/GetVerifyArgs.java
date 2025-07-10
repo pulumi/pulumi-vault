@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,13 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
 
     public Optional<Output<String>> input() {
         return Optional.ofNullable(this.input);
+    }
+
+    @Import(name="macLength")
+    private @Nullable Output<Integer> macLength;
+
+    public Optional<Output<Integer>> macLength() {
+        return Optional.ofNullable(this.macLength);
     }
 
     @Import(name="marshalingAlgorithm")
@@ -171,6 +179,7 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
         this.hashAlgorithm = $.hashAlgorithm;
         this.hmac = $.hmac;
         this.input = $.input;
+        this.macLength = $.macLength;
         this.marshalingAlgorithm = $.marshalingAlgorithm;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -289,6 +298,15 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder input(String input) {
             return input(Output.of(input));
+        }
+
+        public Builder macLength(@Nullable Output<Integer> macLength) {
+            $.macLength = macLength;
+            return this;
+        }
+
+        public Builder macLength(Integer macLength) {
+            return macLength(Output.of(macLength));
         }
 
         public Builder marshalingAlgorithm(@Nullable Output<String> marshalingAlgorithm) {

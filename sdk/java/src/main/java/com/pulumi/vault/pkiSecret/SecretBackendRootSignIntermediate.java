@@ -313,6 +313,20 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
         return this.issuingCa;
     }
     /**
+     * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * 
+     */
+    @Export(name="keyUsages", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> keyUsages;
+
+    /**
+     * @return Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * 
+     */
+    public Output<Optional<List<String>>> keyUsages() {
+        return Codegen.optional(this.keyUsages);
+    }
+    /**
      * The locality
      * 
      */
@@ -561,14 +575,14 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
         return Codegen.optional(this.signatureBits);
     }
     /**
-     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      * 
      */
     @Export(name="skid", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> skid;
 
     /**
-     * @return Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * @return Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      * 
      */
     public Output<Optional<String>> skid() {
@@ -631,14 +645,14 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
         return Codegen.optional(this.useCsrValues);
     }
     /**
-     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      * 
      */
     @Export(name="usePss", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> usePss;
 
     /**
-     * @return Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * @return Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      * 
      */
     public Output<Optional<Boolean>> usePss() {

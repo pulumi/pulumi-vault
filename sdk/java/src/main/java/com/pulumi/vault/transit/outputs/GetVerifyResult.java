@@ -6,6 +6,7 @@ package com.pulumi.vault.transit.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ public final class GetVerifyResult {
      */
     private String id;
     private @Nullable String input;
+    private @Nullable Integer macLength;
     private @Nullable String marshalingAlgorithm;
     private String name;
     private @Nullable String namespace;
@@ -79,6 +81,9 @@ public final class GetVerifyResult {
     }
     public Optional<String> input() {
         return Optional.ofNullable(this.input);
+    }
+    public Optional<Integer> macLength() {
+        return Optional.ofNullable(this.macLength);
     }
     public Optional<String> marshalingAlgorithm() {
         return Optional.ofNullable(this.marshalingAlgorithm);
@@ -135,6 +140,7 @@ public final class GetVerifyResult {
         private @Nullable String hmac;
         private String id;
         private @Nullable String input;
+        private @Nullable Integer macLength;
         private @Nullable String marshalingAlgorithm;
         private String name;
         private @Nullable String namespace;
@@ -157,6 +163,7 @@ public final class GetVerifyResult {
     	      this.hmac = defaults.hmac;
     	      this.id = defaults.id;
     	      this.input = defaults.input;
+    	      this.macLength = defaults.macLength;
     	      this.marshalingAlgorithm = defaults.marshalingAlgorithm;
     	      this.name = defaults.name;
     	      this.namespace = defaults.namespace;
@@ -220,6 +227,12 @@ public final class GetVerifyResult {
         public Builder input(@Nullable String input) {
 
             this.input = input;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder macLength(@Nullable Integer macLength) {
+
+            this.macLength = macLength;
             return this;
         }
         @CustomType.Setter
@@ -304,6 +317,7 @@ public final class GetVerifyResult {
             _resultValue.hmac = hmac;
             _resultValue.id = id;
             _resultValue.input = input;
+            _resultValue.macLength = macLength;
             _resultValue.marshalingAlgorithm = marshalingAlgorithm;
             _resultValue.name = name;
             _resultValue.namespace = namespace;

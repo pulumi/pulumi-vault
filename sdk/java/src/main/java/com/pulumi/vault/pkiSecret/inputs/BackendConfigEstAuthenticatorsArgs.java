@@ -17,14 +17,14 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
     public static final BackendConfigEstAuthenticatorsArgs Empty = new BackendConfigEstAuthenticatorsArgs();
 
     /**
-     * &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * The accessor (required) and cert_role (optional) properties for cert auth backends.
      * 
      */
     @Import(name="cert")
     private @Nullable Output<Map<String,String>> cert;
 
     /**
-     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * @return The accessor (required) and cert_role (optional) properties for cert auth backends.
      * 
      */
     public Optional<Output<Map<String,String>>> cert() {
@@ -32,14 +32,14 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
     }
 
     /**
-     * &#34;The accessor (required) property for user pass auth backends&#34;.
+     * The accessor (required) property for user pass auth backends.
      * 
      */
     @Import(name="userpass")
     private @Nullable Output<Map<String,String>> userpass;
 
     /**
-     * @return &#34;The accessor (required) property for user pass auth backends&#34;.
+     * @return The accessor (required) property for user pass auth backends.
      * 
      */
     public Optional<Output<Map<String,String>>> userpass() {
@@ -72,7 +72,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param cert &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+         * @param cert The accessor (required) and cert_role (optional) properties for cert auth backends.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param cert &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+         * @param cert The accessor (required) and cert_role (optional) properties for cert auth backends.
          * 
          * @return builder
          * 
@@ -93,7 +93,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param userpass &#34;The accessor (required) property for user pass auth backends&#34;.
+         * @param userpass The accessor (required) property for user pass auth backends.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param userpass &#34;The accessor (required) property for user pass auth backends&#34;.
+         * @param userpass The accessor (required) property for user pass auth backends.
          * 
          * @return builder
          * 

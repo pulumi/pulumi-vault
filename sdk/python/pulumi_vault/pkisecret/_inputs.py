@@ -20,6 +20,10 @@ __all__ = [
     'BackendConfigCmpv2AuthenticatorsArgsDict',
     'BackendConfigEstAuthenticatorsArgs',
     'BackendConfigEstAuthenticatorsArgsDict',
+    'BackendConfigScepAuthenticatorsArgs',
+    'BackendConfigScepAuthenticatorsArgsDict',
+    'BackendConfigScepExternalValidationArgs',
+    'BackendConfigScepExternalValidationArgsDict',
     'SecretBackendRolePolicyIdentifierArgs',
     'SecretBackendRolePolicyIdentifierArgsDict',
 ]
@@ -62,11 +66,11 @@ if not MYPY:
     class BackendConfigEstAuthenticatorsArgsDict(TypedDict):
         cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
         """
-        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        The accessor (required) and cert_role (optional) properties for cert auth backends.
         """
         userpass: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
         """
-        "The accessor (required) property for user pass auth backends".
+        The accessor (required) property for user pass auth backends.
         """
 elif False:
     BackendConfigEstAuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
@@ -77,8 +81,8 @@ class BackendConfigEstAuthenticatorsArgs:
                  cert: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  userpass: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
         """
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
-        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] userpass: "The accessor (required) property for user pass auth backends".
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] cert: The accessor (required) and cert_role (optional) properties for cert auth backends.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] userpass: The accessor (required) property for user pass auth backends.
         """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
@@ -89,7 +93,7 @@ class BackendConfigEstAuthenticatorsArgs:
     @pulumi.getter
     def cert(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
         """
-        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        The accessor (required) and cert_role (optional) properties for cert auth backends.
         """
         return pulumi.get(self, "cert")
 
@@ -101,13 +105,97 @@ class BackendConfigEstAuthenticatorsArgs:
     @pulumi.getter
     def userpass(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
         """
-        "The accessor (required) property for user pass auth backends".
+        The accessor (required) property for user pass auth backends.
         """
         return pulumi.get(self, "userpass")
 
     @userpass.setter
     def userpass(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "userpass", value)
+
+
+if not MYPY:
+    class BackendConfigScepAuthenticatorsArgsDict(TypedDict):
+        cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
+        """
+        The accessor and cert_role properties for cert auth backends
+        """
+        scep: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
+        """
+        The accessor property for SCEP auth backends
+        """
+elif False:
+    BackendConfigScepAuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BackendConfigScepAuthenticatorsArgs:
+    def __init__(__self__, *,
+                 cert: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
+                 scep: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] cert: The accessor and cert_role properties for cert auth backends
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] scep: The accessor property for SCEP auth backends
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if scep is not None:
+            pulumi.set(__self__, "scep", scep)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        The accessor and cert_role properties for cert auth backends
+        """
+        return pulumi.get(self, "cert")
+
+    @cert.setter
+    def cert(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "cert", value)
+
+    @property
+    @pulumi.getter
+    def scep(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        The accessor property for SCEP auth backends
+        """
+        return pulumi.get(self, "scep")
+
+    @scep.setter
+    def scep(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "scep", value)
+
+
+if not MYPY:
+    class BackendConfigScepExternalValidationArgsDict(TypedDict):
+        intune: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
+        """
+        The credentials to enable Microsoft Intune validation of SCEP requests
+        """
+elif False:
+    BackendConfigScepExternalValidationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BackendConfigScepExternalValidationArgs:
+    def __init__(__self__, *,
+                 intune: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] intune: The credentials to enable Microsoft Intune validation of SCEP requests
+        """
+        if intune is not None:
+            pulumi.set(__self__, "intune", intune)
+
+    @property
+    @pulumi.getter
+    def intune(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        The credentials to enable Microsoft Intune validation of SCEP requests
+        """
+        return pulumi.get(self, "intune")
+
+    @intune.setter
+    def intune(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "intune", value)
 
 
 if not MYPY:

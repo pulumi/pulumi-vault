@@ -32,6 +32,7 @@ type GetVerifyArgs struct {
 	HashAlgorithm       *string             `pulumi:"hashAlgorithm"`
 	Hmac                *string             `pulumi:"hmac"`
 	Input               *string             `pulumi:"input"`
+	MacLength           *int                `pulumi:"macLength"`
 	MarshalingAlgorithm *string             `pulumi:"marshalingAlgorithm"`
 	Name                string              `pulumi:"name"`
 	Namespace           *string             `pulumi:"namespace"`
@@ -58,6 +59,7 @@ type GetVerifyResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id                  string  `pulumi:"id"`
 	Input               *string `pulumi:"input"`
+	MacLength           *int    `pulumi:"macLength"`
 	MarshalingAlgorithm *string `pulumi:"marshalingAlgorithm"`
 	Name                string  `pulumi:"name"`
 	Namespace           *string `pulumi:"namespace"`
@@ -91,6 +93,7 @@ type GetVerifyOutputArgs struct {
 	HashAlgorithm       pulumi.StringPtrInput      `pulumi:"hashAlgorithm"`
 	Hmac                pulumi.StringPtrInput      `pulumi:"hmac"`
 	Input               pulumi.StringPtrInput      `pulumi:"input"`
+	MacLength           pulumi.IntPtrInput         `pulumi:"macLength"`
 	MarshalingAlgorithm pulumi.StringPtrInput      `pulumi:"marshalingAlgorithm"`
 	Name                pulumi.StringInput         `pulumi:"name"`
 	Namespace           pulumi.StringPtrInput      `pulumi:"namespace"`
@@ -156,6 +159,10 @@ func (o GetVerifyResultOutput) Id() pulumi.StringOutput {
 
 func (o GetVerifyResultOutput) Input() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVerifyResult) *string { return v.Input }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVerifyResultOutput) MacLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetVerifyResult) *int { return v.MacLength }).(pulumi.IntPtrOutput)
 }
 
 func (o GetVerifyResultOutput) MarshalingAlgorithm() pulumi.StringPtrOutput {

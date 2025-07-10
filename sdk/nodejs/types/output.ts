@@ -1255,12 +1255,18 @@ export namespace database {
         maxOpenConnections?: number;
         /**
          * The root credential password used in the connection URL
+         *
+         * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
          */
         password?: string;
         /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
+        /**
+         * Version counter for the private key key-pair credentials write-only field
+         */
+        privateKeyWoVersion?: number;
         /**
          * The root credential username used in the connection URL
          */
@@ -2824,6 +2830,8 @@ export namespace database {
         name: string;
         /**
          * The root credential password used in the connection URL
+         *
+         * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
          */
         password?: string;
         /**
@@ -2834,6 +2842,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
+        /**
+         * Version counter for the private key key-pair credentials write-only field
+         */
+        privateKeyWoVersion?: number;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -3364,13 +3376,31 @@ export namespace pkiSecret {
 
     export interface BackendConfigEstAuthenticators {
         /**
-         * "The accessor (required) and certRole (optional) properties for cert auth backends".
+         * The accessor (required) and certRole (optional) properties for cert auth backends.
          */
         cert?: {[key: string]: string};
         /**
-         * "The accessor (required) property for user pass auth backends".
+         * The accessor (required) property for user pass auth backends.
          */
         userpass?: {[key: string]: string};
+    }
+
+    export interface BackendConfigScepAuthenticators {
+        /**
+         * The accessor and certRole properties for cert auth backends
+         */
+        cert?: {[key: string]: string};
+        /**
+         * The accessor property for SCEP auth backends
+         */
+        scep?: {[key: string]: string};
+    }
+
+    export interface BackendConfigScepExternalValidation {
+        /**
+         * The credentials to enable Microsoft Intune validation of SCEP requests
+         */
+        intune?: {[key: string]: string};
     }
 
     export interface GetBackendConfigCmpv2Authenticator {
@@ -3382,13 +3412,31 @@ export namespace pkiSecret {
 
     export interface GetBackendConfigEstAuthenticator {
         /**
-         * "The accessor and certRole properties for cert auth backends".
+         * The accessor and certRole properties for cert auth backends.
          */
         cert?: {[key: string]: string};
         /**
-         * "The accessor property for user pass auth backends".
+         * The accessor property for user pass auth backends.
          */
         userpass?: {[key: string]: string};
+    }
+
+    export interface GetBackendConfigScepAuthenticator {
+        /**
+         * The accessor and certRole properties for cert auth backends.
+         */
+        cert?: {[key: string]: string};
+        /**
+         * The accessor property for scep auth backends.
+         */
+        scep?: {[key: string]: string};
+    }
+
+    export interface GetBackendConfigScepExternalValidation {
+        /**
+         * The tenant_id, client_id, clientSecret and environment properties for Microsoft Intune validation of SCEP requests.
+         */
+        intune?: {[key: string]: string};
     }
 
     export interface SecretBackendRolePolicyIdentifier {

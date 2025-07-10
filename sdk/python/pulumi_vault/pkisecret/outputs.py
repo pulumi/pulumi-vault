@@ -18,9 +18,13 @@ from .. import _utilities
 __all__ = [
     'BackendConfigCmpv2Authenticators',
     'BackendConfigEstAuthenticators',
+    'BackendConfigScepAuthenticators',
+    'BackendConfigScepExternalValidation',
     'SecretBackendRolePolicyIdentifier',
     'GetBackendConfigCmpv2AuthenticatorResult',
     'GetBackendConfigEstAuthenticatorResult',
+    'GetBackendConfigScepAuthenticatorResult',
+    'GetBackendConfigScepExternalValidationResult',
 ]
 
 @pulumi.output_type
@@ -48,8 +52,8 @@ class BackendConfigEstAuthenticators(dict):
                  cert: Optional[Mapping[str, builtins.str]] = None,
                  userpass: Optional[Mapping[str, builtins.str]] = None):
         """
-        :param Mapping[str, builtins.str] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
-        :param Mapping[str, builtins.str] userpass: "The accessor (required) property for user pass auth backends".
+        :param Mapping[str, builtins.str] cert: The accessor (required) and cert_role (optional) properties for cert auth backends.
+        :param Mapping[str, builtins.str] userpass: The accessor (required) property for user pass auth backends.
         """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
@@ -60,7 +64,7 @@ class BackendConfigEstAuthenticators(dict):
     @pulumi.getter
     def cert(self) -> Optional[Mapping[str, builtins.str]]:
         """
-        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        The accessor (required) and cert_role (optional) properties for cert auth backends.
         """
         return pulumi.get(self, "cert")
 
@@ -68,9 +72,59 @@ class BackendConfigEstAuthenticators(dict):
     @pulumi.getter
     def userpass(self) -> Optional[Mapping[str, builtins.str]]:
         """
-        "The accessor (required) property for user pass auth backends".
+        The accessor (required) property for user pass auth backends.
         """
         return pulumi.get(self, "userpass")
+
+
+@pulumi.output_type
+class BackendConfigScepAuthenticators(dict):
+    def __init__(__self__, *,
+                 cert: Optional[Mapping[str, builtins.str]] = None,
+                 scep: Optional[Mapping[str, builtins.str]] = None):
+        """
+        :param Mapping[str, builtins.str] cert: The accessor and cert_role properties for cert auth backends
+        :param Mapping[str, builtins.str] scep: The accessor property for SCEP auth backends
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if scep is not None:
+            pulumi.set(__self__, "scep", scep)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        The accessor and cert_role properties for cert auth backends
+        """
+        return pulumi.get(self, "cert")
+
+    @property
+    @pulumi.getter
+    def scep(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        The accessor property for SCEP auth backends
+        """
+        return pulumi.get(self, "scep")
+
+
+@pulumi.output_type
+class BackendConfigScepExternalValidation(dict):
+    def __init__(__self__, *,
+                 intune: Optional[Mapping[str, builtins.str]] = None):
+        """
+        :param Mapping[str, builtins.str] intune: The credentials to enable Microsoft Intune validation of SCEP requests
+        """
+        if intune is not None:
+            pulumi.set(__self__, "intune", intune)
+
+    @property
+    @pulumi.getter
+    def intune(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        The credentials to enable Microsoft Intune validation of SCEP requests
+        """
+        return pulumi.get(self, "intune")
 
 
 @pulumi.output_type
@@ -140,8 +194,8 @@ class GetBackendConfigEstAuthenticatorResult(dict):
                  cert: Optional[Mapping[str, builtins.str]] = None,
                  userpass: Optional[Mapping[str, builtins.str]] = None):
         """
-        :param Mapping[str, builtins.str] cert: "The accessor and cert_role properties for cert auth backends".
-        :param Mapping[str, builtins.str] userpass: "The accessor property for user pass auth backends".
+        :param Mapping[str, builtins.str] cert: The accessor and cert_role properties for cert auth backends.
+        :param Mapping[str, builtins.str] userpass: The accessor property for user pass auth backends.
         """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
@@ -152,7 +206,7 @@ class GetBackendConfigEstAuthenticatorResult(dict):
     @pulumi.getter
     def cert(self) -> Optional[Mapping[str, builtins.str]]:
         """
-        "The accessor and cert_role properties for cert auth backends".
+        The accessor and cert_role properties for cert auth backends.
         """
         return pulumi.get(self, "cert")
 
@@ -160,8 +214,58 @@ class GetBackendConfigEstAuthenticatorResult(dict):
     @pulumi.getter
     def userpass(self) -> Optional[Mapping[str, builtins.str]]:
         """
-        "The accessor property for user pass auth backends".
+        The accessor property for user pass auth backends.
         """
         return pulumi.get(self, "userpass")
+
+
+@pulumi.output_type
+class GetBackendConfigScepAuthenticatorResult(dict):
+    def __init__(__self__, *,
+                 cert: Optional[Mapping[str, builtins.str]] = None,
+                 scep: Optional[Mapping[str, builtins.str]] = None):
+        """
+        :param Mapping[str, builtins.str] cert: The accessor and cert_role properties for cert auth backends.
+        :param Mapping[str, builtins.str] scep: The accessor property for scep auth backends.
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if scep is not None:
+            pulumi.set(__self__, "scep", scep)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        The accessor and cert_role properties for cert auth backends.
+        """
+        return pulumi.get(self, "cert")
+
+    @property
+    @pulumi.getter
+    def scep(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        The accessor property for scep auth backends.
+        """
+        return pulumi.get(self, "scep")
+
+
+@pulumi.output_type
+class GetBackendConfigScepExternalValidationResult(dict):
+    def __init__(__self__, *,
+                 intune: Optional[Mapping[str, builtins.str]] = None):
+        """
+        :param Mapping[str, builtins.str] intune: The tenant_id, client_id, client_secret and environment properties for Microsoft Intune validation of SCEP requests.
+        """
+        if intune is not None:
+            pulumi.set(__self__, "intune", intune)
+
+    @property
+    @pulumi.getter
+    def intune(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        The tenant_id, client_id, client_secret and environment properties for Microsoft Intune validation of SCEP requests.
+        """
+        return pulumi.get(self, "intune")
 
 

@@ -5107,9 +5107,13 @@ type SecretBackendConnectionSnowflake struct {
 	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
+	//
+	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password *string `pulumi:"password"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// Version counter for the private key key-pair credentials write-only field
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -5137,9 +5141,13 @@ type SecretBackendConnectionSnowflakeArgs struct {
 	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
+	//
+	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// Version counter for the private key key-pair credentials write-only field
+	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -5244,6 +5252,8 @@ func (o SecretBackendConnectionSnowflakeOutput) MaxOpenConnections() pulumi.IntP
 }
 
 // The root credential password used in the connection URL
+//
+// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 func (o SecretBackendConnectionSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -5251,6 +5261,11 @@ func (o SecretBackendConnectionSnowflakeOutput) Password() pulumi.StringPtrOutpu
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// Version counter for the private key key-pair credentials write-only field
+func (o SecretBackendConnectionSnowflakeOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -5328,6 +5343,8 @@ func (o SecretBackendConnectionSnowflakePtrOutput) MaxOpenConnections() pulumi.I
 }
 
 // The root credential password used in the connection URL
+//
+// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 func (o SecretBackendConnectionSnowflakePtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
 		if v == nil {
@@ -5344,6 +5361,16 @@ func (o SecretBackendConnectionSnowflakePtrOutput) PasswordWoVersion() pulumi.In
 			return nil
 		}
 		return v.PasswordWoVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// Version counter for the private key key-pair credentials write-only field
+func (o SecretBackendConnectionSnowflakePtrOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWoVersion
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -10280,11 +10307,15 @@ type SecretsMountSnowflake struct {
 	// Name of the database connection.
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
+	//
+	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password *string `pulumi:"password"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Version counter for the private key key-pair credentials write-only field
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -10338,11 +10369,15 @@ type SecretsMountSnowflakeArgs struct {
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
+	//
+	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Version counter for the private key key-pair credentials write-only field
+	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -10459,6 +10494,8 @@ func (o SecretsMountSnowflakeOutput) Name() pulumi.StringOutput {
 }
 
 // The root credential password used in the connection URL
+//
+// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 func (o SecretsMountSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -10471,6 +10508,11 @@ func (o SecretsMountSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountSnowflakeOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the private key key-pair credentials write-only field
+func (o SecretsMountSnowflakeOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.

@@ -6,6 +6,7 @@ package com.pulumi.vault.transit.inputs;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +74,13 @@ public final class GetVerifyPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public Optional<String> input() {
         return Optional.ofNullable(this.input);
+    }
+
+    @Import(name="macLength")
+    private @Nullable Integer macLength;
+
+    public Optional<Integer> macLength() {
+        return Optional.ofNullable(this.macLength);
     }
 
     @Import(name="marshalingAlgorithm")
@@ -170,6 +178,7 @@ public final class GetVerifyPlainArgs extends com.pulumi.resources.InvokeArgs {
         this.hashAlgorithm = $.hashAlgorithm;
         this.hmac = $.hmac;
         this.input = $.input;
+        this.macLength = $.macLength;
         this.marshalingAlgorithm = $.marshalingAlgorithm;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -253,6 +262,11 @@ public final class GetVerifyPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder input(@Nullable String input) {
             $.input = input;
+            return this;
+        }
+
+        public Builder macLength(@Nullable Integer macLength) {
+            $.macLength = macLength;
             return this;
         }
 

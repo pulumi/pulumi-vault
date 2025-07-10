@@ -12,26 +12,26 @@ import javax.annotation.Nullable;
 @CustomType
 public final class BackendConfigEstAuthenticators {
     /**
-     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * @return The accessor (required) and cert_role (optional) properties for cert auth backends.
      * 
      */
     private @Nullable Map<String,String> cert;
     /**
-     * @return &#34;The accessor (required) property for user pass auth backends&#34;.
+     * @return The accessor (required) property for user pass auth backends.
      * 
      */
     private @Nullable Map<String,String> userpass;
 
     private BackendConfigEstAuthenticators() {}
     /**
-     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * @return The accessor (required) and cert_role (optional) properties for cert auth backends.
      * 
      */
     public Map<String,String> cert() {
         return this.cert == null ? Map.of() : this.cert;
     }
     /**
-     * @return &#34;The accessor (required) property for user pass auth backends&#34;.
+     * @return The accessor (required) property for user pass auth backends.
      * 
      */
     public Map<String,String> userpass() {

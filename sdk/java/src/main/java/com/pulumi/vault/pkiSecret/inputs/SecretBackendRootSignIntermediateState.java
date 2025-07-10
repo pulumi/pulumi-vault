@@ -282,6 +282,21 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
+     * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * 
+     */
+    @Import(name="keyUsages")
+    private @Nullable Output<List<String>> keyUsages;
+
+    /**
+     * @return Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * 
+     */
+    public Optional<Output<List<String>>> keyUsages() {
+        return Optional.ofNullable(this.keyUsages);
+    }
+
+    /**
      * The locality
      * 
      */
@@ -547,14 +562,14 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      * 
      */
     @Import(name="skid")
     private @Nullable Output<String> skid;
 
     /**
-     * @return Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * @return Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      * 
      */
     public Optional<Output<String>> skid() {
@@ -622,14 +637,14 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      * 
      */
     @Import(name="usePss")
     private @Nullable Output<Boolean> usePss;
 
     /**
-     * @return Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * @return Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      * 
      */
     public Optional<Output<Boolean>> usePss() {
@@ -656,6 +671,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         this.ipSans = $.ipSans;
         this.issuerRef = $.issuerRef;
         this.issuingCa = $.issuingCa;
+        this.keyUsages = $.keyUsages;
         this.locality = $.locality;
         this.maxPathLength = $.maxPathLength;
         this.namespace = $.namespace;
@@ -1135,6 +1151,37 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
+         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(@Nullable Output<List<String>> keyUsages) {
+            $.keyUsages = keyUsages;
+            return this;
+        }
+
+        /**
+         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(List<String> keyUsages) {
+            return keyUsages(Output.of(keyUsages));
+        }
+
+        /**
+         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(String... keyUsages) {
+            return keyUsages(List.of(keyUsages));
+        }
+
+        /**
          * @param locality The locality
          * 
          * @return builder
@@ -1552,7 +1599,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param skid Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+         * @param skid Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
          * 
          * @return builder
          * 
@@ -1563,7 +1610,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param skid Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+         * @param skid Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
          * 
          * @return builder
          * 
@@ -1667,7 +1714,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param usePss Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+         * @param usePss Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
          * 
          * @return builder
          * 
@@ -1678,7 +1725,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param usePss Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+         * @param usePss Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
          * 
          * @return builder
          * 

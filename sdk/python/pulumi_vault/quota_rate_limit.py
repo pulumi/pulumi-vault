@@ -22,18 +22,27 @@ class QuotaRateLimitArgs:
     def __init__(__self__, *,
                  rate: pulumi.Input[builtins.float],
                  block_interval: Optional[pulumi.Input[builtins.int]] = None,
+                 group_by: Optional[pulumi.Input[builtins.str]] = None,
                  inheritable: Optional[pulumi.Input[builtins.bool]] = None,
                  interval: Optional[pulumi.Input[builtins.int]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  path: Optional[pulumi.Input[builtins.str]] = None,
-                 role: Optional[pulumi.Input[builtins.str]] = None):
+                 role: Optional[pulumi.Input[builtins.str]] = None,
+                 secondary_rate: Optional[pulumi.Input[builtins.float]] = None):
         """
         The set of arguments for constructing a QuotaRateLimit resource.
         :param pulumi.Input[builtins.float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
         :param pulumi.Input[builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[builtins.str] group_by: Attribute used to group requests for rate limiting. Limits are enforced independently for each
+               group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+               `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+               that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+               requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+               connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+               the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         :param pulumi.Input[builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[builtins.int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[builtins.str] name: Name of the rate limit quota
@@ -48,10 +57,15 @@ class QuotaRateLimitArgs:
                `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
         :param pulumi.Input[builtins.str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        :param pulumi.Input[builtins.float] secondary_rate: Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+               the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+               that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
         """
         pulumi.set(__self__, "rate", rate)
         if block_interval is not None:
             pulumi.set(__self__, "block_interval", block_interval)
+        if group_by is not None:
+            pulumi.set(__self__, "group_by", group_by)
         if inheritable is not None:
             pulumi.set(__self__, "inheritable", inheritable)
         if interval is not None:
@@ -64,6 +78,8 @@ class QuotaRateLimitArgs:
             pulumi.set(__self__, "path", path)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if secondary_rate is not None:
+            pulumi.set(__self__, "secondary_rate", secondary_rate)
 
     @property
     @pulumi.getter
@@ -90,6 +106,24 @@ class QuotaRateLimitArgs:
     @block_interval.setter
     def block_interval(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "block_interval", value)
+
+    @property
+    @pulumi.getter(name="groupBy")
+    def group_by(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Attribute used to group requests for rate limiting. Limits are enforced independently for each
+        group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+        `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+        that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+        requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+        connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+        the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+        """
+        return pulumi.get(self, "group_by")
+
+    @group_by.setter
+    def group_by(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "group_by", value)
 
     @property
     @pulumi.getter
@@ -171,22 +205,45 @@ class QuotaRateLimitArgs:
     def role(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "role", value)
 
+    @property
+    @pulumi.getter(name="secondaryRate")
+    def secondary_rate(self) -> Optional[pulumi.Input[builtins.float]]:
+        """
+        Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+        the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+        that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+        """
+        return pulumi.get(self, "secondary_rate")
+
+    @secondary_rate.setter
+    def secondary_rate(self, value: Optional[pulumi.Input[builtins.float]]):
+        pulumi.set(self, "secondary_rate", value)
+
 
 @pulumi.input_type
 class _QuotaRateLimitState:
     def __init__(__self__, *,
                  block_interval: Optional[pulumi.Input[builtins.int]] = None,
+                 group_by: Optional[pulumi.Input[builtins.str]] = None,
                  inheritable: Optional[pulumi.Input[builtins.bool]] = None,
                  interval: Optional[pulumi.Input[builtins.int]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
                  path: Optional[pulumi.Input[builtins.str]] = None,
                  rate: Optional[pulumi.Input[builtins.float]] = None,
-                 role: Optional[pulumi.Input[builtins.str]] = None):
+                 role: Optional[pulumi.Input[builtins.str]] = None,
+                 secondary_rate: Optional[pulumi.Input[builtins.float]] = None):
         """
         Input properties used for looking up and filtering QuotaRateLimit resources.
         :param pulumi.Input[builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[builtins.str] group_by: Attribute used to group requests for rate limiting. Limits are enforced independently for each
+               group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+               `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+               that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+               requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+               connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+               the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         :param pulumi.Input[builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[builtins.int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[builtins.str] name: Name of the rate limit quota
@@ -203,9 +260,14 @@ class _QuotaRateLimitState:
         :param pulumi.Input[builtins.float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
         :param pulumi.Input[builtins.str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        :param pulumi.Input[builtins.float] secondary_rate: Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+               the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+               that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
         """
         if block_interval is not None:
             pulumi.set(__self__, "block_interval", block_interval)
+        if group_by is not None:
+            pulumi.set(__self__, "group_by", group_by)
         if inheritable is not None:
             pulumi.set(__self__, "inheritable", inheritable)
         if interval is not None:
@@ -220,6 +282,8 @@ class _QuotaRateLimitState:
             pulumi.set(__self__, "rate", rate)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if secondary_rate is not None:
+            pulumi.set(__self__, "secondary_rate", secondary_rate)
 
     @property
     @pulumi.getter(name="blockInterval")
@@ -233,6 +297,24 @@ class _QuotaRateLimitState:
     @block_interval.setter
     def block_interval(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "block_interval", value)
+
+    @property
+    @pulumi.getter(name="groupBy")
+    def group_by(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Attribute used to group requests for rate limiting. Limits are enforced independently for each
+        group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+        `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+        that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+        requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+        connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+        the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+        """
+        return pulumi.get(self, "group_by")
+
+    @group_by.setter
+    def group_by(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "group_by", value)
 
     @property
     @pulumi.getter
@@ -327,6 +409,20 @@ class _QuotaRateLimitState:
     def role(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "role", value)
 
+    @property
+    @pulumi.getter(name="secondaryRate")
+    def secondary_rate(self) -> Optional[pulumi.Input[builtins.float]]:
+        """
+        Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+        the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+        that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+        """
+        return pulumi.get(self, "secondary_rate")
+
+    @secondary_rate.setter
+    def secondary_rate(self, value: Optional[pulumi.Input[builtins.float]]):
+        pulumi.set(self, "secondary_rate", value)
+
 
 @pulumi.type_token("vault:index/quotaRateLimit:QuotaRateLimit")
 class QuotaRateLimit(pulumi.CustomResource):
@@ -335,6 +431,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  block_interval: Optional[pulumi.Input[builtins.int]] = None,
+                 group_by: Optional[pulumi.Input[builtins.str]] = None,
                  inheritable: Optional[pulumi.Input[builtins.bool]] = None,
                  interval: Optional[pulumi.Input[builtins.int]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -342,6 +439,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  path: Optional[pulumi.Input[builtins.str]] = None,
                  rate: Optional[pulumi.Input[builtins.float]] = None,
                  role: Optional[pulumi.Input[builtins.str]] = None,
+                 secondary_rate: Optional[pulumi.Input[builtins.float]] = None,
                  __props__=None):
         """
         Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
@@ -375,6 +473,13 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[builtins.str] group_by: Attribute used to group requests for rate limiting. Limits are enforced independently for each
+               group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+               `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+               that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+               requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+               connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+               the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         :param pulumi.Input[builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[builtins.int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[builtins.str] name: Name of the rate limit quota
@@ -391,6 +496,9 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param pulumi.Input[builtins.float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
         :param pulumi.Input[builtins.str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        :param pulumi.Input[builtins.float] secondary_rate: Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+               the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+               that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
         """
         ...
     @overload
@@ -442,6 +550,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  block_interval: Optional[pulumi.Input[builtins.int]] = None,
+                 group_by: Optional[pulumi.Input[builtins.str]] = None,
                  inheritable: Optional[pulumi.Input[builtins.bool]] = None,
                  interval: Optional[pulumi.Input[builtins.int]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -449,6 +558,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  path: Optional[pulumi.Input[builtins.str]] = None,
                  rate: Optional[pulumi.Input[builtins.float]] = None,
                  role: Optional[pulumi.Input[builtins.str]] = None,
+                 secondary_rate: Optional[pulumi.Input[builtins.float]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -459,6 +569,7 @@ class QuotaRateLimit(pulumi.CustomResource):
             __props__ = QuotaRateLimitArgs.__new__(QuotaRateLimitArgs)
 
             __props__.__dict__["block_interval"] = block_interval
+            __props__.__dict__["group_by"] = group_by
             __props__.__dict__["inheritable"] = inheritable
             __props__.__dict__["interval"] = interval
             __props__.__dict__["name"] = name
@@ -468,6 +579,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                 raise TypeError("Missing required property 'rate'")
             __props__.__dict__["rate"] = rate
             __props__.__dict__["role"] = role
+            __props__.__dict__["secondary_rate"] = secondary_rate
         super(QuotaRateLimit, __self__).__init__(
             'vault:index/quotaRateLimit:QuotaRateLimit',
             resource_name,
@@ -479,13 +591,15 @@ class QuotaRateLimit(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             block_interval: Optional[pulumi.Input[builtins.int]] = None,
+            group_by: Optional[pulumi.Input[builtins.str]] = None,
             inheritable: Optional[pulumi.Input[builtins.bool]] = None,
             interval: Optional[pulumi.Input[builtins.int]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
             namespace: Optional[pulumi.Input[builtins.str]] = None,
             path: Optional[pulumi.Input[builtins.str]] = None,
             rate: Optional[pulumi.Input[builtins.float]] = None,
-            role: Optional[pulumi.Input[builtins.str]] = None) -> 'QuotaRateLimit':
+            role: Optional[pulumi.Input[builtins.str]] = None,
+            secondary_rate: Optional[pulumi.Input[builtins.float]] = None) -> 'QuotaRateLimit':
         """
         Get an existing QuotaRateLimit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -495,6 +609,13 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[builtins.str] group_by: Attribute used to group requests for rate limiting. Limits are enforced independently for each
+               group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+               `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+               that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+               requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+               connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+               the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         :param pulumi.Input[builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[builtins.int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[builtins.str] name: Name of the rate limit quota
@@ -511,12 +632,16 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param pulumi.Input[builtins.float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
         :param pulumi.Input[builtins.str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        :param pulumi.Input[builtins.float] secondary_rate: Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+               the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+               that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _QuotaRateLimitState.__new__(_QuotaRateLimitState)
 
         __props__.__dict__["block_interval"] = block_interval
+        __props__.__dict__["group_by"] = group_by
         __props__.__dict__["inheritable"] = inheritable
         __props__.__dict__["interval"] = interval
         __props__.__dict__["name"] = name
@@ -524,6 +649,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["rate"] = rate
         __props__.__dict__["role"] = role
+        __props__.__dict__["secondary_rate"] = secondary_rate
         return QuotaRateLimit(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -534,6 +660,20 @@ class QuotaRateLimit(pulumi.CustomResource):
         be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
         """
         return pulumi.get(self, "block_interval")
+
+    @property
+    @pulumi.getter(name="groupBy")
+    def group_by(self) -> pulumi.Output[builtins.str]:
+        """
+        Attribute used to group requests for rate limiting. Limits are enforced independently for each
+        group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+        `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+        that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+        requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+        connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+        the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+        """
+        return pulumi.get(self, "group_by")
 
     @property
     @pulumi.getter
@@ -599,4 +739,14 @@ class QuotaRateLimit(pulumi.CustomResource):
         If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="secondaryRate")
+    def secondary_rate(self) -> pulumi.Output[builtins.float]:
+        """
+        Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+        the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+        that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+        """
+        return pulumi.get(self, "secondary_rate")
 

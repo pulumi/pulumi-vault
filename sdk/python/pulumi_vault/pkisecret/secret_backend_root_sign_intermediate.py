@@ -33,6 +33,7 @@ class SecretBackendRootSignIntermediateArgs:
                  format: Optional[pulumi.Input[builtins.str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[builtins.str]] = None,
                  max_path_length: Optional[pulumi.Input[builtins.int]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
@@ -73,6 +74,7 @@ class SecretBackendRootSignIntermediateArgs:
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
         :param pulumi.Input[builtins.str] locality: The locality
         :param pulumi.Input[builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -94,12 +96,12 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[builtins.str] province: The province
         :param pulumi.Input[builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[builtins.int] signature_bits: The number of bits to use in the signature algorithm
-        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[builtins.str] street_address: The street address
         :param pulumi.Input[builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[builtins.bool] use_csr_values: Preserve CSR values
-        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "common_name", common_name)
@@ -124,6 +126,8 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "ip_sans", ip_sans)
         if issuer_ref is not None:
             pulumi.set(__self__, "issuer_ref", issuer_ref)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if max_path_length is not None:
@@ -329,6 +333,18 @@ class SecretBackendRootSignIntermediateArgs:
         pulumi.set(self, "issuer_ref", value)
 
     @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
+        """
+        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "key_usages", value)
+
+    @property
     @pulumi.getter
     def locality(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -529,7 +545,7 @@ class SecretBackendRootSignIntermediateArgs:
     @pulumi.getter
     def skid(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         """
         return pulumi.get(self, "skid")
 
@@ -589,7 +605,7 @@ class SecretBackendRootSignIntermediateArgs:
     @pulumi.getter(name="usePss")
     def use_pss(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         return pulumi.get(self, "use_pss")
 
@@ -618,6 +634,7 @@ class _SecretBackendRootSignIntermediateState:
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[builtins.str]] = None,
                  issuing_ca: Optional[pulumi.Input[builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[builtins.str]] = None,
                  max_path_length: Optional[pulumi.Input[builtins.int]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
@@ -664,6 +681,7 @@ class _SecretBackendRootSignIntermediateState:
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[builtins.str] issuing_ca: The issuing CA certificate in the `format` specified.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
         :param pulumi.Input[builtins.str] locality: The locality
         :param pulumi.Input[builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -686,12 +704,12 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[builtins.str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[builtins.int] signature_bits: The number of bits to use in the signature algorithm
-        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[builtins.str] street_address: The street address
         :param pulumi.Input[builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[builtins.bool] use_csr_values: Preserve CSR values
-        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
@@ -727,6 +745,8 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "issuer_ref", issuer_ref)
         if issuing_ca is not None:
             pulumi.set(__self__, "issuing_ca", issuing_ca)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if max_path_length is not None:
@@ -983,6 +1003,18 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "issuing_ca", value)
 
     @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
+        """
+        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "key_usages", value)
+
+    @property
     @pulumi.getter
     def locality(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -1195,7 +1227,7 @@ class _SecretBackendRootSignIntermediateState:
     @pulumi.getter
     def skid(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         """
         return pulumi.get(self, "skid")
 
@@ -1255,7 +1287,7 @@ class _SecretBackendRootSignIntermediateState:
     @pulumi.getter(name="usePss")
     def use_pss(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         return pulumi.get(self, "use_pss")
 
@@ -1283,6 +1315,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  format: Optional[pulumi.Input[builtins.str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[builtins.str]] = None,
                  max_path_length: Optional[pulumi.Input[builtins.int]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
@@ -1343,6 +1376,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
         :param pulumi.Input[builtins.str] locality: The locality
         :param pulumi.Input[builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -1364,12 +1398,12 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] province: The province
         :param pulumi.Input[builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[builtins.int] signature_bits: The number of bits to use in the signature algorithm
-        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[builtins.str] street_address: The street address
         :param pulumi.Input[builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[builtins.bool] use_csr_values: Preserve CSR values
-        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         ...
     @overload
@@ -1424,6 +1458,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  format: Optional[pulumi.Input[builtins.str]] = None,
                  ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  issuer_ref: Optional[pulumi.Input[builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[builtins.str]] = None,
                  max_path_length: Optional[pulumi.Input[builtins.int]] = None,
                  namespace: Optional[pulumi.Input[builtins.str]] = None,
@@ -1474,6 +1509,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["issuer_ref"] = issuer_ref
+            __props__.__dict__["key_usages"] = key_usages
             __props__.__dict__["locality"] = locality
             __props__.__dict__["max_path_length"] = max_path_length
             __props__.__dict__["namespace"] = namespace
@@ -1528,6 +1564,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
             issuer_ref: Optional[pulumi.Input[builtins.str]] = None,
             issuing_ca: Optional[pulumi.Input[builtins.str]] = None,
+            key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
             locality: Optional[pulumi.Input[builtins.str]] = None,
             max_path_length: Optional[pulumi.Input[builtins.int]] = None,
             namespace: Optional[pulumi.Input[builtins.str]] = None,
@@ -1579,6 +1616,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[builtins.str] issuing_ca: The issuing CA certificate in the `format` specified.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
         :param pulumi.Input[builtins.str] locality: The locality
         :param pulumi.Input[builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[builtins.str] namespace: The namespace to provision the resource in.
@@ -1601,12 +1639,12 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
         :param pulumi.Input[builtins.str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[builtins.int] signature_bits: The number of bits to use in the signature algorithm
-        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        :param pulumi.Input[builtins.str] skid: Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         :param pulumi.Input[builtins.str] street_address: The street address
         :param pulumi.Input[builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[builtins.bool] use_csr_values: Preserve CSR values
-        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        :param pulumi.Input[builtins.bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1629,6 +1667,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["ip_sans"] = ip_sans
         __props__.__dict__["issuer_ref"] = issuer_ref
         __props__.__dict__["issuing_ca"] = issuing_ca
+        __props__.__dict__["key_usages"] = key_usages
         __props__.__dict__["locality"] = locality
         __props__.__dict__["max_path_length"] = max_path_length
         __props__.__dict__["namespace"] = namespace
@@ -1795,6 +1834,14 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         return pulumi.get(self, "issuing_ca")
 
     @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> pulumi.Output[Optional[Sequence[builtins.str]]]:
+        """
+        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @property
     @pulumi.getter
     def locality(self) -> pulumi.Output[Optional[builtins.str]]:
         """
@@ -1939,7 +1986,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @pulumi.getter
     def skid(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         """
         return pulumi.get(self, "skid")
 
@@ -1979,7 +2026,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @pulumi.getter(name="usePss")
     def use_pss(self) -> pulumi.Output[Optional[builtins.bool]]:
         """
-        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         return pulumi.get(self, "use_pss")
 

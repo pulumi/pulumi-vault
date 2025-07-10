@@ -81,6 +81,7 @@ namespace Pulumi.Vault.Database.Inputs
         /// <summary>
         /// The root credential password used in the connection URL
         /// </summary>
+        [Obsolete(@"Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.")]
         public Input<string>? Password
         {
             get => _password;
@@ -102,6 +103,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
+
+        /// <summary>
+        /// Version counter for the private key key-pair credentials write-only field
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         [Input("rootRotationStatements")]
         private InputList<string>? _rootRotationStatements;

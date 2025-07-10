@@ -1313,12 +1313,18 @@ export namespace database {
         maxOpenConnections?: pulumi.Input<number>;
         /**
          * The root credential password used in the connection URL
+         *
+         * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
          */
         password?: pulumi.Input<string>;
         /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: pulumi.Input<number>;
+        /**
+         * Version counter for the private key key-pair credentials write-only field
+         */
+        privateKeyWoVersion?: pulumi.Input<number>;
         /**
          * The root credential username used in the connection URL
          */
@@ -2882,6 +2888,8 @@ export namespace database {
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL
+         *
+         * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
          */
         password?: pulumi.Input<string>;
         /**
@@ -2892,6 +2900,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Version counter for the private key key-pair credentials write-only field
+         */
+        privateKeyWoVersion?: pulumi.Input<number>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -3372,13 +3384,31 @@ export namespace pkiSecret {
 
     export interface BackendConfigEstAuthenticators {
         /**
-         * "The accessor (required) and certRole (optional) properties for cert auth backends".
+         * The accessor (required) and certRole (optional) properties for cert auth backends.
          */
         cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * "The accessor (required) property for user pass auth backends".
+         * The accessor (required) property for user pass auth backends.
          */
         userpass?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    }
+
+    export interface BackendConfigScepAuthenticators {
+        /**
+         * The accessor and certRole properties for cert auth backends
+         */
+        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * The accessor property for SCEP auth backends
+         */
+        scep?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    }
+
+    export interface BackendConfigScepExternalValidation {
+        /**
+         * The credentials to enable Microsoft Intune validation of SCEP requests
+         */
+        intune?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface SecretBackendRolePolicyIdentifier {
