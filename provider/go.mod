@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-vault/provider/v7
 
-go 1.23.3
+go 1.24.3
 
 toolchain go1.24.4
 
