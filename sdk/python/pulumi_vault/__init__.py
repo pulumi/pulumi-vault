@@ -35,6 +35,7 @@ from .quota_rate_limit import *
 from .raft_autopilot import *
 from .raft_snapshot_agent_config import *
 from .rgp_policy import *
+from .scep_auth_backend_role import *
 from .token import *
 from ._inputs import *
 from . import outputs
@@ -799,6 +800,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/scepAuthBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/scepAuthBackendRole:ScepAuthBackendRole": "ScepAuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/token",
   "fqn": "pulumi_vault",
   "classes": {
@@ -1051,6 +1060,14 @@ _utilities.register(
   "fqn": "pulumi_vault.pkisecret",
   "classes": {
    "vault:pkiSecret/backendConfigEst:BackendConfigEst": "BackendConfigEst"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/backendConfigScep",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendConfigScep:BackendConfigScep": "BackendConfigScep"
   }
  },
  {

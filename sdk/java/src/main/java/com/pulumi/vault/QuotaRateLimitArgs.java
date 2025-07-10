@@ -37,6 +37,33 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Attribute used to group requests for rate limiting. Limits are enforced independently for each
+     * group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+     * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+     * that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+     * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+     * connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+     * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+     * 
+     */
+    @Import(name="groupBy")
+    private @Nullable Output<String> groupBy;
+
+    /**
+     * @return Attribute used to group requests for rate limiting. Limits are enforced independently for each
+     * group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+     * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+     * that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+     * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+     * connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+     * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+     * 
+     */
+    public Optional<Output<String>> groupBy() {
+        return Optional.ofNullable(this.groupBy);
+    }
+
+    /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      * 
      */
@@ -159,10 +186,30 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.role);
     }
 
+    /**
+     * Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+     * the rate limit applied to the requests that fall under the &#34;ip&#34; or &#34;none&#34; groupings, while the authenticated requests
+     * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+     * 
+     */
+    @Import(name="secondaryRate")
+    private @Nullable Output<Double> secondaryRate;
+
+    /**
+     * @return Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+     * the rate limit applied to the requests that fall under the &#34;ip&#34; or &#34;none&#34; groupings, while the authenticated requests
+     * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+     * 
+     */
+    public Optional<Output<Double>> secondaryRate() {
+        return Optional.ofNullable(this.secondaryRate);
+    }
+
     private QuotaRateLimitArgs() {}
 
     private QuotaRateLimitArgs(QuotaRateLimitArgs $) {
         this.blockInterval = $.blockInterval;
+        this.groupBy = $.groupBy;
         this.inheritable = $.inheritable;
         this.interval = $.interval;
         this.name = $.name;
@@ -170,6 +217,7 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
         this.path = $.path;
         this.rate = $.rate;
         this.role = $.role;
+        this.secondaryRate = $.secondaryRate;
     }
 
     public static Builder builder() {
@@ -211,6 +259,39 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder blockInterval(Integer blockInterval) {
             return blockInterval(Output.of(blockInterval));
+        }
+
+        /**
+         * @param groupBy Attribute used to group requests for rate limiting. Limits are enforced independently for each
+         * group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+         * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+         * that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+         * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+         * connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+         * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder groupBy(@Nullable Output<String> groupBy) {
+            $.groupBy = groupBy;
+            return this;
+        }
+
+        /**
+         * @param groupBy Attribute used to group requests for rate limiting. Limits are enforced independently for each
+         * group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+         * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+         * that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+         * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+         * connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+         * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder groupBy(String groupBy) {
+            return groupBy(Output.of(groupBy));
         }
 
         /**
@@ -376,6 +457,31 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder role(String role) {
             return role(Output.of(role));
+        }
+
+        /**
+         * @param secondaryRate Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+         * the rate limit applied to the requests that fall under the &#34;ip&#34; or &#34;none&#34; groupings, while the authenticated requests
+         * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secondaryRate(@Nullable Output<Double> secondaryRate) {
+            $.secondaryRate = secondaryRate;
+            return this;
+        }
+
+        /**
+         * @param secondaryRate Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+         * the rate limit applied to the requests that fall under the &#34;ip&#34; or &#34;none&#34; groupings, while the authenticated requests
+         * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secondaryRate(Double secondaryRate) {
+            return secondaryRate(Output.of(secondaryRate));
         }
 
         public QuotaRateLimitArgs build() {

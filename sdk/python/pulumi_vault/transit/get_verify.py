@@ -27,7 +27,7 @@ class GetVerifyResult:
     """
     A collection of values returned by getVerify.
     """
-    def __init__(__self__, batch_inputs=None, batch_results=None, cmac=None, context=None, hash_algorithm=None, hmac=None, id=None, input=None, marshaling_algorithm=None, name=None, namespace=None, path=None, prehashed=None, reference=None, salt_length=None, signature=None, signature_algorithm=None, signature_context=None, valid=None):
+    def __init__(__self__, batch_inputs=None, batch_results=None, cmac=None, context=None, hash_algorithm=None, hmac=None, id=None, input=None, mac_length=None, marshaling_algorithm=None, name=None, namespace=None, path=None, prehashed=None, reference=None, salt_length=None, signature=None, signature_algorithm=None, signature_context=None, valid=None):
         if batch_inputs and not isinstance(batch_inputs, list):
             raise TypeError("Expected argument 'batch_inputs' to be a list")
         pulumi.set(__self__, "batch_inputs", batch_inputs)
@@ -52,6 +52,9 @@ class GetVerifyResult:
         if input and not isinstance(input, str):
             raise TypeError("Expected argument 'input' to be a str")
         pulumi.set(__self__, "input", input)
+        if mac_length and not isinstance(mac_length, int):
+            raise TypeError("Expected argument 'mac_length' to be a int")
+        pulumi.set(__self__, "mac_length", mac_length)
         if marshaling_algorithm and not isinstance(marshaling_algorithm, str):
             raise TypeError("Expected argument 'marshaling_algorithm' to be a str")
         pulumi.set(__self__, "marshaling_algorithm", marshaling_algorithm)
@@ -133,6 +136,11 @@ class GetVerifyResult:
         return pulumi.get(self, "input")
 
     @property
+    @pulumi.getter(name="macLength")
+    def mac_length(self) -> Optional[builtins.int]:
+        return pulumi.get(self, "mac_length")
+
+    @property
     @pulumi.getter(name="marshalingAlgorithm")
     def marshaling_algorithm(self) -> Optional[builtins.str]:
         return pulumi.get(self, "marshaling_algorithm")
@@ -205,6 +213,7 @@ class AwaitableGetVerifyResult(GetVerifyResult):
             hmac=self.hmac,
             id=self.id,
             input=self.input,
+            mac_length=self.mac_length,
             marshaling_algorithm=self.marshaling_algorithm,
             name=self.name,
             namespace=self.namespace,
@@ -225,6 +234,7 @@ def get_verify(batch_inputs: Optional[Sequence[Mapping[str, builtins.str]]] = No
                hash_algorithm: Optional[builtins.str] = None,
                hmac: Optional[builtins.str] = None,
                input: Optional[builtins.str] = None,
+               mac_length: Optional[builtins.int] = None,
                marshaling_algorithm: Optional[builtins.str] = None,
                name: Optional[builtins.str] = None,
                namespace: Optional[builtins.str] = None,
@@ -252,6 +262,7 @@ def get_verify(batch_inputs: Optional[Sequence[Mapping[str, builtins.str]]] = No
     __args__['hashAlgorithm'] = hash_algorithm
     __args__['hmac'] = hmac
     __args__['input'] = input
+    __args__['macLength'] = mac_length
     __args__['marshalingAlgorithm'] = marshaling_algorithm
     __args__['name'] = name
     __args__['namespace'] = namespace
@@ -275,6 +286,7 @@ def get_verify(batch_inputs: Optional[Sequence[Mapping[str, builtins.str]]] = No
         hmac=pulumi.get(__ret__, 'hmac'),
         id=pulumi.get(__ret__, 'id'),
         input=pulumi.get(__ret__, 'input'),
+        mac_length=pulumi.get(__ret__, 'mac_length'),
         marshaling_algorithm=pulumi.get(__ret__, 'marshaling_algorithm'),
         name=pulumi.get(__ret__, 'name'),
         namespace=pulumi.get(__ret__, 'namespace'),
@@ -293,6 +305,7 @@ def get_verify_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
                       hash_algorithm: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       hmac: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       input: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+                      mac_length: Optional[pulumi.Input[Optional[builtins.int]]] = None,
                       marshaling_algorithm: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       name: Optional[pulumi.Input[builtins.str]] = None,
                       namespace: Optional[pulumi.Input[Optional[builtins.str]]] = None,
@@ -320,6 +333,7 @@ def get_verify_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
     __args__['hashAlgorithm'] = hash_algorithm
     __args__['hmac'] = hmac
     __args__['input'] = input
+    __args__['macLength'] = mac_length
     __args__['marshalingAlgorithm'] = marshaling_algorithm
     __args__['name'] = name
     __args__['namespace'] = namespace
@@ -342,6 +356,7 @@ def get_verify_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
         hmac=pulumi.get(__response__, 'hmac'),
         id=pulumi.get(__response__, 'id'),
         input=pulumi.get(__response__, 'input'),
+        mac_length=pulumi.get(__response__, 'mac_length'),
         marshaling_algorithm=pulumi.get(__response__, 'marshaling_algorithm'),
         name=pulumi.get(__response__, 'name'),
         namespace=pulumi.get(__response__, 'namespace'),

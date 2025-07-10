@@ -1515,6 +1515,24 @@
                 "current": "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers",
                 "majorVersion": 7
             },
+            "vault_pki_secret_backend_config_scep": {
+                "current": "vault:pkiSecret/backendConfigScep:BackendConfigScep",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_digest_algorithms": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_encryption_algorithms": {
+                        "maxItemsOne": false
+                    },
+                    "authenticators": {
+                        "maxItemsOne": true
+                    },
+                    "external_validation": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_pki_secret_backend_config_urls": {
                 "current": "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls",
                 "majorVersion": 7,
@@ -1716,6 +1734,9 @@
                     "ip_sans": {
                         "maxItemsOne": false
                     },
+                    "key_usage": {
+                        "maxItemsOne": false
+                    },
                     "other_sans": {
                         "maxItemsOne": false
                     },
@@ -1836,6 +1857,18 @@
                     "bound_subjects": {
                         "maxItemsOne": false
                     },
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_scep_auth_backend_role": {
+                "current": "vault:index/scepAuthBackendRole:ScepAuthBackendRole",
+                "majorVersion": 7,
+                "fields": {
                     "token_bound_cidrs": {
                         "maxItemsOne": false
                     },
@@ -2282,6 +2315,24 @@
                     }
                 }
             },
+            "vault_pki_secret_backend_config_scep": {
+                "current": "vault:pkiSecret/getBackendConfigScep:getBackendConfigScep",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_digest_algorithms": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_encryption_algorithms": {
+                        "maxItemsOne": false
+                    },
+                    "authenticators": {
+                        "maxItemsOne": false
+                    },
+                    "external_validation": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_pki_secret_backend_issuer": {
                 "current": "vault:pkiSecret/getBackendIssuer:getBackendIssuer",
                 "majorVersion": 7,
@@ -2385,6 +2436,18 @@
             },
             "vault_transform_encode": {
                 "current": "vault:transform/getEncode:getEncode",
+                "majorVersion": 7,
+                "fields": {
+                    "batch_input": {
+                        "maxItemsOne": false
+                    },
+                    "batch_results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_transit_cmac": {
+                "current": "vault:transit/getCmac:getCmac",
                 "majorVersion": 7,
                 "fields": {
                     "batch_input": {

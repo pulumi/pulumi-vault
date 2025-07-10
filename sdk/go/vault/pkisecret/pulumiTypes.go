@@ -151,9 +151,9 @@ func (o BackendConfigCmpv2AuthenticatorsPtrOutput) Cert() pulumi.StringMapOutput
 }
 
 type BackendConfigEstAuthenticators struct {
-	// "The accessor (required) and certRole (optional) properties for cert auth backends".
+	// The accessor (required) and certRole (optional) properties for cert auth backends.
 	Cert map[string]string `pulumi:"cert"`
-	// "The accessor (required) property for user pass auth backends".
+	// The accessor (required) property for user pass auth backends.
 	Userpass map[string]string `pulumi:"userpass"`
 }
 
@@ -169,9 +169,9 @@ type BackendConfigEstAuthenticatorsInput interface {
 }
 
 type BackendConfigEstAuthenticatorsArgs struct {
-	// "The accessor (required) and certRole (optional) properties for cert auth backends".
+	// The accessor (required) and certRole (optional) properties for cert auth backends.
 	Cert pulumi.StringMapInput `pulumi:"cert"`
-	// "The accessor (required) property for user pass auth backends".
+	// The accessor (required) property for user pass auth backends.
 	Userpass pulumi.StringMapInput `pulumi:"userpass"`
 }
 
@@ -252,12 +252,12 @@ func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsPt
 	}).(BackendConfigEstAuthenticatorsPtrOutput)
 }
 
-// "The accessor (required) and certRole (optional) properties for cert auth backends".
+// The accessor (required) and certRole (optional) properties for cert auth backends.
 func (o BackendConfigEstAuthenticatorsOutput) Cert() pulumi.StringMapOutput {
 	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
 }
 
-// "The accessor (required) property for user pass auth backends".
+// The accessor (required) property for user pass auth backends.
 func (o BackendConfigEstAuthenticatorsOutput) Userpass() pulumi.StringMapOutput {
 	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]string { return v.Userpass }).(pulumi.StringMapOutput)
 }
@@ -286,7 +286,7 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Elem() BackendConfigEstAuthenti
 	}).(BackendConfigEstAuthenticatorsOutput)
 }
 
-// "The accessor (required) and certRole (optional) properties for cert auth backends".
+// The accessor (required) and certRole (optional) properties for cert auth backends.
 func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]string {
 		if v == nil {
@@ -296,7 +296,7 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
-// "The accessor (required) property for user pass auth backends".
+// The accessor (required) property for user pass auth backends.
 func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]string {
 		if v == nil {
@@ -304,6 +304,259 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.StringMapOutp
 		}
 		return v.Userpass
 	}).(pulumi.StringMapOutput)
+}
+
+type BackendConfigScepAuthenticators struct {
+	// The accessor and certRole properties for cert auth backends
+	Cert map[string]string `pulumi:"cert"`
+	// The accessor property for SCEP auth backends
+	Scep map[string]string `pulumi:"scep"`
+}
+
+// BackendConfigScepAuthenticatorsInput is an input type that accepts BackendConfigScepAuthenticatorsArgs and BackendConfigScepAuthenticatorsOutput values.
+// You can construct a concrete instance of `BackendConfigScepAuthenticatorsInput` via:
+//
+//	BackendConfigScepAuthenticatorsArgs{...}
+type BackendConfigScepAuthenticatorsInput interface {
+	pulumi.Input
+
+	ToBackendConfigScepAuthenticatorsOutput() BackendConfigScepAuthenticatorsOutput
+	ToBackendConfigScepAuthenticatorsOutputWithContext(context.Context) BackendConfigScepAuthenticatorsOutput
+}
+
+type BackendConfigScepAuthenticatorsArgs struct {
+	// The accessor and certRole properties for cert auth backends
+	Cert pulumi.StringMapInput `pulumi:"cert"`
+	// The accessor property for SCEP auth backends
+	Scep pulumi.StringMapInput `pulumi:"scep"`
+}
+
+func (BackendConfigScepAuthenticatorsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigScepAuthenticators)(nil)).Elem()
+}
+
+func (i BackendConfigScepAuthenticatorsArgs) ToBackendConfigScepAuthenticatorsOutput() BackendConfigScepAuthenticatorsOutput {
+	return i.ToBackendConfigScepAuthenticatorsOutputWithContext(context.Background())
+}
+
+func (i BackendConfigScepAuthenticatorsArgs) ToBackendConfigScepAuthenticatorsOutputWithContext(ctx context.Context) BackendConfigScepAuthenticatorsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigScepAuthenticatorsOutput)
+}
+
+func (i BackendConfigScepAuthenticatorsArgs) ToBackendConfigScepAuthenticatorsPtrOutput() BackendConfigScepAuthenticatorsPtrOutput {
+	return i.ToBackendConfigScepAuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (i BackendConfigScepAuthenticatorsArgs) ToBackendConfigScepAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigScepAuthenticatorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigScepAuthenticatorsOutput).ToBackendConfigScepAuthenticatorsPtrOutputWithContext(ctx)
+}
+
+// BackendConfigScepAuthenticatorsPtrInput is an input type that accepts BackendConfigScepAuthenticatorsArgs, BackendConfigScepAuthenticatorsPtr and BackendConfigScepAuthenticatorsPtrOutput values.
+// You can construct a concrete instance of `BackendConfigScepAuthenticatorsPtrInput` via:
+//
+//	        BackendConfigScepAuthenticatorsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackendConfigScepAuthenticatorsPtrInput interface {
+	pulumi.Input
+
+	ToBackendConfigScepAuthenticatorsPtrOutput() BackendConfigScepAuthenticatorsPtrOutput
+	ToBackendConfigScepAuthenticatorsPtrOutputWithContext(context.Context) BackendConfigScepAuthenticatorsPtrOutput
+}
+
+type backendConfigScepAuthenticatorsPtrType BackendConfigScepAuthenticatorsArgs
+
+func BackendConfigScepAuthenticatorsPtr(v *BackendConfigScepAuthenticatorsArgs) BackendConfigScepAuthenticatorsPtrInput {
+	return (*backendConfigScepAuthenticatorsPtrType)(v)
+}
+
+func (*backendConfigScepAuthenticatorsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendConfigScepAuthenticators)(nil)).Elem()
+}
+
+func (i *backendConfigScepAuthenticatorsPtrType) ToBackendConfigScepAuthenticatorsPtrOutput() BackendConfigScepAuthenticatorsPtrOutput {
+	return i.ToBackendConfigScepAuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (i *backendConfigScepAuthenticatorsPtrType) ToBackendConfigScepAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigScepAuthenticatorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigScepAuthenticatorsPtrOutput)
+}
+
+type BackendConfigScepAuthenticatorsOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigScepAuthenticatorsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigScepAuthenticators)(nil)).Elem()
+}
+
+func (o BackendConfigScepAuthenticatorsOutput) ToBackendConfigScepAuthenticatorsOutput() BackendConfigScepAuthenticatorsOutput {
+	return o
+}
+
+func (o BackendConfigScepAuthenticatorsOutput) ToBackendConfigScepAuthenticatorsOutputWithContext(ctx context.Context) BackendConfigScepAuthenticatorsOutput {
+	return o
+}
+
+func (o BackendConfigScepAuthenticatorsOutput) ToBackendConfigScepAuthenticatorsPtrOutput() BackendConfigScepAuthenticatorsPtrOutput {
+	return o.ToBackendConfigScepAuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (o BackendConfigScepAuthenticatorsOutput) ToBackendConfigScepAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigScepAuthenticatorsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackendConfigScepAuthenticators) *BackendConfigScepAuthenticators {
+		return &v
+	}).(BackendConfigScepAuthenticatorsPtrOutput)
+}
+
+// The accessor and certRole properties for cert auth backends
+func (o BackendConfigScepAuthenticatorsOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackendConfigScepAuthenticators) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
+}
+
+// The accessor property for SCEP auth backends
+func (o BackendConfigScepAuthenticatorsOutput) Scep() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackendConfigScepAuthenticators) map[string]string { return v.Scep }).(pulumi.StringMapOutput)
+}
+
+type BackendConfigScepAuthenticatorsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigScepAuthenticatorsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendConfigScepAuthenticators)(nil)).Elem()
+}
+
+func (o BackendConfigScepAuthenticatorsPtrOutput) ToBackendConfigScepAuthenticatorsPtrOutput() BackendConfigScepAuthenticatorsPtrOutput {
+	return o
+}
+
+func (o BackendConfigScepAuthenticatorsPtrOutput) ToBackendConfigScepAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigScepAuthenticatorsPtrOutput {
+	return o
+}
+
+func (o BackendConfigScepAuthenticatorsPtrOutput) Elem() BackendConfigScepAuthenticatorsOutput {
+	return o.ApplyT(func(v *BackendConfigScepAuthenticators) BackendConfigScepAuthenticators {
+		if v != nil {
+			return *v
+		}
+		var ret BackendConfigScepAuthenticators
+		return ret
+	}).(BackendConfigScepAuthenticatorsOutput)
+}
+
+// The accessor and certRole properties for cert auth backends
+func (o BackendConfigScepAuthenticatorsPtrOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendConfigScepAuthenticators) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Cert
+	}).(pulumi.StringMapOutput)
+}
+
+// The accessor property for SCEP auth backends
+func (o BackendConfigScepAuthenticatorsPtrOutput) Scep() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendConfigScepAuthenticators) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Scep
+	}).(pulumi.StringMapOutput)
+}
+
+type BackendConfigScepExternalValidation struct {
+	// The credentials to enable Microsoft Intune validation of SCEP requests
+	Intune map[string]string `pulumi:"intune"`
+}
+
+// BackendConfigScepExternalValidationInput is an input type that accepts BackendConfigScepExternalValidationArgs and BackendConfigScepExternalValidationOutput values.
+// You can construct a concrete instance of `BackendConfigScepExternalValidationInput` via:
+//
+//	BackendConfigScepExternalValidationArgs{...}
+type BackendConfigScepExternalValidationInput interface {
+	pulumi.Input
+
+	ToBackendConfigScepExternalValidationOutput() BackendConfigScepExternalValidationOutput
+	ToBackendConfigScepExternalValidationOutputWithContext(context.Context) BackendConfigScepExternalValidationOutput
+}
+
+type BackendConfigScepExternalValidationArgs struct {
+	// The credentials to enable Microsoft Intune validation of SCEP requests
+	Intune pulumi.StringMapInput `pulumi:"intune"`
+}
+
+func (BackendConfigScepExternalValidationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (i BackendConfigScepExternalValidationArgs) ToBackendConfigScepExternalValidationOutput() BackendConfigScepExternalValidationOutput {
+	return i.ToBackendConfigScepExternalValidationOutputWithContext(context.Background())
+}
+
+func (i BackendConfigScepExternalValidationArgs) ToBackendConfigScepExternalValidationOutputWithContext(ctx context.Context) BackendConfigScepExternalValidationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigScepExternalValidationOutput)
+}
+
+// BackendConfigScepExternalValidationArrayInput is an input type that accepts BackendConfigScepExternalValidationArray and BackendConfigScepExternalValidationArrayOutput values.
+// You can construct a concrete instance of `BackendConfigScepExternalValidationArrayInput` via:
+//
+//	BackendConfigScepExternalValidationArray{ BackendConfigScepExternalValidationArgs{...} }
+type BackendConfigScepExternalValidationArrayInput interface {
+	pulumi.Input
+
+	ToBackendConfigScepExternalValidationArrayOutput() BackendConfigScepExternalValidationArrayOutput
+	ToBackendConfigScepExternalValidationArrayOutputWithContext(context.Context) BackendConfigScepExternalValidationArrayOutput
+}
+
+type BackendConfigScepExternalValidationArray []BackendConfigScepExternalValidationInput
+
+func (BackendConfigScepExternalValidationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (i BackendConfigScepExternalValidationArray) ToBackendConfigScepExternalValidationArrayOutput() BackendConfigScepExternalValidationArrayOutput {
+	return i.ToBackendConfigScepExternalValidationArrayOutputWithContext(context.Background())
+}
+
+func (i BackendConfigScepExternalValidationArray) ToBackendConfigScepExternalValidationArrayOutputWithContext(ctx context.Context) BackendConfigScepExternalValidationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigScepExternalValidationArrayOutput)
+}
+
+type BackendConfigScepExternalValidationOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigScepExternalValidationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (o BackendConfigScepExternalValidationOutput) ToBackendConfigScepExternalValidationOutput() BackendConfigScepExternalValidationOutput {
+	return o
+}
+
+func (o BackendConfigScepExternalValidationOutput) ToBackendConfigScepExternalValidationOutputWithContext(ctx context.Context) BackendConfigScepExternalValidationOutput {
+	return o
+}
+
+// The credentials to enable Microsoft Intune validation of SCEP requests
+func (o BackendConfigScepExternalValidationOutput) Intune() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackendConfigScepExternalValidation) map[string]string { return v.Intune }).(pulumi.StringMapOutput)
+}
+
+type BackendConfigScepExternalValidationArrayOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigScepExternalValidationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (o BackendConfigScepExternalValidationArrayOutput) ToBackendConfigScepExternalValidationArrayOutput() BackendConfigScepExternalValidationArrayOutput {
+	return o
+}
+
+func (o BackendConfigScepExternalValidationArrayOutput) ToBackendConfigScepExternalValidationArrayOutputWithContext(ctx context.Context) BackendConfigScepExternalValidationArrayOutput {
+	return o
+}
+
+func (o BackendConfigScepExternalValidationArrayOutput) Index(i pulumi.IntInput) BackendConfigScepExternalValidationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BackendConfigScepExternalValidation {
+		return vs[0].([]BackendConfigScepExternalValidation)[vs[1].(int)]
+	}).(BackendConfigScepExternalValidationOutput)
 }
 
 type SecretBackendRolePolicyIdentifier struct {
@@ -519,9 +772,9 @@ func (o GetBackendConfigCmpv2AuthenticatorArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetBackendConfigEstAuthenticator struct {
-	// "The accessor and certRole properties for cert auth backends".
+	// The accessor and certRole properties for cert auth backends.
 	Cert map[string]string `pulumi:"cert"`
-	// "The accessor property for user pass auth backends".
+	// The accessor property for user pass auth backends.
 	Userpass map[string]string `pulumi:"userpass"`
 }
 
@@ -537,9 +790,9 @@ type GetBackendConfigEstAuthenticatorInput interface {
 }
 
 type GetBackendConfigEstAuthenticatorArgs struct {
-	// "The accessor and certRole properties for cert auth backends".
+	// The accessor and certRole properties for cert auth backends.
 	Cert pulumi.StringMapInput `pulumi:"cert"`
-	// "The accessor property for user pass auth backends".
+	// The accessor property for user pass auth backends.
 	Userpass pulumi.StringMapInput `pulumi:"userpass"`
 }
 
@@ -594,12 +847,12 @@ func (o GetBackendConfigEstAuthenticatorOutput) ToGetBackendConfigEstAuthenticat
 	return o
 }
 
-// "The accessor and certRole properties for cert auth backends".
+// The accessor and certRole properties for cert auth backends.
 func (o GetBackendConfigEstAuthenticatorOutput) Cert() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
 }
 
-// "The accessor property for user pass auth backends".
+// The accessor property for user pass auth backends.
 func (o GetBackendConfigEstAuthenticatorOutput) Userpass() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]string { return v.Userpass }).(pulumi.StringMapOutput)
 }
@@ -624,25 +877,244 @@ func (o GetBackendConfigEstAuthenticatorArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetBackendConfigEstAuthenticatorOutput)
 }
 
+type GetBackendConfigScepAuthenticator struct {
+	// The accessor and certRole properties for cert auth backends.
+	Cert map[string]string `pulumi:"cert"`
+	// The accessor property for scep auth backends.
+	Scep map[string]string `pulumi:"scep"`
+}
+
+// GetBackendConfigScepAuthenticatorInput is an input type that accepts GetBackendConfigScepAuthenticatorArgs and GetBackendConfigScepAuthenticatorOutput values.
+// You can construct a concrete instance of `GetBackendConfigScepAuthenticatorInput` via:
+//
+//	GetBackendConfigScepAuthenticatorArgs{...}
+type GetBackendConfigScepAuthenticatorInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigScepAuthenticatorOutput() GetBackendConfigScepAuthenticatorOutput
+	ToGetBackendConfigScepAuthenticatorOutputWithContext(context.Context) GetBackendConfigScepAuthenticatorOutput
+}
+
+type GetBackendConfigScepAuthenticatorArgs struct {
+	// The accessor and certRole properties for cert auth backends.
+	Cert pulumi.StringMapInput `pulumi:"cert"`
+	// The accessor property for scep auth backends.
+	Scep pulumi.StringMapInput `pulumi:"scep"`
+}
+
+func (GetBackendConfigScepAuthenticatorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigScepAuthenticator)(nil)).Elem()
+}
+
+func (i GetBackendConfigScepAuthenticatorArgs) ToGetBackendConfigScepAuthenticatorOutput() GetBackendConfigScepAuthenticatorOutput {
+	return i.ToGetBackendConfigScepAuthenticatorOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigScepAuthenticatorArgs) ToGetBackendConfigScepAuthenticatorOutputWithContext(ctx context.Context) GetBackendConfigScepAuthenticatorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigScepAuthenticatorOutput)
+}
+
+// GetBackendConfigScepAuthenticatorArrayInput is an input type that accepts GetBackendConfigScepAuthenticatorArray and GetBackendConfigScepAuthenticatorArrayOutput values.
+// You can construct a concrete instance of `GetBackendConfigScepAuthenticatorArrayInput` via:
+//
+//	GetBackendConfigScepAuthenticatorArray{ GetBackendConfigScepAuthenticatorArgs{...} }
+type GetBackendConfigScepAuthenticatorArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigScepAuthenticatorArrayOutput() GetBackendConfigScepAuthenticatorArrayOutput
+	ToGetBackendConfigScepAuthenticatorArrayOutputWithContext(context.Context) GetBackendConfigScepAuthenticatorArrayOutput
+}
+
+type GetBackendConfigScepAuthenticatorArray []GetBackendConfigScepAuthenticatorInput
+
+func (GetBackendConfigScepAuthenticatorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigScepAuthenticator)(nil)).Elem()
+}
+
+func (i GetBackendConfigScepAuthenticatorArray) ToGetBackendConfigScepAuthenticatorArrayOutput() GetBackendConfigScepAuthenticatorArrayOutput {
+	return i.ToGetBackendConfigScepAuthenticatorArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigScepAuthenticatorArray) ToGetBackendConfigScepAuthenticatorArrayOutputWithContext(ctx context.Context) GetBackendConfigScepAuthenticatorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigScepAuthenticatorArrayOutput)
+}
+
+type GetBackendConfigScepAuthenticatorOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigScepAuthenticatorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigScepAuthenticator)(nil)).Elem()
+}
+
+func (o GetBackendConfigScepAuthenticatorOutput) ToGetBackendConfigScepAuthenticatorOutput() GetBackendConfigScepAuthenticatorOutput {
+	return o
+}
+
+func (o GetBackendConfigScepAuthenticatorOutput) ToGetBackendConfigScepAuthenticatorOutputWithContext(ctx context.Context) GetBackendConfigScepAuthenticatorOutput {
+	return o
+}
+
+// The accessor and certRole properties for cert auth backends.
+func (o GetBackendConfigScepAuthenticatorOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendConfigScepAuthenticator) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
+}
+
+// The accessor property for scep auth backends.
+func (o GetBackendConfigScepAuthenticatorOutput) Scep() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendConfigScepAuthenticator) map[string]string { return v.Scep }).(pulumi.StringMapOutput)
+}
+
+type GetBackendConfigScepAuthenticatorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigScepAuthenticatorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigScepAuthenticator)(nil)).Elem()
+}
+
+func (o GetBackendConfigScepAuthenticatorArrayOutput) ToGetBackendConfigScepAuthenticatorArrayOutput() GetBackendConfigScepAuthenticatorArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigScepAuthenticatorArrayOutput) ToGetBackendConfigScepAuthenticatorArrayOutputWithContext(ctx context.Context) GetBackendConfigScepAuthenticatorArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigScepAuthenticatorArrayOutput) Index(i pulumi.IntInput) GetBackendConfigScepAuthenticatorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendConfigScepAuthenticator {
+		return vs[0].([]GetBackendConfigScepAuthenticator)[vs[1].(int)]
+	}).(GetBackendConfigScepAuthenticatorOutput)
+}
+
+type GetBackendConfigScepExternalValidation struct {
+	// The tenant_id, client_id, clientSecret and environment properties for Microsoft Intune validation of SCEP requests.
+	Intune map[string]string `pulumi:"intune"`
+}
+
+// GetBackendConfigScepExternalValidationInput is an input type that accepts GetBackendConfigScepExternalValidationArgs and GetBackendConfigScepExternalValidationOutput values.
+// You can construct a concrete instance of `GetBackendConfigScepExternalValidationInput` via:
+//
+//	GetBackendConfigScepExternalValidationArgs{...}
+type GetBackendConfigScepExternalValidationInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigScepExternalValidationOutput() GetBackendConfigScepExternalValidationOutput
+	ToGetBackendConfigScepExternalValidationOutputWithContext(context.Context) GetBackendConfigScepExternalValidationOutput
+}
+
+type GetBackendConfigScepExternalValidationArgs struct {
+	// The tenant_id, client_id, clientSecret and environment properties for Microsoft Intune validation of SCEP requests.
+	Intune pulumi.StringMapInput `pulumi:"intune"`
+}
+
+func (GetBackendConfigScepExternalValidationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (i GetBackendConfigScepExternalValidationArgs) ToGetBackendConfigScepExternalValidationOutput() GetBackendConfigScepExternalValidationOutput {
+	return i.ToGetBackendConfigScepExternalValidationOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigScepExternalValidationArgs) ToGetBackendConfigScepExternalValidationOutputWithContext(ctx context.Context) GetBackendConfigScepExternalValidationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigScepExternalValidationOutput)
+}
+
+// GetBackendConfigScepExternalValidationArrayInput is an input type that accepts GetBackendConfigScepExternalValidationArray and GetBackendConfigScepExternalValidationArrayOutput values.
+// You can construct a concrete instance of `GetBackendConfigScepExternalValidationArrayInput` via:
+//
+//	GetBackendConfigScepExternalValidationArray{ GetBackendConfigScepExternalValidationArgs{...} }
+type GetBackendConfigScepExternalValidationArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigScepExternalValidationArrayOutput() GetBackendConfigScepExternalValidationArrayOutput
+	ToGetBackendConfigScepExternalValidationArrayOutputWithContext(context.Context) GetBackendConfigScepExternalValidationArrayOutput
+}
+
+type GetBackendConfigScepExternalValidationArray []GetBackendConfigScepExternalValidationInput
+
+func (GetBackendConfigScepExternalValidationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (i GetBackendConfigScepExternalValidationArray) ToGetBackendConfigScepExternalValidationArrayOutput() GetBackendConfigScepExternalValidationArrayOutput {
+	return i.ToGetBackendConfigScepExternalValidationArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigScepExternalValidationArray) ToGetBackendConfigScepExternalValidationArrayOutputWithContext(ctx context.Context) GetBackendConfigScepExternalValidationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigScepExternalValidationArrayOutput)
+}
+
+type GetBackendConfigScepExternalValidationOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigScepExternalValidationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (o GetBackendConfigScepExternalValidationOutput) ToGetBackendConfigScepExternalValidationOutput() GetBackendConfigScepExternalValidationOutput {
+	return o
+}
+
+func (o GetBackendConfigScepExternalValidationOutput) ToGetBackendConfigScepExternalValidationOutputWithContext(ctx context.Context) GetBackendConfigScepExternalValidationOutput {
+	return o
+}
+
+// The tenant_id, client_id, clientSecret and environment properties for Microsoft Intune validation of SCEP requests.
+func (o GetBackendConfigScepExternalValidationOutput) Intune() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendConfigScepExternalValidation) map[string]string { return v.Intune }).(pulumi.StringMapOutput)
+}
+
+type GetBackendConfigScepExternalValidationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigScepExternalValidationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigScepExternalValidation)(nil)).Elem()
+}
+
+func (o GetBackendConfigScepExternalValidationArrayOutput) ToGetBackendConfigScepExternalValidationArrayOutput() GetBackendConfigScepExternalValidationArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigScepExternalValidationArrayOutput) ToGetBackendConfigScepExternalValidationArrayOutputWithContext(ctx context.Context) GetBackendConfigScepExternalValidationArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigScepExternalValidationArrayOutput) Index(i pulumi.IntInput) GetBackendConfigScepExternalValidationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendConfigScepExternalValidation {
+		return vs[0].([]GetBackendConfigScepExternalValidation)[vs[1].(int)]
+	}).(GetBackendConfigScepExternalValidationOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigCmpv2AuthenticatorsInput)(nil)).Elem(), BackendConfigCmpv2AuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigCmpv2AuthenticatorsPtrInput)(nil)).Elem(), BackendConfigCmpv2AuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigEstAuthenticatorsInput)(nil)).Elem(), BackendConfigEstAuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigEstAuthenticatorsPtrInput)(nil)).Elem(), BackendConfigEstAuthenticatorsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigScepAuthenticatorsInput)(nil)).Elem(), BackendConfigScepAuthenticatorsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigScepAuthenticatorsPtrInput)(nil)).Elem(), BackendConfigScepAuthenticatorsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigScepExternalValidationInput)(nil)).Elem(), BackendConfigScepExternalValidationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigScepExternalValidationArrayInput)(nil)).Elem(), BackendConfigScepExternalValidationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRolePolicyIdentifierInput)(nil)).Elem(), SecretBackendRolePolicyIdentifierArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRolePolicyIdentifierArrayInput)(nil)).Elem(), SecretBackendRolePolicyIdentifierArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigCmpv2AuthenticatorInput)(nil)).Elem(), GetBackendConfigCmpv2AuthenticatorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigCmpv2AuthenticatorArrayInput)(nil)).Elem(), GetBackendConfigCmpv2AuthenticatorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigEstAuthenticatorInput)(nil)).Elem(), GetBackendConfigEstAuthenticatorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigEstAuthenticatorArrayInput)(nil)).Elem(), GetBackendConfigEstAuthenticatorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigScepAuthenticatorInput)(nil)).Elem(), GetBackendConfigScepAuthenticatorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigScepAuthenticatorArrayInput)(nil)).Elem(), GetBackendConfigScepAuthenticatorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigScepExternalValidationInput)(nil)).Elem(), GetBackendConfigScepExternalValidationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigScepExternalValidationArrayInput)(nil)).Elem(), GetBackendConfigScepExternalValidationArray{})
 	pulumi.RegisterOutputType(BackendConfigCmpv2AuthenticatorsOutput{})
 	pulumi.RegisterOutputType(BackendConfigCmpv2AuthenticatorsPtrOutput{})
 	pulumi.RegisterOutputType(BackendConfigEstAuthenticatorsOutput{})
 	pulumi.RegisterOutputType(BackendConfigEstAuthenticatorsPtrOutput{})
+	pulumi.RegisterOutputType(BackendConfigScepAuthenticatorsOutput{})
+	pulumi.RegisterOutputType(BackendConfigScepAuthenticatorsPtrOutput{})
+	pulumi.RegisterOutputType(BackendConfigScepExternalValidationOutput{})
+	pulumi.RegisterOutputType(BackendConfigScepExternalValidationArrayOutput{})
 	pulumi.RegisterOutputType(SecretBackendRolePolicyIdentifierOutput{})
 	pulumi.RegisterOutputType(SecretBackendRolePolicyIdentifierArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendConfigCmpv2AuthenticatorOutput{})
 	pulumi.RegisterOutputType(GetBackendConfigCmpv2AuthenticatorArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendConfigEstAuthenticatorOutput{})
 	pulumi.RegisterOutputType(GetBackendConfigEstAuthenticatorArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigScepAuthenticatorOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigScepAuthenticatorArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigScepExternalValidationOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigScepExternalValidationArrayOutput{})
 }

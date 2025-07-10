@@ -62,7 +62,11 @@ public final class SecretsMountSnowflake {
     /**
      * @return The root credential password used in the connection URL
      * 
+     * @deprecated
+     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * 
      */
+    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     private @Nullable String password;
     /**
      * @return Version counter for root credential password write-only field
@@ -74,6 +78,11 @@ public final class SecretsMountSnowflake {
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return Version counter for the private key key-pair credentials write-only field
+     * 
+     */
+    private @Nullable Integer privateKeyWoVersion;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
@@ -178,7 +187,11 @@ public final class SecretsMountSnowflake {
     /**
      * @return The root credential password used in the connection URL
      * 
+     * @deprecated
+     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * 
      */
+    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
@@ -195,6 +208,13 @@ public final class SecretsMountSnowflake {
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return Version counter for the private key key-pair credentials write-only field
+     * 
+     */
+    public Optional<Integer> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
@@ -271,6 +291,7 @@ public final class SecretsMountSnowflake {
         private @Nullable String password;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
+        private @Nullable Integer privateKeyWoVersion;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
@@ -292,6 +313,7 @@ public final class SecretsMountSnowflake {
     	      this.password = defaults.password;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
+    	      this.privateKeyWoVersion = defaults.privateKeyWoVersion;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
@@ -373,6 +395,12 @@ public final class SecretsMountSnowflake {
             return this;
         }
         @CustomType.Setter
+        public Builder privateKeyWoVersion(@Nullable Integer privateKeyWoVersion) {
+
+            this.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
 
             this.rootRotationStatements = rootRotationStatements;
@@ -430,6 +458,7 @@ public final class SecretsMountSnowflake {
             _resultValue.password = password;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
+            _resultValue.privateKeyWoVersion = privateKeyWoVersion;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;

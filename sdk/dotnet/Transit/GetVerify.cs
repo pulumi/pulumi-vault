@@ -68,6 +68,9 @@ namespace Pulumi.Vault.Transit
         [Input("input")]
         public string? Input { get; set; }
 
+        [Input("macLength")]
+        public int? MacLength { get; set; }
+
         [Input("marshalingAlgorithm")]
         public string? MarshalingAlgorithm { get; set; }
 
@@ -147,6 +150,9 @@ namespace Pulumi.Vault.Transit
         [Input("input")]
         public Input<string>? Input { get; set; }
 
+        [Input("macLength")]
+        public Input<int>? MacLength { get; set; }
+
         [Input("marshalingAlgorithm")]
         public Input<string>? MarshalingAlgorithm { get; set; }
 
@@ -207,6 +213,7 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public readonly string Id;
         public readonly string? Input;
+        public readonly int? MacLength;
         public readonly string? MarshalingAlgorithm;
         public readonly string Name;
         public readonly string? Namespace;
@@ -240,6 +247,8 @@ namespace Pulumi.Vault.Transit
 
             string? input,
 
+            int? macLength,
+
             string? marshalingAlgorithm,
 
             string name,
@@ -270,6 +279,7 @@ namespace Pulumi.Vault.Transit
             Hmac = hmac;
             Id = id;
             Input = input;
+            MacLength = macLength;
             MarshalingAlgorithm = marshalingAlgorithm;
             Name = name;
             Namespace = @namespace;

@@ -79,14 +79,22 @@ public final class SecretBackendConnectionSnowflakeArgs extends com.pulumi.resou
     /**
      * The root credential password used in the connection URL
      * 
+     * @deprecated
+     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * 
      */
+    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
      * @return The root credential password used in the connection URL
      * 
+     * @deprecated
+     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * 
      */
+    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
     }
@@ -104,6 +112,21 @@ public final class SecretBackendConnectionSnowflakeArgs extends com.pulumi.resou
      */
     public Optional<Output<Integer>> passwordWoVersion() {
         return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
+     * Version counter for the private key key-pair credentials write-only field
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version counter for the private key key-pair credentials write-only field
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -145,6 +168,7 @@ public final class SecretBackendConnectionSnowflakeArgs extends com.pulumi.resou
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
         this.passwordWoVersion = $.passwordWoVersion;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
     }
@@ -256,7 +280,11 @@ public final class SecretBackendConnectionSnowflakeArgs extends com.pulumi.resou
          * 
          * @return builder
          * 
+         * @deprecated
+         * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+         * 
          */
+        @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
         public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
@@ -267,7 +295,11 @@ public final class SecretBackendConnectionSnowflakeArgs extends com.pulumi.resou
          * 
          * @return builder
          * 
+         * @deprecated
+         * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+         * 
          */
+        @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
         public Builder password(String password) {
             return password(Output.of(password));
         }
@@ -291,6 +323,27 @@ public final class SecretBackendConnectionSnowflakeArgs extends com.pulumi.resou
          */
         public Builder passwordWoVersion(Integer passwordWoVersion) {
             return passwordWoVersion(Output.of(passwordWoVersion));
+        }
+
+        /**
+         * @param privateKeyWoVersion Version counter for the private key key-pair credentials write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Version counter for the private key key-pair credentials write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**

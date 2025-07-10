@@ -63,6 +63,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RaftSnapshotAgentConfig{}
 	case "vault:index/rgpPolicy:RgpPolicy":
 		r = &RgpPolicy{}
+	case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
+		r = &ScepAuthBackendRole{}
 	case "vault:index/token:Token":
 		r = &Token{}
 	default:
@@ -199,6 +201,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/rgpPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/scepAuthBackendRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

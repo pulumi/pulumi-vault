@@ -35,6 +35,11 @@ export type BackendConfigEst = import("./backendConfigEst").BackendConfigEst;
 export const BackendConfigEst: typeof import("./backendConfigEst").BackendConfigEst = null as any;
 utilities.lazyLoad(exports, ["BackendConfigEst"], () => require("./backendConfigEst"));
 
+export { BackendConfigScepArgs, BackendConfigScepState } from "./backendConfigScep";
+export type BackendConfigScep = import("./backendConfigScep").BackendConfigScep;
+export const BackendConfigScep: typeof import("./backendConfigScep").BackendConfigScep = null as any;
+utilities.lazyLoad(exports, ["BackendConfigScep"], () => require("./backendConfigScep"));
+
 export { GetBackendCertMetadataArgs, GetBackendCertMetadataResult, GetBackendCertMetadataOutputArgs } from "./getBackendCertMetadata";
 export const getBackendCertMetadata: typeof import("./getBackendCertMetadata").getBackendCertMetadata = null as any;
 export const getBackendCertMetadataOutput: typeof import("./getBackendCertMetadata").getBackendCertMetadataOutput = null as any;
@@ -49,6 +54,11 @@ export { GetBackendConfigEstArgs, GetBackendConfigEstResult, GetBackendConfigEst
 export const getBackendConfigEst: typeof import("./getBackendConfigEst").getBackendConfigEst = null as any;
 export const getBackendConfigEstOutput: typeof import("./getBackendConfigEst").getBackendConfigEstOutput = null as any;
 utilities.lazyLoad(exports, ["getBackendConfigEst","getBackendConfigEstOutput"], () => require("./getBackendConfigEst"));
+
+export { GetBackendConfigScepArgs, GetBackendConfigScepResult, GetBackendConfigScepOutputArgs } from "./getBackendConfigScep";
+export const getBackendConfigScep: typeof import("./getBackendConfigScep").getBackendConfigScep = null as any;
+export const getBackendConfigScepOutput: typeof import("./getBackendConfigScep").getBackendConfigScepOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendConfigScep","getBackendConfigScepOutput"], () => require("./getBackendConfigScep"));
 
 export { GetBackendIssuerArgs, GetBackendIssuerResult, GetBackendIssuerOutputArgs } from "./getBackendIssuer";
 export const getBackendIssuer: typeof import("./getBackendIssuer").getBackendIssuer = null as any;
@@ -152,6 +162,8 @@ const _module = {
                 return new BackendConfigCmpv2(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigEst:BackendConfigEst":
                 return new BackendConfigEst(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendConfigScep:BackendConfigScep":
+                return new BackendConfigScep(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
                 return new SecretBackendCert(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
@@ -189,6 +201,7 @@ pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigAutoTidy"
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCluster", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCmpv2", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigEst", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigScep", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigIssuers", _module)

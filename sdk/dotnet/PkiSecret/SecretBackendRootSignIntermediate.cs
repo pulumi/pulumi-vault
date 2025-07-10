@@ -151,6 +151,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> IssuingCa { get; private set; } = null!;
 
         /// <summary>
+        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        /// </summary>
+        [Output("keyUsages")]
+        public Output<ImmutableArray<string>> KeyUsages { get; private set; } = null!;
+
+        /// <summary>
         /// The locality
         /// </summary>
         [Output("locality")]
@@ -258,7 +264,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<int?> SignatureBits { get; private set; } = null!;
 
         /// <summary>
-        /// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        /// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         /// </summary>
         [Output("skid")]
         public Output<string?> Skid { get; private set; } = null!;
@@ -288,7 +294,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> UseCsrValues { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         /// </summary>
         [Output("usePss")]
         public Output<bool?> UsePss { get; private set; } = null!;
@@ -456,6 +462,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
 
+        [Input("keyUsages")]
+        private InputList<string>? _keyUsages;
+
+        /// <summary>
+        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        /// </summary>
+        public InputList<string> KeyUsages
+        {
+            get => _keyUsages ?? (_keyUsages = new InputList<string>());
+            set => _keyUsages = value;
+        }
+
         /// <summary>
         /// The locality
         /// </summary>
@@ -588,7 +606,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? SignatureBits { get; set; }
 
         /// <summary>
-        /// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        /// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         /// </summary>
         [Input("skid")]
         public Input<string>? Skid { get; set; }
@@ -624,7 +642,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? UseCsrValues { get; set; }
 
         /// <summary>
-        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         /// </summary>
         [Input("usePss")]
         public Input<bool>? UsePss { get; set; }
@@ -785,6 +803,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("issuingCa")]
         public Input<string>? IssuingCa { get; set; }
 
+        [Input("keyUsages")]
+        private InputList<string>? _keyUsages;
+
+        /// <summary>
+        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        /// </summary>
+        public InputList<string> KeyUsages
+        {
+            get => _keyUsages ?? (_keyUsages = new InputList<string>());
+            set => _keyUsages = value;
+        }
+
         /// <summary>
         /// The locality
         /// </summary>
@@ -923,7 +953,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? SignatureBits { get; set; }
 
         /// <summary>
-        /// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+        /// Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
         /// </summary>
         [Input("skid")]
         public Input<string>? Skid { get; set; }
@@ -959,7 +989,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? UseCsrValues { get; set; }
 
         /// <summary>
-        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         /// </summary>
         [Input("usePss")]
         public Input<bool>? UsePss { get; set; }

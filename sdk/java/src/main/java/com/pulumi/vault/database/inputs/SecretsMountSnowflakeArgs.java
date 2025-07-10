@@ -149,14 +149,22 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
     /**
      * The root credential password used in the connection URL
      * 
+     * @deprecated
+     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * 
      */
+    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
      * @return The root credential password used in the connection URL
      * 
+     * @deprecated
+     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * 
      */
+    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
     }
@@ -189,6 +197,21 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+
+    /**
+     * Version counter for the private key key-pair credentials write-only field
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return Version counter for the private key key-pair credentials write-only field
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -320,6 +343,7 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
         this.password = $.password;
         this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.rootRotationStatements = $.rootRotationStatements;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
@@ -537,7 +561,11 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
          * 
          * @return builder
          * 
+         * @deprecated
+         * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+         * 
          */
+        @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
         public Builder password(@Nullable Output<String> password) {
             $.password = password;
             return this;
@@ -548,7 +576,11 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
          * 
          * @return builder
          * 
+         * @deprecated
+         * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+         * 
          */
+        @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
         public Builder password(String password) {
             return password(Output.of(password));
         }
@@ -593,6 +625,27 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
          */
         public Builder pluginName(String pluginName) {
             return pluginName(Output.of(pluginName));
+        }
+
+        /**
+         * @param privateKeyWoVersion Version counter for the private key key-pair credentials write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion Version counter for the private key key-pair credentials write-only field
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**

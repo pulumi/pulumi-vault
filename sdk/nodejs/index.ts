@@ -148,6 +148,11 @@ export type RgpPolicy = import("./rgpPolicy").RgpPolicy;
 export const RgpPolicy: typeof import("./rgpPolicy").RgpPolicy = null as any;
 utilities.lazyLoad(exports, ["RgpPolicy"], () => require("./rgpPolicy"));
 
+export { ScepAuthBackendRoleArgs, ScepAuthBackendRoleState } from "./scepAuthBackendRole";
+export type ScepAuthBackendRole = import("./scepAuthBackendRole").ScepAuthBackendRole;
+export const ScepAuthBackendRole: typeof import("./scepAuthBackendRole").ScepAuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["ScepAuthBackendRole"], () => require("./scepAuthBackendRole"));
+
 export { TokenArgs, TokenState } from "./token";
 export type Token = import("./token").Token;
 export const Token: typeof import("./token").Token = null as any;
@@ -265,6 +270,8 @@ const _module = {
                 return new RaftSnapshotAgentConfig(name, <any>undefined, { urn })
             case "vault:index/rgpPolicy:RgpPolicy":
                 return new RgpPolicy(name, <any>undefined, { urn })
+            case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
+                return new ScepAuthBackendRole(name, <any>undefined, { urn })
             case "vault:index/token:Token":
                 return new Token(name, <any>undefined, { urn })
             default:
@@ -293,6 +300,7 @@ pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftAutopilot", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
+pulumi.runtime.registerResourceModule("vault", "index/scepAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)
 pulumi.runtime.registerResourcePackage("vault", {
     version: utilities.getVersion(),

@@ -2586,6 +2586,8 @@ class SecretBackendConnectionSnowflake(dict):
             suggest = "max_open_connections"
         elif key == "passwordWoVersion":
             suggest = "password_wo_version"
+        elif key == "privateKeyWoVersion":
+            suggest = "private_key_wo_version"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -2607,6 +2609,7 @@ class SecretBackendConnectionSnowflake(dict):
                  max_open_connections: Optional[builtins.int] = None,
                  password: Optional[builtins.str] = None,
                  password_wo_version: Optional[builtins.int] = None,
+                 private_key_wo_version: Optional[builtins.int] = None,
                  username: Optional[builtins.str] = None,
                  username_template: Optional[builtins.str] = None):
         """
@@ -2616,6 +2619,7 @@ class SecretBackendConnectionSnowflake(dict):
         :param builtins.int max_open_connections: Maximum number of open connections to the database.
         :param builtins.str password: The root credential password used in the connection URL
         :param builtins.int password_wo_version: Version counter for root credential password write-only field
+        :param builtins.int private_key_wo_version: Version counter for the private key key-pair credentials write-only field
         :param builtins.str username: The root credential username used in the connection URL
         :param builtins.str username_template: Username generation template.
         """
@@ -2631,6 +2635,8 @@ class SecretBackendConnectionSnowflake(dict):
             pulumi.set(__self__, "password", password)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -2670,6 +2676,7 @@ class SecretBackendConnectionSnowflake(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
     def password(self) -> Optional[builtins.str]:
         """
         The root credential password used in the connection URL
@@ -2683,6 +2690,14 @@ class SecretBackendConnectionSnowflake(dict):
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
+
+    @property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for the private key key-pair credentials write-only field
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @property
     @pulumi.getter
@@ -7821,6 +7836,8 @@ class SecretsMountSnowflake(dict):
             suggest = "password_wo_version"
         elif key == "pluginName":
             suggest = "plugin_name"
+        elif key == "privateKeyWoVersion":
+            suggest = "private_key_wo_version"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
         elif key == "rotationPeriod":
@@ -7857,6 +7874,7 @@ class SecretsMountSnowflake(dict):
                  password: Optional[builtins.str] = None,
                  password_wo_version: Optional[builtins.int] = None,
                  plugin_name: Optional[builtins.str] = None,
+                 private_key_wo_version: Optional[builtins.int] = None,
                  root_rotation_statements: Optional[Sequence[builtins.str]] = None,
                  rotation_period: Optional[builtins.int] = None,
                  rotation_schedule: Optional[builtins.str] = None,
@@ -7879,6 +7897,7 @@ class SecretsMountSnowflake(dict):
         :param builtins.str password: The root credential password used in the connection URL
         :param builtins.int password_wo_version: Version counter for root credential password write-only field
         :param builtins.str plugin_name: Specifies the name of the plugin to use.
+        :param builtins.int private_key_wo_version: Version counter for the private key key-pair credentials write-only field
         :param Sequence[builtins.str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param builtins.int rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -7913,6 +7932,8 @@ class SecretsMountSnowflake(dict):
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -7997,6 +8018,7 @@ class SecretsMountSnowflake(dict):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
     def password(self) -> Optional[builtins.str]:
         """
         The root credential password used in the connection URL
@@ -8018,6 +8040,14 @@ class SecretsMountSnowflake(dict):
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
+
+    @property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[builtins.int]:
+        """
+        Version counter for the private key key-pair credentials write-only field
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @property
     @pulumi.getter(name="rootRotationStatements")

@@ -1633,11 +1633,16 @@
                 "password": {
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
+                    "deprecationMessage": "Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.",
                     "secret": true
                 },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
+                },
+                "privateKeyWoVersion": {
+                    "type": "integer",
+                    "description": "Version counter for the private key key-pair credentials write-only field\n"
                 },
                 "username": {
                     "type": "string",
@@ -3517,6 +3522,7 @@
                 "password": {
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
+                    "deprecationMessage": "Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.",
                     "secret": true
                 },
                 "passwordWoVersion": {
@@ -3526,6 +3532,10 @@
                 "pluginName": {
                     "type": "string",
                     "description": "Specifies the name of the plugin to use.\n"
+                },
+                "privateKeyWoVersion": {
+                    "type": "integer",
+                    "description": "Version counter for the private key key-pair credentials write-only field\n"
                 },
                 "rootRotationStatements": {
                     "type": "array",
@@ -4884,14 +4894,45 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "\"The accessor (required) and cert_role (optional) properties for cert auth backends\".\n"
+                    "description": "The accessor (required) and cert_role (optional) properties for cert auth backends.\n"
                 },
                 "userpass": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "\"The accessor (required) property for user pass auth backends\".\n"
+                    "description": "The accessor (required) property for user pass auth backends.\n"
+                }
+            },
+            "type": "object"
+        },
+        "vault:pkiSecret/BackendConfigScepAuthenticators:BackendConfigScepAuthenticators": {
+            "properties": {
+                "cert": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The accessor and cert_role properties for cert auth backends\n"
+                },
+                "scep": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The accessor property for SCEP auth backends\n"
+                }
+            },
+            "type": "object"
+        },
+        "vault:pkiSecret/BackendConfigScepExternalValidation:BackendConfigScepExternalValidation": {
+            "properties": {
+                "intune": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The credentials to enable Microsoft Intune validation of SCEP requests\n"
                 }
             },
             "type": "object"
@@ -4935,14 +4976,45 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "\"The accessor and cert_role properties for cert auth backends\".\n"
+                    "description": "The accessor and cert_role properties for cert auth backends.\n"
                 },
                 "userpass": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "\"The accessor property for user pass auth backends\".\n"
+                    "description": "The accessor property for user pass auth backends.\n"
+                }
+            },
+            "type": "object"
+        },
+        "vault:pkiSecret/getBackendConfigScepAuthenticator:getBackendConfigScepAuthenticator": {
+            "properties": {
+                "cert": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The accessor and cert_role properties for cert auth backends.\n"
+                },
+                "scep": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The accessor property for scep auth backends.\n"
+                }
+            },
+            "type": "object"
+        },
+        "vault:pkiSecret/getBackendConfigScepExternalValidation:getBackendConfigScepExternalValidation": {
+            "properties": {
+                "intune": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The tenant_id, client_id, client_secret and environment properties for Microsoft Intune validation of SCEP requests.\n"
                 }
             },
             "type": "object"
@@ -10608,7 +10680,7 @@
             }
         },
         "vault:database/secretBackendConnection:SecretBackendConnection": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst db = new vault.Mount(\"db\", {\n    path: \"postgres\",\n    type: \"database\",\n});\nconst postgres = new vault.database.SecretBackendConnection(\"postgres\", {\n    backend: db.path,\n    name: \"postgres\",\n    allowedRoles: [\n        \"dev\",\n        \"prod\",\n    ],\n    rotationSchedule: \"0 * * * SAT\",\n    rotationWindow: 3600,\n    postgresql: {\n        connectionUrl: \"postgres://username:password@host:port/database\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndb = vault.Mount(\"db\",\n    path=\"postgres\",\n    type=\"database\")\npostgres = vault.database.SecretBackendConnection(\"postgres\",\n    backend=db.path,\n    name=\"postgres\",\n    allowed_roles=[\n        \"dev\",\n        \"prod\",\n    ],\n    rotation_schedule=\"0 * * * SAT\",\n    rotation_window=3600,\n    postgresql={\n        \"connection_url\": \"postgres://username:password@host:port/database\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var db = new Vault.Mount(\"db\", new()\n    {\n        Path = \"postgres\",\n        Type = \"database\",\n    });\n\n    var postgres = new Vault.Database.SecretBackendConnection(\"postgres\", new()\n    {\n        Backend = db.Path,\n        Name = \"postgres\",\n        AllowedRoles = new[]\n        {\n            \"dev\",\n            \"prod\",\n        },\n        RotationSchedule = \"0 * * * SAT\",\n        RotationWindow = 3600,\n        Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs\n        {\n            ConnectionUrl = \"postgres://username:password@host:port/database\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/database\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdb, err := vault.NewMount(ctx, \"db\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"postgres\"),\n\t\t\tType: pulumi.String(\"database\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = database.NewSecretBackendConnection(ctx, \"postgres\", \u0026database.SecretBackendConnectionArgs{\n\t\t\tBackend: db.Path,\n\t\t\tName:    pulumi.String(\"postgres\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tRotationSchedule: pulumi.String(\"0 * * * SAT\"),\n\t\t\tRotationWindow:   pulumi.Int(3600),\n\t\t\tPostgresql: \u0026database.SecretBackendConnectionPostgresqlArgs{\n\t\t\t\tConnectionUrl: pulumi.String(\"postgres://username:password@host:port/database\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.database.SecretBackendConnection;\nimport com.pulumi.vault.database.SecretBackendConnectionArgs;\nimport com.pulumi.vault.database.inputs.SecretBackendConnectionPostgresqlArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var db = new Mount(\"db\", MountArgs.builder()\n            .path(\"postgres\")\n            .type(\"database\")\n            .build());\n\n        var postgres = new SecretBackendConnection(\"postgres\", SecretBackendConnectionArgs.builder()\n            .backend(db.path())\n            .name(\"postgres\")\n            .allowedRoles(            \n                \"dev\",\n                \"prod\")\n            .rotationSchedule(\"0 * * * SAT\")\n            .rotationWindow(3600)\n            .postgresql(SecretBackendConnectionPostgresqlArgs.builder()\n                .connectionUrl(\"postgres://username:password@host:port/database\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  db:\n    type: vault:Mount\n    properties:\n      path: postgres\n      type: database\n  postgres:\n    type: vault:database:SecretBackendConnection\n    properties:\n      backend: ${db.path}\n      name: postgres\n      allowedRoles:\n        - dev\n        - prod\n      rotationSchedule: 0 * * * SAT\n      rotationWindow: 3600\n      postgresql:\n        connectionUrl: postgres://username:password@host:port/database\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Ephemeral Attributes Reference\n\nThe following write-only attributes are supported for all DBs that support username/password:\n\n* `password_wo` - (Optional) The password for the user. Can be updated.\n  **Note**: This property is write-only and will not be read from the API.\n\n## Import\n\nDatabase secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.\n\n```sh\n$ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres\n```\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst db = new vault.Mount(\"db\", {\n    path: \"postgres\",\n    type: \"database\",\n});\nconst postgres = new vault.database.SecretBackendConnection(\"postgres\", {\n    backend: db.path,\n    name: \"postgres\",\n    allowedRoles: [\n        \"dev\",\n        \"prod\",\n    ],\n    rotationSchedule: \"0 * * * SAT\",\n    rotationWindow: 3600,\n    postgresql: {\n        connectionUrl: \"postgres://username:password@host:port/database\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ndb = vault.Mount(\"db\",\n    path=\"postgres\",\n    type=\"database\")\npostgres = vault.database.SecretBackendConnection(\"postgres\",\n    backend=db.path,\n    name=\"postgres\",\n    allowed_roles=[\n        \"dev\",\n        \"prod\",\n    ],\n    rotation_schedule=\"0 * * * SAT\",\n    rotation_window=3600,\n    postgresql={\n        \"connection_url\": \"postgres://username:password@host:port/database\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var db = new Vault.Mount(\"db\", new()\n    {\n        Path = \"postgres\",\n        Type = \"database\",\n    });\n\n    var postgres = new Vault.Database.SecretBackendConnection(\"postgres\", new()\n    {\n        Backend = db.Path,\n        Name = \"postgres\",\n        AllowedRoles = new[]\n        {\n            \"dev\",\n            \"prod\",\n        },\n        RotationSchedule = \"0 * * * SAT\",\n        RotationWindow = 3600,\n        Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs\n        {\n            ConnectionUrl = \"postgres://username:password@host:port/database\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/database\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdb, err := vault.NewMount(ctx, \"db\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"postgres\"),\n\t\t\tType: pulumi.String(\"database\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = database.NewSecretBackendConnection(ctx, \"postgres\", \u0026database.SecretBackendConnectionArgs{\n\t\t\tBackend: db.Path,\n\t\t\tName:    pulumi.String(\"postgres\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tRotationSchedule: pulumi.String(\"0 * * * SAT\"),\n\t\t\tRotationWindow:   pulumi.Int(3600),\n\t\t\tPostgresql: \u0026database.SecretBackendConnectionPostgresqlArgs{\n\t\t\t\tConnectionUrl: pulumi.String(\"postgres://username:password@host:port/database\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.database.SecretBackendConnection;\nimport com.pulumi.vault.database.SecretBackendConnectionArgs;\nimport com.pulumi.vault.database.inputs.SecretBackendConnectionPostgresqlArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var db = new Mount(\"db\", MountArgs.builder()\n            .path(\"postgres\")\n            .type(\"database\")\n            .build());\n\n        var postgres = new SecretBackendConnection(\"postgres\", SecretBackendConnectionArgs.builder()\n            .backend(db.path())\n            .name(\"postgres\")\n            .allowedRoles(            \n                \"dev\",\n                \"prod\")\n            .rotationSchedule(\"0 * * * SAT\")\n            .rotationWindow(3600)\n            .postgresql(SecretBackendConnectionPostgresqlArgs.builder()\n                .connectionUrl(\"postgres://username:password@host:port/database\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  db:\n    type: vault:Mount\n    properties:\n      path: postgres\n      type: database\n  postgres:\n    type: vault:database:SecretBackendConnection\n    properties:\n      backend: ${db.path}\n      name: postgres\n      allowedRoles:\n        - dev\n        - prod\n      rotationSchedule: 0 * * * SAT\n      rotationWindow: 3600\n      postgresql:\n        connectionUrl: postgres://username:password@host:port/database\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Ephemeral Attributes Reference\n\nThe following write-only attributes are supported for all DBs that support username/password:\n\n* `password_wo` - (Optional) The password for the user. Can be updated.\n  **Note**: This property is write-only and will not be read from the API.\n\nThe following write-only attribute is supported only for Snowflake DB:\n\n* `private_key_wo` - (Optional) The private key associated with the Snowflake user.\n  **Note**: This property is write-only and will not be read from the API.\n\n## Import\n\nDatabase secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.\n\n```sh\n$ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres\n```\n",
             "properties": {
                 "allowedRoles": {
                     "type": "array",
@@ -19117,6 +19189,10 @@
                     "type": "integer",
                     "description": "If set, when a client reaches a rate limit threshold, the client will\nbe prohibited from any further requests until after the 'block_interval' in seconds has elapsed.\n"
                 },
+                "groupBy": {
+                    "type": "string",
+                    "description": "Attribute used to group requests for rate limiting. Limits are enforced independently for each\ngroup. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to\n`ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests\nthat match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated\nrequests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not\nconnected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but\nthe rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).\n"
+                },
                 "inheritable": {
                     "type": "boolean",
                     "description": "If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.\n"
@@ -19144,17 +19220,27 @@
                 "role": {
                     "type": "string",
                     "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
+                },
+                "secondaryRate": {
+                    "type": "number",
+                    "description": "Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is\nthe rate limit applied to the requests that fall under the \"ip\" or \"none\" groupings, while the authenticated requests\nthat contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.\n"
                 }
             },
             "required": [
+                "groupBy",
                 "interval",
                 "name",
-                "rate"
+                "rate",
+                "secondaryRate"
             ],
             "inputProperties": {
                 "blockInterval": {
                     "type": "integer",
                     "description": "If set, when a client reaches a rate limit threshold, the client will\nbe prohibited from any further requests until after the 'block_interval' in seconds has elapsed.\n"
+                },
+                "groupBy": {
+                    "type": "string",
+                    "description": "Attribute used to group requests for rate limiting. Limits are enforced independently for each\ngroup. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to\n`ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests\nthat match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated\nrequests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not\nconnected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but\nthe rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).\n"
                 },
                 "inheritable": {
                     "type": "boolean",
@@ -19186,6 +19272,10 @@
                 "role": {
                     "type": "string",
                     "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
+                },
+                "secondaryRate": {
+                    "type": "number",
+                    "description": "Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is\nthe rate limit applied to the requests that fall under the \"ip\" or \"none\" groupings, while the authenticated requests\nthat contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.\n"
                 }
             },
             "requiredInputs": [
@@ -19197,6 +19287,10 @@
                     "blockInterval": {
                         "type": "integer",
                         "description": "If set, when a client reaches a rate limit threshold, the client will\nbe prohibited from any further requests until after the 'block_interval' in seconds has elapsed.\n"
+                    },
+                    "groupBy": {
+                        "type": "string",
+                        "description": "Attribute used to group requests for rate limiting. Limits are enforced independently for each\ngroup. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to\n`ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests\nthat match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated\nrequests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not\nconnected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but\nthe rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).\n"
                     },
                     "inheritable": {
                         "type": "boolean",
@@ -19228,6 +19322,10 @@
                     "role": {
                         "type": "string",
                         "description": "If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.\n"
+                    },
+                    "secondaryRate": {
+                        "type": "number",
+                        "description": "Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is\nthe rate limit applied to the requests that fall under the \"ip\" or \"none\" groupings, while the authenticated requests\nthat contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.\n"
                     }
                 },
                 "type": "object"
@@ -19779,6 +19877,230 @@
                     "policy": {
                         "type": "string",
                         "description": "String containing a Sentinel policy\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:index/scepAuthBackendRole:ScepAuthBackendRole": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst scep = new vault.AuthBackend(\"scep\", {\n    path: \"scep\",\n    type: \"scep\",\n});\nconst scepScepAuthBackendRole = new vault.ScepAuthBackendRole(\"scep\", {\n    backend: scep.path,\n    name: \"scep_challenge\",\n    authType: \"static-challenge\",\n    challenge: \"well known secret\",\n    tokenType: \"batch\",\n    tokenTtl: 300,\n    tokenMaxTtl: 600,\n    tokenPolicies: [\"scep-clients\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nscep = vault.AuthBackend(\"scep\",\n    path=\"scep\",\n    type=\"scep\")\nscep_scep_auth_backend_role = vault.ScepAuthBackendRole(\"scep\",\n    backend=scep.path,\n    name=\"scep_challenge\",\n    auth_type=\"static-challenge\",\n    challenge=\"well known secret\",\n    token_type=\"batch\",\n    token_ttl=300,\n    token_max_ttl=600,\n    token_policies=[\"scep-clients\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var scep = new Vault.AuthBackend(\"scep\", new()\n    {\n        Path = \"scep\",\n        Type = \"scep\",\n    });\n\n    var scepScepAuthBackendRole = new Vault.ScepAuthBackendRole(\"scep\", new()\n    {\n        Backend = scep.Path,\n        Name = \"scep_challenge\",\n        AuthType = \"static-challenge\",\n        Challenge = \"well known secret\",\n        TokenType = \"batch\",\n        TokenTtl = 300,\n        TokenMaxTtl = 600,\n        TokenPolicies = new[]\n        {\n            \"scep-clients\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tscep, err := vault.NewAuthBackend(ctx, \"scep\", \u0026vault.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"scep\"),\n\t\t\tType: pulumi.String(\"scep\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewScepAuthBackendRole(ctx, \"scep\", \u0026vault.ScepAuthBackendRoleArgs{\n\t\t\tBackend:     scep.Path,\n\t\t\tName:        pulumi.String(\"scep_challenge\"),\n\t\t\tAuthType:    pulumi.String(\"static-challenge\"),\n\t\t\tChallenge:   pulumi.String(\"well known secret\"),\n\t\t\tTokenType:   pulumi.String(\"batch\"),\n\t\t\tTokenTtl:    pulumi.Int(300),\n\t\t\tTokenMaxTtl: pulumi.Int(600),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"scep-clients\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.ScepAuthBackendRole;\nimport com.pulumi.vault.ScepAuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var scep = new AuthBackend(\"scep\", AuthBackendArgs.builder()\n            .path(\"scep\")\n            .type(\"scep\")\n            .build());\n\n        var scepScepAuthBackendRole = new ScepAuthBackendRole(\"scepScepAuthBackendRole\", ScepAuthBackendRoleArgs.builder()\n            .backend(scep.path())\n            .name(\"scep_challenge\")\n            .authType(\"static-challenge\")\n            .challenge(\"well known secret\")\n            .tokenType(\"batch\")\n            .tokenTtl(300)\n            .tokenMaxTtl(600)\n            .tokenPolicies(\"scep-clients\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  scep:\n    type: vault:AuthBackend\n    properties:\n      path: scep\n      type: scep\n  scepScepAuthBackendRole:\n    type: vault:ScepAuthBackendRole\n    name: scep\n    properties:\n      backend: ${scep.path}\n      name: scep_challenge\n      authType: static-challenge\n      challenge: well known secret\n      tokenType: batch\n      tokenTtl: 300\n      tokenMaxTtl: 600\n      tokenPolicies:\n        - scep-clients\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "The authentication type to use. This can be either \"static-challenge\" or \"intune\".\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "Path to the mounted SCEP auth backend.\n"
+                },
+                "challenge": {
+                    "type": "string",
+                    "description": "The static challenge to use if auth_type is \"static-challenge\", not used for other auth types.\n"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "tokenBoundCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the blocks of IP addresses which are allowed to use the generated token\n"
+                },
+                "tokenExplicitMaxTtl": {
+                    "type": "integer",
+                    "description": "Generated Token's Explicit Maximum TTL in seconds\n"
+                },
+                "tokenMaxTtl": {
+                    "type": "integer",
+                    "description": "The maximum lifetime of the generated token\n"
+                },
+                "tokenNoDefaultPolicy": {
+                    "type": "boolean",
+                    "description": "If true, the 'default' policy will not automatically be added to generated tokens\n"
+                },
+                "tokenNumUses": {
+                    "type": "integer",
+                    "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
+                },
+                "tokenPeriod": {
+                    "type": "integer",
+                    "description": "Generated Token's Period\n"
+                },
+                "tokenPolicies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Generated Token's Policies\n"
+                },
+                "tokenTtl": {
+                    "type": "integer",
+                    "description": "The initial ttl of the token to generate in seconds\n"
+                },
+                "tokenType": {
+                    "type": "string",
+                    "description": "The type of token to generate, service or batch\n"
+                }
+            },
+            "required": [
+                "authType",
+                "displayName",
+                "name"
+            ],
+            "inputProperties": {
+                "authType": {
+                    "type": "string",
+                    "description": "The authentication type to use. This can be either \"static-challenge\" or \"intune\".\n",
+                    "willReplaceOnChanges": true
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "Path to the mounted SCEP auth backend.\n",
+                    "willReplaceOnChanges": true
+                },
+                "challenge": {
+                    "type": "string",
+                    "description": "The static challenge to use if auth_type is \"static-challenge\", not used for other auth types.\n"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tokenBoundCidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the blocks of IP addresses which are allowed to use the generated token\n"
+                },
+                "tokenExplicitMaxTtl": {
+                    "type": "integer",
+                    "description": "Generated Token's Explicit Maximum TTL in seconds\n"
+                },
+                "tokenMaxTtl": {
+                    "type": "integer",
+                    "description": "The maximum lifetime of the generated token\n"
+                },
+                "tokenNoDefaultPolicy": {
+                    "type": "boolean",
+                    "description": "If true, the 'default' policy will not automatically be added to generated tokens\n"
+                },
+                "tokenNumUses": {
+                    "type": "integer",
+                    "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
+                },
+                "tokenPeriod": {
+                    "type": "integer",
+                    "description": "Generated Token's Period\n"
+                },
+                "tokenPolicies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Generated Token's Policies\n"
+                },
+                "tokenTtl": {
+                    "type": "integer",
+                    "description": "The initial ttl of the token to generate in seconds\n"
+                },
+                "tokenType": {
+                    "type": "string",
+                    "description": "The type of token to generate, service or batch\n"
+                }
+            },
+            "requiredInputs": [
+                "authType"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ScepAuthBackendRole resources.\n",
+                "properties": {
+                    "authType": {
+                        "type": "string",
+                        "description": "The authentication type to use. This can be either \"static-challenge\" or \"intune\".\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "Path to the mounted SCEP auth backend.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "challenge": {
+                        "type": "string",
+                        "description": "The static challenge to use if auth_type is \"static-challenge\", not used for other auth types.\n"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tokenBoundCidrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies the blocks of IP addresses which are allowed to use the generated token\n"
+                    },
+                    "tokenExplicitMaxTtl": {
+                        "type": "integer",
+                        "description": "Generated Token's Explicit Maximum TTL in seconds\n"
+                    },
+                    "tokenMaxTtl": {
+                        "type": "integer",
+                        "description": "The maximum lifetime of the generated token\n"
+                    },
+                    "tokenNoDefaultPolicy": {
+                        "type": "boolean",
+                        "description": "If true, the 'default' policy will not automatically be added to generated tokens\n"
+                    },
+                    "tokenNumUses": {
+                        "type": "integer",
+                        "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
+                    },
+                    "tokenPeriod": {
+                        "type": "integer",
+                        "description": "Generated Token's Period\n"
+                    },
+                    "tokenPolicies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Generated Token's Policies\n"
+                    },
+                    "tokenTtl": {
+                        "type": "integer",
+                        "description": "The initial ttl of the token to generate in seconds\n"
+                    },
+                    "tokenType": {
+                        "type": "string",
+                        "description": "The type of token to generate, service or batch\n"
                     }
                 },
                 "type": "object"
@@ -26345,6 +26667,177 @@
                 "type": "object"
             }
         },
+        "vault:pkiSecret/backendConfigScep:BackendConfigScep": {
+            "description": "Allows setting the SCEP configuration on a PKI Secret Backend.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst scep = new vault.AuthBackend(\"scep\", {\n    path: \"scep-auth\",\n    type: \"scep\",\n});\nconst scepChallenge = new vault.ScepAuthBackendRole(\"scep_challenge\", {\n    backend: scep.id,\n    name: \"scep-auth\",\n    displayName: \"Static challenge for SCEP clients\",\n    authType: \"static-challenge\",\n    challenge: \"ac7e4ada-c8ef-4393-9098-d69d08736833\",\n});\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki_scep\",\n    type: \"pki\",\n    description: \"PKI secret engine mount\",\n});\nconst test = new vault.pkisecret.BackendConfigScep(\"test\", {\n    backend: pki.path,\n    enabled: true,\n    defaultPathPolicy: \"sign-verbatim\",\n    restrictCaChainToIssuer: true,\n    authenticators: {\n        scep: {\n            accessor: scep.accessor,\n            scep_role: scepChallenge.name,\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nscep = vault.AuthBackend(\"scep\",\n    path=\"scep-auth\",\n    type=\"scep\")\nscep_challenge = vault.ScepAuthBackendRole(\"scep_challenge\",\n    backend=scep.id,\n    name=\"scep-auth\",\n    display_name=\"Static challenge for SCEP clients\",\n    auth_type=\"static-challenge\",\n    challenge=\"ac7e4ada-c8ef-4393-9098-d69d08736833\")\npki = vault.Mount(\"pki\",\n    path=\"pki_scep\",\n    type=\"pki\",\n    description=\"PKI secret engine mount\")\ntest = vault.pki_secret.BackendConfigScep(\"test\",\n    backend=pki.path,\n    enabled=True,\n    default_path_policy=\"sign-verbatim\",\n    restrict_ca_chain_to_issuer=True,\n    authenticators={\n        \"scep\": {\n            \"accessor\": scep.accessor,\n            \"scep_role\": scep_challenge.name,\n        },\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var scep = new Vault.AuthBackend(\"scep\", new()\n    {\n        Path = \"scep-auth\",\n        Type = \"scep\",\n    });\n\n    var scepChallenge = new Vault.ScepAuthBackendRole(\"scep_challenge\", new()\n    {\n        Backend = scep.Id,\n        Name = \"scep-auth\",\n        DisplayName = \"Static challenge for SCEP clients\",\n        AuthType = \"static-challenge\",\n        Challenge = \"ac7e4ada-c8ef-4393-9098-d69d08736833\",\n    });\n\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki_scep\",\n        Type = \"pki\",\n        Description = \"PKI secret engine mount\",\n    });\n\n    var test = new Vault.PkiSecret.BackendConfigScep(\"test\", new()\n    {\n        Backend = pki.Path,\n        Enabled = true,\n        DefaultPathPolicy = \"sign-verbatim\",\n        RestrictCaChainToIssuer = true,\n        Authenticators = new Vault.PkiSecret.Inputs.BackendConfigScepAuthenticatorsArgs\n        {\n            Scep = \n            {\n                { \"accessor\", scep.Accessor },\n                { \"scep_role\", scepChallenge.Name },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tscep, err := vault.NewAuthBackend(ctx, \"scep\", \u0026vault.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"scep-auth\"),\n\t\t\tType: pulumi.String(\"scep\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tscepChallenge, err := vault.NewScepAuthBackendRole(ctx, \"scep_challenge\", \u0026vault.ScepAuthBackendRoleArgs{\n\t\t\tBackend:     scep.ID(),\n\t\t\tName:        pulumi.String(\"scep-auth\"),\n\t\t\tDisplayName: pulumi.String(\"Static challenge for SCEP clients\"),\n\t\t\tAuthType:    pulumi.String(\"static-challenge\"),\n\t\t\tChallenge:   pulumi.String(\"ac7e4ada-c8ef-4393-9098-d69d08736833\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"pki_scep\"),\n\t\t\tType:        pulumi.String(\"pki\"),\n\t\t\tDescription: pulumi.String(\"PKI secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkisecret.NewBackendConfigScep(ctx, \"test\", \u0026pkisecret.BackendConfigScepArgs{\n\t\t\tBackend:                 pki.Path,\n\t\t\tEnabled:                 pulumi.Bool(true),\n\t\t\tDefaultPathPolicy:       pulumi.String(\"sign-verbatim\"),\n\t\t\tRestrictCaChainToIssuer: pulumi.Bool(true),\n\t\t\tAuthenticators: \u0026pkisecret.BackendConfigScepAuthenticatorsArgs{\n\t\t\t\tScep: pulumi.StringMap{\n\t\t\t\t\t\"accessor\":  scep.Accessor,\n\t\t\t\t\t\"scep_role\": scepChallenge.Name,\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.ScepAuthBackendRole;\nimport com.pulumi.vault.ScepAuthBackendRoleArgs;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.BackendConfigScep;\nimport com.pulumi.vault.pkiSecret.BackendConfigScepArgs;\nimport com.pulumi.vault.pkiSecret.inputs.BackendConfigScepAuthenticatorsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var scep = new AuthBackend(\"scep\", AuthBackendArgs.builder()\n            .path(\"scep-auth\")\n            .type(\"scep\")\n            .build());\n\n        var scepChallenge = new ScepAuthBackendRole(\"scepChallenge\", ScepAuthBackendRoleArgs.builder()\n            .backend(scep.id())\n            .name(\"scep-auth\")\n            .displayName(\"Static challenge for SCEP clients\")\n            .authType(\"static-challenge\")\n            .challenge(\"ac7e4ada-c8ef-4393-9098-d69d08736833\")\n            .build());\n\n        var pki = new Mount(\"pki\", MountArgs.builder()\n            .path(\"pki_scep\")\n            .type(\"pki\")\n            .description(\"PKI secret engine mount\")\n            .build());\n\n        var test = new BackendConfigScep(\"test\", BackendConfigScepArgs.builder()\n            .backend(pki.path())\n            .enabled(true)\n            .defaultPathPolicy(\"sign-verbatim\")\n            .restrictCaChainToIssuer(true)\n            .authenticators(BackendConfigScepAuthenticatorsArgs.builder()\n                .scep(Map.ofEntries(\n                    Map.entry(\"accessor\", scep.accessor()),\n                    Map.entry(\"scep_role\", scepChallenge.name())\n                ))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  scep:\n    type: vault:AuthBackend\n    properties:\n      path: scep-auth\n      type: scep\n  scepChallenge:\n    type: vault:ScepAuthBackendRole\n    name: scep_challenge\n    properties:\n      backend: ${scep.id}\n      name: scep-auth\n      displayName: Static challenge for SCEP clients\n      authType: static-challenge\n      challenge: ac7e4ada-c8ef-4393-9098-d69d08736833\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki_scep\n      type: pki\n      description: PKI secret engine mount\n  test:\n    type: vault:pkiSecret:BackendConfigScep\n    properties:\n      backend: ${pki.path}\n      enabled: true\n      defaultPathPolicy: sign-verbatim\n      restrictCaChainToIssuer: true\n      authenticators:\n        scep:\n          accessor: ${scep.accessor}\n          scep_role: ${scepChallenge.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe PKI config cluster can be imported using the resource's `id`.\nIn the case of the example above the `id` would be `pki-root/config/scep`,\nwhere the `pki-root` component is the resource's `backend`, e.g.\n\n```sh\n$ pulumi import vault:pkiSecret/backendConfigScep:BackendConfigScep example pki-root/config/scep\n```\n",
+            "properties": {
+                "allowedDigestAlgorithms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of allowed digest algorithms for SCEP requests.\n"
+                },
+                "allowedEncryptionAlgorithms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of allowed encryption algorithms for SCEP requests.\n"
+                },
+                "authenticators": {
+                    "$ref": "#/types/vault:pkiSecret/BackendConfigScepAuthenticators:BackendConfigScepAuthenticators",
+                    "description": "Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path to the PKI secret backend to\nread the SCEP configuration from, with no leading or trailing `/`s.\n"
+                },
+                "defaultPathPolicy": {
+                    "type": "string",
+                    "description": "Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or \"role:\u003crole_name\u003e\" to specify a role to use as this policy.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether SCEP is enabled.\n"
+                },
+                "externalValidations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:pkiSecret/BackendConfigScepExternalValidation:BackendConfigScepExternalValidation"
+                    },
+                    "description": "Lists the 3rd party validation of SCEP requests (see below for nested schema).\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "A read-only timestamp representing the last time the configuration was updated.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "restrictCaChainToIssuer": {
+                    "type": "boolean",
+                    "description": "If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.\n\n\n\u003ca id=\"nestedatt--authenticators\"\u003e\u003c/a\u003e\n"
+                }
+            },
+            "required": [
+                "allowedDigestAlgorithms",
+                "allowedEncryptionAlgorithms",
+                "authenticators",
+                "backend",
+                "externalValidations",
+                "lastUpdated"
+            ],
+            "inputProperties": {
+                "allowedDigestAlgorithms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of allowed digest algorithms for SCEP requests.\n"
+                },
+                "allowedEncryptionAlgorithms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of allowed encryption algorithms for SCEP requests.\n"
+                },
+                "authenticators": {
+                    "$ref": "#/types/vault:pkiSecret/BackendConfigScepAuthenticators:BackendConfigScepAuthenticators",
+                    "description": "Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path to the PKI secret backend to\nread the SCEP configuration from, with no leading or trailing `/`s.\n",
+                    "willReplaceOnChanges": true
+                },
+                "defaultPathPolicy": {
+                    "type": "string",
+                    "description": "Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or \"role:\u003crole_name\u003e\" to specify a role to use as this policy.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether SCEP is enabled.\n"
+                },
+                "externalValidations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:pkiSecret/BackendConfigScepExternalValidation:BackendConfigScepExternalValidation"
+                    },
+                    "description": "Lists the 3rd party validation of SCEP requests (see below for nested schema).\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "restrictCaChainToIssuer": {
+                    "type": "boolean",
+                    "description": "If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.\n\n\n\u003ca id=\"nestedatt--authenticators\"\u003e\u003c/a\u003e\n"
+                }
+            },
+            "requiredInputs": [
+                "backend"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BackendConfigScep resources.\n",
+                "properties": {
+                    "allowedDigestAlgorithms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of allowed digest algorithms for SCEP requests.\n"
+                    },
+                    "allowedEncryptionAlgorithms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of allowed encryption algorithms for SCEP requests.\n"
+                    },
+                    "authenticators": {
+                        "$ref": "#/types/vault:pkiSecret/BackendConfigScepAuthenticators:BackendConfigScepAuthenticators",
+                        "description": "Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).\n"
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the PKI secret backend to\nread the SCEP configuration from, with no leading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "defaultPathPolicy": {
+                        "type": "string",
+                        "description": "Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or \"role:\u003crole_name\u003e\" to specify a role to use as this policy.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Specifies whether SCEP is enabled.\n"
+                    },
+                    "externalValidations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/vault:pkiSecret/BackendConfigScepExternalValidation:BackendConfigScepExternalValidation"
+                        },
+                        "description": "Lists the 3rd party validation of SCEP requests (see below for nested schema).\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "A read-only timestamp representing the last time the configuration was updated.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "restrictCaChainToIssuer": {
+                        "type": "boolean",
+                        "description": "If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.\n\n\n\u003ca id=\"nestedatt--authenticators\"\u003e\u003c/a\u003e\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:pkiSecret/secretBackendCert:SecretBackendCert": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst app = new vault.pkisecret.SecretBackendCert(\"app\", {\n    backend: intermediate.path,\n    name: test.name,\n    commonName: \"app.my.domain\",\n}, {\n    dependsOn: [admin],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napp = vault.pki_secret.SecretBackendCert(\"app\",\n    backend=intermediate[\"path\"],\n    name=test[\"name\"],\n    common_name=\"app.my.domain\",\n    opts = pulumi.ResourceOptions(depends_on=[admin]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var app = new Vault.PkiSecret.SecretBackendCert(\"app\", new()\n    {\n        Backend = intermediate.Path,\n        Name = test.Name,\n        CommonName = \"app.my.domain\",\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            admin,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := pkisecret.NewSecretBackendCert(ctx, \"app\", \u0026pkisecret.SecretBackendCertArgs{\n\t\t\tBackend:    pulumi.Any(intermediate.Path),\n\t\t\tName:       pulumi.Any(test.Name),\n\t\t\tCommonName: pulumi.String(\"app.my.domain\"),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tadmin,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.pkiSecret.SecretBackendCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendCertArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var app = new SecretBackendCert(\"app\", SecretBackendCertArgs.builder()\n            .backend(intermediate.path())\n            .name(test.name())\n            .commonName(\"app.my.domain\")\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(admin)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  app:\n    type: vault:pkiSecret:SecretBackendCert\n    properties:\n      backend: ${intermediate.path}\n      name: ${test.name}\n      commonName: app.my.domain\n    options:\n      dependsOn:\n        - ${admin}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -29812,6 +30305,13 @@
                     "type": "string",
                     "description": "The issuing CA certificate in the `format` specified.\n"
                 },
+                "keyUsages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specify the key usages to be added to the existing set of key usages (\"CRL\", \"CertSign\") on the generated certificate.\n"
+                },
                 "locality": {
                     "type": "string",
                     "description": "The locality\n"
@@ -29897,7 +30397,7 @@
                 },
                 "skid": {
                     "type": "string",
-                    "description": "Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.\n"
+                    "description": "Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.\n"
                 },
                 "streetAddress": {
                     "type": "string",
@@ -29920,7 +30420,7 @@
                 },
                 "usePss": {
                     "type": "boolean",
-                    "description": "Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.\n"
+                    "description": "Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.\n"
                 }
             },
             "required": [
@@ -30015,6 +30515,14 @@
                 "issuerRef": {
                     "type": "string",
                     "description": "Specifies the default issuer of this request. May\nbe the value `default`, a name, or an issuer ID. Use ACLs to prevent access to\nthe `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users\noverriding the role's `issuer_ref` value.\n"
+                },
+                "keyUsages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specify the key usages to be added to the existing set of key usages (\"CRL\", \"CertSign\") on the generated certificate.\n",
+                    "willReplaceOnChanges": true
                 },
                 "locality": {
                     "type": "string",
@@ -30111,7 +30619,7 @@
                 },
                 "skid": {
                     "type": "string",
-                    "description": "Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.\n",
+                    "description": "Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.\n",
                     "willReplaceOnChanges": true
                 },
                 "streetAddress": {
@@ -30138,7 +30646,7 @@
                 },
                 "usePss": {
                     "type": "boolean",
-                    "description": "Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.\n",
+                    "description": "Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -30251,6 +30759,14 @@
                         "type": "string",
                         "description": "The issuing CA certificate in the `format` specified.\n"
                     },
+                    "keyUsages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specify the key usages to be added to the existing set of key usages (\"CRL\", \"CertSign\") on the generated certificate.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "locality": {
                         "type": "string",
                         "description": "The locality\n",
@@ -30350,7 +30866,7 @@
                     },
                     "skid": {
                         "type": "string",
-                        "description": "Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.\n",
+                        "description": "Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.\n",
                         "willReplaceOnChanges": true
                     },
                     "streetAddress": {
@@ -30377,7 +30893,7 @@
                     },
                     "usePss": {
                         "type": "boolean",
-                        "description": "Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.\n",
+                        "description": "Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -37309,6 +37825,100 @@
                 "type": "object"
             }
         },
+        "vault:pkiSecret/getBackendConfigScep:getBackendConfigScep": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    description: \"PKI secret engine mount\",\n});\nconst scepConfig = vault.pkiSecret.getBackendConfigScepOutput({\n    backend: pki.path,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    description=\"PKI secret engine mount\")\nscep_config = vault.pkiSecret.get_backend_config_scep_output(backend=pki.path)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        Description = \"PKI secret engine mount\",\n    });\n\n    var scepConfig = Vault.PkiSecret.GetBackendConfigScep.Invoke(new()\n    {\n        Backend = pki.Path,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"pki\"),\n\t\t\tType:        pulumi.String(\"pki\"),\n\t\t\tDescription: pulumi.String(\"PKI secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = pkisecret.GetBackendConfigScepOutput(ctx, pkisecret.GetBackendConfigScepOutputArgs{\n\t\t\tBackend: pki.Path,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.PkiSecretFunctions;\nimport com.pulumi.vault.pkiSecret.inputs.GetBackendConfigScepArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()\n            .path(\"pki\")\n            .type(\"pki\")\n            .description(\"PKI secret engine mount\")\n            .build());\n\n        final var scepConfig = PkiSecretFunctions.getBackendConfigScep(GetBackendConfigScepArgs.builder()\n            .backend(pki.path())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      description: PKI secret engine mount\nvariables:\n  scepConfig:\n    fn::invoke:\n      function: vault:pkiSecret:getBackendConfigScep\n      arguments:\n        backend: ${pki.path}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBackendConfigScep.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the PKI secret backend to\nread the SCEP configuration from, with no leading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBackendConfigScep.\n",
+                "properties": {
+                    "allowedDigestAlgorithms": {
+                        "description": "List of allowed digest algorithms for SCEP requests.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "allowedEncryptionAlgorithms": {
+                        "description": "List of allowed encryption algorithms for SCEP requests.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "authenticators": {
+                        "description": "Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).\n",
+                        "items": {
+                            "$ref": "#/types/vault:pkiSecret/getBackendConfigScepAuthenticator:getBackendConfigScepAuthenticator"
+                        },
+                        "type": "array"
+                    },
+                    "backend": {
+                        "type": "string"
+                    },
+                    "defaultPathPolicy": {
+                        "description": "Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or \"role:\u003crole_name\u003e\" to specify a role to use as this policy.\n",
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "description": "Specifies whether SCEP is enabled.\n",
+                        "type": "boolean"
+                    },
+                    "externalValidations": {
+                        "description": "Lists the 3rd party validation of SCEP requests (see below for nested schema).\n",
+                        "items": {
+                            "$ref": "#/types/vault:pkiSecret/getBackendConfigScepExternalValidation:getBackendConfigScepExternalValidation"
+                        },
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "lastUpdated": {
+                        "description": "A read-only timestamp representing the last time the configuration was updated.\n",
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "restrictCaChainToIssuer": {
+                        "description": "If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.\n",
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "allowedDigestAlgorithms",
+                    "allowedEncryptionAlgorithms",
+                    "authenticators",
+                    "backend",
+                    "defaultPathPolicy",
+                    "enabled",
+                    "externalValidations",
+                    "lastUpdated",
+                    "restrictCaChainToIssuer",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "vault:pkiSecret/getBackendIssuer:getBackendIssuer": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    description: \"PKI secret engine mount\",\n});\nconst root = new vault.pkisecret.SecretBackendRootCert(\"root\", {\n    backend: pki.path,\n    type: \"internal\",\n    commonName: \"example\",\n    ttl: \"86400\",\n    issuerName: \"example\",\n});\nconst example = root.issuerId.apply(issuerId =\u003e vault.pkiSecret.getBackendIssuerOutput({\n    backend: root.path,\n    issuerRef: issuerId,\n}));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    description=\"PKI secret engine mount\")\nroot = vault.pki_secret.SecretBackendRootCert(\"root\",\n    backend=pki.path,\n    type=\"internal\",\n    common_name=\"example\",\n    ttl=\"86400\",\n    issuer_name=\"example\")\nexample = root.issuer_id.apply(lambda issuer_id: vault.pkiSecret.get_backend_issuer_output(backend=root.path,\n    issuer_ref=issuer_id))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        Description = \"PKI secret engine mount\",\n    });\n\n    var root = new Vault.PkiSecret.SecretBackendRootCert(\"root\", new()\n    {\n        Backend = pki.Path,\n        Type = \"internal\",\n        CommonName = \"example\",\n        Ttl = \"86400\",\n        IssuerName = \"example\",\n    });\n\n    var example = Vault.PkiSecret.GetBackendIssuer.Invoke(new()\n    {\n        Backend = root.Path,\n        IssuerRef = root.IssuerId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"pki\"),\n\t\t\tType:        pulumi.String(\"pki\"),\n\t\t\tDescription: pulumi.String(\"PKI secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\troot, err := pkisecret.NewSecretBackendRootCert(ctx, \"root\", \u0026pkisecret.SecretBackendRootCertArgs{\n\t\t\tBackend:    pki.Path,\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"example\"),\n\t\t\tTtl:        pulumi.String(\"86400\"),\n\t\t\tIssuerName: pulumi.String(\"example\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = root.IssuerId.ApplyT(func(issuerId string) (pkisecret.GetBackendIssuerResult, error) {\n\t\t\treturn pkisecret.GetBackendIssuerResult(interface{}(pkisecret.GetBackendIssuerOutput(ctx, pkisecret.GetBackendIssuerOutputArgs{\n\t\t\t\tBackend:   root.Path,\n\t\t\t\tIssuerRef: issuerId,\n\t\t\t}, nil))), nil\n\t\t}).(pkisecret.GetBackendIssuerResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;\nimport com.pulumi.vault.pkiSecret.PkiSecretFunctions;\nimport com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()\n            .path(\"pki\")\n            .type(\"pki\")\n            .description(\"PKI secret engine mount\")\n            .build());\n\n        var root = new SecretBackendRootCert(\"root\", SecretBackendRootCertArgs.builder()\n            .backend(pki.path())\n            .type(\"internal\")\n            .commonName(\"example\")\n            .ttl(\"86400\")\n            .issuerName(\"example\")\n            .build());\n\n        final var example = root.issuerId().applyValue(_issuerId -\u003e PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()\n            .backend(root.path())\n            .issuerRef(_issuerId)\n            .build()));\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      description: PKI secret engine mount\n  root:\n    type: vault:pkiSecret:SecretBackendRootCert\n    properties:\n      backend: ${pki.path}\n      type: internal\n      commonName: example\n      ttl: '86400'\n      issuerName: example\nvariables:\n  example:\n    fn::invoke:\n      function: vault:pkiSecret:getBackendIssuer\n      arguments:\n        backend: ${root.path}\n        issuerRef: ${root.issuerId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -37995,6 +38605,125 @@
                 "type": "object"
             }
         },
+        "vault:transit/getCmac:getCmac": {
+            "description": "This is a data source which can be used to generate a CMAC using a Vault Transit key.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = vault.transit.getCmac({\n    path: \"transit\",\n    name: \"test\",\n    input: \"aGVsbG8gd29ybGQ=\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.transit.get_cmac(path=\"transit\",\n    name=\"test\",\n    input=\"aGVsbG8gd29ybGQ=\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Vault.Transit.GetCmac.Invoke(new()\n    {\n        Path = \"transit\",\n        Name = \"test\",\n        Input = \"aGVsbG8gd29ybGQ=\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transit\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := transit.GetCmac(ctx, \u0026transit.GetCmacArgs{\n\t\t\tPath:  \"transit\",\n\t\t\tName:  \"test\",\n\t\t\tInput: pulumi.StringRef(\"aGVsbG8gd29ybGQ=\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.transit.TransitFunctions;\nimport com.pulumi.vault.transit.inputs.GetCmacArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = TransitFunctions.getCmac(GetCmacArgs.builder()\n            .path(\"transit\")\n            .name(\"test\")\n            .input(\"aGVsbG8gd29ybGQ=\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      function: vault:transit:getCmac\n      arguments:\n        path: transit\n        name: test\n        input: aGVsbG8gd29ybGQ=\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getCmac.\n",
+                "properties": {
+                    "batchInputs": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "batchResults": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        },
+                        "description": "The results returned from Vault if using `batch_input`\n"
+                    },
+                    "cmac": {
+                        "type": "string",
+                        "description": "The CMAC returned from Vault if using `input`\n"
+                    },
+                    "input": {
+                        "type": "string"
+                    },
+                    "keyVersion": {
+                        "type": "integer"
+                    },
+                    "macLength": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "urlMacLength": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "path"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCmac.\n",
+                "properties": {
+                    "batchInputs": {
+                        "items": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "batchResults": {
+                        "description": "The results returned from Vault if using `batch_input`\n",
+                        "items": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "cmac": {
+                        "description": "The CMAC returned from Vault if using `input`\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "input": {
+                        "type": "string"
+                    },
+                    "keyVersion": {
+                        "type": "integer"
+                    },
+                    "macLength": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "urlMacLength": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "batchResults",
+                    "cmac",
+                    "name",
+                    "path",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "vault:transit/getDecrypt:getDecrypt": {
             "description": "This is a data source which can be used to decrypt ciphertext using a Vault Transit key.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = vault.transit.getDecrypt({\n    backend: \"transit\",\n    key: \"test\",\n    ciphertext: \"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.transit.get_decrypt(backend=\"transit\",\n    key=\"test\",\n    ciphertext=\"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Vault.Transit.GetDecrypt.Invoke(new()\n    {\n        Backend = \"transit\",\n        Key = \"test\",\n        Ciphertext = \"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transit\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := transit.GetDecrypt(ctx, \u0026transit.GetDecryptArgs{\n\t\t\tBackend:    \"transit\",\n\t\t\tKey:        \"test\",\n\t\t\tCiphertext: \"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.transit.TransitFunctions;\nimport com.pulumi.vault.transit.inputs.GetDecryptArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = TransitFunctions.getDecrypt(GetDecryptArgs.builder()\n            .backend(\"transit\")\n            .key(\"test\")\n            .ciphertext(\"vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      function: vault:transit:getDecrypt\n      arguments:\n        backend: transit\n        key: test\n        ciphertext: vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -38330,6 +39059,9 @@
                     "input": {
                         "type": "string"
                     },
+                    "macLength": {
+                        "type": "integer"
+                    },
                     "marshalingAlgorithm": {
                         "type": "string"
                     },
@@ -38412,6 +39144,9 @@
                     },
                     "input": {
                         "type": "string"
+                    },
+                    "macLength": {
+                        "type": "integer"
                     },
                     "marshalingAlgorithm": {
                         "type": "string"

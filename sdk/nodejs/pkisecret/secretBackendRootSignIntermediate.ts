@@ -126,6 +126,10 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public /*out*/ readonly issuingCa!: pulumi.Output<string>;
     /**
+     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+     */
+    public readonly keyUsages!: pulumi.Output<string[] | undefined>;
+    /**
      * The locality
      */
     public readonly locality!: pulumi.Output<string | undefined>;
@@ -199,7 +203,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly signatureBits!: pulumi.Output<number | undefined>;
     /**
-     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      */
     public readonly skid!: pulumi.Output<string | undefined>;
     /**
@@ -219,7 +223,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly useCsrValues!: pulumi.Output<boolean | undefined>;
     /**
-     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
     public readonly usePss!: pulumi.Output<boolean | undefined>;
 
@@ -253,6 +257,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["ipSans"] = state ? state.ipSans : undefined;
             resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
             resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
+            resourceInputs["keyUsages"] = state ? state.keyUsages : undefined;
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["maxPathLength"] = state ? state.maxPathLength : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -300,6 +305,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
             resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
+            resourceInputs["keyUsages"] = args ? args.keyUsages : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["maxPathLength"] = args ? args.maxPathLength : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -410,6 +416,10 @@ export interface SecretBackendRootSignIntermediateState {
      */
     issuingCa?: pulumi.Input<string>;
     /**
+     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+     */
+    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The locality
      */
     locality?: pulumi.Input<string>;
@@ -483,7 +493,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     signatureBits?: pulumi.Input<number>;
     /**
-     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      */
     skid?: pulumi.Input<string>;
     /**
@@ -503,7 +513,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     useCsrValues?: pulumi.Input<boolean>;
     /**
-     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
     usePss?: pulumi.Input<boolean>;
 }
@@ -567,6 +577,10 @@ export interface SecretBackendRootSignIntermediateArgs {
      * overriding the role's `issuerRef` value.
      */
     issuerRef?: pulumi.Input<string>;
+    /**
+     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+     */
+    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The locality
      */
@@ -637,7 +651,7 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     signatureBits?: pulumi.Input<number>;
     /**
-     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     * Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      */
     skid?: pulumi.Input<string>;
     /**
@@ -657,7 +671,7 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     useCsrValues?: pulumi.Input<boolean>;
     /**
-     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
     usePss?: pulumi.Input<boolean>;
 }

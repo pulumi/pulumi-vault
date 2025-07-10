@@ -61,6 +61,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? PluginName;
         /// <summary>
+        /// Version counter for the private key key-pair credentials write-only field
+        /// </summary>
+        public readonly int? PrivateKeyWoVersion;
+        /// <summary>
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
@@ -118,6 +122,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? pluginName,
 
+            int? privateKeyWoVersion,
+
             ImmutableArray<string> rootRotationStatements,
 
             int? rotationPeriod,
@@ -143,6 +149,7 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PasswordWoVersion = passwordWoVersion;
             PluginName = pluginName;
+            PrivateKeyWoVersion = privateKeyWoVersion;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;

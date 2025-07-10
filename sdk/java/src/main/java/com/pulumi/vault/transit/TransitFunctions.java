@@ -9,6 +9,8 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
+import com.pulumi.vault.transit.inputs.GetCmacArgs;
+import com.pulumi.vault.transit.inputs.GetCmacPlainArgs;
 import com.pulumi.vault.transit.inputs.GetDecryptArgs;
 import com.pulumi.vault.transit.inputs.GetDecryptPlainArgs;
 import com.pulumi.vault.transit.inputs.GetEncryptArgs;
@@ -17,6 +19,7 @@ import com.pulumi.vault.transit.inputs.GetSignArgs;
 import com.pulumi.vault.transit.inputs.GetSignPlainArgs;
 import com.pulumi.vault.transit.inputs.GetVerifyArgs;
 import com.pulumi.vault.transit.inputs.GetVerifyPlainArgs;
+import com.pulumi.vault.transit.outputs.GetCmacResult;
 import com.pulumi.vault.transit.outputs.GetDecryptResult;
 import com.pulumi.vault.transit.outputs.GetEncryptResult;
 import com.pulumi.vault.transit.outputs.GetSignResult;
@@ -24,6 +27,226 @@ import com.pulumi.vault.transit.outputs.GetVerifyResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class TransitFunctions {
+    /**
+     * This is a data source which can be used to generate a CMAC using a Vault Transit key.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetCmacArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getCmac(GetCmacArgs.builder()
+     *             .path("transit")
+     *             .name("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCmacResult> getCmac(GetCmacArgs args) {
+        return getCmac(args, InvokeOptions.Empty);
+    }
+    /**
+     * This is a data source which can be used to generate a CMAC using a Vault Transit key.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetCmacArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getCmac(GetCmacArgs.builder()
+     *             .path("transit")
+     *             .name("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetCmacResult> getCmacPlain(GetCmacPlainArgs args) {
+        return getCmacPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This is a data source which can be used to generate a CMAC using a Vault Transit key.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetCmacArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getCmac(GetCmacArgs.builder()
+     *             .path("transit")
+     *             .name("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCmacResult> getCmac(GetCmacArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:transit/getCmac:getCmac", TypeShape.of(GetCmacResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This is a data source which can be used to generate a CMAC using a Vault Transit key.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetCmacArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getCmac(GetCmacArgs.builder()
+     *             .path("transit")
+     *             .name("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetCmacResult> getCmac(GetCmacArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:transit/getCmac:getCmac", TypeShape.of(GetCmacResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This is a data source which can be used to generate a CMAC using a Vault Transit key.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetCmacArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getCmac(GetCmacArgs.builder()
+     *             .path("transit")
+     *             .name("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetCmacResult> getCmacPlain(GetCmacPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:transit/getCmac:getCmac", TypeShape.of(GetCmacResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
      * 

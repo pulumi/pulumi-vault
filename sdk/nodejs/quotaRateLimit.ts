@@ -67,6 +67,16 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      */
     public readonly blockInterval!: pulumi.Output<number | undefined>;
     /**
+     * Attribute used to group requests for rate limiting. Limits are enforced independently for each
+     * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
+     * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+     * that match the rate limit quota rule; 3) `entityThenIp` that groups requests by their entity ID for authenticated
+     * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+     * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
+     * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+     */
+    public readonly groupBy!: pulumi.Output<string>;
+    /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
     public readonly inheritable!: pulumi.Output<boolean | undefined>;
@@ -103,6 +113,12 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
     public readonly role!: pulumi.Output<string | undefined>;
+    /**
+     * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
+     * the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+     * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+     */
+    public readonly secondaryRate!: pulumi.Output<number>;
 
     /**
      * Create a QuotaRateLimit resource with the given unique name, arguments, and options.
@@ -118,6 +134,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as QuotaRateLimitState | undefined;
             resourceInputs["blockInterval"] = state ? state.blockInterval : undefined;
+            resourceInputs["groupBy"] = state ? state.groupBy : undefined;
             resourceInputs["inheritable"] = state ? state.inheritable : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -125,12 +142,14 @@ export class QuotaRateLimit extends pulumi.CustomResource {
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["rate"] = state ? state.rate : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["secondaryRate"] = state ? state.secondaryRate : undefined;
         } else {
             const args = argsOrState as QuotaRateLimitArgs | undefined;
             if ((!args || args.rate === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rate'");
             }
             resourceInputs["blockInterval"] = args ? args.blockInterval : undefined;
+            resourceInputs["groupBy"] = args ? args.groupBy : undefined;
             resourceInputs["inheritable"] = args ? args.inheritable : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -138,6 +157,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["rate"] = args ? args.rate : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["secondaryRate"] = args ? args.secondaryRate : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(QuotaRateLimit.__pulumiType, name, resourceInputs, opts);
@@ -153,6 +173,16 @@ export interface QuotaRateLimitState {
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
     blockInterval?: pulumi.Input<number>;
+    /**
+     * Attribute used to group requests for rate limiting. Limits are enforced independently for each
+     * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
+     * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+     * that match the rate limit quota rule; 3) `entityThenIp` that groups requests by their entity ID for authenticated
+     * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+     * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
+     * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+     */
+    groupBy?: pulumi.Input<string>;
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
@@ -190,6 +220,12 @@ export interface QuotaRateLimitState {
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
     role?: pulumi.Input<string>;
+    /**
+     * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
+     * the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+     * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+     */
+    secondaryRate?: pulumi.Input<number>;
 }
 
 /**
@@ -201,6 +237,16 @@ export interface QuotaRateLimitArgs {
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
     blockInterval?: pulumi.Input<number>;
+    /**
+     * Attribute used to group requests for rate limiting. Limits are enforced independently for each
+     * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
+     * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
+     * that match the rate limit quota rule; 3) `entityThenIp` that groups requests by their entity ID for authenticated
+     * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
+     * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
+     * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
+     */
+    groupBy?: pulumi.Input<string>;
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
@@ -238,4 +284,10 @@ export interface QuotaRateLimitArgs {
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
     role?: pulumi.Input<string>;
+    /**
+     * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
+     * the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
+     * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+     */
+    secondaryRate?: pulumi.Input<number>;
 }

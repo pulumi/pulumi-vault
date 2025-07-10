@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetCmacArgs, GetCmacResult, GetCmacOutputArgs } from "./getCmac";
+export const getCmac: typeof import("./getCmac").getCmac = null as any;
+export const getCmacOutput: typeof import("./getCmac").getCmacOutput = null as any;
+utilities.lazyLoad(exports, ["getCmac","getCmacOutput"], () => require("./getCmac"));
+
 export { GetDecryptArgs, GetDecryptResult, GetDecryptOutputArgs } from "./getDecrypt";
 export const getDecrypt: typeof import("./getDecrypt").getDecrypt = null as any;
 export const getDecryptOutput: typeof import("./getDecrypt").getDecryptOutput = null as any;
