@@ -34956,7 +34956,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:vault"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:vault/terraformConfig",
