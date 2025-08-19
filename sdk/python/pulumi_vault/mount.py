@@ -29,6 +29,7 @@ class MountArgs:
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -52,6 +53,7 @@ class MountArgs:
                backend can request delegated authentication for.
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific
@@ -88,6 +90,8 @@ class MountArgs:
             pulumi.set(__self__, "description", description)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if listing_visibility is not None:
@@ -230,6 +234,18 @@ class MountArgs:
         pulumi.set(self, "external_entropy_access", value)
 
     @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
+
+    @_builtins.property
     @pulumi.getter(name="identityTokenKey")
     def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -358,6 +374,7 @@ class _MountState:
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -382,6 +399,7 @@ class _MountState:
                backend can request delegated authentication for.
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific
@@ -420,6 +438,8 @@ class _MountState:
             pulumi.set(__self__, "description", description)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if listing_visibility is not None:
@@ -552,6 +572,18 @@ class _MountState:
     @external_entropy_access.setter
     def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
@@ -708,6 +740,7 @@ class Mount(pulumi.CustomResource):
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -794,6 +827,7 @@ class Mount(pulumi.CustomResource):
                backend can request delegated authentication for.
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific
@@ -905,6 +939,7 @@ class Mount(pulumi.CustomResource):
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -933,6 +968,7 @@ class Mount(pulumi.CustomResource):
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
             __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["force_no_cache"] = force_no_cache
             __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["listing_visibility"] = listing_visibility
             __props__.__dict__["local"] = local
@@ -968,6 +1004,7 @@ class Mount(pulumi.CustomResource):
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+            force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
             identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
             listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
             local: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -997,6 +1034,7 @@ class Mount(pulumi.CustomResource):
                backend can request delegated authentication for.
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific
@@ -1030,6 +1068,7 @@ class Mount(pulumi.CustomResource):
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
         __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["force_no_cache"] = force_no_cache
         __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["listing_visibility"] = listing_visibility
         __props__.__dict__["local"] = local
@@ -1116,6 +1155,14 @@ class Mount(pulumi.CustomResource):
         Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")

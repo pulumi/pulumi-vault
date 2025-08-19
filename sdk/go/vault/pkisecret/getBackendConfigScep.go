@@ -57,6 +57,8 @@ type LookupBackendConfigScepArgs struct {
 	// The path to the PKI secret backend to
 	// read the SCEP configuration from, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	LogLevel *string `pulumi:"logLevel"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -82,8 +84,10 @@ type LookupBackendConfigScepResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// A read-only timestamp representing the last time the configuration was updated.
-	LastUpdated string  `pulumi:"lastUpdated"`
-	Namespace   *string `pulumi:"namespace"`
+	LastUpdated string `pulumi:"lastUpdated"`
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	LogLevel  *string `pulumi:"logLevel"`
+	Namespace *string `pulumi:"namespace"`
 	// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
 	RestrictCaChainToIssuer bool `pulumi:"restrictCaChainToIssuer"`
 }
@@ -102,6 +106,8 @@ type LookupBackendConfigScepOutputArgs struct {
 	// The path to the PKI secret backend to
 	// read the SCEP configuration from, with no leading or trailing `/`s.
 	Backend pulumi.StringInput `pulumi:"backend"`
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	LogLevel pulumi.StringPtrInput `pulumi:"logLevel"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -172,6 +178,11 @@ func (o LookupBackendConfigScepResultOutput) Id() pulumi.StringOutput {
 // A read-only timestamp representing the last time the configuration was updated.
 func (o LookupBackendConfigScepResultOutput) LastUpdated() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBackendConfigScepResult) string { return v.LastUpdated }).(pulumi.StringOutput)
+}
+
+// The level of logging verbosity, affects only SCEP logs on this mount.
+func (o LookupBackendConfigScepResultOutput) LogLevel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBackendConfigScepResult) *string { return v.LogLevel }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupBackendConfigScepResultOutput) Namespace() pulumi.StringPtrOutput {

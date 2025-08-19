@@ -105,6 +105,16 @@ export type NomadSecretRole = import("./nomadSecretRole").NomadSecretRole;
 export const NomadSecretRole: typeof import("./nomadSecretRole").NomadSecretRole = null as any;
 utilities.lazyLoad(exports, ["NomadSecretRole"], () => require("./nomadSecretRole"));
 
+export { OciAuthBackendArgs, OciAuthBackendState } from "./ociAuthBackend";
+export type OciAuthBackend = import("./ociAuthBackend").OciAuthBackend;
+export const OciAuthBackend: typeof import("./ociAuthBackend").OciAuthBackend = null as any;
+utilities.lazyLoad(exports, ["OciAuthBackend"], () => require("./ociAuthBackend"));
+
+export { OciAuthBackendRoleArgs, OciAuthBackendRoleState } from "./ociAuthBackendRole";
+export type OciAuthBackendRole = import("./ociAuthBackendRole").OciAuthBackendRole;
+export const OciAuthBackendRole: typeof import("./ociAuthBackendRole").OciAuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["OciAuthBackendRole"], () => require("./ociAuthBackendRole"));
+
 export { PluginArgs, PluginState } from "./plugin";
 export type Plugin = import("./plugin").Plugin;
 export const Plugin: typeof import("./plugin").Plugin = null as any;
@@ -254,6 +264,10 @@ const _module = {
                 return new NomadSecretBackend(name, <any>undefined, { urn })
             case "vault:index/nomadSecretRole:NomadSecretRole":
                 return new NomadSecretRole(name, <any>undefined, { urn })
+            case "vault:index/ociAuthBackend:OciAuthBackend":
+                return new OciAuthBackend(name, <any>undefined, { urn })
+            case "vault:index/ociAuthBackendRole:OciAuthBackendRole":
+                return new OciAuthBackendRole(name, <any>undefined, { urn })
             case "vault:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
             case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
@@ -292,6 +306,8 @@ pulumi.runtime.registerResourceModule("vault", "index/mount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/namespace", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretRole", _module)
+pulumi.runtime.registerResourceModule("vault", "index/ociAuthBackend", _module)
+pulumi.runtime.registerResourceModule("vault", "index/ociAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("vault", "index/pluginPinnedVersion", _module)
 pulumi.runtime.registerResourceModule("vault", "index/policy", _module)

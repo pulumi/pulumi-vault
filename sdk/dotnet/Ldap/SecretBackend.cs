@@ -115,7 +115,7 @@ namespace Pulumi.Vault.Ldap
         public Output<int?> ConnectionTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// Default lease duration for secrets in seconds.
+        /// Default lease duration for tokens and secrets in seconds
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
         public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
@@ -127,7 +127,7 @@ namespace Pulumi.Vault.Ldap
         public Output<ImmutableArray<string>> DelegatedAuthAccessors { get; private set; } = null!;
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// Human-friendly description of the mount
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -151,6 +151,12 @@ namespace Pulumi.Vault.Ldap
         public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
 
         /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Output("forceNoCache")]
+        public Output<bool> ForceNoCache { get; private set; } = null!;
+
+        /// <summary>
         /// The key to use for signing plugin workload identity tokens
         /// </summary>
         [Output("identityTokenKey")]
@@ -170,14 +176,13 @@ namespace Pulumi.Vault.Ldap
         public Output<string?> ListingVisibility { get; private set; } = null!;
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum possible lease duration for secrets in seconds.
+        /// Maximum possible lease duration for tokens and secrets in seconds
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
@@ -470,7 +475,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? ConnectionTimeout { get; set; }
 
         /// <summary>
-        /// Default lease duration for secrets in seconds.
+        /// Default lease duration for tokens and secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
@@ -488,7 +493,7 @@ namespace Pulumi.Vault.Ldap
         }
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// Human-friendly description of the mount
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -512,6 +517,12 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
         /// The key to use for signing plugin workload identity tokens
         /// </summary>
         [Input("identityTokenKey")]
@@ -531,14 +542,13 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// Maximum possible lease duration for secrets in seconds.
+        /// Maximum possible lease duration for tokens and secrets in seconds
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
@@ -805,7 +815,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? ConnectionTimeout { get; set; }
 
         /// <summary>
-        /// Default lease duration for secrets in seconds.
+        /// Default lease duration for tokens and secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
@@ -823,7 +833,7 @@ namespace Pulumi.Vault.Ldap
         }
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// Human-friendly description of the mount
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -847,6 +857,12 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
         /// The key to use for signing plugin workload identity tokens
         /// </summary>
         [Input("identityTokenKey")]
@@ -866,14 +882,13 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// Maximum possible lease duration for secrets in seconds.
+        /// Maximum possible lease duration for tokens and secrets in seconds
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }

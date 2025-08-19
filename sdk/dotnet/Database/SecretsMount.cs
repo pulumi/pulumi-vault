@@ -188,6 +188,12 @@ namespace Pulumi.Vault.Database
         public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
 
         /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Output("forceNoCache")]
+        public Output<bool> ForceNoCache { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for SAP HanaDB connections.  
         /// *See Configuration Options for more info*
         /// </summary>
@@ -516,6 +522,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("externalEntropyAccess")]
         public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
 
         [Input("hanas")]
         private InputList<Inputs.SecretsMountHanaArgs>? _hanas;
@@ -922,6 +934,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("externalEntropyAccess")]
         public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
 
         [Input("hanas")]
         private InputList<Inputs.SecretsMountHanaGetArgs>? _hanas;

@@ -89,6 +89,8 @@ type SecretBackend struct {
 	DisableLocalCaJwt pulumi.BoolPtrOutput `pulumi:"disableLocalCaJwt"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// A PEM-encoded CA certificate used by the
@@ -188,6 +190,8 @@ type secretBackendState struct {
 	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// A PEM-encoded CA certificate used by the
@@ -248,6 +252,8 @@ type SecretBackendState struct {
 	DisableLocalCaJwt pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrInput
 	// A PEM-encoded CA certificate used by the
@@ -310,6 +316,8 @@ type secretBackendArgs struct {
 	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// A PEM-encoded CA certificate used by the
@@ -369,6 +377,8 @@ type SecretBackendArgs struct {
 	DisableLocalCaJwt pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrInput
 	// A PEM-encoded CA certificate used by the
@@ -543,6 +553,11 @@ func (o SecretBackendOutput) DisableLocalCaJwt() pulumi.BoolPtrOutput {
 // Enable the secrets engine to access Vault's external entropy source
 func (o SecretBackendOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, disables caching.
+func (o SecretBackendOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
 }
 
 // The key to use for signing plugin workload identity tokens

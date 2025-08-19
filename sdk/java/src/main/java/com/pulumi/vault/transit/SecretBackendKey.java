@@ -335,16 +335,24 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * The parameter set to use for ML-DSA. Required for
-     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     * The parameter set to use for ML-DSA or SLH-DSA. Required for
+     * ML-DSA, hybrid, and SLH-DSA keys.
+     * Valid values for ML-DSA are `44`, `65`, and `87`.
+     * Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+     * `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+     * `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
      * 
      */
     @Export(name="parameterSet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> parameterSet;
 
     /**
-     * @return The parameter set to use for ML-DSA. Required for
-     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     * @return The parameter set to use for ML-DSA or SLH-DSA. Required for
+     * ML-DSA, hybrid, and SLH-DSA keys.
+     * Valid values for ML-DSA are `44`, `65`, and `87`.
+     * Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+     * `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+     * `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
      * 
      */
     public Output<Optional<String>> parameterSet() {
@@ -407,7 +415,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return this.supportsSigning;
     }
     /**
-     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */
@@ -415,7 +423,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> type;
 
     /**
-     * @return Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+     * @return Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */

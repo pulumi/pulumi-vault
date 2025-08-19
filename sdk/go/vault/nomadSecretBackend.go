@@ -54,9 +54,19 @@ import (
 type NomadSecretBackend struct {
 	pulumi.CustomResourceState
 
+	// Accessor of the mount
+	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// Specifies the address of the Nomad instance, provided
 	// as "protocol://host:port" like "http://127.0.0.1:4646".
 	Address pulumi.StringPtrOutput `pulumi:"address"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayOutput `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `nomad`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
@@ -69,13 +79,23 @@ type NomadSecretBackend struct {
 	ClientKey pulumi.StringPtrOutput `pulumi:"clientKey"`
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
-	// Human-friendly description of the mount for the Active Directory backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
+	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+	// use when checking the last rotation time.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
@@ -90,6 +110,14 @@ type NomadSecretBackend struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapOutput `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// Specifies the Nomad Management token to use.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// Specifies the ttl of the lease for the generated token.
@@ -141,9 +169,19 @@ func GetNomadSecretBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NomadSecretBackend resources.
 type nomadSecretBackendState struct {
+	// Accessor of the mount
+	Accessor *string `pulumi:"accessor"`
 	// Specifies the address of the Nomad instance, provided
 	// as "protocol://host:port" like "http://127.0.0.1:4646".
 	Address *string `pulumi:"address"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `nomad`.
 	Backend *string `pulumi:"backend"`
@@ -156,13 +194,23 @@ type nomadSecretBackendState struct {
 	ClientKey *string `pulumi:"clientKey"`
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
-	// Human-friendly description of the mount for the Active Directory backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
+	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+	// use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -177,6 +225,14 @@ type nomadSecretBackendState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options map[string]string `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap *bool `pulumi:"sealWrap"`
 	// Specifies the Nomad Management token to use.
 	Token *string `pulumi:"token"`
 	// Specifies the ttl of the lease for the generated token.
@@ -184,9 +240,19 @@ type nomadSecretBackendState struct {
 }
 
 type NomadSecretBackendState struct {
+	// Accessor of the mount
+	Accessor pulumi.StringPtrInput
 	// Specifies the address of the Nomad instance, provided
 	// as "protocol://host:port" like "http://127.0.0.1:4646".
 	Address pulumi.StringPtrInput
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `nomad`.
 	Backend pulumi.StringPtrInput
@@ -199,13 +265,23 @@ type NomadSecretBackendState struct {
 	ClientKey pulumi.StringPtrInput
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
-	// Human-friendly description of the mount for the Active Directory backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
+	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+	// use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -220,6 +296,14 @@ type NomadSecretBackendState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolPtrInput
 	// Specifies the Nomad Management token to use.
 	Token pulumi.StringPtrInput
 	// Specifies the ttl of the lease for the generated token.
@@ -234,6 +318,14 @@ type nomadSecretBackendArgs struct {
 	// Specifies the address of the Nomad instance, provided
 	// as "protocol://host:port" like "http://127.0.0.1:4646".
 	Address *string `pulumi:"address"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `nomad`.
 	Backend *string `pulumi:"backend"`
@@ -246,13 +338,23 @@ type nomadSecretBackendArgs struct {
 	ClientKey *string `pulumi:"clientKey"`
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
-	// Human-friendly description of the mount for the Active Directory backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
+	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+	// use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -267,6 +369,14 @@ type nomadSecretBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options map[string]string `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap *bool `pulumi:"sealWrap"`
 	// Specifies the Nomad Management token to use.
 	Token *string `pulumi:"token"`
 	// Specifies the ttl of the lease for the generated token.
@@ -278,6 +388,14 @@ type NomadSecretBackendArgs struct {
 	// Specifies the address of the Nomad instance, provided
 	// as "protocol://host:port" like "http://127.0.0.1:4646".
 	Address pulumi.StringPtrInput
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `nomad`.
 	Backend pulumi.StringPtrInput
@@ -290,13 +408,23 @@ type NomadSecretBackendArgs struct {
 	ClientKey pulumi.StringPtrInput
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
-	// Human-friendly description of the mount for the Active Directory backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
+	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+	// use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -311,6 +439,14 @@ type NomadSecretBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolPtrInput
 	// Specifies the Nomad Management token to use.
 	Token pulumi.StringPtrInput
 	// Specifies the ttl of the lease for the generated token.
@@ -404,10 +540,35 @@ func (o NomadSecretBackendOutput) ToNomadSecretBackendOutputWithContext(ctx cont
 	return o
 }
 
+// Accessor of the mount
+func (o NomadSecretBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
 // Specifies the address of the Nomad instance, provided
 // as "protocol://host:port" like "http://127.0.0.1:4646".
 func (o NomadSecretBackendOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// List of managed key registry entry names that the mount in question is allowed to access
+func (o NomadSecretBackendOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o NomadSecretBackendOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringArrayOutput { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+func (o NomadSecretBackendOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+func (o NomadSecretBackendOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringArrayOutput { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
 // The unique path this backend should be mounted at. Must
@@ -437,7 +598,12 @@ func (o NomadSecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
 }
 
-// Human-friendly description of the mount for the Active Directory backend.
+// List of headers to allow and pass from the request to the plugin
+func (o NomadSecretBackendOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
+}
+
+// Human-friendly description of the mount for the backend.
 func (o NomadSecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -448,8 +614,28 @@ func (o NomadSecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
 }
 
-// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-// replication.Tolerance duration to use when checking the last rotation time.
+// Enable the secrets engine to access Vault's external entropy source
+func (o NomadSecretBackendOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, disables caching.
+func (o NomadSecretBackendOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
+}
+
+// The key to use for signing plugin workload identity tokens
+func (o NomadSecretBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to show this mount in the UI-specific listing endpoint
+func (o NomadSecretBackendOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+}
+
+// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+// use when checking the last rotation time.
 func (o NomadSecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
 }
@@ -477,6 +663,26 @@ func (o NomadSecretBackendOutput) MaxTtl() pulumi.IntOutput {
 // *Available only for Vault Enterprise*.
 func (o NomadSecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Specifies mount type specific options that are passed to the backend
+func (o NomadSecretBackendOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o NomadSecretBackendOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringArrayOutput { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+func (o NomadSecretBackendOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
+}
+
+// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+func (o NomadSecretBackendOutput) SealWrap() pulumi.BoolOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
 }
 
 // Specifies the Nomad Management token to use.

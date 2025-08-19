@@ -146,6 +146,12 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> JwksCaPem { get; private set; } = null!;
 
         /// <summary>
+        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        /// </summary>
+        [Output("jwksPairs")]
+        public Output<ImmutableArray<ImmutableDictionary<string, string>>> JwksPairs { get; private set; } = null!;
+
+        /// <summary>
         /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         /// </summary>
         [Output("jwksUrl")]
@@ -326,6 +332,18 @@ namespace Pulumi.Vault.Jwt
         [Input("jwksCaPem")]
         public Input<string>? JwksCaPem { get; set; }
 
+        [Input("jwksPairs")]
+        private InputList<ImmutableDictionary<string, string>>? _jwksPairs;
+
+        /// <summary>
+        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        /// </summary>
+        public InputList<ImmutableDictionary<string, string>> JwksPairs
+        {
+            get => _jwksPairs ?? (_jwksPairs = new InputList<ImmutableDictionary<string, string>>());
+            set => _jwksPairs = value;
+        }
+
         /// <summary>
         /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         /// </summary>
@@ -504,6 +522,18 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("jwksCaPem")]
         public Input<string>? JwksCaPem { get; set; }
+
+        [Input("jwksPairs")]
+        private InputList<ImmutableDictionary<string, string>>? _jwksPairs;
+
+        /// <summary>
+        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        /// </summary>
+        public InputList<ImmutableDictionary<string, string>> JwksPairs
+        {
+            get => _jwksPairs ?? (_jwksPairs = new InputList<ImmutableDictionary<string, string>>());
+            set => _jwksPairs = value;
+        }
 
         /// <summary>
         /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".

@@ -323,6 +323,312 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type OciAuthBackendTune struct {
+	// List of headers to whitelist and allowing
+	// a plugin to include them in the response.
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
+	// Specifies the default time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+	DefaultLeaseTtl *string `pulumi:"defaultLeaseTtl"`
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Specifies the maximum time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+	MaxLeaseTtl *string `pulumi:"maxLeaseTtl"`
+	// List of headers to whitelist and
+	// pass from the request to the backend.
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
+	// Specifies the type of tokens that should be returned by the mount.
+	TokenType *string `pulumi:"tokenType"`
+}
+
+// OciAuthBackendTuneInput is an input type that accepts OciAuthBackendTuneArgs and OciAuthBackendTuneOutput values.
+// You can construct a concrete instance of `OciAuthBackendTuneInput` via:
+//
+//	OciAuthBackendTuneArgs{...}
+type OciAuthBackendTuneInput interface {
+	pulumi.Input
+
+	ToOciAuthBackendTuneOutput() OciAuthBackendTuneOutput
+	ToOciAuthBackendTuneOutputWithContext(context.Context) OciAuthBackendTuneOutput
+}
+
+type OciAuthBackendTuneArgs struct {
+	// List of headers to whitelist and allowing
+	// a plugin to include them in the response.
+	AllowedResponseHeaders pulumi.StringArrayInput `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will
+	// not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput `pulumi:"auditNonHmacResponseKeys"`
+	// Specifies the default time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+	DefaultLeaseTtl pulumi.StringPtrInput `pulumi:"defaultLeaseTtl"`
+	// Specifies whether to show this mount in
+	// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+	ListingVisibility pulumi.StringPtrInput `pulumi:"listingVisibility"`
+	// Specifies the maximum time-to-live.
+	// If set, this overrides the global default.
+	// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+	MaxLeaseTtl pulumi.StringPtrInput `pulumi:"maxLeaseTtl"`
+	// List of headers to whitelist and
+	// pass from the request to the backend.
+	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
+	// Specifies the type of tokens that should be returned by the mount.
+	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
+}
+
+func (OciAuthBackendTuneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OciAuthBackendTune)(nil)).Elem()
+}
+
+func (i OciAuthBackendTuneArgs) ToOciAuthBackendTuneOutput() OciAuthBackendTuneOutput {
+	return i.ToOciAuthBackendTuneOutputWithContext(context.Background())
+}
+
+func (i OciAuthBackendTuneArgs) ToOciAuthBackendTuneOutputWithContext(ctx context.Context) OciAuthBackendTuneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OciAuthBackendTuneOutput)
+}
+
+func (i OciAuthBackendTuneArgs) ToOciAuthBackendTunePtrOutput() OciAuthBackendTunePtrOutput {
+	return i.ToOciAuthBackendTunePtrOutputWithContext(context.Background())
+}
+
+func (i OciAuthBackendTuneArgs) ToOciAuthBackendTunePtrOutputWithContext(ctx context.Context) OciAuthBackendTunePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OciAuthBackendTuneOutput).ToOciAuthBackendTunePtrOutputWithContext(ctx)
+}
+
+// OciAuthBackendTunePtrInput is an input type that accepts OciAuthBackendTuneArgs, OciAuthBackendTunePtr and OciAuthBackendTunePtrOutput values.
+// You can construct a concrete instance of `OciAuthBackendTunePtrInput` via:
+//
+//	        OciAuthBackendTuneArgs{...}
+//
+//	or:
+//
+//	        nil
+type OciAuthBackendTunePtrInput interface {
+	pulumi.Input
+
+	ToOciAuthBackendTunePtrOutput() OciAuthBackendTunePtrOutput
+	ToOciAuthBackendTunePtrOutputWithContext(context.Context) OciAuthBackendTunePtrOutput
+}
+
+type ociAuthBackendTunePtrType OciAuthBackendTuneArgs
+
+func OciAuthBackendTunePtr(v *OciAuthBackendTuneArgs) OciAuthBackendTunePtrInput {
+	return (*ociAuthBackendTunePtrType)(v)
+}
+
+func (*ociAuthBackendTunePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OciAuthBackendTune)(nil)).Elem()
+}
+
+func (i *ociAuthBackendTunePtrType) ToOciAuthBackendTunePtrOutput() OciAuthBackendTunePtrOutput {
+	return i.ToOciAuthBackendTunePtrOutputWithContext(context.Background())
+}
+
+func (i *ociAuthBackendTunePtrType) ToOciAuthBackendTunePtrOutputWithContext(ctx context.Context) OciAuthBackendTunePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OciAuthBackendTunePtrOutput)
+}
+
+type OciAuthBackendTuneOutput struct{ *pulumi.OutputState }
+
+func (OciAuthBackendTuneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OciAuthBackendTune)(nil)).Elem()
+}
+
+func (o OciAuthBackendTuneOutput) ToOciAuthBackendTuneOutput() OciAuthBackendTuneOutput {
+	return o
+}
+
+func (o OciAuthBackendTuneOutput) ToOciAuthBackendTuneOutputWithContext(ctx context.Context) OciAuthBackendTuneOutput {
+	return o
+}
+
+func (o OciAuthBackendTuneOutput) ToOciAuthBackendTunePtrOutput() OciAuthBackendTunePtrOutput {
+	return o.ToOciAuthBackendTunePtrOutputWithContext(context.Background())
+}
+
+func (o OciAuthBackendTuneOutput) ToOciAuthBackendTunePtrOutputWithContext(ctx context.Context) OciAuthBackendTunePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OciAuthBackendTune) *OciAuthBackendTune {
+		return &v
+	}).(OciAuthBackendTunePtrOutput)
+}
+
+// List of headers to whitelist and allowing
+// a plugin to include them in the response.
+func (o OciAuthBackendTuneOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) []string { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the request data object.
+func (o OciAuthBackendTuneOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) []string { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the response data object.
+func (o OciAuthBackendTuneOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) []string { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the default time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+func (o OciAuthBackendTuneOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) *string { return v.DefaultLeaseTtl }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to show this mount in
+// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+func (o OciAuthBackendTuneOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) *string { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the maximum time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+func (o OciAuthBackendTuneOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) *string { return v.MaxLeaseTtl }).(pulumi.StringPtrOutput)
+}
+
+// List of headers to whitelist and
+// pass from the request to the backend.
+func (o OciAuthBackendTuneOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the type of tokens that should be returned by the mount.
+func (o OciAuthBackendTuneOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OciAuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+type OciAuthBackendTunePtrOutput struct{ *pulumi.OutputState }
+
+func (OciAuthBackendTunePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OciAuthBackendTune)(nil)).Elem()
+}
+
+func (o OciAuthBackendTunePtrOutput) ToOciAuthBackendTunePtrOutput() OciAuthBackendTunePtrOutput {
+	return o
+}
+
+func (o OciAuthBackendTunePtrOutput) ToOciAuthBackendTunePtrOutputWithContext(ctx context.Context) OciAuthBackendTunePtrOutput {
+	return o
+}
+
+func (o OciAuthBackendTunePtrOutput) Elem() OciAuthBackendTuneOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) OciAuthBackendTune {
+		if v != nil {
+			return *v
+		}
+		var ret OciAuthBackendTune
+		return ret
+	}).(OciAuthBackendTuneOutput)
+}
+
+// List of headers to whitelist and allowing
+// a plugin to include them in the response.
+func (o OciAuthBackendTunePtrOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedResponseHeaders
+	}).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the request data object.
+func (o OciAuthBackendTunePtrOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AuditNonHmacRequestKeys
+	}).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will
+// not be HMAC'd by audit devices in the response data object.
+func (o OciAuthBackendTunePtrOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AuditNonHmacResponseKeys
+	}).(pulumi.StringArrayOutput)
+}
+
+// Specifies the default time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+func (o OciAuthBackendTunePtrOutput) DefaultLeaseTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultLeaseTtl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to show this mount in
+// the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+func (o OciAuthBackendTunePtrOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ListingVisibility
+	}).(pulumi.StringPtrOutput)
+}
+
+// Specifies the maximum time-to-live.
+// If set, this overrides the global default.
+// Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+func (o OciAuthBackendTunePtrOutput) MaxLeaseTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxLeaseTtl
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of headers to whitelist and
+// pass from the request to the backend.
+func (o OciAuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) []string {
+		if v == nil {
+			return nil
+		}
+		return v.PassthroughRequestHeaders
+	}).(pulumi.StringArrayOutput)
+}
+
+// Specifies the type of tokens that should be returned by the mount.
+func (o OciAuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OciAuthBackendTune) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenType
+	}).(pulumi.StringPtrOutput)
+}
+
 type ProviderAuthLogin struct {
 	Method *string `pulumi:"method"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
@@ -4026,6 +4332,8 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTuneInput)(nil)).Elem(), AuthBackendTuneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTunePtrInput)(nil)).Elem(), AuthBackendTuneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OciAuthBackendTuneInput)(nil)).Elem(), OciAuthBackendTuneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OciAuthBackendTunePtrInput)(nil)).Elem(), OciAuthBackendTuneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginInput)(nil)).Elem(), ProviderAuthLoginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginPtrInput)(nil)).Elem(), ProviderAuthLoginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginAwsInput)(nil)).Elem(), ProviderAuthLoginAwsArgs{})
@@ -4062,6 +4370,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleDeniedParameterArrayInput)(nil)).Elem(), GetPolicyDocumentRuleDeniedParameterArray{})
 	pulumi.RegisterOutputType(AuthBackendTuneOutput{})
 	pulumi.RegisterOutputType(AuthBackendTunePtrOutput{})
+	pulumi.RegisterOutputType(OciAuthBackendTuneOutput{})
+	pulumi.RegisterOutputType(OciAuthBackendTunePtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginPtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginAwsOutput{})

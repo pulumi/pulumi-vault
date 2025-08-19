@@ -130,6 +130,34 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyType);
     }
     /**
+     * The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * 
+     */
+    @Export(name="managedKeyId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> managedKeyId;
+
+    /**
+     * @return The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * 
+     */
+    public Output<Optional<String>> managedKeyId() {
+        return Codegen.optional(this.managedKeyId);
+    }
+    /**
+     * The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * 
+     */
+    @Export(name="managedKeyName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> managedKeyName;
+
+    /**
+     * @return The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * 
+     */
+    public Output<Optional<String>> managedKeyName() {
+        return Codegen.optional(this.managedKeyName);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -150,14 +178,14 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * The private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
-     * @return Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return The private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     public Output<String> privateKey() {

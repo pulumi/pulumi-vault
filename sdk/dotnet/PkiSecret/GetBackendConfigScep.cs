@@ -110,6 +110,12 @@ namespace Pulumi.Vault.PkiSecret
         public string Backend { get; set; } = null!;
 
         /// <summary>
+        /// The level of logging verbosity, affects only SCEP logs on this mount.
+        /// </summary>
+        [Input("logLevel")]
+        public string? LogLevel { get; set; }
+
+        /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -132,6 +138,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        /// <summary>
+        /// The level of logging verbosity, affects only SCEP logs on this mount.
+        /// </summary>
+        [Input("logLevel")]
+        public Input<string>? LogLevel { get; set; }
 
         /// <summary>
         /// The namespace of the target resource.
@@ -185,6 +197,10 @@ namespace Pulumi.Vault.PkiSecret
         /// A read-only timestamp representing the last time the configuration was updated.
         /// </summary>
         public readonly string LastUpdated;
+        /// <summary>
+        /// The level of logging verbosity, affects only SCEP logs on this mount.
+        /// </summary>
+        public readonly string? LogLevel;
         public readonly string? Namespace;
         /// <summary>
         /// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
@@ -211,6 +227,8 @@ namespace Pulumi.Vault.PkiSecret
 
             string lastUpdated,
 
+            string? logLevel,
+
             string? @namespace,
 
             bool restrictCaChainToIssuer)
@@ -224,6 +242,7 @@ namespace Pulumi.Vault.PkiSecret
             ExternalValidations = externalValidations;
             Id = id;
             LastUpdated = lastUpdated;
+            LogLevel = logLevel;
             Namespace = @namespace;
             RestrictCaChainToIssuer = restrictCaChainToIssuer;
         }

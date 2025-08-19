@@ -106,7 +106,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly connectionTimeout!: pulumi.Output<number | undefined>;
     /**
-     * Default lease duration for secrets in seconds.
+     * Default lease duration for tokens and secrets in seconds
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
     /**
@@ -114,7 +114,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
     /**
-     * Human-friendly description of the mount for the Active Directory backend.
+     * Human-friendly description of the mount
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -130,6 +130,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
+     * If set to true, disables caching.
+     */
+    public readonly forceNoCache!: pulumi.Output<boolean>;
+    /**
      * The key to use for signing plugin workload identity tokens
      */
     public readonly identityTokenKey!: pulumi.Output<string | undefined>;
@@ -143,12 +147,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly listingVisibility!: pulumi.Output<string | undefined>;
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
-     * Maximum possible lease duration for secrets in seconds.
+     * Maximum possible lease duration for tokens and secrets in seconds
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
     /**
@@ -265,6 +268,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
             resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
@@ -312,6 +316,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
             resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
@@ -395,7 +400,7 @@ export interface SecretBackendState {
      */
     connectionTimeout?: pulumi.Input<number>;
     /**
-     * Default lease duration for secrets in seconds.
+     * Default lease duration for tokens and secrets in seconds
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
@@ -403,7 +408,7 @@ export interface SecretBackendState {
      */
     delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Human-friendly description of the mount for the Active Directory backend.
+     * Human-friendly description of the mount
      */
     description?: pulumi.Input<string>;
     /**
@@ -419,6 +424,10 @@ export interface SecretBackendState {
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
+    /**
      * The key to use for signing plugin workload identity tokens
      */
     identityTokenKey?: pulumi.Input<string>;
@@ -432,12 +441,11 @@ export interface SecretBackendState {
      */
     listingVisibility?: pulumi.Input<string>;
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
     /**
-     * Maximum possible lease duration for secrets in seconds.
+     * Maximum possible lease duration for tokens and secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
@@ -572,7 +580,7 @@ export interface SecretBackendArgs {
      */
     connectionTimeout?: pulumi.Input<number>;
     /**
-     * Default lease duration for secrets in seconds.
+     * Default lease duration for tokens and secrets in seconds
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
@@ -580,7 +588,7 @@ export interface SecretBackendArgs {
      */
     delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Human-friendly description of the mount for the Active Directory backend.
+     * Human-friendly description of the mount
      */
     description?: pulumi.Input<string>;
     /**
@@ -596,6 +604,10 @@ export interface SecretBackendArgs {
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
+    /**
      * The key to use for signing plugin workload identity tokens
      */
     identityTokenKey?: pulumi.Input<string>;
@@ -609,12 +621,11 @@ export interface SecretBackendArgs {
      */
     listingVisibility?: pulumi.Input<string>;
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
     /**
-     * Maximum possible lease duration for secrets in seconds.
+     * Maximum possible lease duration for tokens and secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**

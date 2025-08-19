@@ -142,6 +142,8 @@ type SecretsMount struct {
 	EngineCount pulumi.IntOutput `pulumi:"engineCount"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayOutput `pulumi:"hanas"`
@@ -273,6 +275,8 @@ type secretsMountState struct {
 	EngineCount *int `pulumi:"engineCount"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas []SecretsMountHana `pulumi:"hanas"`
@@ -372,6 +376,8 @@ type SecretsMountState struct {
 	EngineCount pulumi.IntPtrInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayInput
@@ -471,6 +477,8 @@ type secretsMountArgs struct {
 	Elasticsearches []SecretsMountElasticsearch `pulumi:"elasticsearches"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas []SecretsMountHana `pulumi:"hanas"`
@@ -567,6 +575,8 @@ type SecretsMountArgs struct {
 	Elasticsearches SecretsMountElasticsearchArrayInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayInput
@@ -789,6 +799,11 @@ func (o SecretsMountOutput) EngineCount() pulumi.IntOutput {
 // Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 func (o SecretsMountOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, disables caching.
+func (o SecretsMountOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
 }
 
 // A nested block containing configuration options for SAP HanaDB connections.\

@@ -157,6 +157,10 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
+     * If set to true, disables caching.
+     */
+    public readonly forceNoCache!: pulumi.Output<boolean>;
+    /**
      * A nested block containing configuration options for SAP HanaDB connections.  
      * *See Configuration Options for more info*
      */
@@ -298,6 +302,7 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["elasticsearches"] = state ? state.elasticsearches : undefined;
             resourceInputs["engineCount"] = state ? state.engineCount : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
             resourceInputs["hanas"] = state ? state.hanas : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["influxdbs"] = state ? state.influxdbs : undefined;
@@ -339,6 +344,7 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["elasticsearches"] = args ? args.elasticsearches : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
             resourceInputs["hanas"] = args ? args.hanas : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["influxdbs"] = args ? args.influxdbs : undefined;
@@ -433,6 +439,10 @@ export interface SecretsMountState {
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.  
      * *See Configuration Options for more info*
@@ -603,6 +613,10 @@ export interface SecretsMountArgs {
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.  
      * *See Configuration Options for more info*

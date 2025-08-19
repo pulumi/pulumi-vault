@@ -172,6 +172,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Import(name="forceNoCache")
+    private @Nullable Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Optional<Output<Boolean>> forceNoCache() {
+        return Optional.ofNullable(this.forceNoCache);
+    }
+
+    /**
      * The key to use for signing plugin workload identity tokens
      * 
      */
@@ -399,6 +414,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.description = $.description;
         this.disableLocalCaJwt = $.disableLocalCaJwt;
         this.externalEntropyAccess = $.externalEntropyAccess;
+        this.forceNoCache = $.forceNoCache;
         this.identityTokenKey = $.identityTokenKey;
         this.kubernetesCaCert = $.kubernetesCaCert;
         this.kubernetesHost = $.kubernetesHost;
@@ -692,6 +708,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder externalEntropyAccess(Boolean externalEntropyAccess) {
             return externalEntropyAccess(Output.of(externalEntropyAccess));
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(@Nullable Output<Boolean> forceNoCache) {
+            $.forceNoCache = forceNoCache;
+            return this;
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(Boolean forceNoCache) {
+            return forceNoCache(Output.of(forceNoCache));
         }
 
         /**

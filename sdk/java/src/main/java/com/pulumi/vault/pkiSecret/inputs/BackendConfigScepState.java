@@ -142,6 +142,25 @@ public final class BackendConfigScepState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    @Import(name="logLevel")
+    private @Nullable Output<String> logLevel;
+
+    /**
+     * @return The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    public Optional<Output<String>> logLevel() {
+        return Optional.ofNullable(this.logLevel);
+    }
+
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -165,16 +184,12 @@ public final class BackendConfigScepState extends com.pulumi.resources.ResourceA
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
      * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-     * 
      */
     @Import(name="restrictCaChainToIssuer")
     private @Nullable Output<Boolean> restrictCaChainToIssuer;
 
     /**
      * @return If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-     * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
      * 
      */
     public Optional<Output<Boolean>> restrictCaChainToIssuer() {
@@ -192,6 +207,7 @@ public final class BackendConfigScepState extends com.pulumi.resources.ResourceA
         this.enabled = $.enabled;
         this.externalValidations = $.externalValidations;
         this.lastUpdated = $.lastUpdated;
+        this.logLevel = $.logLevel;
         this.namespace = $.namespace;
         this.restrictCaChainToIssuer = $.restrictCaChainToIssuer;
     }
@@ -415,6 +431,31 @@ public final class BackendConfigScepState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param logLevel The level of logging verbosity, affects only SCEP logs on this mount.
+         * 
+         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logLevel(@Nullable Output<String> logLevel) {
+            $.logLevel = logLevel;
+            return this;
+        }
+
+        /**
+         * @param logLevel The level of logging verbosity, affects only SCEP logs on this mount.
+         * 
+         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logLevel(String logLevel) {
+            return logLevel(Output.of(logLevel));
+        }
+
+        /**
          * @param namespace The namespace of the target resource.
          * The value should not contain leading or trailing forward slashes.
          * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -444,8 +485,6 @@ public final class BackendConfigScepState extends com.pulumi.resources.ResourceA
         /**
          * @param restrictCaChainToIssuer If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
          * 
-         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-         * 
          * @return builder
          * 
          */
@@ -456,8 +495,6 @@ public final class BackendConfigScepState extends com.pulumi.resources.ResourceA
 
         /**
          * @param restrictCaChainToIssuer If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-         * 
-         * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
          * 
          * @return builder
          * 

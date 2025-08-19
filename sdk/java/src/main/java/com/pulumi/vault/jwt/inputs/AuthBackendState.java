@@ -112,6 +112,21 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="jwksPairs")
+    private @Nullable Output<List<Map<String,String>>> jwksPairs;
+
+    /**
+     * @return List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<List<Map<String,String>>>> jwksPairs() {
+        return Optional.ofNullable(this.jwksPairs);
+    }
+
+    /**
      * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
      * 
      */
@@ -366,6 +381,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.jwksCaPem = $.jwksCaPem;
+        this.jwksPairs = $.jwksPairs;
         this.jwksUrl = $.jwksUrl;
         this.jwtSupportedAlgs = $.jwtSupportedAlgs;
         this.jwtValidationPubkeys = $.jwtValidationPubkeys;
@@ -528,6 +544,37 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder jwksCaPem(String jwksCaPem) {
             return jwksCaPem(Output.of(jwksCaPem));
+        }
+
+        /**
+         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksPairs(@Nullable Output<List<Map<String,String>>> jwksPairs) {
+            $.jwksPairs = jwksPairs;
+            return this;
+        }
+
+        /**
+         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksPairs(List<Map<String,String>> jwksPairs) {
+            return jwksPairs(Output.of(jwksPairs));
+        }
+
+        /**
+         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksPairs(Map<String,String>... jwksPairs) {
+            return jwksPairs(List.of(jwksPairs));
         }
 
         /**

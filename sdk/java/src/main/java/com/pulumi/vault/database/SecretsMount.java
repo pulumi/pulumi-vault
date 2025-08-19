@@ -325,6 +325,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEntropyAccess);
     }
     /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Export(name="forceNoCache", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Output<Boolean> forceNoCache() {
+        return this.forceNoCache;
+    }
+    /**
      * A nested block containing configuration options for SAP HanaDB connections.\
      * *See Configuration Options for more info*
      * 

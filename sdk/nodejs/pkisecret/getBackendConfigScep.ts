@@ -27,6 +27,7 @@ export function getBackendConfigScep(args: GetBackendConfigScepArgs, opts?: pulu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:pkiSecret/getBackendConfigScep:getBackendConfigScep", {
         "backend": args.backend,
+        "logLevel": args.logLevel,
         "namespace": args.namespace,
     }, opts);
 }
@@ -40,6 +41,10 @@ export interface GetBackendConfigScepArgs {
      * read the SCEP configuration from, with no leading or trailing `/`s.
      */
     backend: string;
+    /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     */
+    logLevel?: string;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
@@ -86,6 +91,10 @@ export interface GetBackendConfigScepResult {
      * A read-only timestamp representing the last time the configuration was updated.
      */
     readonly lastUpdated: string;
+    /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     */
+    readonly logLevel?: string;
     readonly namespace?: string;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
@@ -113,6 +122,7 @@ export function getBackendConfigScepOutput(args: GetBackendConfigScepOutputArgs,
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendConfigScep:getBackendConfigScep", {
         "backend": args.backend,
+        "logLevel": args.logLevel,
         "namespace": args.namespace,
     }, opts);
 }
@@ -126,6 +136,10 @@ export interface GetBackendConfigScepOutputArgs {
      * read the SCEP configuration from, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     */
+    logLevel?: pulumi.Input<string>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.

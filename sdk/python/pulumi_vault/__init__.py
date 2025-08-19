@@ -26,6 +26,8 @@ from .mount import *
 from .namespace import *
 from .nomad_secret_backend import *
 from .nomad_secret_role import *
+from .oci_auth_backend import *
+from .oci_auth_backend_role import *
 from .plugin import *
 from .plugin_pinned_version import *
 from .policy import *
@@ -732,6 +734,22 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/nomadSecretRole:NomadSecretRole": "NomadSecretRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/ociAuthBackend",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/ociAuthBackend:OciAuthBackend": "OciAuthBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/ociAuthBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/ociAuthBackendRole:OciAuthBackendRole": "OciAuthBackendRole"
   }
  },
  {

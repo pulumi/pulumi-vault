@@ -104,14 +104,16 @@ type BackendConfigScep struct {
 	ExternalValidations BackendConfigScepExternalValidationArrayOutput `pulumi:"externalValidations"`
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated pulumi.StringOutput `pulumi:"lastUpdated"`
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	LogLevel pulumi.StringOutput `pulumi:"logLevel"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	RestrictCaChainToIssuer pulumi.BoolPtrOutput `pulumi:"restrictCaChainToIssuer"`
 }
 
@@ -165,14 +167,16 @@ type backendConfigScepState struct {
 	ExternalValidations []BackendConfigScepExternalValidation `pulumi:"externalValidations"`
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated *string `pulumi:"lastUpdated"`
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	LogLevel *string `pulumi:"logLevel"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	RestrictCaChainToIssuer *bool `pulumi:"restrictCaChainToIssuer"`
 }
 
@@ -194,14 +198,16 @@ type BackendConfigScepState struct {
 	ExternalValidations BackendConfigScepExternalValidationArrayInput
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated pulumi.StringPtrInput
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	LogLevel pulumi.StringPtrInput
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	RestrictCaChainToIssuer pulumi.BoolPtrInput
 }
 
@@ -225,14 +231,16 @@ type backendConfigScepArgs struct {
 	Enabled *bool `pulumi:"enabled"`
 	// Lists the 3rd party validation of SCEP requests (see below for nested schema).
 	ExternalValidations []BackendConfigScepExternalValidation `pulumi:"externalValidations"`
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	LogLevel *string `pulumi:"logLevel"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	RestrictCaChainToIssuer *bool `pulumi:"restrictCaChainToIssuer"`
 }
 
@@ -253,14 +261,16 @@ type BackendConfigScepArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// Lists the 3rd party validation of SCEP requests (see below for nested schema).
 	ExternalValidations BackendConfigScepExternalValidationArrayInput
+	// The level of logging verbosity, affects only SCEP logs on this mount.
+	//
+	// <a id="nestedatt--authenticators"></a>
+	LogLevel pulumi.StringPtrInput
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-	//
-	// <a id="nestedatt--authenticators"></a>
 	RestrictCaChainToIssuer pulumi.BoolPtrInput
 }
 
@@ -394,6 +404,13 @@ func (o BackendConfigScepOutput) LastUpdated() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackendConfigScep) pulumi.StringOutput { return v.LastUpdated }).(pulumi.StringOutput)
 }
 
+// The level of logging verbosity, affects only SCEP logs on this mount.
+//
+// <a id="nestedatt--authenticators"></a>
+func (o BackendConfigScepOutput) LogLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *BackendConfigScep) pulumi.StringOutput { return v.LogLevel }).(pulumi.StringOutput)
+}
+
 // The namespace of the target resource.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -403,8 +420,6 @@ func (o BackendConfigScepOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-//
-// <a id="nestedatt--authenticators"></a>
 func (o BackendConfigScepOutput) RestrictCaChainToIssuer() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *BackendConfigScep) pulumi.BoolPtrOutput { return v.RestrictCaChainToIssuer }).(pulumi.BoolPtrOutput)
 }

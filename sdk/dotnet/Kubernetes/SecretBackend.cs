@@ -115,6 +115,12 @@ namespace Pulumi.Vault.Kubernetes
         public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
 
         /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Output("forceNoCache")]
+        public Output<bool> ForceNoCache { get; private set; } = null!;
+
+        /// <summary>
         /// The key to use for signing plugin workload identity tokens
         /// </summary>
         [Output("identityTokenKey")]
@@ -338,6 +344,12 @@ namespace Pulumi.Vault.Kubernetes
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
         /// The key to use for signing plugin workload identity tokens
         /// </summary>
         [Input("identityTokenKey")]
@@ -545,6 +557,12 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("externalEntropyAccess")]
         public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
 
         /// <summary>
         /// The key to use for signing plugin workload identity tokens

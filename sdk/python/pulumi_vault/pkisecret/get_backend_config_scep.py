@@ -27,7 +27,7 @@ class GetBackendConfigScepResult:
     """
     A collection of values returned by getBackendConfigScep.
     """
-    def __init__(__self__, allowed_digest_algorithms=None, allowed_encryption_algorithms=None, authenticators=None, backend=None, default_path_policy=None, enabled=None, external_validations=None, id=None, last_updated=None, namespace=None, restrict_ca_chain_to_issuer=None):
+    def __init__(__self__, allowed_digest_algorithms=None, allowed_encryption_algorithms=None, authenticators=None, backend=None, default_path_policy=None, enabled=None, external_validations=None, id=None, last_updated=None, log_level=None, namespace=None, restrict_ca_chain_to_issuer=None):
         if allowed_digest_algorithms and not isinstance(allowed_digest_algorithms, list):
             raise TypeError("Expected argument 'allowed_digest_algorithms' to be a list")
         pulumi.set(__self__, "allowed_digest_algorithms", allowed_digest_algorithms)
@@ -55,6 +55,9 @@ class GetBackendConfigScepResult:
         if last_updated and not isinstance(last_updated, str):
             raise TypeError("Expected argument 'last_updated' to be a str")
         pulumi.set(__self__, "last_updated", last_updated)
+        if log_level and not isinstance(log_level, str):
+            raise TypeError("Expected argument 'log_level' to be a str")
+        pulumi.set(__self__, "log_level", log_level)
         if namespace and not isinstance(namespace, str):
             raise TypeError("Expected argument 'namespace' to be a str")
         pulumi.set(__self__, "namespace", namespace)
@@ -132,6 +135,14 @@ class GetBackendConfigScepResult:
         return pulumi.get(self, "last_updated")
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> Optional[_builtins.str]:
+        """
+        The level of logging verbosity, affects only SCEP logs on this mount.
+        """
+        return pulumi.get(self, "log_level")
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "namespace")
@@ -160,11 +171,13 @@ class AwaitableGetBackendConfigScepResult(GetBackendConfigScepResult):
             external_validations=self.external_validations,
             id=self.id,
             last_updated=self.last_updated,
+            log_level=self.log_level,
             namespace=self.namespace,
             restrict_ca_chain_to_issuer=self.restrict_ca_chain_to_issuer)
 
 
 def get_backend_config_scep(backend: Optional[_builtins.str] = None,
+                            log_level: Optional[_builtins.str] = None,
                             namespace: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendConfigScepResult:
     """
@@ -184,6 +197,7 @@ def get_backend_config_scep(backend: Optional[_builtins.str] = None,
 
     :param _builtins.str backend: The path to the PKI secret backend to
            read the SCEP configuration from, with no leading or trailing `/`s.
+    :param _builtins.str log_level: The level of logging verbosity, affects only SCEP logs on this mount.
     :param _builtins.str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -191,6 +205,7 @@ def get_backend_config_scep(backend: Optional[_builtins.str] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['logLevel'] = log_level
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:pkiSecret/getBackendConfigScep:getBackendConfigScep', __args__, opts=opts, typ=GetBackendConfigScepResult).value
@@ -205,9 +220,11 @@ def get_backend_config_scep(backend: Optional[_builtins.str] = None,
         external_validations=pulumi.get(__ret__, 'external_validations'),
         id=pulumi.get(__ret__, 'id'),
         last_updated=pulumi.get(__ret__, 'last_updated'),
+        log_level=pulumi.get(__ret__, 'log_level'),
         namespace=pulumi.get(__ret__, 'namespace'),
         restrict_ca_chain_to_issuer=pulumi.get(__ret__, 'restrict_ca_chain_to_issuer'))
 def get_backend_config_scep_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
+                                   log_level: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                    namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendConfigScepResult]:
     """
@@ -227,6 +244,7 @@ def get_backend_config_scep_output(backend: Optional[pulumi.Input[_builtins.str]
 
     :param _builtins.str backend: The path to the PKI secret backend to
            read the SCEP configuration from, with no leading or trailing `/`s.
+    :param _builtins.str log_level: The level of logging verbosity, affects only SCEP logs on this mount.
     :param _builtins.str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -234,6 +252,7 @@ def get_backend_config_scep_output(backend: Optional[pulumi.Input[_builtins.str]
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['logLevel'] = log_level
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendConfigScep:getBackendConfigScep', __args__, opts=opts, typ=GetBackendConfigScepResult)
@@ -247,5 +266,6 @@ def get_backend_config_scep_output(backend: Optional[pulumi.Input[_builtins.str]
         external_validations=pulumi.get(__response__, 'external_validations'),
         id=pulumi.get(__response__, 'id'),
         last_updated=pulumi.get(__response__, 'last_updated'),
+        log_level=pulumi.get(__response__, 'log_level'),
         namespace=pulumi.get(__response__, 'namespace'),
         restrict_ca_chain_to_issuer=pulumi.get(__response__, 'restrict_ca_chain_to_issuer')))

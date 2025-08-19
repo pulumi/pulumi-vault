@@ -64,10 +64,40 @@ namespace Pulumi.Vault.Consul
     public partial class SecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Accessor of the mount
+        /// </summary>
+        [Output("accessor")]
+        public Output<string> Accessor { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
+
+        /// <summary>
+        /// List of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        [Output("allowedManagedKeys")]
+        public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("allowedResponseHeaders")]
+        public Output<ImmutableArray<string>> AllowedResponseHeaders { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        [Output("auditNonHmacRequestKeys")]
+        public Output<ImmutableArray<string>> AuditNonHmacRequestKeys { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        [Output("auditNonHmacResponseKeys")]
+        public Output<ImmutableArray<string>> AuditNonHmacResponseKeys { get; private set; } = null!;
 
         /// <summary>
         /// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
@@ -96,10 +126,16 @@ namespace Pulumi.Vault.Consul
         public Output<string?> ClientKey { get; private set; } = null!;
 
         /// <summary>
-        /// The default TTL for credentials issued by this backend.
+        /// Default lease duration for secrets in seconds
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
         public Output<int?> DefaultLeaseTtlSeconds { get; private set; } = null!;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("delegatedAuthAccessors")]
+        public Output<ImmutableArray<string>> DelegatedAuthAccessors { get; private set; } = null!;
 
         /// <summary>
         /// A human-friendly description for this backend.
@@ -115,14 +151,37 @@ namespace Pulumi.Vault.Consul
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if the secret backend is local only.
+        /// Enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Output("externalEntropyAccess")]
+        public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Output("forceNoCache")]
+        public Output<bool> ForceNoCache { get; private set; } = null!;
+
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Output("listingVisibility")]
+        public Output<string?> ListingVisibility { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies if the secret backend is local only
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum TTL that can be requested
-        /// for credentials issued by this backend.
+        /// Maximum possible lease duration for secrets in seconds
         /// </summary>
         [Output("maxLeaseTtlSeconds")]
         public Output<int?> MaxLeaseTtlSeconds { get; private set; } = null!;
@@ -137,6 +196,18 @@ namespace Pulumi.Vault.Consul
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies mount type specific options that are passed to the backend
+        /// </summary>
+        [Output("options")]
+        public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("passthroughRequestHeaders")]
+        public Output<ImmutableArray<string>> PassthroughRequestHeaders { get; private set; } = null!;
+
+        /// <summary>
         /// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
         /// to `consul`.
         /// </summary>
@@ -144,10 +215,22 @@ namespace Pulumi.Vault.Consul
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Output("pluginVersion")]
+        public Output<string?> PluginVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the URL scheme to use. Defaults to `http`.
         /// </summary>
         [Output("scheme")]
         public Output<string?> Scheme { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Output("sealWrap")]
+        public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the Consul token to use when managing or issuing new tokens.
@@ -213,6 +296,54 @@ namespace Pulumi.Vault.Consul
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// List of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
+
         /// <summary>
         /// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         /// </summary>
@@ -260,10 +391,22 @@ namespace Pulumi.Vault.Consul
         }
 
         /// <summary>
-        /// The default TTL for credentials issued by this backend.
+        /// Default lease duration for secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
+
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
 
         /// <summary>
         /// A human-friendly description for this backend.
@@ -279,14 +422,37 @@ namespace Pulumi.Vault.Consul
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
-        /// Specifies if the secret backend is local only.
+        /// Enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Input("externalEntropyAccess")]
+        public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
+
+        /// <summary>
+        /// Specifies if the secret backend is local only
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// The maximum TTL that can be requested
-        /// for credentials issued by this backend.
+        /// Maximum possible lease duration for secrets in seconds
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
@@ -300,6 +466,30 @@ namespace Pulumi.Vault.Consul
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("options")]
+        private InputMap<string>? _options;
+
+        /// <summary>
+        /// Specifies mount type specific options that are passed to the backend
+        /// </summary>
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
         /// <summary>
         /// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
         /// to `consul`.
@@ -308,10 +498,22 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Path { get; set; }
 
         /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
+
+        /// <summary>
         /// Specifies the URL scheme to use. Defaults to `http`.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
+
+        /// <summary>
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Input("sealWrap")]
+        public Input<bool>? SealWrap { get; set; }
 
         [Input("token")]
         private Input<string>? _token;
@@ -338,10 +540,64 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Accessor of the mount
+        /// </summary>
+        [Input("accessor")]
+        public Input<string>? Accessor { get; set; }
+
+        /// <summary>
         /// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
+
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// List of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
 
         /// <summary>
         /// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
@@ -390,10 +646,22 @@ namespace Pulumi.Vault.Consul
         }
 
         /// <summary>
-        /// The default TTL for credentials issued by this backend.
+        /// Default lease duration for secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
+
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
 
         /// <summary>
         /// A human-friendly description for this backend.
@@ -409,14 +677,37 @@ namespace Pulumi.Vault.Consul
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
-        /// Specifies if the secret backend is local only.
+        /// Enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Input("externalEntropyAccess")]
+        public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
+
+        /// <summary>
+        /// Specifies if the secret backend is local only
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
 
         /// <summary>
-        /// The maximum TTL that can be requested
-        /// for credentials issued by this backend.
+        /// Maximum possible lease duration for secrets in seconds
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
@@ -430,6 +721,30 @@ namespace Pulumi.Vault.Consul
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("options")]
+        private InputMap<string>? _options;
+
+        /// <summary>
+        /// Specifies mount type specific options that are passed to the backend
+        /// </summary>
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
         /// <summary>
         /// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
         /// to `consul`.
@@ -438,10 +753,22 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Path { get; set; }
 
         /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
+
+        /// <summary>
         /// Specifies the URL scheme to use. Defaults to `http`.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
+
+        /// <summary>
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Input("sealWrap")]
+        public Input<bool>? SealWrap { get; set; }
 
         [Input("token")]
         private Input<string>? _token;

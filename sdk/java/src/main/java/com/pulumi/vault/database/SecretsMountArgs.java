@@ -214,6 +214,21 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Import(name="forceNoCache")
+    private @Nullable Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Optional<Output<Boolean>> forceNoCache() {
+        return Optional.ofNullable(this.forceNoCache);
+    }
+
+    /**
      * A nested block containing configuration options for SAP HanaDB connections.\
      * *See Configuration Options for more info*
      * 
@@ -632,6 +647,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.elasticsearches = $.elasticsearches;
         this.externalEntropyAccess = $.externalEntropyAccess;
+        this.forceNoCache = $.forceNoCache;
         this.hanas = $.hanas;
         this.identityTokenKey = $.identityTokenKey;
         this.influxdbs = $.influxdbs;
@@ -1001,6 +1017,27 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder externalEntropyAccess(Boolean externalEntropyAccess) {
             return externalEntropyAccess(Output.of(externalEntropyAccess));
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(@Nullable Output<Boolean> forceNoCache) {
+            $.forceNoCache = forceNoCache;
+            return this;
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(Boolean forceNoCache) {
+            return forceNoCache(Output.of(forceNoCache));
         }
 
         /**

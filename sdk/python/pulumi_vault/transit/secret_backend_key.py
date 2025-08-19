@@ -58,9 +58,13 @@ class SecretBackendKeyArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA. Required for
-               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
-        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA or SLH-DSA. Required for
+               ML-DSA, hybrid, and SLH-DSA keys.
+               Valid values for ML-DSA are `44`, `65`, and `87`.
+               Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+               `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+               `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         pulumi.set(__self__, "backend", backend)
@@ -274,8 +278,12 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="parameterSet")
     def parameter_set(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The parameter set to use for ML-DSA. Required for
-        ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        The parameter set to use for ML-DSA or SLH-DSA. Required for
+        ML-DSA, hybrid, and SLH-DSA keys.
+        Valid values for ML-DSA are `44`, `65`, and `87`.
+        Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+        `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+        `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         """
         return pulumi.get(self, "parameter_set")
 
@@ -287,7 +295,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         return pulumi.get(self, "type")
@@ -351,13 +359,17 @@ class _SecretBackendKeyState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA. Required for
-               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA or SLH-DSA. Required for
+               ML-DSA, hybrid, and SLH-DSA keys.
+               Valid values for ML-DSA are `44`, `65`, and `87`.
+               Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+               `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+               `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         :param pulumi.Input[_builtins.bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[_builtins.bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[_builtins.bool] supports_encryption: Whether or not the key supports encryption, based on key type.
         :param pulumi.Input[_builtins.bool] supports_signing: Whether or not the key supports signing, based on key type.
-        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         if allow_plaintext_backup is not None:
@@ -624,8 +636,12 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="parameterSet")
     def parameter_set(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The parameter set to use for ML-DSA. Required for
-        ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        The parameter set to use for ML-DSA or SLH-DSA. Required for
+        ML-DSA, hybrid, and SLH-DSA keys.
+        Valid values for ML-DSA are `44`, `65`, and `87`.
+        Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+        `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+        `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         """
         return pulumi.get(self, "parameter_set")
 
@@ -685,7 +701,7 @@ class _SecretBackendKeyState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         return pulumi.get(self, "type")
@@ -769,9 +785,13 @@ class SecretBackendKey(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA. Required for
-               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
-        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA or SLH-DSA. Required for
+               ML-DSA, hybrid, and SLH-DSA keys.
+               Valid values for ML-DSA are `44`, `65`, and `87`.
+               Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+               `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+               `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         ...
@@ -939,13 +959,17 @@ class SecretBackendKey(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA. Required for
-               ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        :param pulumi.Input[_builtins.str] parameter_set: The parameter set to use for ML-DSA or SLH-DSA. Required for
+               ML-DSA, hybrid, and SLH-DSA keys.
+               Valid values for ML-DSA are `44`, `65`, and `87`.
+               Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+               `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+               `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         :param pulumi.Input[_builtins.bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[_builtins.bool] supports_derivation: Whether or not the key supports derivation, based on key type.
         :param pulumi.Input[_builtins.bool] supports_encryption: Whether or not the key supports encryption, based on key type.
         :param pulumi.Input[_builtins.bool] supports_signing: Whether or not the key supports signing, based on key type.
-        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1126,8 +1150,12 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="parameterSet")
     def parameter_set(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The parameter set to use for ML-DSA. Required for
-        ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        The parameter set to use for ML-DSA or SLH-DSA. Required for
+        ML-DSA, hybrid, and SLH-DSA keys.
+        Valid values for ML-DSA are `44`, `65`, and `87`.
+        Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+        `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+        `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         """
         return pulumi.get(self, "parameter_set")
 
@@ -1167,7 +1195,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         """
         return pulumi.get(self, "type")
