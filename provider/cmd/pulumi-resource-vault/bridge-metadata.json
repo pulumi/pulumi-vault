@@ -189,6 +189,24 @@
                 "current": "vault:aws/secretBackend:SecretBackend",
                 "majorVersion": 7,
                 "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    },
                     "sts_fallback_endpoints": {
                         "maxItemsOne": false
                     },
@@ -252,7 +270,27 @@
             },
             "vault_azure_secret_backend": {
                 "current": "vault:azure/backend:Backend",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_azure_secret_backend_role": {
                 "current": "vault:azure/backendRole:BackendRole",
@@ -316,7 +354,27 @@
             },
             "vault_consul_secret_backend": {
                 "current": "vault:consul/secretBackend:SecretBackend",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_consul_secret_backend_role": {
                 "current": "vault:consul/secretBackendRole:SecretBackendRole",
@@ -779,7 +837,27 @@
             },
             "vault_gcp_secret_backend": {
                 "current": "vault:gcp/secretBackend:SecretBackend",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_gcp_secret_impersonated_account": {
                 "current": "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount",
@@ -1060,6 +1138,9 @@
                 "current": "vault:jwt/authBackend:AuthBackend",
                 "majorVersion": 7,
                 "fields": {
+                    "jwks_pairs": {
+                        "maxItemsOne": false
+                    },
                     "jwt_supported_algs": {
                         "maxItemsOne": false
                     },
@@ -1115,7 +1196,25 @@
                 "current": "vault:kmip/secretBackend:SecretBackend",
                 "majorVersion": 7,
                 "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
                     "listen_addrs": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
                         "maxItemsOne": false
                     },
                     "server_hostnames": {
@@ -1368,13 +1467,73 @@
             },
             "vault_nomad_secret_backend": {
                 "current": "vault:index/nomadSecretBackend:NomadSecretBackend",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_nomad_secret_role": {
                 "current": "vault:index/nomadSecretRole:NomadSecretRole",
                 "majorVersion": 7,
                 "fields": {
                     "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_oci_auth_backend": {
+                "current": "vault:index/ociAuthBackend:OciAuthBackend",
+                "majorVersion": 7,
+                "fields": {
+                    "tune": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed_response_headers": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_request_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_response_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "passthrough_request_headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "vault_oci_auth_backend_role": {
+                "current": "vault:index/ociAuthBackendRole:OciAuthBackendRole",
+                "majorVersion": 7,
+                "fields": {
+                    "ocid_list": {
+                        "maxItemsOne": false
+                    },
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
                         "maxItemsOne": false
                     }
                 }
@@ -1808,7 +1967,27 @@
             },
             "vault_rabbitmq_secret_backend": {
                 "current": "vault:rabbitMq/secretBackend:SecretBackend",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_rabbitmq_secret_backend_role": {
                 "current": "vault:rabbitMq/secretBackendRole:SecretBackendRole",
@@ -1941,7 +2120,27 @@
             },
             "vault_terraform_cloud_secret_backend": {
                 "current": "vault:terraformcloud/secretBackend:SecretBackend",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_terraform_cloud_secret_creds": {
                 "current": "vault:terraformcloud/secretCreds:SecretCreds",
