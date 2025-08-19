@@ -47,6 +47,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NomadSecretBackend{}
 	case "vault:index/nomadSecretRole:NomadSecretRole":
 		r = &NomadSecretRole{}
+	case "vault:index/ociAuthBackend:OciAuthBackend":
+		r = &OciAuthBackend{}
+	case "vault:index/ociAuthBackendRole:OciAuthBackendRole":
+		r = &OciAuthBackendRole{}
 	case "vault:index/plugin:Plugin":
 		r = &Plugin{}
 	case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
@@ -161,6 +165,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/nomadSecretRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/ociAuthBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/ociAuthBackendRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

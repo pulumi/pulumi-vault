@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -16,6 +18,21 @@ import javax.annotation.Nullable;
 public final class SecretBackendState extends com.pulumi.resources.ResourceArgs {
 
     public static final SecretBackendState Empty = new SecretBackendState();
+
+    /**
+     * Accessor of the mount
+     * 
+     */
+    @Import(name="accessor")
+    private @Nullable Output<String> accessor;
+
+    /**
+     * @return Accessor of the mount
+     * 
+     */
+    public Optional<Output<String>> accessor() {
+        return Optional.ofNullable(this.accessor);
+    }
 
     /**
      * Specifies the address of the Consul instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
@@ -30,6 +47,66 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<String>> address() {
         return Optional.ofNullable(this.address);
+    }
+
+    /**
+     * List of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Import(name="allowedManagedKeys")
+    private @Nullable Output<List<String>> allowedManagedKeys;
+
+    /**
+     * @return List of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Optional<Output<List<String>>> allowedManagedKeys() {
+        return Optional.ofNullable(this.allowedManagedKeys);
+    }
+
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Import(name="allowedResponseHeaders")
+    private @Nullable Output<List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Optional<Output<List<String>>> allowedResponseHeaders() {
+        return Optional.ofNullable(this.allowedResponseHeaders);
+    }
+
+    /**
+     * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+     * 
+     */
+    @Import(name="auditNonHmacRequestKeys")
+    private @Nullable Output<List<String>> auditNonHmacRequestKeys;
+
+    /**
+     * @return Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+     * 
+     */
+    public Optional<Output<List<String>>> auditNonHmacRequestKeys() {
+        return Optional.ofNullable(this.auditNonHmacRequestKeys);
+    }
+
+    /**
+     * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+     * 
+     */
+    @Import(name="auditNonHmacResponseKeys")
+    private @Nullable Output<List<String>> auditNonHmacResponseKeys;
+
+    /**
+     * @return Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+     * 
+     */
+    public Optional<Output<List<String>>> auditNonHmacResponseKeys() {
+        return Optional.ofNullable(this.auditNonHmacResponseKeys);
     }
 
     /**
@@ -97,18 +174,33 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The default TTL for credentials issued by this backend.
+     * Default lease duration for secrets in seconds
      * 
      */
     @Import(name="defaultLeaseTtlSeconds")
     private @Nullable Output<Integer> defaultLeaseTtlSeconds;
 
     /**
-     * @return The default TTL for credentials issued by this backend.
+     * @return Default lease duration for secrets in seconds
      * 
      */
     public Optional<Output<Integer>> defaultLeaseTtlSeconds() {
         return Optional.ofNullable(this.defaultLeaseTtlSeconds);
+    }
+
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Import(name="delegatedAuthAccessors")
+    private @Nullable Output<List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Optional<Output<List<String>>> delegatedAuthAccessors() {
+        return Optional.ofNullable(this.delegatedAuthAccessors);
     }
 
     /**
@@ -144,14 +236,74 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Specifies if the secret backend is local only.
+     * Enable the secrets engine to access Vault&#39;s external entropy source
+     * 
+     */
+    @Import(name="externalEntropyAccess")
+    private @Nullable Output<Boolean> externalEntropyAccess;
+
+    /**
+     * @return Enable the secrets engine to access Vault&#39;s external entropy source
+     * 
+     */
+    public Optional<Output<Boolean>> externalEntropyAccess() {
+        return Optional.ofNullable(this.externalEntropyAccess);
+    }
+
+    /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Import(name="forceNoCache")
+    private @Nullable Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Optional<Output<Boolean>> forceNoCache() {
+        return Optional.ofNullable(this.forceNoCache);
+    }
+
+    /**
+     * The key to use for signing plugin workload identity tokens
+     * 
+     */
+    @Import(name="identityTokenKey")
+    private @Nullable Output<String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens
+     * 
+     */
+    public Optional<Output<String>> identityTokenKey() {
+        return Optional.ofNullable(this.identityTokenKey);
+    }
+
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Import(name="listingVisibility")
+    private @Nullable Output<String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Optional<Output<String>> listingVisibility() {
+        return Optional.ofNullable(this.listingVisibility);
+    }
+
+    /**
+     * Specifies if the secret backend is local only
      * 
      */
     @Import(name="local")
     private @Nullable Output<Boolean> local;
 
     /**
-     * @return Specifies if the secret backend is local only.
+     * @return Specifies if the secret backend is local only
      * 
      */
     public Optional<Output<Boolean>> local() {
@@ -159,16 +311,14 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The maximum TTL that can be requested
-     * for credentials issued by this backend.
+     * Maximum possible lease duration for secrets in seconds
      * 
      */
     @Import(name="maxLeaseTtlSeconds")
     private @Nullable Output<Integer> maxLeaseTtlSeconds;
 
     /**
-     * @return The maximum TTL that can be requested
-     * for credentials issued by this backend.
+     * @return Maximum possible lease duration for secrets in seconds
      * 
      */
     public Optional<Output<Integer>> maxLeaseTtlSeconds() {
@@ -197,6 +347,36 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Specifies mount type specific options that are passed to the backend
+     * 
+     */
+    @Import(name="options")
+    private @Nullable Output<Map<String,String>> options;
+
+    /**
+     * @return Specifies mount type specific options that are passed to the backend
+     * 
+     */
+    public Optional<Output<Map<String,String>>> options() {
+        return Optional.ofNullable(this.options);
+    }
+
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Import(name="passthroughRequestHeaders")
+    private @Nullable Output<List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Optional<Output<List<String>>> passthroughRequestHeaders() {
+        return Optional.ofNullable(this.passthroughRequestHeaders);
+    }
+
+    /**
      * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
      * to `consul`.
      * 
@@ -214,6 +394,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    @Import(name="pluginVersion")
+    private @Nullable Output<String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    public Optional<Output<String>> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
+    }
+
+    /**
      * Specifies the URL scheme to use. Defaults to `http`.
      * 
      */
@@ -226,6 +421,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<String>> scheme() {
         return Optional.ofNullable(this.scheme);
+    }
+
+    /**
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+     * 
+     */
+    @Import(name="sealWrap")
+    private @Nullable Output<Boolean> sealWrap;
+
+    /**
+     * @return Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+     * 
+     */
+    public Optional<Output<Boolean>> sealWrap() {
+        return Optional.ofNullable(this.sealWrap);
     }
 
     /**
@@ -246,19 +456,33 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     private SecretBackendState() {}
 
     private SecretBackendState(SecretBackendState $) {
+        this.accessor = $.accessor;
         this.address = $.address;
+        this.allowedManagedKeys = $.allowedManagedKeys;
+        this.allowedResponseHeaders = $.allowedResponseHeaders;
+        this.auditNonHmacRequestKeys = $.auditNonHmacRequestKeys;
+        this.auditNonHmacResponseKeys = $.auditNonHmacResponseKeys;
         this.bootstrap = $.bootstrap;
         this.caCert = $.caCert;
         this.clientCert = $.clientCert;
         this.clientKey = $.clientKey;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
+        this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
         this.disableRemount = $.disableRemount;
+        this.externalEntropyAccess = $.externalEntropyAccess;
+        this.forceNoCache = $.forceNoCache;
+        this.identityTokenKey = $.identityTokenKey;
+        this.listingVisibility = $.listingVisibility;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.namespace = $.namespace;
+        this.options = $.options;
+        this.passthroughRequestHeaders = $.passthroughRequestHeaders;
         this.path = $.path;
+        this.pluginVersion = $.pluginVersion;
         this.scheme = $.scheme;
+        this.sealWrap = $.sealWrap;
         this.token = $.token;
     }
 
@@ -281,6 +505,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
+         * @param accessor Accessor of the mount
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessor(@Nullable Output<String> accessor) {
+            $.accessor = accessor;
+            return this;
+        }
+
+        /**
+         * @param accessor Accessor of the mount
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessor(String accessor) {
+            return accessor(Output.of(accessor));
+        }
+
+        /**
          * @param address Specifies the address of the Consul instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
          * 
          * @return builder
@@ -299,6 +544,130 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder address(String address) {
             return address(Output.of(address));
+        }
+
+        /**
+         * @param allowedManagedKeys List of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(@Nullable Output<List<String>> allowedManagedKeys) {
+            $.allowedManagedKeys = allowedManagedKeys;
+            return this;
+        }
+
+        /**
+         * @param allowedManagedKeys List of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(List<String> allowedManagedKeys) {
+            return allowedManagedKeys(Output.of(allowedManagedKeys));
+        }
+
+        /**
+         * @param allowedManagedKeys List of managed key registry entry names that the mount in question is allowed to access
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedManagedKeys(String... allowedManagedKeys) {
+            return allowedManagedKeys(List.of(allowedManagedKeys));
+        }
+
+        /**
+         * @param allowedResponseHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedResponseHeaders(@Nullable Output<List<String>> allowedResponseHeaders) {
+            $.allowedResponseHeaders = allowedResponseHeaders;
+            return this;
+        }
+
+        /**
+         * @param allowedResponseHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedResponseHeaders(List<String> allowedResponseHeaders) {
+            return allowedResponseHeaders(Output.of(allowedResponseHeaders));
+        }
+
+        /**
+         * @param allowedResponseHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedResponseHeaders(String... allowedResponseHeaders) {
+            return allowedResponseHeaders(List.of(allowedResponseHeaders));
+        }
+
+        /**
+         * @param auditNonHmacRequestKeys Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder auditNonHmacRequestKeys(@Nullable Output<List<String>> auditNonHmacRequestKeys) {
+            $.auditNonHmacRequestKeys = auditNonHmacRequestKeys;
+            return this;
+        }
+
+        /**
+         * @param auditNonHmacRequestKeys Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder auditNonHmacRequestKeys(List<String> auditNonHmacRequestKeys) {
+            return auditNonHmacRequestKeys(Output.of(auditNonHmacRequestKeys));
+        }
+
+        /**
+         * @param auditNonHmacRequestKeys Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder auditNonHmacRequestKeys(String... auditNonHmacRequestKeys) {
+            return auditNonHmacRequestKeys(List.of(auditNonHmacRequestKeys));
+        }
+
+        /**
+         * @param auditNonHmacResponseKeys Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder auditNonHmacResponseKeys(@Nullable Output<List<String>> auditNonHmacResponseKeys) {
+            $.auditNonHmacResponseKeys = auditNonHmacResponseKeys;
+            return this;
+        }
+
+        /**
+         * @param auditNonHmacResponseKeys Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder auditNonHmacResponseKeys(List<String> auditNonHmacResponseKeys) {
+            return auditNonHmacResponseKeys(Output.of(auditNonHmacResponseKeys));
+        }
+
+        /**
+         * @param auditNonHmacResponseKeys Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder auditNonHmacResponseKeys(String... auditNonHmacResponseKeys) {
+            return auditNonHmacResponseKeys(List.of(auditNonHmacResponseKeys));
         }
 
         /**
@@ -390,7 +759,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param defaultLeaseTtlSeconds The default TTL for credentials issued by this backend.
+         * @param defaultLeaseTtlSeconds Default lease duration for secrets in seconds
          * 
          * @return builder
          * 
@@ -401,13 +770,44 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param defaultLeaseTtlSeconds The default TTL for credentials issued by this backend.
+         * @param defaultLeaseTtlSeconds Default lease duration for secrets in seconds
          * 
          * @return builder
          * 
          */
         public Builder defaultLeaseTtlSeconds(Integer defaultLeaseTtlSeconds) {
             return defaultLeaseTtlSeconds(Output.of(defaultLeaseTtlSeconds));
+        }
+
+        /**
+         * @param delegatedAuthAccessors List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delegatedAuthAccessors(@Nullable Output<List<String>> delegatedAuthAccessors) {
+            $.delegatedAuthAccessors = delegatedAuthAccessors;
+            return this;
+        }
+
+        /**
+         * @param delegatedAuthAccessors List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delegatedAuthAccessors(List<String> delegatedAuthAccessors) {
+            return delegatedAuthAccessors(Output.of(delegatedAuthAccessors));
+        }
+
+        /**
+         * @param delegatedAuthAccessors List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delegatedAuthAccessors(String... delegatedAuthAccessors) {
+            return delegatedAuthAccessors(List.of(delegatedAuthAccessors));
         }
 
         /**
@@ -455,7 +855,91 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param local Specifies if the secret backend is local only.
+         * @param externalEntropyAccess Enable the secrets engine to access Vault&#39;s external entropy source
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalEntropyAccess(@Nullable Output<Boolean> externalEntropyAccess) {
+            $.externalEntropyAccess = externalEntropyAccess;
+            return this;
+        }
+
+        /**
+         * @param externalEntropyAccess Enable the secrets engine to access Vault&#39;s external entropy source
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalEntropyAccess(Boolean externalEntropyAccess) {
+            return externalEntropyAccess(Output.of(externalEntropyAccess));
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(@Nullable Output<Boolean> forceNoCache) {
+            $.forceNoCache = forceNoCache;
+            return this;
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(Boolean forceNoCache) {
+            return forceNoCache(Output.of(forceNoCache));
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing plugin workload identity tokens
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(@Nullable Output<String> identityTokenKey) {
+            $.identityTokenKey = identityTokenKey;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing plugin workload identity tokens
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(String identityTokenKey) {
+            return identityTokenKey(Output.of(identityTokenKey));
+        }
+
+        /**
+         * @param listingVisibility Specifies whether to show this mount in the UI-specific listing endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder listingVisibility(@Nullable Output<String> listingVisibility) {
+            $.listingVisibility = listingVisibility;
+            return this;
+        }
+
+        /**
+         * @param listingVisibility Specifies whether to show this mount in the UI-specific listing endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder listingVisibility(String listingVisibility) {
+            return listingVisibility(Output.of(listingVisibility));
+        }
+
+        /**
+         * @param local Specifies if the secret backend is local only
          * 
          * @return builder
          * 
@@ -466,7 +950,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param local Specifies if the secret backend is local only.
+         * @param local Specifies if the secret backend is local only
          * 
          * @return builder
          * 
@@ -476,8 +960,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param maxLeaseTtlSeconds The maximum TTL that can be requested
-         * for credentials issued by this backend.
+         * @param maxLeaseTtlSeconds Maximum possible lease duration for secrets in seconds
          * 
          * @return builder
          * 
@@ -488,8 +971,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param maxLeaseTtlSeconds The maximum TTL that can be requested
-         * for credentials issued by this backend.
+         * @param maxLeaseTtlSeconds Maximum possible lease duration for secrets in seconds
          * 
          * @return builder
          * 
@@ -526,6 +1008,58 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
+         * @param options Specifies mount type specific options that are passed to the backend
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(@Nullable Output<Map<String,String>> options) {
+            $.options = options;
+            return this;
+        }
+
+        /**
+         * @param options Specifies mount type specific options that are passed to the backend
+         * 
+         * @return builder
+         * 
+         */
+        public Builder options(Map<String,String> options) {
+            return options(Output.of(options));
+        }
+
+        /**
+         * @param passthroughRequestHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passthroughRequestHeaders(@Nullable Output<List<String>> passthroughRequestHeaders) {
+            $.passthroughRequestHeaders = passthroughRequestHeaders;
+            return this;
+        }
+
+        /**
+         * @param passthroughRequestHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passthroughRequestHeaders(List<String> passthroughRequestHeaders) {
+            return passthroughRequestHeaders(Output.of(passthroughRequestHeaders));
+        }
+
+        /**
+         * @param passthroughRequestHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passthroughRequestHeaders(String... passthroughRequestHeaders) {
+            return passthroughRequestHeaders(List.of(passthroughRequestHeaders));
+        }
+
+        /**
          * @param path The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
          * to `consul`.
          * 
@@ -549,6 +1083,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(@Nullable Output<String> pluginVersion) {
+            $.pluginVersion = pluginVersion;
+            return this;
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(String pluginVersion) {
+            return pluginVersion(Output.of(pluginVersion));
+        }
+
+        /**
          * @param scheme Specifies the URL scheme to use. Defaults to `http`.
          * 
          * @return builder
@@ -567,6 +1122,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder scheme(String scheme) {
             return scheme(Output.of(scheme));
+        }
+
+        /**
+         * @param sealWrap Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sealWrap(@Nullable Output<Boolean> sealWrap) {
+            $.sealWrap = sealWrap;
+            return this;
+        }
+
+        /**
+         * @param sealWrap Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sealWrap(Boolean sealWrap) {
+            return sealWrap(Output.of(sealWrap));
         }
 
         /**

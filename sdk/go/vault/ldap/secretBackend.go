@@ -79,11 +79,11 @@ type SecretBackend struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout pulumi.IntPtrOutput `pulumi:"connectionTimeout"`
-	// Default lease duration for secrets in seconds.
+	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
 	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
-	// Human-friendly description of the mount for the Active Directory backend.
+	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
@@ -91,6 +91,8 @@ type SecretBackend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
@@ -98,10 +100,9 @@ type SecretBackend struct {
 	InsecureTls pulumi.BoolPtrOutput `pulumi:"insecureTls"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
-	// Maximum possible lease duration for secrets in seconds.
+	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -227,11 +228,11 @@ type secretBackendState struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout *int `pulumi:"connectionTimeout"`
-	// Default lease duration for secrets in seconds.
+	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
-	// Human-friendly description of the mount for the Active Directory backend.
+	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
@@ -239,6 +240,8 @@ type secretBackendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
@@ -246,10 +249,9 @@ type secretBackendState struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility *string `pulumi:"listingVisibility"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
-	// Maximum possible lease duration for secrets in seconds.
+	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -325,11 +327,11 @@ type SecretBackendState struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout pulumi.IntPtrInput
-	// Default lease duration for secrets in seconds.
+	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
 	DelegatedAuthAccessors pulumi.StringArrayInput
-	// Human-friendly description of the mount for the Active Directory backend.
+	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation pulumi.BoolPtrInput
@@ -337,6 +339,8 @@ type SecretBackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrInput
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
@@ -344,10 +348,9 @@ type SecretBackendState struct {
 	InsecureTls pulumi.BoolPtrInput
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrInput
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
-	// Maximum possible lease duration for secrets in seconds.
+	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -425,11 +428,11 @@ type secretBackendArgs struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout *int `pulumi:"connectionTimeout"`
-	// Default lease duration for secrets in seconds.
+	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
-	// Human-friendly description of the mount for the Active Directory backend.
+	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
@@ -437,6 +440,8 @@ type secretBackendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
@@ -444,10 +449,9 @@ type secretBackendArgs struct {
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility *string `pulumi:"listingVisibility"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
-	// Maximum possible lease duration for secrets in seconds.
+	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -522,11 +526,11 @@ type SecretBackendArgs struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout pulumi.IntPtrInput
-	// Default lease duration for secrets in seconds.
+	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
 	DelegatedAuthAccessors pulumi.StringArrayInput
-	// Human-friendly description of the mount for the Active Directory backend.
+	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation pulumi.BoolPtrInput
@@ -534,6 +538,8 @@ type SecretBackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrInput
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
@@ -541,10 +547,9 @@ type SecretBackendArgs struct {
 	InsecureTls pulumi.BoolPtrInput
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrInput
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-	// replication.Tolerance duration to use when checking the last rotation time.
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
-	// Maximum possible lease duration for secrets in seconds.
+	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -739,7 +744,7 @@ func (o SecretBackendOutput) ConnectionTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.ConnectionTimeout }).(pulumi.IntPtrOutput)
 }
 
-// Default lease duration for secrets in seconds.
+// Default lease duration for tokens and secrets in seconds
 func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
 }
@@ -749,7 +754,7 @@ func (o SecretBackendOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
 }
 
-// Human-friendly description of the mount for the Active Directory backend.
+// Human-friendly description of the mount
 func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -769,6 +774,11 @@ func (o SecretBackendOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
 }
 
+// If set to true, disables caching.
+func (o SecretBackendOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
+}
+
 // The key to use for signing plugin workload identity tokens
 func (o SecretBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
@@ -785,13 +795,12 @@ func (o SecretBackendOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
-// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-// replication.Tolerance duration to use when checking the last rotation time.
+// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
 }
 
-// Maximum possible lease duration for secrets in seconds.
+// Maximum possible lease duration for tokens and secrets in seconds
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
 }

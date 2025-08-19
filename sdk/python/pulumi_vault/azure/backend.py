@@ -21,43 +21,73 @@ class BackendArgs:
     def __init__(__self__, *,
                  subscription_id: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str],
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
+                 local: Optional[pulumi.Input[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 root_password_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None):
+                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Backend resource.
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] environment: The Azure environment.
+        :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
-               *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -67,13 +97,26 @@ class BackendArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         pulumi.set(__self__, "subscription_id", subscription_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
+        if allowed_managed_keys is not None:
+            pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
+        if audit_non_hmac_request_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
+        if audit_non_hmac_response_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_automated_rotation is not None:
@@ -82,22 +125,42 @@ class BackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if external_entropy_access is not None:
+            pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_audience is not None:
             pulumi.set(__self__, "identity_token_audience", identity_token_audience)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if options is not None:
+            pulumi.set(__self__, "options", options)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
+        if root_password_ttl is not None:
+            pulumi.set(__self__, "root_password_ttl", root_password_ttl)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if seal_wrap is not None:
+            pulumi.set(__self__, "seal_wrap", seal_wrap)
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")
@@ -124,6 +187,54 @@ class BackendArgs:
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @allowed_managed_keys.setter
+    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_managed_keys", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="auditNonHmacRequestKeys")
+    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_request_keys")
+
+    @audit_non_hmac_request_keys.setter
+    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "audit_non_hmac_request_keys", value)
+
+    @_builtins.property
+    @pulumi.getter(name="auditNonHmacResponseKeys")
+    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_response_keys")
+
+    @audit_non_hmac_response_keys.setter
+    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "audit_non_hmac_response_keys", value)
+
+    @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -146,6 +257,30 @@ class BackendArgs:
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Default lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
 
     @_builtins.property
     @pulumi.getter
@@ -198,6 +333,30 @@ class BackendArgs:
         pulumi.set(self, "environment", value)
 
     @_builtins.property
+    @pulumi.getter(name="externalEntropyAccess")
+    def external_entropy_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable the secrets engine to access Vault's external entropy source
+        """
+        return pulumi.get(self, "external_entropy_access")
+
+    @external_entropy_access.setter
+    def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
+
+    @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
     def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -214,8 +373,7 @@ class BackendArgs:
     @pulumi.getter(name="identityTokenKey")
     def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The key to use for signing identity tokens. Requires Vault 1.17+.
-        *Available only for Vault Enterprise*
+        The key to use for signing identity tokens.
         """
         return pulumi.get(self, "identity_token_key")
 
@@ -237,6 +395,42 @@ class BackendArgs:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "listing_visibility", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "local", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Maximum possible lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -253,6 +447,30 @@ class BackendArgs:
 
     @_builtins.property
     @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies mount type specific options that are passed to the backend
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "options", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @_builtins.property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Defaults to `azure`.
@@ -262,6 +480,30 @@ class BackendArgs:
     @path.setter
     def path(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rootPasswordTtl")
+    def root_password_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        """
+        return pulumi.get(self, "root_password_ttl")
+
+    @root_password_ttl.setter
+    def root_password_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "root_password_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -305,47 +547,91 @@ class BackendArgs:
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
+    @_builtins.property
+    @pulumi.getter(name="sealWrap")
+    def seal_wrap(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        """
+        return pulumi.get(self, "seal_wrap")
+
+    @seal_wrap.setter
+    def seal_wrap(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "seal_wrap", value)
+
 
 @pulumi.input_type
 class _BackendState:
     def __init__(__self__, *,
+                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
+                 local: Optional[pulumi.Input[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 root_password_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backend resources.
+        :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] environment: The Azure environment.
+        :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
-               *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -355,13 +641,28 @@ class _BackendState:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         """
+        if accessor is not None:
+            pulumi.set(__self__, "accessor", accessor)
+        if allowed_managed_keys is not None:
+            pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
+        if audit_non_hmac_request_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
+        if audit_non_hmac_response_keys is not None:
+            pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if default_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_automated_rotation is not None:
@@ -370,26 +671,106 @@ class _BackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if external_entropy_access is not None:
+            pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_audience is not None:
             pulumi.set(__self__, "identity_token_audience", identity_token_audience)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
+        if max_lease_ttl_seconds is not None:
+            pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if options is not None:
+            pulumi.set(__self__, "options", options)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
+        if root_password_ttl is not None:
+            pulumi.set(__self__, "root_password_ttl", root_password_ttl)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if seal_wrap is not None:
+            pulumi.set(__self__, "seal_wrap", seal_wrap)
         if subscription_id is not None:
             pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Accessor of the mount
+        """
+        return pulumi.get(self, "accessor")
+
+    @accessor.setter
+    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "accessor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @allowed_managed_keys.setter
+    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_managed_keys", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="auditNonHmacRequestKeys")
+    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_request_keys")
+
+    @audit_non_hmac_request_keys.setter
+    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "audit_non_hmac_request_keys", value)
+
+    @_builtins.property
+    @pulumi.getter(name="auditNonHmacResponseKeys")
+    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_response_keys")
+
+    @audit_non_hmac_response_keys.setter
+    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -414,6 +795,30 @@ class _BackendState:
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Default lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @default_lease_ttl_seconds.setter
+    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
 
     @_builtins.property
     @pulumi.getter
@@ -466,6 +871,30 @@ class _BackendState:
         pulumi.set(self, "environment", value)
 
     @_builtins.property
+    @pulumi.getter(name="externalEntropyAccess")
+    def external_entropy_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable the secrets engine to access Vault's external entropy source
+        """
+        return pulumi.get(self, "external_entropy_access")
+
+    @external_entropy_access.setter
+    def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
+
+    @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
     def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -482,8 +911,7 @@ class _BackendState:
     @pulumi.getter(name="identityTokenKey")
     def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The key to use for signing identity tokens. Requires Vault 1.17+.
-        *Available only for Vault Enterprise*
+        The key to use for signing identity tokens.
         """
         return pulumi.get(self, "identity_token_key")
 
@@ -505,6 +933,42 @@ class _BackendState:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "listing_visibility", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "local", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Maximum possible lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @max_lease_ttl_seconds.setter
+    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_lease_ttl_seconds", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -521,6 +985,30 @@ class _BackendState:
 
     @_builtins.property
     @pulumi.getter
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies mount type specific options that are passed to the backend
+        """
+        return pulumi.get(self, "options")
+
+    @options.setter
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "options", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @_builtins.property
+    @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Defaults to `azure`.
@@ -530,6 +1018,30 @@ class _BackendState:
     @path.setter
     def path(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rootPasswordTtl")
+    def root_password_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        """
+        return pulumi.get(self, "root_password_ttl")
+
+    @root_password_ttl.setter
+    def root_password_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "root_password_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -572,6 +1084,18 @@ class _BackendState:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sealWrap")
+    def seal_wrap(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        """
+        return pulumi.get(self, "seal_wrap")
+
+    @seal_wrap.setter
+    def seal_wrap(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "seal_wrap", value)
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")
@@ -604,20 +1128,36 @@ class Backend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
+                 local: Optional[pulumi.Input[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 root_password_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -657,25 +1197,39 @@ class Backend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] environment: The Azure environment.
+        :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
-               *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -685,6 +1239,7 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         """
@@ -743,20 +1298,36 @@ class Backend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
+                 local: Optional[pulumi.Input[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 root_password_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -768,26 +1339,43 @@ class Backend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BackendArgs.__new__(BackendArgs)
 
+            __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+            __props__.__dict__["allowed_response_headers"] = allowed_response_headers
+            __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
+            __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["environment"] = environment
+            __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["force_no_cache"] = force_no_cache
             __props__.__dict__["identity_token_audience"] = identity_token_audience
             __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+            __props__.__dict__["listing_visibility"] = listing_visibility
+            __props__.__dict__["local"] = local
+            __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["options"] = options
+            __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
             __props__.__dict__["path"] = path
+            __props__.__dict__["plugin_version"] = plugin_version
+            __props__.__dict__["root_password_ttl"] = root_password_ttl
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
+            __props__.__dict__["seal_wrap"] = seal_wrap
             if subscription_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subscription_id'")
             __props__.__dict__["subscription_id"] = None if subscription_id is None else pulumi.Output.secret(subscription_id)
             if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__.__dict__["tenant_id"] = None if tenant_id is None else pulumi.Output.secret(tenant_id)
+            __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "subscriptionId", "tenantId"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Backend, __self__).__init__(
@@ -800,20 +1388,37 @@ class Backend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[_builtins.str]] = None,
+            allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+            delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
             environment: Optional[pulumi.Input[_builtins.str]] = None,
+            external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+            force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
             identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+            listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
+            local: Optional[pulumi.Input[_builtins.bool]] = None,
+            max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
+            plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
+            root_password_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+            seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
             subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
             tenant_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Backend':
         """
@@ -823,25 +1428,40 @@ class Backend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] environment: The Azure environment.
+        :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
-               *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -851,6 +1471,7 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         """
@@ -858,23 +1479,80 @@ class Backend(pulumi.CustomResource):
 
         __props__ = _BackendState.__new__(_BackendState)
 
+        __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+        __props__.__dict__["allowed_response_headers"] = allowed_response_headers
+        __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
+        __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["environment"] = environment
+        __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["force_no_cache"] = force_no_cache
         __props__.__dict__["identity_token_audience"] = identity_token_audience
         __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+        __props__.__dict__["listing_visibility"] = listing_visibility
+        __props__.__dict__["local"] = local
+        __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["options"] = options
+        __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
         __props__.__dict__["path"] = path
+        __props__.__dict__["plugin_version"] = plugin_version
+        __props__.__dict__["root_password_ttl"] = root_password_ttl
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
+        __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["subscription_id"] = subscription_id
         __props__.__dict__["tenant_id"] = tenant_id
         return Backend(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[_builtins.str]:
+        """
+        Accessor of the mount
+        """
+        return pulumi.get(self, "accessor")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedManagedKeys")
+    def allowed_managed_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of managed key registry entry names that the mount in question is allowed to access
+        """
+        return pulumi.get(self, "allowed_managed_keys")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="auditNonHmacRequestKeys")
+    def audit_non_hmac_request_keys(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_request_keys")
+
+    @_builtins.property
+    @pulumi.getter(name="auditNonHmacResponseKeys")
+    def audit_non_hmac_response_keys(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        """
+        return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -891,6 +1569,22 @@ class Backend(pulumi.CustomResource):
         The OAuth2 client secret to connect to Azure.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultLeaseTtlSeconds")
+    def default_lease_ttl_seconds(self) -> pulumi.Output[_builtins.int]:
+        """
+        Default lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
 
     @_builtins.property
     @pulumi.getter
@@ -927,6 +1621,22 @@ class Backend(pulumi.CustomResource):
         return pulumi.get(self, "environment")
 
     @_builtins.property
+    @pulumi.getter(name="externalEntropyAccess")
+    def external_entropy_access(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Enable the secrets engine to access Vault's external entropy source
+        """
+        return pulumi.get(self, "external_entropy_access")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
     def identity_token_audience(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -939,8 +1649,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="identityTokenKey")
     def identity_token_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The key to use for signing identity tokens. Requires Vault 1.17+.
-        *Available only for Vault Enterprise*
+        The key to use for signing identity tokens.
         """
         return pulumi.get(self, "identity_token_key")
 
@@ -952,6 +1661,30 @@ class Backend(pulumi.CustomResource):
         *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_ttl")
+
+    @_builtins.property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        """
+        return pulumi.get(self, "local")
+
+    @_builtins.property
+    @pulumi.getter(name="maxLeaseTtlSeconds")
+    def max_lease_ttl_seconds(self) -> pulumi.Output[_builtins.int]:
+        """
+        Maximum possible lease duration for tokens and secrets in seconds
+        """
+        return pulumi.get(self, "max_lease_ttl_seconds")
 
     @_builtins.property
     @pulumi.getter
@@ -966,11 +1699,43 @@ class Backend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def options(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        Specifies mount type specific options that are passed to the backend
+        """
+        return pulumi.get(self, "options")
+
+    @_builtins.property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @_builtins.property
+    @pulumi.getter
     def path(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Defaults to `azure`.
         """
         return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @_builtins.property
+    @pulumi.getter(name="rootPasswordTtl")
+    def root_password_ttl(self) -> pulumi.Output[_builtins.int]:
+        """
+        The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        """
+        return pulumi.get(self, "root_password_ttl")
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -1001,6 +1766,14 @@ class Backend(pulumi.CustomResource):
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "rotation_window")
+
+    @_builtins.property
+    @pulumi.getter(name="sealWrap")
+    def seal_wrap(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        """
+        return pulumi.get(self, "seal_wrap")
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")

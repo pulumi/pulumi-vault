@@ -35,6 +35,7 @@ class SecretBackendArgs:
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
@@ -72,19 +73,19 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
-        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
-        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
-               replication.Tolerance duration to use when checking the last rotation time.
-        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -145,6 +146,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if insecure_tls is not None:
@@ -318,7 +321,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="defaultLeaseTtlSeconds")
     def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Default lease duration for secrets in seconds.
+        Default lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "default_lease_ttl_seconds")
 
@@ -342,7 +345,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-friendly description of the mount for the Active Directory backend.
+        Human-friendly description of the mount
         """
         return pulumi.get(self, "description")
 
@@ -387,6 +390,18 @@ class SecretBackendArgs:
         pulumi.set(self, "external_entropy_access", value)
 
     @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
+
+    @_builtins.property
     @pulumi.getter(name="identityTokenKey")
     def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -427,8 +442,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        replication.Tolerance duration to use when checking the last rotation time.
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         """
         return pulumi.get(self, "local")
 
@@ -440,7 +454,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Maximum possible lease duration for secrets in seconds.
+        Maximum possible lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
@@ -696,6 +710,7 @@ class _SecretBackendState:
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
@@ -734,19 +749,19 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
-        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
-        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
-               replication.Tolerance duration to use when checking the last rotation time.
-        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -811,6 +826,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if insecure_tls is not None:
@@ -996,7 +1013,7 @@ class _SecretBackendState:
     @pulumi.getter(name="defaultLeaseTtlSeconds")
     def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Default lease duration for secrets in seconds.
+        Default lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "default_lease_ttl_seconds")
 
@@ -1020,7 +1037,7 @@ class _SecretBackendState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-friendly description of the mount for the Active Directory backend.
+        Human-friendly description of the mount
         """
         return pulumi.get(self, "description")
 
@@ -1065,6 +1082,18 @@ class _SecretBackendState:
         pulumi.set(self, "external_entropy_access", value)
 
     @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
+
+    @_builtins.property
     @pulumi.getter(name="identityTokenKey")
     def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1105,8 +1134,7 @@ class _SecretBackendState:
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        replication.Tolerance duration to use when checking the last rotation time.
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         """
         return pulumi.get(self, "local")
 
@@ -1118,7 +1146,7 @@ class _SecretBackendState:
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Maximum possible lease duration for secrets in seconds.
+        Maximum possible lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
@@ -1376,6 +1404,7 @@ class SecretBackend(pulumi.CustomResource):
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1440,19 +1469,19 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
-        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
-        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
-               replication.Tolerance duration to use when checking the last rotation time.
-        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1546,6 +1575,7 @@ class SecretBackend(pulumi.CustomResource):
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1598,6 +1628,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["force_no_cache"] = force_no_cache
             __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["insecure_tls"] = insecure_tls
             __props__.__dict__["listing_visibility"] = listing_visibility
@@ -1651,6 +1682,7 @@ class SecretBackend(pulumi.CustomResource):
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
             external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+            force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
             identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
             insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
             listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1694,19 +1726,19 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
-        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
-        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the Active Directory backend.
+        :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
-               replication.Tolerance duration to use when checking the last rotation time.
-        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
+        :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+        :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1758,6 +1790,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["force_no_cache"] = force_no_cache
         __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["insecure_tls"] = insecure_tls
         __props__.__dict__["listing_visibility"] = listing_visibility
@@ -1877,7 +1910,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="defaultLeaseTtlSeconds")
     def default_lease_ttl_seconds(self) -> pulumi.Output[_builtins.int]:
         """
-        Default lease duration for secrets in seconds.
+        Default lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "default_lease_ttl_seconds")
 
@@ -1893,7 +1926,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Human-friendly description of the mount for the Active Directory backend.
+        Human-friendly description of the mount
         """
         return pulumi.get(self, "description")
 
@@ -1920,6 +1953,14 @@ class SecretBackend(pulumi.CustomResource):
         Enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
@@ -1950,8 +1991,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        replication.Tolerance duration to use when checking the last rotation time.
+        Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         """
         return pulumi.get(self, "local")
 
@@ -1959,7 +1999,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="maxLeaseTtlSeconds")
     def max_lease_ttl_seconds(self) -> pulumi.Output[_builtins.int]:
         """
-        Maximum possible lease duration for secrets in seconds.
+        Maximum possible lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 

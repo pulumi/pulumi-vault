@@ -72,6 +72,18 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> KeyType { get; private set; } = null!;
 
         /// <summary>
+        /// The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        /// </summary>
+        [Output("managedKeyId")]
+        public Output<string?> ManagedKeyId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        /// </summary>
+        [Output("managedKeyName")]
+        public Output<string?> ManagedKeyName { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -81,7 +93,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
@@ -167,6 +179,18 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
+        /// The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        /// </summary>
+        [Input("managedKeyId")]
+        public Input<string>? ManagedKeyId { get; set; }
+
+        /// <summary>
+        /// The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        /// </summary>
+        [Input("managedKeyName")]
+        public Input<string>? ManagedKeyName { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -179,7 +203,7 @@ namespace Pulumi.Vault.Ssh
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -230,6 +254,18 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
+        /// The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        /// </summary>
+        [Input("managedKeyId")]
+        public Input<string>? ManagedKeyId { get; set; }
+
+        /// <summary>
+        /// The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        /// </summary>
+        [Input("managedKeyName")]
+        public Input<string>? ManagedKeyName { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -242,7 +278,7 @@ namespace Pulumi.Vault.Ssh
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// Private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
         /// </summary>
         public Input<string>? PrivateKey
         {

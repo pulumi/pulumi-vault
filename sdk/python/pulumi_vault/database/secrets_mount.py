@@ -33,6 +33,7 @@ class SecretsMountArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]] = None,
@@ -76,6 +77,7 @@ class SecretsMountArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -139,6 +141,8 @@ class SecretsMountArgs:
             pulumi.set(__self__, "elasticsearches", elasticsearches)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if hanas is not None:
             pulumi.set(__self__, "hanas", hanas)
         if identity_token_key is not None:
@@ -336,6 +340,18 @@ class SecretsMountArgs:
     @external_entropy_access.setter
     def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter
@@ -657,6 +673,7 @@ class _SecretsMountState:
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]]] = None,
                  engine_count: Optional[pulumi.Input[_builtins.int]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]] = None,
@@ -702,6 +719,7 @@ class _SecretsMountState:
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.int] engine_count: The total number of database secrets engines configured.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -769,6 +787,8 @@ class _SecretsMountState:
             pulumi.set(__self__, "engine_count", engine_count)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if hanas is not None:
             pulumi.set(__self__, "hanas", hanas)
         if identity_token_key is not None:
@@ -980,6 +1000,18 @@ class _SecretsMountState:
     @external_entropy_access.setter
     def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1314,6 +1346,7 @@ class SecretsMount(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]]] = None,
@@ -1420,6 +1453,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -1555,6 +1589,7 @@ class SecretsMount(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]]] = None,
@@ -1600,6 +1635,7 @@ class SecretsMount(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["elasticsearches"] = elasticsearches
             __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["force_no_cache"] = force_no_cache
             __props__.__dict__["hanas"] = hanas
             __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["influxdbs"] = influxdbs
@@ -1652,6 +1688,7 @@ class SecretsMount(pulumi.CustomResource):
             elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]]] = None,
             engine_count: Optional[pulumi.Input[_builtins.int]] = None,
             external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+            force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
             hanas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]]] = None,
             identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
             influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]]] = None,
@@ -1702,6 +1739,7 @@ class SecretsMount(pulumi.CustomResource):
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.int] engine_count: The total number of database secrets engines configured.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -1760,6 +1798,7 @@ class SecretsMount(pulumi.CustomResource):
         __props__.__dict__["elasticsearches"] = elasticsearches
         __props__.__dict__["engine_count"] = engine_count
         __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["force_no_cache"] = force_no_cache
         __props__.__dict__["hanas"] = hanas
         __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["influxdbs"] = influxdbs
@@ -1895,6 +1934,14 @@ class SecretsMount(pulumi.CustomResource):
         Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
 
     @_builtins.property
     @pulumi.getter

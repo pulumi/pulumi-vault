@@ -133,6 +133,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly jwksCaPem!: pulumi.Output<string | undefined>;
     /**
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+     */
+    public readonly jwksPairs!: pulumi.Output<{[key: string]: string}[] | undefined>;
+    /**
      * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
      */
     public readonly jwksUrl!: pulumi.Output<string | undefined>;
@@ -220,6 +224,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["jwksCaPem"] = state ? state.jwksCaPem : undefined;
+            resourceInputs["jwksPairs"] = state ? state.jwksPairs : undefined;
             resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
             resourceInputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
             resourceInputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
@@ -243,6 +248,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["jwksCaPem"] = args ? args.jwksCaPem : undefined;
+            resourceInputs["jwksPairs"] = args ? args.jwksPairs : undefined;
             resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
             resourceInputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
             resourceInputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
@@ -297,6 +303,10 @@ export interface AuthBackendState {
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
     jwksCaPem?: pulumi.Input<string>;
+    /**
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+     */
+    jwksPairs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
      */
@@ -392,6 +402,10 @@ export interface AuthBackendArgs {
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
     jwksCaPem?: pulumi.Input<string>;
+    /**
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+     */
+    jwksPairs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
      */

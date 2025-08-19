@@ -312,6 +312,20 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEntropyAccess);
     }
     /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Export(name="forceNoCache", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Output<Boolean> forceNoCache() {
+        return this.forceNoCache;
+    }
+    /**
      * The key to use for signing plugin workload identity tokens. If
      * not provided, this will default to Vault&#39;s OIDC default key.
      * 

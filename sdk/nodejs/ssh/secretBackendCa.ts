@@ -71,6 +71,14 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     public readonly keyType!: pulumi.Output<string | undefined>;
     /**
+     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     */
+    public readonly managedKeyId!: pulumi.Output<string | undefined>;
+    /**
+     * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+     */
+    public readonly managedKeyName!: pulumi.Output<string | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -78,7 +86,7 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Private key part the SSH CA key pair; required if generateSigningKey is false.
+     * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     public readonly privateKey!: pulumi.Output<string>;
     /**
@@ -103,6 +111,8 @@ export class SecretBackendCa extends pulumi.CustomResource {
             resourceInputs["generateSigningKey"] = state ? state.generateSigningKey : undefined;
             resourceInputs["keyBits"] = state ? state.keyBits : undefined;
             resourceInputs["keyType"] = state ? state.keyType : undefined;
+            resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
+            resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
@@ -112,6 +122,8 @@ export class SecretBackendCa extends pulumi.CustomResource {
             resourceInputs["generateSigningKey"] = args ? args.generateSigningKey : undefined;
             resourceInputs["keyBits"] = args ? args.keyBits : undefined;
             resourceInputs["keyType"] = args ? args.keyType : undefined;
+            resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
+            resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
@@ -144,6 +156,14 @@ export interface SecretBackendCaState {
      */
     keyType?: pulumi.Input<string>;
     /**
+     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+     */
+    managedKeyName?: pulumi.Input<string>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -151,7 +171,7 @@ export interface SecretBackendCaState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Private key part the SSH CA key pair; required if generateSigningKey is false.
+     * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -181,6 +201,14 @@ export interface SecretBackendCaArgs {
      */
     keyType?: pulumi.Input<string>;
     /**
+     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+     */
+    managedKeyName?: pulumi.Input<string>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -188,7 +216,7 @@ export interface SecretBackendCaArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Private key part the SSH CA key pair; required if generateSigningKey is false.
+     * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     privateKey?: pulumi.Input<string>;
     /**

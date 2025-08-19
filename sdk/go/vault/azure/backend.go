@@ -79,10 +79,24 @@ import (
 type Backend struct {
 	pulumi.CustomResourceState
 
+	// Accessor of the mount
+	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayOutput `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// The OAuth2 client id to connect to Azure.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The OAuth2 client secret to connect to Azure.
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// Default lease duration for tokens and secrets in seconds
+	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -93,22 +107,39 @@ type Backend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// The Azure environment.
 	Environment pulumi.StringPtrOutput `pulumi:"environment"`
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
 	// The audience claim value. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
-	// The key to use for signing identity tokens. Requires Vault 1.17+.
-	// *Available only for Vault Enterprise*
+	// The key to use for signing identity tokens.
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+	Local pulumi.BoolPtrOutput `pulumi:"local"`
+	// Maximum possible lease duration for tokens and secrets in seconds
+	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapOutput `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// The unique path this backend should be mounted at. Defaults to `azure`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
+	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	RootPasswordTtl pulumi.IntOutput `pulumi:"rootPasswordTtl"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -121,6 +152,8 @@ type Backend struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
@@ -182,10 +215,24 @@ func GetBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Backend resources.
 type backendState struct {
+	// Accessor of the mount
+	Accessor *string `pulumi:"accessor"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// The OAuth2 client id to connect to Azure.
 	ClientId *string `pulumi:"clientId"`
 	// The OAuth2 client secret to connect to Azure.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// Default lease duration for tokens and secrets in seconds
+	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -196,22 +243,39 @@ type backendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// The Azure environment.
 	Environment *string `pulumi:"environment"`
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The audience claim value. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
-	// The key to use for signing identity tokens. Requires Vault 1.17+.
-	// *Available only for Vault Enterprise*
+	// The key to use for signing identity tokens.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+	Local *bool `pulumi:"local"`
+	// Maximum possible lease duration for tokens and secrets in seconds
+	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options map[string]string `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// The unique path this backend should be mounted at. Defaults to `azure`.
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
+	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	RootPasswordTtl *int `pulumi:"rootPasswordTtl"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -224,6 +288,8 @@ type backendState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap *bool `pulumi:"sealWrap"`
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
@@ -231,10 +297,24 @@ type backendState struct {
 }
 
 type BackendState struct {
+	// Accessor of the mount
+	Accessor pulumi.StringPtrInput
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// The OAuth2 client id to connect to Azure.
 	ClientId pulumi.StringPtrInput
 	// The OAuth2 client secret to connect to Azure.
 	ClientSecret pulumi.StringPtrInput
+	// Default lease duration for tokens and secrets in seconds
+	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -245,22 +325,39 @@ type BackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// The Azure environment.
 	Environment pulumi.StringPtrInput
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The audience claim value. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenAudience pulumi.StringPtrInput
-	// The key to use for signing identity tokens. Requires Vault 1.17+.
-	// *Available only for Vault Enterprise*
+	// The key to use for signing identity tokens.
 	IdentityTokenKey pulumi.StringPtrInput
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+	Local pulumi.BoolPtrInput
+	// Maximum possible lease duration for tokens and secrets in seconds
+	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// The unique path this backend should be mounted at. Defaults to `azure`.
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
+	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	RootPasswordTtl pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -273,6 +370,8 @@ type BackendState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
 	RotationWindow pulumi.IntPtrInput
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolPtrInput
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringPtrInput
 	// The tenant id for the Azure Active Directory.
@@ -284,10 +383,22 @@ func (BackendState) ElementType() reflect.Type {
 }
 
 type backendArgs struct {
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// The OAuth2 client id to connect to Azure.
 	ClientId *string `pulumi:"clientId"`
 	// The OAuth2 client secret to connect to Azure.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// Default lease duration for tokens and secrets in seconds
+	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -298,22 +409,39 @@ type backendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// The Azure environment.
 	Environment *string `pulumi:"environment"`
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The audience claim value. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
-	// The key to use for signing identity tokens. Requires Vault 1.17+.
-	// *Available only for Vault Enterprise*
+	// The key to use for signing identity tokens.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+	Local *bool `pulumi:"local"`
+	// Maximum possible lease duration for tokens and secrets in seconds
+	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options map[string]string `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// The unique path this backend should be mounted at. Defaults to `azure`.
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
+	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	RootPasswordTtl *int `pulumi:"rootPasswordTtl"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -326,6 +454,8 @@ type backendArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap *bool `pulumi:"sealWrap"`
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
@@ -334,10 +464,22 @@ type backendArgs struct {
 
 // The set of arguments for constructing a Backend resource.
 type BackendArgs struct {
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// The OAuth2 client id to connect to Azure.
 	ClientId pulumi.StringPtrInput
 	// The OAuth2 client secret to connect to Azure.
 	ClientSecret pulumi.StringPtrInput
+	// Default lease duration for tokens and secrets in seconds
+	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -348,22 +490,39 @@ type BackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// The Azure environment.
 	Environment pulumi.StringPtrInput
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The audience claim value. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenAudience pulumi.StringPtrInput
-	// The key to use for signing identity tokens. Requires Vault 1.17+.
-	// *Available only for Vault Enterprise*
+	// The key to use for signing identity tokens.
 	IdentityTokenKey pulumi.StringPtrInput
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
 	// *Available only for Vault Enterprise*
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
+	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+	Local pulumi.BoolPtrInput
+	// Maximum possible lease duration for tokens and secrets in seconds
+	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// The unique path this backend should be mounted at. Defaults to `azure`.
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
+	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	RootPasswordTtl pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -376,6 +535,8 @@ type BackendArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
 	RotationWindow pulumi.IntPtrInput
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolPtrInput
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringInput
 	// The tenant id for the Azure Active Directory.
@@ -469,6 +630,31 @@ func (o BackendOutput) ToBackendOutputWithContext(ctx context.Context) BackendOu
 	return o
 }
 
+// Accessor of the mount
+func (o BackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// List of managed key registry entry names that the mount in question is allowed to access
+func (o BackendOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o BackendOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringArrayOutput { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+func (o BackendOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+func (o BackendOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringArrayOutput { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+}
+
 // The OAuth2 client id to connect to Azure.
 func (o BackendOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
@@ -477,6 +663,16 @@ func (o BackendOutput) ClientId() pulumi.StringPtrOutput {
 // The OAuth2 client secret to connect to Azure.
 func (o BackendOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Default lease duration for tokens and secrets in seconds
+func (o BackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *Backend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o BackendOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
 }
 
 // Human-friendly description of the mount for the backend.
@@ -501,14 +697,23 @@ func (o BackendOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
 }
 
+// Enable the secrets engine to access Vault's external entropy source
+func (o BackendOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, disables caching.
+func (o BackendOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
+}
+
 // The audience claim value. Requires Vault 1.17+.
 // *Available only for Vault Enterprise*
 func (o BackendOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
 }
 
-// The key to use for signing identity tokens. Requires Vault 1.17+.
-// *Available only for Vault Enterprise*
+// The key to use for signing identity tokens.
 func (o BackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
 }
@@ -519,6 +724,21 @@ func (o BackendOutput) IdentityTokenTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Backend) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
+// Specifies whether to show this mount in the UI-specific listing endpoint
+func (o BackendOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+}
+
+// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+func (o BackendOutput) Local() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum possible lease duration for tokens and secrets in seconds
+func (o BackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v *Backend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -527,9 +747,29 @@ func (o BackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// Specifies mount type specific options that are passed to the backend
+func (o BackendOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o BackendOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringArrayOutput { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
 // The unique path this backend should be mounted at. Defaults to `azure`.
 func (o BackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+func (o BackendOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
+}
+
+// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+func (o BackendOutput) RootPasswordTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Backend) pulumi.IntOutput { return v.RootPasswordTtl }).(pulumi.IntOutput)
 }
 
 // The amount of time in seconds Vault should wait before rotating the root credential.
@@ -551,6 +791,11 @@ func (o BackendOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
 func (o BackendOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+func (o BackendOutput) SealWrap() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
 }
 
 // The subscription id for the Azure Active Directory.

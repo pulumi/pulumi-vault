@@ -26,6 +26,7 @@ class AuthBackendArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwks_pairs: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
                  jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -50,6 +51,7 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] jwks_pairs: List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
@@ -83,6 +85,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if jwks_ca_pem is not None:
             pulumi.set(__self__, "jwks_ca_pem", jwks_ca_pem)
+        if jwks_pairs is not None:
+            pulumi.set(__self__, "jwks_pairs", jwks_pairs)
         if jwks_url is not None:
             pulumi.set(__self__, "jwks_url", jwks_url)
         if jwt_supported_algs is not None:
@@ -176,6 +180,18 @@ class AuthBackendArgs:
     @jwks_ca_pem.setter
     def jwks_ca_pem(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "jwks_ca_pem", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jwksPairs")
+    def jwks_pairs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
+        """
+        List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "jwks_pairs")
+
+    @jwks_pairs.setter
+    def jwks_pairs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]):
+        pulumi.set(self, "jwks_pairs", value)
 
     @_builtins.property
     @pulumi.getter(name="jwksUrl")
@@ -383,6 +399,7 @@ class _AuthBackendState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwks_pairs: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
                  jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -408,6 +425,7 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] jwks_pairs: List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
@@ -443,6 +461,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if jwks_ca_pem is not None:
             pulumi.set(__self__, "jwks_ca_pem", jwks_ca_pem)
+        if jwks_pairs is not None:
+            pulumi.set(__self__, "jwks_pairs", jwks_pairs)
         if jwks_url is not None:
             pulumi.set(__self__, "jwks_url", jwks_url)
         if jwt_supported_algs is not None:
@@ -548,6 +568,18 @@ class _AuthBackendState:
     @jwks_ca_pem.setter
     def jwks_ca_pem(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "jwks_ca_pem", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jwksPairs")
+    def jwks_pairs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
+        """
+        List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "jwks_pairs")
+
+    @jwks_pairs.setter
+    def jwks_pairs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]):
+        pulumi.set(self, "jwks_pairs", value)
 
     @_builtins.property
     @pulumi.getter(name="jwksUrl")
@@ -757,6 +789,7 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwks_pairs: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
                  jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -852,6 +885,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] jwks_pairs: List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
@@ -971,6 +1005,7 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwks_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwks_pairs: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
                  jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1001,6 +1036,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
+            __props__.__dict__["jwks_pairs"] = jwks_pairs
             __props__.__dict__["jwks_url"] = jwks_url
             __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
             __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
@@ -1036,6 +1072,7 @@ class AuthBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
             jwks_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
+            jwks_pairs: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
             jwks_url: Optional[pulumi.Input[_builtins.str]] = None,
             jwt_supported_algs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             jwt_validation_pubkeys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1066,6 +1103,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.str] jwks_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]] jwks_pairs: List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.str] jwks_url: JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_supported_algs: A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_validation_pubkeys: A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
@@ -1099,6 +1137,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
+        __props__.__dict__["jwks_pairs"] = jwks_pairs
         __props__.__dict__["jwks_url"] = jwks_url
         __props__.__dict__["jwt_supported_algs"] = jwt_supported_algs
         __props__.__dict__["jwt_validation_pubkeys"] = jwt_validation_pubkeys
@@ -1165,6 +1204,14 @@ class AuthBackend(pulumi.CustomResource):
         The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
         """
         return pulumi.get(self, "jwks_ca_pem")
+
+    @_builtins.property
+    @pulumi.getter(name="jwksPairs")
+    def jwks_pairs(self) -> pulumi.Output[Optional[Sequence[Mapping[str, _builtins.str]]]]:
+        """
+        List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "jwks_pairs")
 
     @_builtins.property
     @pulumi.getter(name="jwksUrl")

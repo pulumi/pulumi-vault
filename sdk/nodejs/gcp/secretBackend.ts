@@ -76,6 +76,22 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public /*out*/ readonly accessor!: pulumi.Output<string>;
     /**
+     * List of managed key registry entry names that the mount in question is allowed to access
+     */
+    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+     */
+    public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+     */
+    public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
+    /**
      * JSON-encoded credentials to use to connect to GCP
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
@@ -84,12 +100,15 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly credentialsWoVersion!: pulumi.Output<number | undefined>;
     /**
-     * The default TTL for credentials
-     * issued by this backend. Defaults to '0'.
+     * Default lease duration for secrets in seconds
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number | undefined>;
     /**
-     * A human-friendly description for this backend.
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
+    /**
+     * Human-friendly description of the mount for the backend.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -103,14 +122,21 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
     /**
+     * Enable the secrets engine to access Vault's external entropy source
+     */
+    public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
+    /**
+     * If set to true, disables caching.
+     */
+    public readonly forceNoCache!: pulumi.Output<boolean>;
+    /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
     /**
-     * The key to use for signing plugin identity
-     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * The key to use for signing identity tokens.
      */
     public readonly identityTokenKey!: pulumi.Output<string | undefined>;
     /**
@@ -118,12 +144,15 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly identityTokenTtl!: pulumi.Output<number | undefined>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    public readonly listingVisibility!: pulumi.Output<string | undefined>;
+    /**
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
     /**
-     * The maximum TTL that can be requested
-     * for credentials issued by this backend. Defaults to '0'.
+     * Maximum possible lease duration for secrets in seconds
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number | undefined>;
     /**
@@ -134,10 +163,22 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Specifies mount type specific options that are passed to the backend
+     */
+    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    public readonly pluginVersion!: pulumi.Output<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -155,6 +196,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
      */
     public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    /**
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     */
+    public readonly sealWrap!: pulumi.Output<boolean>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -175,41 +220,65 @@ export class SecretBackend extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
+            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
+            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
+            resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
+            resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["credentialsWoVersion"] = state ? state.credentialsWoVersion : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
+            resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
             resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
+            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
             resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
             resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
             resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
+            resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
             resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
+            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
+            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
+            resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
+            resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["credentialsWoVersion"] = args ? args.credentialsWoVersion : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
+            resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
             resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
+            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
             resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
             resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
             resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
+            resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
             resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
@@ -229,6 +298,22 @@ export interface SecretBackendState {
      */
     accessor?: pulumi.Input<string>;
     /**
+     * List of managed key registry entry names that the mount in question is allowed to access
+     */
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+     */
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+     */
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
@@ -237,12 +322,15 @@ export interface SecretBackendState {
      */
     credentialsWoVersion?: pulumi.Input<number>;
     /**
-     * The default TTL for credentials
-     * issued by this backend. Defaults to '0'.
+     * Default lease duration for secrets in seconds
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
-     * A human-friendly description for this backend.
+     * List of headers to allow and pass from the request to the plugin
+     */
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Human-friendly description of the mount for the backend.
      */
     description?: pulumi.Input<string>;
     /**
@@ -256,14 +344,21 @@ export interface SecretBackendState {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
+     * Enable the secrets engine to access Vault's external entropy source
+     */
+    externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
+    /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     identityTokenAudience?: pulumi.Input<string>;
     /**
-     * The key to use for signing plugin identity
-     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * The key to use for signing identity tokens.
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
@@ -271,12 +366,15 @@ export interface SecretBackendState {
      */
     identityTokenTtl?: pulumi.Input<number>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    listingVisibility?: pulumi.Input<string>;
+    /**
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
     /**
-     * The maximum TTL that can be requested
-     * for credentials issued by this backend. Defaults to '0'.
+     * Maximum possible lease duration for secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
@@ -287,10 +385,22 @@ export interface SecretBackendState {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Specifies mount type specific options that are passed to the backend
+     */
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -308,6 +418,10 @@ export interface SecretBackendState {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
      */
     rotationWindow?: pulumi.Input<number>;
+    /**
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     */
+    sealWrap?: pulumi.Input<boolean>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -320,6 +434,22 @@ export interface SecretBackendState {
  */
 export interface SecretBackendArgs {
     /**
+     * List of managed key registry entry names that the mount in question is allowed to access
+     */
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+     */
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+     */
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
@@ -328,12 +458,15 @@ export interface SecretBackendArgs {
      */
     credentialsWoVersion?: pulumi.Input<number>;
     /**
-     * The default TTL for credentials
-     * issued by this backend. Defaults to '0'.
+     * Default lease duration for secrets in seconds
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
-     * A human-friendly description for this backend.
+     * List of headers to allow and pass from the request to the plugin
+     */
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Human-friendly description of the mount for the backend.
      */
     description?: pulumi.Input<string>;
     /**
@@ -347,14 +480,21 @@ export interface SecretBackendArgs {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
+     * Enable the secrets engine to access Vault's external entropy source
+     */
+    externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
+    /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     identityTokenAudience?: pulumi.Input<string>;
     /**
-     * The key to use for signing plugin identity
-     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * The key to use for signing identity tokens.
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
@@ -362,12 +502,15 @@ export interface SecretBackendArgs {
      */
     identityTokenTtl?: pulumi.Input<number>;
     /**
-     * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    listingVisibility?: pulumi.Input<string>;
+    /**
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
     /**
-     * The maximum TTL that can be requested
-     * for credentials issued by this backend. Defaults to '0'.
+     * Maximum possible lease duration for secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
@@ -378,10 +521,22 @@ export interface SecretBackendArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Specifies mount type specific options that are passed to the backend
+     */
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -399,6 +554,10 @@ export interface SecretBackendArgs {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
      */
     rotationWindow?: pulumi.Input<number>;
+    /**
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+     */
+    sealWrap?: pulumi.Input<boolean>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.

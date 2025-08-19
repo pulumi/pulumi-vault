@@ -24,37 +24,59 @@ type SecretBackend struct {
 	// The AWS Access Key ID this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
-	// The default TTL for credentials
-	// issued by this backend.
+	// Accessor of the mount
+	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayOutput `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
+	// Default lease duration for secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
-	// A human-friendly description for this backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
+	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrOutput `pulumi:"iamEndpoint"`
 	// The audience claim value. Requires Vault 1.16+.
 	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
-	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	// The key to use for signing identity tokens.
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
 	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
-	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
+	// Specifies if the secret backend is local only
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
-	// The maximum TTL that can be requested
-	// for credentials issued by this backend.
+	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapOutput `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
@@ -69,6 +91,8 @@ type SecretBackend struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -127,37 +151,59 @@ type secretBackendState struct {
 	// The AWS Access Key ID this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey *string `pulumi:"accessKey"`
-	// The default TTL for credentials
-	// issued by this backend.
+	// Accessor of the mount
+	Accessor *string `pulumi:"accessor"`
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
+	// Default lease duration for secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
-	// A human-friendly description for this backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
+	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
 	// The audience claim value. Requires Vault 1.16+.
 	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
-	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	// The key to use for signing identity tokens.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
-	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Specifies if the secret backend is local only
 	Local *bool `pulumi:"local"`
-	// The maximum TTL that can be requested
-	// for credentials issued by this backend.
+	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options map[string]string `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region *string `pulumi:"region"`
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
@@ -172,6 +218,8 @@ type secretBackendState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap *bool `pulumi:"sealWrap"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -190,37 +238,59 @@ type SecretBackendState struct {
 	// The AWS Access Key ID this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey pulumi.StringPtrInput
-	// The default TTL for credentials
-	// issued by this backend.
+	// Accessor of the mount
+	Accessor pulumi.StringPtrInput
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
+	// Default lease duration for secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
-	// A human-friendly description for this backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
+	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
 	// The audience claim value. Requires Vault 1.16+.
 	IdentityTokenAudience pulumi.StringPtrInput
-	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	// The key to use for signing identity tokens.
 	IdentityTokenKey pulumi.StringPtrInput
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
 	IdentityTokenTtl pulumi.IntPtrInput
-	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
+	// Specifies if the secret backend is local only
 	Local pulumi.BoolPtrInput
-	// The maximum TTL that can be requested
-	// for credentials issued by this backend.
+	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringPtrInput
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
@@ -235,6 +305,8 @@ type SecretBackendState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
@@ -257,37 +329,57 @@ type secretBackendArgs struct {
 	// The AWS Access Key ID this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey *string `pulumi:"accessKey"`
-	// The default TTL for credentials
-	// issued by this backend.
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
+	// Default lease duration for secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
-	// A human-friendly description for this backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
+	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
 	// The audience claim value. Requires Vault 1.16+.
 	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
-	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	// The key to use for signing identity tokens.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
-	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
+	// Specifies if the secret backend is local only
 	Local *bool `pulumi:"local"`
-	// The maximum TTL that can be requested
-	// for credentials issued by this backend.
+	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Specifies mount type specific options that are passed to the backend
+	Options map[string]string `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region *string `pulumi:"region"`
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
@@ -302,6 +394,8 @@ type secretBackendArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap *bool `pulumi:"sealWrap"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -321,37 +415,57 @@ type SecretBackendArgs struct {
 	// The AWS Access Key ID this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
 	AccessKey pulumi.StringPtrInput
-	// The default TTL for credentials
-	// issued by this backend.
+	// List of managed key registry entry names that the mount in question is allowed to access
+	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+	AuditNonHmacRequestKeys pulumi.StringArrayInput
+	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+	AuditNonHmacResponseKeys pulumi.StringArrayInput
+	// Default lease duration for secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
-	// A human-friendly description for this backend.
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
+	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// Enable the secrets engine to access Vault's external entropy source
+	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
 	// The audience claim value. Requires Vault 1.16+.
 	IdentityTokenAudience pulumi.StringPtrInput
-	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	// The key to use for signing identity tokens.
 	IdentityTokenKey pulumi.StringPtrInput
 	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
 	IdentityTokenTtl pulumi.IntPtrInput
-	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
+	// Specifies if the secret backend is local only
 	Local pulumi.BoolPtrInput
-	// The maximum TTL that can be requested
-	// for credentials issued by this backend.
+	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Specifies mount type specific options that are passed to the backend
+	Options pulumi.StringMapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `aws`.
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringPtrInput
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
@@ -366,6 +480,8 @@ type SecretBackendArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
+	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+	SealWrap pulumi.BoolPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
@@ -473,13 +589,42 @@ func (o SecretBackendOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
 }
 
-// The default TTL for credentials
-// issued by this backend.
+// Accessor of the mount
+func (o SecretBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// List of managed key registry entry names that the mount in question is allowed to access
+func (o SecretBackendOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o SecretBackendOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+func (o SecretBackendOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+func (o SecretBackendOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
+}
+
+// Default lease duration for secrets in seconds
 func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
 }
 
-// A human-friendly description for this backend.
+// List of headers to allow and pass from the request to the plugin
+func (o SecretBackendOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
+}
+
+// Human-friendly description of the mount for the backend.
 func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -495,6 +640,16 @@ func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
 }
 
+// Enable the secrets engine to access Vault's external entropy source
+func (o SecretBackendOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, disables caching.
+func (o SecretBackendOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
+}
+
 // Specifies a custom HTTP IAM endpoint to use.
 func (o SecretBackendOutput) IamEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IamEndpoint }).(pulumi.StringPtrOutput)
@@ -505,7 +660,7 @@ func (o SecretBackendOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
 }
 
-// The key to use for signing identity tokens. Requires Vault 1.16+.
+// The key to use for signing identity tokens.
 func (o SecretBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
 }
@@ -515,13 +670,17 @@ func (o SecretBackendOutput) IdentityTokenTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
-// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
+// Specifies whether to show this mount in the UI-specific listing endpoint
+func (o SecretBackendOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if the secret backend is local only
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum TTL that can be requested
-// for credentials issued by this backend.
+// Maximum possible lease duration for secrets in seconds
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
 }
@@ -534,10 +693,25 @@ func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// Specifies mount type specific options that are passed to the backend
+func (o SecretBackendOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o SecretBackendOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
 // The unique path this backend should be mounted at. Must
 // not begin or end with a `/`. Defaults to `aws`.
 func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+func (o SecretBackendOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The AWS region to make API calls against. Defaults to us-east-1.
@@ -567,6 +741,11 @@ func (o SecretBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretBackendOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
 }
 
 // The AWS Secret Access Key to use when generating new credentials.

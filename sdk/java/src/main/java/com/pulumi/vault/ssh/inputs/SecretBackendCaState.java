@@ -78,6 +78,36 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * 
+     */
+    @Import(name="managedKeyId")
+    private @Nullable Output<String> managedKeyId;
+
+    /**
+     * @return The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * 
+     */
+    public Optional<Output<String>> managedKeyId() {
+        return Optional.ofNullable(this.managedKeyId);
+    }
+
+    /**
+     * The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * 
+     */
+    @Import(name="managedKeyName")
+    private @Nullable Output<String> managedKeyName;
+
+    /**
+     * @return The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * 
+     */
+    public Optional<Output<String>> managedKeyName() {
+        return Optional.ofNullable(this.managedKeyName);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -99,14 +129,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * The private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return The private key part the SSH CA key pair; required if generate_signing_key is false.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -135,6 +165,8 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         this.generateSigningKey = $.generateSigningKey;
         this.keyBits = $.keyBits;
         this.keyType = $.keyType;
+        this.managedKeyId = $.managedKeyId;
+        this.managedKeyName = $.managedKeyName;
         this.namespace = $.namespace;
         this.privateKey = $.privateKey;
         this.publicKey = $.publicKey;
@@ -243,6 +275,48 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyId(@Nullable Output<String> managedKeyId) {
+            $.managedKeyId = managedKeyId;
+            return this;
+        }
+
+        /**
+         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyId(String managedKeyId) {
+            return managedKeyId(Output.of(managedKeyId));
+        }
+
+        /**
+         * @param managedKeyName The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyName(@Nullable Output<String> managedKeyName) {
+            $.managedKeyName = managedKeyName;
+            return this;
+        }
+
+        /**
+         * @param managedKeyName The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyName(String managedKeyName) {
+            return managedKeyName(Output.of(managedKeyName));
+        }
+
+        /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
          * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -270,7 +344,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey Private key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param privateKey The private key part the SSH CA key pair; required if generate_signing_key is false.
          * 
          * @return builder
          * 
@@ -281,7 +355,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey Private key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param privateKey The private key part the SSH CA key pair; required if generate_signing_key is false.
          * 
          * @return builder
          * 

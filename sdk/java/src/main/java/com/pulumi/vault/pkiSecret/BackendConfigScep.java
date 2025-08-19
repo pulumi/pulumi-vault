@@ -219,6 +219,24 @@ public class BackendConfigScep extends com.pulumi.resources.CustomResource {
         return this.lastUpdated;
     }
     /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    @Export(name="logLevel", refs={String.class}, tree="[0]")
+    private Output<String> logLevel;
+
+    /**
+     * @return The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
+     * 
+     */
+    public Output<String> logLevel() {
+        return this.logLevel;
+    }
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -241,16 +259,12 @@ public class BackendConfigScep extends com.pulumi.resources.CustomResource {
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
      * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
-     * 
      */
     @Export(name="restrictCaChainToIssuer", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> restrictCaChainToIssuer;
 
     /**
      * @return If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-     * 
-     * &lt;a id=&#34;nestedatt--authenticators&#34;&gt;&lt;/a&gt;
      * 
      */
     public Output<Optional<Boolean>> restrictCaChainToIssuer() {

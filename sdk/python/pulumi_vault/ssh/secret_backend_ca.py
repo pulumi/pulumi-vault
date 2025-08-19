@@ -23,6 +23,8 @@ class SecretBackendCaArgs:
                  generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_bits: Optional[pulumi.Input[_builtins.int]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None):
@@ -32,11 +34,13 @@ class SecretBackendCaArgs:
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[_builtins.str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[_builtins.str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         if backend is not None:
@@ -47,6 +51,10 @@ class SecretBackendCaArgs:
             pulumi.set(__self__, "key_bits", key_bits)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if private_key is not None:
@@ -103,6 +111,30 @@ class SecretBackendCaArgs:
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_name", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -121,7 +153,7 @@ class SecretBackendCaArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Private key part the SSH CA key pair; required if generate_signing_key is false.
+        The private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 
@@ -149,6 +181,8 @@ class _SecretBackendCaState:
                  generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_bits: Optional[pulumi.Input[_builtins.int]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None):
@@ -158,11 +192,13 @@ class _SecretBackendCaState:
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[_builtins.str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[_builtins.str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         if backend is not None:
@@ -173,6 +209,10 @@ class _SecretBackendCaState:
             pulumi.set(__self__, "key_bits", key_bits)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if private_key is not None:
@@ -229,6 +269,30 @@ class _SecretBackendCaState:
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_name", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -247,7 +311,7 @@ class _SecretBackendCaState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Private key part the SSH CA key pair; required if generate_signing_key is false.
+        The private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 
@@ -278,6 +342,8 @@ class SecretBackendCa(pulumi.CustomResource):
                  generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_bits: Optional[pulumi.Input[_builtins.int]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -310,11 +376,13 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[_builtins.str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[_builtins.str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         ...
@@ -364,6 +432,8 @@ class SecretBackendCa(pulumi.CustomResource):
                  generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  key_bits: Optional[pulumi.Input[_builtins.int]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -380,6 +450,8 @@ class SecretBackendCa(pulumi.CustomResource):
             __props__.__dict__["generate_signing_key"] = generate_signing_key
             __props__.__dict__["key_bits"] = key_bits
             __props__.__dict__["key_type"] = key_type
+            __props__.__dict__["managed_key_id"] = managed_key_id
+            __props__.__dict__["managed_key_name"] = managed_key_name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["public_key"] = public_key
@@ -399,6 +471,8 @@ class SecretBackendCa(pulumi.CustomResource):
             generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
             key_bits: Optional[pulumi.Input[_builtins.int]] = None,
             key_type: Optional[pulumi.Input[_builtins.str]] = None,
+            managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+            managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             public_key: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendCa':
@@ -413,11 +487,13 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] private_key: Private key part the SSH CA key pair; required if generate_signing_key is false.
+        :param pulumi.Input[_builtins.str] private_key: The private key part the SSH CA key pair; required if generate_signing_key is false.
         :param pulumi.Input[_builtins.str] public_key: The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -428,6 +504,8 @@ class SecretBackendCa(pulumi.CustomResource):
         __props__.__dict__["generate_signing_key"] = generate_signing_key
         __props__.__dict__["key_bits"] = key_bits
         __props__.__dict__["key_type"] = key_type
+        __props__.__dict__["managed_key_id"] = managed_key_id
+        __props__.__dict__["managed_key_name"] = managed_key_name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["public_key"] = public_key
@@ -466,6 +544,22 @@ class SecretBackendCa(pulumi.CustomResource):
         return pulumi.get(self, "key_type")
 
     @_builtins.property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -480,7 +574,7 @@ class SecretBackendCa(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[_builtins.str]:
         """
-        Private key part the SSH CA key pair; required if generate_signing_key is false.
+        The private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 

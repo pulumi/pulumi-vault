@@ -163,8 +163,12 @@ namespace Pulumi.Vault.Transit
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// The parameter set to use for ML-DSA. Required for
-        /// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        /// The parameter set to use for ML-DSA or SLH-DSA. Required for
+        /// ML-DSA, hybrid, and SLH-DSA keys.
+        /// Valid values for ML-DSA are `44`, `65`, and `87`.
+        /// Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+        /// `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+        /// `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         /// </summary>
         [Output("parameterSet")]
         public Output<string?> ParameterSet { get; private set; } = null!;
@@ -194,7 +198,7 @@ namespace Pulumi.Vault.Transit
         public Output<bool> SupportsSigning { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Output("type")]
@@ -338,14 +342,18 @@ namespace Pulumi.Vault.Transit
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The parameter set to use for ML-DSA. Required for
-        /// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        /// The parameter set to use for ML-DSA or SLH-DSA. Required for
+        /// ML-DSA, hybrid, and SLH-DSA keys.
+        /// Valid values for ML-DSA are `44`, `65`, and `87`.
+        /// Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+        /// `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+        /// `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         /// </summary>
         [Input("parameterSet")]
         public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]
@@ -477,8 +485,12 @@ namespace Pulumi.Vault.Transit
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The parameter set to use for ML-DSA. Required for
-        /// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+        /// The parameter set to use for ML-DSA or SLH-DSA. Required for
+        /// ML-DSA, hybrid, and SLH-DSA keys.
+        /// Valid values for ML-DSA are `44`, `65`, and `87`.
+        /// Valid values for SLH-DSA are `slh-dsa-sha2-128s`, `slh-dsa-shake-128s`, `slh-dsa-sha2-128f`, `slh-dsa-shake-128`, `slh-dsa-sha2-192s`,
+        /// `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
+        /// `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
         /// </summary>
         [Input("parameterSet")]
         public Input<string>? ParameterSet { get; set; }
@@ -508,7 +520,7 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? SupportsSigning { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]

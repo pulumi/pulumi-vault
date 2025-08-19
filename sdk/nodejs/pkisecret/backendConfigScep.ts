@@ -117,6 +117,13 @@ export class BackendConfigScep extends pulumi.CustomResource {
      */
     public /*out*/ readonly lastUpdated!: pulumi.Output<string>;
     /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     *
+     *
+     * <a id="nestedatt--authenticators"></a>
+     */
+    public readonly logLevel!: pulumi.Output<string>;
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -125,9 +132,6 @@ export class BackendConfigScep extends pulumi.CustomResource {
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-     *
-     *
-     * <a id="nestedatt--authenticators"></a>
      */
     public readonly restrictCaChainToIssuer!: pulumi.Output<boolean | undefined>;
 
@@ -152,6 +156,7 @@ export class BackendConfigScep extends pulumi.CustomResource {
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["externalValidations"] = state ? state.externalValidations : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
+            resourceInputs["logLevel"] = state ? state.logLevel : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["restrictCaChainToIssuer"] = state ? state.restrictCaChainToIssuer : undefined;
         } else {
@@ -166,6 +171,7 @@ export class BackendConfigScep extends pulumi.CustomResource {
             resourceInputs["defaultPathPolicy"] = args ? args.defaultPathPolicy : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["externalValidations"] = args ? args.externalValidations : undefined;
+            resourceInputs["logLevel"] = args ? args.logLevel : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["restrictCaChainToIssuer"] = args ? args.restrictCaChainToIssuer : undefined;
             resourceInputs["lastUpdated"] = undefined /*out*/;
@@ -213,6 +219,13 @@ export interface BackendConfigScepState {
      */
     lastUpdated?: pulumi.Input<string>;
     /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     *
+     *
+     * <a id="nestedatt--authenticators"></a>
+     */
+    logLevel?: pulumi.Input<string>;
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -221,9 +234,6 @@ export interface BackendConfigScepState {
     namespace?: pulumi.Input<string>;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-     *
-     *
-     * <a id="nestedatt--authenticators"></a>
      */
     restrictCaChainToIssuer?: pulumi.Input<boolean>;
 }
@@ -262,6 +272,13 @@ export interface BackendConfigScepArgs {
      */
     externalValidations?: pulumi.Input<pulumi.Input<inputs.pkiSecret.BackendConfigScepExternalValidation>[]>;
     /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     *
+     *
+     * <a id="nestedatt--authenticators"></a>
+     */
+    logLevel?: pulumi.Input<string>;
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -270,9 +287,6 @@ export interface BackendConfigScepArgs {
     namespace?: pulumi.Input<string>;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-     *
-     *
-     * <a id="nestedatt--authenticators"></a>
      */
     restrictCaChainToIssuer?: pulumi.Input<boolean>;
 }

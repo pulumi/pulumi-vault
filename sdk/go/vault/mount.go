@@ -159,6 +159,8 @@ type Mount struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolOutput `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
@@ -247,6 +249,8 @@ type mountState struct {
 	Description *string `pulumi:"description"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
@@ -300,6 +304,8 @@ type MountState struct {
 	Description pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey pulumi.StringPtrInput
@@ -355,6 +361,8 @@ type mountArgs struct {
 	Description *string `pulumi:"description"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// If set to true, disables caching.
+	ForceNoCache *bool `pulumi:"forceNoCache"`
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
@@ -407,6 +415,8 @@ type MountArgs struct {
 	Description pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// If set to true, disables caching.
+	ForceNoCache pulumi.BoolPtrInput
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey pulumi.StringPtrInput
@@ -571,6 +581,11 @@ func (o MountOutput) Description() pulumi.StringPtrOutput {
 // Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 func (o MountOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Mount) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// If set to true, disables caching.
+func (o MountOutput) ForceNoCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Mount) pulumi.BoolOutput { return v.ForceNoCache }).(pulumi.BoolOutput)
 }
 
 // The key to use for signing plugin workload identity tokens. If

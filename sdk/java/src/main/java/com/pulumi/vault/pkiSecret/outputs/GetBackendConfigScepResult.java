@@ -57,6 +57,11 @@ public final class GetBackendConfigScepResult {
      * 
      */
     private String lastUpdated;
+    /**
+     * @return The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     */
+    private @Nullable String logLevel;
     private @Nullable String namespace;
     /**
      * @return If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
@@ -124,6 +129,13 @@ public final class GetBackendConfigScepResult {
     public String lastUpdated() {
         return this.lastUpdated;
     }
+    /**
+     * @return The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     */
+    public Optional<String> logLevel() {
+        return Optional.ofNullable(this.logLevel);
+    }
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
@@ -153,6 +165,7 @@ public final class GetBackendConfigScepResult {
         private List<GetBackendConfigScepExternalValidation> externalValidations;
         private String id;
         private String lastUpdated;
+        private @Nullable String logLevel;
         private @Nullable String namespace;
         private Boolean restrictCaChainToIssuer;
         public Builder() {}
@@ -167,6 +180,7 @@ public final class GetBackendConfigScepResult {
     	      this.externalValidations = defaults.externalValidations;
     	      this.id = defaults.id;
     	      this.lastUpdated = defaults.lastUpdated;
+    	      this.logLevel = defaults.logLevel;
     	      this.namespace = defaults.namespace;
     	      this.restrictCaChainToIssuer = defaults.restrictCaChainToIssuer;
         }
@@ -256,6 +270,12 @@ public final class GetBackendConfigScepResult {
             return this;
         }
         @CustomType.Setter
+        public Builder logLevel(@Nullable String logLevel) {
+
+            this.logLevel = logLevel;
+            return this;
+        }
+        @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
 
             this.namespace = namespace;
@@ -280,6 +300,7 @@ public final class GetBackendConfigScepResult {
             _resultValue.externalValidations = externalValidations;
             _resultValue.id = id;
             _resultValue.lastUpdated = lastUpdated;
+            _resultValue.logLevel = logLevel;
             _resultValue.namespace = namespace;
             _resultValue.restrictCaChainToIssuer = restrictCaChainToIssuer;
             return _resultValue;

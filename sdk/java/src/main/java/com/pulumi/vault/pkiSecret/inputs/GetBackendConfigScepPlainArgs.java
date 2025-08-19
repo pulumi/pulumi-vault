@@ -33,6 +33,21 @@ public final class GetBackendConfigScepPlainArgs extends com.pulumi.resources.In
     }
 
     /**
+     * The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     */
+    @Import(name="logLevel")
+    private @Nullable String logLevel;
+
+    /**
+     * @return The level of logging verbosity, affects only SCEP logs on this mount.
+     * 
+     */
+    public Optional<String> logLevel() {
+        return Optional.ofNullable(this.logLevel);
+    }
+
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -57,6 +72,7 @@ public final class GetBackendConfigScepPlainArgs extends com.pulumi.resources.In
 
     private GetBackendConfigScepPlainArgs(GetBackendConfigScepPlainArgs $) {
         this.backend = $.backend;
+        this.logLevel = $.logLevel;
         this.namespace = $.namespace;
     }
 
@@ -87,6 +103,17 @@ public final class GetBackendConfigScepPlainArgs extends com.pulumi.resources.In
          */
         public Builder backend(String backend) {
             $.backend = backend;
+            return this;
+        }
+
+        /**
+         * @param logLevel The level of logging verbosity, affects only SCEP logs on this mount.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logLevel(@Nullable String logLevel) {
+            $.logLevel = logLevel;
             return this;
         }
 

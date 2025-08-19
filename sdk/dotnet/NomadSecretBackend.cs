@@ -47,11 +47,41 @@ namespace Pulumi.Vault
     public partial class NomadSecretBackend : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Accessor of the mount
+        /// </summary>
+        [Output("accessor")]
+        public Output<string> Accessor { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the address of the Nomad instance, provided
         /// as "protocol://host:port" like "http://127.0.0.1:4646".
         /// </summary>
         [Output("address")]
         public Output<string?> Address { get; private set; } = null!;
+
+        /// <summary>
+        /// List of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        [Output("allowedManagedKeys")]
+        public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("allowedResponseHeaders")]
+        public Output<ImmutableArray<string>> AllowedResponseHeaders { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        [Output("auditNonHmacRequestKeys")]
+        public Output<ImmutableArray<string>> AuditNonHmacRequestKeys { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        [Output("auditNonHmacResponseKeys")]
+        public Output<ImmutableArray<string>> AuditNonHmacResponseKeys { get; private set; } = null!;
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -86,7 +116,13 @@ namespace Pulumi.Vault
         public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("delegatedAuthAccessors")]
+        public Output<ImmutableArray<string>> DelegatedAuthAccessors { get; private set; } = null!;
+
+        /// <summary>
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -99,8 +135,32 @@ namespace Pulumi.Vault
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Output("externalEntropyAccess")]
+        public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Output("forceNoCache")]
+        public Output<bool> ForceNoCache { get; private set; } = null!;
+
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Output("listingVisibility")]
+        public Output<string?> ListingVisibility { get; private set; } = null!;
+
+        /// <summary>
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+        /// use when checking the last rotation time.
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
@@ -133,6 +193,30 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies mount type specific options that are passed to the backend
+        /// </summary>
+        [Output("options")]
+        public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("passthroughRequestHeaders")]
+        public Output<ImmutableArray<string>> PassthroughRequestHeaders { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Output("pluginVersion")]
+        public Output<string?> PluginVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Output("sealWrap")]
+        public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the Nomad Management token to use.
@@ -205,6 +289,54 @@ namespace Pulumi.Vault
         [Input("address")]
         public Input<string>? Address { get; set; }
 
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// List of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
+
         /// <summary>
         /// The unique path this backend should be mounted at. Must
         /// not begin or end with a `/`. Defaults to `nomad`.
@@ -257,8 +389,20 @@ namespace Pulumi.Vault
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
+
+        /// <summary>
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -271,8 +415,32 @@ namespace Pulumi.Vault
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Input("externalEntropyAccess")]
+        public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
+
+        /// <summary>
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+        /// use when checking the last rotation time.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -305,6 +473,42 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        [Input("options")]
+        private InputMap<string>? _options;
+
+        /// <summary>
+        /// Specifies mount type specific options that are passed to the backend
+        /// </summary>
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
+
+        /// <summary>
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Input("sealWrap")]
+        public Input<bool>? SealWrap { get; set; }
 
         [Input("token")]
         private Input<string>? _token;
@@ -337,11 +541,65 @@ namespace Pulumi.Vault
     public sealed class NomadSecretBackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Accessor of the mount
+        /// </summary>
+        [Input("accessor")]
+        public Input<string>? Accessor { get; set; }
+
+        /// <summary>
         /// Specifies the address of the Nomad instance, provided
         /// as "protocol://host:port" like "http://127.0.0.1:4646".
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
+
+        [Input("allowedManagedKeys")]
+        private InputList<string>? _allowedManagedKeys;
+
+        /// <summary>
+        /// List of managed key registry entry names that the mount in question is allowed to access
+        /// </summary>
+        public InputList<string> AllowedManagedKeys
+        {
+            get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
+            set => _allowedManagedKeys = value;
+        }
+
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
+        [Input("auditNonHmacRequestKeys")]
+        private InputList<string>? _auditNonHmacRequestKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacRequestKeys
+        {
+            get => _auditNonHmacRequestKeys ?? (_auditNonHmacRequestKeys = new InputList<string>());
+            set => _auditNonHmacRequestKeys = value;
+        }
+
+        [Input("auditNonHmacResponseKeys")]
+        private InputList<string>? _auditNonHmacResponseKeys;
+
+        /// <summary>
+        /// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        /// </summary>
+        public InputList<string> AuditNonHmacResponseKeys
+        {
+            get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
+            set => _auditNonHmacResponseKeys = value;
+        }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -395,8 +653,20 @@ namespace Pulumi.Vault
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
         /// <summary>
-        /// Human-friendly description of the mount for the Active Directory backend.
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
+
+        /// <summary>
+        /// Human-friendly description of the mount for the backend.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -409,8 +679,32 @@ namespace Pulumi.Vault
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
-        /// replication.Tolerance duration to use when checking the last rotation time.
+        /// Enable the secrets engine to access Vault's external entropy source
+        /// </summary>
+        [Input("externalEntropyAccess")]
+        public Input<bool>? ExternalEntropyAccess { get; set; }
+
+        /// <summary>
+        /// If set to true, disables caching.
+        /// </summary>
+        [Input("forceNoCache")]
+        public Input<bool>? ForceNoCache { get; set; }
+
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
+
+        /// <summary>
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+        /// use when checking the last rotation time.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -443,6 +737,42 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        [Input("options")]
+        private InputMap<string>? _options;
+
+        /// <summary>
+        /// Specifies mount type specific options that are passed to the backend
+        /// </summary>
+        public InputMap<string> Options
+        {
+            get => _options ?? (_options = new InputMap<string>());
+            set => _options = value;
+        }
+
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
+
+        /// <summary>
+        /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        /// </summary>
+        [Input("sealWrap")]
+        public Input<bool>? SealWrap { get; set; }
 
         [Input("token")]
         private Input<string>? _token;

@@ -28,6 +28,7 @@ class BackendConfigScepArgs:
                  default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_validations: Optional[pulumi.Input[Sequence[pulumi.Input['BackendConfigScepExternalValidationArgs']]]] = None,
+                 log_level: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -40,14 +41,15 @@ class BackendConfigScepArgs:
         :param pulumi.Input[_builtins.str] default_path_policy: Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
         :param pulumi.Input[Sequence[pulumi.Input['BackendConfigScepExternalValidationArgs']]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
+        :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
+               
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] restrict_ca_chain_to_issuer: If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-               
-               
-               <a id="nestedatt--authenticators"></a>
         """
         pulumi.set(__self__, "backend", backend)
         if allowed_digest_algorithms is not None:
@@ -62,6 +64,8 @@ class BackendConfigScepArgs:
             pulumi.set(__self__, "enabled", enabled)
         if external_validations is not None:
             pulumi.set(__self__, "external_validations", external_validations)
+        if log_level is not None:
+            pulumi.set(__self__, "log_level", log_level)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if restrict_ca_chain_to_issuer is not None:
@@ -153,6 +157,21 @@ class BackendConfigScepArgs:
         pulumi.set(self, "external_validations", value)
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The level of logging verbosity, affects only SCEP logs on this mount.
+
+
+        <a id="nestedatt--authenticators"></a>
+        """
+        return pulumi.get(self, "log_level")
+
+    @log_level.setter
+    def log_level(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "log_level", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -172,9 +191,6 @@ class BackendConfigScepArgs:
     def restrict_ca_chain_to_issuer(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-
-
-        <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "restrict_ca_chain_to_issuer")
 
@@ -194,6 +210,7 @@ class _BackendConfigScepState:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_validations: Optional[pulumi.Input[Sequence[pulumi.Input['BackendConfigScepExternalValidationArgs']]]] = None,
                  last_updated: Optional[pulumi.Input[_builtins.str]] = None,
+                 log_level: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -207,14 +224,15 @@ class _BackendConfigScepState:
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
         :param pulumi.Input[Sequence[pulumi.Input['BackendConfigScepExternalValidationArgs']]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] last_updated: A read-only timestamp representing the last time the configuration was updated.
+        :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
+               
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] restrict_ca_chain_to_issuer: If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-               
-               
-               <a id="nestedatt--authenticators"></a>
         """
         if allowed_digest_algorithms is not None:
             pulumi.set(__self__, "allowed_digest_algorithms", allowed_digest_algorithms)
@@ -232,6 +250,8 @@ class _BackendConfigScepState:
             pulumi.set(__self__, "external_validations", external_validations)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
+        if log_level is not None:
+            pulumi.set(__self__, "log_level", log_level)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if restrict_ca_chain_to_issuer is not None:
@@ -335,6 +355,21 @@ class _BackendConfigScepState:
         pulumi.set(self, "last_updated", value)
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The level of logging verbosity, affects only SCEP logs on this mount.
+
+
+        <a id="nestedatt--authenticators"></a>
+        """
+        return pulumi.get(self, "log_level")
+
+    @log_level.setter
+    def log_level(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "log_level", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -354,9 +389,6 @@ class _BackendConfigScepState:
     def restrict_ca_chain_to_issuer(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-
-
-        <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "restrict_ca_chain_to_issuer")
 
@@ -378,6 +410,7 @@ class BackendConfigScep(pulumi.CustomResource):
                  default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_validations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]]] = None,
+                 log_level: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
@@ -436,14 +469,15 @@ class BackendConfigScep(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_path_policy: Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
+        :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
+               
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] restrict_ca_chain_to_issuer: If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-               
-               
-               <a id="nestedatt--authenticators"></a>
         """
         ...
     @overload
@@ -518,6 +552,7 @@ class BackendConfigScep(pulumi.CustomResource):
                  default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_validations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]]] = None,
+                 log_level: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
@@ -538,6 +573,7 @@ class BackendConfigScep(pulumi.CustomResource):
             __props__.__dict__["default_path_policy"] = default_path_policy
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["external_validations"] = external_validations
+            __props__.__dict__["log_level"] = log_level
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["restrict_ca_chain_to_issuer"] = restrict_ca_chain_to_issuer
             __props__.__dict__["last_updated"] = None
@@ -559,6 +595,7 @@ class BackendConfigScep(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             external_validations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]]] = None,
             last_updated: Optional[pulumi.Input[_builtins.str]] = None,
+            log_level: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None) -> 'BackendConfigScep':
         """
@@ -577,14 +614,15 @@ class BackendConfigScep(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] last_updated: A read-only timestamp representing the last time the configuration was updated.
+        :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
+               
+               
+               <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] restrict_ca_chain_to_issuer: If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-               
-               
-               <a id="nestedatt--authenticators"></a>
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -598,6 +636,7 @@ class BackendConfigScep(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["external_validations"] = external_validations
         __props__.__dict__["last_updated"] = last_updated
+        __props__.__dict__["log_level"] = log_level
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["restrict_ca_chain_to_issuer"] = restrict_ca_chain_to_issuer
         return BackendConfigScep(resource_name, opts=opts, __props__=__props__)
@@ -668,6 +707,17 @@ class BackendConfigScep(pulumi.CustomResource):
         return pulumi.get(self, "last_updated")
 
     @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> pulumi.Output[_builtins.str]:
+        """
+        The level of logging verbosity, affects only SCEP logs on this mount.
+
+
+        <a id="nestedatt--authenticators"></a>
+        """
+        return pulumi.get(self, "log_level")
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -683,9 +733,6 @@ class BackendConfigScep(pulumi.CustomResource):
     def restrict_ca_chain_to_issuer(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-
-
-        <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "restrict_ca_chain_to_issuer")
 

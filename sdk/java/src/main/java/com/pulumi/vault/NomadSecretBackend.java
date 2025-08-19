@@ -14,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -72,6 +73,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:index/nomadSecretBackend:NomadSecretBackend")
 public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
     /**
+     * Accessor of the mount
+     * 
+     */
+    @Export(name="accessor", refs={String.class}, tree="[0]")
+    private Output<String> accessor;
+
+    /**
+     * @return Accessor of the mount
+     * 
+     */
+    public Output<String> accessor() {
+        return this.accessor;
+    }
+    /**
      * Specifies the address of the Nomad instance, provided
      * as &#34;protocol://host:port&#34; like &#34;http://127.0.0.1:4646&#34;.
      * 
@@ -86,6 +101,62 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> address() {
         return Codegen.optional(this.address);
+    }
+    /**
+     * List of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Export(name="allowedManagedKeys", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedManagedKeys;
+
+    /**
+     * @return List of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Output<Optional<List<String>>> allowedManagedKeys() {
+        return Codegen.optional(this.allowedManagedKeys);
+    }
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="allowedResponseHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> allowedResponseHeaders() {
+        return Codegen.optional(this.allowedResponseHeaders);
+    }
+    /**
+     * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+     * 
+     */
+    @Export(name="auditNonHmacRequestKeys", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> auditNonHmacRequestKeys;
+
+    /**
+     * @return Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+     * 
+     */
+    public Output<List<String>> auditNonHmacRequestKeys() {
+        return this.auditNonHmacRequestKeys;
+    }
+    /**
+     * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+     * 
+     */
+    @Export(name="auditNonHmacResponseKeys", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> auditNonHmacResponseKeys;
+
+    /**
+     * @return Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+     * 
+     */
+    public Output<List<String>> auditNonHmacResponseKeys() {
+        return this.auditNonHmacResponseKeys;
     }
     /**
      * The unique path this backend should be mounted at. Must
@@ -162,14 +233,28 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
         return this.defaultLeaseTtlSeconds;
     }
     /**
-     * Human-friendly description of the mount for the Active Directory backend.
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="delegatedAuthAccessors", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> delegatedAuthAccessors() {
+        return Codegen.optional(this.delegatedAuthAccessors);
+    }
+    /**
+     * Human-friendly description of the mount for the backend.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return Human-friendly description of the mount for the Active Directory backend.
+     * @return Human-friendly description of the mount for the backend.
      * 
      */
     public Output<Optional<String>> description() {
@@ -192,16 +277,72 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRemount);
     }
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * Enable the secrets engine to access Vault&#39;s external entropy source
+     * 
+     */
+    @Export(name="externalEntropyAccess", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> externalEntropyAccess;
+
+    /**
+     * @return Enable the secrets engine to access Vault&#39;s external entropy source
+     * 
+     */
+    public Output<Optional<Boolean>> externalEntropyAccess() {
+        return Codegen.optional(this.externalEntropyAccess);
+    }
+    /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Export(name="forceNoCache", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Output<Boolean> forceNoCache() {
+        return this.forceNoCache;
+    }
+    /**
+     * The key to use for signing plugin workload identity tokens
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Export(name="listingVisibility", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Output<Optional<String>> listingVisibility() {
+        return Codegen.optional(this.listingVisibility);
+    }
+    /**
+     * Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+     * use when checking the last rotation time.
      * 
      */
     @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
-     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
+     * use when checking the last rotation time.
      * 
      */
     public Output<Optional<Boolean>> local() {
@@ -272,6 +413,62 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * Specifies mount type specific options that are passed to the backend
+     * 
+     */
+    @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> options;
+
+    /**
+     * @return Specifies mount type specific options that are passed to the backend
+     * 
+     */
+    public Output<Optional<Map<String,String>>> options() {
+        return Codegen.optional(this.options);
+    }
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="passthroughRequestHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> passthroughRequestHeaders() {
+        return Codegen.optional(this.passthroughRequestHeaders);
+    }
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    @Export(name="pluginVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    public Output<Optional<String>> pluginVersion() {
+        return Codegen.optional(this.pluginVersion);
+    }
+    /**
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+     * 
+     */
+    @Export(name="sealWrap", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> sealWrap;
+
+    /**
+     * @return Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+     * 
+     */
+    public Output<Boolean> sealWrap() {
+        return this.sealWrap;
     }
     /**
      * Specifies the Nomad Management token to use.

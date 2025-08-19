@@ -126,6 +126,15 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> LastUpdated { get; private set; } = null!;
 
         /// <summary>
+        /// The level of logging verbosity, affects only SCEP logs on this mount.
+        /// 
+        /// 
+        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
+        /// </summary>
+        [Output("logLevel")]
+        public Output<string> LogLevel { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -136,9 +145,6 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-        /// 
-        /// 
-        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         [Output("restrictCaChainToIssuer")]
         public Output<bool?> RestrictCaChainToIssuer { get; private set; } = null!;
@@ -251,6 +257,15 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
+        /// The level of logging verbosity, affects only SCEP logs on this mount.
+        /// 
+        /// 
+        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
+        /// </summary>
+        [Input("logLevel")]
+        public Input<string>? LogLevel { get; set; }
+
+        /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -261,9 +276,6 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-        /// 
-        /// 
-        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         [Input("restrictCaChainToIssuer")]
         public Input<bool>? RestrictCaChainToIssuer { get; set; }
@@ -344,6 +356,15 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? LastUpdated { get; set; }
 
         /// <summary>
+        /// The level of logging verbosity, affects only SCEP logs on this mount.
+        /// 
+        /// 
+        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
+        /// </summary>
+        [Input("logLevel")]
+        public Input<string>? LogLevel { get; set; }
+
+        /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -354,9 +375,6 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
-        /// 
-        /// 
-        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         [Input("restrictCaChainToIssuer")]
         public Input<bool>? RestrictCaChainToIssuer { get; set; }

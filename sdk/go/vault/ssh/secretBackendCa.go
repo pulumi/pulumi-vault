@@ -65,12 +65,16 @@ type SecretBackendCa struct {
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
+	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	ManagedKeyId pulumi.StringPtrOutput `pulumi:"managedKeyId"`
+	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+	ManagedKeyName pulumi.StringPtrOutput `pulumi:"managedKeyName"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// Private key part the SSH CA key pair; required if generateSigningKey is false.
+	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
@@ -121,12 +125,16 @@ type secretBackendCaState struct {
 	KeyBits *int `pulumi:"keyBits"`
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType *string `pulumi:"keyType"`
+	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Private key part the SSH CA key pair; required if generateSigningKey is false.
+	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey *string `pulumi:"publicKey"`
@@ -141,12 +149,16 @@ type SecretBackendCaState struct {
 	KeyBits pulumi.IntPtrInput
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType pulumi.StringPtrInput
+	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+	ManagedKeyName pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Private key part the SSH CA key pair; required if generateSigningKey is false.
+	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey pulumi.StringPtrInput
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey pulumi.StringPtrInput
@@ -165,12 +177,16 @@ type secretBackendCaArgs struct {
 	KeyBits *int `pulumi:"keyBits"`
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType *string `pulumi:"keyType"`
+	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Private key part the SSH CA key pair; required if generateSigningKey is false.
+	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey *string `pulumi:"publicKey"`
@@ -186,12 +202,16 @@ type SecretBackendCaArgs struct {
 	KeyBits pulumi.IntPtrInput
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType pulumi.StringPtrInput
+	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+	ManagedKeyName pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Private key part the SSH CA key pair; required if generateSigningKey is false.
+	// The private key part the SSH CA key pair; required if generateSigningKey is false.
 	PrivateKey pulumi.StringPtrInput
 	// The public key part the SSH CA key pair; required if generateSigningKey is false.
 	PublicKey pulumi.StringPtrInput
@@ -304,6 +324,16 @@ func (o SecretBackendCaOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
+// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+func (o SecretBackendCaOutput) ManagedKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.ManagedKeyId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
+func (o SecretBackendCaOutput) ManagedKeyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.ManagedKeyName }).(pulumi.StringPtrOutput)
+}
+
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -312,7 +342,7 @@ func (o SecretBackendCaOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Private key part the SSH CA key pair; required if generateSigningKey is false.
+// The private key part the SSH CA key pair; required if generateSigningKey is false.
 func (o SecretBackendCaOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }

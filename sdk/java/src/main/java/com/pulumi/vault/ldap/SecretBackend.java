@@ -231,14 +231,14 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.connectionTimeout);
     }
     /**
-     * Default lease duration for secrets in seconds.
+     * Default lease duration for tokens and secrets in seconds
      * 
      */
     @Export(name="defaultLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> defaultLeaseTtlSeconds;
 
     /**
-     * @return Default lease duration for secrets in seconds.
+     * @return Default lease duration for tokens and secrets in seconds
      * 
      */
     public Output<Integer> defaultLeaseTtlSeconds() {
@@ -259,14 +259,14 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.delegatedAuthAccessors);
     }
     /**
-     * Human-friendly description of the mount for the Active Directory backend.
+     * Human-friendly description of the mount
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return Human-friendly description of the mount for the Active Directory backend.
+     * @return Human-friendly description of the mount
      * 
      */
     public Output<Optional<String>> description() {
@@ -315,6 +315,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEntropyAccess);
     }
     /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Export(name="forceNoCache", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Output<Boolean> forceNoCache() {
+        return this.forceNoCache;
+    }
+    /**
      * The key to use for signing plugin workload identity tokens
      * 
      */
@@ -359,30 +373,28 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.listingVisibility);
     }
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
     @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
-     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * @return Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
     public Output<Optional<Boolean>> local() {
         return Codegen.optional(this.local);
     }
     /**
-     * Maximum possible lease duration for secrets in seconds.
+     * Maximum possible lease duration for tokens and secrets in seconds
      * 
      */
     @Export(name="maxLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxLeaseTtlSeconds;
 
     /**
-     * @return Maximum possible lease duration for secrets in seconds.
+     * @return Maximum possible lease duration for tokens and secrets in seconds
      * 
      */
     public Output<Integer> maxLeaseTtlSeconds() {

@@ -143,6 +143,8 @@ type AuthBackend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem pulumi.StringPtrOutput `pulumi:"jwksCaPem"`
+	// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+	JwksPairs pulumi.StringMapArrayOutput `pulumi:"jwksPairs"`
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
 	JwksUrl pulumi.StringPtrOutput `pulumi:"jwksUrl"`
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
@@ -233,6 +235,8 @@ type authBackendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem *string `pulumi:"jwksCaPem"`
+	// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+	JwksPairs []map[string]string `pulumi:"jwksPairs"`
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
 	JwksUrl *string `pulumi:"jwksUrl"`
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
@@ -287,6 +291,8 @@ type AuthBackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem pulumi.StringPtrInput
+	// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+	JwksPairs pulumi.StringMapArrayInput
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
 	JwksUrl pulumi.StringPtrInput
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
@@ -343,6 +349,8 @@ type authBackendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem *string `pulumi:"jwksCaPem"`
+	// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+	JwksPairs []map[string]string `pulumi:"jwksPairs"`
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
 	JwksUrl *string `pulumi:"jwksUrl"`
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
@@ -396,6 +404,8 @@ type AuthBackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 	JwksCaPem pulumi.StringPtrInput
+	// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+	JwksPairs pulumi.StringMapArrayInput
 	// JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
 	JwksUrl pulumi.StringPtrInput
 	// A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
@@ -552,6 +562,11 @@ func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 // The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
 func (o AuthBackendOutput) JwksCaPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.JwksCaPem }).(pulumi.StringPtrOutput)
+}
+
+// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
+func (o AuthBackendOutput) JwksPairs() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringMapArrayOutput { return v.JwksPairs }).(pulumi.StringMapArrayOutput)
 }
 
 // JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".

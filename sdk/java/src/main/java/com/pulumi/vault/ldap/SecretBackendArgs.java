@@ -175,14 +175,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Default lease duration for secrets in seconds.
+     * Default lease duration for tokens and secrets in seconds
      * 
      */
     @Import(name="defaultLeaseTtlSeconds")
     private @Nullable Output<Integer> defaultLeaseTtlSeconds;
 
     /**
-     * @return Default lease duration for secrets in seconds.
+     * @return Default lease duration for tokens and secrets in seconds
      * 
      */
     public Optional<Output<Integer>> defaultLeaseTtlSeconds() {
@@ -205,14 +205,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Human-friendly description of the mount for the Active Directory backend.
+     * Human-friendly description of the mount
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return Human-friendly description of the mount for the Active Directory backend.
+     * @return Human-friendly description of the mount
      * 
      */
     public Optional<Output<String>> description() {
@@ -265,6 +265,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Import(name="forceNoCache")
+    private @Nullable Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Optional<Output<Boolean>> forceNoCache() {
+        return Optional.ofNullable(this.forceNoCache);
+    }
+
+    /**
      * The key to use for signing plugin workload identity tokens
      * 
      */
@@ -312,16 +327,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
     @Import(name="local")
     private @Nullable Output<Boolean> local;
 
     /**
-     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by
-     * replication.Tolerance duration to use when checking the last rotation time.
+     * @return Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      * 
      */
     public Optional<Output<Boolean>> local() {
@@ -329,14 +342,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Maximum possible lease duration for secrets in seconds.
+     * Maximum possible lease duration for tokens and secrets in seconds
      * 
      */
     @Import(name="maxLeaseTtlSeconds")
     private @Nullable Output<Integer> maxLeaseTtlSeconds;
 
     /**
-     * @return Maximum possible lease duration for secrets in seconds.
+     * @return Maximum possible lease duration for tokens and secrets in seconds
      * 
      */
     public Optional<Output<Integer>> maxLeaseTtlSeconds() {
@@ -654,6 +667,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.disableRemount = $.disableRemount;
         this.externalEntropyAccess = $.externalEntropyAccess;
+        this.forceNoCache = $.forceNoCache;
         this.identityTokenKey = $.identityTokenKey;
         this.insecureTls = $.insecureTls;
         this.listingVisibility = $.listingVisibility;
@@ -952,7 +966,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultLeaseTtlSeconds Default lease duration for secrets in seconds.
+         * @param defaultLeaseTtlSeconds Default lease duration for tokens and secrets in seconds
          * 
          * @return builder
          * 
@@ -963,7 +977,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultLeaseTtlSeconds Default lease duration for secrets in seconds.
+         * @param defaultLeaseTtlSeconds Default lease duration for tokens and secrets in seconds
          * 
          * @return builder
          * 
@@ -1004,7 +1018,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description Human-friendly description of the mount for the Active Directory backend.
+         * @param description Human-friendly description of the mount
          * 
          * @return builder
          * 
@@ -1015,7 +1029,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description Human-friendly description of the mount for the Active Directory backend.
+         * @param description Human-friendly description of the mount
          * 
          * @return builder
          * 
@@ -1088,6 +1102,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(@Nullable Output<Boolean> forceNoCache) {
+            $.forceNoCache = forceNoCache;
+            return this;
+        }
+
+        /**
+         * @param forceNoCache If set to true, disables caching.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder forceNoCache(Boolean forceNoCache) {
+            return forceNoCache(Output.of(forceNoCache));
+        }
+
+        /**
          * @param identityTokenKey The key to use for signing plugin workload identity tokens
          * 
          * @return builder
@@ -1153,8 +1188,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by
-         * replication.Tolerance duration to use when checking the last rotation time.
+         * @param local Local mount flag that can be explicitly set to true to enforce local mount in HA environment
          * 
          * @return builder
          * 
@@ -1165,8 +1199,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by
-         * replication.Tolerance duration to use when checking the last rotation time.
+         * @param local Local mount flag that can be explicitly set to true to enforce local mount in HA environment
          * 
          * @return builder
          * 
@@ -1176,7 +1209,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maxLeaseTtlSeconds Maximum possible lease duration for secrets in seconds.
+         * @param maxLeaseTtlSeconds Maximum possible lease duration for tokens and secrets in seconds
          * 
          * @return builder
          * 
@@ -1187,7 +1220,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maxLeaseTtlSeconds Maximum possible lease duration for secrets in seconds.
+         * @param maxLeaseTtlSeconds Maximum possible lease duration for tokens and secrets in seconds
          * 
          * @return builder
          * 

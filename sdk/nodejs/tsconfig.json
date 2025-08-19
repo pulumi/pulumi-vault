@@ -160,6 +160,8 @@
         "namespace.ts",
         "nomadSecretBackend.ts",
         "nomadSecretRole.ts",
+        "ociAuthBackend.ts",
+        "ociAuthBackendRole.ts",
         "okta/authBackend.ts",
         "okta/authBackendGroup.ts",
         "okta/authBackendUser.ts",

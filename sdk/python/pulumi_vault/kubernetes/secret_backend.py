@@ -29,6 +29,7 @@ class SecretBackendArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
@@ -54,6 +55,7 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
@@ -96,6 +98,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "disable_local_ca_jwt", disable_local_ca_jwt)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if kubernetes_ca_cert is not None:
@@ -241,6 +245,18 @@ class SecretBackendArgs:
     @external_entropy_access.setter
     def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
@@ -410,6 +426,7 @@ class _SecretBackendState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
@@ -436,6 +453,7 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
@@ -480,6 +498,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "disable_local_ca_jwt", disable_local_ca_jwt)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if force_no_cache is not None:
+            pulumi.set(__self__, "force_no_cache", force_no_cache)
         if identity_token_key is not None:
             pulumi.set(__self__, "identity_token_key", identity_token_key)
         if kubernetes_ca_cert is not None:
@@ -627,6 +647,18 @@ class _SecretBackendState:
     @external_entropy_access.setter
     def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
+
+    @force_no_cache.setter
+    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
@@ -810,6 +842,7 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
@@ -863,6 +896,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
@@ -944,6 +978,7 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
@@ -975,6 +1010,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_local_ca_jwt"] = disable_local_ca_jwt
             __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["force_no_cache"] = force_no_cache
             __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["kubernetes_ca_cert"] = kubernetes_ca_cert
             __props__.__dict__["kubernetes_host"] = kubernetes_host
@@ -1013,6 +1049,7 @@ class SecretBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
             external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
+            force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
             identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
             kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
             kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1044,6 +1081,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
@@ -1082,6 +1120,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_local_ca_jwt"] = disable_local_ca_jwt
         __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["force_no_cache"] = force_no_cache
         __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["kubernetes_ca_cert"] = kubernetes_ca_cert
         __props__.__dict__["kubernetes_host"] = kubernetes_host
@@ -1177,6 +1216,14 @@ class SecretBackend(pulumi.CustomResource):
         Enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
+
+    @_builtins.property
+    @pulumi.getter(name="forceNoCache")
+    def force_no_cache(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to true, disables caching.
+        """
+        return pulumi.get(self, "force_no_cache")
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")

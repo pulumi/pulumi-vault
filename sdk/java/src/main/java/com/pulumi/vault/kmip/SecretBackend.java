@@ -14,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -78,6 +79,90 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:kmip/secretBackend:SecretBackend")
 public class SecretBackend extends com.pulumi.resources.CustomResource {
     /**
+     * Accessor of the mount
+     * 
+     */
+    @Export(name="accessor", refs={String.class}, tree="[0]")
+    private Output<String> accessor;
+
+    /**
+     * @return Accessor of the mount
+     * 
+     */
+    public Output<String> accessor() {
+        return this.accessor;
+    }
+    /**
+     * List of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    @Export(name="allowedManagedKeys", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedManagedKeys;
+
+    /**
+     * @return List of managed key registry entry names that the mount in question is allowed to access
+     * 
+     */
+    public Output<Optional<List<String>>> allowedManagedKeys() {
+        return Codegen.optional(this.allowedManagedKeys);
+    }
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="allowedResponseHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> allowedResponseHeaders() {
+        return Codegen.optional(this.allowedResponseHeaders);
+    }
+    /**
+     * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+     * 
+     */
+    @Export(name="auditNonHmacRequestKeys", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> auditNonHmacRequestKeys;
+
+    /**
+     * @return Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
+     * 
+     */
+    public Output<List<String>> auditNonHmacRequestKeys() {
+        return this.auditNonHmacRequestKeys;
+    }
+    /**
+     * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+     * 
+     */
+    @Export(name="auditNonHmacResponseKeys", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> auditNonHmacResponseKeys;
+
+    /**
+     * @return Specifies the list of keys that will not be HMAC&#39;d by audit devices in the response data object.
+     * 
+     */
+    public Output<List<String>> auditNonHmacResponseKeys() {
+        return this.auditNonHmacResponseKeys;
+    }
+    /**
+     * Default lease duration for tokens and secrets in seconds
+     * 
+     */
+    @Export(name="defaultLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
+    private Output<Integer> defaultLeaseTtlSeconds;
+
+    /**
+     * @return Default lease duration for tokens and secrets in seconds
+     * 
+     */
+    public Output<Integer> defaultLeaseTtlSeconds() {
+        return this.defaultLeaseTtlSeconds;
+    }
+    /**
      * Client certificate key bits, valid values depend on key type.
      * 
      */
@@ -120,14 +205,28 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.defaultTlsClientTtl;
     }
     /**
-     * A human-friendly description for this backend.
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="delegatedAuthAccessors", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> delegatedAuthAccessors() {
+        return Codegen.optional(this.delegatedAuthAccessors);
+    }
+    /**
+     * Human-friendly description of the mount for the backend
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return A human-friendly description for this backend.
+     * @return Human-friendly description of the mount for the backend
      * 
      */
     public Output<Optional<String>> description() {
@@ -150,6 +249,48 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRemount);
     }
     /**
+     * Enable the secrets engine to access Vault&#39;s external entropy source
+     * 
+     */
+    @Export(name="externalEntropyAccess", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> externalEntropyAccess;
+
+    /**
+     * @return Enable the secrets engine to access Vault&#39;s external entropy source
+     * 
+     */
+    public Output<Optional<Boolean>> externalEntropyAccess() {
+        return Codegen.optional(this.externalEntropyAccess);
+    }
+    /**
+     * If set to true, disables caching.
+     * 
+     */
+    @Export(name="forceNoCache", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> forceNoCache;
+
+    /**
+     * @return If set to true, disables caching.
+     * 
+     */
+    public Output<Boolean> forceNoCache() {
+        return this.forceNoCache;
+    }
+    /**
+     * The key to use for signing plugin workload identity tokens
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
      * Addresses the KMIP server should listen on (`host:port`).
      * 
      */
@@ -162,6 +303,48 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> listenAddrs() {
         return this.listenAddrs;
+    }
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Export(name="listingVisibility", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Output<Optional<String>> listingVisibility() {
+        return Codegen.optional(this.listingVisibility);
+    }
+    /**
+     * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+     * 
+     */
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> local;
+
+    /**
+     * @return Local mount flag that can be explicitly set to true to enforce local mount in HA environment
+     * 
+     */
+    public Output<Optional<Boolean>> local() {
+        return Codegen.optional(this.local);
+    }
+    /**
+     * Maximum possible lease duration for tokens and secrets in seconds
+     * 
+     */
+    @Export(name="maxLeaseTtlSeconds", refs={Integer.class}, tree="[0]")
+    private Output<Integer> maxLeaseTtlSeconds;
+
+    /**
+     * @return Maximum possible lease duration for tokens and secrets in seconds
+     * 
+     */
+    public Output<Integer> maxLeaseTtlSeconds() {
+        return this.maxLeaseTtlSeconds;
     }
     /**
      * The namespace to provision the resource in.
@@ -184,6 +367,34 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
+     * Specifies mount type specific options that are passed to the backend
+     * 
+     */
+    @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> options;
+
+    /**
+     * @return Specifies mount type specific options that are passed to the backend
+     * 
+     */
+    public Output<Optional<Map<String,String>>> options() {
+        return Codegen.optional(this.options);
+    }
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="passthroughRequestHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> passthroughRequestHeaders() {
+        return Codegen.optional(this.passthroughRequestHeaders);
+    }
+    /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
      * 
@@ -198,6 +409,34 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> path() {
         return this.path;
+    }
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    @Export(name="pluginVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    public Output<Optional<String>> pluginVersion() {
+        return Codegen.optional(this.pluginVersion);
+    }
+    /**
+     * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+     * 
+     */
+    @Export(name="sealWrap", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> sealWrap;
+
+    /**
+     * @return Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
+     * 
+     */
+    public Output<Boolean> sealWrap() {
+        return this.sealWrap;
     }
     /**
      * Hostnames to include in the server&#39;s TLS certificate as SAN DNS names. The first will be used as the common name (CN).

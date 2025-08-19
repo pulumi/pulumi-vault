@@ -254,6 +254,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.jwksCaPem);
     }
     /**
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="jwksPairs", refs={List.class,Map.class,String.class}, tree="[0,[1,2,2]]")
+    private Output</* @Nullable */ List<Map<String,String>>> jwksPairs;
+
+    /**
+     * @return List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Optional<List<Map<String,String>>>> jwksPairs() {
+        return Codegen.optional(this.jwksPairs);
+    }
+    /**
      * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
      * 
      */

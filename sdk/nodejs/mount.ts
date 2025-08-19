@@ -137,6 +137,10 @@ export class Mount extends pulumi.CustomResource {
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
+     * If set to true, disables caching.
+     */
+    public readonly forceNoCache!: pulumi.Output<boolean>;
+    /**
      * The key to use for signing plugin workload identity tokens. If
      * not provided, this will default to Vault's OIDC default key.
      */
@@ -211,6 +215,7 @@ export class Mount extends pulumi.CustomResource {
             resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
@@ -238,6 +243,7 @@ export class Mount extends pulumi.CustomResource {
             resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
@@ -298,6 +304,10 @@ export interface MountState {
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens. If
      * not provided, this will default to Vault's OIDC default key.
@@ -390,6 +400,10 @@ export interface MountArgs {
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens. If
      * not provided, this will default to Vault's OIDC default key.

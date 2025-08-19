@@ -106,6 +106,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
+     * If set to true, disables caching.
+     */
+    public readonly forceNoCache!: pulumi.Output<boolean>;
+    /**
      * The key to use for signing plugin workload identity tokens
      */
     public readonly identityTokenKey!: pulumi.Output<string | undefined>;
@@ -191,6 +195,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableLocalCaJwt"] = state ? state.disableLocalCaJwt : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
             resourceInputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
@@ -218,6 +223,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableLocalCaJwt"] = args ? args.disableLocalCaJwt : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
             resourceInputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
@@ -285,6 +291,10 @@ export interface SecretBackendState {
      * Enable the secrets engine to access Vault's external entropy source
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
@@ -390,6 +400,10 @@ export interface SecretBackendArgs {
      * Enable the secrets engine to access Vault's external entropy source
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
+    /**
+     * If set to true, disables caching.
+     */
+    forceNoCache?: pulumi.Input<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
