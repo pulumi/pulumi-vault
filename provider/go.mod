@@ -145,7 +145,7 @@ require (
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-mux v0.20.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.37.0 // indirect
-	github.com/hashicorp/terraform-plugin-testing v1.12.0 // indirect
+	github.com/hashicorp/terraform-plugin-testing v1.13.1 // indirect
 	github.com/hashicorp/terraform-registry-address v0.2.5 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/vault-plugin-auth-jwt v0.20.3 // indirect
