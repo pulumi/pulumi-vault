@@ -47,32 +47,32 @@ export class Secret extends pulumi.CustomResource {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    public /*out*/ readonly data!: pulumi.Output<{[key: string]: string}>;
+    declare public /*out*/ readonly data: pulumi.Output<{[key: string]: string}>;
     /**
      * String containing a JSON-encoded object that will be
      * written as the secret data at the given path.
      */
-    public readonly dataJson!: pulumi.Output<string>;
+    declare public readonly dataJson: pulumi.Output<string>;
     /**
      * true/false.  Only applicable for kv-v2 stores.
      * If set to `true`, permanently deletes all versions for
      * the specified key. The default behavior is to only delete the latest version of the
      * secret.
      */
-    public readonly deleteAllVersions!: pulumi.Output<boolean | undefined>;
+    declare public readonly deleteAllVersions: pulumi.Output<boolean | undefined>;
     /**
      * true/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
-    public readonly disableRead!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRead: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,
@@ -80,7 +80,7 @@ export class Secret extends pulumi.CustomResource {
      * resource is possible; consult each backend's documentation to see which
      * endpoints support the `PUT` and `DELETE` methods.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
 
     /**
      * Create a Secret resource with the given unique name, arguments, and options.
@@ -95,25 +95,25 @@ export class Secret extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretState | undefined;
-            resourceInputs["data"] = state ? state.data : undefined;
-            resourceInputs["dataJson"] = state ? state.dataJson : undefined;
-            resourceInputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
-            resourceInputs["disableRead"] = state ? state.disableRead : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["data"] = state?.data;
+            resourceInputs["dataJson"] = state?.dataJson;
+            resourceInputs["deleteAllVersions"] = state?.deleteAllVersions;
+            resourceInputs["disableRead"] = state?.disableRead;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
         } else {
             const args = argsOrState as SecretArgs | undefined;
-            if ((!args || args.dataJson === undefined) && !opts.urn) {
+            if (args?.dataJson === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dataJson'");
             }
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
-            resourceInputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
-            resourceInputs["disableRead"] = args ? args.disableRead : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["deleteAllVersions"] = args?.deleteAllVersions;
+            resourceInputs["disableRead"] = args?.disableRead;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
             resourceInputs["data"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

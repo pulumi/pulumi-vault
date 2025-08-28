@@ -78,32 +78,32 @@ export class Audit extends pulumi.CustomResource {
     /**
      * Human-friendly description of the audit device.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Configuration options to pass to the audit device itself.
      *
      * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      */
-    public readonly options!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly options: pulumi.Output<{[key: string]: string}>;
     /**
      * The path to mount the audit device. This defaults to the type.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Type of the audit device, such as 'file'.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a Audit resource with the given unique name, arguments, and options.
@@ -118,26 +118,26 @@ export class Audit extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuditState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as AuditArgs | undefined;
-            if ((!args || args.options === undefined) && !opts.urn) {
+            if (args?.options === undefined && !opts.urn) {
                 throw new Error("Missing required property 'options'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Audit.__pulumiType, name, resourceInputs, opts);

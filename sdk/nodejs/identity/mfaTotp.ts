@@ -55,67 +55,67 @@ export class MfaTotp extends pulumi.CustomResource {
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      */
-    public readonly algorithm!: pulumi.Output<string | undefined>;
+    declare public readonly algorithm: pulumi.Output<string | undefined>;
     /**
      * The number of digits in the generated TOTP token. This value can either be 6 or 8
      */
-    public readonly digits!: pulumi.Output<number | undefined>;
+    declare public readonly digits: pulumi.Output<number | undefined>;
     /**
      * The name of the key's issuing organization.
      */
-    public readonly issuer!: pulumi.Output<string>;
+    declare public readonly issuer: pulumi.Output<string>;
     /**
      * Specifies the size in bytes of the generated key.
      */
-    public readonly keySize!: pulumi.Output<number | undefined>;
+    declare public readonly keySize: pulumi.Output<number | undefined>;
     /**
      * The maximum number of consecutive failed validation attempts allowed.
      */
-    public readonly maxValidationAttempts!: pulumi.Output<number | undefined>;
+    declare public readonly maxValidationAttempts: pulumi.Output<number | undefined>;
     /**
      * Method ID.
      */
-    public /*out*/ readonly methodId!: pulumi.Output<string>;
+    declare public /*out*/ readonly methodId: pulumi.Output<string>;
     /**
      * Mount accessor.
      */
-    public /*out*/ readonly mountAccessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly mountAccessor: pulumi.Output<string>;
     /**
      * Method name.
      */
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * Method's namespace path.
      */
-    public /*out*/ readonly namespacePath!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespacePath: pulumi.Output<string>;
     /**
      * The length of time in seconds used to generate a counter for the TOTP token calculation.
      */
-    public readonly period!: pulumi.Output<number | undefined>;
+    declare public readonly period: pulumi.Output<number | undefined>;
     /**
      * The pixel size of the generated square QR code.
      */
-    public readonly qrSize!: pulumi.Output<number>;
+    declare public readonly qrSize: pulumi.Output<number>;
     /**
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      */
-    public readonly skew!: pulumi.Output<number | undefined>;
+    declare public readonly skew: pulumi.Output<number | undefined>;
     /**
      * MFA type.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * Resource UUID.
      */
-    public /*out*/ readonly uuid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uuid: pulumi.Output<string>;
 
     /**
      * Create a MfaTotp resource with the given unique name, arguments, and options.
@@ -130,36 +130,36 @@ export class MfaTotp extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaTotpState | undefined;
-            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["digits"] = state ? state.digits : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["keySize"] = state ? state.keySize : undefined;
-            resourceInputs["maxValidationAttempts"] = state ? state.maxValidationAttempts : undefined;
-            resourceInputs["methodId"] = state ? state.methodId : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["namespacePath"] = state ? state.namespacePath : undefined;
-            resourceInputs["period"] = state ? state.period : undefined;
-            resourceInputs["qrSize"] = state ? state.qrSize : undefined;
-            resourceInputs["skew"] = state ? state.skew : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["algorithm"] = state?.algorithm;
+            resourceInputs["digits"] = state?.digits;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["keySize"] = state?.keySize;
+            resourceInputs["maxValidationAttempts"] = state?.maxValidationAttempts;
+            resourceInputs["methodId"] = state?.methodId;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["namespacePath"] = state?.namespacePath;
+            resourceInputs["period"] = state?.period;
+            resourceInputs["qrSize"] = state?.qrSize;
+            resourceInputs["skew"] = state?.skew;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["uuid"] = state?.uuid;
         } else {
             const args = argsOrState as MfaTotpArgs | undefined;
-            if ((!args || args.issuer === undefined) && !opts.urn) {
+            if (args?.issuer === undefined && !opts.urn) {
                 throw new Error("Missing required property 'issuer'");
             }
-            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["digits"] = args ? args.digits : undefined;
-            resourceInputs["issuer"] = args ? args.issuer : undefined;
-            resourceInputs["keySize"] = args ? args.keySize : undefined;
-            resourceInputs["maxValidationAttempts"] = args ? args.maxValidationAttempts : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["period"] = args ? args.period : undefined;
-            resourceInputs["qrSize"] = args ? args.qrSize : undefined;
-            resourceInputs["skew"] = args ? args.skew : undefined;
+            resourceInputs["algorithm"] = args?.algorithm;
+            resourceInputs["digits"] = args?.digits;
+            resourceInputs["issuer"] = args?.issuer;
+            resourceInputs["keySize"] = args?.keySize;
+            resourceInputs["maxValidationAttempts"] = args?.maxValidationAttempts;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["period"] = args?.period;
+            resourceInputs["qrSize"] = args?.qrSize;
+            resourceInputs["skew"] = args?.skew;
             resourceInputs["methodId"] = undefined /*out*/;
             resourceInputs["mountAccessor"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

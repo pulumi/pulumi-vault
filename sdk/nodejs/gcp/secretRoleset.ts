@@ -77,38 +77,38 @@ export class SecretRoleset extends pulumi.CustomResource {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    public readonly bindings!: pulumi.Output<outputs.gcp.SecretRolesetBinding[]>;
+    declare public readonly bindings: pulumi.Output<outputs.gcp.SecretRolesetBinding[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Name of the GCP project that this roleset's service account will belong to.
      */
-    public readonly project!: pulumi.Output<string>;
+    declare public readonly project: pulumi.Output<string>;
     /**
      * Name of the Roleset to create
      */
-    public readonly roleset!: pulumi.Output<string>;
+    declare public readonly roleset: pulumi.Output<string>;
     /**
      * Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    public readonly secretType!: pulumi.Output<string>;
+    declare public readonly secretType: pulumi.Output<string>;
     /**
      * Email of the service account created by Vault for this Roleset.
      */
-    public /*out*/ readonly serviceAccountEmail!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceAccountEmail: pulumi.Output<string>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      */
-    public readonly tokenScopes!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenScopes: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretRoleset resource with the given unique name, arguments, and options.
@@ -123,35 +123,35 @@ export class SecretRoleset extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRolesetState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["bindings"] = state ? state.bindings : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["project"] = state ? state.project : undefined;
-            resourceInputs["roleset"] = state ? state.roleset : undefined;
-            resourceInputs["secretType"] = state ? state.secretType : undefined;
-            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
-            resourceInputs["tokenScopes"] = state ? state.tokenScopes : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["bindings"] = state?.bindings;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["project"] = state?.project;
+            resourceInputs["roleset"] = state?.roleset;
+            resourceInputs["secretType"] = state?.secretType;
+            resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
+            resourceInputs["tokenScopes"] = state?.tokenScopes;
         } else {
             const args = argsOrState as SecretRolesetArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.bindings === undefined) && !opts.urn) {
+            if (args?.bindings === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindings'");
             }
-            if ((!args || args.project === undefined) && !opts.urn) {
+            if (args?.project === undefined && !opts.urn) {
                 throw new Error("Missing required property 'project'");
             }
-            if ((!args || args.roleset === undefined) && !opts.urn) {
+            if (args?.roleset === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleset'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["bindings"] = args ? args.bindings : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["project"] = args ? args.project : undefined;
-            resourceInputs["roleset"] = args ? args.roleset : undefined;
-            resourceInputs["secretType"] = args ? args.secretType : undefined;
-            resourceInputs["tokenScopes"] = args ? args.tokenScopes : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["bindings"] = args?.bindings;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["project"] = args?.project;
+            resourceInputs["roleset"] = args?.roleset;
+            resourceInputs["secretType"] = args?.secretType;
+            resourceInputs["tokenScopes"] = args?.tokenScopes;
             resourceInputs["serviceAccountEmail"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

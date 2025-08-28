@@ -65,23 +65,23 @@ export class SecretScope extends pulumi.CustomResource {
     /**
      * Boolean field to force deletion even if there are managed objects in the scope.
      */
-    public readonly force!: pulumi.Output<boolean | undefined>;
+    declare public readonly force: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Name of the scope.
      */
-    public readonly scope!: pulumi.Output<string>;
+    declare public readonly scope: pulumi.Output<string>;
 
     /**
      * Create a SecretScope resource with the given unique name, arguments, and options.
@@ -96,22 +96,22 @@ export class SecretScope extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretScopeState | undefined;
-            resourceInputs["force"] = state ? state.force : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["scope"] = state ? state.scope : undefined;
+            resourceInputs["force"] = state?.force;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["scope"] = state?.scope;
         } else {
             const args = argsOrState as SecretScopeArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            if ((!args || args.scope === undefined) && !opts.urn) {
+            if (args?.scope === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
-            resourceInputs["force"] = args ? args.force : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["scope"] = args ? args.scope : undefined;
+            resourceInputs["force"] = args?.force;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["scope"] = args?.scope;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretScope.__pulumiType, name, resourceInputs, opts);

@@ -87,27 +87,27 @@ export class Namespace extends pulumi.CustomResource {
      * Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      */
-    public readonly customMetadata!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly customMetadata: pulumi.Output<{[key: string]: string}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Vault server's internal ID of the namespace.
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * The path of the namespace. Must not have a trailing `/`.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
      * The path is relative to the provider's `namespace` argument.
      */
-    public readonly pathFq!: pulumi.Output<string>;
+    declare public readonly pathFq: pulumi.Output<string>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -122,20 +122,20 @@ export class Namespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
-            resourceInputs["customMetadata"] = state ? state.customMetadata : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["pathFq"] = state ? state.pathFq : undefined;
+            resourceInputs["customMetadata"] = state?.customMetadata;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["pathFq"] = state?.pathFq;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["customMetadata"] = args ? args.customMetadata : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["pathFq"] = args ? args.pathFq : undefined;
+            resourceInputs["customMetadata"] = args?.customMetadata;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["pathFq"] = args?.pathFq;
             resourceInputs["namespaceId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

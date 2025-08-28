@@ -58,63 +58,63 @@ export class ScepAuthBackendRole extends pulumi.CustomResource {
     /**
      * The authentication type to use. This can be either "static-challenge" or "intune".
      */
-    public readonly authType!: pulumi.Output<string>;
+    declare public readonly authType: pulumi.Output<string>;
     /**
      * Path to the mounted SCEP auth backend.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The static challenge to use if authType is "static-challenge", not used for other auth types.
      */
-    public readonly challenge!: pulumi.Output<string | undefined>;
-    public readonly displayName!: pulumi.Output<string>;
+    declare public readonly challenge: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string>;
     /**
      * Name of the role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Period
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
 
     /**
      * Create a ScepAuthBackendRole resource with the given unique name, arguments, and options.
@@ -129,41 +129,41 @@ export class ScepAuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScepAuthBackendRoleState | undefined;
-            resourceInputs["authType"] = state ? state.authType : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["challenge"] = state ? state.challenge : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["authType"] = state?.authType;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["challenge"] = state?.challenge;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
         } else {
             const args = argsOrState as ScepAuthBackendRoleArgs | undefined;
-            if ((!args || args.authType === undefined) && !opts.urn) {
+            if (args?.authType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authType'");
             }
-            resourceInputs["authType"] = args ? args.authType : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["challenge"] = args ? args.challenge : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["authType"] = args?.authType;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["challenge"] = args?.challenge;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ScepAuthBackendRole.__pulumiType, name, resourceInputs, opts);

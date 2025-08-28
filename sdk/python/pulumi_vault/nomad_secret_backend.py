@@ -70,8 +70,7 @@ class NomadSecretBackendArgs:
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-               use when checking the last rotation time.
+        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[_builtins.int] max_token_name_length: Specifies the maximum length to use for the name of the Nomad token
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
@@ -357,8 +356,7 @@ class NomadSecretBackendArgs:
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-        use when checking the last rotation time.
+        Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         """
         return pulumi.get(self, "local")
 
@@ -548,8 +546,7 @@ class _NomadSecretBackendState:
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-               use when checking the last rotation time.
+        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[_builtins.int] max_token_name_length: Specifies the maximum length to use for the name of the Nomad token
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
@@ -849,8 +846,7 @@ class _NomadSecretBackendState:
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-        use when checking the last rotation time.
+        Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         """
         return pulumi.get(self, "local")
 
@@ -1068,8 +1064,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-               use when checking the last rotation time.
+        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[_builtins.int] max_token_name_length: Specifies the maximum length to use for the name of the Nomad token
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
@@ -1269,8 +1264,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
-        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-               use when checking the last rotation time.
+        :param pulumi.Input[_builtins.bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[_builtins.int] max_token_name_length: Specifies the maximum length to use for the name of the Nomad token
                generated with Generate Credential. If omitted, 0 is used and ignored, defaulting to the max value allowed
@@ -1474,8 +1468,7 @@ class NomadSecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-        use when checking the last rotation time.
+        Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         """
         return pulumi.get(self, "local")
 

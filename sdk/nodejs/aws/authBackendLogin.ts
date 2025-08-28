@@ -41,95 +41,95 @@ export class AuthBackendLogin extends pulumi.CustomResource {
     /**
      * The token's accessor.
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * The authentication type used to generate this token.
      */
-    public /*out*/ readonly authType!: pulumi.Output<string>;
+    declare public /*out*/ readonly authType: pulumi.Output<string>;
     /**
      * The unique name of the AWS auth backend. Defaults to
      * 'aws'.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The token returned by Vault.
      */
-    public /*out*/ readonly clientToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly clientToken: pulumi.Output<string>;
     /**
      * The HTTP method used in the signed IAM
      * request.
      */
-    public readonly iamHttpRequestMethod!: pulumi.Output<string | undefined>;
+    declare public readonly iamHttpRequestMethod: pulumi.Output<string | undefined>;
     /**
      * The base64-encoded body of the signed
      * request.
      */
-    public readonly iamRequestBody!: pulumi.Output<string | undefined>;
+    declare public readonly iamRequestBody: pulumi.Output<string | undefined>;
     /**
      * The base64-encoded, JSON serialized
      * representation of the GetCallerIdentity HTTP request headers.
      */
-    public readonly iamRequestHeaders!: pulumi.Output<string | undefined>;
+    declare public readonly iamRequestHeaders: pulumi.Output<string | undefined>;
     /**
      * The base64-encoded HTTP URL used in the signed
      * request.
      */
-    public readonly iamRequestUrl!: pulumi.Output<string | undefined>;
+    declare public readonly iamRequestUrl: pulumi.Output<string | undefined>;
     /**
      * The base64-encoded EC2 instance identity document to
      * authenticate with. Can be retrieved from the EC2 metadata server.
      */
-    public readonly identity!: pulumi.Output<string | undefined>;
+    declare public readonly identity: pulumi.Output<string | undefined>;
     /**
      * The duration in seconds the token will be valid, relative
      * to the time in `leaseStartTime`.
      */
-    public /*out*/ readonly leaseDuration!: pulumi.Output<number>;
-    public /*out*/ readonly leaseStartTime!: pulumi.Output<string>;
+    declare public /*out*/ readonly leaseDuration: pulumi.Output<number>;
+    declare public /*out*/ readonly leaseStartTime: pulumi.Output<string>;
     /**
      * A map of information returned by the Vault server about the
      * authentication used to generate this token.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
+    declare public /*out*/ readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value
      * once a token is issued. EC2 instances can only acquire a single token until
      * the whitelist is tidied again unless they keep track of this nonce.
      */
-    public readonly nonce!: pulumi.Output<string>;
+    declare public readonly nonce: pulumi.Output<string>;
     /**
      * The PKCS#7 signature of the identity document to
      * authenticate with, with all newline characters removed. Can be retrieved from
      * the EC2 metadata server.
      */
-    public readonly pkcs7!: pulumi.Output<string | undefined>;
+    declare public readonly pkcs7: pulumi.Output<string | undefined>;
     /**
      * The Vault policies assigned to this token.
      */
-    public /*out*/ readonly policies!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly policies: pulumi.Output<string[]>;
     /**
      * Set to true if the token can be extended through renewal.
      */
-    public /*out*/ readonly renewable!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly renewable: pulumi.Output<boolean>;
     /**
      * The name of the AWS auth backend role to create tokens
      * against.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * The base64-encoded SHA256 RSA signature of the
      * instance identity document to authenticate with, with all newline characters
      * removed. Can be retrieved from the EC2 metadata server.
      */
-    public readonly signature!: pulumi.Output<string | undefined>;
+    declare public readonly signature: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendLogin resource with the given unique name, arguments, and options.
@@ -144,38 +144,38 @@ export class AuthBackendLogin extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendLoginState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["authType"] = state ? state.authType : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["clientToken"] = state ? state.clientToken : undefined;
-            resourceInputs["iamHttpRequestMethod"] = state ? state.iamHttpRequestMethod : undefined;
-            resourceInputs["iamRequestBody"] = state ? state.iamRequestBody : undefined;
-            resourceInputs["iamRequestHeaders"] = state ? state.iamRequestHeaders : undefined;
-            resourceInputs["iamRequestUrl"] = state ? state.iamRequestUrl : undefined;
-            resourceInputs["identity"] = state ? state.identity : undefined;
-            resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
-            resourceInputs["leaseStartTime"] = state ? state.leaseStartTime : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["nonce"] = state ? state.nonce : undefined;
-            resourceInputs["pkcs7"] = state ? state.pkcs7 : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["renewable"] = state ? state.renewable : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["signature"] = state ? state.signature : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["authType"] = state?.authType;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["clientToken"] = state?.clientToken;
+            resourceInputs["iamHttpRequestMethod"] = state?.iamHttpRequestMethod;
+            resourceInputs["iamRequestBody"] = state?.iamRequestBody;
+            resourceInputs["iamRequestHeaders"] = state?.iamRequestHeaders;
+            resourceInputs["iamRequestUrl"] = state?.iamRequestUrl;
+            resourceInputs["identity"] = state?.identity;
+            resourceInputs["leaseDuration"] = state?.leaseDuration;
+            resourceInputs["leaseStartTime"] = state?.leaseStartTime;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["nonce"] = state?.nonce;
+            resourceInputs["pkcs7"] = state?.pkcs7;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["renewable"] = state?.renewable;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["signature"] = state?.signature;
         } else {
             const args = argsOrState as AuthBackendLoginArgs | undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["iamHttpRequestMethod"] = args ? args.iamHttpRequestMethod : undefined;
-            resourceInputs["iamRequestBody"] = args ? args.iamRequestBody : undefined;
-            resourceInputs["iamRequestHeaders"] = args ? args.iamRequestHeaders : undefined;
-            resourceInputs["iamRequestUrl"] = args ? args.iamRequestUrl : undefined;
-            resourceInputs["identity"] = args ? args.identity : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["nonce"] = args ? args.nonce : undefined;
-            resourceInputs["pkcs7"] = args ? args.pkcs7 : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["signature"] = args ? args.signature : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["iamHttpRequestMethod"] = args?.iamHttpRequestMethod;
+            resourceInputs["iamRequestBody"] = args?.iamRequestBody;
+            resourceInputs["iamRequestHeaders"] = args?.iamRequestHeaders;
+            resourceInputs["iamRequestUrl"] = args?.iamRequestUrl;
+            resourceInputs["identity"] = args?.identity;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["nonce"] = args?.nonce;
+            resourceInputs["pkcs7"] = args?.pkcs7;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["signature"] = args?.signature;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["authType"] = undefined /*out*/;
             resourceInputs["clientToken"] = undefined /*out*/;

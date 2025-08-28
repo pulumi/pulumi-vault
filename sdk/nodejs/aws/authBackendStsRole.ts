@@ -58,28 +58,28 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
     /**
      * The AWS account ID to configure the STS role for.
      */
-    public readonly accountId!: pulumi.Output<string>;
+    declare public readonly accountId: pulumi.Output<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
      */
-    public readonly externalId!: pulumi.Output<string | undefined>;
+    declare public readonly externalId: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.
      */
-    public readonly stsRole!: pulumi.Output<string>;
+    declare public readonly stsRole: pulumi.Output<string>;
 
     /**
      * Create a AuthBackendStsRole resource with the given unique name, arguments, and options.
@@ -94,24 +94,24 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendStsRoleState | undefined;
-            resourceInputs["accountId"] = state ? state.accountId : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["externalId"] = state ? state.externalId : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["stsRole"] = state ? state.stsRole : undefined;
+            resourceInputs["accountId"] = state?.accountId;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["externalId"] = state?.externalId;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["stsRole"] = state?.stsRole;
         } else {
             const args = argsOrState as AuthBackendStsRoleArgs | undefined;
-            if ((!args || args.accountId === undefined) && !opts.urn) {
+            if (args?.accountId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accountId'");
             }
-            if ((!args || args.stsRole === undefined) && !opts.urn) {
+            if (args?.stsRole === undefined && !opts.urn) {
                 throw new Error("Missing required property 'stsRole'");
             }
-            resourceInputs["accountId"] = args ? args.accountId : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["externalId"] = args ? args.externalId : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["stsRole"] = args ? args.stsRole : undefined;
+            resourceInputs["accountId"] = args?.accountId;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["externalId"] = args?.externalId;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["stsRole"] = args?.stsRole;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendStsRole.__pulumiType, name, resourceInputs, opts);

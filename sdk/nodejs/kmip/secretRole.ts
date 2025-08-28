@@ -80,88 +80,88 @@ export class SecretRole extends pulumi.CustomResource {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Grant permission to use the KMIP Activate operation.
      */
-    public readonly operationActivate!: pulumi.Output<boolean>;
+    declare public readonly operationActivate: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Add Attribute operation.
      */
-    public readonly operationAddAttribute!: pulumi.Output<boolean>;
+    declare public readonly operationAddAttribute: pulumi.Output<boolean>;
     /**
      * Grant all permissions to this role. May not be specified with any other `operation_*` params.
      */
-    public readonly operationAll!: pulumi.Output<boolean>;
+    declare public readonly operationAll: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Create operation.
      */
-    public readonly operationCreate!: pulumi.Output<boolean>;
+    declare public readonly operationCreate: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Destroy operation.
      */
-    public readonly operationDestroy!: pulumi.Output<boolean>;
+    declare public readonly operationDestroy: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Discover Version operation.
      */
-    public readonly operationDiscoverVersions!: pulumi.Output<boolean>;
+    declare public readonly operationDiscoverVersions: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Get operation.
      */
-    public readonly operationGet!: pulumi.Output<boolean>;
+    declare public readonly operationGet: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Get Atrribute List operation.
      */
-    public readonly operationGetAttributeList!: pulumi.Output<boolean>;
+    declare public readonly operationGetAttributeList: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Get Atrributes operation.
      */
-    public readonly operationGetAttributes!: pulumi.Output<boolean>;
+    declare public readonly operationGetAttributes: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Get Locate operation.
      */
-    public readonly operationLocate!: pulumi.Output<boolean>;
+    declare public readonly operationLocate: pulumi.Output<boolean>;
     /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      */
-    public readonly operationNone!: pulumi.Output<boolean>;
+    declare public readonly operationNone: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Register operation.
      */
-    public readonly operationRegister!: pulumi.Output<boolean>;
+    declare public readonly operationRegister: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Rekey operation.
      */
-    public readonly operationRekey!: pulumi.Output<boolean>;
+    declare public readonly operationRekey: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Revoke operation.
      */
-    public readonly operationRevoke!: pulumi.Output<boolean>;
+    declare public readonly operationRevoke: pulumi.Output<boolean>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Name of the role.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * Name of the scope.
      */
-    public readonly scope!: pulumi.Output<string>;
+    declare public readonly scope: pulumi.Output<string>;
     /**
      * Client certificate key bits, valid values depend on key type.
      */
-    public readonly tlsClientKeyBits!: pulumi.Output<number | undefined>;
+    declare public readonly tlsClientKeyBits: pulumi.Output<number | undefined>;
     /**
      * Client certificate key type, `rsa` or `ec`.
      */
-    public readonly tlsClientKeyType!: pulumi.Output<string | undefined>;
+    declare public readonly tlsClientKeyType: pulumi.Output<string | undefined>;
     /**
      * Client certificate TTL in seconds.
      */
-    public readonly tlsClientTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tlsClientTtl: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretRole resource with the given unique name, arguments, and options.
@@ -176,59 +176,59 @@ export class SecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["operationActivate"] = state ? state.operationActivate : undefined;
-            resourceInputs["operationAddAttribute"] = state ? state.operationAddAttribute : undefined;
-            resourceInputs["operationAll"] = state ? state.operationAll : undefined;
-            resourceInputs["operationCreate"] = state ? state.operationCreate : undefined;
-            resourceInputs["operationDestroy"] = state ? state.operationDestroy : undefined;
-            resourceInputs["operationDiscoverVersions"] = state ? state.operationDiscoverVersions : undefined;
-            resourceInputs["operationGet"] = state ? state.operationGet : undefined;
-            resourceInputs["operationGetAttributeList"] = state ? state.operationGetAttributeList : undefined;
-            resourceInputs["operationGetAttributes"] = state ? state.operationGetAttributes : undefined;
-            resourceInputs["operationLocate"] = state ? state.operationLocate : undefined;
-            resourceInputs["operationNone"] = state ? state.operationNone : undefined;
-            resourceInputs["operationRegister"] = state ? state.operationRegister : undefined;
-            resourceInputs["operationRekey"] = state ? state.operationRekey : undefined;
-            resourceInputs["operationRevoke"] = state ? state.operationRevoke : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["scope"] = state ? state.scope : undefined;
-            resourceInputs["tlsClientKeyBits"] = state ? state.tlsClientKeyBits : undefined;
-            resourceInputs["tlsClientKeyType"] = state ? state.tlsClientKeyType : undefined;
-            resourceInputs["tlsClientTtl"] = state ? state.tlsClientTtl : undefined;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["operationActivate"] = state?.operationActivate;
+            resourceInputs["operationAddAttribute"] = state?.operationAddAttribute;
+            resourceInputs["operationAll"] = state?.operationAll;
+            resourceInputs["operationCreate"] = state?.operationCreate;
+            resourceInputs["operationDestroy"] = state?.operationDestroy;
+            resourceInputs["operationDiscoverVersions"] = state?.operationDiscoverVersions;
+            resourceInputs["operationGet"] = state?.operationGet;
+            resourceInputs["operationGetAttributeList"] = state?.operationGetAttributeList;
+            resourceInputs["operationGetAttributes"] = state?.operationGetAttributes;
+            resourceInputs["operationLocate"] = state?.operationLocate;
+            resourceInputs["operationNone"] = state?.operationNone;
+            resourceInputs["operationRegister"] = state?.operationRegister;
+            resourceInputs["operationRekey"] = state?.operationRekey;
+            resourceInputs["operationRevoke"] = state?.operationRevoke;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["scope"] = state?.scope;
+            resourceInputs["tlsClientKeyBits"] = state?.tlsClientKeyBits;
+            resourceInputs["tlsClientKeyType"] = state?.tlsClientKeyType;
+            resourceInputs["tlsClientTtl"] = state?.tlsClientTtl;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            if ((!args || args.scope === undefined) && !opts.urn) {
+            if (args?.scope === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["operationActivate"] = args ? args.operationActivate : undefined;
-            resourceInputs["operationAddAttribute"] = args ? args.operationAddAttribute : undefined;
-            resourceInputs["operationAll"] = args ? args.operationAll : undefined;
-            resourceInputs["operationCreate"] = args ? args.operationCreate : undefined;
-            resourceInputs["operationDestroy"] = args ? args.operationDestroy : undefined;
-            resourceInputs["operationDiscoverVersions"] = args ? args.operationDiscoverVersions : undefined;
-            resourceInputs["operationGet"] = args ? args.operationGet : undefined;
-            resourceInputs["operationGetAttributeList"] = args ? args.operationGetAttributeList : undefined;
-            resourceInputs["operationGetAttributes"] = args ? args.operationGetAttributes : undefined;
-            resourceInputs["operationLocate"] = args ? args.operationLocate : undefined;
-            resourceInputs["operationNone"] = args ? args.operationNone : undefined;
-            resourceInputs["operationRegister"] = args ? args.operationRegister : undefined;
-            resourceInputs["operationRekey"] = args ? args.operationRekey : undefined;
-            resourceInputs["operationRevoke"] = args ? args.operationRevoke : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["scope"] = args ? args.scope : undefined;
-            resourceInputs["tlsClientKeyBits"] = args ? args.tlsClientKeyBits : undefined;
-            resourceInputs["tlsClientKeyType"] = args ? args.tlsClientKeyType : undefined;
-            resourceInputs["tlsClientTtl"] = args ? args.tlsClientTtl : undefined;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["operationActivate"] = args?.operationActivate;
+            resourceInputs["operationAddAttribute"] = args?.operationAddAttribute;
+            resourceInputs["operationAll"] = args?.operationAll;
+            resourceInputs["operationCreate"] = args?.operationCreate;
+            resourceInputs["operationDestroy"] = args?.operationDestroy;
+            resourceInputs["operationDiscoverVersions"] = args?.operationDiscoverVersions;
+            resourceInputs["operationGet"] = args?.operationGet;
+            resourceInputs["operationGetAttributeList"] = args?.operationGetAttributeList;
+            resourceInputs["operationGetAttributes"] = args?.operationGetAttributes;
+            resourceInputs["operationLocate"] = args?.operationLocate;
+            resourceInputs["operationNone"] = args?.operationNone;
+            resourceInputs["operationRegister"] = args?.operationRegister;
+            resourceInputs["operationRekey"] = args?.operationRekey;
+            resourceInputs["operationRevoke"] = args?.operationRevoke;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["scope"] = args?.scope;
+            resourceInputs["tlsClientKeyBits"] = args?.tlsClientKeyBits;
+            resourceInputs["tlsClientKeyType"] = args?.tlsClientKeyType;
+            resourceInputs["tlsClientTtl"] = args?.tlsClientTtl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretRole.__pulumiType, name, resourceInputs, opts);

@@ -66,15 +66,15 @@ export class PluginPinnedVersion extends pulumi.CustomResource {
     /**
      * Name of the plugin.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Semantic version of the plugin to pin.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
 
     /**
      * Create a PluginPinnedVersion resource with the given unique name, arguments, and options.
@@ -89,20 +89,20 @@ export class PluginPinnedVersion extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginPinnedVersionState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as PluginPinnedVersionArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["version"] = args?.version;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PluginPinnedVersion.__pulumiType, name, resourceInputs, opts);

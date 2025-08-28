@@ -75,76 +75,76 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      */
-    public readonly boundAttributes!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly boundAttributes: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The type of matching assertion to perform on
      * `boundAttributesType`.
      */
-    public readonly boundAttributesType!: pulumi.Output<string>;
+    declare public readonly boundAttributesType: pulumi.Output<string>;
     /**
      * List of subjects being asserted for SAML authentication.
      */
-    public readonly boundSubjects!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundSubjects: pulumi.Output<string[] | undefined>;
     /**
      * The type of matching assertion to perform on `boundSubjects`.
      */
-    public readonly boundSubjectsType!: pulumi.Output<string>;
+    declare public readonly boundSubjectsType: pulumi.Output<string>;
     /**
      * The attribute to use to identify the set of groups to which the
      * user belongs.
      */
-    public readonly groupsAttribute!: pulumi.Output<string | undefined>;
+    declare public readonly groupsAttribute: pulumi.Output<string | undefined>;
     /**
      * Unique name of the role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path where the auth backend is mounted.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Period
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -159,45 +159,45 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            resourceInputs["boundAttributes"] = state ? state.boundAttributes : undefined;
-            resourceInputs["boundAttributesType"] = state ? state.boundAttributesType : undefined;
-            resourceInputs["boundSubjects"] = state ? state.boundSubjects : undefined;
-            resourceInputs["boundSubjectsType"] = state ? state.boundSubjectsType : undefined;
-            resourceInputs["groupsAttribute"] = state ? state.groupsAttribute : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["boundAttributes"] = state?.boundAttributes;
+            resourceInputs["boundAttributesType"] = state?.boundAttributesType;
+            resourceInputs["boundSubjects"] = state?.boundSubjects;
+            resourceInputs["boundSubjectsType"] = state?.boundSubjectsType;
+            resourceInputs["groupsAttribute"] = state?.groupsAttribute;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["boundAttributes"] = args ? args.boundAttributes : undefined;
-            resourceInputs["boundAttributesType"] = args ? args.boundAttributesType : undefined;
-            resourceInputs["boundSubjects"] = args ? args.boundSubjects : undefined;
-            resourceInputs["boundSubjectsType"] = args ? args.boundSubjectsType : undefined;
-            resourceInputs["groupsAttribute"] = args ? args.groupsAttribute : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["boundAttributes"] = args?.boundAttributes;
+            resourceInputs["boundAttributesType"] = args?.boundAttributesType;
+            resourceInputs["boundSubjects"] = args?.boundSubjects;
+            resourceInputs["boundSubjectsType"] = args?.boundSubjectsType;
+            resourceInputs["groupsAttribute"] = args?.groupsAttribute;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);

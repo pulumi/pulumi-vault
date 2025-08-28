@@ -55,8 +55,7 @@ import (
 type BackendConfigAutoTidy struct {
 	pulumi.CustomResourceState
 
-	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-	// time after being marked revoked or deactivated.
+	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 	AcmeAccountSafetyBuffer pulumi.StringOutput `pulumi:"acmeAccountSafetyBuffer"`
 	// The path to the PKI secret backend to
 	// read the configuration from, with no leading or trailing `/`s.
@@ -161,8 +160,7 @@ func GetBackendConfigAutoTidy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackendConfigAutoTidy resources.
 type backendConfigAutoTidyState struct {
-	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-	// time after being marked revoked or deactivated.
+	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 	AcmeAccountSafetyBuffer *string `pulumi:"acmeAccountSafetyBuffer"`
 	// The path to the PKI secret backend to
 	// read the configuration from, with no leading or trailing `/`s.
@@ -232,8 +230,7 @@ type backendConfigAutoTidyState struct {
 }
 
 type BackendConfigAutoTidyState struct {
-	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-	// time after being marked revoked or deactivated.
+	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 	AcmeAccountSafetyBuffer pulumi.StringPtrInput
 	// The path to the PKI secret backend to
 	// read the configuration from, with no leading or trailing `/`s.
@@ -307,8 +304,7 @@ func (BackendConfigAutoTidyState) ElementType() reflect.Type {
 }
 
 type backendConfigAutoTidyArgs struct {
-	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-	// time after being marked revoked or deactivated.
+	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 	AcmeAccountSafetyBuffer *string `pulumi:"acmeAccountSafetyBuffer"`
 	// The path to the PKI secret backend to
 	// read the configuration from, with no leading or trailing `/`s.
@@ -379,8 +375,7 @@ type backendConfigAutoTidyArgs struct {
 
 // The set of arguments for constructing a BackendConfigAutoTidy resource.
 type BackendConfigAutoTidyArgs struct {
-	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-	// time after being marked revoked or deactivated.
+	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 	AcmeAccountSafetyBuffer pulumi.StringPtrInput
 	// The path to the PKI secret backend to
 	// read the configuration from, with no leading or trailing `/`s.
@@ -536,8 +531,7 @@ func (o BackendConfigAutoTidyOutput) ToBackendConfigAutoTidyOutputWithContext(ct
 	return o
 }
 
-// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-// time after being marked revoked or deactivated.
+// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 func (o BackendConfigAutoTidyOutput) AcmeAccountSafetyBuffer() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackendConfigAutoTidy) pulumi.StringOutput { return v.AcmeAccountSafetyBuffer }).(pulumi.StringOutput)
 }

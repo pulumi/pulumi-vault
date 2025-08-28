@@ -59,99 +59,99 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
      * Specifies the description of the mount.
      * This overrides the current stored value, if any.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The organization configured users must be part of.
      */
-    public readonly organization!: pulumi.Output<string>;
+    declare public readonly organization: pulumi.Output<string>;
     /**
      * The ID of the organization users must be part of.
      * Vault will attempt to fetch and set this value if it is not provided. (Vault 1.10+)
      */
-    public readonly organizationId!: pulumi.Output<number>;
+    declare public readonly organizationId: pulumi.Output<number>;
     /**
      * Path where the auth backend is mounted. Defaults to `auth/github`
      * if not specified.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * (Optional) List of CIDR blocks; if set, specifies blocks of IP
      * addresses which can authenticate successfully, and ties the resulting token to these blocks
      * as well.
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * (Optional) If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
      * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
      * `tokenMaxTtl` would otherwise allow a renewal.
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * (Optional) The maximum lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * (Optional) If set, the default policy will not be set on
      * generated tokens; otherwise it will be added to the policies set in token_policies.
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * (Optional) The [maximum number](https://www.vaultproject.io/api-docs/github#token_num_uses)
      * of times a generated token may be used (within its lifetime); 0 means unlimited.
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * (Optional) If set, indicates that the
      * token generated using this role should never expire. The token should be renewed within the
      * duration specified by this value. At each renewal, the token's TTL will be set to the
      * value of this field. Specified in seconds.
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * (Optional) List of policies to encode onto generated tokens. Depending
      * on the auth method, this list may be supplemented by user/group/other values.
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * (Optional) The incremental lifetime for generated tokens in number of seconds.
      * Its current value will be referenced at renewal time.
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    public readonly tune!: pulumi.Output<outputs.github.AuthBackendTune>;
+    declare public readonly tune: pulumi.Output<outputs.github.AuthBackendTune>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -166,46 +166,46 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["organization"] = state ? state.organization : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
-            resourceInputs["tune"] = state ? state.tune : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["baseUrl"] = state?.baseUrl;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["organization"] = state?.organization;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
+            resourceInputs["tune"] = state?.tune;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            if ((!args || args.organization === undefined) && !opts.urn) {
+            if (args?.organization === undefined && !opts.urn) {
                 throw new Error("Missing required property 'organization'");
             }
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["organization"] = args ? args.organization : undefined;
-            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
-            resourceInputs["tune"] = args ? args.tune : undefined;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["organization"] = args?.organization;
+            resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
+            resourceInputs["tune"] = args?.tune;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

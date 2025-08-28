@@ -68,52 +68,52 @@ export class MfaPingid extends pulumi.CustomResource {
     /**
      * `(string)` – Admin URL computed by Vault
      */
-    public /*out*/ readonly adminUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly adminUrl: pulumi.Output<string>;
     /**
      * `(string)` – Authenticator URL computed by Vault
      */
-    public /*out*/ readonly authenticatorUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly authenticatorUrl: pulumi.Output<string>;
     /**
      * `(string)` – IDP URL computed by Vault
      */
-    public /*out*/ readonly idpUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly idpUrl: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
-    public readonly mountAccessor!: pulumi.Output<string>;
+    declare public readonly mountAccessor: pulumi.Output<string>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `(string)` – Namespace ID computed by Vault
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * `(string)` – Org Alias computed by Vault
      */
-    public /*out*/ readonly orgAlias!: pulumi.Output<string>;
+    declare public /*out*/ readonly orgAlias: pulumi.Output<string>;
     /**
      * `(string: <required>)` - A base64-encoded third-party settings file retrieved
      * from PingID's configuration page.
      */
-    public readonly settingsFileBase64!: pulumi.Output<string>;
+    declare public readonly settingsFileBase64: pulumi.Output<string>;
     /**
      * `(string)` – Type of configuration computed by Vault
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      */
-    public /*out*/ readonly useSignature!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly useSignature: pulumi.Output<boolean>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. 
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -123,7 +123,7 @@ export class MfaPingid extends pulumi.CustomResource {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    public readonly usernameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly usernameFormat: pulumi.Output<string | undefined>;
 
     /**
      * Create a MfaPingid resource with the given unique name, arguments, and options.
@@ -138,31 +138,31 @@ export class MfaPingid extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaPingidState | undefined;
-            resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
-            resourceInputs["authenticatorUrl"] = state ? state.authenticatorUrl : undefined;
-            resourceInputs["idpUrl"] = state ? state.idpUrl : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["orgAlias"] = state ? state.orgAlias : undefined;
-            resourceInputs["settingsFileBase64"] = state ? state.settingsFileBase64 : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["useSignature"] = state ? state.useSignature : undefined;
-            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
+            resourceInputs["adminUrl"] = state?.adminUrl;
+            resourceInputs["authenticatorUrl"] = state?.authenticatorUrl;
+            resourceInputs["idpUrl"] = state?.idpUrl;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["orgAlias"] = state?.orgAlias;
+            resourceInputs["settingsFileBase64"] = state?.settingsFileBase64;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["useSignature"] = state?.useSignature;
+            resourceInputs["usernameFormat"] = state?.usernameFormat;
         } else {
             const args = argsOrState as MfaPingidArgs | undefined;
-            if ((!args || args.mountAccessor === undefined) && !opts.urn) {
+            if (args?.mountAccessor === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if ((!args || args.settingsFileBase64 === undefined) && !opts.urn) {
+            if (args?.settingsFileBase64 === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settingsFileBase64'");
             }
-            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["settingsFileBase64"] = args ? args.settingsFileBase64 : undefined;
-            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["mountAccessor"] = args?.mountAccessor;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["settingsFileBase64"] = args?.settingsFileBase64;
+            resourceInputs["usernameFormat"] = args?.usernameFormat;
             resourceInputs["adminUrl"] = undefined /*out*/;
             resourceInputs["authenticatorUrl"] = undefined /*out*/;
             resourceInputs["idpUrl"] = undefined /*out*/;

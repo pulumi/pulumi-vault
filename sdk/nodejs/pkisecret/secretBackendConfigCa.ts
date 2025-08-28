@@ -98,18 +98,18 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The key and certificate PEM bundle
      */
-    public readonly pemBundle!: pulumi.Output<string>;
+    declare public readonly pemBundle: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendConfigCa resource with the given unique name, arguments, and options.
@@ -124,19 +124,19 @@ export class SecretBackendConfigCa extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendConfigCaState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["pemBundle"] = state ? state.pemBundle : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["pemBundle"] = state?.pemBundle;
         } else {
             const args = argsOrState as SecretBackendConfigCaArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.pemBundle === undefined) && !opts.urn) {
+            if (args?.pemBundle === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pemBundle'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
             resourceInputs["pemBundle"] = args?.pemBundle ? pulumi.secret(args.pemBundle) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -77,49 +77,49 @@ export class BackendConfigAcme extends pulumi.CustomResource {
     /**
      * Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
      */
-    public readonly allowRoleExtKeyUsage!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowRoleExtKeyUsage: pulumi.Output<boolean | undefined>;
     /**
      * Specifies which issuers are allowed for use with ACME.
      */
-    public readonly allowedIssuers!: pulumi.Output<string[]>;
+    declare public readonly allowedIssuers: pulumi.Output<string[]>;
     /**
      * Specifies which roles are allowed for use with ACME.
      */
-    public readonly allowedRoles!: pulumi.Output<string[]>;
+    declare public readonly allowedRoles: pulumi.Output<string[]>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
      */
-    public readonly defaultDirectoryPolicy!: pulumi.Output<string>;
+    declare public readonly defaultDirectoryPolicy: pulumi.Output<string>;
     /**
      * DNS resolver to use for domain resolution on this mount.
      * Must be in the format `<host>:<port>`, with both parts mandatory.
      */
-    public readonly dnsResolver!: pulumi.Output<string | undefined>;
+    declare public readonly dnsResolver: pulumi.Output<string | undefined>;
     /**
      * Specifies the policy to use for external account binding behaviour.
      * Allowed values are `not-required`, `new-account-required` or `always-required`.
      */
-    public readonly eabPolicy!: pulumi.Output<string>;
+    declare public readonly eabPolicy: pulumi.Output<string>;
     /**
      * Specifies whether ACME is enabled.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
      */
-    public readonly maxTtl!: pulumi.Output<number>;
+    declare public readonly maxTtl: pulumi.Output<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackendConfigAcme resource with the given unique name, arguments, and options.
@@ -134,34 +134,34 @@ export class BackendConfigAcme extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendConfigAcmeState | undefined;
-            resourceInputs["allowRoleExtKeyUsage"] = state ? state.allowRoleExtKeyUsage : undefined;
-            resourceInputs["allowedIssuers"] = state ? state.allowedIssuers : undefined;
-            resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["defaultDirectoryPolicy"] = state ? state.defaultDirectoryPolicy : undefined;
-            resourceInputs["dnsResolver"] = state ? state.dnsResolver : undefined;
-            resourceInputs["eabPolicy"] = state ? state.eabPolicy : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["allowRoleExtKeyUsage"] = state?.allowRoleExtKeyUsage;
+            resourceInputs["allowedIssuers"] = state?.allowedIssuers;
+            resourceInputs["allowedRoles"] = state?.allowedRoles;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["defaultDirectoryPolicy"] = state?.defaultDirectoryPolicy;
+            resourceInputs["dnsResolver"] = state?.dnsResolver;
+            resourceInputs["eabPolicy"] = state?.eabPolicy;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as BackendConfigAcmeArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            resourceInputs["allowRoleExtKeyUsage"] = args ? args.allowRoleExtKeyUsage : undefined;
-            resourceInputs["allowedIssuers"] = args ? args.allowedIssuers : undefined;
-            resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["defaultDirectoryPolicy"] = args ? args.defaultDirectoryPolicy : undefined;
-            resourceInputs["dnsResolver"] = args ? args.dnsResolver : undefined;
-            resourceInputs["eabPolicy"] = args ? args.eabPolicy : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["allowRoleExtKeyUsage"] = args?.allowRoleExtKeyUsage;
+            resourceInputs["allowedIssuers"] = args?.allowedIssuers;
+            resourceInputs["allowedRoles"] = args?.allowedRoles;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["defaultDirectoryPolicy"] = args?.defaultDirectoryPolicy;
+            resourceInputs["dnsResolver"] = args?.dnsResolver;
+            resourceInputs["eabPolicy"] = args?.eabPolicy;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BackendConfigAcme.__pulumiType, name, resourceInputs, opts);

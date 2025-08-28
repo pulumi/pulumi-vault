@@ -61,140 +61,140 @@ export class SecretBackend extends pulumi.CustomResource {
      * Use anonymous binds when performing LDAP group searches
      * (if true the initial credentials will still be used for the initial connection test).
      */
-    public readonly anonymousGroupSearch!: pulumi.Output<boolean | undefined>;
+    declare public readonly anonymousGroupSearch: pulumi.Output<boolean | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ad`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Distinguished name of object to bind when performing user and group search.
      */
-    public readonly binddn!: pulumi.Output<string>;
+    declare public readonly binddn: pulumi.Output<string>;
     /**
      * Password to use along with binddn when performing user search.
      */
-    public readonly bindpass!: pulumi.Output<string>;
+    declare public readonly bindpass: pulumi.Output<string>;
     /**
      * If set, user and group names assigned to policies within the
      * backend will be case sensitive. Otherwise, names will be normalized to lower case.
      */
-    public readonly caseSensitiveNames!: pulumi.Output<boolean | undefined>;
+    declare public readonly caseSensitiveNames: pulumi.Output<boolean | undefined>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.
      */
-    public readonly certificate!: pulumi.Output<string | undefined>;
+    declare public readonly certificate: pulumi.Output<string | undefined>;
     /**
      * Client certificate to provide to the LDAP server, must be x509 PEM encoded.
      */
-    public readonly clientTlsCert!: pulumi.Output<string | undefined>;
+    declare public readonly clientTlsCert: pulumi.Output<string | undefined>;
     /**
      * Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
      */
-    public readonly clientTlsKey!: pulumi.Output<string | undefined>;
+    declare public readonly clientTlsKey: pulumi.Output<string | undefined>;
     /**
      * Default lease duration for secrets in seconds.
      */
-    public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly defaultLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * Denies an unauthenticated LDAP bind request if the user's password is empty;
      * defaults to true.
      */
-    public readonly denyNullBind!: pulumi.Output<boolean | undefined>;
+    declare public readonly denyNullBind: pulumi.Output<boolean | undefined>;
     /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * Use anonymous bind to discover the bind Distinguished Name of a user.
      */
-    public readonly discoverdn!: pulumi.Output<boolean | undefined>;
+    declare public readonly discoverdn: pulumi.Output<boolean | undefined>;
     /**
      * LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      */
-    public readonly groupattr!: pulumi.Output<string | undefined>;
+    declare public readonly groupattr: pulumi.Output<string | undefined>;
     /**
      * LDAP search base to use for group membership search (eg: ou=Groups,dc=example,dc=org).
      */
-    public readonly groupdn!: pulumi.Output<string | undefined>;
+    declare public readonly groupdn: pulumi.Output<string | undefined>;
     /**
      * Go template for querying group membership of user (optional) The template can access
      * the following context variables: UserDN, Username. Defaults to `(|(memberUid={{.Username}})(member={{.UserDN}})(uniqueMember={{.UserDN}}))`
      */
-    public readonly groupfilter!: pulumi.Output<string | undefined>;
+    declare public readonly groupfilter: pulumi.Output<string | undefined>;
     /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
-    public readonly insecureTls!: pulumi.Output<boolean | undefined>;
+    declare public readonly insecureTls: pulumi.Output<boolean | undefined>;
     /**
      * The number of seconds after a Vault rotation where, if Active Directory
      * shows a later rotation, it should be considered out-of-band
      */
-    public readonly lastRotationTolerance!: pulumi.Output<number>;
+    declare public readonly lastRotationTolerance: pulumi.Output<number>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds.
      */
-    public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly maxLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * In seconds, the maximum password time-to-live.
      */
-    public readonly maxTtl!: pulumi.Output<number>;
+    declare public readonly maxTtl: pulumi.Output<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Name of the password policy to use to generate passwords.
      */
-    public readonly passwordPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.
      */
-    public readonly requestTimeout!: pulumi.Output<number | undefined>;
+    declare public readonly requestTimeout: pulumi.Output<number | undefined>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */
-    public readonly starttls!: pulumi.Output<boolean>;
+    declare public readonly starttls: pulumi.Output<boolean>;
     /**
      * Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
      * `tls12` or `tls13`. Defaults to `tls12`.
      */
-    public readonly tlsMaxVersion!: pulumi.Output<string>;
+    declare public readonly tlsMaxVersion: pulumi.Output<string>;
     /**
      * Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
      * `tls12` or `tls13`. Defaults to `tls12`.
      */
-    public readonly tlsMinVersion!: pulumi.Output<string>;
+    declare public readonly tlsMinVersion: pulumi.Output<string>;
     /**
      * In seconds, the default password time-to-live.
      */
-    public readonly ttl!: pulumi.Output<number>;
+    declare public readonly ttl: pulumi.Output<number>;
     /**
      * Enables userPrincipalDomain login with [username]@UPNDomain.
      */
-    public readonly upndomain!: pulumi.Output<string>;
+    declare public readonly upndomain: pulumi.Output<string>;
     /**
      * LDAP URL to connect to. Multiple URLs can be specified by concatenating
      * them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
     /**
      * In Vault 1.1.1 a fix for handling group CN values of
      * different cases unfortunately introduced a regression that could cause previously defined groups
@@ -203,20 +203,20 @@ export class SecretBackend extends pulumi.CustomResource {
      * compatibility. It is enabled by default if the config is upgraded but disabled by default on
      * new configurations.
      */
-    public readonly usePre111GroupCnBehavior!: pulumi.Output<boolean>;
+    declare public readonly usePre111GroupCnBehavior: pulumi.Output<boolean>;
     /**
      * If true, use the Active Directory tokenGroups constructed attribute of the
      * user to find the group memberships. This will find all security groups including nested ones.
      */
-    public readonly useTokenGroups!: pulumi.Output<boolean | undefined>;
+    declare public readonly useTokenGroups: pulumi.Output<boolean | undefined>;
     /**
      * Attribute used when searching users. Defaults to `cn`.
      */
-    public readonly userattr!: pulumi.Output<string | undefined>;
+    declare public readonly userattr: pulumi.Output<string | undefined>;
     /**
      * LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
      */
-    public readonly userdn!: pulumi.Output<string | undefined>;
+    declare public readonly userdn: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -231,82 +231,82 @@ export class SecretBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            resourceInputs["anonymousGroupSearch"] = state ? state.anonymousGroupSearch : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["binddn"] = state ? state.binddn : undefined;
-            resourceInputs["bindpass"] = state ? state.bindpass : undefined;
-            resourceInputs["caseSensitiveNames"] = state ? state.caseSensitiveNames : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
-            resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["discoverdn"] = state ? state.discoverdn : undefined;
-            resourceInputs["groupattr"] = state ? state.groupattr : undefined;
-            resourceInputs["groupdn"] = state ? state.groupdn : undefined;
-            resourceInputs["groupfilter"] = state ? state.groupfilter : undefined;
-            resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
-            resourceInputs["lastRotationTolerance"] = state ? state.lastRotationTolerance : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
-            resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
-            resourceInputs["starttls"] = state ? state.starttls : undefined;
-            resourceInputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
-            resourceInputs["tlsMinVersion"] = state ? state.tlsMinVersion : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["upndomain"] = state ? state.upndomain : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["usePre111GroupCnBehavior"] = state ? state.usePre111GroupCnBehavior : undefined;
-            resourceInputs["useTokenGroups"] = state ? state.useTokenGroups : undefined;
-            resourceInputs["userattr"] = state ? state.userattr : undefined;
-            resourceInputs["userdn"] = state ? state.userdn : undefined;
+            resourceInputs["anonymousGroupSearch"] = state?.anonymousGroupSearch;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["binddn"] = state?.binddn;
+            resourceInputs["bindpass"] = state?.bindpass;
+            resourceInputs["caseSensitiveNames"] = state?.caseSensitiveNames;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["clientTlsCert"] = state?.clientTlsCert;
+            resourceInputs["clientTlsKey"] = state?.clientTlsKey;
+            resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
+            resourceInputs["denyNullBind"] = state?.denyNullBind;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["discoverdn"] = state?.discoverdn;
+            resourceInputs["groupattr"] = state?.groupattr;
+            resourceInputs["groupdn"] = state?.groupdn;
+            resourceInputs["groupfilter"] = state?.groupfilter;
+            resourceInputs["insecureTls"] = state?.insecureTls;
+            resourceInputs["lastRotationTolerance"] = state?.lastRotationTolerance;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
+            resourceInputs["requestTimeout"] = state?.requestTimeout;
+            resourceInputs["starttls"] = state?.starttls;
+            resourceInputs["tlsMaxVersion"] = state?.tlsMaxVersion;
+            resourceInputs["tlsMinVersion"] = state?.tlsMinVersion;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["upndomain"] = state?.upndomain;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["usePre111GroupCnBehavior"] = state?.usePre111GroupCnBehavior;
+            resourceInputs["useTokenGroups"] = state?.useTokenGroups;
+            resourceInputs["userattr"] = state?.userattr;
+            resourceInputs["userdn"] = state?.userdn;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.binddn === undefined) && !opts.urn) {
+            if (args?.binddn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'binddn'");
             }
-            if ((!args || args.bindpass === undefined) && !opts.urn) {
+            if (args?.bindpass === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindpass'");
             }
-            resourceInputs["anonymousGroupSearch"] = args ? args.anonymousGroupSearch : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["binddn"] = args ? args.binddn : undefined;
+            resourceInputs["anonymousGroupSearch"] = args?.anonymousGroupSearch;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
-            resourceInputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
-            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["caseSensitiveNames"] = args?.caseSensitiveNames;
+            resourceInputs["certificate"] = args?.certificate;
             resourceInputs["clientTlsCert"] = args?.clientTlsCert ? pulumi.secret(args.clientTlsCert) : undefined;
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["discoverdn"] = args ? args.discoverdn : undefined;
-            resourceInputs["groupattr"] = args ? args.groupattr : undefined;
-            resourceInputs["groupdn"] = args ? args.groupdn : undefined;
-            resourceInputs["groupfilter"] = args ? args.groupfilter : undefined;
-            resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
-            resourceInputs["lastRotationTolerance"] = args ? args.lastRotationTolerance : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
-            resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
-            resourceInputs["starttls"] = args ? args.starttls : undefined;
-            resourceInputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
-            resourceInputs["tlsMinVersion"] = args ? args.tlsMinVersion : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["upndomain"] = args ? args.upndomain : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["usePre111GroupCnBehavior"] = args ? args.usePre111GroupCnBehavior : undefined;
-            resourceInputs["useTokenGroups"] = args ? args.useTokenGroups : undefined;
-            resourceInputs["userattr"] = args ? args.userattr : undefined;
-            resourceInputs["userdn"] = args ? args.userdn : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
+            resourceInputs["denyNullBind"] = args?.denyNullBind;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["discoverdn"] = args?.discoverdn;
+            resourceInputs["groupattr"] = args?.groupattr;
+            resourceInputs["groupdn"] = args?.groupdn;
+            resourceInputs["groupfilter"] = args?.groupfilter;
+            resourceInputs["insecureTls"] = args?.insecureTls;
+            resourceInputs["lastRotationTolerance"] = args?.lastRotationTolerance;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
+            resourceInputs["requestTimeout"] = args?.requestTimeout;
+            resourceInputs["starttls"] = args?.starttls;
+            resourceInputs["tlsMaxVersion"] = args?.tlsMaxVersion;
+            resourceInputs["tlsMinVersion"] = args?.tlsMinVersion;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["upndomain"] = args?.upndomain;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["usePre111GroupCnBehavior"] = args?.usePre111GroupCnBehavior;
+            resourceInputs["useTokenGroups"] = args?.useTokenGroups;
+            resourceInputs["userattr"] = args?.userattr;
+            resourceInputs["userdn"] = args?.userdn;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["bindpass", "clientTlsCert", "clientTlsKey"] };

@@ -59,59 +59,59 @@ export class MfaDuo extends pulumi.CustomResource {
     /**
      * API hostname for Duo
      */
-    public readonly apiHostname!: pulumi.Output<string>;
+    declare public readonly apiHostname: pulumi.Output<string>;
     /**
      * Integration key for Duo
      */
-    public readonly integrationKey!: pulumi.Output<string>;
+    declare public readonly integrationKey: pulumi.Output<string>;
     /**
      * Method ID.
      */
-    public /*out*/ readonly methodId!: pulumi.Output<string>;
+    declare public /*out*/ readonly methodId: pulumi.Output<string>;
     /**
      * Mount accessor.
      */
-    public /*out*/ readonly mountAccessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly mountAccessor: pulumi.Output<string>;
     /**
      * Method name.
      */
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * Method's namespace path.
      */
-    public /*out*/ readonly namespacePath!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespacePath: pulumi.Output<string>;
     /**
      * Push information for Duo.
      */
-    public readonly pushInfo!: pulumi.Output<string | undefined>;
+    declare public readonly pushInfo: pulumi.Output<string | undefined>;
     /**
      * Secret key for Duo
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    declare public readonly secretKey: pulumi.Output<string>;
     /**
      * MFA type.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * Require passcode upon MFA validation.
      */
-    public readonly usePasscode!: pulumi.Output<boolean | undefined>;
+    declare public readonly usePasscode: pulumi.Output<boolean | undefined>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    public readonly usernameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly usernameFormat: pulumi.Output<string | undefined>;
     /**
      * Resource UUID.
      */
-    public /*out*/ readonly uuid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uuid: pulumi.Output<string>;
 
     /**
      * Create a MfaDuo resource with the given unique name, arguments, and options.
@@ -126,38 +126,38 @@ export class MfaDuo extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaDuoState | undefined;
-            resourceInputs["apiHostname"] = state ? state.apiHostname : undefined;
-            resourceInputs["integrationKey"] = state ? state.integrationKey : undefined;
-            resourceInputs["methodId"] = state ? state.methodId : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["namespacePath"] = state ? state.namespacePath : undefined;
-            resourceInputs["pushInfo"] = state ? state.pushInfo : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["usePasscode"] = state ? state.usePasscode : undefined;
-            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
-            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["apiHostname"] = state?.apiHostname;
+            resourceInputs["integrationKey"] = state?.integrationKey;
+            resourceInputs["methodId"] = state?.methodId;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["namespacePath"] = state?.namespacePath;
+            resourceInputs["pushInfo"] = state?.pushInfo;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["usePasscode"] = state?.usePasscode;
+            resourceInputs["usernameFormat"] = state?.usernameFormat;
+            resourceInputs["uuid"] = state?.uuid;
         } else {
             const args = argsOrState as MfaDuoArgs | undefined;
-            if ((!args || args.apiHostname === undefined) && !opts.urn) {
+            if (args?.apiHostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'apiHostname'");
             }
-            if ((!args || args.integrationKey === undefined) && !opts.urn) {
+            if (args?.integrationKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'integrationKey'");
             }
-            if ((!args || args.secretKey === undefined) && !opts.urn) {
+            if (args?.secretKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretKey'");
             }
-            resourceInputs["apiHostname"] = args ? args.apiHostname : undefined;
+            resourceInputs["apiHostname"] = args?.apiHostname;
             resourceInputs["integrationKey"] = args?.integrationKey ? pulumi.secret(args.integrationKey) : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["pushInfo"] = args ? args.pushInfo : undefined;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["pushInfo"] = args?.pushInfo;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
-            resourceInputs["usePasscode"] = args ? args.usePasscode : undefined;
-            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["usePasscode"] = args?.usePasscode;
+            resourceInputs["usernameFormat"] = args?.usernameFormat;
             resourceInputs["methodId"] = undefined /*out*/;
             resourceInputs["mountAccessor"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

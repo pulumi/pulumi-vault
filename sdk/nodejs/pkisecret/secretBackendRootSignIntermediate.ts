@@ -56,176 +56,176 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
     /**
      * List of alternative names
      */
-    public readonly altNames!: pulumi.Output<string[] | undefined>;
+    declare public readonly altNames: pulumi.Output<string[] | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * A list of the issuing and intermediate CA certificates in the `format` specified.
      */
-    public /*out*/ readonly caChains!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly caChains: pulumi.Output<string[]>;
     /**
      * The intermediate CA certificate in the `format` specified.
      */
-    public /*out*/ readonly certificate!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificate: pulumi.Output<string>;
     /**
      * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
      * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
      */
-    public /*out*/ readonly certificateBundle!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificateBundle: pulumi.Output<string>;
     /**
      * CN of intermediate to create
      */
-    public readonly commonName!: pulumi.Output<string>;
+    declare public readonly commonName: pulumi.Output<string>;
     /**
      * The country
      */
-    public readonly country!: pulumi.Output<string | undefined>;
+    declare public readonly country: pulumi.Output<string | undefined>;
     /**
      * The CSR
      */
-    public readonly csr!: pulumi.Output<string>;
+    declare public readonly csr: pulumi.Output<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    public readonly excludeCnFromSans!: pulumi.Output<boolean | undefined>;
+    declare public readonly excludeCnFromSans: pulumi.Output<boolean | undefined>;
     /**
      * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly excludedDnsDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly excludedDnsDomains: pulumi.Output<string[] | undefined>;
     /**
      * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly excludedEmailAddresses!: pulumi.Output<string[] | undefined>;
+    declare public readonly excludedEmailAddresses: pulumi.Output<string[] | undefined>;
     /**
      * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly excludedIpRanges!: pulumi.Output<string[] | undefined>;
+    declare public readonly excludedIpRanges: pulumi.Output<string[] | undefined>;
     /**
      * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly excludedUriDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly excludedUriDomains: pulumi.Output<string[] | undefined>;
     /**
      * The format of data
      */
-    public readonly format!: pulumi.Output<string | undefined>;
+    declare public readonly format: pulumi.Output<string | undefined>;
     /**
      * List of alternative IPs
      */
-    public readonly ipSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipSans: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
      * overriding the role's `issuerRef` value.
      */
-    public readonly issuerRef!: pulumi.Output<string | undefined>;
+    declare public readonly issuerRef: pulumi.Output<string | undefined>;
     /**
      * The issuing CA certificate in the `format` specified.
      */
-    public /*out*/ readonly issuingCa!: pulumi.Output<string>;
+    declare public /*out*/ readonly issuingCa: pulumi.Output<string>;
     /**
      * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
      */
-    public readonly keyUsages!: pulumi.Output<string[] | undefined>;
+    declare public readonly keyUsages: pulumi.Output<string[] | undefined>;
     /**
      * The locality
      */
-    public readonly locality!: pulumi.Output<string | undefined>;
+    declare public readonly locality: pulumi.Output<string | undefined>;
     /**
      * The maximum path length to encode in the generated certificate
      */
-    public readonly maxPathLength!: pulumi.Output<number | undefined>;
+    declare public readonly maxPathLength: pulumi.Output<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. 
      * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
      * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    public readonly notAfter!: pulumi.Output<string | undefined>;
+    declare public readonly notAfter: pulumi.Output<string | undefined>;
     /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
-    public readonly notBeforeDuration!: pulumi.Output<string | undefined>;
+    declare public readonly notBeforeDuration: pulumi.Output<string | undefined>;
     /**
      * The organization
      */
-    public readonly organization!: pulumi.Output<string | undefined>;
+    declare public readonly organization: pulumi.Output<string | undefined>;
     /**
      * List of other SANs
      */
-    public readonly otherSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly otherSans: pulumi.Output<string[] | undefined>;
     /**
      * The organization unit
      */
-    public readonly ou!: pulumi.Output<string | undefined>;
+    declare public readonly ou: pulumi.Output<string | undefined>;
     /**
      * List of domains for which certificates are allowed to be issued
      */
-    public readonly permittedDnsDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly permittedDnsDomains: pulumi.Output<string[] | undefined>;
     /**
      * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly permittedEmailAddresses!: pulumi.Output<string[] | undefined>;
+    declare public readonly permittedEmailAddresses: pulumi.Output<string[] | undefined>;
     /**
      * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly permittedIpRanges!: pulumi.Output<string[] | undefined>;
+    declare public readonly permittedIpRanges: pulumi.Output<string[] | undefined>;
     /**
      * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    public readonly permittedUriDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly permittedUriDomains: pulumi.Output<string[] | undefined>;
     /**
      * The postal code
      */
-    public readonly postalCode!: pulumi.Output<string | undefined>;
+    declare public readonly postalCode: pulumi.Output<string | undefined>;
     /**
      * The province
      */
-    public readonly province!: pulumi.Output<string | undefined>;
+    declare public readonly province: pulumi.Output<string | undefined>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction.
      */
-    public readonly revoke!: pulumi.Output<boolean | undefined>;
+    declare public readonly revoke: pulumi.Output<boolean | undefined>;
     /**
      * The certificate's serial number, hex formatted.
      */
-    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
+    declare public /*out*/ readonly serialNumber: pulumi.Output<string>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    public readonly signatureBits!: pulumi.Output<number | undefined>;
+    declare public readonly signatureBits: pulumi.Output<number | undefined>;
     /**
      * Value for the Subject Key Identifier field (see https://tools.ietf.org/html/rfc5280#section-4.2.1.2). Specified as a string in hex format.
      */
-    public readonly skid!: pulumi.Output<string | undefined>;
+    declare public readonly skid: pulumi.Output<string | undefined>;
     /**
      * The street address
      */
-    public readonly streetAddress!: pulumi.Output<string | undefined>;
+    declare public readonly streetAddress: pulumi.Output<string | undefined>;
     /**
      * Time to live
      */
-    public readonly ttl!: pulumi.Output<string | undefined>;
+    declare public readonly ttl: pulumi.Output<string | undefined>;
     /**
      * List of alternative URIs
      */
-    public readonly uriSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly uriSans: pulumi.Output<string[] | undefined>;
     /**
      * Preserve CSR values
      */
-    public readonly useCsrValues!: pulumi.Output<boolean | undefined>;
+    declare public readonly useCsrValues: pulumi.Output<boolean | undefined>;
     /**
      * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
-    public readonly usePss!: pulumi.Output<boolean | undefined>;
+    declare public readonly usePss: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SecretBackendRootSignIntermediate resource with the given unique name, arguments, and options.
@@ -240,94 +240,94 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRootSignIntermediateState | undefined;
-            resourceInputs["altNames"] = state ? state.altNames : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["caChains"] = state ? state.caChains : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["certificateBundle"] = state ? state.certificateBundle : undefined;
-            resourceInputs["commonName"] = state ? state.commonName : undefined;
-            resourceInputs["country"] = state ? state.country : undefined;
-            resourceInputs["csr"] = state ? state.csr : undefined;
-            resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
-            resourceInputs["excludedDnsDomains"] = state ? state.excludedDnsDomains : undefined;
-            resourceInputs["excludedEmailAddresses"] = state ? state.excludedEmailAddresses : undefined;
-            resourceInputs["excludedIpRanges"] = state ? state.excludedIpRanges : undefined;
-            resourceInputs["excludedUriDomains"] = state ? state.excludedUriDomains : undefined;
-            resourceInputs["format"] = state ? state.format : undefined;
-            resourceInputs["ipSans"] = state ? state.ipSans : undefined;
-            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
-            resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
-            resourceInputs["keyUsages"] = state ? state.keyUsages : undefined;
-            resourceInputs["locality"] = state ? state.locality : undefined;
-            resourceInputs["maxPathLength"] = state ? state.maxPathLength : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
-            resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
-            resourceInputs["organization"] = state ? state.organization : undefined;
-            resourceInputs["otherSans"] = state ? state.otherSans : undefined;
-            resourceInputs["ou"] = state ? state.ou : undefined;
-            resourceInputs["permittedDnsDomains"] = state ? state.permittedDnsDomains : undefined;
-            resourceInputs["permittedEmailAddresses"] = state ? state.permittedEmailAddresses : undefined;
-            resourceInputs["permittedIpRanges"] = state ? state.permittedIpRanges : undefined;
-            resourceInputs["permittedUriDomains"] = state ? state.permittedUriDomains : undefined;
-            resourceInputs["postalCode"] = state ? state.postalCode : undefined;
-            resourceInputs["province"] = state ? state.province : undefined;
-            resourceInputs["revoke"] = state ? state.revoke : undefined;
-            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
-            resourceInputs["signatureBits"] = state ? state.signatureBits : undefined;
-            resourceInputs["skid"] = state ? state.skid : undefined;
-            resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["uriSans"] = state ? state.uriSans : undefined;
-            resourceInputs["useCsrValues"] = state ? state.useCsrValues : undefined;
-            resourceInputs["usePss"] = state ? state.usePss : undefined;
+            resourceInputs["altNames"] = state?.altNames;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["caChains"] = state?.caChains;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["certificateBundle"] = state?.certificateBundle;
+            resourceInputs["commonName"] = state?.commonName;
+            resourceInputs["country"] = state?.country;
+            resourceInputs["csr"] = state?.csr;
+            resourceInputs["excludeCnFromSans"] = state?.excludeCnFromSans;
+            resourceInputs["excludedDnsDomains"] = state?.excludedDnsDomains;
+            resourceInputs["excludedEmailAddresses"] = state?.excludedEmailAddresses;
+            resourceInputs["excludedIpRanges"] = state?.excludedIpRanges;
+            resourceInputs["excludedUriDomains"] = state?.excludedUriDomains;
+            resourceInputs["format"] = state?.format;
+            resourceInputs["ipSans"] = state?.ipSans;
+            resourceInputs["issuerRef"] = state?.issuerRef;
+            resourceInputs["issuingCa"] = state?.issuingCa;
+            resourceInputs["keyUsages"] = state?.keyUsages;
+            resourceInputs["locality"] = state?.locality;
+            resourceInputs["maxPathLength"] = state?.maxPathLength;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["notAfter"] = state?.notAfter;
+            resourceInputs["notBeforeDuration"] = state?.notBeforeDuration;
+            resourceInputs["organization"] = state?.organization;
+            resourceInputs["otherSans"] = state?.otherSans;
+            resourceInputs["ou"] = state?.ou;
+            resourceInputs["permittedDnsDomains"] = state?.permittedDnsDomains;
+            resourceInputs["permittedEmailAddresses"] = state?.permittedEmailAddresses;
+            resourceInputs["permittedIpRanges"] = state?.permittedIpRanges;
+            resourceInputs["permittedUriDomains"] = state?.permittedUriDomains;
+            resourceInputs["postalCode"] = state?.postalCode;
+            resourceInputs["province"] = state?.province;
+            resourceInputs["revoke"] = state?.revoke;
+            resourceInputs["serialNumber"] = state?.serialNumber;
+            resourceInputs["signatureBits"] = state?.signatureBits;
+            resourceInputs["skid"] = state?.skid;
+            resourceInputs["streetAddress"] = state?.streetAddress;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["uriSans"] = state?.uriSans;
+            resourceInputs["useCsrValues"] = state?.useCsrValues;
+            resourceInputs["usePss"] = state?.usePss;
         } else {
             const args = argsOrState as SecretBackendRootSignIntermediateArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.commonName === undefined) && !opts.urn) {
+            if (args?.commonName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if ((!args || args.csr === undefined) && !opts.urn) {
+            if (args?.csr === undefined && !opts.urn) {
                 throw new Error("Missing required property 'csr'");
             }
-            resourceInputs["altNames"] = args ? args.altNames : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["commonName"] = args ? args.commonName : undefined;
-            resourceInputs["country"] = args ? args.country : undefined;
-            resourceInputs["csr"] = args ? args.csr : undefined;
-            resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
-            resourceInputs["excludedDnsDomains"] = args ? args.excludedDnsDomains : undefined;
-            resourceInputs["excludedEmailAddresses"] = args ? args.excludedEmailAddresses : undefined;
-            resourceInputs["excludedIpRanges"] = args ? args.excludedIpRanges : undefined;
-            resourceInputs["excludedUriDomains"] = args ? args.excludedUriDomains : undefined;
-            resourceInputs["format"] = args ? args.format : undefined;
-            resourceInputs["ipSans"] = args ? args.ipSans : undefined;
-            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
-            resourceInputs["keyUsages"] = args ? args.keyUsages : undefined;
-            resourceInputs["locality"] = args ? args.locality : undefined;
-            resourceInputs["maxPathLength"] = args ? args.maxPathLength : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
-            resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
-            resourceInputs["organization"] = args ? args.organization : undefined;
-            resourceInputs["otherSans"] = args ? args.otherSans : undefined;
-            resourceInputs["ou"] = args ? args.ou : undefined;
-            resourceInputs["permittedDnsDomains"] = args ? args.permittedDnsDomains : undefined;
-            resourceInputs["permittedEmailAddresses"] = args ? args.permittedEmailAddresses : undefined;
-            resourceInputs["permittedIpRanges"] = args ? args.permittedIpRanges : undefined;
-            resourceInputs["permittedUriDomains"] = args ? args.permittedUriDomains : undefined;
-            resourceInputs["postalCode"] = args ? args.postalCode : undefined;
-            resourceInputs["province"] = args ? args.province : undefined;
-            resourceInputs["revoke"] = args ? args.revoke : undefined;
-            resourceInputs["signatureBits"] = args ? args.signatureBits : undefined;
-            resourceInputs["skid"] = args ? args.skid : undefined;
-            resourceInputs["streetAddress"] = args ? args.streetAddress : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["uriSans"] = args ? args.uriSans : undefined;
-            resourceInputs["useCsrValues"] = args ? args.useCsrValues : undefined;
-            resourceInputs["usePss"] = args ? args.usePss : undefined;
+            resourceInputs["altNames"] = args?.altNames;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["commonName"] = args?.commonName;
+            resourceInputs["country"] = args?.country;
+            resourceInputs["csr"] = args?.csr;
+            resourceInputs["excludeCnFromSans"] = args?.excludeCnFromSans;
+            resourceInputs["excludedDnsDomains"] = args?.excludedDnsDomains;
+            resourceInputs["excludedEmailAddresses"] = args?.excludedEmailAddresses;
+            resourceInputs["excludedIpRanges"] = args?.excludedIpRanges;
+            resourceInputs["excludedUriDomains"] = args?.excludedUriDomains;
+            resourceInputs["format"] = args?.format;
+            resourceInputs["ipSans"] = args?.ipSans;
+            resourceInputs["issuerRef"] = args?.issuerRef;
+            resourceInputs["keyUsages"] = args?.keyUsages;
+            resourceInputs["locality"] = args?.locality;
+            resourceInputs["maxPathLength"] = args?.maxPathLength;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["notAfter"] = args?.notAfter;
+            resourceInputs["notBeforeDuration"] = args?.notBeforeDuration;
+            resourceInputs["organization"] = args?.organization;
+            resourceInputs["otherSans"] = args?.otherSans;
+            resourceInputs["ou"] = args?.ou;
+            resourceInputs["permittedDnsDomains"] = args?.permittedDnsDomains;
+            resourceInputs["permittedEmailAddresses"] = args?.permittedEmailAddresses;
+            resourceInputs["permittedIpRanges"] = args?.permittedIpRanges;
+            resourceInputs["permittedUriDomains"] = args?.permittedUriDomains;
+            resourceInputs["postalCode"] = args?.postalCode;
+            resourceInputs["province"] = args?.province;
+            resourceInputs["revoke"] = args?.revoke;
+            resourceInputs["signatureBits"] = args?.signatureBits;
+            resourceInputs["skid"] = args?.skid;
+            resourceInputs["streetAddress"] = args?.streetAddress;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["uriSans"] = args?.uriSans;
+            resourceInputs["useCsrValues"] = args?.useCsrValues;
+            resourceInputs["usePss"] = args?.usePss;
             resourceInputs["caChains"] = undefined /*out*/;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["certificateBundle"] = undefined /*out*/;

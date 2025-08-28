@@ -35,48 +35,48 @@ export class Transformation extends pulumi.CustomResource {
     /**
      * The set of roles allowed to perform this transformation.
      */
-    public readonly allowedRoles!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedRoles: pulumi.Output<string[] | undefined>;
     /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
      */
-    public readonly deletionAllowed!: pulumi.Output<boolean | undefined>;
+    declare public readonly deletionAllowed: pulumi.Output<boolean | undefined>;
     /**
      * The character used to replace data when in masking mode
      */
-    public readonly maskingCharacter!: pulumi.Output<string | undefined>;
+    declare public readonly maskingCharacter: pulumi.Output<string | undefined>;
     /**
      * The name of the transformation.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * The name of the template to use.
      */
-    public readonly template!: pulumi.Output<string | undefined>;
+    declare public readonly template: pulumi.Output<string | undefined>;
     /**
      * Templates configured for transformation.
      */
-    public readonly templates!: pulumi.Output<string[]>;
+    declare public readonly templates: pulumi.Output<string[]>;
     /**
      * The source of where the tweak value comes from. Only valid when in FPE mode.
      */
-    public readonly tweakSource!: pulumi.Output<string | undefined>;
+    declare public readonly tweakSource: pulumi.Output<string | undefined>;
     /**
      * The type of transformation to perform.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a Transformation resource with the given unique name, arguments, and options.
@@ -91,31 +91,31 @@ export class Transformation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TransformationState | undefined;
-            resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
-            resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
-            resourceInputs["maskingCharacter"] = state ? state.maskingCharacter : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["template"] = state ? state.template : undefined;
-            resourceInputs["templates"] = state ? state.templates : undefined;
-            resourceInputs["tweakSource"] = state ? state.tweakSource : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["allowedRoles"] = state?.allowedRoles;
+            resourceInputs["deletionAllowed"] = state?.deletionAllowed;
+            resourceInputs["maskingCharacter"] = state?.maskingCharacter;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["template"] = state?.template;
+            resourceInputs["templates"] = state?.templates;
+            resourceInputs["tweakSource"] = state?.tweakSource;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as TransformationArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
-            resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
-            resourceInputs["maskingCharacter"] = args ? args.maskingCharacter : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["template"] = args ? args.template : undefined;
-            resourceInputs["templates"] = args ? args.templates : undefined;
-            resourceInputs["tweakSource"] = args ? args.tweakSource : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["allowedRoles"] = args?.allowedRoles;
+            resourceInputs["deletionAllowed"] = args?.deletionAllowed;
+            resourceInputs["maskingCharacter"] = args?.maskingCharacter;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["template"] = args?.template;
+            resourceInputs["templates"] = args?.templates;
+            resourceInputs["tweakSource"] = args?.tweakSource;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Transformation.__pulumiType, name, resourceInputs, opts);

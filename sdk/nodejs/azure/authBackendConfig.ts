@@ -83,73 +83,73 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The client id for credentials to query the Azure APIs.
      * Currently read permissions to query compute resources are required.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client secret for credentials to query the
      * Azure APIs.
      */
-    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * The Azure cloud environment. Valid values:
      * AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
-    public readonly environment!: pulumi.Output<string | undefined>;
+    declare public readonly environment: pulumi.Output<string | undefined>;
     /**
      * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenAudience: pulumi.Output<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds.
      */
-    public readonly identityTokenTtl!: pulumi.Output<number>;
+    declare public readonly identityTokenTtl: pulumi.Output<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.
      */
-    public readonly resource!: pulumi.Output<string>;
+    declare public readonly resource: pulumi.Output<string>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * The tenant id for the Azure Active Directory
      * organization.
      */
-    public readonly tenantId!: pulumi.Output<string>;
+    declare public readonly tenantId: pulumi.Output<string>;
 
     /**
      * Create a AuthBackendConfig resource with the given unique name, arguments, and options.
@@ -164,39 +164,39 @@ export class AuthBackendConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["environment"] = state ? state.environment : undefined;
-            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
-            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["resource"] = state ? state.resource : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["environment"] = state?.environment;
+            resourceInputs["identityTokenAudience"] = state?.identityTokenAudience;
+            resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["resource"] = state?.resource;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["tenantId"] = state?.tenantId;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
-            if ((!args || args.resource === undefined) && !opts.urn) {
+            if (args?.resource === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resource'");
             }
-            if ((!args || args.tenantId === undefined) && !opts.urn) {
+            if (args?.tenantId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tenantId'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["backend"] = args?.backend;
             resourceInputs["clientId"] = args?.clientId ? pulumi.secret(args.clientId) : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["environment"] = args ? args.environment : undefined;
-            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
-            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["resource"] = args ? args.resource : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["environment"] = args?.environment;
+            resourceInputs["identityTokenAudience"] = args?.identityTokenAudience;
+            resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["resource"] = args?.resource;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["tenantId"] = args?.tenantId ? pulumi.secret(args.tenantId) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

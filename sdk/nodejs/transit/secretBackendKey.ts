@@ -66,79 +66,79 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
-    public readonly allowPlaintextBackup!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowPlaintextBackup: pulumi.Output<boolean | undefined>;
     /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
-    public readonly autoRotatePeriod!: pulumi.Output<number>;
+    declare public readonly autoRotatePeriod: pulumi.Output<number>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      */
-    public readonly convergentEncryption!: pulumi.Output<boolean | undefined>;
+    declare public readonly convergentEncryption: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if the key is allowed to be deleted.
      */
-    public readonly deletionAllowed!: pulumi.Output<boolean | undefined>;
+    declare public readonly deletionAllowed: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
      */
-    public readonly derived!: pulumi.Output<boolean | undefined>;
+    declare public readonly derived: pulumi.Output<boolean | undefined>;
     /**
      * Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
      */
-    public readonly exportable!: pulumi.Output<boolean | undefined>;
+    declare public readonly exportable: pulumi.Output<boolean | undefined>;
     /**
      * The elliptic curve algorithm to use for hybrid signatures.
      * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
      */
-    public readonly hybridKeyTypeEc!: pulumi.Output<string | undefined>;
+    declare public readonly hybridKeyTypeEc: pulumi.Output<string | undefined>;
     /**
      * The post-quantum algorithm to use for hybrid signatures.
      * Currently, ML-DSA is the only supported key type.
      */
-    public readonly hybridKeyTypePqc!: pulumi.Output<string | undefined>;
+    declare public readonly hybridKeyTypePqc: pulumi.Output<string | undefined>;
     /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
-    public readonly keySize!: pulumi.Output<number | undefined>;
+    declare public readonly keySize: pulumi.Output<number | undefined>;
     /**
      * List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
      * * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
      * * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
      */
-    public /*out*/ readonly keys!: pulumi.Output<{[key: string]: string}[]>;
+    declare public /*out*/ readonly keys: pulumi.Output<{[key: string]: string}[]>;
     /**
      * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
      */
-    public /*out*/ readonly latestVersion!: pulumi.Output<number>;
+    declare public /*out*/ readonly latestVersion: pulumi.Output<number>;
     /**
      * Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
      */
-    public /*out*/ readonly minAvailableVersion!: pulumi.Output<number>;
+    declare public /*out*/ readonly minAvailableVersion: pulumi.Output<number>;
     /**
      * Minimum key version to use for decryption.
      */
-    public readonly minDecryptionVersion!: pulumi.Output<number | undefined>;
+    declare public readonly minDecryptionVersion: pulumi.Output<number | undefined>;
     /**
      * Minimum key version to use for encryption
      */
-    public readonly minEncryptionVersion!: pulumi.Output<number | undefined>;
+    declare public readonly minEncryptionVersion: pulumi.Output<number | undefined>;
     /**
      * The name to identify this key within the backend. Must be unique within the backend.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The parameter set to use for ML-DSA or SLH-DSA. Required for
      * ML-DSA, hybrid, and SLH-DSA keys.
@@ -147,28 +147,28 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
      * `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
      */
-    public readonly parameterSet!: pulumi.Output<string | undefined>;
+    declare public readonly parameterSet: pulumi.Output<string | undefined>;
     /**
      * Whether or not the key supports decryption, based on key type.
      */
-    public /*out*/ readonly supportsDecryption!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly supportsDecryption: pulumi.Output<boolean>;
     /**
      * Whether or not the key supports derivation, based on key type.
      */
-    public /*out*/ readonly supportsDerivation!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly supportsDerivation: pulumi.Output<boolean>;
     /**
      * Whether or not the key supports encryption, based on key type.
      */
-    public /*out*/ readonly supportsEncryption!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly supportsEncryption: pulumi.Output<boolean>;
     /**
      * Whether or not the key supports signing, based on key type.
      */
-    public /*out*/ readonly supportsSigning!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly supportsSigning: pulumi.Output<boolean>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendKey resource with the given unique name, arguments, and options.
@@ -183,50 +183,50 @@ export class SecretBackendKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendKeyState | undefined;
-            resourceInputs["allowPlaintextBackup"] = state ? state.allowPlaintextBackup : undefined;
-            resourceInputs["autoRotatePeriod"] = state ? state.autoRotatePeriod : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["convergentEncryption"] = state ? state.convergentEncryption : undefined;
-            resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
-            resourceInputs["derived"] = state ? state.derived : undefined;
-            resourceInputs["exportable"] = state ? state.exportable : undefined;
-            resourceInputs["hybridKeyTypeEc"] = state ? state.hybridKeyTypeEc : undefined;
-            resourceInputs["hybridKeyTypePqc"] = state ? state.hybridKeyTypePqc : undefined;
-            resourceInputs["keySize"] = state ? state.keySize : undefined;
-            resourceInputs["keys"] = state ? state.keys : undefined;
-            resourceInputs["latestVersion"] = state ? state.latestVersion : undefined;
-            resourceInputs["minAvailableVersion"] = state ? state.minAvailableVersion : undefined;
-            resourceInputs["minDecryptionVersion"] = state ? state.minDecryptionVersion : undefined;
-            resourceInputs["minEncryptionVersion"] = state ? state.minEncryptionVersion : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["parameterSet"] = state ? state.parameterSet : undefined;
-            resourceInputs["supportsDecryption"] = state ? state.supportsDecryption : undefined;
-            resourceInputs["supportsDerivation"] = state ? state.supportsDerivation : undefined;
-            resourceInputs["supportsEncryption"] = state ? state.supportsEncryption : undefined;
-            resourceInputs["supportsSigning"] = state ? state.supportsSigning : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["allowPlaintextBackup"] = state?.allowPlaintextBackup;
+            resourceInputs["autoRotatePeriod"] = state?.autoRotatePeriod;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["convergentEncryption"] = state?.convergentEncryption;
+            resourceInputs["deletionAllowed"] = state?.deletionAllowed;
+            resourceInputs["derived"] = state?.derived;
+            resourceInputs["exportable"] = state?.exportable;
+            resourceInputs["hybridKeyTypeEc"] = state?.hybridKeyTypeEc;
+            resourceInputs["hybridKeyTypePqc"] = state?.hybridKeyTypePqc;
+            resourceInputs["keySize"] = state?.keySize;
+            resourceInputs["keys"] = state?.keys;
+            resourceInputs["latestVersion"] = state?.latestVersion;
+            resourceInputs["minAvailableVersion"] = state?.minAvailableVersion;
+            resourceInputs["minDecryptionVersion"] = state?.minDecryptionVersion;
+            resourceInputs["minEncryptionVersion"] = state?.minEncryptionVersion;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["parameterSet"] = state?.parameterSet;
+            resourceInputs["supportsDecryption"] = state?.supportsDecryption;
+            resourceInputs["supportsDerivation"] = state?.supportsDerivation;
+            resourceInputs["supportsEncryption"] = state?.supportsEncryption;
+            resourceInputs["supportsSigning"] = state?.supportsSigning;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SecretBackendKeyArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;
-            resourceInputs["autoRotatePeriod"] = args ? args.autoRotatePeriod : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["convergentEncryption"] = args ? args.convergentEncryption : undefined;
-            resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
-            resourceInputs["derived"] = args ? args.derived : undefined;
-            resourceInputs["exportable"] = args ? args.exportable : undefined;
-            resourceInputs["hybridKeyTypeEc"] = args ? args.hybridKeyTypeEc : undefined;
-            resourceInputs["hybridKeyTypePqc"] = args ? args.hybridKeyTypePqc : undefined;
-            resourceInputs["keySize"] = args ? args.keySize : undefined;
-            resourceInputs["minDecryptionVersion"] = args ? args.minDecryptionVersion : undefined;
-            resourceInputs["minEncryptionVersion"] = args ? args.minEncryptionVersion : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["parameterSet"] = args ? args.parameterSet : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["allowPlaintextBackup"] = args?.allowPlaintextBackup;
+            resourceInputs["autoRotatePeriod"] = args?.autoRotatePeriod;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["convergentEncryption"] = args?.convergentEncryption;
+            resourceInputs["deletionAllowed"] = args?.deletionAllowed;
+            resourceInputs["derived"] = args?.derived;
+            resourceInputs["exportable"] = args?.exportable;
+            resourceInputs["hybridKeyTypeEc"] = args?.hybridKeyTypeEc;
+            resourceInputs["hybridKeyTypePqc"] = args?.hybridKeyTypePqc;
+            resourceInputs["keySize"] = args?.keySize;
+            resourceInputs["minDecryptionVersion"] = args?.minDecryptionVersion;
+            resourceInputs["minEncryptionVersion"] = args?.minEncryptionVersion;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["parameterSet"] = args?.parameterSet;
+            resourceInputs["type"] = args?.type;
             resourceInputs["keys"] = undefined /*out*/;
             resourceInputs["latestVersion"] = undefined /*out*/;
             resourceInputs["minAvailableVersion"] = undefined /*out*/;

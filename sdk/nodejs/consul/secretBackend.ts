@@ -72,122 +72,122 @@ export class SecretBackend extends pulumi.CustomResource {
     /**
      * Accessor of the mount
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
      */
-    public readonly address!: pulumi.Output<string>;
+    declare public readonly address: pulumi.Output<string>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedManagedKeys: pulumi.Output<string[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedResponseHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacRequestKeys: pulumi.Output<string[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacResponseKeys: pulumi.Output<string[]>;
     /**
      * Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
      */
-    public readonly bootstrap!: pulumi.Output<boolean | undefined>;
+    declare public readonly bootstrap: pulumi.Output<boolean | undefined>;
     /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      */
-    public readonly caCert!: pulumi.Output<string | undefined>;
+    declare public readonly caCert: pulumi.Output<string | undefined>;
     /**
      * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
      * this is set you need to also set client_key.
      */
-    public readonly clientCert!: pulumi.Output<string | undefined>;
+    declare public readonly clientCert: pulumi.Output<string | undefined>;
     /**
      * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
      * you need to also set client_cert.
      */
-    public readonly clientKey!: pulumi.Output<string | undefined>;
+    declare public readonly clientKey: pulumi.Output<string | undefined>;
     /**
      * Default lease duration for secrets in seconds
      */
-    public readonly defaultLeaseTtlSeconds!: pulumi.Output<number | undefined>;
+    declare public readonly defaultLeaseTtlSeconds: pulumi.Output<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
+    declare public readonly delegatedAuthAccessors: pulumi.Output<string[] | undefined>;
     /**
      * A human-friendly description for this backend.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalEntropyAccess: pulumi.Output<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    public readonly forceNoCache!: pulumi.Output<boolean>;
+    declare public readonly forceNoCache: pulumi.Output<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    public readonly listingVisibility!: pulumi.Output<string | undefined>;
+    declare public readonly listingVisibility: pulumi.Output<string | undefined>;
     /**
      * Specifies if the secret backend is local only
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds
      */
-    public readonly maxLeaseTtlSeconds!: pulumi.Output<number | undefined>;
+    declare public readonly maxLeaseTtlSeconds: pulumi.Output<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly options: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly passthroughRequestHeaders: pulumi.Output<string[] | undefined>;
     /**
      * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
      * to `consul`.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    public readonly pluginVersion!: pulumi.Output<string | undefined>;
+    declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
      * Specifies the URL scheme to use. Defaults to `http`.
      */
-    public readonly scheme!: pulumi.Output<string | undefined>;
+    declare public readonly scheme: pulumi.Output<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    public readonly sealWrap!: pulumi.Output<boolean>;
+    declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
      * Specifies the Consul token to use when managing or issuing new tokens.
      */
-    public readonly token!: pulumi.Output<string | undefined>;
+    declare public readonly token: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -202,65 +202,65 @@ export class SecretBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["address"] = state ? state.address : undefined;
-            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
-            resourceInputs["bootstrap"] = state ? state.bootstrap : undefined;
-            resourceInputs["caCert"] = state ? state.caCert : undefined;
-            resourceInputs["clientCert"] = state ? state.clientCert : undefined;
-            resourceInputs["clientKey"] = state ? state.clientKey : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
-            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
-            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
-            resourceInputs["scheme"] = state ? state.scheme : undefined;
-            resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["address"] = state?.address;
+            resourceInputs["allowedManagedKeys"] = state?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = state?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = state?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
+            resourceInputs["bootstrap"] = state?.bootstrap;
+            resourceInputs["caCert"] = state?.caCert;
+            resourceInputs["clientCert"] = state?.clientCert;
+            resourceInputs["clientKey"] = state?.clientKey;
+            resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["externalEntropyAccess"] = state?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = state?.forceNoCache;
+            resourceInputs["identityTokenKey"] = state?.identityTokenKey;
+            resourceInputs["listingVisibility"] = state?.listingVisibility;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["pluginVersion"] = state?.pluginVersion;
+            resourceInputs["scheme"] = state?.scheme;
+            resourceInputs["sealWrap"] = state?.sealWrap;
+            resourceInputs["token"] = state?.token;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.address === undefined) && !opts.urn) {
+            if (args?.address === undefined && !opts.urn) {
                 throw new Error("Missing required property 'address'");
             }
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
-            resourceInputs["bootstrap"] = args ? args.bootstrap : undefined;
-            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["allowedManagedKeys"] = args?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = args?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
+            resourceInputs["bootstrap"] = args?.bootstrap;
+            resourceInputs["caCert"] = args?.caCert;
             resourceInputs["clientCert"] = args?.clientCert ? pulumi.secret(args.clientCert) : undefined;
             resourceInputs["clientKey"] = args?.clientKey ? pulumi.secret(args.clientKey) : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
-            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
-            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
-            resourceInputs["scheme"] = args ? args.scheme : undefined;
-            resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
+            resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["externalEntropyAccess"] = args?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = args?.forceNoCache;
+            resourceInputs["identityTokenKey"] = args?.identityTokenKey;
+            resourceInputs["listingVisibility"] = args?.listingVisibility;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["pluginVersion"] = args?.pluginVersion;
+            resourceInputs["scheme"] = args?.scheme;
+            resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }

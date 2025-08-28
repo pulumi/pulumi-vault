@@ -68,22 +68,22 @@ export class BackendConfigCluster extends pulumi.CustomResource {
     /**
      * Specifies the path to this performance replication cluster's AIA distribution point.
      */
-    public readonly aiaPath!: pulumi.Output<string | undefined>;
+    declare public readonly aiaPath: pulumi.Output<string | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the path to this performance replication cluster's API mount path.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackendConfigCluster resource with the given unique name, arguments, and options.
@@ -98,19 +98,19 @@ export class BackendConfigCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendConfigClusterState | undefined;
-            resourceInputs["aiaPath"] = state ? state.aiaPath : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["aiaPath"] = state?.aiaPath;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
         } else {
             const args = argsOrState as BackendConfigClusterArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["aiaPath"] = args ? args.aiaPath : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["aiaPath"] = args?.aiaPath;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BackendConfigCluster.__pulumiType, name, resourceInputs, opts);
