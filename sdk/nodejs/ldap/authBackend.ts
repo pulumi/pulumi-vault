@@ -66,178 +66,178 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * The accessor for this auth mount.
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * DN of object to bind when performing user search
      */
-    public readonly binddn!: pulumi.Output<string>;
+    declare public readonly binddn: pulumi.Output<string>;
     /**
      * Password to use with `binddn` when performing user search
      */
-    public readonly bindpass!: pulumi.Output<string>;
+    declare public readonly bindpass: pulumi.Output<string>;
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      */
-    public readonly caseSensitiveNames!: pulumi.Output<boolean>;
+    declare public readonly caseSensitiveNames: pulumi.Output<boolean>;
     /**
      * Trusted CA to validate TLS certificate
      */
-    public readonly certificate!: pulumi.Output<string>;
-    public readonly clientTlsCert!: pulumi.Output<string>;
-    public readonly clientTlsKey!: pulumi.Output<string>;
+    declare public readonly certificate: pulumi.Output<string>;
+    declare public readonly clientTlsCert: pulumi.Output<string>;
+    declare public readonly clientTlsKey: pulumi.Output<string>;
     /**
      * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
      */
-    public readonly connectionTimeout!: pulumi.Output<number>;
+    declare public readonly connectionTimeout: pulumi.Output<number>;
     /**
      * Prevents users from bypassing authentication when providing an empty password.
      */
-    public readonly denyNullBind!: pulumi.Output<boolean>;
+    declare public readonly denyNullBind: pulumi.Output<boolean>;
     /**
      * Description for the LDAP auth backend mount
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * Use anonymous bind to discover the bind DN of a user.
      */
-    public readonly discoverdn!: pulumi.Output<boolean>;
+    declare public readonly discoverdn: pulumi.Output<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
-    public readonly groupattr!: pulumi.Output<string>;
+    declare public readonly groupattr: pulumi.Output<string>;
     /**
      * Base DN under which to perform group search
      */
-    public readonly groupdn!: pulumi.Output<string>;
+    declare public readonly groupdn: pulumi.Output<string>;
     /**
      * Go template used to construct group membership query
      */
-    public readonly groupfilter!: pulumi.Output<string>;
+    declare public readonly groupfilter: pulumi.Output<string>;
     /**
      * Control whether or TLS certificates must be validated
      */
-    public readonly insecureTls!: pulumi.Output<boolean>;
+    declare public readonly insecureTls: pulumi.Output<boolean>;
     /**
      * Specifies if the auth method is local only.
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * Sets the max page size for LDAP lookups, by default it's set to -1.
      * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
      */
-    public readonly maxPageSize!: pulumi.Output<number | undefined>;
+    declare public readonly maxPageSize: pulumi.Output<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path to mount the LDAP auth backend under
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * Control use of TLS when conecting to LDAP
      */
-    public readonly starttls!: pulumi.Output<boolean>;
+    declare public readonly starttls: pulumi.Output<boolean>;
     /**
      * Maximum acceptable version of TLS
      */
-    public readonly tlsMaxVersion!: pulumi.Output<string>;
+    declare public readonly tlsMaxVersion: pulumi.Output<string>;
     /**
      * Minimum acceptable version of TLS
      */
-    public readonly tlsMinVersion!: pulumi.Output<string>;
+    declare public readonly tlsMinVersion: pulumi.Output<string>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Period
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
-    public readonly upndomain!: pulumi.Output<string>;
+    declare public readonly upndomain: pulumi.Output<string>;
     /**
      * The URL of the LDAP server
      */
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
     /**
      * Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
      */
-    public readonly useTokenGroups!: pulumi.Output<boolean>;
+    declare public readonly useTokenGroups: pulumi.Output<boolean>;
     /**
      * Attribute on user object matching username passed in
      */
-    public readonly userattr!: pulumi.Output<string>;
+    declare public readonly userattr: pulumi.Output<string>;
     /**
      * Base DN under which to perform user search
      */
-    public readonly userdn!: pulumi.Output<string>;
+    declare public readonly userdn: pulumi.Output<string>;
     /**
      * LDAP user search filter
      */
-    public readonly userfilter!: pulumi.Output<string>;
+    declare public readonly userfilter: pulumi.Output<string>;
     /**
      * Force the auth method to use the username passed by the user as the alias name.
      */
-    public readonly usernameAsAlias!: pulumi.Output<boolean>;
+    declare public readonly usernameAsAlias: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -252,96 +252,96 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["binddn"] = state ? state.binddn : undefined;
-            resourceInputs["bindpass"] = state ? state.bindpass : undefined;
-            resourceInputs["caseSensitiveNames"] = state ? state.caseSensitiveNames : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
-            resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
-            resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
-            resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["discoverdn"] = state ? state.discoverdn : undefined;
-            resourceInputs["groupattr"] = state ? state.groupattr : undefined;
-            resourceInputs["groupdn"] = state ? state.groupdn : undefined;
-            resourceInputs["groupfilter"] = state ? state.groupfilter : undefined;
-            resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["maxPageSize"] = state ? state.maxPageSize : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["starttls"] = state ? state.starttls : undefined;
-            resourceInputs["tlsMaxVersion"] = state ? state.tlsMaxVersion : undefined;
-            resourceInputs["tlsMinVersion"] = state ? state.tlsMinVersion : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
-            resourceInputs["upndomain"] = state ? state.upndomain : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["useTokenGroups"] = state ? state.useTokenGroups : undefined;
-            resourceInputs["userattr"] = state ? state.userattr : undefined;
-            resourceInputs["userdn"] = state ? state.userdn : undefined;
-            resourceInputs["userfilter"] = state ? state.userfilter : undefined;
-            resourceInputs["usernameAsAlias"] = state ? state.usernameAsAlias : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["binddn"] = state?.binddn;
+            resourceInputs["bindpass"] = state?.bindpass;
+            resourceInputs["caseSensitiveNames"] = state?.caseSensitiveNames;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["clientTlsCert"] = state?.clientTlsCert;
+            resourceInputs["clientTlsKey"] = state?.clientTlsKey;
+            resourceInputs["connectionTimeout"] = state?.connectionTimeout;
+            resourceInputs["denyNullBind"] = state?.denyNullBind;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["discoverdn"] = state?.discoverdn;
+            resourceInputs["groupattr"] = state?.groupattr;
+            resourceInputs["groupdn"] = state?.groupdn;
+            resourceInputs["groupfilter"] = state?.groupfilter;
+            resourceInputs["insecureTls"] = state?.insecureTls;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["maxPageSize"] = state?.maxPageSize;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["starttls"] = state?.starttls;
+            resourceInputs["tlsMaxVersion"] = state?.tlsMaxVersion;
+            resourceInputs["tlsMinVersion"] = state?.tlsMinVersion;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
+            resourceInputs["upndomain"] = state?.upndomain;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["useTokenGroups"] = state?.useTokenGroups;
+            resourceInputs["userattr"] = state?.userattr;
+            resourceInputs["userdn"] = state?.userdn;
+            resourceInputs["userfilter"] = state?.userfilter;
+            resourceInputs["usernameAsAlias"] = state?.usernameAsAlias;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["binddn"] = args ? args.binddn : undefined;
+            resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
-            resourceInputs["caseSensitiveNames"] = args ? args.caseSensitiveNames : undefined;
-            resourceInputs["certificate"] = args ? args.certificate : undefined;
-            resourceInputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
+            resourceInputs["caseSensitiveNames"] = args?.caseSensitiveNames;
+            resourceInputs["certificate"] = args?.certificate;
+            resourceInputs["clientTlsCert"] = args?.clientTlsCert;
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
-            resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
-            resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["discoverdn"] = args ? args.discoverdn : undefined;
-            resourceInputs["groupattr"] = args ? args.groupattr : undefined;
-            resourceInputs["groupdn"] = args ? args.groupdn : undefined;
-            resourceInputs["groupfilter"] = args ? args.groupfilter : undefined;
-            resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["maxPageSize"] = args ? args.maxPageSize : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
-            resourceInputs["starttls"] = args ? args.starttls : undefined;
-            resourceInputs["tlsMaxVersion"] = args ? args.tlsMaxVersion : undefined;
-            resourceInputs["tlsMinVersion"] = args ? args.tlsMinVersion : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
-            resourceInputs["upndomain"] = args ? args.upndomain : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["useTokenGroups"] = args ? args.useTokenGroups : undefined;
-            resourceInputs["userattr"] = args ? args.userattr : undefined;
-            resourceInputs["userdn"] = args ? args.userdn : undefined;
-            resourceInputs["userfilter"] = args ? args.userfilter : undefined;
-            resourceInputs["usernameAsAlias"] = args ? args.usernameAsAlias : undefined;
+            resourceInputs["connectionTimeout"] = args?.connectionTimeout;
+            resourceInputs["denyNullBind"] = args?.denyNullBind;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["discoverdn"] = args?.discoverdn;
+            resourceInputs["groupattr"] = args?.groupattr;
+            resourceInputs["groupdn"] = args?.groupdn;
+            resourceInputs["groupfilter"] = args?.groupfilter;
+            resourceInputs["insecureTls"] = args?.insecureTls;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["maxPageSize"] = args?.maxPageSize;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["starttls"] = args?.starttls;
+            resourceInputs["tlsMaxVersion"] = args?.tlsMaxVersion;
+            resourceInputs["tlsMinVersion"] = args?.tlsMinVersion;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
+            resourceInputs["upndomain"] = args?.upndomain;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["useTokenGroups"] = args?.useTokenGroups;
+            resourceInputs["userattr"] = args?.userattr;
+            resourceInputs["userdn"] = args?.userdn;
+            resourceInputs["userfilter"] = args?.userfilter;
+            resourceInputs["usernameAsAlias"] = args?.usernameAsAlias;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

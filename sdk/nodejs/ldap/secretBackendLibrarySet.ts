@@ -73,37 +73,37 @@ export class SecretBackendLibrarySet extends pulumi.CustomResource {
      * accounts must be checked in by the entity or client token that checked them
      * out. Defaults to false.
      */
-    public readonly disableCheckInEnforcement!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableCheckInEnforcement: pulumi.Output<boolean | undefined>;
     /**
      * The maximum password time-to-live in seconds. Defaults
      * to the configuration maxTtl if not provided.
      */
-    public readonly maxTtl!: pulumi.Output<number>;
+    declare public readonly maxTtl: pulumi.Output<number>;
     /**
      * The path where the LDAP secrets backend is mounted.
      */
-    public readonly mount!: pulumi.Output<string | undefined>;
+    declare public readonly mount: pulumi.Output<string | undefined>;
     /**
      * The name to identify this set of service accounts.
      * Must be unique within the backend.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the slice of service accounts mapped to this set.
      */
-    public readonly serviceAccountNames!: pulumi.Output<string[]>;
+    declare public readonly serviceAccountNames: pulumi.Output<string[]>;
     /**
      * The password time-to-live in seconds. Defaults to the configuration
      * ttl if not provided.
      */
-    public readonly ttl!: pulumi.Output<number>;
+    declare public readonly ttl: pulumi.Output<number>;
 
     /**
      * Create a SecretBackendLibrarySet resource with the given unique name, arguments, and options.
@@ -118,25 +118,25 @@ export class SecretBackendLibrarySet extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendLibrarySetState | undefined;
-            resourceInputs["disableCheckInEnforcement"] = state ? state.disableCheckInEnforcement : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["serviceAccountNames"] = state ? state.serviceAccountNames : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["disableCheckInEnforcement"] = state?.disableCheckInEnforcement;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["serviceAccountNames"] = state?.serviceAccountNames;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretBackendLibrarySetArgs | undefined;
-            if ((!args || args.serviceAccountNames === undefined) && !opts.urn) {
+            if (args?.serviceAccountNames === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountNames'");
             }
-            resourceInputs["disableCheckInEnforcement"] = args ? args.disableCheckInEnforcement : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["serviceAccountNames"] = args ? args.serviceAccountNames : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["disableCheckInEnforcement"] = args?.disableCheckInEnforcement;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["serviceAccountNames"] = args?.serviceAccountNames;
+            resourceInputs["ttl"] = args?.ttl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendLibrarySet.__pulumiType, name, resourceInputs, opts);

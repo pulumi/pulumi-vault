@@ -85,43 +85,43 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    public readonly assumeRoleArn!: pulumi.Output<string | undefined>;
+    declare public readonly assumeRoleArn: pulumi.Output<string | undefined>;
     /**
      * Specifies the session name to use when assuming the role.
      * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    public readonly assumeRoleSessionName!: pulumi.Output<string | undefined>;
+    declare public readonly assumeRoleSessionName: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Specifies the external ID to use when assuming the role.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    public readonly externalId!: pulumi.Output<string | undefined>;
+    declare public readonly externalId: pulumi.Output<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * How often Vault should rotate the password of the user entry.
      */
-    public readonly rotationPeriod!: pulumi.Output<number>;
+    declare public readonly rotationPeriod: pulumi.Output<number>;
     /**
      * The username of the existing AWS IAM to manage password rotation for.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendStaticRole resource with the given unique name, arguments, and options.
@@ -136,30 +136,30 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
-            resourceInputs["assumeRoleArn"] = state ? state.assumeRoleArn : undefined;
-            resourceInputs["assumeRoleSessionName"] = state ? state.assumeRoleSessionName : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["externalId"] = state ? state.externalId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["assumeRoleArn"] = state?.assumeRoleArn;
+            resourceInputs["assumeRoleSessionName"] = state?.assumeRoleSessionName;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["externalId"] = state?.externalId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
-            if ((!args || args.rotationPeriod === undefined) && !opts.urn) {
+            if (args?.rotationPeriod === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rotationPeriod'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["assumeRoleArn"] = args ? args.assumeRoleArn : undefined;
-            resourceInputs["assumeRoleSessionName"] = args ? args.assumeRoleSessionName : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["externalId"] = args ? args.externalId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["assumeRoleArn"] = args?.assumeRoleArn;
+            resourceInputs["assumeRoleSessionName"] = args?.assumeRoleSessionName;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["externalId"] = args?.externalId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendStaticRole.__pulumiType, name, resourceInputs, opts);

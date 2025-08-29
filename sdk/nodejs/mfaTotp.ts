@@ -65,44 +65,44 @@ export class MfaTotp extends pulumi.CustomResource {
      * `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
      * Options include `SHA1`, `SHA256` and `SHA512`
      */
-    public readonly algorithm!: pulumi.Output<string | undefined>;
+    declare public readonly algorithm: pulumi.Output<string | undefined>;
     /**
      * `(int)` - The number of digits in the generated TOTP token.
      * This value can either be 6 or 8.
      */
-    public readonly digits!: pulumi.Output<number | undefined>;
+    declare public readonly digits: pulumi.Output<number | undefined>;
     /**
      * `(string: <required>)` - The name of the key's issuing organization.
      */
-    public readonly issuer!: pulumi.Output<string>;
+    declare public readonly issuer: pulumi.Output<string>;
     /**
      * `(int)` - Specifies the size in bytes of the generated key.
      */
-    public readonly keySize!: pulumi.Output<number | undefined>;
+    declare public readonly keySize: pulumi.Output<number | undefined>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      */
-    public readonly period!: pulumi.Output<number | undefined>;
+    declare public readonly period: pulumi.Output<number | undefined>;
     /**
      * `(int)` - The pixel size of the generated square QR code.
      */
-    public readonly qrSize!: pulumi.Output<number | undefined>;
+    declare public readonly qrSize: pulumi.Output<number | undefined>;
     /**
      * `(int)` - The number of delay periods that are allowed when validating a TOTP token.
      * This value can either be 0 or 1.
      */
-    public readonly skew!: pulumi.Output<number | undefined>;
+    declare public readonly skew: pulumi.Output<number | undefined>;
 
     /**
      * Create a MfaTotp resource with the given unique name, arguments, and options.
@@ -117,29 +117,29 @@ export class MfaTotp extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaTotpState | undefined;
-            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["digits"] = state ? state.digits : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["keySize"] = state ? state.keySize : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["period"] = state ? state.period : undefined;
-            resourceInputs["qrSize"] = state ? state.qrSize : undefined;
-            resourceInputs["skew"] = state ? state.skew : undefined;
+            resourceInputs["algorithm"] = state?.algorithm;
+            resourceInputs["digits"] = state?.digits;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["keySize"] = state?.keySize;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["period"] = state?.period;
+            resourceInputs["qrSize"] = state?.qrSize;
+            resourceInputs["skew"] = state?.skew;
         } else {
             const args = argsOrState as MfaTotpArgs | undefined;
-            if ((!args || args.issuer === undefined) && !opts.urn) {
+            if (args?.issuer === undefined && !opts.urn) {
                 throw new Error("Missing required property 'issuer'");
             }
-            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["digits"] = args ? args.digits : undefined;
-            resourceInputs["issuer"] = args ? args.issuer : undefined;
-            resourceInputs["keySize"] = args ? args.keySize : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["period"] = args ? args.period : undefined;
-            resourceInputs["qrSize"] = args ? args.qrSize : undefined;
-            resourceInputs["skew"] = args ? args.skew : undefined;
+            resourceInputs["algorithm"] = args?.algorithm;
+            resourceInputs["digits"] = args?.digits;
+            resourceInputs["issuer"] = args?.issuer;
+            resourceInputs["keySize"] = args?.keySize;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["period"] = args?.period;
+            resourceInputs["qrSize"] = args?.qrSize;
+            resourceInputs["skew"] = args?.skew;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MfaTotp.__pulumiType, name, resourceInputs, opts);

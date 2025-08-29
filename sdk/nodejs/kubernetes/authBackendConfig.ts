@@ -67,46 +67,46 @@ export class AuthBackendConfig extends pulumi.CustomResource {
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    public readonly disableIssValidation!: pulumi.Output<boolean>;
+    declare public readonly disableIssValidation: pulumi.Output<boolean>;
     /**
      * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    public readonly disableLocalCaJwt!: pulumi.Output<boolean>;
+    declare public readonly disableLocalCaJwt: pulumi.Output<boolean>;
     /**
      * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
-    public readonly issuer!: pulumi.Output<string | undefined>;
+    declare public readonly issuer: pulumi.Output<string | undefined>;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    public readonly kubernetesCaCert!: pulumi.Output<string>;
+    declare public readonly kubernetesCaCert: pulumi.Output<string>;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
-    public readonly kubernetesHost!: pulumi.Output<string>;
+    declare public readonly kubernetesHost: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
-    public readonly pemKeys!: pulumi.Output<string[] | undefined>;
+    declare public readonly pemKeys: pulumi.Output<string[] | undefined>;
     /**
      * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
-    public readonly tokenReviewerJwt!: pulumi.Output<string | undefined>;
+    declare public readonly tokenReviewerJwt: pulumi.Output<string | undefined>;
     /**
      * Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
      */
-    public readonly useAnnotationsAsAliasMetadata!: pulumi.Output<boolean>;
+    declare public readonly useAnnotationsAsAliasMetadata: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackendConfig resource with the given unique name, arguments, and options.
@@ -121,31 +121,31 @@ export class AuthBackendConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendConfigState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["disableIssValidation"] = state ? state.disableIssValidation : undefined;
-            resourceInputs["disableLocalCaJwt"] = state ? state.disableLocalCaJwt : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["kubernetesCaCert"] = state ? state.kubernetesCaCert : undefined;
-            resourceInputs["kubernetesHost"] = state ? state.kubernetesHost : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["pemKeys"] = state ? state.pemKeys : undefined;
-            resourceInputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
-            resourceInputs["useAnnotationsAsAliasMetadata"] = state ? state.useAnnotationsAsAliasMetadata : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["disableIssValidation"] = state?.disableIssValidation;
+            resourceInputs["disableLocalCaJwt"] = state?.disableLocalCaJwt;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["kubernetesCaCert"] = state?.kubernetesCaCert;
+            resourceInputs["kubernetesHost"] = state?.kubernetesHost;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["pemKeys"] = state?.pemKeys;
+            resourceInputs["tokenReviewerJwt"] = state?.tokenReviewerJwt;
+            resourceInputs["useAnnotationsAsAliasMetadata"] = state?.useAnnotationsAsAliasMetadata;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
-            if ((!args || args.kubernetesHost === undefined) && !opts.urn) {
+            if (args?.kubernetesHost === undefined && !opts.urn) {
                 throw new Error("Missing required property 'kubernetesHost'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["disableIssValidation"] = args ? args.disableIssValidation : undefined;
-            resourceInputs["disableLocalCaJwt"] = args ? args.disableLocalCaJwt : undefined;
-            resourceInputs["issuer"] = args ? args.issuer : undefined;
-            resourceInputs["kubernetesCaCert"] = args ? args.kubernetesCaCert : undefined;
-            resourceInputs["kubernetesHost"] = args ? args.kubernetesHost : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["pemKeys"] = args ? args.pemKeys : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["disableIssValidation"] = args?.disableIssValidation;
+            resourceInputs["disableLocalCaJwt"] = args?.disableLocalCaJwt;
+            resourceInputs["issuer"] = args?.issuer;
+            resourceInputs["kubernetesCaCert"] = args?.kubernetesCaCert;
+            resourceInputs["kubernetesHost"] = args?.kubernetesHost;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["pemKeys"] = args?.pemKeys;
             resourceInputs["tokenReviewerJwt"] = args?.tokenReviewerJwt ? pulumi.secret(args.tokenReviewerJwt) : undefined;
-            resourceInputs["useAnnotationsAsAliasMetadata"] = args ? args.useAnnotationsAsAliasMetadata : undefined;
+            resourceInputs["useAnnotationsAsAliasMetadata"] = args?.useAnnotationsAsAliasMetadata;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["tokenReviewerJwt"] };

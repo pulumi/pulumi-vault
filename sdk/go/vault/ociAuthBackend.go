@@ -70,8 +70,7 @@ type OciAuthBackend struct {
 	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
 	// The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
 	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
-	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-	// Can only be used with rotation_schedule.
+	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// Extra configuration block. Structure is documented below.
 	//
@@ -140,8 +139,7 @@ type ociAuthBackendState struct {
 	RotationPeriod *int `pulumi:"rotationPeriod"`
 	// The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
 	RotationSchedule *string `pulumi:"rotationSchedule"`
-	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-	// Can only be used with rotation_schedule.
+	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// Extra configuration block. Structure is documented below.
 	//
@@ -171,8 +169,7 @@ type OciAuthBackendState struct {
 	RotationPeriod pulumi.IntPtrInput
 	// The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
 	RotationSchedule pulumi.StringPtrInput
-	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-	// Can only be used with rotation_schedule.
+	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
 	RotationWindow pulumi.IntPtrInput
 	// Extra configuration block. Structure is documented below.
 	//
@@ -204,8 +201,7 @@ type ociAuthBackendArgs struct {
 	RotationPeriod *int `pulumi:"rotationPeriod"`
 	// The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
 	RotationSchedule *string `pulumi:"rotationSchedule"`
-	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-	// Can only be used with rotation_schedule.
+	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// Extra configuration block. Structure is documented below.
 	//
@@ -234,8 +230,7 @@ type OciAuthBackendArgs struct {
 	RotationPeriod pulumi.IntPtrInput
 	// The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
 	RotationSchedule pulumi.StringPtrInput
-	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-	// Can only be used with rotation_schedule.
+	// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
 	RotationWindow pulumi.IntPtrInput
 	// Extra configuration block. Structure is documented below.
 	//
@@ -378,8 +373,7 @@ func (o OciAuthBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OciAuthBackend) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
 }
 
-// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-// Can only be used with rotation_schedule.
+// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
 func (o OciAuthBackendOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *OciAuthBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }

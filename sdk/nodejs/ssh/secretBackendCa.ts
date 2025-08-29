@@ -57,42 +57,42 @@ export class SecretBackendCa extends pulumi.CustomResource {
     /**
      * The path where the SSH secret backend is mounted. Defaults to 'ssh'
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
-    public readonly generateSigningKey!: pulumi.Output<boolean | undefined>;
+    declare public readonly generateSigningKey: pulumi.Output<boolean | undefined>;
     /**
      * Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      */
-    public readonly keyBits!: pulumi.Output<number | undefined>;
+    declare public readonly keyBits: pulumi.Output<number | undefined>;
     /**
      * Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      */
-    public readonly keyType!: pulumi.Output<string | undefined>;
+    declare public readonly keyType: pulumi.Output<string | undefined>;
     /**
      * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
      */
-    public readonly managedKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly managedKeyId: pulumi.Output<string | undefined>;
     /**
      * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      */
-    public readonly managedKeyName!: pulumi.Output<string | undefined>;
+    declare public readonly managedKeyName: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * The public key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    public readonly publicKey!: pulumi.Output<string>;
+    declare public readonly publicKey: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendCa resource with the given unique name, arguments, and options.
@@ -107,26 +107,26 @@ export class SecretBackendCa extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendCaState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["generateSigningKey"] = state ? state.generateSigningKey : undefined;
-            resourceInputs["keyBits"] = state ? state.keyBits : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
-            resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["generateSigningKey"] = state?.generateSigningKey;
+            resourceInputs["keyBits"] = state?.keyBits;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["managedKeyId"] = state?.managedKeyId;
+            resourceInputs["managedKeyName"] = state?.managedKeyName;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["publicKey"] = state?.publicKey;
         } else {
             const args = argsOrState as SecretBackendCaArgs | undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["generateSigningKey"] = args ? args.generateSigningKey : undefined;
-            resourceInputs["keyBits"] = args ? args.keyBits : undefined;
-            resourceInputs["keyType"] = args ? args.keyType : undefined;
-            resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
-            resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["generateSigningKey"] = args?.generateSigningKey;
+            resourceInputs["keyBits"] = args?.keyBits;
+            resourceInputs["keyType"] = args?.keyType;
+            resourceInputs["managedKeyId"] = args?.managedKeyId;
+            resourceInputs["managedKeyName"] = args?.managedKeyName;
+            resourceInputs["namespace"] = args?.namespace;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
-            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["publicKey"] = args?.publicKey;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["privateKey"] };

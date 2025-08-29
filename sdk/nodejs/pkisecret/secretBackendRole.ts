@@ -75,222 +75,222 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Flag to allow any name
      */
-    public readonly allowAnyName!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowAnyName: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow certificates matching the actual domain
      */
-    public readonly allowBareDomains!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowBareDomains: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow names containing glob patterns.
      */
-    public readonly allowGlobDomains!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowGlobDomains: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow IP SANs
      */
-    public readonly allowIpSans!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowIpSans: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow certificates for localhost
      */
-    public readonly allowLocalhost!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowLocalhost: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow certificates matching subdomains
      */
-    public readonly allowSubdomains!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowSubdomains: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow wildcard certificates.
      */
-    public readonly allowWildcardCertificates!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowWildcardCertificates: pulumi.Output<boolean | undefined>;
     /**
      * List of allowed domains for certificates
      */
-    public readonly allowedDomains!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedDomains: pulumi.Output<string[] | undefined>;
     /**
      * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
-    public readonly allowedDomainsTemplate!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowedDomainsTemplate: pulumi.Output<boolean | undefined>;
     /**
      * Defines allowed custom SANs
      */
-    public readonly allowedOtherSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedOtherSans: pulumi.Output<string[] | undefined>;
     /**
      * An array of allowed serial numbers to put in Subject
      */
-    public readonly allowedSerialNumbers!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedSerialNumbers: pulumi.Output<string[] | undefined>;
     /**
      * Defines allowed URI SANs
      */
-    public readonly allowedUriSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedUriSans: pulumi.Output<string[] | undefined>;
     /**
      * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
-    public readonly allowedUriSansTemplate!: pulumi.Output<boolean>;
+    declare public readonly allowedUriSansTemplate: pulumi.Output<boolean>;
     /**
      * Defines allowed User IDs
      */
-    public readonly allowedUserIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedUserIds: pulumi.Output<string[] | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Flag to mark basic constraints valid when issuing non-CA certificates
      */
-    public readonly basicConstraintsValidForNonCa!: pulumi.Output<boolean | undefined>;
+    declare public readonly basicConstraintsValidForNonCa: pulumi.Output<boolean | undefined>;
     /**
      * Flag to specify certificates for client use
      */
-    public readonly clientFlag!: pulumi.Output<boolean | undefined>;
+    declare public readonly clientFlag: pulumi.Output<boolean | undefined>;
     /**
      * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
      */
-    public readonly cnValidations!: pulumi.Output<string[]>;
+    declare public readonly cnValidations: pulumi.Output<string[]>;
     /**
      * Flag to specify certificates for code signing use
      */
-    public readonly codeSigningFlag!: pulumi.Output<boolean | undefined>;
+    declare public readonly codeSigningFlag: pulumi.Output<boolean | undefined>;
     /**
      * The country of generated certificates
      */
-    public readonly countries!: pulumi.Output<string[] | undefined>;
+    declare public readonly countries: pulumi.Output<string[] | undefined>;
     /**
      * Flag to specify certificates for email protection use
      */
-    public readonly emailProtectionFlag!: pulumi.Output<boolean | undefined>;
+    declare public readonly emailProtectionFlag: pulumi.Output<boolean | undefined>;
     /**
      * Flag to allow only valid host names
      */
-    public readonly enforceHostnames!: pulumi.Output<boolean | undefined>;
+    declare public readonly enforceHostnames: pulumi.Output<boolean | undefined>;
     /**
      * Specify the allowed extended key usage OIDs constraint on issued certificates
      */
-    public readonly extKeyUsageOids!: pulumi.Output<string[] | undefined>;
+    declare public readonly extKeyUsageOids: pulumi.Output<string[] | undefined>;
     /**
      * Specify the allowed extended key usage constraint on issued certificates
      */
-    public readonly extKeyUsages!: pulumi.Output<string[] | undefined>;
+    declare public readonly extKeyUsages: pulumi.Output<string[] | undefined>;
     /**
      * Flag to generate leases with certificates
      */
-    public readonly generateLease!: pulumi.Output<boolean | undefined>;
+    declare public readonly generateLease: pulumi.Output<boolean | undefined>;
     /**
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
      * overriding the role's `issuerRef` value.
      */
-    public readonly issuerRef!: pulumi.Output<string>;
+    declare public readonly issuerRef: pulumi.Output<string>;
     /**
      * The number of bits of generated keys
      */
-    public readonly keyBits!: pulumi.Output<number | undefined>;
+    declare public readonly keyBits: pulumi.Output<number | undefined>;
     /**
      * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      */
-    public readonly keyType!: pulumi.Output<string | undefined>;
+    declare public readonly keyType: pulumi.Output<string | undefined>;
     /**
      * Specify the allowed key usage constraint on issued
      * certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
      * To specify no default key usage constraints, set this to an empty list `[]`.
      */
-    public readonly keyUsages!: pulumi.Output<string[]>;
+    declare public readonly keyUsages: pulumi.Output<string[]>;
     /**
      * The locality of generated certificates
      */
-    public readonly localities!: pulumi.Output<string[] | undefined>;
+    declare public readonly localities: pulumi.Output<string[] | undefined>;
     /**
      * The maximum lease TTL, in seconds, for the role.
      */
-    public readonly maxTtl!: pulumi.Output<string>;
+    declare public readonly maxTtl: pulumi.Output<string>;
     /**
      * The name to identify this role within the backend. Must be unique within the backend.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Flag to not store certificates in the storage backend
      */
-    public readonly noStore!: pulumi.Output<boolean | undefined>;
+    declare public readonly noStore: pulumi.Output<boolean | undefined>;
     /**
      * Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
      */
-    public readonly noStoreMetadata!: pulumi.Output<boolean | undefined>;
+    declare public readonly noStoreMetadata: pulumi.Output<boolean | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    public readonly notAfter!: pulumi.Output<string | undefined>;
+    declare public readonly notAfter: pulumi.Output<string | undefined>;
     /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
-    public readonly notBeforeDuration!: pulumi.Output<string>;
+    declare public readonly notBeforeDuration: pulumi.Output<string>;
     /**
      * The organization unit of generated certificates
      */
-    public readonly organizationUnit!: pulumi.Output<string[] | undefined>;
+    declare public readonly organizationUnit: pulumi.Output<string[] | undefined>;
     /**
      * The organization of generated certificates
      */
-    public readonly organizations!: pulumi.Output<string[] | undefined>;
+    declare public readonly organizations: pulumi.Output<string[] | undefined>;
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      */
-    public readonly policyIdentifier!: pulumi.Output<outputs.pkiSecret.SecretBackendRolePolicyIdentifier[] | undefined>;
+    declare public readonly policyIdentifier: pulumi.Output<outputs.pkiSecret.SecretBackendRolePolicyIdentifier[] | undefined>;
     /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
-    public readonly policyIdentifiers!: pulumi.Output<string[] | undefined>;
+    declare public readonly policyIdentifiers: pulumi.Output<string[] | undefined>;
     /**
      * The postal code of generated certificates
      */
-    public readonly postalCodes!: pulumi.Output<string[] | undefined>;
+    declare public readonly postalCodes: pulumi.Output<string[] | undefined>;
     /**
      * The province of generated certificates
      */
-    public readonly provinces!: pulumi.Output<string[] | undefined>;
+    declare public readonly provinces: pulumi.Output<string[] | undefined>;
     /**
      * Flag to force CN usage
      */
-    public readonly requireCn!: pulumi.Output<boolean | undefined>;
+    declare public readonly requireCn: pulumi.Output<boolean | undefined>;
     /**
      * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
      *
      * Example usage:
      */
-    public readonly serialNumberSource!: pulumi.Output<string>;
+    declare public readonly serialNumberSource: pulumi.Output<string>;
     /**
      * Flag to specify certificates for server use
      */
-    public readonly serverFlag!: pulumi.Output<boolean | undefined>;
+    declare public readonly serverFlag: pulumi.Output<boolean | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    public readonly signatureBits!: pulumi.Output<number>;
+    declare public readonly signatureBits: pulumi.Output<number>;
     /**
      * The street address of generated certificates
      */
-    public readonly streetAddresses!: pulumi.Output<string[] | undefined>;
+    declare public readonly streetAddresses: pulumi.Output<string[] | undefined>;
     /**
      * The TTL, in seconds, for any certificate issued against this role.
      */
-    public readonly ttl!: pulumi.Output<string>;
+    declare public readonly ttl: pulumi.Output<string>;
     /**
      * Flag to use the CN in the CSR
      */
-    public readonly useCsrCommonName!: pulumi.Output<boolean | undefined>;
+    declare public readonly useCsrCommonName: pulumi.Output<boolean | undefined>;
     /**
      * Flag to use the SANs in the CSR
      */
-    public readonly useCsrSans!: pulumi.Output<boolean | undefined>;
+    declare public readonly useCsrSans: pulumi.Output<boolean | undefined>;
     /**
      * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
-    public readonly usePss!: pulumi.Output<boolean | undefined>;
+    declare public readonly usePss: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -305,115 +305,115 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            resourceInputs["allowAnyName"] = state ? state.allowAnyName : undefined;
-            resourceInputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
-            resourceInputs["allowGlobDomains"] = state ? state.allowGlobDomains : undefined;
-            resourceInputs["allowIpSans"] = state ? state.allowIpSans : undefined;
-            resourceInputs["allowLocalhost"] = state ? state.allowLocalhost : undefined;
-            resourceInputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
-            resourceInputs["allowWildcardCertificates"] = state ? state.allowWildcardCertificates : undefined;
-            resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
-            resourceInputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
-            resourceInputs["allowedOtherSans"] = state ? state.allowedOtherSans : undefined;
-            resourceInputs["allowedSerialNumbers"] = state ? state.allowedSerialNumbers : undefined;
-            resourceInputs["allowedUriSans"] = state ? state.allowedUriSans : undefined;
-            resourceInputs["allowedUriSansTemplate"] = state ? state.allowedUriSansTemplate : undefined;
-            resourceInputs["allowedUserIds"] = state ? state.allowedUserIds : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["basicConstraintsValidForNonCa"] = state ? state.basicConstraintsValidForNonCa : undefined;
-            resourceInputs["clientFlag"] = state ? state.clientFlag : undefined;
-            resourceInputs["cnValidations"] = state ? state.cnValidations : undefined;
-            resourceInputs["codeSigningFlag"] = state ? state.codeSigningFlag : undefined;
-            resourceInputs["countries"] = state ? state.countries : undefined;
-            resourceInputs["emailProtectionFlag"] = state ? state.emailProtectionFlag : undefined;
-            resourceInputs["enforceHostnames"] = state ? state.enforceHostnames : undefined;
-            resourceInputs["extKeyUsageOids"] = state ? state.extKeyUsageOids : undefined;
-            resourceInputs["extKeyUsages"] = state ? state.extKeyUsages : undefined;
-            resourceInputs["generateLease"] = state ? state.generateLease : undefined;
-            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
-            resourceInputs["keyBits"] = state ? state.keyBits : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["keyUsages"] = state ? state.keyUsages : undefined;
-            resourceInputs["localities"] = state ? state.localities : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["noStore"] = state ? state.noStore : undefined;
-            resourceInputs["noStoreMetadata"] = state ? state.noStoreMetadata : undefined;
-            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
-            resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
-            resourceInputs["organizationUnit"] = state ? state.organizationUnit : undefined;
-            resourceInputs["organizations"] = state ? state.organizations : undefined;
-            resourceInputs["policyIdentifier"] = state ? state.policyIdentifier : undefined;
-            resourceInputs["policyIdentifiers"] = state ? state.policyIdentifiers : undefined;
-            resourceInputs["postalCodes"] = state ? state.postalCodes : undefined;
-            resourceInputs["provinces"] = state ? state.provinces : undefined;
-            resourceInputs["requireCn"] = state ? state.requireCn : undefined;
-            resourceInputs["serialNumberSource"] = state ? state.serialNumberSource : undefined;
-            resourceInputs["serverFlag"] = state ? state.serverFlag : undefined;
-            resourceInputs["signatureBits"] = state ? state.signatureBits : undefined;
-            resourceInputs["streetAddresses"] = state ? state.streetAddresses : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["useCsrCommonName"] = state ? state.useCsrCommonName : undefined;
-            resourceInputs["useCsrSans"] = state ? state.useCsrSans : undefined;
-            resourceInputs["usePss"] = state ? state.usePss : undefined;
+            resourceInputs["allowAnyName"] = state?.allowAnyName;
+            resourceInputs["allowBareDomains"] = state?.allowBareDomains;
+            resourceInputs["allowGlobDomains"] = state?.allowGlobDomains;
+            resourceInputs["allowIpSans"] = state?.allowIpSans;
+            resourceInputs["allowLocalhost"] = state?.allowLocalhost;
+            resourceInputs["allowSubdomains"] = state?.allowSubdomains;
+            resourceInputs["allowWildcardCertificates"] = state?.allowWildcardCertificates;
+            resourceInputs["allowedDomains"] = state?.allowedDomains;
+            resourceInputs["allowedDomainsTemplate"] = state?.allowedDomainsTemplate;
+            resourceInputs["allowedOtherSans"] = state?.allowedOtherSans;
+            resourceInputs["allowedSerialNumbers"] = state?.allowedSerialNumbers;
+            resourceInputs["allowedUriSans"] = state?.allowedUriSans;
+            resourceInputs["allowedUriSansTemplate"] = state?.allowedUriSansTemplate;
+            resourceInputs["allowedUserIds"] = state?.allowedUserIds;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["basicConstraintsValidForNonCa"] = state?.basicConstraintsValidForNonCa;
+            resourceInputs["clientFlag"] = state?.clientFlag;
+            resourceInputs["cnValidations"] = state?.cnValidations;
+            resourceInputs["codeSigningFlag"] = state?.codeSigningFlag;
+            resourceInputs["countries"] = state?.countries;
+            resourceInputs["emailProtectionFlag"] = state?.emailProtectionFlag;
+            resourceInputs["enforceHostnames"] = state?.enforceHostnames;
+            resourceInputs["extKeyUsageOids"] = state?.extKeyUsageOids;
+            resourceInputs["extKeyUsages"] = state?.extKeyUsages;
+            resourceInputs["generateLease"] = state?.generateLease;
+            resourceInputs["issuerRef"] = state?.issuerRef;
+            resourceInputs["keyBits"] = state?.keyBits;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["keyUsages"] = state?.keyUsages;
+            resourceInputs["localities"] = state?.localities;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["noStore"] = state?.noStore;
+            resourceInputs["noStoreMetadata"] = state?.noStoreMetadata;
+            resourceInputs["notAfter"] = state?.notAfter;
+            resourceInputs["notBeforeDuration"] = state?.notBeforeDuration;
+            resourceInputs["organizationUnit"] = state?.organizationUnit;
+            resourceInputs["organizations"] = state?.organizations;
+            resourceInputs["policyIdentifier"] = state?.policyIdentifier;
+            resourceInputs["policyIdentifiers"] = state?.policyIdentifiers;
+            resourceInputs["postalCodes"] = state?.postalCodes;
+            resourceInputs["provinces"] = state?.provinces;
+            resourceInputs["requireCn"] = state?.requireCn;
+            resourceInputs["serialNumberSource"] = state?.serialNumberSource;
+            resourceInputs["serverFlag"] = state?.serverFlag;
+            resourceInputs["signatureBits"] = state?.signatureBits;
+            resourceInputs["streetAddresses"] = state?.streetAddresses;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["useCsrCommonName"] = state?.useCsrCommonName;
+            resourceInputs["useCsrSans"] = state?.useCsrSans;
+            resourceInputs["usePss"] = state?.usePss;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["allowAnyName"] = args ? args.allowAnyName : undefined;
-            resourceInputs["allowBareDomains"] = args ? args.allowBareDomains : undefined;
-            resourceInputs["allowGlobDomains"] = args ? args.allowGlobDomains : undefined;
-            resourceInputs["allowIpSans"] = args ? args.allowIpSans : undefined;
-            resourceInputs["allowLocalhost"] = args ? args.allowLocalhost : undefined;
-            resourceInputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
-            resourceInputs["allowWildcardCertificates"] = args ? args.allowWildcardCertificates : undefined;
-            resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
-            resourceInputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
-            resourceInputs["allowedOtherSans"] = args ? args.allowedOtherSans : undefined;
-            resourceInputs["allowedSerialNumbers"] = args ? args.allowedSerialNumbers : undefined;
-            resourceInputs["allowedUriSans"] = args ? args.allowedUriSans : undefined;
-            resourceInputs["allowedUriSansTemplate"] = args ? args.allowedUriSansTemplate : undefined;
-            resourceInputs["allowedUserIds"] = args ? args.allowedUserIds : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["basicConstraintsValidForNonCa"] = args ? args.basicConstraintsValidForNonCa : undefined;
-            resourceInputs["clientFlag"] = args ? args.clientFlag : undefined;
-            resourceInputs["cnValidations"] = args ? args.cnValidations : undefined;
-            resourceInputs["codeSigningFlag"] = args ? args.codeSigningFlag : undefined;
-            resourceInputs["countries"] = args ? args.countries : undefined;
-            resourceInputs["emailProtectionFlag"] = args ? args.emailProtectionFlag : undefined;
-            resourceInputs["enforceHostnames"] = args ? args.enforceHostnames : undefined;
-            resourceInputs["extKeyUsageOids"] = args ? args.extKeyUsageOids : undefined;
-            resourceInputs["extKeyUsages"] = args ? args.extKeyUsages : undefined;
-            resourceInputs["generateLease"] = args ? args.generateLease : undefined;
-            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
-            resourceInputs["keyBits"] = args ? args.keyBits : undefined;
-            resourceInputs["keyType"] = args ? args.keyType : undefined;
-            resourceInputs["keyUsages"] = args ? args.keyUsages : undefined;
-            resourceInputs["localities"] = args ? args.localities : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["noStore"] = args ? args.noStore : undefined;
-            resourceInputs["noStoreMetadata"] = args ? args.noStoreMetadata : undefined;
-            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
-            resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
-            resourceInputs["organizationUnit"] = args ? args.organizationUnit : undefined;
-            resourceInputs["organizations"] = args ? args.organizations : undefined;
-            resourceInputs["policyIdentifier"] = args ? args.policyIdentifier : undefined;
-            resourceInputs["policyIdentifiers"] = args ? args.policyIdentifiers : undefined;
-            resourceInputs["postalCodes"] = args ? args.postalCodes : undefined;
-            resourceInputs["provinces"] = args ? args.provinces : undefined;
-            resourceInputs["requireCn"] = args ? args.requireCn : undefined;
-            resourceInputs["serialNumberSource"] = args ? args.serialNumberSource : undefined;
-            resourceInputs["serverFlag"] = args ? args.serverFlag : undefined;
-            resourceInputs["signatureBits"] = args ? args.signatureBits : undefined;
-            resourceInputs["streetAddresses"] = args ? args.streetAddresses : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["useCsrCommonName"] = args ? args.useCsrCommonName : undefined;
-            resourceInputs["useCsrSans"] = args ? args.useCsrSans : undefined;
-            resourceInputs["usePss"] = args ? args.usePss : undefined;
+            resourceInputs["allowAnyName"] = args?.allowAnyName;
+            resourceInputs["allowBareDomains"] = args?.allowBareDomains;
+            resourceInputs["allowGlobDomains"] = args?.allowGlobDomains;
+            resourceInputs["allowIpSans"] = args?.allowIpSans;
+            resourceInputs["allowLocalhost"] = args?.allowLocalhost;
+            resourceInputs["allowSubdomains"] = args?.allowSubdomains;
+            resourceInputs["allowWildcardCertificates"] = args?.allowWildcardCertificates;
+            resourceInputs["allowedDomains"] = args?.allowedDomains;
+            resourceInputs["allowedDomainsTemplate"] = args?.allowedDomainsTemplate;
+            resourceInputs["allowedOtherSans"] = args?.allowedOtherSans;
+            resourceInputs["allowedSerialNumbers"] = args?.allowedSerialNumbers;
+            resourceInputs["allowedUriSans"] = args?.allowedUriSans;
+            resourceInputs["allowedUriSansTemplate"] = args?.allowedUriSansTemplate;
+            resourceInputs["allowedUserIds"] = args?.allowedUserIds;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["basicConstraintsValidForNonCa"] = args?.basicConstraintsValidForNonCa;
+            resourceInputs["clientFlag"] = args?.clientFlag;
+            resourceInputs["cnValidations"] = args?.cnValidations;
+            resourceInputs["codeSigningFlag"] = args?.codeSigningFlag;
+            resourceInputs["countries"] = args?.countries;
+            resourceInputs["emailProtectionFlag"] = args?.emailProtectionFlag;
+            resourceInputs["enforceHostnames"] = args?.enforceHostnames;
+            resourceInputs["extKeyUsageOids"] = args?.extKeyUsageOids;
+            resourceInputs["extKeyUsages"] = args?.extKeyUsages;
+            resourceInputs["generateLease"] = args?.generateLease;
+            resourceInputs["issuerRef"] = args?.issuerRef;
+            resourceInputs["keyBits"] = args?.keyBits;
+            resourceInputs["keyType"] = args?.keyType;
+            resourceInputs["keyUsages"] = args?.keyUsages;
+            resourceInputs["localities"] = args?.localities;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["noStore"] = args?.noStore;
+            resourceInputs["noStoreMetadata"] = args?.noStoreMetadata;
+            resourceInputs["notAfter"] = args?.notAfter;
+            resourceInputs["notBeforeDuration"] = args?.notBeforeDuration;
+            resourceInputs["organizationUnit"] = args?.organizationUnit;
+            resourceInputs["organizations"] = args?.organizations;
+            resourceInputs["policyIdentifier"] = args?.policyIdentifier;
+            resourceInputs["policyIdentifiers"] = args?.policyIdentifiers;
+            resourceInputs["postalCodes"] = args?.postalCodes;
+            resourceInputs["provinces"] = args?.provinces;
+            resourceInputs["requireCn"] = args?.requireCn;
+            resourceInputs["serialNumberSource"] = args?.serialNumberSource;
+            resourceInputs["serverFlag"] = args?.serverFlag;
+            resourceInputs["signatureBits"] = args?.signatureBits;
+            resourceInputs["streetAddresses"] = args?.streetAddresses;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["useCsrCommonName"] = args?.useCsrCommonName;
+            resourceInputs["useCsrSans"] = args?.useCsrSans;
+            resourceInputs["usePss"] = args?.usePss;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);

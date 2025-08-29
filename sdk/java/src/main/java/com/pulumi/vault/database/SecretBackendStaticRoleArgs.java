@@ -43,16 +43,14 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
-     * can be done in `credential_config`.
+     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
      * 
      */
     @Import(name="credentialType")
     private @Nullable Output<String> credentialType;
 
     /**
-     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
-     * can be done in `credential_config`.
+     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
      * 
      */
     public Optional<Output<String>> credentialType() {
@@ -300,8 +298,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
-         * can be done in `credential_config`.
+         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
          * 
          * @return builder
          * 
@@ -312,8 +309,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
-         * can be done in `credential_config`.
+         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
          * 
          * @return builder
          * 

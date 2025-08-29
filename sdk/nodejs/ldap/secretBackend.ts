@@ -62,181 +62,181 @@ export class SecretBackend extends pulumi.CustomResource {
     /**
      * Accessor of the mount
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedManagedKeys: pulumi.Output<string[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedResponseHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacRequestKeys: pulumi.Output<string[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacResponseKeys: pulumi.Output<string[]>;
     /**
      * Distinguished name of object to bind when performing user and group search.
      */
-    public readonly binddn!: pulumi.Output<string>;
+    declare public readonly binddn: pulumi.Output<string>;
     /**
      * Password to use along with binddn when performing user search.
      */
-    public readonly bindpass!: pulumi.Output<string>;
+    declare public readonly bindpass: pulumi.Output<string>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.
      */
-    public readonly certificate!: pulumi.Output<string | undefined>;
+    declare public readonly certificate: pulumi.Output<string | undefined>;
     /**
      * Client certificate to provide to the LDAP server, must be x509 PEM encoded.
      */
-    public readonly clientTlsCert!: pulumi.Output<string | undefined>;
+    declare public readonly clientTlsCert: pulumi.Output<string | undefined>;
     /**
      * Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
      */
-    public readonly clientTlsKey!: pulumi.Output<string | undefined>;
+    declare public readonly clientTlsKey: pulumi.Output<string | undefined>;
     /**
      * Timeout, in seconds, when attempting to connect to the LDAP server before trying
      * the next URL in the configuration.
      */
-    public readonly connectionTimeout!: pulumi.Output<number | undefined>;
+    declare public readonly connectionTimeout: pulumi.Output<number | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly defaultLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
+    declare public readonly delegatedAuthAccessors: pulumi.Output<string[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalEntropyAccess: pulumi.Output<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    public readonly forceNoCache!: pulumi.Output<boolean>;
+    declare public readonly forceNoCache: pulumi.Output<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
-    public readonly insecureTls!: pulumi.Output<boolean | undefined>;
+    declare public readonly insecureTls: pulumi.Output<boolean | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    public readonly listingVisibility!: pulumi.Output<string | undefined>;
+    declare public readonly listingVisibility: pulumi.Output<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly maxLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly options: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly passthroughRequestHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Name of the password policy to use to generate passwords.
      */
-    public readonly passwordPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ldap`.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    public readonly pluginVersion!: pulumi.Output<string | undefined>;
+    declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.
      */
-    public readonly requestTimeout!: pulumi.Output<number>;
+    declare public readonly requestTimeout: pulumi.Output<number>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
      */
-    public readonly schema!: pulumi.Output<string>;
+    declare public readonly schema: pulumi.Output<string>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    public readonly sealWrap!: pulumi.Output<boolean>;
+    declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
      * If set to true, static roles will not be rotated during import.
      * Defaults to false. Requires Vault 1.16 or above.
      */
-    public readonly skipStaticRoleImportRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly skipStaticRoleImportRotation: pulumi.Output<boolean | undefined>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */
-    public readonly starttls!: pulumi.Output<boolean>;
+    declare public readonly starttls: pulumi.Output<boolean>;
     /**
      * Enables userPrincipalDomain login with [username]@UPNDomain.
      */
-    public readonly upndomain!: pulumi.Output<string>;
+    declare public readonly upndomain: pulumi.Output<string>;
     /**
      * LDAP URL to connect to. Multiple URLs can be specified by concatenating
      * them with commas; they will be tried in-order. Defaults to `ldap://127.0.0.1`.
      */
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
     /**
      * Attribute used when searching users. Defaults to `cn`.
      */
-    public readonly userattr!: pulumi.Output<string>;
+    declare public readonly userattr: pulumi.Output<string>;
     /**
      * LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
      */
-    public readonly userdn!: pulumi.Output<string | undefined>;
+    declare public readonly userdn: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -251,95 +251,95 @@ export class SecretBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
-            resourceInputs["binddn"] = state ? state.binddn : undefined;
-            resourceInputs["bindpass"] = state ? state.bindpass : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
-            resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
-            resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
-            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
-            resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
-            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
-            resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
-            resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["schema"] = state ? state.schema : undefined;
-            resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
-            resourceInputs["skipStaticRoleImportRotation"] = state ? state.skipStaticRoleImportRotation : undefined;
-            resourceInputs["starttls"] = state ? state.starttls : undefined;
-            resourceInputs["upndomain"] = state ? state.upndomain : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["userattr"] = state ? state.userattr : undefined;
-            resourceInputs["userdn"] = state ? state.userdn : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["allowedManagedKeys"] = state?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = state?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = state?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
+            resourceInputs["binddn"] = state?.binddn;
+            resourceInputs["bindpass"] = state?.bindpass;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["clientTlsCert"] = state?.clientTlsCert;
+            resourceInputs["clientTlsKey"] = state?.clientTlsKey;
+            resourceInputs["connectionTimeout"] = state?.connectionTimeout;
+            resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["externalEntropyAccess"] = state?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = state?.forceNoCache;
+            resourceInputs["identityTokenKey"] = state?.identityTokenKey;
+            resourceInputs["insecureTls"] = state?.insecureTls;
+            resourceInputs["listingVisibility"] = state?.listingVisibility;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["pluginVersion"] = state?.pluginVersion;
+            resourceInputs["requestTimeout"] = state?.requestTimeout;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["schema"] = state?.schema;
+            resourceInputs["sealWrap"] = state?.sealWrap;
+            resourceInputs["skipStaticRoleImportRotation"] = state?.skipStaticRoleImportRotation;
+            resourceInputs["starttls"] = state?.starttls;
+            resourceInputs["upndomain"] = state?.upndomain;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["userattr"] = state?.userattr;
+            resourceInputs["userdn"] = state?.userdn;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.binddn === undefined) && !opts.urn) {
+            if (args?.binddn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'binddn'");
             }
-            if ((!args || args.bindpass === undefined) && !opts.urn) {
+            if (args?.bindpass === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bindpass'");
             }
-            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
-            resourceInputs["binddn"] = args ? args.binddn : undefined;
+            resourceInputs["allowedManagedKeys"] = args?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = args?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
+            resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
-            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["certificate"] = args?.certificate;
             resourceInputs["clientTlsCert"] = args?.clientTlsCert ? pulumi.secret(args.clientTlsCert) : undefined;
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
-            resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
-            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
-            resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
-            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
-            resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
-            resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
-            resourceInputs["schema"] = args ? args.schema : undefined;
-            resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
-            resourceInputs["skipStaticRoleImportRotation"] = args ? args.skipStaticRoleImportRotation : undefined;
-            resourceInputs["starttls"] = args ? args.starttls : undefined;
-            resourceInputs["upndomain"] = args ? args.upndomain : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["userattr"] = args ? args.userattr : undefined;
-            resourceInputs["userdn"] = args ? args.userdn : undefined;
+            resourceInputs["connectionTimeout"] = args?.connectionTimeout;
+            resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["externalEntropyAccess"] = args?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = args?.forceNoCache;
+            resourceInputs["identityTokenKey"] = args?.identityTokenKey;
+            resourceInputs["insecureTls"] = args?.insecureTls;
+            resourceInputs["listingVisibility"] = args?.listingVisibility;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["pluginVersion"] = args?.pluginVersion;
+            resourceInputs["requestTimeout"] = args?.requestTimeout;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["schema"] = args?.schema;
+            resourceInputs["sealWrap"] = args?.sealWrap;
+            resourceInputs["skipStaticRoleImportRotation"] = args?.skipStaticRoleImportRotation;
+            resourceInputs["starttls"] = args?.starttls;
+            resourceInputs["upndomain"] = args?.upndomain;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["userattr"] = args?.userattr;
+            resourceInputs["userdn"] = args?.userdn;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

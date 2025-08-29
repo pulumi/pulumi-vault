@@ -65,67 +65,67 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
     /**
      * The unique ID for this SecretID that can be safely logged.
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * Unique name of the auth backend to configure.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * If set, specifies blocks of IP addresses which can
      * perform the login operation using this SecretID.
      */
-    public readonly cidrLists!: pulumi.Output<string[] | undefined>;
+    declare public readonly cidrLists: pulumi.Output<string[] | undefined>;
     /**
      * A JSON-encoded string containing metadata in
      * key-value pairs to be set on tokens issued with this SecretID.
      */
-    public readonly metadata!: pulumi.Output<string | undefined>;
+    declare public readonly metadata: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The number of uses for the secret-id.
      */
-    public readonly numUses!: pulumi.Output<number | undefined>;
+    declare public readonly numUses: pulumi.Output<number | undefined>;
     /**
      * The name of the role to create the SecretID for.
      */
-    public readonly roleName!: pulumi.Output<string>;
+    declare public readonly roleName: pulumi.Output<string>;
     /**
      * The SecretID to be created. If set, uses "Push"
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
-    public readonly secretId!: pulumi.Output<string>;
+    declare public readonly secretId: pulumi.Output<string>;
     /**
      * The TTL duration of the SecretID.
      */
-    public readonly ttl!: pulumi.Output<number | undefined>;
+    declare public readonly ttl: pulumi.Output<number | undefined>;
     /**
      * Set to `true` to use the wrapped secret-id accessor as the resource ID.
      * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
      * invalidated through unwrapping.
      */
-    public readonly withWrappedAccessor!: pulumi.Output<boolean | undefined>;
+    declare public readonly withWrappedAccessor: pulumi.Output<boolean | undefined>;
     /**
      * The unique ID for the response-wrapped SecretID that can
      * be safely logged.
      */
-    public /*out*/ readonly wrappingAccessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly wrappingAccessor: pulumi.Output<string>;
     /**
      * The token used to retrieve a response-wrapped SecretID.
      */
-    public /*out*/ readonly wrappingToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly wrappingToken: pulumi.Output<string>;
     /**
      * If set, the SecretID response will be
      * [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
      * and available for the duration specified. Only a single unwrapping of the
      * token is allowed.
      */
-    public readonly wrappingTtl!: pulumi.Output<string | undefined>;
+    declare public readonly wrappingTtl: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendRoleSecretId resource with the given unique name, arguments, and options.
@@ -140,34 +140,34 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleSecretIdState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["cidrLists"] = state ? state.cidrLists : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["numUses"] = state ? state.numUses : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
-            resourceInputs["secretId"] = state ? state.secretId : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["withWrappedAccessor"] = state ? state.withWrappedAccessor : undefined;
-            resourceInputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
-            resourceInputs["wrappingToken"] = state ? state.wrappingToken : undefined;
-            resourceInputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["cidrLists"] = state?.cidrLists;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["numUses"] = state?.numUses;
+            resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["secretId"] = state?.secretId;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["withWrappedAccessor"] = state?.withWrappedAccessor;
+            resourceInputs["wrappingAccessor"] = state?.wrappingAccessor;
+            resourceInputs["wrappingToken"] = state?.wrappingToken;
+            resourceInputs["wrappingTtl"] = state?.wrappingTtl;
         } else {
             const args = argsOrState as AuthBackendRoleSecretIdArgs | undefined;
-            if ((!args || args.roleName === undefined) && !opts.urn) {
+            if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["cidrLists"] = args ? args.cidrLists : undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["numUses"] = args ? args.numUses : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["cidrLists"] = args?.cidrLists;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["numUses"] = args?.numUses;
+            resourceInputs["roleName"] = args?.roleName;
             resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["withWrappedAccessor"] = args ? args.withWrappedAccessor : undefined;
-            resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["withWrappedAccessor"] = args?.withWrappedAccessor;
+            resourceInputs["wrappingTtl"] = args?.wrappingTtl;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["wrappingAccessor"] = undefined /*out*/;
             resourceInputs["wrappingToken"] = undefined /*out*/;

@@ -175,8 +175,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def set_namespace_from_token(self) -> Optional[bool]:
         """
-        In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-        token namespace as the root namespace for all resources.
+        In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
         """
         return __config__.get_bool('setNamespaceFromToken')
 

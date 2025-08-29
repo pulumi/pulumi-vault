@@ -75,52 +75,52 @@ export class SecretRole extends pulumi.CustomResource {
     /**
      * Whitelist entry in CIDR notation to be added for the API key.
      */
-    public readonly cidrBlocks!: pulumi.Output<string[] | undefined>;
+    declare public readonly cidrBlocks: pulumi.Output<string[] | undefined>;
     /**
      * IP address to be added to the whitelist for the API key.
      */
-    public readonly ipAddresses!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipAddresses: pulumi.Output<string[] | undefined>;
     /**
      * The maximum allowed lifetime of credentials issued using this role.
      */
-    public readonly maxTtl!: pulumi.Output<string | undefined>;
+    declare public readonly maxTtl: pulumi.Output<string | undefined>;
     /**
      * Path where the MongoDB Atlas Secrets Engine is mounted.
      */
-    public readonly mount!: pulumi.Output<string>;
+    declare public readonly mount: pulumi.Output<string>;
     /**
      * The name of the role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Unique identifier for the organization to which the target API Key belongs. 
      * Required if `projectId` is not set.
      */
-    public readonly organizationId!: pulumi.Output<string | undefined>;
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
     /**
      * Unique identifier for the project to which the target API Key belongs.
      * Required if `organizationId` is not set.
      */
-    public readonly projectId!: pulumi.Output<string | undefined>;
+    declare public readonly projectId: pulumi.Output<string | undefined>;
     /**
      * Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
      */
-    public readonly projectRoles!: pulumi.Output<string[] | undefined>;
+    declare public readonly projectRoles: pulumi.Output<string[] | undefined>;
     /**
      * List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
      */
-    public readonly roles!: pulumi.Output<string[]>;
+    declare public readonly roles: pulumi.Output<string[]>;
     /**
      * Duration in seconds after which the issued credential should expire.
      */
-    public readonly ttl!: pulumi.Output<string | undefined>;
+    declare public readonly ttl: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretRole resource with the given unique name, arguments, and options.
@@ -135,36 +135,36 @@ export class SecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
-            resourceInputs["cidrBlocks"] = state ? state.cidrBlocks : undefined;
-            resourceInputs["ipAddresses"] = state ? state.ipAddresses : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["projectRoles"] = state ? state.projectRoles : undefined;
-            resourceInputs["roles"] = state ? state.roles : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["cidrBlocks"] = state?.cidrBlocks;
+            resourceInputs["ipAddresses"] = state?.ipAddresses;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["projectRoles"] = state?.projectRoles;
+            resourceInputs["roles"] = state?.roles;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
-            if ((!args || args.mount === undefined) && !opts.urn) {
+            if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
-            if ((!args || args.roles === undefined) && !opts.urn) {
+            if (args?.roles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roles'");
             }
-            resourceInputs["cidrBlocks"] = args ? args.cidrBlocks : undefined;
-            resourceInputs["ipAddresses"] = args ? args.ipAddresses : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["projectRoles"] = args ? args.projectRoles : undefined;
-            resourceInputs["roles"] = args ? args.roles : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["cidrBlocks"] = args?.cidrBlocks;
+            resourceInputs["ipAddresses"] = args?.ipAddresses;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["projectRoles"] = args?.projectRoles;
+            resourceInputs["roles"] = args?.roles;
+            resourceInputs["ttl"] = args?.ttl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretRole.__pulumiType, name, resourceInputs, opts);

@@ -159,8 +159,7 @@ namespace Pulumi.Vault
         public Output<string?> ListingVisibility { get; private set; } = null!;
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-        /// use when checking the last rotation time.
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         /// </summary>
         [Output("local")]
         public Output<bool?> Local { get; private set; } = null!;
@@ -439,8 +438,7 @@ namespace Pulumi.Vault
         public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-        /// use when checking the last rotation time.
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }
@@ -703,8 +701,7 @@ namespace Pulumi.Vault
         public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
-        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-        /// use when checking the last rotation time.
+        /// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
         /// </summary>
         [Input("local")]
         public Input<bool>? Local { get; set; }

@@ -66,42 +66,42 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
      * variable.
      */
-    public readonly credentials!: pulumi.Output<string | undefined>;
+    declare public readonly credentials: pulumi.Output<string | undefined>;
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    public readonly customTags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly customTags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    public readonly granularity!: pulumi.Output<string | undefined>;
+    declare public readonly granularity: pulumi.Output<string | undefined>;
     /**
      * Unique name of the GCP destination.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The target project to manage secrets in. If set,
      * overrides the project ID derived from the service account JSON credentials or application
      * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
      * to perform Secret Manager actions in the target project.
      */
-    public readonly projectId!: pulumi.Output<string | undefined>;
+    declare public readonly projectId: pulumi.Output<string | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    public readonly secretNameTemplate!: pulumi.Output<string>;
+    declare public readonly secretNameTemplate: pulumi.Output<string>;
     /**
      * The type of the secrets destination (`gcp-sm`).
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a SyncGcpDestination resource with the given unique name, arguments, and options.
@@ -116,23 +116,23 @@ export class SyncGcpDestination extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncGcpDestinationState | undefined;
-            resourceInputs["credentials"] = state ? state.credentials : undefined;
-            resourceInputs["customTags"] = state ? state.customTags : undefined;
-            resourceInputs["granularity"] = state ? state.granularity : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["secretNameTemplate"] = state ? state.secretNameTemplate : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["customTags"] = state?.customTags;
+            resourceInputs["granularity"] = state?.granularity;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["secretNameTemplate"] = state?.secretNameTemplate;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SyncGcpDestinationArgs | undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
-            resourceInputs["customTags"] = args ? args.customTags : undefined;
-            resourceInputs["granularity"] = args ? args.granularity : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["secretNameTemplate"] = args ? args.secretNameTemplate : undefined;
+            resourceInputs["customTags"] = args?.customTags;
+            resourceInputs["granularity"] = args?.granularity;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["secretNameTemplate"] = args?.secretNameTemplate;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

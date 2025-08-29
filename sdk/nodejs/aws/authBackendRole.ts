@@ -80,34 +80,34 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * If set to `true`, allows migration of
      * the underlying instance where the client resides.
      */
-    public readonly allowInstanceMigration!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowInstanceMigration: pulumi.Output<boolean | undefined>;
     /**
      * The auth type permitted for this role. Valid choices
      * are `ec2` and `iam`. Defaults to `iam`.
      */
-    public readonly authType!: pulumi.Output<string | undefined>;
+    declare public readonly authType: pulumi.Output<string | undefined>;
     /**
      * Path to the mounted aws auth backend.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they should be using the
      * account ID specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    public readonly boundAccountIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundAccountIds: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they should be using the AMI ID
      * specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    public readonly boundAmiIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundAmiIds: pulumi.Output<string[] | undefined>;
     /**
      * Only EC2 instances that match this instance ID will be permitted to log in.
      */
-    public readonly boundEc2InstanceIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundEc2InstanceIds: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on
      * the EC2 instances that can perform the login operation that they must be
@@ -116,20 +116,20 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * were a glob ending in `*`. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    public readonly boundIamInstanceProfileArns!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundIamInstanceProfileArns: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines the IAM principal that
      * must be authenticated when `authType` is set to `iam`. Wildcards are
      * supported at the end of the ARN.
      */
-    public readonly boundIamPrincipalArns!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundIamPrincipalArns: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they must match the IAM
      * role ARN specified by this field. `authType` must be set to `ec2` or
      * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      */
-    public readonly boundIamRoleArns!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundIamRoleArns: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that the region in their identity
@@ -137,7 +137,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * to `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      */
-    public readonly boundRegions!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundRegions: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they be associated with
@@ -145,7 +145,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      */
-    public readonly boundSubnetIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundSubnetIds: pulumi.Output<string[] | undefined>;
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they be associated with the VPC ID
@@ -153,34 +153,34 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      */
-    public readonly boundVpcIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundVpcIds: pulumi.Output<string[] | undefined>;
     /**
      * IF set to `true`, only allows a
      * single token to be granted per instance ID. This can only be set when
      * `authType` is set to `ec2`.
      */
-    public readonly disallowReauthentication!: pulumi.Output<boolean | undefined>;
+    declare public readonly disallowReauthentication: pulumi.Output<boolean | undefined>;
     /**
      * When `inferredEntityType` is set, this
      * is the region to search for the inferred entities. Required if
      * `inferredEntityType` is set. This only applies when `authType` is set to
      * `iam`.
      */
-    public readonly inferredAwsRegion!: pulumi.Output<string | undefined>;
+    declare public readonly inferredAwsRegion: pulumi.Output<string | undefined>;
     /**
      * If set, instructs Vault to turn on
      * inferencing. The only valid value is `ec2Instance`, which instructs Vault to
      * infer that the role comes from an EC2 instance in an IAM instance profile.
      * This only applies when `authType` is set to `iam`.
      */
-    public readonly inferredEntityType!: pulumi.Output<string | undefined>;
+    declare public readonly inferredEntityType: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Only valid when
      * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
@@ -194,58 +194,58 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * principals of the same name. Defaults to `true`.
      * Once set to `true`, this cannot be changed to `false` without recreating the role.
      */
-    public readonly resolveAwsUniqueIds!: pulumi.Output<boolean | undefined>;
+    declare public readonly resolveAwsUniqueIds: pulumi.Output<boolean | undefined>;
     /**
      * The name of the role.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * The Vault generated role ID.
      */
-    public /*out*/ readonly roleId!: pulumi.Output<string>;
+    declare public /*out*/ readonly roleId: pulumi.Output<string>;
     /**
      * If set, enable role tags for this role. The value set
      * for this field should be the key of the tag on the EC2 instance. `authType`
      * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      */
-    public readonly roleTag!: pulumi.Output<string | undefined>;
+    declare public readonly roleTag: pulumi.Output<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Period
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -260,68 +260,68 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            resourceInputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
-            resourceInputs["authType"] = state ? state.authType : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["boundAccountIds"] = state ? state.boundAccountIds : undefined;
-            resourceInputs["boundAmiIds"] = state ? state.boundAmiIds : undefined;
-            resourceInputs["boundEc2InstanceIds"] = state ? state.boundEc2InstanceIds : undefined;
-            resourceInputs["boundIamInstanceProfileArns"] = state ? state.boundIamInstanceProfileArns : undefined;
-            resourceInputs["boundIamPrincipalArns"] = state ? state.boundIamPrincipalArns : undefined;
-            resourceInputs["boundIamRoleArns"] = state ? state.boundIamRoleArns : undefined;
-            resourceInputs["boundRegions"] = state ? state.boundRegions : undefined;
-            resourceInputs["boundSubnetIds"] = state ? state.boundSubnetIds : undefined;
-            resourceInputs["boundVpcIds"] = state ? state.boundVpcIds : undefined;
-            resourceInputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
-            resourceInputs["inferredAwsRegion"] = state ? state.inferredAwsRegion : undefined;
-            resourceInputs["inferredEntityType"] = state ? state.inferredEntityType : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["resolveAwsUniqueIds"] = state ? state.resolveAwsUniqueIds : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
-            resourceInputs["roleTag"] = state ? state.roleTag : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["allowInstanceMigration"] = state?.allowInstanceMigration;
+            resourceInputs["authType"] = state?.authType;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["boundAccountIds"] = state?.boundAccountIds;
+            resourceInputs["boundAmiIds"] = state?.boundAmiIds;
+            resourceInputs["boundEc2InstanceIds"] = state?.boundEc2InstanceIds;
+            resourceInputs["boundIamInstanceProfileArns"] = state?.boundIamInstanceProfileArns;
+            resourceInputs["boundIamPrincipalArns"] = state?.boundIamPrincipalArns;
+            resourceInputs["boundIamRoleArns"] = state?.boundIamRoleArns;
+            resourceInputs["boundRegions"] = state?.boundRegions;
+            resourceInputs["boundSubnetIds"] = state?.boundSubnetIds;
+            resourceInputs["boundVpcIds"] = state?.boundVpcIds;
+            resourceInputs["disallowReauthentication"] = state?.disallowReauthentication;
+            resourceInputs["inferredAwsRegion"] = state?.inferredAwsRegion;
+            resourceInputs["inferredEntityType"] = state?.inferredEntityType;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["resolveAwsUniqueIds"] = state?.resolveAwsUniqueIds;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["roleId"] = state?.roleId;
+            resourceInputs["roleTag"] = state?.roleTag;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
-            resourceInputs["authType"] = args ? args.authType : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["boundAccountIds"] = args ? args.boundAccountIds : undefined;
-            resourceInputs["boundAmiIds"] = args ? args.boundAmiIds : undefined;
-            resourceInputs["boundEc2InstanceIds"] = args ? args.boundEc2InstanceIds : undefined;
-            resourceInputs["boundIamInstanceProfileArns"] = args ? args.boundIamInstanceProfileArns : undefined;
-            resourceInputs["boundIamPrincipalArns"] = args ? args.boundIamPrincipalArns : undefined;
-            resourceInputs["boundIamRoleArns"] = args ? args.boundIamRoleArns : undefined;
-            resourceInputs["boundRegions"] = args ? args.boundRegions : undefined;
-            resourceInputs["boundSubnetIds"] = args ? args.boundSubnetIds : undefined;
-            resourceInputs["boundVpcIds"] = args ? args.boundVpcIds : undefined;
-            resourceInputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
-            resourceInputs["inferredAwsRegion"] = args ? args.inferredAwsRegion : undefined;
-            resourceInputs["inferredEntityType"] = args ? args.inferredEntityType : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["resolveAwsUniqueIds"] = args ? args.resolveAwsUniqueIds : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["roleTag"] = args ? args.roleTag : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["allowInstanceMigration"] = args?.allowInstanceMigration;
+            resourceInputs["authType"] = args?.authType;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["boundAccountIds"] = args?.boundAccountIds;
+            resourceInputs["boundAmiIds"] = args?.boundAmiIds;
+            resourceInputs["boundEc2InstanceIds"] = args?.boundEc2InstanceIds;
+            resourceInputs["boundIamInstanceProfileArns"] = args?.boundIamInstanceProfileArns;
+            resourceInputs["boundIamPrincipalArns"] = args?.boundIamPrincipalArns;
+            resourceInputs["boundIamRoleArns"] = args?.boundIamRoleArns;
+            resourceInputs["boundRegions"] = args?.boundRegions;
+            resourceInputs["boundSubnetIds"] = args?.boundSubnetIds;
+            resourceInputs["boundVpcIds"] = args?.boundVpcIds;
+            resourceInputs["disallowReauthentication"] = args?.disallowReauthentication;
+            resourceInputs["inferredAwsRegion"] = args?.inferredAwsRegion;
+            resourceInputs["inferredEntityType"] = args?.inferredEntityType;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["resolveAwsUniqueIds"] = args?.resolveAwsUniqueIds;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["roleTag"] = args?.roleTag;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
             resourceInputs["roleId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

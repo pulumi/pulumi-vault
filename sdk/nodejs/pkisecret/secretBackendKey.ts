@@ -46,46 +46,46 @@ export class SecretBackendKey extends pulumi.CustomResource {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the number of bits to use for the generated keys. 
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
      * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
      * 384, or 521; ignored with `key_type=ed25519`.
      */
-    public readonly keyBits!: pulumi.Output<number>;
+    declare public readonly keyBits: pulumi.Output<number>;
     /**
      * ID of the generated key.
      */
-    public /*out*/ readonly keyId!: pulumi.Output<string>;
+    declare public /*out*/ readonly keyId: pulumi.Output<string>;
     /**
      * When a new key is created with this request, optionally specifies the name for this. 
      * The global ref `default` may not be used as a name.
      */
-    public readonly keyName!: pulumi.Output<string | undefined>;
+    declare public readonly keyName: pulumi.Output<string | undefined>;
     /**
      * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
      */
-    public readonly keyType!: pulumi.Output<string>;
+    declare public readonly keyType: pulumi.Output<string>;
     /**
      * The managed key's UUID.
      */
-    public readonly managedKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly managedKeyId: pulumi.Output<string | undefined>;
     /**
      * The managed key's configured name.
      */
-    public readonly managedKeyName!: pulumi.Output<string | undefined>;
+    declare public readonly managedKeyName: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendKey resource with the given unique name, arguments, and options.
@@ -100,31 +100,31 @@ export class SecretBackendKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendKeyState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["keyBits"] = state ? state.keyBits : undefined;
-            resourceInputs["keyId"] = state ? state.keyId : undefined;
-            resourceInputs["keyName"] = state ? state.keyName : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
-            resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["keyBits"] = state?.keyBits;
+            resourceInputs["keyId"] = state?.keyId;
+            resourceInputs["keyName"] = state?.keyName;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["managedKeyId"] = state?.managedKeyId;
+            resourceInputs["managedKeyName"] = state?.managedKeyName;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SecretBackendKeyArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["keyBits"] = args ? args.keyBits : undefined;
-            resourceInputs["keyName"] = args ? args.keyName : undefined;
-            resourceInputs["keyType"] = args ? args.keyType : undefined;
-            resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
-            resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["keyBits"] = args?.keyBits;
+            resourceInputs["keyName"] = args?.keyName;
+            resourceInputs["keyType"] = args?.keyType;
+            resourceInputs["managedKeyId"] = args?.managedKeyId;
+            resourceInputs["managedKeyName"] = args?.managedKeyName;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["type"] = args?.type;
             resourceInputs["keyId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -38,48 +38,48 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
     /**
      * If set, allows migration of the underlying instances where the client resides. Use with caution.
      */
-    public readonly allowInstanceMigration!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowInstanceMigration: pulumi.Output<boolean | undefined>;
     /**
      * The path to the AWS auth backend to
      * read role tags from, with no leading or trailing `/`s. Defaults to "aws".
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * If set, only allows a single token to be granted per instance ID.
      */
-    public readonly disallowReauthentication!: pulumi.Output<boolean | undefined>;
+    declare public readonly disallowReauthentication: pulumi.Output<boolean | undefined>;
     /**
      * Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
      */
-    public readonly instanceId!: pulumi.Output<string | undefined>;
+    declare public readonly instanceId: pulumi.Output<string | undefined>;
     /**
      * The maximum TTL of the tokens issued using this role.
      */
-    public readonly maxTtl!: pulumi.Output<string | undefined>;
+    declare public readonly maxTtl: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
      * The name of the AWS auth backend role to read
      * role tags from, with no leading or trailing `/`s.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * The key of the role tag.
      */
-    public /*out*/ readonly tagKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly tagKey: pulumi.Output<string>;
     /**
      * The value to set the role key.
      */
-    public /*out*/ readonly tagValue!: pulumi.Output<string>;
+    declare public /*out*/ readonly tagValue: pulumi.Output<string>;
 
     /**
      * Create a AuthBackendRoleTag resource with the given unique name, arguments, and options.
@@ -94,29 +94,29 @@ export class AuthBackendRoleTag extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleTagState | undefined;
-            resourceInputs["allowInstanceMigration"] = state ? state.allowInstanceMigration : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["disallowReauthentication"] = state ? state.disallowReauthentication : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["tagKey"] = state ? state.tagKey : undefined;
-            resourceInputs["tagValue"] = state ? state.tagValue : undefined;
+            resourceInputs["allowInstanceMigration"] = state?.allowInstanceMigration;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["disallowReauthentication"] = state?.disallowReauthentication;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["tagKey"] = state?.tagKey;
+            resourceInputs["tagValue"] = state?.tagValue;
         } else {
             const args = argsOrState as AuthBackendRoleTagArgs | undefined;
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["allowInstanceMigration"] = args ? args.allowInstanceMigration : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["disallowReauthentication"] = args ? args.disallowReauthentication : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["allowInstanceMigration"] = args?.allowInstanceMigration;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["disallowReauthentication"] = args?.disallowReauthentication;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["role"] = args?.role;
             resourceInputs["tagKey"] = undefined /*out*/;
             resourceInputs["tagValue"] = undefined /*out*/;
         }

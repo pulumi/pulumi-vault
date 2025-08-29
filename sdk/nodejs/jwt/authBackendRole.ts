@@ -99,148 +99,148 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      */
-    public readonly allowedRedirectUris!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedRedirectUris: pulumi.Output<string[] | undefined>;
     /**
      * The unique name of the auth backend to configure.
      * Defaults to `jwt`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * (Required for roles of type `jwt`, optional for roles of
      * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
-    public readonly boundAudiences!: pulumi.Output<string[] | undefined>;
+    declare public readonly boundAudiences: pulumi.Output<string[] | undefined>;
     /**
      * If set, a map of claims to values to match against.
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
-    public readonly boundClaims!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly boundClaims: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * How to interpret values in the claims/values
      * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      */
-    public readonly boundClaimsType!: pulumi.Output<string>;
+    declare public readonly boundClaimsType: pulumi.Output<string>;
     /**
      * If set, requires that the `sub` claim matches
      * this value.
      */
-    public readonly boundSubject!: pulumi.Output<string | undefined>;
+    declare public readonly boundSubject: pulumi.Output<string | undefined>;
     /**
      * If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      */
-    public readonly claimMappings!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly claimMappings: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The amount of leeway to add to all claims to account for clock skew, in
      * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    public readonly clockSkewLeeway!: pulumi.Output<number | undefined>;
+    declare public readonly clockSkewLeeway: pulumi.Output<number | undefined>;
     /**
      * Disable bound claim value parsing. Useful when values contain commas.
      */
-    public readonly disableBoundClaimsParsing!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableBoundClaimsParsing: pulumi.Output<boolean | undefined>;
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
      * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    public readonly expirationLeeway!: pulumi.Output<number | undefined>;
+    declare public readonly expirationLeeway: pulumi.Output<number | undefined>;
     /**
      * The claim to use to uniquely identify
      * the set of groups to which the user belongs; this will be used as the names
      * for the Identity group aliases created due to a successful login. The claim
      * value must be a list of strings.
      */
-    public readonly groupsClaim!: pulumi.Output<string | undefined>;
+    declare public readonly groupsClaim: pulumi.Output<string | undefined>;
     /**
      * Specifies the allowable elapsed time in seconds since the last time 
      * the user was actively authenticated with the OIDC provider.
      */
-    public readonly maxAge!: pulumi.Output<number | undefined>;
+    declare public readonly maxAge: pulumi.Output<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    public readonly notBeforeLeeway!: pulumi.Output<number | undefined>;
+    declare public readonly notBeforeLeeway: pulumi.Output<number | undefined>;
     /**
      * If set, a list of OIDC scopes to be used with an OIDC role.
      * The standard scope "openid" is automatically included and need not be specified.
      */
-    public readonly oidcScopes!: pulumi.Output<string[] | undefined>;
+    declare public readonly oidcScopes: pulumi.Output<string[] | undefined>;
     /**
      * The name of the role.
      */
-    public readonly roleName!: pulumi.Output<string>;
+    declare public readonly roleName: pulumi.Output<string>;
     /**
      * Type of role, either "oidc" (default) or "jwt".
      */
-    public readonly roleType!: pulumi.Output<string>;
+    declare public readonly roleType: pulumi.Output<string>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Period
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
     /**
      * The claim to use to uniquely identify
      * the user; this will be used as the name for the Identity entity alias created
      * due to a successful login.
      */
-    public readonly userClaim!: pulumi.Output<string>;
+    declare public readonly userClaim: pulumi.Output<string>;
     /**
      * Specifies if the `userClaim` value uses
      * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
      * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      */
-    public readonly userClaimJsonPointer!: pulumi.Output<boolean | undefined>;
+    declare public readonly userClaimJsonPointer: pulumi.Output<boolean | undefined>;
     /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present
      * in OIDC responses.
      */
-    public readonly verboseOidcLogging!: pulumi.Output<boolean | undefined>;
+    declare public readonly verboseOidcLogging: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -255,72 +255,72 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            resourceInputs["allowedRedirectUris"] = state ? state.allowedRedirectUris : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["boundAudiences"] = state ? state.boundAudiences : undefined;
-            resourceInputs["boundClaims"] = state ? state.boundClaims : undefined;
-            resourceInputs["boundClaimsType"] = state ? state.boundClaimsType : undefined;
-            resourceInputs["boundSubject"] = state ? state.boundSubject : undefined;
-            resourceInputs["claimMappings"] = state ? state.claimMappings : undefined;
-            resourceInputs["clockSkewLeeway"] = state ? state.clockSkewLeeway : undefined;
-            resourceInputs["disableBoundClaimsParsing"] = state ? state.disableBoundClaimsParsing : undefined;
-            resourceInputs["expirationLeeway"] = state ? state.expirationLeeway : undefined;
-            resourceInputs["groupsClaim"] = state ? state.groupsClaim : undefined;
-            resourceInputs["maxAge"] = state ? state.maxAge : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["notBeforeLeeway"] = state ? state.notBeforeLeeway : undefined;
-            resourceInputs["oidcScopes"] = state ? state.oidcScopes : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
-            resourceInputs["roleType"] = state ? state.roleType : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
-            resourceInputs["userClaim"] = state ? state.userClaim : undefined;
-            resourceInputs["userClaimJsonPointer"] = state ? state.userClaimJsonPointer : undefined;
-            resourceInputs["verboseOidcLogging"] = state ? state.verboseOidcLogging : undefined;
+            resourceInputs["allowedRedirectUris"] = state?.allowedRedirectUris;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["boundAudiences"] = state?.boundAudiences;
+            resourceInputs["boundClaims"] = state?.boundClaims;
+            resourceInputs["boundClaimsType"] = state?.boundClaimsType;
+            resourceInputs["boundSubject"] = state?.boundSubject;
+            resourceInputs["claimMappings"] = state?.claimMappings;
+            resourceInputs["clockSkewLeeway"] = state?.clockSkewLeeway;
+            resourceInputs["disableBoundClaimsParsing"] = state?.disableBoundClaimsParsing;
+            resourceInputs["expirationLeeway"] = state?.expirationLeeway;
+            resourceInputs["groupsClaim"] = state?.groupsClaim;
+            resourceInputs["maxAge"] = state?.maxAge;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["notBeforeLeeway"] = state?.notBeforeLeeway;
+            resourceInputs["oidcScopes"] = state?.oidcScopes;
+            resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["roleType"] = state?.roleType;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
+            resourceInputs["userClaim"] = state?.userClaim;
+            resourceInputs["userClaimJsonPointer"] = state?.userClaimJsonPointer;
+            resourceInputs["verboseOidcLogging"] = state?.verboseOidcLogging;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if ((!args || args.roleName === undefined) && !opts.urn) {
+            if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            if ((!args || args.userClaim === undefined) && !opts.urn) {
+            if (args?.userClaim === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userClaim'");
             }
-            resourceInputs["allowedRedirectUris"] = args ? args.allowedRedirectUris : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["boundAudiences"] = args ? args.boundAudiences : undefined;
-            resourceInputs["boundClaims"] = args ? args.boundClaims : undefined;
-            resourceInputs["boundClaimsType"] = args ? args.boundClaimsType : undefined;
-            resourceInputs["boundSubject"] = args ? args.boundSubject : undefined;
-            resourceInputs["claimMappings"] = args ? args.claimMappings : undefined;
-            resourceInputs["clockSkewLeeway"] = args ? args.clockSkewLeeway : undefined;
-            resourceInputs["disableBoundClaimsParsing"] = args ? args.disableBoundClaimsParsing : undefined;
-            resourceInputs["expirationLeeway"] = args ? args.expirationLeeway : undefined;
-            resourceInputs["groupsClaim"] = args ? args.groupsClaim : undefined;
-            resourceInputs["maxAge"] = args ? args.maxAge : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["notBeforeLeeway"] = args ? args.notBeforeLeeway : undefined;
-            resourceInputs["oidcScopes"] = args ? args.oidcScopes : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["roleType"] = args ? args.roleType : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
-            resourceInputs["userClaim"] = args ? args.userClaim : undefined;
-            resourceInputs["userClaimJsonPointer"] = args ? args.userClaimJsonPointer : undefined;
-            resourceInputs["verboseOidcLogging"] = args ? args.verboseOidcLogging : undefined;
+            resourceInputs["allowedRedirectUris"] = args?.allowedRedirectUris;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["boundAudiences"] = args?.boundAudiences;
+            resourceInputs["boundClaims"] = args?.boundClaims;
+            resourceInputs["boundClaimsType"] = args?.boundClaimsType;
+            resourceInputs["boundSubject"] = args?.boundSubject;
+            resourceInputs["claimMappings"] = args?.claimMappings;
+            resourceInputs["clockSkewLeeway"] = args?.clockSkewLeeway;
+            resourceInputs["disableBoundClaimsParsing"] = args?.disableBoundClaimsParsing;
+            resourceInputs["expirationLeeway"] = args?.expirationLeeway;
+            resourceInputs["groupsClaim"] = args?.groupsClaim;
+            resourceInputs["maxAge"] = args?.maxAge;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["notBeforeLeeway"] = args?.notBeforeLeeway;
+            resourceInputs["oidcScopes"] = args?.oidcScopes;
+            resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["roleType"] = args?.roleType;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
+            resourceInputs["userClaim"] = args?.userClaim;
+            resourceInputs["userClaimJsonPointer"] = args?.userClaimJsonPointer;
+            resourceInputs["verboseOidcLogging"] = args?.verboseOidcLogging;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);

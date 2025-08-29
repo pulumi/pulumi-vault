@@ -79,38 +79,38 @@ export class SecretStaticAccount extends pulumi.CustomResource {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    public readonly bindings!: pulumi.Output<outputs.gcp.SecretStaticAccountBinding[] | undefined>;
+    declare public readonly bindings: pulumi.Output<outputs.gcp.SecretStaticAccountBinding[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    public readonly secretType!: pulumi.Output<string>;
+    declare public readonly secretType: pulumi.Output<string>;
     /**
      * Email of the GCP service account to manage.
      */
-    public readonly serviceAccountEmail!: pulumi.Output<string>;
+    declare public readonly serviceAccountEmail: pulumi.Output<string>;
     /**
      * Project the service account belongs to.
      */
-    public /*out*/ readonly serviceAccountProject!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceAccountProject: pulumi.Output<string>;
     /**
      * Name of the Static Account to create
      */
-    public readonly staticAccount!: pulumi.Output<string>;
+    declare public readonly staticAccount: pulumi.Output<string>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      */
-    public readonly tokenScopes!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenScopes: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretStaticAccount resource with the given unique name, arguments, and options.
@@ -125,32 +125,32 @@ export class SecretStaticAccount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretStaticAccountState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["bindings"] = state ? state.bindings : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["secretType"] = state ? state.secretType : undefined;
-            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
-            resourceInputs["serviceAccountProject"] = state ? state.serviceAccountProject : undefined;
-            resourceInputs["staticAccount"] = state ? state.staticAccount : undefined;
-            resourceInputs["tokenScopes"] = state ? state.tokenScopes : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["bindings"] = state?.bindings;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["secretType"] = state?.secretType;
+            resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
+            resourceInputs["serviceAccountProject"] = state?.serviceAccountProject;
+            resourceInputs["staticAccount"] = state?.staticAccount;
+            resourceInputs["tokenScopes"] = state?.tokenScopes;
         } else {
             const args = argsOrState as SecretStaticAccountArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.serviceAccountEmail === undefined) && !opts.urn) {
+            if (args?.serviceAccountEmail === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountEmail'");
             }
-            if ((!args || args.staticAccount === undefined) && !opts.urn) {
+            if (args?.staticAccount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'staticAccount'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["bindings"] = args ? args.bindings : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["secretType"] = args ? args.secretType : undefined;
-            resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
-            resourceInputs["staticAccount"] = args ? args.staticAccount : undefined;
-            resourceInputs["tokenScopes"] = args ? args.tokenScopes : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["bindings"] = args?.bindings;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["secretType"] = args?.secretType;
+            resourceInputs["serviceAccountEmail"] = args?.serviceAccountEmail;
+            resourceInputs["staticAccount"] = args?.staticAccount;
+            resourceInputs["tokenScopes"] = args?.tokenScopes;
             resourceInputs["serviceAccountProject"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

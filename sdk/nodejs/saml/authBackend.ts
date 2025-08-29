@@ -64,57 +64,57 @@ export class AuthBackend extends pulumi.CustomResource {
      * The well-formatted URLs of your Assertion Consumer Service (ACS)
      * that should receive a response from the identity provider.
      */
-    public readonly acsUrls!: pulumi.Output<string[]>;
+    declare public readonly acsUrls: pulumi.Output<string[]>;
     /**
      * The role to use if no role is provided during login.
      */
-    public readonly defaultRole!: pulumi.Output<string | undefined>;
+    declare public readonly defaultRole: pulumi.Output<string | undefined>;
     /**
      * If set to `true`, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * The entity ID of the SAML authentication service provider.
      */
-    public readonly entityId!: pulumi.Output<string>;
+    declare public readonly entityId: pulumi.Output<string>;
     /**
      * The PEM encoded certificate of the identity provider. Mutually exclusive
      * with `idpMetadataUrl`.
      */
-    public readonly idpCert!: pulumi.Output<string | undefined>;
+    declare public readonly idpCert: pulumi.Output<string | undefined>;
     /**
      * The entity ID of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
-    public readonly idpEntityId!: pulumi.Output<string | undefined>;
+    declare public readonly idpEntityId: pulumi.Output<string | undefined>;
     /**
      * The metadata URL of the identity provider.
      */
-    public readonly idpMetadataUrl!: pulumi.Output<string | undefined>;
+    declare public readonly idpMetadataUrl: pulumi.Output<string | undefined>;
     /**
      * The SSO URL of the identity provider. Mutually exclusive with 
      * `idpMetadataUrl`.
      */
-    public readonly idpSsoUrl!: pulumi.Output<string | undefined>;
+    declare public readonly idpSsoUrl: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path where the auth backend will be mounted. Defaults to `auth/saml`
      * if not specified.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
      */
-    public readonly verboseLogging!: pulumi.Output<boolean>;
+    declare public readonly verboseLogging: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -129,36 +129,36 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            resourceInputs["acsUrls"] = state ? state.acsUrls : undefined;
-            resourceInputs["defaultRole"] = state ? state.defaultRole : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["entityId"] = state ? state.entityId : undefined;
-            resourceInputs["idpCert"] = state ? state.idpCert : undefined;
-            resourceInputs["idpEntityId"] = state ? state.idpEntityId : undefined;
-            resourceInputs["idpMetadataUrl"] = state ? state.idpMetadataUrl : undefined;
-            resourceInputs["idpSsoUrl"] = state ? state.idpSsoUrl : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["verboseLogging"] = state ? state.verboseLogging : undefined;
+            resourceInputs["acsUrls"] = state?.acsUrls;
+            resourceInputs["defaultRole"] = state?.defaultRole;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["entityId"] = state?.entityId;
+            resourceInputs["idpCert"] = state?.idpCert;
+            resourceInputs["idpEntityId"] = state?.idpEntityId;
+            resourceInputs["idpMetadataUrl"] = state?.idpMetadataUrl;
+            resourceInputs["idpSsoUrl"] = state?.idpSsoUrl;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["verboseLogging"] = state?.verboseLogging;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            if ((!args || args.acsUrls === undefined) && !opts.urn) {
+            if (args?.acsUrls === undefined && !opts.urn) {
                 throw new Error("Missing required property 'acsUrls'");
             }
-            if ((!args || args.entityId === undefined) && !opts.urn) {
+            if (args?.entityId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'entityId'");
             }
-            resourceInputs["acsUrls"] = args ? args.acsUrls : undefined;
-            resourceInputs["defaultRole"] = args ? args.defaultRole : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["entityId"] = args ? args.entityId : undefined;
-            resourceInputs["idpCert"] = args ? args.idpCert : undefined;
-            resourceInputs["idpEntityId"] = args ? args.idpEntityId : undefined;
-            resourceInputs["idpMetadataUrl"] = args ? args.idpMetadataUrl : undefined;
-            resourceInputs["idpSsoUrl"] = args ? args.idpSsoUrl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["verboseLogging"] = args ? args.verboseLogging : undefined;
+            resourceInputs["acsUrls"] = args?.acsUrls;
+            resourceInputs["defaultRole"] = args?.defaultRole;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["entityId"] = args?.entityId;
+            resourceInputs["idpCert"] = args?.idpCert;
+            resourceInputs["idpEntityId"] = args?.idpEntityId;
+            resourceInputs["idpMetadataUrl"] = args?.idpMetadataUrl;
+            resourceInputs["idpSsoUrl"] = args?.idpSsoUrl;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["verboseLogging"] = args?.verboseLogging;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);

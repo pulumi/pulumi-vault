@@ -146,16 +146,14 @@ public final class OciAuthBackendArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      * 
      */
     @Import(name="rotationWindow")
     private @Nullable Output<Integer> rotationWindow;
 
     /**
-     * @return The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * @return The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      * 
      */
     public Optional<Output<Integer>> rotationWindow() {
@@ -389,8 +387,7 @@ public final class OciAuthBackendArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param rotationWindow The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-         * Can only be used with rotation_schedule.
+         * @param rotationWindow The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
          * 
          * @return builder
          * 
@@ -401,8 +398,7 @@ public final class OciAuthBackendArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param rotationWindow The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-         * Can only be used with rotation_schedule.
+         * @param rotationWindow The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
          * 
          * @return builder
          * 

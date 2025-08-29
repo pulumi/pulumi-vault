@@ -55,14 +55,14 @@ export class Oidc extends pulumi.CustomResource {
      * scheme, host, and optionally, port number and path components, but no query or fragment
      * components.
      */
-    public readonly issuer!: pulumi.Output<string>;
+    declare public readonly issuer: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a Oidc resource with the given unique name, arguments, and options.
@@ -77,12 +77,12 @@ export class Oidc extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcState | undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as OidcArgs | undefined;
-            resourceInputs["issuer"] = args ? args.issuer : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["issuer"] = args?.issuer;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Oidc.__pulumiType, name, resourceInputs, opts);

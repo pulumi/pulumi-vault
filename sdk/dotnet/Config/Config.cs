@@ -251,8 +251,7 @@ namespace Pulumi.Vault
 
         private static readonly __Value<bool?> _setNamespaceFromToken = new __Value<bool?>(() => __config.GetBoolean("setNamespaceFromToken"));
         /// <summary>
-        /// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-        /// token namespace as the root namespace for all resources.
+        /// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
         /// </summary>
         public static bool? SetNamespaceFromToken
         {

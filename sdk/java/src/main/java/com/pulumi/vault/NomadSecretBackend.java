@@ -333,16 +333,14 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.listingVisibility);
     }
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-     * use when checking the last rotation time.
+     * Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
      * 
      */
     @Export(name="local", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> local;
 
     /**
-     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-     * use when checking the last rotation time.
+     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
      * 
      */
     public Output<Optional<Boolean>> local() {
