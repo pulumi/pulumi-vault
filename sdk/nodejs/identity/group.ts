@@ -122,51 +122,51 @@ export class Group extends pulumi.CustomResource {
      * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
      * decoupled manner.
      */
-    public readonly externalMemberEntityIds!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalMemberEntityIds: pulumi.Output<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any Group IDs
      * returned from Vault or specified in the resource. You can use
      * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
      * decoupled manner.
      */
-    public readonly externalMemberGroupIds!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalMemberGroupIds: pulumi.Output<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies returned from
      * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
      * policies for this group in a decoupled manner.
      */
-    public readonly externalPolicies!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalPolicies: pulumi.Output<boolean | undefined>;
     /**
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    public readonly memberEntityIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly memberEntityIds: pulumi.Output<string[] | undefined>;
     /**
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    public readonly memberGroupIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly memberGroupIds: pulumi.Output<string[] | undefined>;
     /**
      * A Map of additional metadata to associate with the group.
      */
-    public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly metadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Name of the identity group to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * A list of policies to apply to the group.
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
      * Type of the group, internal or external. Defaults to `internal`.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a Group resource with the given unique name, arguments, and options.
@@ -181,28 +181,28 @@ export class Group extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupState | undefined;
-            resourceInputs["externalMemberEntityIds"] = state ? state.externalMemberEntityIds : undefined;
-            resourceInputs["externalMemberGroupIds"] = state ? state.externalMemberGroupIds : undefined;
-            resourceInputs["externalPolicies"] = state ? state.externalPolicies : undefined;
-            resourceInputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
-            resourceInputs["memberGroupIds"] = state ? state.memberGroupIds : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["externalMemberEntityIds"] = state?.externalMemberEntityIds;
+            resourceInputs["externalMemberGroupIds"] = state?.externalMemberGroupIds;
+            resourceInputs["externalPolicies"] = state?.externalPolicies;
+            resourceInputs["memberEntityIds"] = state?.memberEntityIds;
+            resourceInputs["memberGroupIds"] = state?.memberGroupIds;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as GroupArgs | undefined;
-            resourceInputs["externalMemberEntityIds"] = args ? args.externalMemberEntityIds : undefined;
-            resourceInputs["externalMemberGroupIds"] = args ? args.externalMemberGroupIds : undefined;
-            resourceInputs["externalPolicies"] = args ? args.externalPolicies : undefined;
-            resourceInputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
-            resourceInputs["memberGroupIds"] = args ? args.memberGroupIds : undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["externalMemberEntityIds"] = args?.externalMemberEntityIds;
+            resourceInputs["externalMemberGroupIds"] = args?.externalMemberGroupIds;
+            resourceInputs["externalPolicies"] = args?.externalPolicies;
+            resourceInputs["memberEntityIds"] = args?.memberEntityIds;
+            resourceInputs["memberGroupIds"] = args?.memberGroupIds;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Group.__pulumiType, name, resourceInputs, opts);

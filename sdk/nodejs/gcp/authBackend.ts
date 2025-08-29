@@ -65,19 +65,19 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * The clients email associated with the credentials
      */
-    public readonly clientEmail!: pulumi.Output<string>;
+    declare public readonly clientEmail: pulumi.Output<string>;
     /**
      * The Client ID of the credentials
      */
-    public readonly clientId!: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
      */
-    public readonly credentials!: pulumi.Output<string | undefined>;
+    declare public readonly credentials: pulumi.Output<string | undefined>;
     /**
      * Specifies overrides to
      * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -87,85 +87,85 @@ export class AuthBackend extends pulumi.CustomResource {
      *
      * Overrides are set at the subdomain level using the following keys:
      */
-    public readonly customEndpoint!: pulumi.Output<outputs.gcp.AuthBackendCustomEndpoint | undefined>;
+    declare public readonly customEndpoint: pulumi.Output<outputs.gcp.AuthBackendCustomEndpoint | undefined>;
     /**
      * A description of the auth method.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenAudience: pulumi.Output<string | undefined>;
     /**
      * The key to use for signing plugin identity
      * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
      * The TTL of generated tokens.
      */
-    public readonly identityTokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly identityTokenTtl: pulumi.Output<number | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The path to mount the auth method — this defaults to 'gcp'.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * The ID of the private key from the credentials
      */
-    public readonly privateKeyId!: pulumi.Output<string>;
+    declare public readonly privateKeyId: pulumi.Output<string>;
     /**
      * The GCP Project ID
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    public readonly serviceAccountEmail!: pulumi.Output<string | undefined>;
+    declare public readonly serviceAccountEmail: pulumi.Output<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    public readonly tune!: pulumi.Output<outputs.gcp.AuthBackendTune>;
+    declare public readonly tune: pulumi.Output<outputs.gcp.AuthBackendTune>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -180,49 +180,49 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["clientEmail"] = state ? state.clientEmail : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["credentials"] = state ? state.credentials : undefined;
-            resourceInputs["customEndpoint"] = state ? state.customEndpoint : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
-            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
-            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
-            resourceInputs["tune"] = state ? state.tune : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["clientEmail"] = state?.clientEmail;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["customEndpoint"] = state?.customEndpoint;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["identityTokenAudience"] = state?.identityTokenAudience;
+            resourceInputs["identityTokenKey"] = state?.identityTokenKey;
+            resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["privateKeyId"] = state?.privateKeyId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
+            resourceInputs["tune"] = state?.tune;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientEmail"] = args?.clientEmail;
+            resourceInputs["clientId"] = args?.clientId;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
-            resourceInputs["customEndpoint"] = args ? args.customEndpoint : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
-            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
-            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["privateKeyId"] = args ? args.privateKeyId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
-            resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
-            resourceInputs["tune"] = args ? args.tune : undefined;
+            resourceInputs["customEndpoint"] = args?.customEndpoint;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["identityTokenAudience"] = args?.identityTokenAudience;
+            resourceInputs["identityTokenKey"] = args?.identityTokenKey;
+            resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["privateKeyId"] = args?.privateKeyId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["serviceAccountEmail"] = args?.serviceAccountEmail;
+            resourceInputs["tune"] = args?.tune;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

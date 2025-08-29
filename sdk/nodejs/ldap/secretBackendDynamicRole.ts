@@ -85,11 +85,11 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
      * entries in `rollbackLdif` will be executed. See `rollbackLdif` for more
      * details. This field may optionally be provided as a base64 encoded string.
      */
-    public readonly creationLdif!: pulumi.Output<string>;
+    declare public readonly creationLdif: pulumi.Output<string>;
     /**
      * Specifies the TTL for the leases associated with this role.
      */
-    public readonly defaultTtl!: pulumi.Output<number | undefined>;
+    declare public readonly defaultTtl: pulumi.Output<number | undefined>;
     /**
      * A templatized LDIF string used to delete the
      * user account once its TTL has expired. This may contain multiple LDIF
@@ -98,27 +98,27 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
      * continue executing any remaining entries. This field may optionally be
      * provided as a base64 encoded string.
      */
-    public readonly deletionLdif!: pulumi.Output<string>;
+    declare public readonly deletionLdif: pulumi.Output<string>;
     /**
      * Specifies the maximum TTL for the leases associated with this role.
      */
-    public readonly maxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly maxTtl: pulumi.Output<number | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ldap`.
      */
-    public readonly mount!: pulumi.Output<string | undefined>;
+    declare public readonly mount: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Name of the role.
      */
-    public readonly roleName!: pulumi.Output<string>;
+    declare public readonly roleName: pulumi.Output<string>;
     /**
      * A templatized LDIF string used to attempt to
      * rollback any changes in the event that execution of the `creationLdif` results
@@ -127,13 +127,13 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
      * the `rollbackLdif` it will attempt to continue executing any remaining
      * entries. This field may optionally be provided as a base64 encoded string.
      */
-    public readonly rollbackLdif!: pulumi.Output<string | undefined>;
+    declare public readonly rollbackLdif: pulumi.Output<string | undefined>;
     /**
      * A template used to generate a dynamic
      * username. This will be used to fill in the `.Username` field within the
      * `creationLdif` string.
      */
-    public readonly usernameTemplate!: pulumi.Output<string | undefined>;
+    declare public readonly usernameTemplate: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendDynamicRole resource with the given unique name, arguments, and options.
@@ -148,35 +148,35 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendDynamicRoleState | undefined;
-            resourceInputs["creationLdif"] = state ? state.creationLdif : undefined;
-            resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
-            resourceInputs["deletionLdif"] = state ? state.deletionLdif : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
-            resourceInputs["rollbackLdif"] = state ? state.rollbackLdif : undefined;
-            resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
+            resourceInputs["creationLdif"] = state?.creationLdif;
+            resourceInputs["defaultTtl"] = state?.defaultTtl;
+            resourceInputs["deletionLdif"] = state?.deletionLdif;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["rollbackLdif"] = state?.rollbackLdif;
+            resourceInputs["usernameTemplate"] = state?.usernameTemplate;
         } else {
             const args = argsOrState as SecretBackendDynamicRoleArgs | undefined;
-            if ((!args || args.creationLdif === undefined) && !opts.urn) {
+            if (args?.creationLdif === undefined && !opts.urn) {
                 throw new Error("Missing required property 'creationLdif'");
             }
-            if ((!args || args.deletionLdif === undefined) && !opts.urn) {
+            if (args?.deletionLdif === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deletionLdif'");
             }
-            if ((!args || args.roleName === undefined) && !opts.urn) {
+            if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            resourceInputs["creationLdif"] = args ? args.creationLdif : undefined;
-            resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
-            resourceInputs["deletionLdif"] = args ? args.deletionLdif : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["rollbackLdif"] = args ? args.rollbackLdif : undefined;
-            resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
+            resourceInputs["creationLdif"] = args?.creationLdif;
+            resourceInputs["defaultTtl"] = args?.defaultTtl;
+            resourceInputs["deletionLdif"] = args?.deletionLdif;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["rollbackLdif"] = args?.rollbackLdif;
+            resourceInputs["usernameTemplate"] = args?.usernameTemplate;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendDynamicRole.__pulumiType, name, resourceInputs, opts);

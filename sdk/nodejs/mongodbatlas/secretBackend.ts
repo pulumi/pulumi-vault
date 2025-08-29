@@ -62,26 +62,26 @@ export class SecretBackend extends pulumi.CustomResource {
     /**
      * Path where the MongoDB Atlas Secrets Engine is mounted.
      */
-    public readonly mount!: pulumi.Output<string>;
+    declare public readonly mount: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path where MongoDB Atlas configuration is located
      */
-    public /*out*/ readonly path!: pulumi.Output<string>;
+    declare public /*out*/ readonly path: pulumi.Output<string>;
     /**
      * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      */
-    public readonly publicKey!: pulumi.Output<string>;
+    declare public readonly publicKey: pulumi.Output<string>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -96,26 +96,26 @@ export class SecretBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["publicKey"] = state?.publicKey;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.mount === undefined) && !opts.urn) {
+            if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
-            if ((!args || args.privateKey === undefined) && !opts.urn) {
+            if (args?.privateKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateKey'");
             }
-            if ((!args || args.publicKey === undefined) && !opts.urn) {
+            if (args?.publicKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
-            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["privateKey"] = args?.privateKey;
+            resourceInputs["publicKey"] = args?.publicKey;
             resourceInputs["path"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

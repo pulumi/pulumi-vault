@@ -199,16 +199,14 @@ public class OciAuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.rotationSchedule);
     }
     /**
-     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      * 
      */
     @Export(name="rotationWindow", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> rotationWindow;
 
     /**
-     * @return The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * @return The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      * 
      */
     public Output<Optional<Integer>> rotationWindow() {

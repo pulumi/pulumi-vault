@@ -69,16 +69,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy")
 public class BackendConfigAutoTidy extends com.pulumi.resources.CustomResource {
     /**
-     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      * 
      */
     @Export(name="acmeAccountSafetyBuffer", refs={String.class}, tree="[0]")
     private Output<String> acmeAccountSafetyBuffer;
 
     /**
-     * @return The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * @return The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      * 
      */
     public Output<String> acmeAccountSafetyBuffer() {

@@ -283,16 +283,14 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-     * use when checking the last rotation time.
+     * Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
      * 
      */
     @Import(name="local")
     private @Nullable Output<Boolean> local;
 
     /**
-     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-     * use when checking the last rotation time.
+     * @return Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
      * 
      */
     public Optional<Output<Boolean>> local() {
@@ -926,8 +924,7 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-         * use when checking the last rotation time.
+         * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
          * 
          * @return builder
          * 
@@ -938,8 +935,7 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-         * use when checking the last rotation time.
+         * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
          * 
          * @return builder
          * 

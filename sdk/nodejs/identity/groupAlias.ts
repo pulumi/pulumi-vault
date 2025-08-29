@@ -76,22 +76,22 @@ export class GroupAlias extends pulumi.CustomResource {
     /**
      * ID of the group to which this is an alias.
      */
-    public readonly canonicalId!: pulumi.Output<string>;
+    declare public readonly canonicalId: pulumi.Output<string>;
     /**
      * Mount accessor of the authentication backend to which this alias belongs to.
      */
-    public readonly mountAccessor!: pulumi.Output<string>;
+    declare public readonly mountAccessor: pulumi.Output<string>;
     /**
      * Name of the group alias to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a GroupAlias resource with the given unique name, arguments, and options.
@@ -106,25 +106,25 @@ export class GroupAlias extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupAliasState | undefined;
-            resourceInputs["canonicalId"] = state ? state.canonicalId : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["canonicalId"] = state?.canonicalId;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as GroupAliasArgs | undefined;
-            if ((!args || args.canonicalId === undefined) && !opts.urn) {
+            if (args?.canonicalId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'canonicalId'");
             }
-            if ((!args || args.mountAccessor === undefined) && !opts.urn) {
+            if (args?.mountAccessor === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if ((!args || args.name === undefined) && !opts.urn) {
+            if (args?.name === undefined && !opts.urn) {
                 throw new Error("Missing required property 'name'");
             }
-            resourceInputs["canonicalId"] = args ? args.canonicalId : undefined;
-            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["canonicalId"] = args?.canonicalId;
+            resourceInputs["mountAccessor"] = args?.mountAccessor;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupAlias.__pulumiType, name, resourceInputs, opts);

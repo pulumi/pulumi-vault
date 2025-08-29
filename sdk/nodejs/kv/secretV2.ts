@@ -113,13 +113,13 @@ export class SecretV2 extends pulumi.CustomResource {
      * write operation to be successful, cas must be set to the current version
      * of the secret.
      */
-    public readonly cas!: pulumi.Output<number | undefined>;
+    declare public readonly cas: pulumi.Output<number | undefined>;
     /**
      * A nested block that allows configuring metadata for the
      * KV secret. Refer to the
      * Configuration Options for more info.
      */
-    public readonly customMetadata!: pulumi.Output<outputs.kv.SecretV2CustomMetadata>;
+    declare public readonly customMetadata: pulumi.Output<outputs.kv.SecretV2CustomMetadata>;
     /**
      * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
      * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
@@ -128,56 +128,56 @@ export class SecretV2 extends pulumi.CustomResource {
      *
      * @deprecated Deprecated. Will no longer be set on a read.
      */
-    public /*out*/ readonly data!: pulumi.Output<{[key: string]: string}>;
+    declare public /*out*/ readonly data: pulumi.Output<{[key: string]: string}>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path.
      */
-    public readonly dataJson!: pulumi.Output<string | undefined>;
+    declare public readonly dataJson: pulumi.Output<string | undefined>;
     /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      */
-    public readonly dataJsonWoVersion!: pulumi.Output<number | undefined>;
+    declare public readonly dataJsonWoVersion: pulumi.Output<number | undefined>;
     /**
      * If set to true, permanently deletes all
      * versions for the specified key.
      */
-    public readonly deleteAllVersions!: pulumi.Output<boolean | undefined>;
+    declare public readonly deleteAllVersions: pulumi.Output<boolean | undefined>;
     /**
      * If set to true, disables reading secret from Vault;
      * note: drift won't be detected.
      */
-    public readonly disableRead!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRead: pulumi.Output<boolean | undefined>;
     /**
      * Metadata associated with this secret read from Vault.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
+    declare public /*out*/ readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
      * Path where KV-V2 engine is mounted.
      */
-    public readonly mount!: pulumi.Output<string>;
+    declare public readonly mount: pulumi.Output<string>;
     /**
      * Full name of the secret. For a nested secret
      * the name is the nested path excluding the mount and data
      * prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
      * the name is `foo/bar/baz`.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * An object that holds option settings.
      */
-    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly options: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Full path where the KV-V2 secret will be written.
      */
-    public /*out*/ readonly path!: pulumi.Output<string>;
+    declare public /*out*/ readonly path: pulumi.Output<string>;
 
     /**
      * Create a SecretV2 resource with the given unique name, arguments, and options.
@@ -192,34 +192,34 @@ export class SecretV2 extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretV2State | undefined;
-            resourceInputs["cas"] = state ? state.cas : undefined;
-            resourceInputs["customMetadata"] = state ? state.customMetadata : undefined;
-            resourceInputs["data"] = state ? state.data : undefined;
-            resourceInputs["dataJson"] = state ? state.dataJson : undefined;
-            resourceInputs["dataJsonWoVersion"] = state ? state.dataJsonWoVersion : undefined;
-            resourceInputs["deleteAllVersions"] = state ? state.deleteAllVersions : undefined;
-            resourceInputs["disableRead"] = state ? state.disableRead : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["cas"] = state?.cas;
+            resourceInputs["customMetadata"] = state?.customMetadata;
+            resourceInputs["data"] = state?.data;
+            resourceInputs["dataJson"] = state?.dataJson;
+            resourceInputs["dataJsonWoVersion"] = state?.dataJsonWoVersion;
+            resourceInputs["deleteAllVersions"] = state?.deleteAllVersions;
+            resourceInputs["disableRead"] = state?.disableRead;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["path"] = state?.path;
         } else {
             const args = argsOrState as SecretV2Args | undefined;
-            if ((!args || args.mount === undefined) && !opts.urn) {
+            if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
-            resourceInputs["cas"] = args ? args.cas : undefined;
-            resourceInputs["customMetadata"] = args ? args.customMetadata : undefined;
+            resourceInputs["cas"] = args?.cas;
+            resourceInputs["customMetadata"] = args?.customMetadata;
             resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
-            resourceInputs["dataJsonWoVersion"] = args ? args.dataJsonWoVersion : undefined;
-            resourceInputs["deleteAllVersions"] = args ? args.deleteAllVersions : undefined;
-            resourceInputs["disableRead"] = args ? args.disableRead : undefined;
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["dataJsonWoVersion"] = args?.dataJsonWoVersion;
+            resourceInputs["deleteAllVersions"] = args?.deleteAllVersions;
+            resourceInputs["disableRead"] = args?.disableRead;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
             resourceInputs["data"] = undefined /*out*/;
             resourceInputs["metadata"] = undefined /*out*/;
             resourceInputs["path"] = undefined /*out*/;

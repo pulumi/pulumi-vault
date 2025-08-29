@@ -72,22 +72,22 @@ export class OidcAssignment extends pulumi.CustomResource {
     /**
      * A set of Vault entity IDs.
      */
-    public readonly entityIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly entityIds: pulumi.Output<string[] | undefined>;
     /**
      * A set of Vault group IDs.
      */
-    public readonly groupIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly groupIds: pulumi.Output<string[] | undefined>;
     /**
      * The name of the assignment.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a OidcAssignment resource with the given unique name, arguments, and options.
@@ -102,16 +102,16 @@ export class OidcAssignment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcAssignmentState | undefined;
-            resourceInputs["entityIds"] = state ? state.entityIds : undefined;
-            resourceInputs["groupIds"] = state ? state.groupIds : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["entityIds"] = state?.entityIds;
+            resourceInputs["groupIds"] = state?.groupIds;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as OidcAssignmentArgs | undefined;
-            resourceInputs["entityIds"] = args ? args.entityIds : undefined;
-            resourceInputs["groupIds"] = args ? args.groupIds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["entityIds"] = args?.entityIds;
+            resourceInputs["groupIds"] = args?.groupIds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OidcAssignment.__pulumiType, name, resourceInputs, opts);

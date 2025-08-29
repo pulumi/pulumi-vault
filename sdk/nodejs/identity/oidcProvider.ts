@@ -93,36 +93,36 @@ export class OidcProvider extends pulumi.CustomResource {
      * The client IDs that are permitted to use the provider. 
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      */
-    public readonly allowedClientIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedClientIds: pulumi.Output<string[] | undefined>;
     /**
      * Set to true if the issuer endpoint uses HTTPS.
      */
-    public readonly httpsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly httpsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Specifies what will be used as the `scheme://host:port`
      * component for the `iss` claim of ID tokens. This value is computed using the
      * `issuerHost` and `httpsEnabled` fields.
      */
-    public /*out*/ readonly issuer!: pulumi.Output<string>;
+    declare public /*out*/ readonly issuer: pulumi.Output<string>;
     /**
      * The host for the issuer. Can be either host or host:port.
      */
-    public readonly issuerHost!: pulumi.Output<string | undefined>;
+    declare public readonly issuerHost: pulumi.Output<string | undefined>;
     /**
      * The name of the provider.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The scopes available for requesting on the provider.
      */
-    public readonly scopesSupporteds!: pulumi.Output<string[] | undefined>;
+    declare public readonly scopesSupporteds: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a OidcProvider resource with the given unique name, arguments, and options.
@@ -137,21 +137,21 @@ export class OidcProvider extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcProviderState | undefined;
-            resourceInputs["allowedClientIds"] = state ? state.allowedClientIds : undefined;
-            resourceInputs["httpsEnabled"] = state ? state.httpsEnabled : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["issuerHost"] = state ? state.issuerHost : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["scopesSupporteds"] = state ? state.scopesSupporteds : undefined;
+            resourceInputs["allowedClientIds"] = state?.allowedClientIds;
+            resourceInputs["httpsEnabled"] = state?.httpsEnabled;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["issuerHost"] = state?.issuerHost;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["scopesSupporteds"] = state?.scopesSupporteds;
         } else {
             const args = argsOrState as OidcProviderArgs | undefined;
-            resourceInputs["allowedClientIds"] = args ? args.allowedClientIds : undefined;
-            resourceInputs["httpsEnabled"] = args ? args.httpsEnabled : undefined;
-            resourceInputs["issuerHost"] = args ? args.issuerHost : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["scopesSupporteds"] = args ? args.scopesSupporteds : undefined;
+            resourceInputs["allowedClientIds"] = args?.allowedClientIds;
+            resourceInputs["httpsEnabled"] = args?.httpsEnabled;
+            resourceInputs["issuerHost"] = args?.issuerHost;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["scopesSupporteds"] = args?.scopesSupporteds;
             resourceInputs["issuer"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

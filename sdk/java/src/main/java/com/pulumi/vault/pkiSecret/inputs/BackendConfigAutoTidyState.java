@@ -17,16 +17,14 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
     public static final BackendConfigAutoTidyState Empty = new BackendConfigAutoTidyState();
 
     /**
-     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      * 
      */
     @Import(name="acmeAccountSafetyBuffer")
     private @Nullable Output<String> acmeAccountSafetyBuffer;
 
     /**
-     * @return The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * @return The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      * 
      */
     public Optional<Output<String>> acmeAccountSafetyBuffer() {
@@ -452,8 +450,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param acmeAccountSafetyBuffer The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-         * time after being marked revoked or deactivated.
+         * @param acmeAccountSafetyBuffer The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
          * 
          * @return builder
          * 
@@ -464,8 +461,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param acmeAccountSafetyBuffer The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-         * time after being marked revoked or deactivated.
+         * @param acmeAccountSafetyBuffer The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
          * 
          * @return builder
          * 

@@ -67,22 +67,22 @@ export class AuthBackendGroup extends pulumi.CustomResource {
     /**
      * Name of the group within the Okta
      */
-    public readonly groupName!: pulumi.Output<string>;
+    declare public readonly groupName: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The path where the Okta auth backend is mounted
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Vault policies to associate with this group
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a AuthBackendGroup resource with the given unique name, arguments, and options.
@@ -97,22 +97,22 @@ export class AuthBackendGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendGroupState | undefined;
-            resourceInputs["groupName"] = state ? state.groupName : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["groupName"] = state?.groupName;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["policies"] = state?.policies;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
-            if ((!args || args.groupName === undefined) && !opts.urn) {
+            if (args?.groupName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupName'");
             }
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["groupName"] = args ? args.groupName : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["groupName"] = args?.groupName;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["policies"] = args?.policies;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendGroup.__pulumiType, name, resourceInputs, opts);

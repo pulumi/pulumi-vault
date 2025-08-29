@@ -66,23 +66,23 @@ export class Team extends pulumi.CustomResource {
      * Path where the github auth backend is mounted. Defaults to `github`
      * if not specified.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * An array of strings specifying the policies to be set on tokens
      * issued using this role.
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
      * GitHub team name in "slugified" format.
      */
-    public readonly team!: pulumi.Output<string>;
+    declare public readonly team: pulumi.Output<string>;
 
     /**
      * Create a Team resource with the given unique name, arguments, and options.
@@ -97,19 +97,19 @@ export class Team extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TeamState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["team"] = state ? state.team : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["team"] = state?.team;
         } else {
             const args = argsOrState as TeamArgs | undefined;
-            if ((!args || args.team === undefined) && !opts.urn) {
+            if (args?.team === undefined && !opts.urn) {
                 throw new Error("Missing required property 'team'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["team"] = args ? args.team : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["team"] = args?.team;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Team.__pulumiType, name, resourceInputs, opts);

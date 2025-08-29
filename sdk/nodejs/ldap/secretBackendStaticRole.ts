@@ -70,36 +70,36 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * password rotation for. If given, it will take precedence over `username` for the LDAP
      * search performed during password rotation. Cannot be modified after creation.
      */
-    public readonly dn!: pulumi.Output<string | undefined>;
+    declare public readonly dn: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ldap`.
      */
-    public readonly mount!: pulumi.Output<string | undefined>;
+    declare public readonly mount: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Name of the role.
      */
-    public readonly roleName!: pulumi.Output<string>;
+    declare public readonly roleName: pulumi.Output<string>;
     /**
      * How often Vault should rotate the password of the user entry.
      */
-    public readonly rotationPeriod!: pulumi.Output<number>;
+    declare public readonly rotationPeriod: pulumi.Output<number>;
     /**
      * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
      * Requires Vault 1.16 or above.
      */
-    public readonly skipImportRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly skipImportRotation: pulumi.Output<boolean | undefined>;
     /**
      * The username of the existing LDAP entry to manage password rotation for.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendStaticRole resource with the given unique name, arguments, and options.
@@ -114,31 +114,31 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
-            resourceInputs["dn"] = state ? state.dn : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["skipImportRotation"] = state ? state.skipImportRotation : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["dn"] = state?.dn;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["skipImportRotation"] = state?.skipImportRotation;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
-            if ((!args || args.roleName === undefined) && !opts.urn) {
+            if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            if ((!args || args.rotationPeriod === undefined) && !opts.urn) {
+            if (args?.rotationPeriod === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rotationPeriod'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["dn"] = args ? args.dn : undefined;
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["skipImportRotation"] = args ? args.skipImportRotation : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["dn"] = args?.dn;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["skipImportRotation"] = args?.skipImportRotation;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendStaticRole.__pulumiType, name, resourceInputs, opts);

@@ -356,16 +356,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-     * token namespace as the root namespace for all resources.
+     * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
      * 
      */
     @Import(name="setNamespaceFromToken", json=true)
     private @Nullable Output<Boolean> setNamespaceFromToken;
 
     /**
-     * @return In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-     * token namespace as the root namespace for all resources.
+     * @return In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
      * 
      */
     public Optional<Output<Boolean>> setNamespaceFromToken() {
@@ -991,8 +989,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param setNamespaceFromToken In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-         * token namespace as the root namespace for all resources.
+         * @param setNamespaceFromToken In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
          * 
          * @return builder
          * 
@@ -1003,8 +1000,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param setNamespaceFromToken In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-         * token namespace as the root namespace for all resources.
+         * @param setNamespaceFromToken In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
          * 
          * @return builder
          * 

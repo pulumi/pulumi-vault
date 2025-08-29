@@ -94,8 +94,7 @@ type NomadSecretBackend struct {
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-	// use when checking the last rotation time.
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
@@ -209,8 +208,7 @@ type nomadSecretBackendState struct {
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility *string `pulumi:"listingVisibility"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-	// use when checking the last rotation time.
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -280,8 +278,7 @@ type NomadSecretBackendState struct {
 	IdentityTokenKey pulumi.StringPtrInput
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrInput
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-	// use when checking the last rotation time.
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -353,8 +350,7 @@ type nomadSecretBackendArgs struct {
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility *string `pulumi:"listingVisibility"`
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-	// use when checking the last rotation time.
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
@@ -423,8 +419,7 @@ type NomadSecretBackendArgs struct {
 	IdentityTokenKey pulumi.StringPtrInput
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrInput
-	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-	// use when checking the last rotation time.
+	// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds.
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
@@ -634,8 +629,7 @@ func (o NomadSecretBackendOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
-// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to
-// use when checking the last rotation time.
+// Mark the secrets engine as local-only. Local engines are not replicated or removed by replication. Tolerance duration to use when checking the last rotation time.
 func (o NomadSecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
 }

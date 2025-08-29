@@ -49,29 +49,29 @@ export class AuthBackendCert extends pulumi.CustomResource {
      * the [AWS
      * documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
      */
-    public readonly awsPublicCert!: pulumi.Output<string>;
+    declare public readonly awsPublicCert: pulumi.Output<string>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The name of the certificate.
      */
-    public readonly certName!: pulumi.Output<string>;
+    declare public readonly certName: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendCert resource with the given unique name, arguments, and options.
@@ -86,24 +86,24 @@ export class AuthBackendCert extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendCertState | undefined;
-            resourceInputs["awsPublicCert"] = state ? state.awsPublicCert : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["certName"] = state ? state.certName : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["awsPublicCert"] = state?.awsPublicCert;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["certName"] = state?.certName;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as AuthBackendCertArgs | undefined;
-            if ((!args || args.awsPublicCert === undefined) && !opts.urn) {
+            if (args?.awsPublicCert === undefined && !opts.urn) {
                 throw new Error("Missing required property 'awsPublicCert'");
             }
-            if ((!args || args.certName === undefined) && !opts.urn) {
+            if (args?.certName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certName'");
             }
-            resourceInputs["awsPublicCert"] = args ? args.awsPublicCert : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["certName"] = args ? args.certName : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["awsPublicCert"] = args?.awsPublicCert;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["certName"] = args?.certName;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendCert.__pulumiType, name, resourceInputs, opts);

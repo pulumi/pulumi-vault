@@ -56,41 +56,41 @@ export class SecretCreds extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretCreds.__pulumiType;
     }
 
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The lease associated with the token. Only user tokens will have a 
      * Vault lease associated with them.
      */
-    public /*out*/ readonly leaseId!: pulumi.Output<string>;
+    declare public /*out*/ readonly leaseId: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The organization associated with the token provided.
      */
-    public /*out*/ readonly organization!: pulumi.Output<string>;
+    declare public /*out*/ readonly organization: pulumi.Output<string>;
     /**
      * Name of the role.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * The team id associated with the token provided.
      */
-    public /*out*/ readonly teamId!: pulumi.Output<string>;
+    declare public /*out*/ readonly teamId: pulumi.Output<string>;
     /**
      * The actual token that was generated and can be used with API calls
      * to identify the user of the call.
      */
-    public /*out*/ readonly token!: pulumi.Output<string>;
+    declare public /*out*/ readonly token: pulumi.Output<string>;
     /**
      * The public identifier for a specific token. It can be used 
      * to look up information about a token or to revoke a token.
      */
-    public /*out*/ readonly tokenId!: pulumi.Output<string>;
+    declare public /*out*/ readonly tokenId: pulumi.Output<string>;
 
     /**
      * Create a SecretCreds resource with the given unique name, arguments, and options.
@@ -105,25 +105,25 @@ export class SecretCreds extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretCredsState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["leaseId"] = state ? state.leaseId : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["organization"] = state ? state.organization : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
-            resourceInputs["tokenId"] = state ? state.tokenId : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["leaseId"] = state?.leaseId;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["organization"] = state?.organization;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["token"] = state?.token;
+            resourceInputs["tokenId"] = state?.tokenId;
         } else {
             const args = argsOrState as SecretCredsArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["role"] = args?.role;
             resourceInputs["leaseId"] = undefined /*out*/;
             resourceInputs["organization"] = undefined /*out*/;
             resourceInputs["teamId"] = undefined /*out*/;

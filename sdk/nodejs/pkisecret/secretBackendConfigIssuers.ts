@@ -75,23 +75,23 @@ export class SecretBackendConfigIssuers extends pulumi.CustomResource {
      * The path the PKI secret backend is mounted at, with no
      * leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the default issuer by ID.
      */
-    public readonly default!: pulumi.Output<string | undefined>;
+    declare public readonly default: pulumi.Output<string | undefined>;
     /**
      * Specifies whether a root creation
      * or an issuer import operation updates the default issuer to the newly added issuer.
      */
-    public readonly defaultFollowsLatestIssuer!: pulumi.Output<boolean>;
+    declare public readonly defaultFollowsLatestIssuer: pulumi.Output<boolean>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendConfigIssuers resource with the given unique name, arguments, and options.
@@ -106,19 +106,19 @@ export class SecretBackendConfigIssuers extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendConfigIssuersState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["default"] = state ? state.default : undefined;
-            resourceInputs["defaultFollowsLatestIssuer"] = state ? state.defaultFollowsLatestIssuer : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["default"] = state?.default;
+            resourceInputs["defaultFollowsLatestIssuer"] = state?.defaultFollowsLatestIssuer;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as SecretBackendConfigIssuersArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["default"] = args ? args.default : undefined;
-            resourceInputs["defaultFollowsLatestIssuer"] = args ? args.defaultFollowsLatestIssuer : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["default"] = args?.default;
+            resourceInputs["defaultFollowsLatestIssuer"] = args?.defaultFollowsLatestIssuer;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendConfigIssuers.__pulumiType, name, resourceInputs, opts);

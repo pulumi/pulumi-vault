@@ -45,8 +45,7 @@ namespace Pulumi.Vault.PkiSecret
     public partial class BackendConfigAutoTidy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-        /// time after being marked revoked or deactivated.
+        /// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         /// </summary>
         [Output("acmeAccountSafetyBuffer")]
         public Output<string> AcmeAccountSafetyBuffer { get; private set; } = null!;
@@ -251,8 +250,7 @@ namespace Pulumi.Vault.PkiSecret
     public sealed class BackendConfigAutoTidyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-        /// time after being marked revoked or deactivated.
+        /// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         /// </summary>
         [Input("acmeAccountSafetyBuffer")]
         public Input<string>? AcmeAccountSafetyBuffer { get; set; }
@@ -419,8 +417,7 @@ namespace Pulumi.Vault.PkiSecret
     public sealed class BackendConfigAutoTidyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-        /// time after being marked revoked or deactivated.
+        /// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         /// </summary>
         [Input("acmeAccountSafetyBuffer")]
         public Input<string>? AcmeAccountSafetyBuffer { get; set; }

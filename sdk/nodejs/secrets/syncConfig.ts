@@ -61,17 +61,17 @@ export class SyncConfig extends pulumi.CustomResource {
     /**
      * Disables the syncing process between Vault and external destinations. Defaults to `false`.
      */
-    public readonly disabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly disabled: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * This resource can only be configured in the root namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.
      */
-    public readonly queueCapacity!: pulumi.Output<number | undefined>;
+    declare public readonly queueCapacity: pulumi.Output<number | undefined>;
 
     /**
      * Create a SyncConfig resource with the given unique name, arguments, and options.
@@ -86,14 +86,14 @@ export class SyncConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncConfigState | undefined;
-            resourceInputs["disabled"] = state ? state.disabled : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["queueCapacity"] = state ? state.queueCapacity : undefined;
+            resourceInputs["disabled"] = state?.disabled;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["queueCapacity"] = state?.queueCapacity;
         } else {
             const args = argsOrState as SyncConfigArgs | undefined;
-            resourceInputs["disabled"] = args ? args.disabled : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["queueCapacity"] = args ? args.queueCapacity : undefined;
+            resourceInputs["disabled"] = args?.disabled;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["queueCapacity"] = args?.queueCapacity;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SyncConfig.__pulumiType, name, resourceInputs, opts);

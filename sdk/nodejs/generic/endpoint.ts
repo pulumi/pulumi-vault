@@ -94,13 +94,13 @@ export class Endpoint extends pulumi.CustomResource {
      * String containing a JSON-encoded object that will be
      * written to the given path as the secret data.
      */
-    public readonly dataJson!: pulumi.Output<string>;
+    declare public readonly dataJson: pulumi.Output<string>;
     /**
      * - (Optional) True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      */
-    public readonly disableDelete!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableDelete: pulumi.Output<boolean | undefined>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data or if the endpoint does
@@ -108,7 +108,7 @@ export class Endpoint extends pulumi.CustomResource {
      * detection. You should set this to `true` for endpoints that are
      * write-only. Defaults to false.
      */
-    public readonly disableRead!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRead: pulumi.Output<boolean | undefined>;
     /**
      * - (Optional) True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
@@ -118,21 +118,21 @@ export class Endpoint extends pulumi.CustomResource {
      * different set of fields from the ones you wrote, as is common with
      * many configuration endpoints. Defaults to false.
      */
-    public readonly ignoreAbsentFields!: pulumi.Output<boolean | undefined>;
+    declare public readonly ignoreAbsentFields: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
      * support the `PUT` methods and to determine whether they also support
      * `DELETE` and `GET`.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * - A map whose keys are the top-level data keys
      * returned from Vault by the write operation and whose values are the
@@ -140,12 +140,12 @@ export class Endpoint extends pulumi.CustomResource {
      * any non-string values returned from Vault are serialized as JSON.
      * Only fields set in `writeFields` are present in the JSON data.
      */
-    public /*out*/ readonly writeData!: pulumi.Output<{[key: string]: string}>;
+    declare public /*out*/ readonly writeData: pulumi.Output<{[key: string]: string}>;
     /**
      * - The JSON data returned by the write operation.
      * Only fields set in `writeFields` are present in the JSON data.
      */
-    public /*out*/ readonly writeDataJson!: pulumi.Output<string>;
+    declare public /*out*/ readonly writeDataJson: pulumi.Output<string>;
     /**
      * - (Optional). A list of fields that should be returned
      * in `writeDataJson` and `writeData`. If omitted, data returned by
@@ -155,7 +155,7 @@ export class Endpoint extends pulumi.CustomResource {
      * data from writing to an endpoint rather than reading it. You should
      * use `writeFields` if you need information returned in this way.
      */
-    public readonly writeFields!: pulumi.Output<string[] | undefined>;
+    declare public readonly writeFields: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Endpoint resource with the given unique name, arguments, and options.
@@ -170,30 +170,30 @@ export class Endpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointState | undefined;
-            resourceInputs["dataJson"] = state ? state.dataJson : undefined;
-            resourceInputs["disableDelete"] = state ? state.disableDelete : undefined;
-            resourceInputs["disableRead"] = state ? state.disableRead : undefined;
-            resourceInputs["ignoreAbsentFields"] = state ? state.ignoreAbsentFields : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["writeData"] = state ? state.writeData : undefined;
-            resourceInputs["writeDataJson"] = state ? state.writeDataJson : undefined;
-            resourceInputs["writeFields"] = state ? state.writeFields : undefined;
+            resourceInputs["dataJson"] = state?.dataJson;
+            resourceInputs["disableDelete"] = state?.disableDelete;
+            resourceInputs["disableRead"] = state?.disableRead;
+            resourceInputs["ignoreAbsentFields"] = state?.ignoreAbsentFields;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["writeData"] = state?.writeData;
+            resourceInputs["writeDataJson"] = state?.writeDataJson;
+            resourceInputs["writeFields"] = state?.writeFields;
         } else {
             const args = argsOrState as EndpointArgs | undefined;
-            if ((!args || args.dataJson === undefined) && !opts.urn) {
+            if (args?.dataJson === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dataJson'");
             }
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
-            resourceInputs["disableDelete"] = args ? args.disableDelete : undefined;
-            resourceInputs["disableRead"] = args ? args.disableRead : undefined;
-            resourceInputs["ignoreAbsentFields"] = args ? args.ignoreAbsentFields : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["writeFields"] = args ? args.writeFields : undefined;
+            resourceInputs["disableDelete"] = args?.disableDelete;
+            resourceInputs["disableRead"] = args?.disableRead;
+            resourceInputs["ignoreAbsentFields"] = args?.ignoreAbsentFields;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["writeFields"] = args?.writeFields;
             resourceInputs["writeData"] = undefined /*out*/;
             resourceInputs["writeDataJson"] = undefined /*out*/;
         }

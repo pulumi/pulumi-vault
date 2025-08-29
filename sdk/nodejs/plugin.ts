@@ -64,41 +64,41 @@ export class Plugin extends pulumi.CustomResource {
     /**
      * List of additional args to pass to the plugin.
      */
-    public readonly args!: pulumi.Output<string[] | undefined>;
+    declare public readonly args: pulumi.Output<string[] | undefined>;
     /**
      * Command to execute the plugin, relative to the server's configured `pluginDirectory`.
      */
-    public readonly command!: pulumi.Output<string>;
+    declare public readonly command: pulumi.Output<string>;
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
-    public readonly envs!: pulumi.Output<string[] | undefined>;
+    declare public readonly envs: pulumi.Output<string[] | undefined>;
     /**
      * Name of the plugin.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Specifies OCI image to run. If specified, setting
      * `command`, `args`, and `env` will update the container's entrypoint, args, and
      * environment variables (append-only) respectively.
      */
-    public readonly ociImage!: pulumi.Output<string | undefined>;
+    declare public readonly ociImage: pulumi.Output<string | undefined>;
     /**
      * Vault plugin runtime to use if `ociImage` is specified.
      */
-    public readonly runtime!: pulumi.Output<string | undefined>;
+    declare public readonly runtime: pulumi.Output<string | undefined>;
     /**
      * SHA256 sum of the plugin binary.
      */
-    public readonly sha256!: pulumi.Output<string>;
+    declare public readonly sha256: pulumi.Output<string>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Semantic version of the plugin.
      */
-    public readonly version!: pulumi.Output<string | undefined>;
+    declare public readonly version: pulumi.Output<string | undefined>;
 
     /**
      * Create a Plugin resource with the given unique name, arguments, and options.
@@ -113,35 +113,35 @@ export class Plugin extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PluginState | undefined;
-            resourceInputs["args"] = state ? state.args : undefined;
-            resourceInputs["command"] = state ? state.command : undefined;
-            resourceInputs["envs"] = state ? state.envs : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["ociImage"] = state ? state.ociImage : undefined;
-            resourceInputs["runtime"] = state ? state.runtime : undefined;
-            resourceInputs["sha256"] = state ? state.sha256 : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
+            resourceInputs["args"] = state?.args;
+            resourceInputs["command"] = state?.command;
+            resourceInputs["envs"] = state?.envs;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["ociImage"] = state?.ociImage;
+            resourceInputs["runtime"] = state?.runtime;
+            resourceInputs["sha256"] = state?.sha256;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as PluginArgs | undefined;
-            if ((!args || args.command === undefined) && !opts.urn) {
+            if (args?.command === undefined && !opts.urn) {
                 throw new Error("Missing required property 'command'");
             }
-            if ((!args || args.sha256 === undefined) && !opts.urn) {
+            if (args?.sha256 === undefined && !opts.urn) {
                 throw new Error("Missing required property 'sha256'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["args"] = args ? args.args : undefined;
-            resourceInputs["command"] = args ? args.command : undefined;
+            resourceInputs["args"] = args?.args;
+            resourceInputs["command"] = args?.command;
             resourceInputs["envs"] = args?.envs ? pulumi.secret(args.envs) : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ociImage"] = args ? args.ociImage : undefined;
-            resourceInputs["runtime"] = args ? args.runtime : undefined;
-            resourceInputs["sha256"] = args ? args.sha256 : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ociImage"] = args?.ociImage;
+            resourceInputs["runtime"] = args?.runtime;
+            resourceInputs["sha256"] = args?.sha256;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["version"] = args?.version;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["envs"] };

@@ -58,39 +58,39 @@ export class BackendAcmeEab extends pulumi.CustomResource {
     /**
      * The ACME directory to which the key belongs
      */
-    public /*out*/ readonly acmeDirectory!: pulumi.Output<string>;
+    declare public /*out*/ readonly acmeDirectory: pulumi.Output<string>;
     /**
      * The path to the PKI secret backend to
      * create the EAB token within, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * An RFC3339 formatted date time when the EAB token was created
      */
-    public /*out*/ readonly createdOn!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdOn: pulumi.Output<string>;
     /**
      * The identifier of a specific ACME EAB token
      */
-    public /*out*/ readonly eabId!: pulumi.Output<string>;
+    declare public /*out*/ readonly eabId: pulumi.Output<string>;
     /**
      * Create an EAB token that is specific to an issuer's ACME directory.
      */
-    public readonly issuer!: pulumi.Output<string | undefined>;
+    declare public readonly issuer: pulumi.Output<string | undefined>;
     /**
      * The EAB token
      */
-    public /*out*/ readonly key!: pulumi.Output<string>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
     /**
      * The key type of the EAB key
      */
-    public /*out*/ readonly keyType!: pulumi.Output<string>;
+    declare public /*out*/ readonly keyType: pulumi.Output<string>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Create an EAB token that is specific to a role's ACME directory.
      *
@@ -101,7 +101,7 @@ export class BackendAcmeEab extends pulumi.CustomResource {
      * 3. Role specific (`pki/roles/:role/acme/`) - Specify a value for the role parameter
      * 4. Issuer and Role specific (`pki/issuer/:issuer_ref/roles/:role/acme/`) - Specify a value for both the issuer and role parameters
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    declare public readonly role: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackendAcmeEab resource with the given unique name, arguments, and options.
@@ -116,24 +116,24 @@ export class BackendAcmeEab extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendAcmeEabState | undefined;
-            resourceInputs["acmeDirectory"] = state ? state.acmeDirectory : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["createdOn"] = state ? state.createdOn : undefined;
-            resourceInputs["eabId"] = state ? state.eabId : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["acmeDirectory"] = state?.acmeDirectory;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["createdOn"] = state?.createdOn;
+            resourceInputs["eabId"] = state?.eabId;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["role"] = state?.role;
         } else {
             const args = argsOrState as BackendAcmeEabArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["issuer"] = args ? args.issuer : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["issuer"] = args?.issuer;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["role"] = args?.role;
             resourceInputs["acmeDirectory"] = undefined /*out*/;
             resourceInputs["createdOn"] = undefined /*out*/;
             resourceInputs["eabId"] = undefined /*out*/;

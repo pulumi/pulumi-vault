@@ -75,62 +75,62 @@ export class BackendRole extends pulumi.CustomResource {
      * Application Object ID for an existing service principal that will
      * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      */
-    public readonly applicationObjectId!: pulumi.Output<string | undefined>;
+    declare public readonly applicationObjectId: pulumi.Output<string | undefined>;
     /**
      * List of Azure groups to be assigned to the generated service principal.
      */
-    public readonly azureGroups!: pulumi.Output<outputs.azure.BackendRoleAzureGroup[] | undefined>;
+    declare public readonly azureGroups: pulumi.Output<outputs.azure.BackendRoleAzureGroup[] | undefined>;
     /**
      * List of Azure roles to be assigned to the generated service principal.
      */
-    public readonly azureRoles!: pulumi.Output<outputs.azure.BackendRoleAzureRole[] | undefined>;
+    declare public readonly azureRoles: pulumi.Output<outputs.azure.BackendRoleAzureRole[] | undefined>;
     /**
      * Path to the mounted Azure auth backend
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
      */
-    public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
+    declare public readonly explicitMaxTtl: pulumi.Output<string | undefined>;
     /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
-    public readonly maxTtl!: pulumi.Output<string | undefined>;
+    declare public readonly maxTtl: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Indicates whether the applications and service principals created by Vault will be permanently
      * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
      */
-    public readonly permanentlyDelete!: pulumi.Output<boolean>;
+    declare public readonly permanentlyDelete: pulumi.Output<boolean>;
     /**
      * Name of the Azure role
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * Specifies the security principal types that are allowed to sign in to the application.
      * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
      */
-    public readonly signInAudience!: pulumi.Output<string | undefined>;
+    declare public readonly signInAudience: pulumi.Output<string | undefined>;
     /**
      * A list of Azure tags to attach to an application. Requires Vault 1.16+.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
-    public readonly ttl!: pulumi.Output<string | undefined>;
+    declare public readonly ttl: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackendRole resource with the given unique name, arguments, and options.
@@ -145,37 +145,37 @@ export class BackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendRoleState | undefined;
-            resourceInputs["applicationObjectId"] = state ? state.applicationObjectId : undefined;
-            resourceInputs["azureGroups"] = state ? state.azureGroups : undefined;
-            resourceInputs["azureRoles"] = state ? state.azureRoles : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["permanentlyDelete"] = state ? state.permanentlyDelete : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["signInAudience"] = state ? state.signInAudience : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["applicationObjectId"] = state?.applicationObjectId;
+            resourceInputs["azureGroups"] = state?.azureGroups;
+            resourceInputs["azureRoles"] = state?.azureRoles;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["explicitMaxTtl"] = state?.explicitMaxTtl;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["permanentlyDelete"] = state?.permanentlyDelete;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["signInAudience"] = state?.signInAudience;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as BackendRoleArgs | undefined;
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["applicationObjectId"] = args ? args.applicationObjectId : undefined;
-            resourceInputs["azureGroups"] = args ? args.azureGroups : undefined;
-            resourceInputs["azureRoles"] = args ? args.azureRoles : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["permanentlyDelete"] = args ? args.permanentlyDelete : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["signInAudience"] = args ? args.signInAudience : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["applicationObjectId"] = args?.applicationObjectId;
+            resourceInputs["azureGroups"] = args?.azureGroups;
+            resourceInputs["azureRoles"] = args?.azureRoles;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["explicitMaxTtl"] = args?.explicitMaxTtl;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["permanentlyDelete"] = args?.permanentlyDelete;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["signInAudience"] = args?.signInAudience;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["ttl"] = args?.ttl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BackendRole.__pulumiType, name, resourceInputs, opts);

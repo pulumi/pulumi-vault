@@ -97,8 +97,7 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableDictionary<string, string>?> CredentialConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-        /// can be done in `credential_config`.
+        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         /// </summary>
         [Output("credentialType")]
         public Output<string> CredentialType { get; private set; } = null!;
@@ -240,8 +239,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-        /// can be done in `credential_config`.
+        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         /// </summary>
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
@@ -357,8 +355,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-        /// can be done in `credential_config`.
+        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         /// </summary>
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }

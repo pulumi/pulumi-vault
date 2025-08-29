@@ -66,86 +66,86 @@ export class Token extends pulumi.CustomResource {
     /**
      * String containing the client token if stored in present file
      */
-    public /*out*/ readonly clientToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly clientToken: pulumi.Output<string>;
     /**
      * String containing the token display name
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    public readonly explicitMaxTtl!: pulumi.Output<string | undefined>;
+    declare public readonly explicitMaxTtl: pulumi.Output<string | undefined>;
     /**
      * String containing the token lease duration if present in state file
      */
-    public /*out*/ readonly leaseDuration!: pulumi.Output<number>;
+    declare public /*out*/ readonly leaseDuration: pulumi.Output<number>;
     /**
      * String containing the token lease started time if present in state file
      */
-    public /*out*/ readonly leaseStarted!: pulumi.Output<string>;
+    declare public /*out*/ readonly leaseStarted: pulumi.Output<string>;
     /**
      * Metadata to be set on this token
      */
-    public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly metadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Flag to not attach the default policy to this token
      */
-    public readonly noDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly noDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * Flag to create a token without parent
      */
-    public readonly noParent!: pulumi.Output<boolean>;
+    declare public readonly noParent: pulumi.Output<boolean>;
     /**
      * The number of allowed uses of this token
      */
-    public readonly numUses!: pulumi.Output<number>;
+    declare public readonly numUses: pulumi.Output<number>;
     /**
      * The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    public readonly period!: pulumi.Output<string | undefined>;
+    declare public readonly period: pulumi.Output<string | undefined>;
     /**
      * List of policies to attach to this token
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
      * The renew increment. This is specified in seconds
      */
-    public readonly renewIncrement!: pulumi.Output<number | undefined>;
+    declare public readonly renewIncrement: pulumi.Output<number | undefined>;
     /**
      * The minimal lease to renew this token
      */
-    public readonly renewMinLease!: pulumi.Output<number | undefined>;
+    declare public readonly renewMinLease: pulumi.Output<number | undefined>;
     /**
      * Flag to allow to renew this token
      */
-    public readonly renewable!: pulumi.Output<boolean>;
+    declare public readonly renewable: pulumi.Output<boolean>;
     /**
      * The token role name
      */
-    public readonly roleName!: pulumi.Output<string | undefined>;
+    declare public readonly roleName: pulumi.Output<string | undefined>;
     /**
      * The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    public readonly ttl!: pulumi.Output<string | undefined>;
+    declare public readonly ttl: pulumi.Output<string | undefined>;
     /**
      * The client wrapped token.
      */
-    public /*out*/ readonly wrappedToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly wrappedToken: pulumi.Output<string>;
     /**
      * The client wrapping accessor.
      */
-    public /*out*/ readonly wrappingAccessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly wrappingAccessor: pulumi.Output<string>;
     /**
      * The TTL period of the wrapped token.
      */
-    public readonly wrappingTtl!: pulumi.Output<string | undefined>;
+    declare public readonly wrappingTtl: pulumi.Output<string | undefined>;
 
     /**
      * Create a Token resource with the given unique name, arguments, and options.
@@ -160,43 +160,43 @@ export class Token extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TokenState | undefined;
-            resourceInputs["clientToken"] = state ? state.clientToken : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["explicitMaxTtl"] = state ? state.explicitMaxTtl : undefined;
-            resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
-            resourceInputs["leaseStarted"] = state ? state.leaseStarted : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["noDefaultPolicy"] = state ? state.noDefaultPolicy : undefined;
-            resourceInputs["noParent"] = state ? state.noParent : undefined;
-            resourceInputs["numUses"] = state ? state.numUses : undefined;
-            resourceInputs["period"] = state ? state.period : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["renewIncrement"] = state ? state.renewIncrement : undefined;
-            resourceInputs["renewMinLease"] = state ? state.renewMinLease : undefined;
-            resourceInputs["renewable"] = state ? state.renewable : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["wrappedToken"] = state ? state.wrappedToken : undefined;
-            resourceInputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
-            resourceInputs["wrappingTtl"] = state ? state.wrappingTtl : undefined;
+            resourceInputs["clientToken"] = state?.clientToken;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["explicitMaxTtl"] = state?.explicitMaxTtl;
+            resourceInputs["leaseDuration"] = state?.leaseDuration;
+            resourceInputs["leaseStarted"] = state?.leaseStarted;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["noDefaultPolicy"] = state?.noDefaultPolicy;
+            resourceInputs["noParent"] = state?.noParent;
+            resourceInputs["numUses"] = state?.numUses;
+            resourceInputs["period"] = state?.period;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["renewIncrement"] = state?.renewIncrement;
+            resourceInputs["renewMinLease"] = state?.renewMinLease;
+            resourceInputs["renewable"] = state?.renewable;
+            resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["wrappedToken"] = state?.wrappedToken;
+            resourceInputs["wrappingAccessor"] = state?.wrappingAccessor;
+            resourceInputs["wrappingTtl"] = state?.wrappingTtl;
         } else {
             const args = argsOrState as TokenArgs | undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["explicitMaxTtl"] = args ? args.explicitMaxTtl : undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["noDefaultPolicy"] = args ? args.noDefaultPolicy : undefined;
-            resourceInputs["noParent"] = args ? args.noParent : undefined;
-            resourceInputs["numUses"] = args ? args.numUses : undefined;
-            resourceInputs["period"] = args ? args.period : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["renewIncrement"] = args ? args.renewIncrement : undefined;
-            resourceInputs["renewMinLease"] = args ? args.renewMinLease : undefined;
-            resourceInputs["renewable"] = args ? args.renewable : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["explicitMaxTtl"] = args?.explicitMaxTtl;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["noDefaultPolicy"] = args?.noDefaultPolicy;
+            resourceInputs["noParent"] = args?.noParent;
+            resourceInputs["numUses"] = args?.numUses;
+            resourceInputs["period"] = args?.period;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["renewIncrement"] = args?.renewIncrement;
+            resourceInputs["renewMinLease"] = args?.renewMinLease;
+            resourceInputs["renewable"] = args?.renewable;
+            resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["wrappingTtl"] = args?.wrappingTtl;
             resourceInputs["clientToken"] = undefined /*out*/;
             resourceInputs["leaseDuration"] = undefined /*out*/;
             resourceInputs["leaseStarted"] = undefined /*out*/;

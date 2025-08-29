@@ -67,51 +67,51 @@ export class AuthBackendLogin extends pulumi.CustomResource {
     /**
      * The accessor for the token.
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * The unique path of the Vault backend to log in with.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The Vault token created.
      */
-    public /*out*/ readonly clientToken!: pulumi.Output<string>;
+    declare public /*out*/ readonly clientToken: pulumi.Output<string>;
     /**
      * How long the token is valid for, in seconds.
      */
-    public /*out*/ readonly leaseDuration!: pulumi.Output<number>;
+    declare public /*out*/ readonly leaseDuration: pulumi.Output<number>;
     /**
      * The date and time the lease started, in RFC 3339 format.
      */
-    public /*out*/ readonly leaseStarted!: pulumi.Output<string>;
+    declare public /*out*/ readonly leaseStarted: pulumi.Output<string>;
     /**
      * The metadata associated with the token.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
+    declare public /*out*/ readonly metadata: pulumi.Output<{[key: string]: string}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * A list of policies applied to the token.
      */
-    public /*out*/ readonly policies!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly policies: pulumi.Output<string[]>;
     /**
      * Whether the token is renewable or not.
      */
-    public /*out*/ readonly renewable!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly renewable: pulumi.Output<boolean>;
     /**
      * The ID of the role to log in with.
      */
-    public readonly roleId!: pulumi.Output<string>;
+    declare public readonly roleId: pulumi.Output<string>;
     /**
      * The secret ID of the role to log in with. Required
      * unless `bindSecretId` is set to false on the role.
      */
-    public readonly secretId!: pulumi.Output<string | undefined>;
+    declare public readonly secretId: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendLogin resource with the given unique name, arguments, and options.
@@ -126,25 +126,25 @@ export class AuthBackendLogin extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendLoginState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["clientToken"] = state ? state.clientToken : undefined;
-            resourceInputs["leaseDuration"] = state ? state.leaseDuration : undefined;
-            resourceInputs["leaseStarted"] = state ? state.leaseStarted : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["renewable"] = state ? state.renewable : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
-            resourceInputs["secretId"] = state ? state.secretId : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["clientToken"] = state?.clientToken;
+            resourceInputs["leaseDuration"] = state?.leaseDuration;
+            resourceInputs["leaseStarted"] = state?.leaseStarted;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["renewable"] = state?.renewable;
+            resourceInputs["roleId"] = state?.roleId;
+            resourceInputs["secretId"] = state?.secretId;
         } else {
             const args = argsOrState as AuthBackendLoginArgs | undefined;
-            if ((!args || args.roleId === undefined) && !opts.urn) {
+            if (args?.roleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["roleId"] = args?.roleId;
             resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["clientToken"] = undefined /*out*/;

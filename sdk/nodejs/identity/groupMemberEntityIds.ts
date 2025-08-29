@@ -98,22 +98,22 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
      *
      * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      */
-    public readonly exclusive!: pulumi.Output<boolean | undefined>;
+    declare public readonly exclusive: pulumi.Output<boolean | undefined>;
     /**
      * Group ID to assign member entities to.
      */
-    public readonly groupId!: pulumi.Output<string>;
+    declare public readonly groupId: pulumi.Output<string>;
     /**
      * List of member entities that belong to the group
      */
-    public readonly memberEntityIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly memberEntityIds: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a GroupMemberEntityIds resource with the given unique name, arguments, and options.
@@ -128,19 +128,19 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMemberEntityIdsState | undefined;
-            resourceInputs["exclusive"] = state ? state.exclusive : undefined;
-            resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["exclusive"] = state?.exclusive;
+            resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["memberEntityIds"] = state?.memberEntityIds;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as GroupMemberEntityIdsArgs | undefined;
-            if ((!args || args.groupId === undefined) && !opts.urn) {
+            if (args?.groupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            resourceInputs["exclusive"] = args ? args.exclusive : undefined;
-            resourceInputs["groupId"] = args ? args.groupId : undefined;
-            resourceInputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["exclusive"] = args?.exclusive;
+            resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["memberEntityIds"] = args?.memberEntityIds;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMemberEntityIds.__pulumiType, name, resourceInputs, opts);

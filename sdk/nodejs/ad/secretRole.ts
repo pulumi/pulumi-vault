@@ -67,37 +67,37 @@ export class SecretRole extends pulumi.CustomResource {
      * The path the AD secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Timestamp of the last password rotation by Vault.
      */
-    public /*out*/ readonly lastVaultRotation!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastVaultRotation: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Timestamp of the last password set by Vault.
      */
-    public /*out*/ readonly passwordLastSet!: pulumi.Output<string>;
+    declare public /*out*/ readonly passwordLastSet: pulumi.Output<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * Specifies the name of the Active Directory service
      * account mapped to this role.
      */
-    public readonly serviceAccountName!: pulumi.Output<string>;
+    declare public readonly serviceAccountName: pulumi.Output<string>;
     /**
      * The password time-to-live in seconds. Defaults to the configuration
      * ttl if not provided.
      */
-    public readonly ttl!: pulumi.Output<number | undefined>;
+    declare public readonly ttl: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretRole resource with the given unique name, arguments, and options.
@@ -112,29 +112,29 @@ export class SecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["lastVaultRotation"] = state ? state.lastVaultRotation : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["passwordLastSet"] = state ? state.passwordLastSet : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["serviceAccountName"] = state ? state.serviceAccountName : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["lastVaultRotation"] = state?.lastVaultRotation;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["passwordLastSet"] = state?.passwordLastSet;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["serviceAccountName"] = state?.serviceAccountName;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            if ((!args || args.serviceAccountName === undefined) && !opts.urn) {
+            if (args?.serviceAccountName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountName'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["serviceAccountName"] = args ? args.serviceAccountName : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["serviceAccountName"] = args?.serviceAccountName;
+            resourceInputs["ttl"] = args?.ttl;
             resourceInputs["lastVaultRotation"] = undefined /*out*/;
             resourceInputs["passwordLastSet"] = undefined /*out*/;
         }

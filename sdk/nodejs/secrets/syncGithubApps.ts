@@ -60,25 +60,25 @@ export class SyncGithubApps extends pulumi.CustomResource {
     /**
      * The GitHub application ID.
      */
-    public readonly appId!: pulumi.Output<number>;
+    declare public readonly appId: pulumi.Output<number>;
     /**
      * A fingerprint of a private key.
      */
-    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
+    declare public /*out*/ readonly fingerprint: pulumi.Output<string>;
     /**
      * The user-defined name of the GitHub App configuration.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The content of a PEM formatted private key generated on GitHub for the app.
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
 
     /**
      * Create a SyncGithubApps resource with the given unique name, arguments, and options.
@@ -93,22 +93,22 @@ export class SyncGithubApps extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncGithubAppsState | undefined;
-            resourceInputs["appId"] = state ? state.appId : undefined;
-            resourceInputs["fingerprint"] = state ? state.fingerprint : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["appId"] = state?.appId;
+            resourceInputs["fingerprint"] = state?.fingerprint;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["privateKey"] = state?.privateKey;
         } else {
             const args = argsOrState as SyncGithubAppsArgs | undefined;
-            if ((!args || args.appId === undefined) && !opts.urn) {
+            if (args?.appId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'appId'");
             }
-            if ((!args || args.privateKey === undefined) && !opts.urn) {
+            if (args?.privateKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateKey'");
             }
-            resourceInputs["appId"] = args ? args.appId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["appId"] = args?.appId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["fingerprint"] = undefined /*out*/;
         }

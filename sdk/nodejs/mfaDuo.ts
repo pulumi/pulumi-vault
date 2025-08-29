@@ -67,34 +67,34 @@ export class MfaDuo extends pulumi.CustomResource {
     /**
      * `(string: <required>)` - API hostname for Duo.
      */
-    public readonly apiHostname!: pulumi.Output<string>;
+    declare public readonly apiHostname: pulumi.Output<string>;
     /**
      * `(string: <required>)` - Integration key for Duo.
      */
-    public readonly integrationKey!: pulumi.Output<string>;
+    declare public readonly integrationKey: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
-    public readonly mountAccessor!: pulumi.Output<string>;
+    declare public readonly mountAccessor: pulumi.Output<string>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `(string)` - Push information for Duo.
      */
-    public readonly pushInfo!: pulumi.Output<string | undefined>;
+    declare public readonly pushInfo: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - Secret key for Duo.
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    declare public readonly secretKey: pulumi.Output<string>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
@@ -102,7 +102,7 @@ export class MfaDuo extends pulumi.CustomResource {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    public readonly usernameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly usernameFormat: pulumi.Output<string | undefined>;
 
     /**
      * Create a MfaDuo resource with the given unique name, arguments, and options.
@@ -117,36 +117,36 @@ export class MfaDuo extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaDuoState | undefined;
-            resourceInputs["apiHostname"] = state ? state.apiHostname : undefined;
-            resourceInputs["integrationKey"] = state ? state.integrationKey : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["pushInfo"] = state ? state.pushInfo : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
+            resourceInputs["apiHostname"] = state?.apiHostname;
+            resourceInputs["integrationKey"] = state?.integrationKey;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["pushInfo"] = state?.pushInfo;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["usernameFormat"] = state?.usernameFormat;
         } else {
             const args = argsOrState as MfaDuoArgs | undefined;
-            if ((!args || args.apiHostname === undefined) && !opts.urn) {
+            if (args?.apiHostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'apiHostname'");
             }
-            if ((!args || args.integrationKey === undefined) && !opts.urn) {
+            if (args?.integrationKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'integrationKey'");
             }
-            if ((!args || args.mountAccessor === undefined) && !opts.urn) {
+            if (args?.mountAccessor === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if ((!args || args.secretKey === undefined) && !opts.urn) {
+            if (args?.secretKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretKey'");
             }
-            resourceInputs["apiHostname"] = args ? args.apiHostname : undefined;
+            resourceInputs["apiHostname"] = args?.apiHostname;
             resourceInputs["integrationKey"] = args?.integrationKey ? pulumi.secret(args.integrationKey) : undefined;
-            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["pushInfo"] = args ? args.pushInfo : undefined;
+            resourceInputs["mountAccessor"] = args?.mountAccessor;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["pushInfo"] = args?.pushInfo;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
-            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["usernameFormat"] = args?.usernameFormat;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["integrationKey", "secretKey"] };

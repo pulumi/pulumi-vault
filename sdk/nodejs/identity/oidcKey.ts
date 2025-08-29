@@ -65,32 +65,32 @@ export class OidcKey extends pulumi.CustomResource {
      * Signing algorithm to use. Signing algorithm to use.
      * Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
      */
-    public readonly algorithm!: pulumi.Output<string | undefined>;
+    declare public readonly algorithm: pulumi.Output<string | undefined>;
     /**
      * Array of role client ID allowed to use this key for signing. If
      * empty, no roles are allowed. If `["*"]`, all roles are allowed.
      */
-    public readonly allowedClientIds!: pulumi.Output<string[]>;
+    declare public readonly allowedClientIds: pulumi.Output<string[]>;
     /**
      * Name of the OIDC Key to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * How often to generate a new signing key in number of seconds
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * "Controls how long the public portion of a signing key will be
      * available for verification after being rotated in seconds.
      */
-    public readonly verificationTtl!: pulumi.Output<number | undefined>;
+    declare public readonly verificationTtl: pulumi.Output<number | undefined>;
 
     /**
      * Create a OidcKey resource with the given unique name, arguments, and options.
@@ -105,20 +105,20 @@ export class OidcKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcKeyState | undefined;
-            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["allowedClientIds"] = state ? state.allowedClientIds : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["verificationTtl"] = state ? state.verificationTtl : undefined;
+            resourceInputs["algorithm"] = state?.algorithm;
+            resourceInputs["allowedClientIds"] = state?.allowedClientIds;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["verificationTtl"] = state?.verificationTtl;
         } else {
             const args = argsOrState as OidcKeyArgs | undefined;
-            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["allowedClientIds"] = args ? args.allowedClientIds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["verificationTtl"] = args ? args.verificationTtl : undefined;
+            resourceInputs["algorithm"] = args?.algorithm;
+            resourceInputs["allowedClientIds"] = args?.allowedClientIds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["verificationTtl"] = args?.verificationTtl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OidcKey.__pulumiType, name, resourceInputs, opts);

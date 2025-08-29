@@ -95,29 +95,29 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the PEM encoded certificate. May optionally append additional
      * CA certificates to populate the whole chain, which will then enable returning the full chain from
      * issue and sign operations.
      */
-    public readonly certificate!: pulumi.Output<string>;
+    declare public readonly certificate: pulumi.Output<string>;
     /**
      * The imported issuers indicating which issuers were created as part of
      * this request.
      */
-    public /*out*/ readonly importedIssuers!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly importedIssuers: pulumi.Output<string[]>;
     /**
      * The imported keys indicating which keys were created as part of this request.
      */
-    public /*out*/ readonly importedKeys!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly importedKeys: pulumi.Output<string[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendIntermediateSetSigned resource with the given unique name, arguments, and options.
@@ -132,22 +132,22 @@ export class SecretBackendIntermediateSetSigned extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateSetSignedState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["importedIssuers"] = state ? state.importedIssuers : undefined;
-            resourceInputs["importedKeys"] = state ? state.importedKeys : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["importedIssuers"] = state?.importedIssuers;
+            resourceInputs["importedKeys"] = state?.importedKeys;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as SecretBackendIntermediateSetSignedArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.certificate === undefined) && !opts.urn) {
+            if (args?.certificate === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["certificate"] = args ? args.certificate : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["certificate"] = args?.certificate;
+            resourceInputs["namespace"] = args?.namespace;
             resourceInputs["importedIssuers"] = undefined /*out*/;
             resourceInputs["importedKeys"] = undefined /*out*/;
         }

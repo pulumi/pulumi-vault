@@ -87,33 +87,32 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     /**
      * The unique name of the Vault mount to configure.
      */
-    public readonly backend!: pulumi.Output<string>;
-    public readonly credentialConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly backend: pulumi.Output<string>;
+    declare public readonly credentialConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-     * be done in `credentialConfig`.
+     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
      */
-    public readonly credentialType!: pulumi.Output<string>;
+    declare public readonly credentialType: pulumi.Output<string>;
     /**
      * The unique name of the database connection to use for the static role.
      */
-    public readonly dbName!: pulumi.Output<string>;
+    declare public readonly dbName: pulumi.Output<string>;
     /**
      * A unique name to give the static role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      * Mutually exclusive with `rotationSchedule`.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotationPeriod`.
@@ -121,31 +120,31 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
-    public readonly rotationStatements!: pulumi.Output<string[] | undefined>;
+    declare public readonly rotationStatements: pulumi.Output<string[] | undefined>;
     /**
      * The amount of time, in seconds, in which rotations are allowed to occur starting
      * from a given `rotationSchedule`.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
      */
-    public readonly selfManagedPassword!: pulumi.Output<string | undefined>;
+    declare public readonly selfManagedPassword: pulumi.Output<string | undefined>;
     /**
      * If set to true, Vault will skip the
      * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
      */
-    public readonly skipImportRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly skipImportRotation: pulumi.Output<boolean | undefined>;
     /**
      * The database username that this static role corresponds to.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendStaticRole resource with the given unique name, arguments, and options.
@@ -160,43 +159,43 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["credentialConfig"] = state ? state.credentialConfig : undefined;
-            resourceInputs["credentialType"] = state ? state.credentialType : undefined;
-            resourceInputs["dbName"] = state ? state.dbName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationStatements"] = state ? state.rotationStatements : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["selfManagedPassword"] = state ? state.selfManagedPassword : undefined;
-            resourceInputs["skipImportRotation"] = state ? state.skipImportRotation : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["credentialConfig"] = state?.credentialConfig;
+            resourceInputs["credentialType"] = state?.credentialType;
+            resourceInputs["dbName"] = state?.dbName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationStatements"] = state?.rotationStatements;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["selfManagedPassword"] = state?.selfManagedPassword;
+            resourceInputs["skipImportRotation"] = state?.skipImportRotation;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.dbName === undefined) && !opts.urn) {
+            if (args?.dbName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dbName'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["credentialConfig"] = args ? args.credentialConfig : undefined;
-            resourceInputs["credentialType"] = args ? args.credentialType : undefined;
-            resourceInputs["dbName"] = args ? args.dbName : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationStatements"] = args ? args.rotationStatements : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["credentialConfig"] = args?.credentialConfig;
+            resourceInputs["credentialType"] = args?.credentialType;
+            resourceInputs["dbName"] = args?.dbName;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationStatements"] = args?.rotationStatements;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["selfManagedPassword"] = args?.selfManagedPassword ? pulumi.secret(args.selfManagedPassword) : undefined;
-            resourceInputs["skipImportRotation"] = args ? args.skipImportRotation : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["skipImportRotation"] = args?.skipImportRotation;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["selfManagedPassword"] };
@@ -215,8 +214,7 @@ export interface SecretBackendStaticRoleState {
     backend?: pulumi.Input<string>;
     credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-     * be done in `credentialConfig`.
+     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
      */
     credentialType?: pulumi.Input<string>;
     /**
@@ -283,8 +281,7 @@ export interface SecretBackendStaticRoleArgs {
     backend: pulumi.Input<string>;
     credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-     * be done in `credentialConfig`.
+     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
      */
     credentialType?: pulumi.Input<string>;
     /**

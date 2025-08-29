@@ -81,27 +81,27 @@ export class SecretBackendV2 extends pulumi.CustomResource {
      * If true, all keys will require the cas
      * parameter to be set on all write requests.
      */
-    public readonly casRequired!: pulumi.Output<boolean>;
+    declare public readonly casRequired: pulumi.Output<boolean>;
     /**
      * If set, specifies the length of time before
      * a version is deleted. Accepts duration in integer seconds.
      */
-    public readonly deleteVersionAfter!: pulumi.Output<number | undefined>;
+    declare public readonly deleteVersionAfter: pulumi.Output<number | undefined>;
     /**
      * The number of versions to keep per key.
      */
-    public readonly maxVersions!: pulumi.Output<number>;
+    declare public readonly maxVersions: pulumi.Output<number>;
     /**
      * Path where KV-V2 engine is mounted.
      */
-    public readonly mount!: pulumi.Output<string>;
+    declare public readonly mount: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendV2 resource with the given unique name, arguments, and options.
@@ -116,21 +116,21 @@ export class SecretBackendV2 extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendV2State | undefined;
-            resourceInputs["casRequired"] = state ? state.casRequired : undefined;
-            resourceInputs["deleteVersionAfter"] = state ? state.deleteVersionAfter : undefined;
-            resourceInputs["maxVersions"] = state ? state.maxVersions : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["casRequired"] = state?.casRequired;
+            resourceInputs["deleteVersionAfter"] = state?.deleteVersionAfter;
+            resourceInputs["maxVersions"] = state?.maxVersions;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as SecretBackendV2Args | undefined;
-            if ((!args || args.mount === undefined) && !opts.urn) {
+            if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
-            resourceInputs["casRequired"] = args ? args.casRequired : undefined;
-            resourceInputs["deleteVersionAfter"] = args ? args.deleteVersionAfter : undefined;
-            resourceInputs["maxVersions"] = args ? args.maxVersions : undefined;
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["casRequired"] = args?.casRequired;
+            resourceInputs["deleteVersionAfter"] = args?.deleteVersionAfter;
+            resourceInputs["maxVersions"] = args?.maxVersions;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendV2.__pulumiType, name, resourceInputs, opts);

@@ -106,127 +106,127 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
     /**
      * AWS access key ID.
      */
-    public readonly awsAccessKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly awsAccessKeyId: pulumi.Output<string | undefined>;
     /**
      * S3 bucket to write snapshots to.
      */
-    public readonly awsS3Bucket!: pulumi.Output<string | undefined>;
+    declare public readonly awsS3Bucket: pulumi.Output<string | undefined>;
     /**
      * Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      */
-    public readonly awsS3DisableTls!: pulumi.Output<boolean | undefined>;
+    declare public readonly awsS3DisableTls: pulumi.Output<boolean | undefined>;
     /**
      * Use KMS to encrypt bucket contents.
      */
-    public readonly awsS3EnableKms!: pulumi.Output<boolean | undefined>;
+    declare public readonly awsS3EnableKms: pulumi.Output<boolean | undefined>;
     /**
      * AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      */
-    public readonly awsS3Endpoint!: pulumi.Output<string | undefined>;
+    declare public readonly awsS3Endpoint: pulumi.Output<string | undefined>;
     /**
      * Use the endpoint/bucket URL style instead of bucket.endpoint.
      */
-    public readonly awsS3ForcePathStyle!: pulumi.Output<boolean | undefined>;
+    declare public readonly awsS3ForcePathStyle: pulumi.Output<boolean | undefined>;
     /**
      * Use named KMS key, when aws_s3_enable_kms=true
      */
-    public readonly awsS3KmsKey!: pulumi.Output<string | undefined>;
+    declare public readonly awsS3KmsKey: pulumi.Output<string | undefined>;
     /**
      * AWS region bucket is in.
      */
-    public readonly awsS3Region!: pulumi.Output<string | undefined>;
+    declare public readonly awsS3Region: pulumi.Output<string | undefined>;
     /**
      * Use AES256 to encrypt bucket contents.
      */
-    public readonly awsS3ServerSideEncryption!: pulumi.Output<boolean | undefined>;
+    declare public readonly awsS3ServerSideEncryption: pulumi.Output<boolean | undefined>;
     /**
      * AWS secret access key.
      */
-    public readonly awsSecretAccessKey!: pulumi.Output<string | undefined>;
+    declare public readonly awsSecretAccessKey: pulumi.Output<string | undefined>;
     /**
      * AWS session token.
      */
-    public readonly awsSessionToken!: pulumi.Output<string | undefined>;
+    declare public readonly awsSessionToken: pulumi.Output<string | undefined>;
     /**
      * Azure account key.
      */
-    public readonly azureAccountKey!: pulumi.Output<string | undefined>;
+    declare public readonly azureAccountKey: pulumi.Output<string | undefined>;
     /**
      * Azure account name.
      */
-    public readonly azureAccountName!: pulumi.Output<string | undefined>;
+    declare public readonly azureAccountName: pulumi.Output<string | undefined>;
     /**
      * Azure blob environment.
      */
-    public readonly azureBlobEnvironment!: pulumi.Output<string | undefined>;
+    declare public readonly azureBlobEnvironment: pulumi.Output<string | undefined>;
     /**
      * Azure container name to write snapshots to.
      */
-    public readonly azureContainerName!: pulumi.Output<string | undefined>;
+    declare public readonly azureContainerName: pulumi.Output<string | undefined>;
     /**
      * Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      */
-    public readonly azureEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly azureEndpoint: pulumi.Output<string | undefined>;
     /**
      * Within the directory or bucket
      * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      */
-    public readonly filePrefix!: pulumi.Output<string | undefined>;
+    declare public readonly filePrefix: pulumi.Output<string | undefined>;
     /**
      * Disable TLS for the GCS endpoint.
      */
-    public readonly googleDisableTls!: pulumi.Output<boolean | undefined>;
+    declare public readonly googleDisableTls: pulumi.Output<boolean | undefined>;
     /**
      * GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      */
-    public readonly googleEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly googleEndpoint: pulumi.Output<string | undefined>;
     /**
      * GCS bucket to write snapshots to.
      */
-    public readonly googleGcsBucket!: pulumi.Output<string | undefined>;
+    declare public readonly googleGcsBucket: pulumi.Output<string | undefined>;
     /**
      * Google service account key in JSON format.
      */
-    public readonly googleServiceAccountKey!: pulumi.Output<string | undefined>;
+    declare public readonly googleServiceAccountKey: pulumi.Output<string | undefined>;
     /**
      * `<required>` - Time (in seconds) between snapshots.
      */
-    public readonly intervalSeconds!: pulumi.Output<number>;
+    declare public readonly intervalSeconds: pulumi.Output<number>;
     /**
      * The maximum space, in bytes, to use for snapshots.
      */
-    public readonly localMaxSpace!: pulumi.Output<number | undefined>;
+    declare public readonly localMaxSpace: pulumi.Output<number | undefined>;
     /**
      * `<required>` – Name of the configuration to modify.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
      */
-    public readonly pathPrefix!: pulumi.Output<string>;
+    declare public readonly pathPrefix: pulumi.Output<string>;
     /**
      * How many snapshots are to be kept; when writing a
      * snapshot, if there are more snapshots already stored than this number, the
      * oldest ones will be deleted.
      */
-    public readonly retain!: pulumi.Output<number | undefined>;
+    declare public readonly retain: pulumi.Output<number | undefined>;
     /**
      * `<required>` - One of "local", "azure-blob", "aws-s3",
      * or "google-gcs". The remaining parameters described below are all specific to
      * the selected `storageType` and prefixed accordingly.
      */
-    public readonly storageType!: pulumi.Output<string>;
+    declare public readonly storageType: pulumi.Output<string>;
 
     /**
      * Create a RaftSnapshotAgentConfig resource with the given unique name, arguments, and options.
@@ -241,73 +241,73 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RaftSnapshotAgentConfigState | undefined;
-            resourceInputs["awsAccessKeyId"] = state ? state.awsAccessKeyId : undefined;
-            resourceInputs["awsS3Bucket"] = state ? state.awsS3Bucket : undefined;
-            resourceInputs["awsS3DisableTls"] = state ? state.awsS3DisableTls : undefined;
-            resourceInputs["awsS3EnableKms"] = state ? state.awsS3EnableKms : undefined;
-            resourceInputs["awsS3Endpoint"] = state ? state.awsS3Endpoint : undefined;
-            resourceInputs["awsS3ForcePathStyle"] = state ? state.awsS3ForcePathStyle : undefined;
-            resourceInputs["awsS3KmsKey"] = state ? state.awsS3KmsKey : undefined;
-            resourceInputs["awsS3Region"] = state ? state.awsS3Region : undefined;
-            resourceInputs["awsS3ServerSideEncryption"] = state ? state.awsS3ServerSideEncryption : undefined;
-            resourceInputs["awsSecretAccessKey"] = state ? state.awsSecretAccessKey : undefined;
-            resourceInputs["awsSessionToken"] = state ? state.awsSessionToken : undefined;
-            resourceInputs["azureAccountKey"] = state ? state.azureAccountKey : undefined;
-            resourceInputs["azureAccountName"] = state ? state.azureAccountName : undefined;
-            resourceInputs["azureBlobEnvironment"] = state ? state.azureBlobEnvironment : undefined;
-            resourceInputs["azureContainerName"] = state ? state.azureContainerName : undefined;
-            resourceInputs["azureEndpoint"] = state ? state.azureEndpoint : undefined;
-            resourceInputs["filePrefix"] = state ? state.filePrefix : undefined;
-            resourceInputs["googleDisableTls"] = state ? state.googleDisableTls : undefined;
-            resourceInputs["googleEndpoint"] = state ? state.googleEndpoint : undefined;
-            resourceInputs["googleGcsBucket"] = state ? state.googleGcsBucket : undefined;
-            resourceInputs["googleServiceAccountKey"] = state ? state.googleServiceAccountKey : undefined;
-            resourceInputs["intervalSeconds"] = state ? state.intervalSeconds : undefined;
-            resourceInputs["localMaxSpace"] = state ? state.localMaxSpace : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["pathPrefix"] = state ? state.pathPrefix : undefined;
-            resourceInputs["retain"] = state ? state.retain : undefined;
-            resourceInputs["storageType"] = state ? state.storageType : undefined;
+            resourceInputs["awsAccessKeyId"] = state?.awsAccessKeyId;
+            resourceInputs["awsS3Bucket"] = state?.awsS3Bucket;
+            resourceInputs["awsS3DisableTls"] = state?.awsS3DisableTls;
+            resourceInputs["awsS3EnableKms"] = state?.awsS3EnableKms;
+            resourceInputs["awsS3Endpoint"] = state?.awsS3Endpoint;
+            resourceInputs["awsS3ForcePathStyle"] = state?.awsS3ForcePathStyle;
+            resourceInputs["awsS3KmsKey"] = state?.awsS3KmsKey;
+            resourceInputs["awsS3Region"] = state?.awsS3Region;
+            resourceInputs["awsS3ServerSideEncryption"] = state?.awsS3ServerSideEncryption;
+            resourceInputs["awsSecretAccessKey"] = state?.awsSecretAccessKey;
+            resourceInputs["awsSessionToken"] = state?.awsSessionToken;
+            resourceInputs["azureAccountKey"] = state?.azureAccountKey;
+            resourceInputs["azureAccountName"] = state?.azureAccountName;
+            resourceInputs["azureBlobEnvironment"] = state?.azureBlobEnvironment;
+            resourceInputs["azureContainerName"] = state?.azureContainerName;
+            resourceInputs["azureEndpoint"] = state?.azureEndpoint;
+            resourceInputs["filePrefix"] = state?.filePrefix;
+            resourceInputs["googleDisableTls"] = state?.googleDisableTls;
+            resourceInputs["googleEndpoint"] = state?.googleEndpoint;
+            resourceInputs["googleGcsBucket"] = state?.googleGcsBucket;
+            resourceInputs["googleServiceAccountKey"] = state?.googleServiceAccountKey;
+            resourceInputs["intervalSeconds"] = state?.intervalSeconds;
+            resourceInputs["localMaxSpace"] = state?.localMaxSpace;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["pathPrefix"] = state?.pathPrefix;
+            resourceInputs["retain"] = state?.retain;
+            resourceInputs["storageType"] = state?.storageType;
         } else {
             const args = argsOrState as RaftSnapshotAgentConfigArgs | undefined;
-            if ((!args || args.intervalSeconds === undefined) && !opts.urn) {
+            if (args?.intervalSeconds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'intervalSeconds'");
             }
-            if ((!args || args.pathPrefix === undefined) && !opts.urn) {
+            if (args?.pathPrefix === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pathPrefix'");
             }
-            if ((!args || args.storageType === undefined) && !opts.urn) {
+            if (args?.storageType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'storageType'");
             }
-            resourceInputs["awsAccessKeyId"] = args ? args.awsAccessKeyId : undefined;
-            resourceInputs["awsS3Bucket"] = args ? args.awsS3Bucket : undefined;
-            resourceInputs["awsS3DisableTls"] = args ? args.awsS3DisableTls : undefined;
-            resourceInputs["awsS3EnableKms"] = args ? args.awsS3EnableKms : undefined;
-            resourceInputs["awsS3Endpoint"] = args ? args.awsS3Endpoint : undefined;
-            resourceInputs["awsS3ForcePathStyle"] = args ? args.awsS3ForcePathStyle : undefined;
-            resourceInputs["awsS3KmsKey"] = args ? args.awsS3KmsKey : undefined;
-            resourceInputs["awsS3Region"] = args ? args.awsS3Region : undefined;
-            resourceInputs["awsS3ServerSideEncryption"] = args ? args.awsS3ServerSideEncryption : undefined;
-            resourceInputs["awsSecretAccessKey"] = args ? args.awsSecretAccessKey : undefined;
-            resourceInputs["awsSessionToken"] = args ? args.awsSessionToken : undefined;
-            resourceInputs["azureAccountKey"] = args ? args.azureAccountKey : undefined;
-            resourceInputs["azureAccountName"] = args ? args.azureAccountName : undefined;
-            resourceInputs["azureBlobEnvironment"] = args ? args.azureBlobEnvironment : undefined;
-            resourceInputs["azureContainerName"] = args ? args.azureContainerName : undefined;
-            resourceInputs["azureEndpoint"] = args ? args.azureEndpoint : undefined;
-            resourceInputs["filePrefix"] = args ? args.filePrefix : undefined;
-            resourceInputs["googleDisableTls"] = args ? args.googleDisableTls : undefined;
-            resourceInputs["googleEndpoint"] = args ? args.googleEndpoint : undefined;
-            resourceInputs["googleGcsBucket"] = args ? args.googleGcsBucket : undefined;
-            resourceInputs["googleServiceAccountKey"] = args ? args.googleServiceAccountKey : undefined;
-            resourceInputs["intervalSeconds"] = args ? args.intervalSeconds : undefined;
-            resourceInputs["localMaxSpace"] = args ? args.localMaxSpace : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["pathPrefix"] = args ? args.pathPrefix : undefined;
-            resourceInputs["retain"] = args ? args.retain : undefined;
-            resourceInputs["storageType"] = args ? args.storageType : undefined;
+            resourceInputs["awsAccessKeyId"] = args?.awsAccessKeyId;
+            resourceInputs["awsS3Bucket"] = args?.awsS3Bucket;
+            resourceInputs["awsS3DisableTls"] = args?.awsS3DisableTls;
+            resourceInputs["awsS3EnableKms"] = args?.awsS3EnableKms;
+            resourceInputs["awsS3Endpoint"] = args?.awsS3Endpoint;
+            resourceInputs["awsS3ForcePathStyle"] = args?.awsS3ForcePathStyle;
+            resourceInputs["awsS3KmsKey"] = args?.awsS3KmsKey;
+            resourceInputs["awsS3Region"] = args?.awsS3Region;
+            resourceInputs["awsS3ServerSideEncryption"] = args?.awsS3ServerSideEncryption;
+            resourceInputs["awsSecretAccessKey"] = args?.awsSecretAccessKey;
+            resourceInputs["awsSessionToken"] = args?.awsSessionToken;
+            resourceInputs["azureAccountKey"] = args?.azureAccountKey;
+            resourceInputs["azureAccountName"] = args?.azureAccountName;
+            resourceInputs["azureBlobEnvironment"] = args?.azureBlobEnvironment;
+            resourceInputs["azureContainerName"] = args?.azureContainerName;
+            resourceInputs["azureEndpoint"] = args?.azureEndpoint;
+            resourceInputs["filePrefix"] = args?.filePrefix;
+            resourceInputs["googleDisableTls"] = args?.googleDisableTls;
+            resourceInputs["googleEndpoint"] = args?.googleEndpoint;
+            resourceInputs["googleGcsBucket"] = args?.googleGcsBucket;
+            resourceInputs["googleServiceAccountKey"] = args?.googleServiceAccountKey;
+            resourceInputs["intervalSeconds"] = args?.intervalSeconds;
+            resourceInputs["localMaxSpace"] = args?.localMaxSpace;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["pathPrefix"] = args?.pathPrefix;
+            resourceInputs["retain"] = args?.retain;
+            resourceInputs["storageType"] = args?.storageType;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RaftSnapshotAgentConfig.__pulumiType, name, resourceInputs, opts);

@@ -52,25 +52,25 @@ export class AuthBackendRoletagBlacklist extends pulumi.CustomResource {
      * The path the AWS auth backend being configured was
      * mounted at.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * If set to true, disables the periodic
      * tidying of the roletag blacklist entries. Defaults to false.
      */
-    public readonly disablePeriodicTidy!: pulumi.Output<boolean | undefined>;
+    declare public readonly disablePeriodicTidy: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The amount of extra time that must have passed
      * beyond the roletag expiration, before it is removed from the backend storage.
      * Defaults to 259,200 seconds, or 72 hours.
      */
-    public readonly safetyBuffer!: pulumi.Output<number | undefined>;
+    declare public readonly safetyBuffer: pulumi.Output<number | undefined>;
 
     /**
      * Create a AuthBackendRoletagBlacklist resource with the given unique name, arguments, and options.
@@ -85,19 +85,19 @@ export class AuthBackendRoletagBlacklist extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoletagBlacklistState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["disablePeriodicTidy"] = state ? state.disablePeriodicTidy : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["disablePeriodicTidy"] = state?.disablePeriodicTidy;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["safetyBuffer"] = state?.safetyBuffer;
         } else {
             const args = argsOrState as AuthBackendRoletagBlacklistArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["disablePeriodicTidy"] = args ? args.disablePeriodicTidy : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["disablePeriodicTidy"] = args?.disablePeriodicTidy;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["safetyBuffer"] = args?.safetyBuffer;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendRoletagBlacklist.__pulumiType, name, resourceInputs, opts);

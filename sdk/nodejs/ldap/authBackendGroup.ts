@@ -71,22 +71,22 @@ export class AuthBackendGroup extends pulumi.CustomResource {
      *
      * For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The LDAP groupname
      */
-    public readonly groupname!: pulumi.Output<string>;
+    declare public readonly groupname: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Policies which should be granted to members of the group
      */
-    public readonly policies!: pulumi.Output<string[]>;
+    declare public readonly policies: pulumi.Output<string[]>;
 
     /**
      * Create a AuthBackendGroup resource with the given unique name, arguments, and options.
@@ -101,19 +101,19 @@ export class AuthBackendGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendGroupState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["groupname"] = state ? state.groupname : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["groupname"] = state?.groupname;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
         } else {
             const args = argsOrState as AuthBackendGroupArgs | undefined;
-            if ((!args || args.groupname === undefined) && !opts.urn) {
+            if (args?.groupname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupname'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["groupname"] = args ? args.groupname : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["groupname"] = args?.groupname;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policies"] = args?.policies;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendGroup.__pulumiType, name, resourceInputs, opts);

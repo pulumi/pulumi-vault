@@ -102,179 +102,179 @@ export class SecretsMount extends pulumi.CustomResource {
     /**
      * Accessor of the mount
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
      *
      * The following arguments are common to all database engines:
      */
-    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedManagedKeys: pulumi.Output<string[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedResponseHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacRequestKeys: pulumi.Output<string[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacResponseKeys: pulumi.Output<string[]>;
     /**
      * A nested block containing configuration options for Cassandra connections.  
      * *See Configuration Options for more info*
      */
-    public readonly cassandras!: pulumi.Output<outputs.database.SecretsMountCassandra[] | undefined>;
+    declare public readonly cassandras: pulumi.Output<outputs.database.SecretsMountCassandra[] | undefined>;
     /**
      * A nested block containing configuration options for Couchbase connections.  
      * *See Configuration Options for more info*
      */
-    public readonly couchbases!: pulumi.Output<outputs.database.SecretsMountCouchbase[] | undefined>;
+    declare public readonly couchbases: pulumi.Output<outputs.database.SecretsMountCouchbase[] | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly defaultLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
+    declare public readonly delegatedAuthAccessors: pulumi.Output<string[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.  
      * *See Configuration Options for more info*
      */
-    public readonly elasticsearches!: pulumi.Output<outputs.database.SecretsMountElasticsearch[] | undefined>;
+    declare public readonly elasticsearches: pulumi.Output<outputs.database.SecretsMountElasticsearch[] | undefined>;
     /**
      * The total number of database secrets engines configured.
      */
-    public /*out*/ readonly engineCount!: pulumi.Output<number>;
+    declare public /*out*/ readonly engineCount: pulumi.Output<number>;
     /**
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
-    public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalEntropyAccess: pulumi.Output<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    public readonly forceNoCache!: pulumi.Output<boolean>;
+    declare public readonly forceNoCache: pulumi.Output<boolean>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.  
      * *See Configuration Options for more info*
      */
-    public readonly hanas!: pulumi.Output<outputs.database.SecretsMountHana[] | undefined>;
+    declare public readonly hanas: pulumi.Output<outputs.database.SecretsMountHana[] | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
      * A nested block containing configuration options for InfluxDB connections.  
      * *See Configuration Options for more info*
      */
-    public readonly influxdbs!: pulumi.Output<outputs.database.SecretsMountInfluxdb[] | undefined>;
+    declare public readonly influxdbs: pulumi.Output<outputs.database.SecretsMountInfluxdb[] | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    public readonly listingVisibility!: pulumi.Output<string | undefined>;
+    declare public readonly listingVisibility: pulumi.Output<string | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly maxLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mongodbatlas!: pulumi.Output<outputs.database.SecretsMountMongodbatla[] | undefined>;
+    declare public readonly mongodbatlas: pulumi.Output<outputs.database.SecretsMountMongodbatla[] | undefined>;
     /**
      * A nested block containing configuration options for MongoDB connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mongodbs!: pulumi.Output<outputs.database.SecretsMountMongodb[] | undefined>;
+    declare public readonly mongodbs: pulumi.Output<outputs.database.SecretsMountMongodb[] | undefined>;
     /**
      * A nested block containing configuration options for MSSQL connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mssqls!: pulumi.Output<outputs.database.SecretsMountMssql[] | undefined>;
+    declare public readonly mssqls: pulumi.Output<outputs.database.SecretsMountMssql[] | undefined>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mysqlAuroras!: pulumi.Output<outputs.database.SecretsMountMysqlAurora[] | undefined>;
+    declare public readonly mysqlAuroras: pulumi.Output<outputs.database.SecretsMountMysqlAurora[] | undefined>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mysqlLegacies!: pulumi.Output<outputs.database.SecretsMountMysqlLegacy[] | undefined>;
+    declare public readonly mysqlLegacies: pulumi.Output<outputs.database.SecretsMountMysqlLegacy[] | undefined>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mysqlRds!: pulumi.Output<outputs.database.SecretsMountMysqlRd[] | undefined>;
+    declare public readonly mysqlRds: pulumi.Output<outputs.database.SecretsMountMysqlRd[] | undefined>;
     /**
      * A nested block containing configuration options for MySQL connections.  
      * *See Configuration Options for more info*
      */
-    public readonly mysqls!: pulumi.Output<outputs.database.SecretsMountMysql[] | undefined>;
+    declare public readonly mysqls: pulumi.Output<outputs.database.SecretsMountMysql[] | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly options: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.  
      * *See Configuration Options for more info*
      */
-    public readonly oracles!: pulumi.Output<outputs.database.SecretsMountOracle[] | undefined>;
+    declare public readonly oracles: pulumi.Output<outputs.database.SecretsMountOracle[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly passthroughRequestHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Where the secret backend will be mounted
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    public readonly pluginVersion!: pulumi.Output<string | undefined>;
+    declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.  
      * *See Configuration Options for more info*
      */
-    public readonly postgresqls!: pulumi.Output<outputs.database.SecretsMountPostgresql[] | undefined>;
+    declare public readonly postgresqls: pulumi.Output<outputs.database.SecretsMountPostgresql[] | undefined>;
     /**
      * A nested block containing configuration options for Redis connections.  
      * *See Configuration Options for more info*
      */
-    public readonly redis!: pulumi.Output<outputs.database.SecretsMountRedi[] | undefined>;
+    declare public readonly redis: pulumi.Output<outputs.database.SecretsMountRedi[] | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
-    public readonly redisElasticaches!: pulumi.Output<outputs.database.SecretsMountRedisElasticach[] | undefined>;
+    declare public readonly redisElasticaches: pulumi.Output<outputs.database.SecretsMountRedisElasticach[] | undefined>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
      */
-    public readonly redshifts!: pulumi.Output<outputs.database.SecretsMountRedshift[] | undefined>;
+    declare public readonly redshifts: pulumi.Output<outputs.database.SecretsMountRedshift[] | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    public readonly sealWrap!: pulumi.Output<boolean>;
+    declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
      * A nested block containing configuration options for Snowflake connections.  
      * *See Configuration Options for more info*
      */
-    public readonly snowflakes!: pulumi.Output<outputs.database.SecretsMountSnowflake[] | undefined>;
+    declare public readonly snowflakes: pulumi.Output<outputs.database.SecretsMountSnowflake[] | undefined>;
 
     /**
      * Create a SecretsMount resource with the given unique name, arguments, and options.
@@ -289,87 +289,87 @@ export class SecretsMount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretsMountState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
-            resourceInputs["cassandras"] = state ? state.cassandras : undefined;
-            resourceInputs["couchbases"] = state ? state.couchbases : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["elasticsearches"] = state ? state.elasticsearches : undefined;
-            resourceInputs["engineCount"] = state ? state.engineCount : undefined;
-            resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
-            resourceInputs["hanas"] = state ? state.hanas : undefined;
-            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
-            resourceInputs["influxdbs"] = state ? state.influxdbs : undefined;
-            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            resourceInputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
-            resourceInputs["mongodbs"] = state ? state.mongodbs : undefined;
-            resourceInputs["mssqls"] = state ? state.mssqls : undefined;
-            resourceInputs["mysqlAuroras"] = state ? state.mysqlAuroras : undefined;
-            resourceInputs["mysqlLegacies"] = state ? state.mysqlLegacies : undefined;
-            resourceInputs["mysqlRds"] = state ? state.mysqlRds : undefined;
-            resourceInputs["mysqls"] = state ? state.mysqls : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["oracles"] = state ? state.oracles : undefined;
-            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
-            resourceInputs["postgresqls"] = state ? state.postgresqls : undefined;
-            resourceInputs["redis"] = state ? state.redis : undefined;
-            resourceInputs["redisElasticaches"] = state ? state.redisElasticaches : undefined;
-            resourceInputs["redshifts"] = state ? state.redshifts : undefined;
-            resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
-            resourceInputs["snowflakes"] = state ? state.snowflakes : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["allowedManagedKeys"] = state?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = state?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = state?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
+            resourceInputs["cassandras"] = state?.cassandras;
+            resourceInputs["couchbases"] = state?.couchbases;
+            resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["elasticsearches"] = state?.elasticsearches;
+            resourceInputs["engineCount"] = state?.engineCount;
+            resourceInputs["externalEntropyAccess"] = state?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = state?.forceNoCache;
+            resourceInputs["hanas"] = state?.hanas;
+            resourceInputs["identityTokenKey"] = state?.identityTokenKey;
+            resourceInputs["influxdbs"] = state?.influxdbs;
+            resourceInputs["listingVisibility"] = state?.listingVisibility;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["mongodbatlas"] = state?.mongodbatlas;
+            resourceInputs["mongodbs"] = state?.mongodbs;
+            resourceInputs["mssqls"] = state?.mssqls;
+            resourceInputs["mysqlAuroras"] = state?.mysqlAuroras;
+            resourceInputs["mysqlLegacies"] = state?.mysqlLegacies;
+            resourceInputs["mysqlRds"] = state?.mysqlRds;
+            resourceInputs["mysqls"] = state?.mysqls;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["oracles"] = state?.oracles;
+            resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["pluginVersion"] = state?.pluginVersion;
+            resourceInputs["postgresqls"] = state?.postgresqls;
+            resourceInputs["redis"] = state?.redis;
+            resourceInputs["redisElasticaches"] = state?.redisElasticaches;
+            resourceInputs["redshifts"] = state?.redshifts;
+            resourceInputs["sealWrap"] = state?.sealWrap;
+            resourceInputs["snowflakes"] = state?.snowflakes;
         } else {
             const args = argsOrState as SecretsMountArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
-            resourceInputs["cassandras"] = args ? args.cassandras : undefined;
-            resourceInputs["couchbases"] = args ? args.couchbases : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["elasticsearches"] = args ? args.elasticsearches : undefined;
-            resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
-            resourceInputs["hanas"] = args ? args.hanas : undefined;
-            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
-            resourceInputs["influxdbs"] = args ? args.influxdbs : undefined;
-            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            resourceInputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
-            resourceInputs["mongodbs"] = args ? args.mongodbs : undefined;
-            resourceInputs["mssqls"] = args ? args.mssqls : undefined;
-            resourceInputs["mysqlAuroras"] = args ? args.mysqlAuroras : undefined;
-            resourceInputs["mysqlLegacies"] = args ? args.mysqlLegacies : undefined;
-            resourceInputs["mysqlRds"] = args ? args.mysqlRds : undefined;
-            resourceInputs["mysqls"] = args ? args.mysqls : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["oracles"] = args ? args.oracles : undefined;
-            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
-            resourceInputs["postgresqls"] = args ? args.postgresqls : undefined;
-            resourceInputs["redis"] = args ? args.redis : undefined;
-            resourceInputs["redisElasticaches"] = args ? args.redisElasticaches : undefined;
-            resourceInputs["redshifts"] = args ? args.redshifts : undefined;
-            resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
-            resourceInputs["snowflakes"] = args ? args.snowflakes : undefined;
+            resourceInputs["allowedManagedKeys"] = args?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = args?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
+            resourceInputs["cassandras"] = args?.cassandras;
+            resourceInputs["couchbases"] = args?.couchbases;
+            resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["elasticsearches"] = args?.elasticsearches;
+            resourceInputs["externalEntropyAccess"] = args?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = args?.forceNoCache;
+            resourceInputs["hanas"] = args?.hanas;
+            resourceInputs["identityTokenKey"] = args?.identityTokenKey;
+            resourceInputs["influxdbs"] = args?.influxdbs;
+            resourceInputs["listingVisibility"] = args?.listingVisibility;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["mongodbatlas"] = args?.mongodbatlas;
+            resourceInputs["mongodbs"] = args?.mongodbs;
+            resourceInputs["mssqls"] = args?.mssqls;
+            resourceInputs["mysqlAuroras"] = args?.mysqlAuroras;
+            resourceInputs["mysqlLegacies"] = args?.mysqlLegacies;
+            resourceInputs["mysqlRds"] = args?.mysqlRds;
+            resourceInputs["mysqls"] = args?.mysqls;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["oracles"] = args?.oracles;
+            resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["pluginVersion"] = args?.pluginVersion;
+            resourceInputs["postgresqls"] = args?.postgresqls;
+            resourceInputs["redis"] = args?.redis;
+            resourceInputs["redisElasticaches"] = args?.redisElasticaches;
+            resourceInputs["redshifts"] = args?.redshifts;
+            resourceInputs["sealWrap"] = args?.sealWrap;
+            resourceInputs["snowflakes"] = args?.snowflakes;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["engineCount"] = undefined /*out*/;
         }

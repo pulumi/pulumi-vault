@@ -46,45 +46,45 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * The accessor for this auth method
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * A description of the auth method.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * The key to use for signing identity tokens.
      */
-    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The path to mount the auth method — this defaults to the name of the type.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    public readonly tune!: pulumi.Output<outputs.AuthBackendTune>;
+    declare public readonly tune: pulumi.Output<outputs.AuthBackendTune>;
     /**
      * The name of the auth method type.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -99,28 +99,28 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["tune"] = state ? state.tune : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["identityTokenKey"] = state?.identityTokenKey;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["tune"] = state?.tune;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["tune"] = args ? args.tune : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["identityTokenKey"] = args?.identityTokenKey;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["tune"] = args?.tune;
+            resourceInputs["type"] = args?.type;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -79,101 +79,101 @@ export class SecretBackendSign extends pulumi.CustomResource {
     /**
      * List of alternative names
      */
-    public readonly altNames!: pulumi.Output<string[] | undefined>;
+    declare public readonly altNames: pulumi.Output<string[] | undefined>;
     /**
      * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      */
-    public readonly autoRenew!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoRenew: pulumi.Output<boolean | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The CA chain
      */
-    public /*out*/ readonly caChains!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly caChains: pulumi.Output<string[]>;
     /**
      * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
      */
-    public readonly certMetadata!: pulumi.Output<string | undefined>;
+    declare public readonly certMetadata: pulumi.Output<string | undefined>;
     /**
      * The certificate
      */
-    public /*out*/ readonly certificate!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificate: pulumi.Output<string>;
     /**
      * CN of certificate to create
      */
-    public readonly commonName!: pulumi.Output<string>;
+    declare public readonly commonName: pulumi.Output<string>;
     /**
      * The CSR
      */
-    public readonly csr!: pulumi.Output<string>;
+    declare public readonly csr: pulumi.Output<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    public readonly excludeCnFromSans!: pulumi.Output<boolean | undefined>;
+    declare public readonly excludeCnFromSans: pulumi.Output<boolean | undefined>;
     /**
      * The expiration date of the certificate in unix epoch format
      */
-    public /*out*/ readonly expiration!: pulumi.Output<number>;
+    declare public /*out*/ readonly expiration: pulumi.Output<number>;
     /**
      * The format of data
      */
-    public readonly format!: pulumi.Output<string | undefined>;
+    declare public readonly format: pulumi.Output<string | undefined>;
     /**
      * List of alternative IPs
      */
-    public readonly ipSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipSans: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the default issuer of this request. Can
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
      * overriding the role's `issuerRef` value.
      */
-    public readonly issuerRef!: pulumi.Output<string | undefined>;
+    declare public readonly issuerRef: pulumi.Output<string | undefined>;
     /**
      * The issuing CA
      */
-    public /*out*/ readonly issuingCa!: pulumi.Output<string>;
+    declare public /*out*/ readonly issuingCa: pulumi.Output<string>;
     /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      */
-    public readonly minSecondsRemaining!: pulumi.Output<number | undefined>;
+    declare public readonly minSecondsRemaining: pulumi.Output<number | undefined>;
     /**
      * Name of the role to create the certificate against
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    public readonly notAfter!: pulumi.Output<string | undefined>;
+    declare public readonly notAfter: pulumi.Output<string | undefined>;
     /**
      * List of other SANs
      */
-    public readonly otherSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly otherSans: pulumi.Output<string[] | undefined>;
     /**
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      */
-    public /*out*/ readonly renewPending!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly renewPending: pulumi.Output<boolean>;
     /**
      * The certificate's serial number, hex formatted.
      */
-    public /*out*/ readonly serialNumber!: pulumi.Output<string>;
+    declare public /*out*/ readonly serialNumber: pulumi.Output<string>;
     /**
      * Time to live
      */
-    public readonly ttl!: pulumi.Output<string | undefined>;
+    declare public readonly ttl: pulumi.Output<string | undefined>;
     /**
      * List of alternative URIs
      */
-    public readonly uriSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly uriSans: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretBackendSign resource with the given unique name, arguments, and options.
@@ -188,57 +188,57 @@ export class SecretBackendSign extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendSignState | undefined;
-            resourceInputs["altNames"] = state ? state.altNames : undefined;
-            resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["caChains"] = state ? state.caChains : undefined;
-            resourceInputs["certMetadata"] = state ? state.certMetadata : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["commonName"] = state ? state.commonName : undefined;
-            resourceInputs["csr"] = state ? state.csr : undefined;
-            resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
-            resourceInputs["expiration"] = state ? state.expiration : undefined;
-            resourceInputs["format"] = state ? state.format : undefined;
-            resourceInputs["ipSans"] = state ? state.ipSans : undefined;
-            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
-            resourceInputs["issuingCa"] = state ? state.issuingCa : undefined;
-            resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
-            resourceInputs["otherSans"] = state ? state.otherSans : undefined;
-            resourceInputs["renewPending"] = state ? state.renewPending : undefined;
-            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["uriSans"] = state ? state.uriSans : undefined;
+            resourceInputs["altNames"] = state?.altNames;
+            resourceInputs["autoRenew"] = state?.autoRenew;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["caChains"] = state?.caChains;
+            resourceInputs["certMetadata"] = state?.certMetadata;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["commonName"] = state?.commonName;
+            resourceInputs["csr"] = state?.csr;
+            resourceInputs["excludeCnFromSans"] = state?.excludeCnFromSans;
+            resourceInputs["expiration"] = state?.expiration;
+            resourceInputs["format"] = state?.format;
+            resourceInputs["ipSans"] = state?.ipSans;
+            resourceInputs["issuerRef"] = state?.issuerRef;
+            resourceInputs["issuingCa"] = state?.issuingCa;
+            resourceInputs["minSecondsRemaining"] = state?.minSecondsRemaining;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["notAfter"] = state?.notAfter;
+            resourceInputs["otherSans"] = state?.otherSans;
+            resourceInputs["renewPending"] = state?.renewPending;
+            resourceInputs["serialNumber"] = state?.serialNumber;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["uriSans"] = state?.uriSans;
         } else {
             const args = argsOrState as SecretBackendSignArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.commonName === undefined) && !opts.urn) {
+            if (args?.commonName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if ((!args || args.csr === undefined) && !opts.urn) {
+            if (args?.csr === undefined && !opts.urn) {
                 throw new Error("Missing required property 'csr'");
             }
-            resourceInputs["altNames"] = args ? args.altNames : undefined;
-            resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["certMetadata"] = args ? args.certMetadata : undefined;
-            resourceInputs["commonName"] = args ? args.commonName : undefined;
-            resourceInputs["csr"] = args ? args.csr : undefined;
-            resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
-            resourceInputs["format"] = args ? args.format : undefined;
-            resourceInputs["ipSans"] = args ? args.ipSans : undefined;
-            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
-            resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
-            resourceInputs["otherSans"] = args ? args.otherSans : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["uriSans"] = args ? args.uriSans : undefined;
+            resourceInputs["altNames"] = args?.altNames;
+            resourceInputs["autoRenew"] = args?.autoRenew;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["certMetadata"] = args?.certMetadata;
+            resourceInputs["commonName"] = args?.commonName;
+            resourceInputs["csr"] = args?.csr;
+            resourceInputs["excludeCnFromSans"] = args?.excludeCnFromSans;
+            resourceInputs["format"] = args?.format;
+            resourceInputs["ipSans"] = args?.ipSans;
+            resourceInputs["issuerRef"] = args?.issuerRef;
+            resourceInputs["minSecondsRemaining"] = args?.minSecondsRemaining;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["notAfter"] = args?.notAfter;
+            resourceInputs["otherSans"] = args?.otherSans;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["uriSans"] = args?.uriSans;
             resourceInputs["caChains"] = undefined /*out*/;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["expiration"] = undefined /*out*/;

@@ -84,133 +84,133 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      * A list of roles that are allowed to use this
      * connection.
      */
-    public readonly allowedRoles!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedRoles: pulumi.Output<string[] | undefined>;
     /**
      * The unique name of the Vault mount to configure.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * A nested block containing configuration options for Cassandra connections.
      */
-    public readonly cassandra!: pulumi.Output<outputs.database.SecretBackendConnectionCassandra | undefined>;
+    declare public readonly cassandra: pulumi.Output<outputs.database.SecretBackendConnectionCassandra | undefined>;
     /**
      * A nested block containing configuration options for Couchbase connections.
      */
-    public readonly couchbase!: pulumi.Output<outputs.database.SecretBackendConnectionCouchbase | undefined>;
+    declare public readonly couchbase: pulumi.Output<outputs.database.SecretBackendConnectionCouchbase | undefined>;
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
-    public readonly data!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly data: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
-    public readonly elasticsearch!: pulumi.Output<outputs.database.SecretBackendConnectionElasticsearch | undefined>;
+    declare public readonly elasticsearch: pulumi.Output<outputs.database.SecretBackendConnectionElasticsearch | undefined>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
-    public readonly hana!: pulumi.Output<outputs.database.SecretBackendConnectionHana | undefined>;
+    declare public readonly hana: pulumi.Output<outputs.database.SecretBackendConnectionHana | undefined>;
     /**
      * A nested block containing configuration options for InfluxDB connections.
      */
-    public readonly influxdb!: pulumi.Output<outputs.database.SecretBackendConnectionInfluxdb | undefined>;
+    declare public readonly influxdb: pulumi.Output<outputs.database.SecretBackendConnectionInfluxdb | undefined>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */
-    public readonly mongodb!: pulumi.Output<outputs.database.SecretBackendConnectionMongodb | undefined>;
+    declare public readonly mongodb: pulumi.Output<outputs.database.SecretBackendConnectionMongodb | undefined>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.
      */
-    public readonly mongodbatlas!: pulumi.Output<outputs.database.SecretBackendConnectionMongodbatlas | undefined>;
+    declare public readonly mongodbatlas: pulumi.Output<outputs.database.SecretBackendConnectionMongodbatlas | undefined>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */
-    public readonly mssql!: pulumi.Output<outputs.database.SecretBackendConnectionMssql | undefined>;
+    declare public readonly mssql: pulumi.Output<outputs.database.SecretBackendConnectionMssql | undefined>;
     /**
      * A nested block containing configuration options for MySQL connections.
      */
-    public readonly mysql!: pulumi.Output<outputs.database.SecretBackendConnectionMysql | undefined>;
+    declare public readonly mysql: pulumi.Output<outputs.database.SecretBackendConnectionMysql | undefined>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.
      */
-    public readonly mysqlAurora!: pulumi.Output<outputs.database.SecretBackendConnectionMysqlAurora | undefined>;
+    declare public readonly mysqlAurora: pulumi.Output<outputs.database.SecretBackendConnectionMysqlAurora | undefined>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.
      */
-    public readonly mysqlLegacy!: pulumi.Output<outputs.database.SecretBackendConnectionMysqlLegacy | undefined>;
+    declare public readonly mysqlLegacy: pulumi.Output<outputs.database.SecretBackendConnectionMysqlLegacy | undefined>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.
      */
-    public readonly mysqlRds!: pulumi.Output<outputs.database.SecretBackendConnectionMysqlRds | undefined>;
+    declare public readonly mysqlRds: pulumi.Output<outputs.database.SecretBackendConnectionMysqlRds | undefined>;
     /**
      * A unique name to give the database connection.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.
      */
-    public readonly oracle!: pulumi.Output<outputs.database.SecretBackendConnectionOracle | undefined>;
+    declare public readonly oracle: pulumi.Output<outputs.database.SecretBackendConnectionOracle | undefined>;
     /**
      * Specifies the name of the plugin to use.
      */
-    public readonly pluginName!: pulumi.Output<string>;
+    declare public readonly pluginName: pulumi.Output<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
-    public readonly postgresql!: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
+    declare public readonly postgresql: pulumi.Output<outputs.database.SecretBackendConnectionPostgresql | undefined>;
     /**
      * A nested block containing configuration options for Redis connections.
      */
-    public readonly redis!: pulumi.Output<outputs.database.SecretBackendConnectionRedis | undefined>;
+    declare public readonly redis: pulumi.Output<outputs.database.SecretBackendConnectionRedis | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      *
      * Exactly one of the nested blocks of configuration options must be supplied.
      */
-    public readonly redisElasticache!: pulumi.Output<outputs.database.SecretBackendConnectionRedisElasticache | undefined>;
+    declare public readonly redisElasticache: pulumi.Output<outputs.database.SecretBackendConnectionRedisElasticache | undefined>;
     /**
      * Connection parameters for the redshift-database-plugin plugin.
      */
-    public readonly redshift!: pulumi.Output<outputs.database.SecretBackendConnectionRedshift | undefined>;
+    declare public readonly redshift: pulumi.Output<outputs.database.SecretBackendConnectionRedshift | undefined>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
-    public readonly rootRotationStatements!: pulumi.Output<string[] | undefined>;
+    declare public readonly rootRotationStatements: pulumi.Output<string[] | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
-    public readonly snowflake!: pulumi.Output<outputs.database.SecretBackendConnectionSnowflake | undefined>;
+    declare public readonly snowflake: pulumi.Output<outputs.database.SecretBackendConnectionSnowflake | undefined>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
-    public readonly verifyConnection!: pulumi.Output<boolean | undefined>;
+    declare public readonly verifyConnection: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SecretBackendConnection resource with the given unique name, arguments, and options.
@@ -225,71 +225,71 @@ export class SecretBackendConnection extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendConnectionState | undefined;
-            resourceInputs["allowedRoles"] = state ? state.allowedRoles : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["cassandra"] = state ? state.cassandra : undefined;
-            resourceInputs["couchbase"] = state ? state.couchbase : undefined;
-            resourceInputs["data"] = state ? state.data : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["elasticsearch"] = state ? state.elasticsearch : undefined;
-            resourceInputs["hana"] = state ? state.hana : undefined;
-            resourceInputs["influxdb"] = state ? state.influxdb : undefined;
-            resourceInputs["mongodb"] = state ? state.mongodb : undefined;
-            resourceInputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
-            resourceInputs["mssql"] = state ? state.mssql : undefined;
-            resourceInputs["mysql"] = state ? state.mysql : undefined;
-            resourceInputs["mysqlAurora"] = state ? state.mysqlAurora : undefined;
-            resourceInputs["mysqlLegacy"] = state ? state.mysqlLegacy : undefined;
-            resourceInputs["mysqlRds"] = state ? state.mysqlRds : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["oracle"] = state ? state.oracle : undefined;
-            resourceInputs["pluginName"] = state ? state.pluginName : undefined;
-            resourceInputs["postgresql"] = state ? state.postgresql : undefined;
-            resourceInputs["redis"] = state ? state.redis : undefined;
-            resourceInputs["redisElasticache"] = state ? state.redisElasticache : undefined;
-            resourceInputs["redshift"] = state ? state.redshift : undefined;
-            resourceInputs["rootRotationStatements"] = state ? state.rootRotationStatements : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["snowflake"] = state ? state.snowflake : undefined;
-            resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
+            resourceInputs["allowedRoles"] = state?.allowedRoles;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["cassandra"] = state?.cassandra;
+            resourceInputs["couchbase"] = state?.couchbase;
+            resourceInputs["data"] = state?.data;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["elasticsearch"] = state?.elasticsearch;
+            resourceInputs["hana"] = state?.hana;
+            resourceInputs["influxdb"] = state?.influxdb;
+            resourceInputs["mongodb"] = state?.mongodb;
+            resourceInputs["mongodbatlas"] = state?.mongodbatlas;
+            resourceInputs["mssql"] = state?.mssql;
+            resourceInputs["mysql"] = state?.mysql;
+            resourceInputs["mysqlAurora"] = state?.mysqlAurora;
+            resourceInputs["mysqlLegacy"] = state?.mysqlLegacy;
+            resourceInputs["mysqlRds"] = state?.mysqlRds;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["oracle"] = state?.oracle;
+            resourceInputs["pluginName"] = state?.pluginName;
+            resourceInputs["postgresql"] = state?.postgresql;
+            resourceInputs["redis"] = state?.redis;
+            resourceInputs["redisElasticache"] = state?.redisElasticache;
+            resourceInputs["redshift"] = state?.redshift;
+            resourceInputs["rootRotationStatements"] = state?.rootRotationStatements;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["snowflake"] = state?.snowflake;
+            resourceInputs["verifyConnection"] = state?.verifyConnection;
         } else {
             const args = argsOrState as SecretBackendConnectionArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["allowedRoles"] = args ? args.allowedRoles : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["cassandra"] = args ? args.cassandra : undefined;
-            resourceInputs["couchbase"] = args ? args.couchbase : undefined;
-            resourceInputs["data"] = args ? args.data : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["elasticsearch"] = args ? args.elasticsearch : undefined;
-            resourceInputs["hana"] = args ? args.hana : undefined;
-            resourceInputs["influxdb"] = args ? args.influxdb : undefined;
-            resourceInputs["mongodb"] = args ? args.mongodb : undefined;
-            resourceInputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
-            resourceInputs["mssql"] = args ? args.mssql : undefined;
-            resourceInputs["mysql"] = args ? args.mysql : undefined;
-            resourceInputs["mysqlAurora"] = args ? args.mysqlAurora : undefined;
-            resourceInputs["mysqlLegacy"] = args ? args.mysqlLegacy : undefined;
-            resourceInputs["mysqlRds"] = args ? args.mysqlRds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["oracle"] = args ? args.oracle : undefined;
-            resourceInputs["pluginName"] = args ? args.pluginName : undefined;
-            resourceInputs["postgresql"] = args ? args.postgresql : undefined;
-            resourceInputs["redis"] = args ? args.redis : undefined;
-            resourceInputs["redisElasticache"] = args ? args.redisElasticache : undefined;
-            resourceInputs["redshift"] = args ? args.redshift : undefined;
-            resourceInputs["rootRotationStatements"] = args ? args.rootRotationStatements : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
-            resourceInputs["snowflake"] = args ? args.snowflake : undefined;
-            resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
+            resourceInputs["allowedRoles"] = args?.allowedRoles;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["cassandra"] = args?.cassandra;
+            resourceInputs["couchbase"] = args?.couchbase;
+            resourceInputs["data"] = args?.data;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["elasticsearch"] = args?.elasticsearch;
+            resourceInputs["hana"] = args?.hana;
+            resourceInputs["influxdb"] = args?.influxdb;
+            resourceInputs["mongodb"] = args?.mongodb;
+            resourceInputs["mongodbatlas"] = args?.mongodbatlas;
+            resourceInputs["mssql"] = args?.mssql;
+            resourceInputs["mysql"] = args?.mysql;
+            resourceInputs["mysqlAurora"] = args?.mysqlAurora;
+            resourceInputs["mysqlLegacy"] = args?.mysqlLegacy;
+            resourceInputs["mysqlRds"] = args?.mysqlRds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["oracle"] = args?.oracle;
+            resourceInputs["pluginName"] = args?.pluginName;
+            resourceInputs["postgresql"] = args?.postgresql;
+            resourceInputs["redis"] = args?.redis;
+            resourceInputs["redisElasticache"] = args?.redisElasticache;
+            resourceInputs["redshift"] = args?.redshift;
+            resourceInputs["rootRotationStatements"] = args?.rootRotationStatements;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["snowflake"] = args?.snowflake;
+            resourceInputs["verifyConnection"] = args?.verifyConnection;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendConnection.__pulumiType, name, resourceInputs, opts);

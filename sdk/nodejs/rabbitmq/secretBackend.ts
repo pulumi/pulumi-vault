@@ -57,117 +57,117 @@ export class SecretBackend extends pulumi.CustomResource {
     /**
      * Accessor of the mount
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedManagedKeys: pulumi.Output<string[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedResponseHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacRequestKeys: pulumi.Output<string[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
+    declare public readonly auditNonHmacResponseKeys: pulumi.Output<string[]>;
     /**
      * Specifies the RabbitMQ connection URI.
      */
-    public readonly connectionUri!: pulumi.Output<string>;
+    declare public readonly connectionUri: pulumi.Output<string>;
     /**
      * Default lease duration for secrets in seconds
      */
-    public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly defaultLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
+    declare public readonly delegatedAuthAccessors: pulumi.Output<string[] | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalEntropyAccess: pulumi.Output<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    public readonly forceNoCache!: pulumi.Output<boolean>;
+    declare public readonly forceNoCache: pulumi.Output<boolean>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    public readonly listingVisibility!: pulumi.Output<string | undefined>;
+    declare public readonly listingVisibility: pulumi.Output<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds
      */
-    public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
+    declare public readonly maxLeaseTtlSeconds: pulumi.Output<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly options: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    declare public readonly passthroughRequestHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the RabbitMQ management administrator password.
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
      */
-    public readonly passwordPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    public readonly pluginVersion!: pulumi.Output<string | undefined>;
+    declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    public readonly sealWrap!: pulumi.Output<boolean>;
+    declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
      * Specifies the RabbitMQ management administrator username.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
     /**
      * Template describing how dynamic usernames are generated.
      */
-    public readonly usernameTemplate!: pulumi.Output<string | undefined>;
+    declare public readonly usernameTemplate: pulumi.Output<string | undefined>;
     /**
      * Specifies whether to verify connection URI, username, and password.
      * Defaults to `true`.
      */
-    public readonly verifyConnection!: pulumi.Output<boolean | undefined>;
+    declare public readonly verifyConnection: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -182,70 +182,70 @@ export class SecretBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
-            resourceInputs["connectionUri"] = state ? state.connectionUri : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = state ? state.forceNoCache : undefined;
-            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
-            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
-            resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
-            resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
-            resourceInputs["verifyConnection"] = state ? state.verifyConnection : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["allowedManagedKeys"] = state?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = state?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = state?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
+            resourceInputs["connectionUri"] = state?.connectionUri;
+            resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["externalEntropyAccess"] = state?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = state?.forceNoCache;
+            resourceInputs["identityTokenKey"] = state?.identityTokenKey;
+            resourceInputs["listingVisibility"] = state?.listingVisibility;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["pluginVersion"] = state?.pluginVersion;
+            resourceInputs["sealWrap"] = state?.sealWrap;
+            resourceInputs["username"] = state?.username;
+            resourceInputs["usernameTemplate"] = state?.usernameTemplate;
+            resourceInputs["verifyConnection"] = state?.verifyConnection;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
-            if ((!args || args.connectionUri === undefined) && !opts.urn) {
+            if (args?.connectionUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'connectionUri'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
-            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
-            resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
-            resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
-            resourceInputs["connectionUri"] = args ? args.connectionUri : undefined;
-            resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
-            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
-            resourceInputs["forceNoCache"] = args ? args.forceNoCache : undefined;
-            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
-            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
+            resourceInputs["allowedManagedKeys"] = args?.allowedManagedKeys;
+            resourceInputs["allowedResponseHeaders"] = args?.allowedResponseHeaders;
+            resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
+            resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
+            resourceInputs["connectionUri"] = args?.connectionUri;
+            resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
+            resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["externalEntropyAccess"] = args?.externalEntropyAccess;
+            resourceInputs["forceNoCache"] = args?.forceNoCache;
+            resourceInputs["identityTokenKey"] = args?.identityTokenKey;
+            resourceInputs["listingVisibility"] = args?.listingVisibility;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
-            resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["pluginVersion"] = args?.pluginVersion;
+            resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["username"] = args?.username ? pulumi.secret(args.username) : undefined;
-            resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
-            resourceInputs["verifyConnection"] = args ? args.verifyConnection : undefined;
+            resourceInputs["usernameTemplate"] = args?.usernameTemplate;
+            resourceInputs["verifyConnection"] = args?.verifyConnection;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

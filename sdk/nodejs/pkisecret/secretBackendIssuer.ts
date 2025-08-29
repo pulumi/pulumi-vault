@@ -70,91 +70,91 @@ export class SecretBackendIssuer extends pulumi.CustomResource {
      * The path the PKI secret backend is mounted at, with no
      * leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the URL values for the CRL
      * Distribution Points field.
      */
-    public readonly crlDistributionPoints!: pulumi.Output<string[] | undefined>;
+    declare public readonly crlDistributionPoints: pulumi.Output<string[] | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * issued certificate) contain critical extensions not processed by Vault.
      */
-    public readonly disableCriticalExtensionChecks!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableCriticalExtensionChecks: pulumi.Output<boolean | undefined>;
     /**
      * This determines whether this issuer is able
      * to issue certificates where the chain of trust (including the final issued
      * certificate) contains a link in which the subject of the issuing certificate
      * does not match the named issuer of the certificate it signed.
      */
-    public readonly disableNameChecks!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableNameChecks: pulumi.Output<boolean | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * final issued certificate) violates the name constraints critical extension of
      * one of the issuer certificates in the chain.
      */
-    public readonly disableNameConstraintChecks!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableNameConstraintChecks: pulumi.Output<boolean | undefined>;
     /**
      * This determines whether this issuer
      * is able to issue certificates where the chain of trust (including the final
      * issued certificate) is longer than allowed by a certificate authority in that
      * chain.
      */
-    public readonly disablePathLengthChecks!: pulumi.Output<boolean | undefined>;
+    declare public readonly disablePathLengthChecks: pulumi.Output<boolean | undefined>;
     /**
      * Specifies that the AIA URL values should
      * be templated.
      */
-    public readonly enableAiaUrlTemplating!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableAiaUrlTemplating: pulumi.Output<boolean | undefined>;
     /**
      * ID of the issuer.
      */
-    public /*out*/ readonly issuerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly issuerId: pulumi.Output<string>;
     /**
      * Name of the issuer.
      */
-    public readonly issuerName!: pulumi.Output<string | undefined>;
+    declare public readonly issuerName: pulumi.Output<string | undefined>;
     /**
      * Reference to an existing issuer.
      */
-    public readonly issuerRef!: pulumi.Output<string>;
+    declare public readonly issuerRef: pulumi.Output<string>;
     /**
      * Specifies the URL values for the Issuing
      * Certificate field.
      */
-    public readonly issuingCertificates!: pulumi.Output<string[] | undefined>;
+    declare public readonly issuingCertificates: pulumi.Output<string[] | undefined>;
     /**
      * Behavior of a leaf's NotAfter field during
      * issuance.
      */
-    public readonly leafNotAfterBehavior!: pulumi.Output<string>;
+    declare public readonly leafNotAfterBehavior: pulumi.Output<string>;
     /**
      * Chain of issuer references to build this issuer's
      * computed CAChain field from, when non-empty.
      */
-    public readonly manualChains!: pulumi.Output<string[] | undefined>;
+    declare public readonly manualChains: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    public readonly ocspServers!: pulumi.Output<string[] | undefined>;
+    declare public readonly ocspServers: pulumi.Output<string[] | undefined>;
     /**
      * Which signature algorithm to use
      * when building CRLs.
      */
-    public readonly revocationSignatureAlgorithm!: pulumi.Output<string>;
+    declare public readonly revocationSignatureAlgorithm: pulumi.Output<string>;
     /**
      * Allowed usages for this issuer.
      */
-    public readonly usage!: pulumi.Output<string>;
+    declare public readonly usage: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendIssuer resource with the given unique name, arguments, and options.
@@ -169,47 +169,47 @@ export class SecretBackendIssuer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendIssuerState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["crlDistributionPoints"] = state ? state.crlDistributionPoints : undefined;
-            resourceInputs["disableCriticalExtensionChecks"] = state ? state.disableCriticalExtensionChecks : undefined;
-            resourceInputs["disableNameChecks"] = state ? state.disableNameChecks : undefined;
-            resourceInputs["disableNameConstraintChecks"] = state ? state.disableNameConstraintChecks : undefined;
-            resourceInputs["disablePathLengthChecks"] = state ? state.disablePathLengthChecks : undefined;
-            resourceInputs["enableAiaUrlTemplating"] = state ? state.enableAiaUrlTemplating : undefined;
-            resourceInputs["issuerId"] = state ? state.issuerId : undefined;
-            resourceInputs["issuerName"] = state ? state.issuerName : undefined;
-            resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
-            resourceInputs["issuingCertificates"] = state ? state.issuingCertificates : undefined;
-            resourceInputs["leafNotAfterBehavior"] = state ? state.leafNotAfterBehavior : undefined;
-            resourceInputs["manualChains"] = state ? state.manualChains : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["ocspServers"] = state ? state.ocspServers : undefined;
-            resourceInputs["revocationSignatureAlgorithm"] = state ? state.revocationSignatureAlgorithm : undefined;
-            resourceInputs["usage"] = state ? state.usage : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["crlDistributionPoints"] = state?.crlDistributionPoints;
+            resourceInputs["disableCriticalExtensionChecks"] = state?.disableCriticalExtensionChecks;
+            resourceInputs["disableNameChecks"] = state?.disableNameChecks;
+            resourceInputs["disableNameConstraintChecks"] = state?.disableNameConstraintChecks;
+            resourceInputs["disablePathLengthChecks"] = state?.disablePathLengthChecks;
+            resourceInputs["enableAiaUrlTemplating"] = state?.enableAiaUrlTemplating;
+            resourceInputs["issuerId"] = state?.issuerId;
+            resourceInputs["issuerName"] = state?.issuerName;
+            resourceInputs["issuerRef"] = state?.issuerRef;
+            resourceInputs["issuingCertificates"] = state?.issuingCertificates;
+            resourceInputs["leafNotAfterBehavior"] = state?.leafNotAfterBehavior;
+            resourceInputs["manualChains"] = state?.manualChains;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["ocspServers"] = state?.ocspServers;
+            resourceInputs["revocationSignatureAlgorithm"] = state?.revocationSignatureAlgorithm;
+            resourceInputs["usage"] = state?.usage;
         } else {
             const args = argsOrState as SecretBackendIssuerArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.issuerRef === undefined) && !opts.urn) {
+            if (args?.issuerRef === undefined && !opts.urn) {
                 throw new Error("Missing required property 'issuerRef'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["crlDistributionPoints"] = args ? args.crlDistributionPoints : undefined;
-            resourceInputs["disableCriticalExtensionChecks"] = args ? args.disableCriticalExtensionChecks : undefined;
-            resourceInputs["disableNameChecks"] = args ? args.disableNameChecks : undefined;
-            resourceInputs["disableNameConstraintChecks"] = args ? args.disableNameConstraintChecks : undefined;
-            resourceInputs["disablePathLengthChecks"] = args ? args.disablePathLengthChecks : undefined;
-            resourceInputs["enableAiaUrlTemplating"] = args ? args.enableAiaUrlTemplating : undefined;
-            resourceInputs["issuerName"] = args ? args.issuerName : undefined;
-            resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
-            resourceInputs["issuingCertificates"] = args ? args.issuingCertificates : undefined;
-            resourceInputs["leafNotAfterBehavior"] = args ? args.leafNotAfterBehavior : undefined;
-            resourceInputs["manualChains"] = args ? args.manualChains : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["ocspServers"] = args ? args.ocspServers : undefined;
-            resourceInputs["revocationSignatureAlgorithm"] = args ? args.revocationSignatureAlgorithm : undefined;
-            resourceInputs["usage"] = args ? args.usage : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["crlDistributionPoints"] = args?.crlDistributionPoints;
+            resourceInputs["disableCriticalExtensionChecks"] = args?.disableCriticalExtensionChecks;
+            resourceInputs["disableNameChecks"] = args?.disableNameChecks;
+            resourceInputs["disableNameConstraintChecks"] = args?.disableNameConstraintChecks;
+            resourceInputs["disablePathLengthChecks"] = args?.disablePathLengthChecks;
+            resourceInputs["enableAiaUrlTemplating"] = args?.enableAiaUrlTemplating;
+            resourceInputs["issuerName"] = args?.issuerName;
+            resourceInputs["issuerRef"] = args?.issuerRef;
+            resourceInputs["issuingCertificates"] = args?.issuingCertificates;
+            resourceInputs["leafNotAfterBehavior"] = args?.leafNotAfterBehavior;
+            resourceInputs["manualChains"] = args?.manualChains;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["ocspServers"] = args?.ocspServers;
+            resourceInputs["revocationSignatureAlgorithm"] = args?.revocationSignatureAlgorithm;
+            resourceInputs["usage"] = args?.usage;
             resourceInputs["issuerId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

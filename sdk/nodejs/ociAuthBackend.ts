@@ -58,53 +58,52 @@ export class OciAuthBackend extends pulumi.CustomResource {
     /**
      * The accessor of the auth backend
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * A description of the auth backend.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Stops rotation of the root credential until set to false.
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * The Tenancy OCID of your OCI account.
      */
-    public readonly homeTenancyId!: pulumi.Output<string>;
+    declare public readonly homeTenancyId: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Unique name of the auth backend to configure.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
-     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    public readonly tune!: pulumi.Output<outputs.OciAuthBackendTune>;
+    declare public readonly tune: pulumi.Output<outputs.OciAuthBackendTune>;
 
     /**
      * Create a OciAuthBackend resource with the given unique name, arguments, and options.
@@ -119,32 +118,32 @@ export class OciAuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OciAuthBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["homeTenancyId"] = state ? state.homeTenancyId : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["tune"] = state ? state.tune : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["homeTenancyId"] = state?.homeTenancyId;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["tune"] = state?.tune;
         } else {
             const args = argsOrState as OciAuthBackendArgs | undefined;
-            if ((!args || args.homeTenancyId === undefined) && !opts.urn) {
+            if (args?.homeTenancyId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'homeTenancyId'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["disableRemount"] = args?.disableRemount;
             resourceInputs["homeTenancyId"] = args?.homeTenancyId ? pulumi.secret(args.homeTenancyId) : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
-            resourceInputs["tune"] = args ? args.tune : undefined;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["tune"] = args?.tune;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -198,8 +197,7 @@ export interface OciAuthBackendState {
      */
     rotationSchedule?: pulumi.Input<string>;
     /**
-     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      */
     rotationWindow?: pulumi.Input<number>;
     /**
@@ -250,8 +248,7 @@ export interface OciAuthBackendArgs {
      */
     rotationSchedule?: pulumi.Input<string>;
     /**
-     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-     * Can only be used with rotation_schedule.
+     * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      */
     rotationWindow?: pulumi.Input<number>;
     /**

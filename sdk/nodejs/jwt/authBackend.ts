@@ -110,55 +110,55 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * The accessor for this auth method
      */
-    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
      * The value against which to match the iss claim in a JWT
      */
-    public readonly boundIssuer!: pulumi.Output<string | undefined>;
+    declare public readonly boundIssuer: pulumi.Output<string | undefined>;
     /**
      * The default role to use if none is provided during login
      */
-    public readonly defaultRole!: pulumi.Output<string | undefined>;
+    declare public readonly defaultRole: pulumi.Output<string | undefined>;
     /**
      * The description of the auth backend
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
-    public readonly jwksCaPem!: pulumi.Output<string | undefined>;
+    declare public readonly jwksCaPem: pulumi.Output<string | undefined>;
     /**
      * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      */
-    public readonly jwksPairs!: pulumi.Output<{[key: string]: string}[] | undefined>;
+    declare public readonly jwksPairs: pulumi.Output<{[key: string]: string}[] | undefined>;
     /**
      * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
      */
-    public readonly jwksUrl!: pulumi.Output<string | undefined>;
+    declare public readonly jwksUrl: pulumi.Output<string | undefined>;
     /**
      * A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
      */
-    public readonly jwtSupportedAlgs!: pulumi.Output<string[] | undefined>;
+    declare public readonly jwtSupportedAlgs: pulumi.Output<string[] | undefined>;
     /**
      * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      */
-    public readonly jwtValidationPubkeys!: pulumi.Output<string[] | undefined>;
+    declare public readonly jwtValidationPubkeys: pulumi.Output<string[] | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    public readonly local!: pulumi.Output<boolean | undefined>;
+    declare public readonly local: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      *
@@ -166,44 +166,44 @@ export class AuthBackend extends pulumi.CustomResource {
      *
      * The `tune` block is used to tune the auth backend:
      */
-    public readonly namespaceInState!: pulumi.Output<boolean | undefined>;
+    declare public readonly namespaceInState: pulumi.Output<boolean | undefined>;
     /**
      * Client ID used for OIDC backends
      */
-    public readonly oidcClientId!: pulumi.Output<string | undefined>;
+    declare public readonly oidcClientId: pulumi.Output<string | undefined>;
     /**
      * Client Secret used for OIDC backends
      */
-    public readonly oidcClientSecret!: pulumi.Output<string | undefined>;
+    declare public readonly oidcClientSecret: pulumi.Output<string | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      */
-    public readonly oidcDiscoveryCaPem!: pulumi.Output<string | undefined>;
+    declare public readonly oidcDiscoveryCaPem: pulumi.Output<string | undefined>;
     /**
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      */
-    public readonly oidcDiscoveryUrl!: pulumi.Output<string | undefined>;
+    declare public readonly oidcDiscoveryUrl: pulumi.Output<string | undefined>;
     /**
      * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      */
-    public readonly oidcResponseMode!: pulumi.Output<string | undefined>;
+    declare public readonly oidcResponseMode: pulumi.Output<string | undefined>;
     /**
      * List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      */
-    public readonly oidcResponseTypes!: pulumi.Output<string[] | undefined>;
+    declare public readonly oidcResponseTypes: pulumi.Output<string[] | undefined>;
     /**
      * Path to mount the JWT/OIDC auth backend
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      */
-    public readonly providerConfig!: pulumi.Output<{[key: string]: string} | undefined>;
-    public readonly tune!: pulumi.Output<outputs.jwt.AuthBackendTune>;
+    declare public readonly providerConfig: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly tune: pulumi.Output<outputs.jwt.AuthBackendTune>;
     /**
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -218,53 +218,53 @@ export class AuthBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
-            resourceInputs["accessor"] = state ? state.accessor : undefined;
-            resourceInputs["boundIssuer"] = state ? state.boundIssuer : undefined;
-            resourceInputs["defaultRole"] = state ? state.defaultRole : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
-            resourceInputs["jwksCaPem"] = state ? state.jwksCaPem : undefined;
-            resourceInputs["jwksPairs"] = state ? state.jwksPairs : undefined;
-            resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
-            resourceInputs["jwtSupportedAlgs"] = state ? state.jwtSupportedAlgs : undefined;
-            resourceInputs["jwtValidationPubkeys"] = state ? state.jwtValidationPubkeys : undefined;
-            resourceInputs["local"] = state ? state.local : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceInState"] = state ? state.namespaceInState : undefined;
-            resourceInputs["oidcClientId"] = state ? state.oidcClientId : undefined;
-            resourceInputs["oidcClientSecret"] = state ? state.oidcClientSecret : undefined;
-            resourceInputs["oidcDiscoveryCaPem"] = state ? state.oidcDiscoveryCaPem : undefined;
-            resourceInputs["oidcDiscoveryUrl"] = state ? state.oidcDiscoveryUrl : undefined;
-            resourceInputs["oidcResponseMode"] = state ? state.oidcResponseMode : undefined;
-            resourceInputs["oidcResponseTypes"] = state ? state.oidcResponseTypes : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["providerConfig"] = state ? state.providerConfig : undefined;
-            resourceInputs["tune"] = state ? state.tune : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["boundIssuer"] = state?.boundIssuer;
+            resourceInputs["defaultRole"] = state?.defaultRole;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["jwksCaPem"] = state?.jwksCaPem;
+            resourceInputs["jwksPairs"] = state?.jwksPairs;
+            resourceInputs["jwksUrl"] = state?.jwksUrl;
+            resourceInputs["jwtSupportedAlgs"] = state?.jwtSupportedAlgs;
+            resourceInputs["jwtValidationPubkeys"] = state?.jwtValidationPubkeys;
+            resourceInputs["local"] = state?.local;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceInState"] = state?.namespaceInState;
+            resourceInputs["oidcClientId"] = state?.oidcClientId;
+            resourceInputs["oidcClientSecret"] = state?.oidcClientSecret;
+            resourceInputs["oidcDiscoveryCaPem"] = state?.oidcDiscoveryCaPem;
+            resourceInputs["oidcDiscoveryUrl"] = state?.oidcDiscoveryUrl;
+            resourceInputs["oidcResponseMode"] = state?.oidcResponseMode;
+            resourceInputs["oidcResponseTypes"] = state?.oidcResponseTypes;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["providerConfig"] = state?.providerConfig;
+            resourceInputs["tune"] = state?.tune;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            resourceInputs["boundIssuer"] = args ? args.boundIssuer : undefined;
-            resourceInputs["defaultRole"] = args ? args.defaultRole : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
-            resourceInputs["jwksCaPem"] = args ? args.jwksCaPem : undefined;
-            resourceInputs["jwksPairs"] = args ? args.jwksPairs : undefined;
-            resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
-            resourceInputs["jwtSupportedAlgs"] = args ? args.jwtSupportedAlgs : undefined;
-            resourceInputs["jwtValidationPubkeys"] = args ? args.jwtValidationPubkeys : undefined;
-            resourceInputs["local"] = args ? args.local : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["namespaceInState"] = args ? args.namespaceInState : undefined;
-            resourceInputs["oidcClientId"] = args ? args.oidcClientId : undefined;
+            resourceInputs["boundIssuer"] = args?.boundIssuer;
+            resourceInputs["defaultRole"] = args?.defaultRole;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["jwksCaPem"] = args?.jwksCaPem;
+            resourceInputs["jwksPairs"] = args?.jwksPairs;
+            resourceInputs["jwksUrl"] = args?.jwksUrl;
+            resourceInputs["jwtSupportedAlgs"] = args?.jwtSupportedAlgs;
+            resourceInputs["jwtValidationPubkeys"] = args?.jwtValidationPubkeys;
+            resourceInputs["local"] = args?.local;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["namespaceInState"] = args?.namespaceInState;
+            resourceInputs["oidcClientId"] = args?.oidcClientId;
             resourceInputs["oidcClientSecret"] = args?.oidcClientSecret ? pulumi.secret(args.oidcClientSecret) : undefined;
-            resourceInputs["oidcDiscoveryCaPem"] = args ? args.oidcDiscoveryCaPem : undefined;
-            resourceInputs["oidcDiscoveryUrl"] = args ? args.oidcDiscoveryUrl : undefined;
-            resourceInputs["oidcResponseMode"] = args ? args.oidcResponseMode : undefined;
-            resourceInputs["oidcResponseTypes"] = args ? args.oidcResponseTypes : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["providerConfig"] = args ? args.providerConfig : undefined;
-            resourceInputs["tune"] = args ? args.tune : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["oidcDiscoveryCaPem"] = args?.oidcDiscoveryCaPem;
+            resourceInputs["oidcDiscoveryUrl"] = args?.oidcDiscoveryUrl;
+            resourceInputs["oidcResponseMode"] = args?.oidcResponseMode;
+            resourceInputs["oidcResponseTypes"] = args?.oidcResponseTypes;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["providerConfig"] = args?.providerConfig;
+            resourceInputs["tune"] = args?.tune;
+            resourceInputs["type"] = args?.type;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -56,18 +56,18 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
     /**
      * Client ID to allow usage with the OIDC named key
      */
-    public readonly allowedClientId!: pulumi.Output<string>;
+    declare public readonly allowedClientId: pulumi.Output<string>;
     /**
      * Name of the OIDC Key allow the Client ID.
      */
-    public readonly keyName!: pulumi.Output<string>;
+    declare public readonly keyName: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a OidcKeyAllowedClientID resource with the given unique name, arguments, and options.
@@ -82,20 +82,20 @@ export class OidcKeyAllowedClientID extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcKeyAllowedClientIDState | undefined;
-            resourceInputs["allowedClientId"] = state ? state.allowedClientId : undefined;
-            resourceInputs["keyName"] = state ? state.keyName : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["allowedClientId"] = state?.allowedClientId;
+            resourceInputs["keyName"] = state?.keyName;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as OidcKeyAllowedClientIDArgs | undefined;
-            if ((!args || args.allowedClientId === undefined) && !opts.urn) {
+            if (args?.allowedClientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'allowedClientId'");
             }
-            if ((!args || args.keyName === undefined) && !opts.urn) {
+            if (args?.keyName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyName'");
             }
-            resourceInputs["allowedClientId"] = args ? args.allowedClientId : undefined;
-            resourceInputs["keyName"] = args ? args.keyName : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["allowedClientId"] = args?.allowedClientId;
+            resourceInputs["keyName"] = args?.keyName;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(OidcKeyAllowedClientID.__pulumiType, name, resourceInputs, opts);

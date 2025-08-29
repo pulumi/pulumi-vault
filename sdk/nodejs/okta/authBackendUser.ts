@@ -67,26 +67,26 @@ export class AuthBackendUser extends pulumi.CustomResource {
     /**
      * List of Okta groups to associate with this user
      */
-    public readonly groups!: pulumi.Output<string[] | undefined>;
+    declare public readonly groups: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The path where the Okta auth backend is mounted
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * List of Vault policies to associate with this user
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
      * Name of the user within Okta
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a AuthBackendUser resource with the given unique name, arguments, and options.
@@ -101,24 +101,24 @@ export class AuthBackendUser extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendUserState | undefined;
-            resourceInputs["groups"] = state ? state.groups : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["groups"] = state?.groups;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as AuthBackendUserArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["groups"] = args ? args.groups : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["groups"] = args?.groups;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendUser.__pulumiType, name, resourceInputs, opts);

@@ -67,80 +67,80 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * The unique name of the auth backend to configure.
      * Defaults to `approle`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      */
-    public readonly bindSecretId!: pulumi.Output<boolean | undefined>;
+    declare public readonly bindSecretId: pulumi.Output<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
      */
-    public readonly roleId!: pulumi.Output<string>;
+    declare public readonly roleId: pulumi.Output<string>;
     /**
      * The name of the role.
      */
-    public readonly roleName!: pulumi.Output<string>;
+    declare public readonly roleName: pulumi.Output<string>;
     /**
      * If set,
      * specifies blocks of IP addresses which can perform the login operation.
      */
-    public readonly secretIdBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly secretIdBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * The number of times any particular SecretID
      * can be used to fetch a token from this AppRole, after which the SecretID will
      * expire. A value of zero will allow unlimited uses.
      */
-    public readonly secretIdNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly secretIdNumUses: pulumi.Output<number | undefined>;
     /**
      * The number of seconds after which any SecretID
      * expires.
      */
-    public readonly secretIdTtl!: pulumi.Output<number | undefined>;
+    declare public readonly secretIdTtl: pulumi.Output<number | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenBoundCidrs: pulumi.Output<string[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenExplicitMaxTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly tokenNoDefaultPolicy: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    declare public readonly tokenNumUses: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Period
      */
-    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly tokenPeriod: pulumi.Output<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenPolicies: pulumi.Output<string[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
+    declare public readonly tokenType: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendRole resource with the given unique name, arguments, and options.
@@ -155,45 +155,45 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["bindSecretId"] = state ? state.bindSecretId : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
-            resourceInputs["roleName"] = state ? state.roleName : undefined;
-            resourceInputs["secretIdBoundCidrs"] = state ? state.secretIdBoundCidrs : undefined;
-            resourceInputs["secretIdNumUses"] = state ? state.secretIdNumUses : undefined;
-            resourceInputs["secretIdTtl"] = state ? state.secretIdTtl : undefined;
-            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["bindSecretId"] = state?.bindSecretId;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["roleId"] = state?.roleId;
+            resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["secretIdBoundCidrs"] = state?.secretIdBoundCidrs;
+            resourceInputs["secretIdNumUses"] = state?.secretIdNumUses;
+            resourceInputs["secretIdTtl"] = state?.secretIdTtl;
+            resourceInputs["tokenBoundCidrs"] = state?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = state?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = state?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = state?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = state?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = state?.tokenPolicies;
+            resourceInputs["tokenTtl"] = state?.tokenTtl;
+            resourceInputs["tokenType"] = state?.tokenType;
         } else {
             const args = argsOrState as AuthBackendRoleArgs | undefined;
-            if ((!args || args.roleName === undefined) && !opts.urn) {
+            if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["bindSecretId"] = args ? args.bindSecretId : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["roleId"] = args ? args.roleId : undefined;
-            resourceInputs["roleName"] = args ? args.roleName : undefined;
-            resourceInputs["secretIdBoundCidrs"] = args ? args.secretIdBoundCidrs : undefined;
-            resourceInputs["secretIdNumUses"] = args ? args.secretIdNumUses : undefined;
-            resourceInputs["secretIdTtl"] = args ? args.secretIdTtl : undefined;
-            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
-            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
-            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
-            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
-            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
-            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
-            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["bindSecretId"] = args?.bindSecretId;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["roleId"] = args?.roleId;
+            resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["secretIdBoundCidrs"] = args?.secretIdBoundCidrs;
+            resourceInputs["secretIdNumUses"] = args?.secretIdNumUses;
+            resourceInputs["secretIdTtl"] = args?.secretIdTtl;
+            resourceInputs["tokenBoundCidrs"] = args?.tokenBoundCidrs;
+            resourceInputs["tokenExplicitMaxTtl"] = args?.tokenExplicitMaxTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
+            resourceInputs["tokenNoDefaultPolicy"] = args?.tokenNoDefaultPolicy;
+            resourceInputs["tokenNumUses"] = args?.tokenNumUses;
+            resourceInputs["tokenPeriod"] = args?.tokenPeriod;
+            resourceInputs["tokenPolicies"] = args?.tokenPolicies;
+            resourceInputs["tokenTtl"] = args?.tokenTtl;
+            resourceInputs["tokenType"] = args?.tokenType;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendRole.__pulumiType, name, resourceInputs, opts);

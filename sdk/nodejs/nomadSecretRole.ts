@@ -66,34 +66,34 @@ export class NomadSecretRole extends pulumi.CustomResource {
     /**
      * The unique path this backend should be mounted at.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies if the generated token should be global. Defaults to 
      * false.
      */
-    public readonly global!: pulumi.Output<boolean>;
+    declare public readonly global: pulumi.Output<boolean>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
      */
-    public readonly policies!: pulumi.Output<string[]>;
+    declare public readonly policies: pulumi.Output<string[]>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * Specifies the type of token to create when using this role. Valid 
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a NomadSecretRole resource with the given unique name, arguments, and options.
@@ -108,26 +108,26 @@ export class NomadSecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NomadSecretRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["global"] = state ? state.global : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["global"] = state?.global;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as NomadSecretRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["global"] = args ? args.global : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["global"] = args?.global;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NomadSecretRole.__pulumiType, name, resourceInputs, opts);

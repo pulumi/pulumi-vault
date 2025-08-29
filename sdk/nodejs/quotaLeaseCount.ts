@@ -66,23 +66,23 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
-    public readonly inheritable!: pulumi.Output<boolean | undefined>;
+    declare public readonly inheritable: pulumi.Output<boolean | undefined>;
     /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
      */
-    public readonly maxLeases!: pulumi.Output<number>;
+    declare public readonly maxLeases: pulumi.Output<number>;
     /**
      * Name of the rate limit quota
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -91,11 +91,11 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    declare public readonly role: pulumi.Output<string | undefined>;
 
     /**
      * Create a QuotaLeaseCount resource with the given unique name, arguments, and options.
@@ -110,23 +110,23 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuotaLeaseCountState | undefined;
-            resourceInputs["inheritable"] = state ? state.inheritable : undefined;
-            resourceInputs["maxLeases"] = state ? state.maxLeases : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["inheritable"] = state?.inheritable;
+            resourceInputs["maxLeases"] = state?.maxLeases;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["role"] = state?.role;
         } else {
             const args = argsOrState as QuotaLeaseCountArgs | undefined;
-            if ((!args || args.maxLeases === undefined) && !opts.urn) {
+            if (args?.maxLeases === undefined && !opts.urn) {
                 throw new Error("Missing required property 'maxLeases'");
             }
-            resourceInputs["inheritable"] = args ? args.inheritable : undefined;
-            resourceInputs["maxLeases"] = args ? args.maxLeases : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["inheritable"] = args?.inheritable;
+            resourceInputs["maxLeases"] = args?.maxLeases;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["role"] = args?.role;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(QuotaLeaseCount.__pulumiType, name, resourceInputs, opts);

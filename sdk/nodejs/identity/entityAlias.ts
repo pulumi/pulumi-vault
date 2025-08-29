@@ -57,26 +57,26 @@ export class EntityAlias extends pulumi.CustomResource {
     /**
      * Entity ID to which this alias belongs to.
      */
-    public readonly canonicalId!: pulumi.Output<string>;
+    declare public readonly canonicalId: pulumi.Output<string>;
     /**
      * Custom metadata to be associated with this alias.
      */
-    public readonly customMetadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly customMetadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */
-    public readonly mountAccessor!: pulumi.Output<string>;
+    declare public readonly mountAccessor: pulumi.Output<string>;
     /**
      * Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a EntityAlias resource with the given unique name, arguments, and options.
@@ -91,24 +91,24 @@ export class EntityAlias extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EntityAliasState | undefined;
-            resourceInputs["canonicalId"] = state ? state.canonicalId : undefined;
-            resourceInputs["customMetadata"] = state ? state.customMetadata : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["canonicalId"] = state?.canonicalId;
+            resourceInputs["customMetadata"] = state?.customMetadata;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as EntityAliasArgs | undefined;
-            if ((!args || args.canonicalId === undefined) && !opts.urn) {
+            if (args?.canonicalId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'canonicalId'");
             }
-            if ((!args || args.mountAccessor === undefined) && !opts.urn) {
+            if (args?.mountAccessor === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            resourceInputs["canonicalId"] = args ? args.canonicalId : undefined;
-            resourceInputs["customMetadata"] = args ? args.customMetadata : undefined;
-            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["canonicalId"] = args?.canonicalId;
+            resourceInputs["customMetadata"] = args?.customMetadata;
+            resourceInputs["mountAccessor"] = args?.mountAccessor;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EntityAlias.__pulumiType, name, resourceInputs, opts);

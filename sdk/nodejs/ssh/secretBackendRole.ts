@@ -72,119 +72,119 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
      */
-    public readonly algorithmSigner!: pulumi.Output<string>;
+    declare public readonly algorithmSigner: pulumi.Output<string>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
-    public readonly allowBareDomains!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowBareDomains: pulumi.Output<boolean | undefined>;
     /**
      * Allow signing certificates with no
      * valid principals (e.g. any valid principal). For backwards compatibility
      * only. The default of false is highly recommended.
      */
-    public readonly allowEmptyPrincipals!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowEmptyPrincipals: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
      */
-    public readonly allowHostCertificates!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowHostCertificates: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      */
-    public readonly allowSubdomains!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowSubdomains: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'user'.
      */
-    public readonly allowUserCertificates!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowUserCertificates: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      */
-    public readonly allowUserKeyIds!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowUserKeyIds: pulumi.Output<boolean | undefined>;
     /**
      * Specifies a comma-separated list of critical options that certificates can have when signed.
      */
-    public readonly allowedCriticalOptions!: pulumi.Output<string | undefined>;
+    declare public readonly allowedCriticalOptions: pulumi.Output<string | undefined>;
     /**
      * The list of domains for which a client can request a host certificate.
      */
-    public readonly allowedDomains!: pulumi.Output<string | undefined>;
+    declare public readonly allowedDomains: pulumi.Output<string | undefined>;
     /**
      * Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      */
-    public readonly allowedDomainsTemplate!: pulumi.Output<boolean>;
+    declare public readonly allowedDomainsTemplate: pulumi.Output<boolean>;
     /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
-    public readonly allowedExtensions!: pulumi.Output<string | undefined>;
+    declare public readonly allowedExtensions: pulumi.Output<string | undefined>;
     /**
      * Set of configuration blocks to define allowed  
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      */
-    public readonly allowedUserKeyConfigs!: pulumi.Output<outputs.ssh.SecretBackendRoleAllowedUserKeyConfig[] | undefined>;
+    declare public readonly allowedUserKeyConfigs: pulumi.Output<outputs.ssh.SecretBackendRoleAllowedUserKeyConfig[] | undefined>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
-    public readonly allowedUsers!: pulumi.Output<string | undefined>;
+    declare public readonly allowedUsers: pulumi.Output<string | undefined>;
     /**
      * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      */
-    public readonly allowedUsersTemplate!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowedUsersTemplate: pulumi.Output<boolean | undefined>;
     /**
      * The path where the SSH secret backend is mounted.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The comma-separated string of CIDR blocks for which this role is applicable.
      */
-    public readonly cidrList!: pulumi.Output<string | undefined>;
+    declare public readonly cidrList: pulumi.Output<string | undefined>;
     /**
      * Specifies a map of critical options that certificates have when signed.
      */
-    public readonly defaultCriticalOptions!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly defaultCriticalOptions: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies a map of extensions that certificates have when signed.
      */
-    public readonly defaultExtensions!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly defaultExtensions: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies the default username for which a credential will be generated.
      */
-    public readonly defaultUser!: pulumi.Output<string | undefined>;
+    declare public readonly defaultUser: pulumi.Output<string | undefined>;
     /**
      * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      */
-    public readonly defaultUserTemplate!: pulumi.Output<boolean | undefined>;
+    declare public readonly defaultUserTemplate: pulumi.Output<boolean | undefined>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
-    public readonly keyIdFormat!: pulumi.Output<string | undefined>;
+    declare public readonly keyIdFormat: pulumi.Output<string | undefined>;
     /**
      * Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
      */
-    public readonly keyType!: pulumi.Output<string>;
+    declare public readonly keyType: pulumi.Output<string>;
     /**
      * Specifies the maximum Time To Live value.
      */
-    public readonly maxTtl!: pulumi.Output<string>;
+    declare public readonly maxTtl: pulumi.Output<string>;
     /**
      * Specifies the name of the role to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
      */
-    public readonly notBeforeDuration!: pulumi.Output<string>;
+    declare public readonly notBeforeDuration: pulumi.Output<string>;
     /**
      * Specifies the Time To Live value.
      */
-    public readonly ttl!: pulumi.Output<string>;
+    declare public readonly ttl: pulumi.Output<string>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -199,68 +199,68 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            resourceInputs["algorithmSigner"] = state ? state.algorithmSigner : undefined;
-            resourceInputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
-            resourceInputs["allowEmptyPrincipals"] = state ? state.allowEmptyPrincipals : undefined;
-            resourceInputs["allowHostCertificates"] = state ? state.allowHostCertificates : undefined;
-            resourceInputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
-            resourceInputs["allowUserCertificates"] = state ? state.allowUserCertificates : undefined;
-            resourceInputs["allowUserKeyIds"] = state ? state.allowUserKeyIds : undefined;
-            resourceInputs["allowedCriticalOptions"] = state ? state.allowedCriticalOptions : undefined;
-            resourceInputs["allowedDomains"] = state ? state.allowedDomains : undefined;
-            resourceInputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
-            resourceInputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
-            resourceInputs["allowedUserKeyConfigs"] = state ? state.allowedUserKeyConfigs : undefined;
-            resourceInputs["allowedUsers"] = state ? state.allowedUsers : undefined;
-            resourceInputs["allowedUsersTemplate"] = state ? state.allowedUsersTemplate : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["cidrList"] = state ? state.cidrList : undefined;
-            resourceInputs["defaultCriticalOptions"] = state ? state.defaultCriticalOptions : undefined;
-            resourceInputs["defaultExtensions"] = state ? state.defaultExtensions : undefined;
-            resourceInputs["defaultUser"] = state ? state.defaultUser : undefined;
-            resourceInputs["defaultUserTemplate"] = state ? state.defaultUserTemplate : undefined;
-            resourceInputs["keyIdFormat"] = state ? state.keyIdFormat : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["algorithmSigner"] = state?.algorithmSigner;
+            resourceInputs["allowBareDomains"] = state?.allowBareDomains;
+            resourceInputs["allowEmptyPrincipals"] = state?.allowEmptyPrincipals;
+            resourceInputs["allowHostCertificates"] = state?.allowHostCertificates;
+            resourceInputs["allowSubdomains"] = state?.allowSubdomains;
+            resourceInputs["allowUserCertificates"] = state?.allowUserCertificates;
+            resourceInputs["allowUserKeyIds"] = state?.allowUserKeyIds;
+            resourceInputs["allowedCriticalOptions"] = state?.allowedCriticalOptions;
+            resourceInputs["allowedDomains"] = state?.allowedDomains;
+            resourceInputs["allowedDomainsTemplate"] = state?.allowedDomainsTemplate;
+            resourceInputs["allowedExtensions"] = state?.allowedExtensions;
+            resourceInputs["allowedUserKeyConfigs"] = state?.allowedUserKeyConfigs;
+            resourceInputs["allowedUsers"] = state?.allowedUsers;
+            resourceInputs["allowedUsersTemplate"] = state?.allowedUsersTemplate;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["cidrList"] = state?.cidrList;
+            resourceInputs["defaultCriticalOptions"] = state?.defaultCriticalOptions;
+            resourceInputs["defaultExtensions"] = state?.defaultExtensions;
+            resourceInputs["defaultUser"] = state?.defaultUser;
+            resourceInputs["defaultUserTemplate"] = state?.defaultUserTemplate;
+            resourceInputs["keyIdFormat"] = state?.keyIdFormat;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["notBeforeDuration"] = state?.notBeforeDuration;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.keyType === undefined) && !opts.urn) {
+            if (args?.keyType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyType'");
             }
-            resourceInputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;
-            resourceInputs["allowBareDomains"] = args ? args.allowBareDomains : undefined;
-            resourceInputs["allowEmptyPrincipals"] = args ? args.allowEmptyPrincipals : undefined;
-            resourceInputs["allowHostCertificates"] = args ? args.allowHostCertificates : undefined;
-            resourceInputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
-            resourceInputs["allowUserCertificates"] = args ? args.allowUserCertificates : undefined;
-            resourceInputs["allowUserKeyIds"] = args ? args.allowUserKeyIds : undefined;
-            resourceInputs["allowedCriticalOptions"] = args ? args.allowedCriticalOptions : undefined;
-            resourceInputs["allowedDomains"] = args ? args.allowedDomains : undefined;
-            resourceInputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
-            resourceInputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
-            resourceInputs["allowedUserKeyConfigs"] = args ? args.allowedUserKeyConfigs : undefined;
-            resourceInputs["allowedUsers"] = args ? args.allowedUsers : undefined;
-            resourceInputs["allowedUsersTemplate"] = args ? args.allowedUsersTemplate : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["cidrList"] = args ? args.cidrList : undefined;
-            resourceInputs["defaultCriticalOptions"] = args ? args.defaultCriticalOptions : undefined;
-            resourceInputs["defaultExtensions"] = args ? args.defaultExtensions : undefined;
-            resourceInputs["defaultUser"] = args ? args.defaultUser : undefined;
-            resourceInputs["defaultUserTemplate"] = args ? args.defaultUserTemplate : undefined;
-            resourceInputs["keyIdFormat"] = args ? args.keyIdFormat : undefined;
-            resourceInputs["keyType"] = args ? args.keyType : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["algorithmSigner"] = args?.algorithmSigner;
+            resourceInputs["allowBareDomains"] = args?.allowBareDomains;
+            resourceInputs["allowEmptyPrincipals"] = args?.allowEmptyPrincipals;
+            resourceInputs["allowHostCertificates"] = args?.allowHostCertificates;
+            resourceInputs["allowSubdomains"] = args?.allowSubdomains;
+            resourceInputs["allowUserCertificates"] = args?.allowUserCertificates;
+            resourceInputs["allowUserKeyIds"] = args?.allowUserKeyIds;
+            resourceInputs["allowedCriticalOptions"] = args?.allowedCriticalOptions;
+            resourceInputs["allowedDomains"] = args?.allowedDomains;
+            resourceInputs["allowedDomainsTemplate"] = args?.allowedDomainsTemplate;
+            resourceInputs["allowedExtensions"] = args?.allowedExtensions;
+            resourceInputs["allowedUserKeyConfigs"] = args?.allowedUserKeyConfigs;
+            resourceInputs["allowedUsers"] = args?.allowedUsers;
+            resourceInputs["allowedUsersTemplate"] = args?.allowedUsersTemplate;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["cidrList"] = args?.cidrList;
+            resourceInputs["defaultCriticalOptions"] = args?.defaultCriticalOptions;
+            resourceInputs["defaultExtensions"] = args?.defaultExtensions;
+            resourceInputs["defaultUser"] = args?.defaultUser;
+            resourceInputs["defaultUserTemplate"] = args?.defaultUserTemplate;
+            resourceInputs["keyIdFormat"] = args?.keyIdFormat;
+            resourceInputs["keyType"] = args?.keyType;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["notBeforeDuration"] = args?.notBeforeDuration;
+            resourceInputs["ttl"] = args?.ttl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);

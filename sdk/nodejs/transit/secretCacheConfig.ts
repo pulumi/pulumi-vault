@@ -57,18 +57,18 @@ export class SecretCacheConfig extends pulumi.CustomResource {
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The number of cache entries. 0 means unlimited.
      */
-    public readonly size!: pulumi.Output<number>;
+    declare public readonly size: pulumi.Output<number>;
 
     /**
      * Create a SecretCacheConfig resource with the given unique name, arguments, and options.
@@ -83,20 +83,20 @@ export class SecretCacheConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretCacheConfigState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["size"] = state?.size;
         } else {
             const args = argsOrState as SecretCacheConfigArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.size === undefined) && !opts.urn) {
+            if (args?.size === undefined && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["size"] = args?.size;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretCacheConfig.__pulumiType, name, resourceInputs, opts);

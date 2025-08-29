@@ -59,30 +59,30 @@ export class Entity extends pulumi.CustomResource {
     /**
      * True/false Is this entity currently disabled. Defaults to `false`
      */
-    public readonly disabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly disabled: pulumi.Output<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
      */
-    public readonly externalPolicies!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalPolicies: pulumi.Output<boolean | undefined>;
     /**
      * A Map of additional metadata to associate with the user.
      */
-    public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly metadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Name of the identity entity to create.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * A list of policies to apply to the entity.
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Entity resource with the given unique name, arguments, and options.
@@ -97,20 +97,20 @@ export class Entity extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EntityState | undefined;
-            resourceInputs["disabled"] = state ? state.disabled : undefined;
-            resourceInputs["externalPolicies"] = state ? state.externalPolicies : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["disabled"] = state?.disabled;
+            resourceInputs["externalPolicies"] = state?.externalPolicies;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policies"] = state?.policies;
         } else {
             const args = argsOrState as EntityArgs | undefined;
-            resourceInputs["disabled"] = args ? args.disabled : undefined;
-            resourceInputs["externalPolicies"] = args ? args.externalPolicies : undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["disabled"] = args?.disabled;
+            resourceInputs["externalPolicies"] = args?.externalPolicies;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policies"] = args?.policies;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Entity.__pulumiType, name, resourceInputs, opts);

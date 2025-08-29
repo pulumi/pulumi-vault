@@ -52,47 +52,47 @@ export class BackendConfigEst extends pulumi.CustomResource {
      *
      * <a id="nestedatt--authenticators"></a>
      */
-    public readonly auditFields!: pulumi.Output<string[]>;
+    declare public readonly auditFields: pulumi.Output<string[]>;
     /**
      * Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
      */
-    public readonly authenticators!: pulumi.Output<outputs.pkiSecret.BackendConfigEstAuthenticators>;
+    declare public readonly authenticators: pulumi.Output<outputs.pkiSecret.BackendConfigEstAuthenticators>;
     /**
      * The path to the PKI secret backend to
      * read the EST configuration from, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * If set, this mount will register the default `.well-known/est` URL path. Only a single mount can enable this across a Vault cluster.
      */
-    public readonly defaultMount!: pulumi.Output<boolean | undefined>;
+    declare public readonly defaultMount: pulumi.Output<boolean | undefined>;
     /**
      * Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
      */
-    public readonly defaultPathPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly defaultPathPolicy: pulumi.Output<string | undefined>;
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.
      */
-    public readonly enableSentinelParsing!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableSentinelParsing: pulumi.Output<boolean | undefined>;
     /**
      * Specifies whether EST is enabled.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    public readonly labelToPathPolicy!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly labelToPathPolicy: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */
-    public /*out*/ readonly lastUpdated!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastUpdated: pulumi.Output<string>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a BackendConfigEst resource with the given unique name, arguments, and options.
@@ -107,30 +107,30 @@ export class BackendConfigEst extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendConfigEstState | undefined;
-            resourceInputs["auditFields"] = state ? state.auditFields : undefined;
-            resourceInputs["authenticators"] = state ? state.authenticators : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["defaultMount"] = state ? state.defaultMount : undefined;
-            resourceInputs["defaultPathPolicy"] = state ? state.defaultPathPolicy : undefined;
-            resourceInputs["enableSentinelParsing"] = state ? state.enableSentinelParsing : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["labelToPathPolicy"] = state ? state.labelToPathPolicy : undefined;
-            resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["auditFields"] = state?.auditFields;
+            resourceInputs["authenticators"] = state?.authenticators;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["defaultMount"] = state?.defaultMount;
+            resourceInputs["defaultPathPolicy"] = state?.defaultPathPolicy;
+            resourceInputs["enableSentinelParsing"] = state?.enableSentinelParsing;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["labelToPathPolicy"] = state?.labelToPathPolicy;
+            resourceInputs["lastUpdated"] = state?.lastUpdated;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as BackendConfigEstArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["auditFields"] = args ? args.auditFields : undefined;
-            resourceInputs["authenticators"] = args ? args.authenticators : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["defaultMount"] = args ? args.defaultMount : undefined;
-            resourceInputs["defaultPathPolicy"] = args ? args.defaultPathPolicy : undefined;
-            resourceInputs["enableSentinelParsing"] = args ? args.enableSentinelParsing : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["labelToPathPolicy"] = args ? args.labelToPathPolicy : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["auditFields"] = args?.auditFields;
+            resourceInputs["authenticators"] = args?.authenticators;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["defaultMount"] = args?.defaultMount;
+            resourceInputs["defaultPathPolicy"] = args?.defaultPathPolicy;
+            resourceInputs["enableSentinelParsing"] = args?.enableSentinelParsing;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["labelToPathPolicy"] = args?.labelToPathPolicy;
+            resourceInputs["namespace"] = args?.namespace;
             resourceInputs["lastUpdated"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

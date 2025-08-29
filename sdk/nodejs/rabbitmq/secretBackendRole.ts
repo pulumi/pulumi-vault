@@ -79,31 +79,31 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * The path the RabbitMQ secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
-    public readonly tags!: pulumi.Output<string | undefined>;
+    declare public readonly tags: pulumi.Output<string | undefined>;
     /**
      * Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
      */
-    public readonly vhostTopics!: pulumi.Output<outputs.rabbitMq.SecretBackendRoleVhostTopic[] | undefined>;
+    declare public readonly vhostTopics: pulumi.Output<outputs.rabbitMq.SecretBackendRoleVhostTopic[] | undefined>;
     /**
      * Specifies a map of virtual hosts to permissions.
      */
-    public readonly vhosts!: pulumi.Output<outputs.rabbitMq.SecretBackendRoleVhost[] | undefined>;
+    declare public readonly vhosts: pulumi.Output<outputs.rabbitMq.SecretBackendRoleVhost[] | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -118,23 +118,23 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["vhostTopics"] = state ? state.vhostTopics : undefined;
-            resourceInputs["vhosts"] = state ? state.vhosts : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["vhostTopics"] = state?.vhostTopics;
+            resourceInputs["vhosts"] = state?.vhosts;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["vhostTopics"] = args ? args.vhostTopics : undefined;
-            resourceInputs["vhosts"] = args ? args.vhosts : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["vhostTopics"] = args?.vhostTopics;
+            resourceInputs["vhosts"] = args?.vhosts;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);

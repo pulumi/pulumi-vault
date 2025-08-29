@@ -66,45 +66,45 @@ export class RaftAutopilot extends pulumi.CustomResource {
      * Specifies whether to remove dead server nodes
      * periodically or when a new server joins. This requires that `min-quorum` is also set.
      */
-    public readonly cleanupDeadServers!: pulumi.Output<boolean | undefined>;
+    declare public readonly cleanupDeadServers: pulumi.Output<boolean | undefined>;
     /**
      * Limit the amount of time a 
      * server can go without leader contact before being considered failed. This only takes
      * effect when `cleanupDeadServers` is set.
      */
-    public readonly deadServerLastContactThreshold!: pulumi.Output<string | undefined>;
+    declare public readonly deadServerLastContactThreshold: pulumi.Output<string | undefined>;
     /**
      * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
      */
-    public readonly disableUpgradeMigration!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableUpgradeMigration: pulumi.Output<boolean | undefined>;
     /**
      * Limit the amount of time a server can go 
      * without leader contact before being considered unhealthy.
      */
-    public readonly lastContactThreshold!: pulumi.Output<string | undefined>;
+    declare public readonly lastContactThreshold: pulumi.Output<string | undefined>;
     /**
      * Maximum number of log entries in the Raft log 
      * that a server can be behind its leader before being considered unhealthy.
      */
-    public readonly maxTrailingLogs!: pulumi.Output<number | undefined>;
+    declare public readonly maxTrailingLogs: pulumi.Output<number | undefined>;
     /**
      * Minimum number of servers allowed in a cluster before 
      * autopilot can prune dead servers. This should at least be 3. Applicable only for
      * voting nodes.
      */
-    public readonly minQuorum!: pulumi.Output<number | undefined>;
+    declare public readonly minQuorum: pulumi.Output<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Minimum amount of time a server must be 
      * stable in the 'healthy' state before being added to the cluster.
      */
-    public readonly serverStabilizationTime!: pulumi.Output<string | undefined>;
+    declare public readonly serverStabilizationTime: pulumi.Output<string | undefined>;
 
     /**
      * Create a RaftAutopilot resource with the given unique name, arguments, and options.
@@ -119,24 +119,24 @@ export class RaftAutopilot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RaftAutopilotState | undefined;
-            resourceInputs["cleanupDeadServers"] = state ? state.cleanupDeadServers : undefined;
-            resourceInputs["deadServerLastContactThreshold"] = state ? state.deadServerLastContactThreshold : undefined;
-            resourceInputs["disableUpgradeMigration"] = state ? state.disableUpgradeMigration : undefined;
-            resourceInputs["lastContactThreshold"] = state ? state.lastContactThreshold : undefined;
-            resourceInputs["maxTrailingLogs"] = state ? state.maxTrailingLogs : undefined;
-            resourceInputs["minQuorum"] = state ? state.minQuorum : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["serverStabilizationTime"] = state ? state.serverStabilizationTime : undefined;
+            resourceInputs["cleanupDeadServers"] = state?.cleanupDeadServers;
+            resourceInputs["deadServerLastContactThreshold"] = state?.deadServerLastContactThreshold;
+            resourceInputs["disableUpgradeMigration"] = state?.disableUpgradeMigration;
+            resourceInputs["lastContactThreshold"] = state?.lastContactThreshold;
+            resourceInputs["maxTrailingLogs"] = state?.maxTrailingLogs;
+            resourceInputs["minQuorum"] = state?.minQuorum;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["serverStabilizationTime"] = state?.serverStabilizationTime;
         } else {
             const args = argsOrState as RaftAutopilotArgs | undefined;
-            resourceInputs["cleanupDeadServers"] = args ? args.cleanupDeadServers : undefined;
-            resourceInputs["deadServerLastContactThreshold"] = args ? args.deadServerLastContactThreshold : undefined;
-            resourceInputs["disableUpgradeMigration"] = args ? args.disableUpgradeMigration : undefined;
-            resourceInputs["lastContactThreshold"] = args ? args.lastContactThreshold : undefined;
-            resourceInputs["maxTrailingLogs"] = args ? args.maxTrailingLogs : undefined;
-            resourceInputs["minQuorum"] = args ? args.minQuorum : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["serverStabilizationTime"] = args ? args.serverStabilizationTime : undefined;
+            resourceInputs["cleanupDeadServers"] = args?.cleanupDeadServers;
+            resourceInputs["deadServerLastContactThreshold"] = args?.deadServerLastContactThreshold;
+            resourceInputs["disableUpgradeMigration"] = args?.disableUpgradeMigration;
+            resourceInputs["lastContactThreshold"] = args?.lastContactThreshold;
+            resourceInputs["maxTrailingLogs"] = args?.maxTrailingLogs;
+            resourceInputs["minQuorum"] = args?.minQuorum;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["serverStabilizationTime"] = args?.serverStabilizationTime;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RaftAutopilot.__pulumiType, name, resourceInputs, opts);

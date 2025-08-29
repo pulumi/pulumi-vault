@@ -65,34 +65,34 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
     /**
      * Unique name of the auth backend to configure.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * How to generate the identity alias when using the ec2 auth method. Valid choices are
      * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
      */
-    public readonly ec2Alias!: pulumi.Output<string | undefined>;
+    declare public readonly ec2Alias: pulumi.Output<string | undefined>;
     /**
      * The metadata to include on the token returned by the `login` endpoint. This metadata will be
      * added to both audit logs, and on the `ec2Alias`
      */
-    public readonly ec2Metadatas!: pulumi.Output<string[] | undefined>;
+    declare public readonly ec2Metadatas: pulumi.Output<string[] | undefined>;
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
      * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
      */
-    public readonly iamAlias!: pulumi.Output<string | undefined>;
+    declare public readonly iamAlias: pulumi.Output<string | undefined>;
     /**
      * The metadata to include on the token returned by the `login` endpoint. This metadata will be
      * added to both audit logs, and on the `iamAlias`
      */
-    public readonly iamMetadatas!: pulumi.Output<string[] | undefined>;
+    declare public readonly iamMetadatas: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuthBackendConfigIdentity resource with the given unique name, arguments, and options.
@@ -107,20 +107,20 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendConfigIdentityState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["ec2Alias"] = state ? state.ec2Alias : undefined;
-            resourceInputs["ec2Metadatas"] = state ? state.ec2Metadatas : undefined;
-            resourceInputs["iamAlias"] = state ? state.iamAlias : undefined;
-            resourceInputs["iamMetadatas"] = state ? state.iamMetadatas : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["ec2Alias"] = state?.ec2Alias;
+            resourceInputs["ec2Metadatas"] = state?.ec2Metadatas;
+            resourceInputs["iamAlias"] = state?.iamAlias;
+            resourceInputs["iamMetadatas"] = state?.iamMetadatas;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as AuthBackendConfigIdentityArgs | undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["ec2Alias"] = args ? args.ec2Alias : undefined;
-            resourceInputs["ec2Metadatas"] = args ? args.ec2Metadatas : undefined;
-            resourceInputs["iamAlias"] = args ? args.iamAlias : undefined;
-            resourceInputs["iamMetadatas"] = args ? args.iamMetadatas : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["ec2Alias"] = args?.ec2Alias;
+            resourceInputs["ec2Metadatas"] = args?.ec2Metadatas;
+            resourceInputs["iamAlias"] = args?.iamAlias;
+            resourceInputs["iamMetadatas"] = args?.iamMetadatas;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuthBackendConfigIdentity.__pulumiType, name, resourceInputs, opts);

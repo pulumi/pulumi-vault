@@ -37,39 +37,39 @@ export class UiCustomMessage extends pulumi.CustomResource {
     /**
      * A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
      */
-    public readonly authenticated!: pulumi.Output<boolean | undefined>;
+    declare public readonly authenticated: pulumi.Output<boolean | undefined>;
     /**
      * The ending time of the active period of the custom message. Can be omitted for non-expiring message
      */
-    public readonly endTime!: pulumi.Output<string | undefined>;
+    declare public readonly endTime: pulumi.Output<string | undefined>;
     /**
      * A block containing a hyperlink associated with the custom message
      */
-    public readonly link!: pulumi.Output<outputs.config.UiCustomMessageLink | undefined>;
+    declare public readonly link: pulumi.Output<outputs.config.UiCustomMessageLink | undefined>;
     /**
      * The base64-encoded content of the custom message
      */
-    public readonly messageBase64!: pulumi.Output<string>;
+    declare public readonly messageBase64: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * A map containing additional options for the custom message
      */
-    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly options: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The starting time of the active period of the custom message
      */
-    public readonly startTime!: pulumi.Output<string>;
+    declare public readonly startTime: pulumi.Output<string>;
     /**
      * The title of the custom message
      */
-    public readonly title!: pulumi.Output<string>;
+    declare public readonly title: pulumi.Output<string>;
     /**
      * The display type of custom message. Allowed values are banner and modal
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a UiCustomMessage resource with the given unique name, arguments, and options.
@@ -84,35 +84,35 @@ export class UiCustomMessage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UiCustomMessageState | undefined;
-            resourceInputs["authenticated"] = state ? state.authenticated : undefined;
-            resourceInputs["endTime"] = state ? state.endTime : undefined;
-            resourceInputs["link"] = state ? state.link : undefined;
-            resourceInputs["messageBase64"] = state ? state.messageBase64 : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["startTime"] = state ? state.startTime : undefined;
-            resourceInputs["title"] = state ? state.title : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["authenticated"] = state?.authenticated;
+            resourceInputs["endTime"] = state?.endTime;
+            resourceInputs["link"] = state?.link;
+            resourceInputs["messageBase64"] = state?.messageBase64;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["startTime"] = state?.startTime;
+            resourceInputs["title"] = state?.title;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as UiCustomMessageArgs | undefined;
-            if ((!args || args.messageBase64 === undefined) && !opts.urn) {
+            if (args?.messageBase64 === undefined && !opts.urn) {
                 throw new Error("Missing required property 'messageBase64'");
             }
-            if ((!args || args.startTime === undefined) && !opts.urn) {
+            if (args?.startTime === undefined && !opts.urn) {
                 throw new Error("Missing required property 'startTime'");
             }
-            if ((!args || args.title === undefined) && !opts.urn) {
+            if (args?.title === undefined && !opts.urn) {
                 throw new Error("Missing required property 'title'");
             }
-            resourceInputs["authenticated"] = args ? args.authenticated : undefined;
-            resourceInputs["endTime"] = args ? args.endTime : undefined;
-            resourceInputs["link"] = args ? args.link : undefined;
-            resourceInputs["messageBase64"] = args ? args.messageBase64 : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["startTime"] = args ? args.startTime : undefined;
-            resourceInputs["title"] = args ? args.title : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["authenticated"] = args?.authenticated;
+            resourceInputs["endTime"] = args?.endTime;
+            resourceInputs["link"] = args?.link;
+            resourceInputs["messageBase64"] = args?.messageBase64;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["startTime"] = args?.startTime;
+            resourceInputs["title"] = args?.title;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UiCustomMessage.__pulumiType, name, resourceInputs, opts);

@@ -76,90 +76,90 @@ export class AuthBackendClient extends pulumi.CustomResource {
      * The AWS access key that Vault should use for the
      * auth backend. Mutually exclusive with `identityTokenAudience`.
      */
-    public readonly accessKey!: pulumi.Output<string | undefined>;
+    declare public readonly accessKey: pulumi.Output<string | undefined>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
     /**
      * Override the URL Vault uses when making EC2 API
      * calls.
      */
-    public readonly ec2Endpoint!: pulumi.Output<string | undefined>;
+    declare public readonly ec2Endpoint: pulumi.Output<string | undefined>;
     /**
      * Override the URL Vault uses when making IAM API
      * calls.
      */
-    public readonly iamEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly iamEndpoint: pulumi.Output<string | undefined>;
     /**
      * The value to require in the
      * `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
      * that are used in the IAM auth method.
      */
-    public readonly iamServerIdHeaderValue!: pulumi.Output<string | undefined>;
+    declare public readonly iamServerIdHeaderValue: pulumi.Output<string | undefined>;
     /**
      * The audience claim value. Mutually exclusive with `accessKey`. 
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
-    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    declare public readonly identityTokenAudience: pulumi.Output<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    public readonly identityTokenTtl!: pulumi.Output<number>;
+    declare public readonly identityTokenTtl: pulumi.Output<number>;
     /**
      * Number of max retries the client should use for recoverable errors. 
      * The default `-1` falls back to the AWS SDK's default behavior.
      */
-    public readonly maxRetries!: pulumi.Output<number | undefined>;
+    declare public readonly maxRetries: pulumi.Output<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    public readonly roleArn!: pulumi.Output<string | undefined>;
+    declare public readonly roleArn: pulumi.Output<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend.
      */
-    public readonly secretKey!: pulumi.Output<string | undefined>;
+    declare public readonly secretKey: pulumi.Output<string | undefined>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
      */
-    public readonly stsEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly stsEndpoint: pulumi.Output<string | undefined>;
     /**
      * Override the default region when making STS API 
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
-    public readonly stsRegion!: pulumi.Output<string | undefined>;
+    declare public readonly stsRegion: pulumi.Output<string | undefined>;
     /**
      * Available in Vault v1.15+. If set, 
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
@@ -167,7 +167,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
      * This can be useful when you have client requests coming from different
      * regions and want flexibility in which regional STS API is used.
      */
-    public readonly useStsRegionFromClient!: pulumi.Output<boolean>;
+    declare public readonly useStsRegionFromClient: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackendClient resource with the given unique name, arguments, and options.
@@ -182,44 +182,44 @@ export class AuthBackendClient extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendClientState | undefined;
-            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
-            resourceInputs["ec2Endpoint"] = state ? state.ec2Endpoint : undefined;
-            resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
-            resourceInputs["iamServerIdHeaderValue"] = state ? state.iamServerIdHeaderValue : undefined;
-            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
-            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
-            resourceInputs["maxRetries"] = state ? state.maxRetries : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["roleArn"] = state ? state.roleArn : undefined;
-            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
-            resourceInputs["stsRegion"] = state ? state.stsRegion : undefined;
-            resourceInputs["useStsRegionFromClient"] = state ? state.useStsRegionFromClient : undefined;
+            resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
+            resourceInputs["ec2Endpoint"] = state?.ec2Endpoint;
+            resourceInputs["iamEndpoint"] = state?.iamEndpoint;
+            resourceInputs["iamServerIdHeaderValue"] = state?.iamServerIdHeaderValue;
+            resourceInputs["identityTokenAudience"] = state?.identityTokenAudience;
+            resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
+            resourceInputs["maxRetries"] = state?.maxRetries;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["roleArn"] = state?.roleArn;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["stsEndpoint"] = state?.stsEndpoint;
+            resourceInputs["stsRegion"] = state?.stsRegion;
+            resourceInputs["useStsRegionFromClient"] = state?.useStsRegionFromClient;
         } else {
             const args = argsOrState as AuthBackendClientArgs | undefined;
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
-            resourceInputs["ec2Endpoint"] = args ? args.ec2Endpoint : undefined;
-            resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
-            resourceInputs["iamServerIdHeaderValue"] = args ? args.iamServerIdHeaderValue : undefined;
-            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
-            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
-            resourceInputs["maxRetries"] = args ? args.maxRetries : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["roleArn"] = args ? args.roleArn : undefined;
-            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
-            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
-            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
+            resourceInputs["ec2Endpoint"] = args?.ec2Endpoint;
+            resourceInputs["iamEndpoint"] = args?.iamEndpoint;
+            resourceInputs["iamServerIdHeaderValue"] = args?.iamServerIdHeaderValue;
+            resourceInputs["identityTokenAudience"] = args?.identityTokenAudience;
+            resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
+            resourceInputs["maxRetries"] = args?.maxRetries;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["roleArn"] = args?.roleArn;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
-            resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
-            resourceInputs["stsRegion"] = args ? args.stsRegion : undefined;
-            resourceInputs["useStsRegionFromClient"] = args ? args.useStsRegionFromClient : undefined;
+            resourceInputs["stsEndpoint"] = args?.stsEndpoint;
+            resourceInputs["stsRegion"] = args?.stsRegion;
+            resourceInputs["useStsRegionFromClient"] = args?.useStsRegionFromClient;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };

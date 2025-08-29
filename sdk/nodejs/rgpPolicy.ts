@@ -56,22 +56,22 @@ export class RgpPolicy extends pulumi.CustomResource {
     /**
      * Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
      */
-    public readonly enforcementLevel!: pulumi.Output<string>;
+    declare public readonly enforcementLevel: pulumi.Output<string>;
     /**
      * The name of the policy
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * String containing a Sentinel policy
      */
-    public readonly policy!: pulumi.Output<string>;
+    declare public readonly policy: pulumi.Output<string>;
 
     /**
      * Create a RgpPolicy resource with the given unique name, arguments, and options.
@@ -86,22 +86,22 @@ export class RgpPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RgpPolicyState | undefined;
-            resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["enforcementLevel"] = state?.enforcementLevel;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policy"] = state?.policy;
         } else {
             const args = argsOrState as RgpPolicyArgs | undefined;
-            if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
+            if (args?.enforcementLevel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enforcementLevel'");
             }
-            if ((!args || args.policy === undefined) && !opts.urn) {
+            if (args?.policy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["enforcementLevel"] = args?.enforcementLevel;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["policy"] = args?.policy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RgpPolicy.__pulumiType, name, resourceInputs, opts);

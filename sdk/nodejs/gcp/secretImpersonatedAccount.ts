@@ -72,32 +72,32 @@ export class SecretImpersonatedAccount extends pulumi.CustomResource {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Name of the Impersonated Account to create
      */
-    public readonly impersonatedAccount!: pulumi.Output<string>;
+    declare public readonly impersonatedAccount: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Email of the GCP service account to impersonate.
      */
-    public readonly serviceAccountEmail!: pulumi.Output<string>;
+    declare public readonly serviceAccountEmail: pulumi.Output<string>;
     /**
      * Project the service account belongs to.
      */
-    public /*out*/ readonly serviceAccountProject!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceAccountProject: pulumi.Output<string>;
     /**
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      */
-    public readonly tokenScopes!: pulumi.Output<string[] | undefined>;
+    declare public readonly tokenScopes: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
-    public readonly ttl!: pulumi.Output<string>;
+    declare public readonly ttl: pulumi.Output<string>;
 
     /**
      * Create a SecretImpersonatedAccount resource with the given unique name, arguments, and options.
@@ -112,30 +112,30 @@ export class SecretImpersonatedAccount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretImpersonatedAccountState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["impersonatedAccount"] = state ? state.impersonatedAccount : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
-            resourceInputs["serviceAccountProject"] = state ? state.serviceAccountProject : undefined;
-            resourceInputs["tokenScopes"] = state ? state.tokenScopes : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["impersonatedAccount"] = state?.impersonatedAccount;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
+            resourceInputs["serviceAccountProject"] = state?.serviceAccountProject;
+            resourceInputs["tokenScopes"] = state?.tokenScopes;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretImpersonatedAccountArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.impersonatedAccount === undefined) && !opts.urn) {
+            if (args?.impersonatedAccount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'impersonatedAccount'");
             }
-            if ((!args || args.serviceAccountEmail === undefined) && !opts.urn) {
+            if (args?.serviceAccountEmail === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountEmail'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["impersonatedAccount"] = args ? args.impersonatedAccount : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
-            resourceInputs["tokenScopes"] = args ? args.tokenScopes : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["impersonatedAccount"] = args?.impersonatedAccount;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["serviceAccountEmail"] = args?.serviceAccountEmail;
+            resourceInputs["tokenScopes"] = args?.tokenScopes;
+            resourceInputs["ttl"] = args?.ttl;
             resourceInputs["serviceAccountProject"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -75,29 +75,29 @@ export class SyncAssociation extends pulumi.CustomResource {
     /**
      * Metadata for each subkey of the associated secret.
      */
-    public /*out*/ readonly metadatas!: pulumi.Output<outputs.secrets.SyncAssociationMetadata[]>;
+    declare public /*out*/ readonly metadatas: pulumi.Output<outputs.secrets.SyncAssociationMetadata[]>;
     /**
      * Specifies the mount where the secret is located.
      */
-    public readonly mount!: pulumi.Output<string>;
+    declare public readonly mount: pulumi.Output<string>;
     /**
      * Specifies the name of the destination.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Specifies the name of the secret to synchronize.
      */
-    public readonly secretName!: pulumi.Output<string>;
+    declare public readonly secretName: pulumi.Output<string>;
     /**
      * Specifies the destination type.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a SyncAssociation resource with the given unique name, arguments, and options.
@@ -112,28 +112,28 @@ export class SyncAssociation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncAssociationState | undefined;
-            resourceInputs["metadatas"] = state ? state.metadatas : undefined;
-            resourceInputs["mount"] = state ? state.mount : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["secretName"] = state ? state.secretName : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["metadatas"] = state?.metadatas;
+            resourceInputs["mount"] = state?.mount;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["secretName"] = state?.secretName;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SyncAssociationArgs | undefined;
-            if ((!args || args.mount === undefined) && !opts.urn) {
+            if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
-            if ((!args || args.secretName === undefined) && !opts.urn) {
+            if (args?.secretName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretName'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["mount"] = args ? args.mount : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["secretName"] = args ? args.secretName : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["mount"] = args?.mount;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["secretName"] = args?.secretName;
+            resourceInputs["type"] = args?.type;
             resourceInputs["metadatas"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

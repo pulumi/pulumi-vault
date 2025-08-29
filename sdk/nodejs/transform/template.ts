@@ -79,40 +79,40 @@ export class Template extends pulumi.CustomResource {
     /**
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
-    public readonly alphabet!: pulumi.Output<string | undefined>;
+    declare public readonly alphabet: pulumi.Output<string | undefined>;
     /**
      * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
-    public readonly decodeFormats!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly decodeFormats: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
-    public readonly encodeFormat!: pulumi.Output<string | undefined>;
+    declare public readonly encodeFormat: pulumi.Output<string | undefined>;
     /**
      * The name of the template.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
     /**
      * The pattern used for matching. Currently, only regular expression pattern is supported.
      */
-    public readonly pattern!: pulumi.Output<string | undefined>;
+    declare public readonly pattern: pulumi.Output<string | undefined>;
     /**
      * The pattern type to use for match detection. Currently, only regex is supported.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
 
     /**
      * Create a Template resource with the given unique name, arguments, and options.
@@ -127,27 +127,27 @@ export class Template extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TemplateState | undefined;
-            resourceInputs["alphabet"] = state ? state.alphabet : undefined;
-            resourceInputs["decodeFormats"] = state ? state.decodeFormats : undefined;
-            resourceInputs["encodeFormat"] = state ? state.encodeFormat : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["pattern"] = state ? state.pattern : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["alphabet"] = state?.alphabet;
+            resourceInputs["decodeFormats"] = state?.decodeFormats;
+            resourceInputs["encodeFormat"] = state?.encodeFormat;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["pattern"] = state?.pattern;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as TemplateArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["alphabet"] = args ? args.alphabet : undefined;
-            resourceInputs["decodeFormats"] = args ? args.decodeFormats : undefined;
-            resourceInputs["encodeFormat"] = args ? args.encodeFormat : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["pattern"] = args ? args.pattern : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["alphabet"] = args?.alphabet;
+            resourceInputs["decodeFormats"] = args?.decodeFormats;
+            resourceInputs["encodeFormat"] = args?.encodeFormat;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["pattern"] = args?.pattern;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Template.__pulumiType, name, resourceInputs, opts);

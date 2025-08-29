@@ -53,139 +53,139 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      * Only needed as a workaround in some compatibility scenarios with Active Directory
      * Certificate Services
      */
-    public readonly addBasicConstraints!: pulumi.Output<boolean | undefined>;
+    declare public readonly addBasicConstraints: pulumi.Output<boolean | undefined>;
     /**
      * List of alternative names
      */
-    public readonly altNames!: pulumi.Output<string[] | undefined>;
+    declare public readonly altNames: pulumi.Output<string[] | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * CN of intermediate to create
      */
-    public readonly commonName!: pulumi.Output<string>;
+    declare public readonly commonName: pulumi.Output<string>;
     /**
      * The country
      */
-    public readonly country!: pulumi.Output<string | undefined>;
+    declare public readonly country: pulumi.Output<string | undefined>;
     /**
      * The CSR
      */
-    public /*out*/ readonly csr!: pulumi.Output<string>;
+    declare public /*out*/ readonly csr: pulumi.Output<string>;
     /**
      * Flag to exclude CN from SANs
      */
-    public readonly excludeCnFromSans!: pulumi.Output<boolean | undefined>;
+    declare public readonly excludeCnFromSans: pulumi.Output<boolean | undefined>;
     /**
      * The format of data
      */
-    public readonly format!: pulumi.Output<string | undefined>;
+    declare public readonly format: pulumi.Output<string | undefined>;
     /**
      * List of alternative IPs
      */
-    public readonly ipSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipSans: pulumi.Output<string[] | undefined>;
     /**
      * The number of bits to use
      */
-    public readonly keyBits!: pulumi.Output<number | undefined>;
+    declare public readonly keyBits: pulumi.Output<number | undefined>;
     /**
      * The ID of the generated key.
      */
-    public /*out*/ readonly keyId!: pulumi.Output<string>;
+    declare public /*out*/ readonly keyId: pulumi.Output<string>;
     /**
      * When a new key is created with this request, optionally specifies
      * the name for this. The global ref `default` may not be used as a name.
      */
-    public readonly keyName!: pulumi.Output<string>;
+    declare public readonly keyName: pulumi.Output<string>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
      * for generating this request. Only suitable for `type=existing` requests.
      */
-    public readonly keyRef!: pulumi.Output<string>;
+    declare public readonly keyRef: pulumi.Output<string>;
     /**
      * The desired key type
      */
-    public readonly keyType!: pulumi.Output<string | undefined>;
+    declare public readonly keyType: pulumi.Output<string | undefined>;
     /**
      * Specifies keyUsage to encode in the generated certificate.
      */
-    public readonly keyUsages!: pulumi.Output<string[] | undefined>;
+    declare public readonly keyUsages: pulumi.Output<string[] | undefined>;
     /**
      * The locality
      */
-    public readonly locality!: pulumi.Output<string | undefined>;
+    declare public readonly locality: pulumi.Output<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
      * required if `type` is `kms` and it conflicts with `managedKeyName`
      */
-    public readonly managedKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly managedKeyId: pulumi.Output<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
      * required if `type` is `kms`  and it conflicts with `managedKeyId`
      */
-    public readonly managedKeyName!: pulumi.Output<string | undefined>;
+    declare public readonly managedKeyName: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The organization
      */
-    public readonly organization!: pulumi.Output<string | undefined>;
+    declare public readonly organization: pulumi.Output<string | undefined>;
     /**
      * List of other SANs
      */
-    public readonly otherSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly otherSans: pulumi.Output<string[] | undefined>;
     /**
      * The organization unit
      */
-    public readonly ou!: pulumi.Output<string | undefined>;
+    declare public readonly ou: pulumi.Output<string | undefined>;
     /**
      * The postal code
      */
-    public readonly postalCode!: pulumi.Output<string | undefined>;
+    declare public readonly postalCode: pulumi.Output<string | undefined>;
     /**
      * The private key
      */
-    public /*out*/ readonly privateKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateKey: pulumi.Output<string>;
     /**
      * The private key format
      */
-    public readonly privateKeyFormat!: pulumi.Output<string | undefined>;
+    declare public readonly privateKeyFormat: pulumi.Output<string | undefined>;
     /**
      * The private key type
      */
-    public /*out*/ readonly privateKeyType!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateKeyType: pulumi.Output<string>;
     /**
      * The province
      */
-    public readonly province!: pulumi.Output<string | undefined>;
+    declare public readonly province: pulumi.Output<string | undefined>;
     /**
      * The requested Subject's named Serial Number
      */
-    public readonly serialNumber!: pulumi.Output<string | undefined>;
+    declare public readonly serialNumber: pulumi.Output<string | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    public readonly signatureBits!: pulumi.Output<number | undefined>;
+    declare public readonly signatureBits: pulumi.Output<number | undefined>;
     /**
      * The street address
      */
-    public readonly streetAddress!: pulumi.Output<string | undefined>;
+    declare public readonly streetAddress: pulumi.Output<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
      * or \"kms\"
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * List of alternative URIs
      */
-    public readonly uriSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly uriSans: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretBackendIntermediateCertRequest resource with the given unique name, arguments, and options.
@@ -200,77 +200,77 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendIntermediateCertRequestState | undefined;
-            resourceInputs["addBasicConstraints"] = state ? state.addBasicConstraints : undefined;
-            resourceInputs["altNames"] = state ? state.altNames : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["commonName"] = state ? state.commonName : undefined;
-            resourceInputs["country"] = state ? state.country : undefined;
-            resourceInputs["csr"] = state ? state.csr : undefined;
-            resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
-            resourceInputs["format"] = state ? state.format : undefined;
-            resourceInputs["ipSans"] = state ? state.ipSans : undefined;
-            resourceInputs["keyBits"] = state ? state.keyBits : undefined;
-            resourceInputs["keyId"] = state ? state.keyId : undefined;
-            resourceInputs["keyName"] = state ? state.keyName : undefined;
-            resourceInputs["keyRef"] = state ? state.keyRef : undefined;
-            resourceInputs["keyType"] = state ? state.keyType : undefined;
-            resourceInputs["keyUsages"] = state ? state.keyUsages : undefined;
-            resourceInputs["locality"] = state ? state.locality : undefined;
-            resourceInputs["managedKeyId"] = state ? state.managedKeyId : undefined;
-            resourceInputs["managedKeyName"] = state ? state.managedKeyName : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["organization"] = state ? state.organization : undefined;
-            resourceInputs["otherSans"] = state ? state.otherSans : undefined;
-            resourceInputs["ou"] = state ? state.ou : undefined;
-            resourceInputs["postalCode"] = state ? state.postalCode : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
-            resourceInputs["privateKeyType"] = state ? state.privateKeyType : undefined;
-            resourceInputs["province"] = state ? state.province : undefined;
-            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
-            resourceInputs["signatureBits"] = state ? state.signatureBits : undefined;
-            resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["uriSans"] = state ? state.uriSans : undefined;
+            resourceInputs["addBasicConstraints"] = state?.addBasicConstraints;
+            resourceInputs["altNames"] = state?.altNames;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["commonName"] = state?.commonName;
+            resourceInputs["country"] = state?.country;
+            resourceInputs["csr"] = state?.csr;
+            resourceInputs["excludeCnFromSans"] = state?.excludeCnFromSans;
+            resourceInputs["format"] = state?.format;
+            resourceInputs["ipSans"] = state?.ipSans;
+            resourceInputs["keyBits"] = state?.keyBits;
+            resourceInputs["keyId"] = state?.keyId;
+            resourceInputs["keyName"] = state?.keyName;
+            resourceInputs["keyRef"] = state?.keyRef;
+            resourceInputs["keyType"] = state?.keyType;
+            resourceInputs["keyUsages"] = state?.keyUsages;
+            resourceInputs["locality"] = state?.locality;
+            resourceInputs["managedKeyId"] = state?.managedKeyId;
+            resourceInputs["managedKeyName"] = state?.managedKeyName;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["organization"] = state?.organization;
+            resourceInputs["otherSans"] = state?.otherSans;
+            resourceInputs["ou"] = state?.ou;
+            resourceInputs["postalCode"] = state?.postalCode;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyFormat"] = state?.privateKeyFormat;
+            resourceInputs["privateKeyType"] = state?.privateKeyType;
+            resourceInputs["province"] = state?.province;
+            resourceInputs["serialNumber"] = state?.serialNumber;
+            resourceInputs["signatureBits"] = state?.signatureBits;
+            resourceInputs["streetAddress"] = state?.streetAddress;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["uriSans"] = state?.uriSans;
         } else {
             const args = argsOrState as SecretBackendIntermediateCertRequestArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.commonName === undefined) && !opts.urn) {
+            if (args?.commonName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'commonName'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["addBasicConstraints"] = args ? args.addBasicConstraints : undefined;
-            resourceInputs["altNames"] = args ? args.altNames : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["commonName"] = args ? args.commonName : undefined;
-            resourceInputs["country"] = args ? args.country : undefined;
-            resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
-            resourceInputs["format"] = args ? args.format : undefined;
-            resourceInputs["ipSans"] = args ? args.ipSans : undefined;
-            resourceInputs["keyBits"] = args ? args.keyBits : undefined;
-            resourceInputs["keyName"] = args ? args.keyName : undefined;
-            resourceInputs["keyRef"] = args ? args.keyRef : undefined;
-            resourceInputs["keyType"] = args ? args.keyType : undefined;
-            resourceInputs["keyUsages"] = args ? args.keyUsages : undefined;
-            resourceInputs["locality"] = args ? args.locality : undefined;
-            resourceInputs["managedKeyId"] = args ? args.managedKeyId : undefined;
-            resourceInputs["managedKeyName"] = args ? args.managedKeyName : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["organization"] = args ? args.organization : undefined;
-            resourceInputs["otherSans"] = args ? args.otherSans : undefined;
-            resourceInputs["ou"] = args ? args.ou : undefined;
-            resourceInputs["postalCode"] = args ? args.postalCode : undefined;
-            resourceInputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
-            resourceInputs["province"] = args ? args.province : undefined;
-            resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
-            resourceInputs["signatureBits"] = args ? args.signatureBits : undefined;
-            resourceInputs["streetAddress"] = args ? args.streetAddress : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["uriSans"] = args ? args.uriSans : undefined;
+            resourceInputs["addBasicConstraints"] = args?.addBasicConstraints;
+            resourceInputs["altNames"] = args?.altNames;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["commonName"] = args?.commonName;
+            resourceInputs["country"] = args?.country;
+            resourceInputs["excludeCnFromSans"] = args?.excludeCnFromSans;
+            resourceInputs["format"] = args?.format;
+            resourceInputs["ipSans"] = args?.ipSans;
+            resourceInputs["keyBits"] = args?.keyBits;
+            resourceInputs["keyName"] = args?.keyName;
+            resourceInputs["keyRef"] = args?.keyRef;
+            resourceInputs["keyType"] = args?.keyType;
+            resourceInputs["keyUsages"] = args?.keyUsages;
+            resourceInputs["locality"] = args?.locality;
+            resourceInputs["managedKeyId"] = args?.managedKeyId;
+            resourceInputs["managedKeyName"] = args?.managedKeyName;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["organization"] = args?.organization;
+            resourceInputs["otherSans"] = args?.otherSans;
+            resourceInputs["ou"] = args?.ou;
+            resourceInputs["postalCode"] = args?.postalCode;
+            resourceInputs["privateKeyFormat"] = args?.privateKeyFormat;
+            resourceInputs["province"] = args?.province;
+            resourceInputs["serialNumber"] = args?.serialNumber;
+            resourceInputs["signatureBits"] = args?.signatureBits;
+            resourceInputs["streetAddress"] = args?.streetAddress;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["uriSans"] = args?.uriSans;
             resourceInputs["csr"] = undefined /*out*/;
             resourceInputs["keyId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;

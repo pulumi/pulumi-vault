@@ -64,44 +64,44 @@ export class SyncVercelDestination extends pulumi.CustomResource {
      * Vercel API access token with the permissions to manage environment
      * variables.
      */
-    public readonly accessToken!: pulumi.Output<string>;
+    declare public readonly accessToken: pulumi.Output<string>;
     /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      */
-    public readonly deploymentEnvironments!: pulumi.Output<string[]>;
+    declare public readonly deploymentEnvironments: pulumi.Output<string[]>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    public readonly granularity!: pulumi.Output<string | undefined>;
+    declare public readonly granularity: pulumi.Output<string | undefined>;
     /**
      * Unique name of the GitHub destination.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Project ID where to manage environment variables.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    public readonly secretNameTemplate!: pulumi.Output<string>;
+    declare public readonly secretNameTemplate: pulumi.Output<string>;
     /**
      * Team ID where to manage environment variables.
      */
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * The type of the secrets destination (`vercel-project`).
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a SyncVercelDestination resource with the given unique name, arguments, and options.
@@ -116,34 +116,34 @@ export class SyncVercelDestination extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncVercelDestinationState | undefined;
-            resourceInputs["accessToken"] = state ? state.accessToken : undefined;
-            resourceInputs["deploymentEnvironments"] = state ? state.deploymentEnvironments : undefined;
-            resourceInputs["granularity"] = state ? state.granularity : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["secretNameTemplate"] = state ? state.secretNameTemplate : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessToken"] = state?.accessToken;
+            resourceInputs["deploymentEnvironments"] = state?.deploymentEnvironments;
+            resourceInputs["granularity"] = state?.granularity;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["secretNameTemplate"] = state?.secretNameTemplate;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SyncVercelDestinationArgs | undefined;
-            if ((!args || args.accessToken === undefined) && !opts.urn) {
+            if (args?.accessToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessToken'");
             }
-            if ((!args || args.deploymentEnvironments === undefined) && !opts.urn) {
+            if (args?.deploymentEnvironments === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deploymentEnvironments'");
             }
-            if ((!args || args.projectId === undefined) && !opts.urn) {
+            if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["accessToken"] = args?.accessToken ? pulumi.secret(args.accessToken) : undefined;
-            resourceInputs["deploymentEnvironments"] = args ? args.deploymentEnvironments : undefined;
-            resourceInputs["granularity"] = args ? args.granularity : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["secretNameTemplate"] = args ? args.secretNameTemplate : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
+            resourceInputs["deploymentEnvironments"] = args?.deploymentEnvironments;
+            resourceInputs["granularity"] = args?.granularity;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["secretNameTemplate"] = args?.secretNameTemplate;
+            resourceInputs["teamId"] = args?.teamId;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

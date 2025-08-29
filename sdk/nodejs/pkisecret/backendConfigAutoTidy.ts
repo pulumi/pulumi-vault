@@ -56,119 +56,118 @@ export class BackendConfigAutoTidy extends pulumi.CustomResource {
     }
 
     /**
-     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      */
-    public readonly acmeAccountSafetyBuffer!: pulumi.Output<string>;
+    declare public readonly acmeAccountSafetyBuffer: pulumi.Output<string>;
     /**
      * The path to the PKI secret backend to
      * read the configuration from, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies whether automatic tidy is enabled or not.
      */
-    public readonly enabled!: pulumi.Output<boolean>;
+    declare public readonly enabled: pulumi.Output<boolean>;
     /**
      * Interval at which to run an auto-tidy operation. This is the time
      * between tidy invocations (after one finishes to the start of the next).
      */
-    public readonly intervalDuration!: pulumi.Output<string>;
+    declare public readonly intervalDuration: pulumi.Output<string>;
     /**
      * The amount of extra time that must have passed beyond issuer's
      * expiration before it is removed from the backend storage.
      */
-    public readonly issuerSafetyBuffer!: pulumi.Output<string>;
+    declare public readonly issuerSafetyBuffer: pulumi.Output<string>;
     /**
      * This configures whether stored certificate are
      * counted upon initialization of the backend, and whether during normal operation, a running count
      * of certificates stored is maintained.
      */
-    public readonly maintainStoredCertificateCounts!: pulumi.Output<boolean | undefined>;
+    declare public readonly maintainStoredCertificateCounts: pulumi.Output<boolean | undefined>;
     /**
      * The maximum amount of time auto-tidy will be delayed
      * after startup.
      */
-    public readonly maxStartupBackoffDuration!: pulumi.Output<string>;
+    declare public readonly maxStartupBackoffDuration: pulumi.Output<string>;
     /**
      * The minimum amount of time auto-tidy will be delayed
      * after startup.
      */
-    public readonly minStartupBackoffDuration!: pulumi.Output<string>;
+    declare public readonly minStartupBackoffDuration: pulumi.Output<string>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The amount of time to wait between processing certificates.
      */
-    public readonly pauseDuration!: pulumi.Output<string>;
+    declare public readonly pauseDuration: pulumi.Output<string>;
     /**
      * This configures whether the stored
      * certificate count is published to the metrics consumer.
      */
-    public readonly publishStoredCertificateCountMetrics!: pulumi.Output<boolean | undefined>;
+    declare public readonly publishStoredCertificateCountMetrics: pulumi.Output<boolean | undefined>;
     /**
      * The amount of time that must pass from the
      * cross-cluster revocation request being initiated to when it will be slated for removal.
      */
-    public readonly revocationQueueSafetyBuffer!: pulumi.Output<string>;
+    declare public readonly revocationQueueSafetyBuffer: pulumi.Output<string>;
     /**
      * The amount of extra time that must have passed beyond certificate
      * expiration before it is removed from the backend storage and/or revocation list.
      */
-    public readonly safetyBuffer!: pulumi.Output<string>;
+    declare public readonly safetyBuffer: pulumi.Output<string>;
     /**
      * Set to true to enable tidying ACME accounts, orders and authorizations.
      */
-    public readonly tidyAcme!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyAcme: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to enable tidying up certificate metadata.
      */
-    public readonly tidyCertMetadata!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyCertMetadata: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to enable tidying up the certificate store
      */
-    public readonly tidyCertStore!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyCertStore: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to enable tidying up the CMPv2 nonce store.
      */
-    public readonly tidyCmpv2NonceStore!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyCmpv2NonceStore: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to enable tidying up the cross-cluster
      * revoked certificate store.
      */
-    public readonly tidyCrossClusterRevokedCerts!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyCrossClusterRevokedCerts: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to automatically remove expired issuers past the
      * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      */
-    public readonly tidyExpiredIssuers!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyExpiredIssuers: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      */
-    public readonly tidyMoveLegacyCaBundle!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyMoveLegacyCaBundle: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to remove stale revocation queue entries that
      * haven't been confirmed by any active cluster.
      */
-    public readonly tidyRevocationQueue!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyRevocationQueue: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to validate issuer associations
      * on revocation entries. This helps increase the performance of CRL building and OCSP responses.
      */
-    public readonly tidyRevokedCertIssuerAssociations!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyRevokedCertIssuerAssociations: pulumi.Output<boolean | undefined>;
     /**
      * Set to true to remove all invalid and expired certificates from
      * storage. A revoked storage entry is considered invalid if the entry is empty, or the value within
      * the entry is empty. If a certificate is removed due to expiry, the entry will also be removed from
      * the CRL, and the CRL will be rotated.
      */
-    public readonly tidyRevokedCerts!: pulumi.Output<boolean | undefined>;
+    declare public readonly tidyRevokedCerts: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a BackendConfigAutoTidy resource with the given unique name, arguments, and options.
@@ -183,60 +182,60 @@ export class BackendConfigAutoTidy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendConfigAutoTidyState | undefined;
-            resourceInputs["acmeAccountSafetyBuffer"] = state ? state.acmeAccountSafetyBuffer : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["intervalDuration"] = state ? state.intervalDuration : undefined;
-            resourceInputs["issuerSafetyBuffer"] = state ? state.issuerSafetyBuffer : undefined;
-            resourceInputs["maintainStoredCertificateCounts"] = state ? state.maintainStoredCertificateCounts : undefined;
-            resourceInputs["maxStartupBackoffDuration"] = state ? state.maxStartupBackoffDuration : undefined;
-            resourceInputs["minStartupBackoffDuration"] = state ? state.minStartupBackoffDuration : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["pauseDuration"] = state ? state.pauseDuration : undefined;
-            resourceInputs["publishStoredCertificateCountMetrics"] = state ? state.publishStoredCertificateCountMetrics : undefined;
-            resourceInputs["revocationQueueSafetyBuffer"] = state ? state.revocationQueueSafetyBuffer : undefined;
-            resourceInputs["safetyBuffer"] = state ? state.safetyBuffer : undefined;
-            resourceInputs["tidyAcme"] = state ? state.tidyAcme : undefined;
-            resourceInputs["tidyCertMetadata"] = state ? state.tidyCertMetadata : undefined;
-            resourceInputs["tidyCertStore"] = state ? state.tidyCertStore : undefined;
-            resourceInputs["tidyCmpv2NonceStore"] = state ? state.tidyCmpv2NonceStore : undefined;
-            resourceInputs["tidyCrossClusterRevokedCerts"] = state ? state.tidyCrossClusterRevokedCerts : undefined;
-            resourceInputs["tidyExpiredIssuers"] = state ? state.tidyExpiredIssuers : undefined;
-            resourceInputs["tidyMoveLegacyCaBundle"] = state ? state.tidyMoveLegacyCaBundle : undefined;
-            resourceInputs["tidyRevocationQueue"] = state ? state.tidyRevocationQueue : undefined;
-            resourceInputs["tidyRevokedCertIssuerAssociations"] = state ? state.tidyRevokedCertIssuerAssociations : undefined;
-            resourceInputs["tidyRevokedCerts"] = state ? state.tidyRevokedCerts : undefined;
+            resourceInputs["acmeAccountSafetyBuffer"] = state?.acmeAccountSafetyBuffer;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["intervalDuration"] = state?.intervalDuration;
+            resourceInputs["issuerSafetyBuffer"] = state?.issuerSafetyBuffer;
+            resourceInputs["maintainStoredCertificateCounts"] = state?.maintainStoredCertificateCounts;
+            resourceInputs["maxStartupBackoffDuration"] = state?.maxStartupBackoffDuration;
+            resourceInputs["minStartupBackoffDuration"] = state?.minStartupBackoffDuration;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["pauseDuration"] = state?.pauseDuration;
+            resourceInputs["publishStoredCertificateCountMetrics"] = state?.publishStoredCertificateCountMetrics;
+            resourceInputs["revocationQueueSafetyBuffer"] = state?.revocationQueueSafetyBuffer;
+            resourceInputs["safetyBuffer"] = state?.safetyBuffer;
+            resourceInputs["tidyAcme"] = state?.tidyAcme;
+            resourceInputs["tidyCertMetadata"] = state?.tidyCertMetadata;
+            resourceInputs["tidyCertStore"] = state?.tidyCertStore;
+            resourceInputs["tidyCmpv2NonceStore"] = state?.tidyCmpv2NonceStore;
+            resourceInputs["tidyCrossClusterRevokedCerts"] = state?.tidyCrossClusterRevokedCerts;
+            resourceInputs["tidyExpiredIssuers"] = state?.tidyExpiredIssuers;
+            resourceInputs["tidyMoveLegacyCaBundle"] = state?.tidyMoveLegacyCaBundle;
+            resourceInputs["tidyRevocationQueue"] = state?.tidyRevocationQueue;
+            resourceInputs["tidyRevokedCertIssuerAssociations"] = state?.tidyRevokedCertIssuerAssociations;
+            resourceInputs["tidyRevokedCerts"] = state?.tidyRevokedCerts;
         } else {
             const args = argsOrState as BackendConfigAutoTidyArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.enabled === undefined) && !opts.urn) {
+            if (args?.enabled === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enabled'");
             }
-            resourceInputs["acmeAccountSafetyBuffer"] = args ? args.acmeAccountSafetyBuffer : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["intervalDuration"] = args ? args.intervalDuration : undefined;
-            resourceInputs["issuerSafetyBuffer"] = args ? args.issuerSafetyBuffer : undefined;
-            resourceInputs["maintainStoredCertificateCounts"] = args ? args.maintainStoredCertificateCounts : undefined;
-            resourceInputs["maxStartupBackoffDuration"] = args ? args.maxStartupBackoffDuration : undefined;
-            resourceInputs["minStartupBackoffDuration"] = args ? args.minStartupBackoffDuration : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["pauseDuration"] = args ? args.pauseDuration : undefined;
-            resourceInputs["publishStoredCertificateCountMetrics"] = args ? args.publishStoredCertificateCountMetrics : undefined;
-            resourceInputs["revocationQueueSafetyBuffer"] = args ? args.revocationQueueSafetyBuffer : undefined;
-            resourceInputs["safetyBuffer"] = args ? args.safetyBuffer : undefined;
-            resourceInputs["tidyAcme"] = args ? args.tidyAcme : undefined;
-            resourceInputs["tidyCertMetadata"] = args ? args.tidyCertMetadata : undefined;
-            resourceInputs["tidyCertStore"] = args ? args.tidyCertStore : undefined;
-            resourceInputs["tidyCmpv2NonceStore"] = args ? args.tidyCmpv2NonceStore : undefined;
-            resourceInputs["tidyCrossClusterRevokedCerts"] = args ? args.tidyCrossClusterRevokedCerts : undefined;
-            resourceInputs["tidyExpiredIssuers"] = args ? args.tidyExpiredIssuers : undefined;
-            resourceInputs["tidyMoveLegacyCaBundle"] = args ? args.tidyMoveLegacyCaBundle : undefined;
-            resourceInputs["tidyRevocationQueue"] = args ? args.tidyRevocationQueue : undefined;
-            resourceInputs["tidyRevokedCertIssuerAssociations"] = args ? args.tidyRevokedCertIssuerAssociations : undefined;
-            resourceInputs["tidyRevokedCerts"] = args ? args.tidyRevokedCerts : undefined;
+            resourceInputs["acmeAccountSafetyBuffer"] = args?.acmeAccountSafetyBuffer;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["intervalDuration"] = args?.intervalDuration;
+            resourceInputs["issuerSafetyBuffer"] = args?.issuerSafetyBuffer;
+            resourceInputs["maintainStoredCertificateCounts"] = args?.maintainStoredCertificateCounts;
+            resourceInputs["maxStartupBackoffDuration"] = args?.maxStartupBackoffDuration;
+            resourceInputs["minStartupBackoffDuration"] = args?.minStartupBackoffDuration;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["pauseDuration"] = args?.pauseDuration;
+            resourceInputs["publishStoredCertificateCountMetrics"] = args?.publishStoredCertificateCountMetrics;
+            resourceInputs["revocationQueueSafetyBuffer"] = args?.revocationQueueSafetyBuffer;
+            resourceInputs["safetyBuffer"] = args?.safetyBuffer;
+            resourceInputs["tidyAcme"] = args?.tidyAcme;
+            resourceInputs["tidyCertMetadata"] = args?.tidyCertMetadata;
+            resourceInputs["tidyCertStore"] = args?.tidyCertStore;
+            resourceInputs["tidyCmpv2NonceStore"] = args?.tidyCmpv2NonceStore;
+            resourceInputs["tidyCrossClusterRevokedCerts"] = args?.tidyCrossClusterRevokedCerts;
+            resourceInputs["tidyExpiredIssuers"] = args?.tidyExpiredIssuers;
+            resourceInputs["tidyMoveLegacyCaBundle"] = args?.tidyMoveLegacyCaBundle;
+            resourceInputs["tidyRevocationQueue"] = args?.tidyRevocationQueue;
+            resourceInputs["tidyRevokedCertIssuerAssociations"] = args?.tidyRevokedCertIssuerAssociations;
+            resourceInputs["tidyRevokedCerts"] = args?.tidyRevokedCerts;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BackendConfigAutoTidy.__pulumiType, name, resourceInputs, opts);
@@ -248,8 +247,7 @@ export class BackendConfigAutoTidy extends pulumi.CustomResource {
  */
 export interface BackendConfigAutoTidyState {
     /**
-     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      */
     acmeAccountSafetyBuffer?: pulumi.Input<string>;
     /**
@@ -368,8 +366,7 @@ export interface BackendConfigAutoTidyState {
  */
 export interface BackendConfigAutoTidyArgs {
     /**
-     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-     * time after being marked revoked or deactivated.
+     * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      */
     acmeAccountSafetyBuffer?: pulumi.Input<string>;
     /**

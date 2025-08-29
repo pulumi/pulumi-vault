@@ -67,37 +67,37 @@ export class MfaOkta extends pulumi.CustomResource {
     /**
      * `(string: <required>)` - Okta API key.
      */
-    public readonly apiToken!: pulumi.Output<string>;
+    declare public readonly apiToken: pulumi.Output<string>;
     /**
      * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
      * `oktapreview.com`, and `okta-emea.com`.
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
-    public readonly mountAccessor!: pulumi.Output<string>;
+    declare public readonly mountAccessor: pulumi.Output<string>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - Name of the organization to be used in the Okta API.
      */
-    public readonly orgName!: pulumi.Output<string>;
+    declare public readonly orgName: pulumi.Output<string>;
     /**
      * `(string: <required>)` - If set to true, the username will only match the 
      * primary email for the account.
      */
-    public readonly primaryEmail!: pulumi.Output<boolean | undefined>;
+    declare public readonly primaryEmail: pulumi.Output<boolean | undefined>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. 
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -107,7 +107,7 @@ export class MfaOkta extends pulumi.CustomResource {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    public readonly usernameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly usernameFormat: pulumi.Output<string | undefined>;
 
     /**
      * Create a MfaOkta resource with the given unique name, arguments, and options.
@@ -122,33 +122,33 @@ export class MfaOkta extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaOktaState | undefined;
-            resourceInputs["apiToken"] = state ? state.apiToken : undefined;
-            resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["orgName"] = state ? state.orgName : undefined;
-            resourceInputs["primaryEmail"] = state ? state.primaryEmail : undefined;
-            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
+            resourceInputs["apiToken"] = state?.apiToken;
+            resourceInputs["baseUrl"] = state?.baseUrl;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["orgName"] = state?.orgName;
+            resourceInputs["primaryEmail"] = state?.primaryEmail;
+            resourceInputs["usernameFormat"] = state?.usernameFormat;
         } else {
             const args = argsOrState as MfaOktaArgs | undefined;
-            if ((!args || args.apiToken === undefined) && !opts.urn) {
+            if (args?.apiToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'apiToken'");
             }
-            if ((!args || args.mountAccessor === undefined) && !opts.urn) {
+            if (args?.mountAccessor === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mountAccessor'");
             }
-            if ((!args || args.orgName === undefined) && !opts.urn) {
+            if (args?.orgName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgName'");
             }
             resourceInputs["apiToken"] = args?.apiToken ? pulumi.secret(args.apiToken) : undefined;
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["mountAccessor"] = args ? args.mountAccessor : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["orgName"] = args ? args.orgName : undefined;
-            resourceInputs["primaryEmail"] = args ? args.primaryEmail : undefined;
-            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["mountAccessor"] = args?.mountAccessor;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["orgName"] = args?.orgName;
+            resourceInputs["primaryEmail"] = args?.primaryEmail;
+            resourceInputs["usernameFormat"] = args?.usernameFormat;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apiToken"] };
