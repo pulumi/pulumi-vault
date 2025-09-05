@@ -126,16 +126,14 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.credentialConfig);
     }
     /**
-     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
-     * can be done in `credential_config`.
+     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
      * 
      */
     @Export(name="credentialType", refs={String.class}, tree="[0]")
     private Output<String> credentialType;
 
     /**
-     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
-     * can be done in `credential_config`.
+     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
      * 
      */
     public Output<String> credentialType() {

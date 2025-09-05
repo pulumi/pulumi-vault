@@ -55,63 +55,63 @@ export class MfaPingid extends pulumi.CustomResource {
     /**
      * The admin URL, derived from "settingsFileBase64"
      */
-    public /*out*/ readonly adminUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly adminUrl: pulumi.Output<string>;
     /**
      * A unique identifier of the organization, derived from "settingsFileBase64"
      */
-    public /*out*/ readonly authenticatorUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly authenticatorUrl: pulumi.Output<string>;
     /**
      * The IDP URL, derived from "settingsFileBase64"
      */
-    public /*out*/ readonly idpUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly idpUrl: pulumi.Output<string>;
     /**
      * Method ID.
      */
-    public /*out*/ readonly methodId!: pulumi.Output<string>;
+    declare public /*out*/ readonly methodId: pulumi.Output<string>;
     /**
      * Mount accessor.
      */
-    public /*out*/ readonly mountAccessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly mountAccessor: pulumi.Output<string>;
     /**
      * Method name.
      */
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * Method's namespace path.
      */
-    public /*out*/ readonly namespacePath!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespacePath: pulumi.Output<string>;
     /**
      * The name of the PingID client organization, derived from "settingsFileBase64"
      */
-    public /*out*/ readonly orgAlias!: pulumi.Output<string>;
+    declare public /*out*/ readonly orgAlias: pulumi.Output<string>;
     /**
      * A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
      */
-    public readonly settingsFileBase64!: pulumi.Output<string>;
+    declare public readonly settingsFileBase64: pulumi.Output<string>;
     /**
      * MFA type.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * Use signature value, derived from "settingsFileBase64"
      */
-    public /*out*/ readonly useSignature!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly useSignature: pulumi.Output<boolean>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    public readonly usernameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly usernameFormat: pulumi.Output<string | undefined>;
     /**
      * Resource UUID.
      */
-    public /*out*/ readonly uuid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uuid: pulumi.Output<string>;
 
     /**
      * Create a MfaPingid resource with the given unique name, arguments, and options.
@@ -126,29 +126,29 @@ export class MfaPingid extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaPingidState | undefined;
-            resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
-            resourceInputs["authenticatorUrl"] = state ? state.authenticatorUrl : undefined;
-            resourceInputs["idpUrl"] = state ? state.idpUrl : undefined;
-            resourceInputs["methodId"] = state ? state.methodId : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["namespacePath"] = state ? state.namespacePath : undefined;
-            resourceInputs["orgAlias"] = state ? state.orgAlias : undefined;
-            resourceInputs["settingsFileBase64"] = state ? state.settingsFileBase64 : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["useSignature"] = state ? state.useSignature : undefined;
-            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
-            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["adminUrl"] = state?.adminUrl;
+            resourceInputs["authenticatorUrl"] = state?.authenticatorUrl;
+            resourceInputs["idpUrl"] = state?.idpUrl;
+            resourceInputs["methodId"] = state?.methodId;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["namespacePath"] = state?.namespacePath;
+            resourceInputs["orgAlias"] = state?.orgAlias;
+            resourceInputs["settingsFileBase64"] = state?.settingsFileBase64;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["useSignature"] = state?.useSignature;
+            resourceInputs["usernameFormat"] = state?.usernameFormat;
+            resourceInputs["uuid"] = state?.uuid;
         } else {
             const args = argsOrState as MfaPingidArgs | undefined;
-            if ((!args || args.settingsFileBase64 === undefined) && !opts.urn) {
+            if (args?.settingsFileBase64 === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settingsFileBase64'");
             }
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["settingsFileBase64"] = args ? args.settingsFileBase64 : undefined;
-            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["settingsFileBase64"] = args?.settingsFileBase64;
+            resourceInputs["usernameFormat"] = args?.usernameFormat;
             resourceInputs["adminUrl"] = undefined /*out*/;
             resourceInputs["authenticatorUrl"] = undefined /*out*/;
             resourceInputs["idpUrl"] = undefined /*out*/;

@@ -57,66 +57,66 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
     /**
      * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
      */
-    public readonly autoRebuild!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoRebuild: pulumi.Output<boolean | undefined>;
     /**
      * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
      */
-    public readonly autoRebuildGracePeriod!: pulumi.Output<string>;
+    declare public readonly autoRebuildGracePeriod: pulumi.Output<string>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Enable cross-cluster revocation request queues. **Vault 1.13+**
      */
-    public readonly crossClusterRevocation!: pulumi.Output<boolean>;
+    declare public readonly crossClusterRevocation: pulumi.Output<boolean>;
     /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      */
-    public readonly deltaRebuildInterval!: pulumi.Output<string>;
+    declare public readonly deltaRebuildInterval: pulumi.Output<string>;
     /**
      * Disables or enables CRL building.
      */
-    public readonly disable!: pulumi.Output<boolean | undefined>;
+    declare public readonly disable: pulumi.Output<boolean | undefined>;
     /**
      * Enables building of delta CRLs with up-to-date revocation information, 
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
-    public readonly enableDelta!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableDelta: pulumi.Output<boolean | undefined>;
     /**
      * Specifies the time until expiration.
      */
-    public readonly expiry!: pulumi.Output<string | undefined>;
+    declare public readonly expiry: pulumi.Output<string | undefined>;
     /**
      * The maximum number of entries a CRL can contain. This option exists to prevent 
      * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
      */
-    public readonly maxCrlEntries!: pulumi.Output<number>;
+    declare public readonly maxCrlEntries: pulumi.Output<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Disables the OCSP responder in Vault. **Vault 1.12+**
      */
-    public readonly ocspDisable!: pulumi.Output<boolean | undefined>;
+    declare public readonly ocspDisable: pulumi.Output<boolean | undefined>;
     /**
      * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
      * refresh durations. **Vault 1.12+**
      */
-    public readonly ocspExpiry!: pulumi.Output<string>;
+    declare public readonly ocspExpiry: pulumi.Output<string>;
     /**
      * Enables unified CRL and OCSP building. **Vault 1.13+**
      */
-    public readonly unifiedCrl!: pulumi.Output<boolean>;
+    declare public readonly unifiedCrl: pulumi.Output<boolean>;
     /**
      * Enables serving the unified CRL and OCSP on the existing, previously
      * cluster-local paths. **Vault 1.13+**
      */
-    public readonly unifiedCrlOnExistingPaths!: pulumi.Output<boolean>;
+    declare public readonly unifiedCrlOnExistingPaths: pulumi.Output<boolean>;
 
     /**
      * Create a SecretBackendCrlConfig resource with the given unique name, arguments, and options.
@@ -131,39 +131,39 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendCrlConfigState | undefined;
-            resourceInputs["autoRebuild"] = state ? state.autoRebuild : undefined;
-            resourceInputs["autoRebuildGracePeriod"] = state ? state.autoRebuildGracePeriod : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["crossClusterRevocation"] = state ? state.crossClusterRevocation : undefined;
-            resourceInputs["deltaRebuildInterval"] = state ? state.deltaRebuildInterval : undefined;
-            resourceInputs["disable"] = state ? state.disable : undefined;
-            resourceInputs["enableDelta"] = state ? state.enableDelta : undefined;
-            resourceInputs["expiry"] = state ? state.expiry : undefined;
-            resourceInputs["maxCrlEntries"] = state ? state.maxCrlEntries : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["ocspDisable"] = state ? state.ocspDisable : undefined;
-            resourceInputs["ocspExpiry"] = state ? state.ocspExpiry : undefined;
-            resourceInputs["unifiedCrl"] = state ? state.unifiedCrl : undefined;
-            resourceInputs["unifiedCrlOnExistingPaths"] = state ? state.unifiedCrlOnExistingPaths : undefined;
+            resourceInputs["autoRebuild"] = state?.autoRebuild;
+            resourceInputs["autoRebuildGracePeriod"] = state?.autoRebuildGracePeriod;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["crossClusterRevocation"] = state?.crossClusterRevocation;
+            resourceInputs["deltaRebuildInterval"] = state?.deltaRebuildInterval;
+            resourceInputs["disable"] = state?.disable;
+            resourceInputs["enableDelta"] = state?.enableDelta;
+            resourceInputs["expiry"] = state?.expiry;
+            resourceInputs["maxCrlEntries"] = state?.maxCrlEntries;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["ocspDisable"] = state?.ocspDisable;
+            resourceInputs["ocspExpiry"] = state?.ocspExpiry;
+            resourceInputs["unifiedCrl"] = state?.unifiedCrl;
+            resourceInputs["unifiedCrlOnExistingPaths"] = state?.unifiedCrlOnExistingPaths;
         } else {
             const args = argsOrState as SecretBackendCrlConfigArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["autoRebuild"] = args ? args.autoRebuild : undefined;
-            resourceInputs["autoRebuildGracePeriod"] = args ? args.autoRebuildGracePeriod : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["crossClusterRevocation"] = args ? args.crossClusterRevocation : undefined;
-            resourceInputs["deltaRebuildInterval"] = args ? args.deltaRebuildInterval : undefined;
-            resourceInputs["disable"] = args ? args.disable : undefined;
-            resourceInputs["enableDelta"] = args ? args.enableDelta : undefined;
-            resourceInputs["expiry"] = args ? args.expiry : undefined;
-            resourceInputs["maxCrlEntries"] = args ? args.maxCrlEntries : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["ocspDisable"] = args ? args.ocspDisable : undefined;
-            resourceInputs["ocspExpiry"] = args ? args.ocspExpiry : undefined;
-            resourceInputs["unifiedCrl"] = args ? args.unifiedCrl : undefined;
-            resourceInputs["unifiedCrlOnExistingPaths"] = args ? args.unifiedCrlOnExistingPaths : undefined;
+            resourceInputs["autoRebuild"] = args?.autoRebuild;
+            resourceInputs["autoRebuildGracePeriod"] = args?.autoRebuildGracePeriod;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["crossClusterRevocation"] = args?.crossClusterRevocation;
+            resourceInputs["deltaRebuildInterval"] = args?.deltaRebuildInterval;
+            resourceInputs["disable"] = args?.disable;
+            resourceInputs["enableDelta"] = args?.enableDelta;
+            resourceInputs["expiry"] = args?.expiry;
+            resourceInputs["maxCrlEntries"] = args?.maxCrlEntries;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["ocspDisable"] = args?.ocspDisable;
+            resourceInputs["ocspExpiry"] = args?.ocspExpiry;
+            resourceInputs["unifiedCrl"] = args?.unifiedCrl;
+            resourceInputs["unifiedCrlOnExistingPaths"] = args?.unifiedCrlOnExistingPaths;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendCrlConfig.__pulumiType, name, resourceInputs, opts);

@@ -65,7 +65,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      * If set, when a client reaches a rate limit threshold, the client will
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
-    public readonly blockInterval!: pulumi.Output<number | undefined>;
+    declare public readonly blockInterval: pulumi.Output<number | undefined>;
     /**
      * Attribute used to group requests for rate limiting. Limits are enforced independently for each
      * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
@@ -75,26 +75,26 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
      * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
      */
-    public readonly groupBy!: pulumi.Output<string>;
+    declare public readonly groupBy: pulumi.Output<string>;
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
-    public readonly inheritable!: pulumi.Output<boolean | undefined>;
+    declare public readonly inheritable: pulumi.Output<boolean | undefined>;
     /**
      * The duration in seconds to enforce rate limiting for.
      */
-    public readonly interval!: pulumi.Output<number>;
+    declare public readonly interval: pulumi.Output<number>;
     /**
      * Name of the rate limit quota
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -103,22 +103,22 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * The maximum number of requests at any given second to be allowed by the quota
      * rule. The `rate` must be positive.
      */
-    public readonly rate!: pulumi.Output<number>;
+    declare public readonly rate: pulumi.Output<number>;
     /**
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    declare public readonly role: pulumi.Output<string | undefined>;
     /**
      * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
      * the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
      * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
      */
-    public readonly secondaryRate!: pulumi.Output<number>;
+    declare public readonly secondaryRate: pulumi.Output<number>;
 
     /**
      * Create a QuotaRateLimit resource with the given unique name, arguments, and options.
@@ -133,31 +133,31 @@ export class QuotaRateLimit extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuotaRateLimitState | undefined;
-            resourceInputs["blockInterval"] = state ? state.blockInterval : undefined;
-            resourceInputs["groupBy"] = state ? state.groupBy : undefined;
-            resourceInputs["inheritable"] = state ? state.inheritable : undefined;
-            resourceInputs["interval"] = state ? state.interval : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["rate"] = state ? state.rate : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["secondaryRate"] = state ? state.secondaryRate : undefined;
+            resourceInputs["blockInterval"] = state?.blockInterval;
+            resourceInputs["groupBy"] = state?.groupBy;
+            resourceInputs["inheritable"] = state?.inheritable;
+            resourceInputs["interval"] = state?.interval;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["rate"] = state?.rate;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["secondaryRate"] = state?.secondaryRate;
         } else {
             const args = argsOrState as QuotaRateLimitArgs | undefined;
-            if ((!args || args.rate === undefined) && !opts.urn) {
+            if (args?.rate === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rate'");
             }
-            resourceInputs["blockInterval"] = args ? args.blockInterval : undefined;
-            resourceInputs["groupBy"] = args ? args.groupBy : undefined;
-            resourceInputs["inheritable"] = args ? args.inheritable : undefined;
-            resourceInputs["interval"] = args ? args.interval : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["rate"] = args ? args.rate : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["secondaryRate"] = args ? args.secondaryRate : undefined;
+            resourceInputs["blockInterval"] = args?.blockInterval;
+            resourceInputs["groupBy"] = args?.groupBy;
+            resourceInputs["inheritable"] = args?.inheritable;
+            resourceInputs["interval"] = args?.interval;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["rate"] = args?.rate;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["secondaryRate"] = args?.secondaryRate;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(QuotaRateLimit.__pulumiType, name, resourceInputs, opts);

@@ -73,66 +73,66 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * The unique name of the Vault mount to configure.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * The database statements to execute when
      * creating a user.
      */
-    public readonly creationStatements!: pulumi.Output<string[]>;
+    declare public readonly creationStatements: pulumi.Output<string[]>;
     /**
      * Specifies the configuration
      * for the given `credentialType`.
      *
      * The following options are available for each `credentialType` value:
      */
-    public readonly credentialConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly credentialConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies the type of credential that
      * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin's API page for credential types supported by individual databases.
      */
-    public readonly credentialType!: pulumi.Output<string>;
+    declare public readonly credentialType: pulumi.Output<string>;
     /**
      * The unique name of the database connection to use for
      * the role.
      */
-    public readonly dbName!: pulumi.Output<string>;
+    declare public readonly dbName: pulumi.Output<string>;
     /**
      * The default number of seconds for leases for this
      * role.
      */
-    public readonly defaultTtl!: pulumi.Output<number | undefined>;
+    declare public readonly defaultTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum number of seconds for leases for this
      * role.
      */
-    public readonly maxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly maxTtl: pulumi.Output<number | undefined>;
     /**
      * A unique name to give the role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The database statements to execute when
      * renewing a user.
      */
-    public readonly renewStatements!: pulumi.Output<string[] | undefined>;
+    declare public readonly renewStatements: pulumi.Output<string[] | undefined>;
     /**
      * The database statements to execute when
      * revoking a user.
      */
-    public readonly revocationStatements!: pulumi.Output<string[] | undefined>;
+    declare public readonly revocationStatements: pulumi.Output<string[] | undefined>;
     /**
      * The database statements to execute when
      * rolling back creation due to an error.
      */
-    public readonly rollbackStatements!: pulumi.Output<string[] | undefined>;
+    declare public readonly rollbackStatements: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -147,41 +147,41 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["creationStatements"] = state ? state.creationStatements : undefined;
-            resourceInputs["credentialConfig"] = state ? state.credentialConfig : undefined;
-            resourceInputs["credentialType"] = state ? state.credentialType : undefined;
-            resourceInputs["dbName"] = state ? state.dbName : undefined;
-            resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["renewStatements"] = state ? state.renewStatements : undefined;
-            resourceInputs["revocationStatements"] = state ? state.revocationStatements : undefined;
-            resourceInputs["rollbackStatements"] = state ? state.rollbackStatements : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["creationStatements"] = state?.creationStatements;
+            resourceInputs["credentialConfig"] = state?.credentialConfig;
+            resourceInputs["credentialType"] = state?.credentialType;
+            resourceInputs["dbName"] = state?.dbName;
+            resourceInputs["defaultTtl"] = state?.defaultTtl;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["renewStatements"] = state?.renewStatements;
+            resourceInputs["revocationStatements"] = state?.revocationStatements;
+            resourceInputs["rollbackStatements"] = state?.rollbackStatements;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.creationStatements === undefined) && !opts.urn) {
+            if (args?.creationStatements === undefined && !opts.urn) {
                 throw new Error("Missing required property 'creationStatements'");
             }
-            if ((!args || args.dbName === undefined) && !opts.urn) {
+            if (args?.dbName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dbName'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["creationStatements"] = args ? args.creationStatements : undefined;
-            resourceInputs["credentialConfig"] = args ? args.credentialConfig : undefined;
-            resourceInputs["credentialType"] = args ? args.credentialType : undefined;
-            resourceInputs["dbName"] = args ? args.dbName : undefined;
-            resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["renewStatements"] = args ? args.renewStatements : undefined;
-            resourceInputs["revocationStatements"] = args ? args.revocationStatements : undefined;
-            resourceInputs["rollbackStatements"] = args ? args.rollbackStatements : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["creationStatements"] = args?.creationStatements;
+            resourceInputs["credentialConfig"] = args?.credentialConfig;
+            resourceInputs["credentialType"] = args?.credentialType;
+            resourceInputs["dbName"] = args?.dbName;
+            resourceInputs["defaultTtl"] = args?.defaultTtl;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["renewStatements"] = args?.renewStatements;
+            resourceInputs["revocationStatements"] = args?.revocationStatements;
+            resourceInputs["rollbackStatements"] = args?.rollbackStatements;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);

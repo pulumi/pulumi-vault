@@ -37,8 +37,7 @@ class SecretBackendStaticRoleArgs:
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] username: The database username that this static role corresponds to.
-        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-               can be done in `credential_config`.
+        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -133,8 +132,7 @@ class SecretBackendStaticRoleArgs:
     @pulumi.getter(name="credentialType")
     def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-        can be done in `credential_config`.
+        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         """
         return pulumi.get(self, "credential_type")
 
@@ -270,8 +268,7 @@ class _SecretBackendStaticRoleState:
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-               can be done in `credential_config`.
+        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -347,8 +344,7 @@ class _SecretBackendStaticRoleState:
     @pulumi.getter(name="credentialType")
     def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-        can be done in `credential_config`.
+        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         """
         return pulumi.get(self, "credential_type")
 
@@ -560,8 +556,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-               can be done in `credential_config`.
+        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -728,8 +723,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-               can be done in `credential_config`.
+        :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -789,8 +783,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter(name="credentialType")
     def credential_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
-        can be done in `credential_config`.
+        The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         """
         return pulumi.get(self, "credential_type")
 

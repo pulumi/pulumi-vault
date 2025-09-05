@@ -64,43 +64,43 @@ export class MfaLoginEnforcement extends pulumi.CustomResource {
     /**
      * Set of auth method accessor IDs.
      */
-    public readonly authMethodAccessors!: pulumi.Output<string[] | undefined>;
+    declare public readonly authMethodAccessors: pulumi.Output<string[] | undefined>;
     /**
      * Set of auth method types.
      */
-    public readonly authMethodTypes!: pulumi.Output<string[] | undefined>;
+    declare public readonly authMethodTypes: pulumi.Output<string[] | undefined>;
     /**
      * Set of identity entity IDs.
      */
-    public readonly identityEntityIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly identityEntityIds: pulumi.Output<string[] | undefined>;
     /**
      * Set of identity group IDs.
      */
-    public readonly identityGroupIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly identityGroupIds: pulumi.Output<string[] | undefined>;
     /**
      * Set of MFA method UUIDs.
      */
-    public readonly mfaMethodIds!: pulumi.Output<string[]>;
+    declare public readonly mfaMethodIds: pulumi.Output<string[]>;
     /**
      * Login enforcement name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * Method's namespace path.
      */
-    public /*out*/ readonly namespacePath!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespacePath: pulumi.Output<string>;
     /**
      * Resource UUID.
      */
-    public /*out*/ readonly uuid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uuid: pulumi.Output<string>;
 
     /**
      * Create a MfaLoginEnforcement resource with the given unique name, arguments, and options.
@@ -115,28 +115,28 @@ export class MfaLoginEnforcement extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaLoginEnforcementState | undefined;
-            resourceInputs["authMethodAccessors"] = state ? state.authMethodAccessors : undefined;
-            resourceInputs["authMethodTypes"] = state ? state.authMethodTypes : undefined;
-            resourceInputs["identityEntityIds"] = state ? state.identityEntityIds : undefined;
-            resourceInputs["identityGroupIds"] = state ? state.identityGroupIds : undefined;
-            resourceInputs["mfaMethodIds"] = state ? state.mfaMethodIds : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["namespacePath"] = state ? state.namespacePath : undefined;
-            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["authMethodAccessors"] = state?.authMethodAccessors;
+            resourceInputs["authMethodTypes"] = state?.authMethodTypes;
+            resourceInputs["identityEntityIds"] = state?.identityEntityIds;
+            resourceInputs["identityGroupIds"] = state?.identityGroupIds;
+            resourceInputs["mfaMethodIds"] = state?.mfaMethodIds;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["namespacePath"] = state?.namespacePath;
+            resourceInputs["uuid"] = state?.uuid;
         } else {
             const args = argsOrState as MfaLoginEnforcementArgs | undefined;
-            if ((!args || args.mfaMethodIds === undefined) && !opts.urn) {
+            if (args?.mfaMethodIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mfaMethodIds'");
             }
-            resourceInputs["authMethodAccessors"] = args ? args.authMethodAccessors : undefined;
-            resourceInputs["authMethodTypes"] = args ? args.authMethodTypes : undefined;
-            resourceInputs["identityEntityIds"] = args ? args.identityEntityIds : undefined;
-            resourceInputs["identityGroupIds"] = args ? args.identityGroupIds : undefined;
-            resourceInputs["mfaMethodIds"] = args ? args.mfaMethodIds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["authMethodAccessors"] = args?.authMethodAccessors;
+            resourceInputs["authMethodTypes"] = args?.authMethodTypes;
+            resourceInputs["identityEntityIds"] = args?.identityEntityIds;
+            resourceInputs["identityGroupIds"] = args?.identityGroupIds;
+            resourceInputs["mfaMethodIds"] = args?.mfaMethodIds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
             resourceInputs["namespaceId"] = undefined /*out*/;
             resourceInputs["namespacePath"] = undefined /*out*/;
             resourceInputs["uuid"] = undefined /*out*/;

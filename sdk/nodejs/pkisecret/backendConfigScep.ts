@@ -86,54 +86,54 @@ export class BackendConfigScep extends pulumi.CustomResource {
     /**
      * List of allowed digest algorithms for SCEP requests.
      */
-    public readonly allowedDigestAlgorithms!: pulumi.Output<string[]>;
+    declare public readonly allowedDigestAlgorithms: pulumi.Output<string[]>;
     /**
      * List of allowed encryption algorithms for SCEP requests.
      */
-    public readonly allowedEncryptionAlgorithms!: pulumi.Output<string[]>;
+    declare public readonly allowedEncryptionAlgorithms: pulumi.Output<string[]>;
     /**
      * Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
      */
-    public readonly authenticators!: pulumi.Output<outputs.pkiSecret.BackendConfigScepAuthenticators>;
+    declare public readonly authenticators: pulumi.Output<outputs.pkiSecret.BackendConfigScepAuthenticators>;
     /**
      * The path to the PKI secret backend to
      * read the SCEP configuration from, with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
      */
-    public readonly defaultPathPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly defaultPathPolicy: pulumi.Output<string | undefined>;
     /**
      * Specifies whether SCEP is enabled.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Lists the 3rd party validation of SCEP requests (see below for nested schema).
      */
-    public readonly externalValidations!: pulumi.Output<outputs.pkiSecret.BackendConfigScepExternalValidation[]>;
+    declare public readonly externalValidations: pulumi.Output<outputs.pkiSecret.BackendConfigScepExternalValidation[]>;
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */
-    public /*out*/ readonly lastUpdated!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastUpdated: pulumi.Output<string>;
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
      *
      *
      * <a id="nestedatt--authenticators"></a>
      */
-    public readonly logLevel!: pulumi.Output<string>;
+    declare public readonly logLevel: pulumi.Output<string>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
      */
-    public readonly restrictCaChainToIssuer!: pulumi.Output<boolean | undefined>;
+    declare public readonly restrictCaChainToIssuer: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a BackendConfigScep resource with the given unique name, arguments, and options.
@@ -148,32 +148,32 @@ export class BackendConfigScep extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendConfigScepState | undefined;
-            resourceInputs["allowedDigestAlgorithms"] = state ? state.allowedDigestAlgorithms : undefined;
-            resourceInputs["allowedEncryptionAlgorithms"] = state ? state.allowedEncryptionAlgorithms : undefined;
-            resourceInputs["authenticators"] = state ? state.authenticators : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["defaultPathPolicy"] = state ? state.defaultPathPolicy : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["externalValidations"] = state ? state.externalValidations : undefined;
-            resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
-            resourceInputs["logLevel"] = state ? state.logLevel : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["restrictCaChainToIssuer"] = state ? state.restrictCaChainToIssuer : undefined;
+            resourceInputs["allowedDigestAlgorithms"] = state?.allowedDigestAlgorithms;
+            resourceInputs["allowedEncryptionAlgorithms"] = state?.allowedEncryptionAlgorithms;
+            resourceInputs["authenticators"] = state?.authenticators;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["defaultPathPolicy"] = state?.defaultPathPolicy;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["externalValidations"] = state?.externalValidations;
+            resourceInputs["lastUpdated"] = state?.lastUpdated;
+            resourceInputs["logLevel"] = state?.logLevel;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["restrictCaChainToIssuer"] = state?.restrictCaChainToIssuer;
         } else {
             const args = argsOrState as BackendConfigScepArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["allowedDigestAlgorithms"] = args ? args.allowedDigestAlgorithms : undefined;
-            resourceInputs["allowedEncryptionAlgorithms"] = args ? args.allowedEncryptionAlgorithms : undefined;
-            resourceInputs["authenticators"] = args ? args.authenticators : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["defaultPathPolicy"] = args ? args.defaultPathPolicy : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["externalValidations"] = args ? args.externalValidations : undefined;
-            resourceInputs["logLevel"] = args ? args.logLevel : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["restrictCaChainToIssuer"] = args ? args.restrictCaChainToIssuer : undefined;
+            resourceInputs["allowedDigestAlgorithms"] = args?.allowedDigestAlgorithms;
+            resourceInputs["allowedEncryptionAlgorithms"] = args?.allowedEncryptionAlgorithms;
+            resourceInputs["authenticators"] = args?.authenticators;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["defaultPathPolicy"] = args?.defaultPathPolicy;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["externalValidations"] = args?.externalValidations;
+            resourceInputs["logLevel"] = args?.logLevel;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["restrictCaChainToIssuer"] = args?.restrictCaChainToIssuer;
             resourceInputs["lastUpdated"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

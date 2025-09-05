@@ -27,39 +27,39 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
-    public readonly addAddressToEnv!: pulumi.Output<string | undefined>;
+    declare public readonly addAddressToEnv: pulumi.Output<string | undefined>;
     /**
      * URL of the root of the target Vault server.
      */
-    public readonly address!: pulumi.Output<string | undefined>;
+    declare public readonly address: pulumi.Output<string | undefined>;
     /**
      * Path to directory containing CA certificate files to validate the server's certificate.
      */
-    public readonly caCertDir!: pulumi.Output<string | undefined>;
+    declare public readonly caCertDir: pulumi.Output<string | undefined>;
     /**
      * Path to a CA certificate file to validate the server's certificate.
      */
-    public readonly caCertFile!: pulumi.Output<string | undefined>;
+    declare public readonly caCertFile: pulumi.Output<string | undefined>;
     /**
      * The namespace to use. Available only for Vault Enterprise.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Name to use as the SNI host when connecting via TLS.
      */
-    public readonly tlsServerName!: pulumi.Output<string | undefined>;
+    declare public readonly tlsServerName: pulumi.Output<string | undefined>;
     /**
      * Token to use to authenticate to Vault.
      */
-    public readonly token!: pulumi.Output<string | undefined>;
+    declare public readonly token: pulumi.Output<string | undefined>;
     /**
      * Token name to use for creating the Vault child token.
      */
-    public readonly tokenName!: pulumi.Output<string | undefined>;
+    declare public readonly tokenName: pulumi.Output<string | undefined>;
     /**
      * Override the Vault server version, which is normally determined dynamically from the target Vault server
      */
-    public readonly vaultVersionOverride!: pulumi.Output<string | undefined>;
+    declare public readonly vaultVersionOverride: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -72,36 +72,36 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["addAddressToEnv"] = args ? args.addAddressToEnv : undefined;
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["authLogin"] = pulumi.output(args ? args.authLogin : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginAws"] = pulumi.output(args ? args.authLoginAws : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginAzure"] = pulumi.output(args ? args.authLoginAzure : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginCert"] = pulumi.output(args ? args.authLoginCert : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginGcp"] = pulumi.output(args ? args.authLoginGcp : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginJwt"] = pulumi.output(args ? args.authLoginJwt : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginKerberos"] = pulumi.output(args ? args.authLoginKerberos : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginOci"] = pulumi.output(args ? args.authLoginOci : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginOidc"] = pulumi.output(args ? args.authLoginOidc : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginRadius"] = pulumi.output(args ? args.authLoginRadius : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginTokenFile"] = pulumi.output(args ? args.authLoginTokenFile : undefined).apply(JSON.stringify);
-            resourceInputs["authLoginUserpass"] = pulumi.output(args ? args.authLoginUserpass : undefined).apply(JSON.stringify);
-            resourceInputs["caCertDir"] = args ? args.caCertDir : undefined;
-            resourceInputs["caCertFile"] = args ? args.caCertFile : undefined;
-            resourceInputs["clientAuth"] = pulumi.output(args ? args.clientAuth : undefined).apply(JSON.stringify);
-            resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
-            resourceInputs["maxLeaseTtlSeconds"] = pulumi.output((args ? args.maxLeaseTtlSeconds : undefined) ?? (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
-            resourceInputs["maxRetries"] = pulumi.output((args ? args.maxRetries : undefined) ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
-            resourceInputs["maxRetriesCcc"] = pulumi.output(args ? args.maxRetriesCcc : undefined).apply(JSON.stringify);
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["setNamespaceFromToken"] = pulumi.output(args ? args.setNamespaceFromToken : undefined).apply(JSON.stringify);
-            resourceInputs["skipChildToken"] = pulumi.output(args ? args.skipChildToken : undefined).apply(JSON.stringify);
-            resourceInputs["skipGetVaultVersion"] = pulumi.output(args ? args.skipGetVaultVersion : undefined).apply(JSON.stringify);
-            resourceInputs["skipTlsVerify"] = pulumi.output((args ? args.skipTlsVerify : undefined) ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
-            resourceInputs["tlsServerName"] = args ? args.tlsServerName : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
-            resourceInputs["tokenName"] = args ? args.tokenName : undefined;
-            resourceInputs["vaultVersionOverride"] = args ? args.vaultVersionOverride : undefined;
+            resourceInputs["addAddressToEnv"] = args?.addAddressToEnv;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["authLogin"] = pulumi.output(args?.authLogin).apply(JSON.stringify);
+            resourceInputs["authLoginAws"] = pulumi.output(args?.authLoginAws).apply(JSON.stringify);
+            resourceInputs["authLoginAzure"] = pulumi.output(args?.authLoginAzure).apply(JSON.stringify);
+            resourceInputs["authLoginCert"] = pulumi.output(args?.authLoginCert).apply(JSON.stringify);
+            resourceInputs["authLoginGcp"] = pulumi.output(args?.authLoginGcp).apply(JSON.stringify);
+            resourceInputs["authLoginJwt"] = pulumi.output(args?.authLoginJwt).apply(JSON.stringify);
+            resourceInputs["authLoginKerberos"] = pulumi.output(args?.authLoginKerberos).apply(JSON.stringify);
+            resourceInputs["authLoginOci"] = pulumi.output(args?.authLoginOci).apply(JSON.stringify);
+            resourceInputs["authLoginOidc"] = pulumi.output(args?.authLoginOidc).apply(JSON.stringify);
+            resourceInputs["authLoginRadius"] = pulumi.output(args?.authLoginRadius).apply(JSON.stringify);
+            resourceInputs["authLoginTokenFile"] = pulumi.output(args?.authLoginTokenFile).apply(JSON.stringify);
+            resourceInputs["authLoginUserpass"] = pulumi.output(args?.authLoginUserpass).apply(JSON.stringify);
+            resourceInputs["caCertDir"] = args?.caCertDir;
+            resourceInputs["caCertFile"] = args?.caCertFile;
+            resourceInputs["clientAuth"] = pulumi.output(args?.clientAuth).apply(JSON.stringify);
+            resourceInputs["headers"] = pulumi.output(args?.headers).apply(JSON.stringify);
+            resourceInputs["maxLeaseTtlSeconds"] = pulumi.output((args?.maxLeaseTtlSeconds) ?? (utilities.getEnvNumber("TERRAFORM_VAULT_MAX_TTL") || 1200)).apply(JSON.stringify);
+            resourceInputs["maxRetries"] = pulumi.output((args?.maxRetries) ?? (utilities.getEnvNumber("VAULT_MAX_RETRIES") || 2)).apply(JSON.stringify);
+            resourceInputs["maxRetriesCcc"] = pulumi.output(args?.maxRetriesCcc).apply(JSON.stringify);
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["setNamespaceFromToken"] = pulumi.output(args?.setNamespaceFromToken).apply(JSON.stringify);
+            resourceInputs["skipChildToken"] = pulumi.output(args?.skipChildToken).apply(JSON.stringify);
+            resourceInputs["skipGetVaultVersion"] = pulumi.output(args?.skipGetVaultVersion).apply(JSON.stringify);
+            resourceInputs["skipTlsVerify"] = pulumi.output((args?.skipTlsVerify) ?? utilities.getEnvBoolean("VAULT_SKIP_VERIFY")).apply(JSON.stringify);
+            resourceInputs["tlsServerName"] = args?.tlsServerName;
+            resourceInputs["token"] = args?.token;
+            resourceInputs["tokenName"] = args?.tokenName;
+            resourceInputs["vaultVersionOverride"] = args?.vaultVersionOverride;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
@@ -207,8 +207,7 @@ export interface ProviderArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-     * token namespace as the root namespace for all resources.
+     * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
      */
     setNamespaceFromToken?: pulumi.Input<boolean>;
     /**

@@ -167,79 +167,79 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
      * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      */
-    public readonly allowedKubernetesNamespaceSelector!: pulumi.Output<string | undefined>;
+    declare public readonly allowedKubernetesNamespaceSelector: pulumi.Output<string | undefined>;
     /**
      * The list of Kubernetes namespaces this role 
      * can generate credentials for. If set to `*` all namespaces are allowed. If set with
      * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
      */
-    public readonly allowedKubernetesNamespaces!: pulumi.Output<string[] | undefined>;
+    declare public readonly allowedKubernetesNamespaces: pulumi.Output<string[] | undefined>;
     /**
      * The path of the Kubernetes Secrets Engine backend mount to create
      * the role in.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Additional annotations to apply to all generated 
      * Kubernetes objects.
      */
-    public readonly extraAnnotations!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraAnnotations: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Additional labels to apply to all generated Kubernetes 
      * objects.
      *
      * This resource also directly accepts all vault.Mount fields.
      */
-    public readonly extraLabels!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraLabels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The Role or ClusterRole rules to use when generating 
      * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
      * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
      * when credentials are requested.
      */
-    public readonly generatedRoleRules!: pulumi.Output<string | undefined>;
+    declare public readonly generatedRoleRules: pulumi.Output<string | undefined>;
     /**
      * The pre-existing Role or ClusterRole to bind a 
      * generated service account to. Mutually exclusive with `serviceAccountName` and
      * `generatedRoleRules`. If set, Kubernetes token, service account, and role
      * binding objects will be created when credentials are requested.
      */
-    public readonly kubernetesRoleName!: pulumi.Output<string | undefined>;
+    declare public readonly kubernetesRoleName: pulumi.Output<string | undefined>;
     /**
      * Specifies whether the Kubernetes role is a Role or 
      * ClusterRole.
      */
-    public readonly kubernetesRoleType!: pulumi.Output<string | undefined>;
+    declare public readonly kubernetesRoleType: pulumi.Output<string | undefined>;
     /**
      * The name of the role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The name template to use when generating service accounts, 
      * roles and role bindings. If unset, a default template is used.
      */
-    public readonly nameTemplate!: pulumi.Output<string | undefined>;
+    declare public readonly nameTemplate: pulumi.Output<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The pre-existing service account to generate tokens for.
      * Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
      * Kubernetes token will be created when credentials are requested.
      */
-    public readonly serviceAccountName!: pulumi.Output<string | undefined>;
+    declare public readonly serviceAccountName: pulumi.Output<string | undefined>;
     /**
      * The default TTL for generated Kubernetes tokens in seconds.
      */
-    public readonly tokenDefaultTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenDefaultTtl: pulumi.Output<number | undefined>;
     /**
      * The maximum TTL for generated Kubernetes tokens in seconds.
      */
-    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    declare public readonly tokenMaxTtl: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -254,39 +254,39 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            resourceInputs["allowedKubernetesNamespaceSelector"] = state ? state.allowedKubernetesNamespaceSelector : undefined;
-            resourceInputs["allowedKubernetesNamespaces"] = state ? state.allowedKubernetesNamespaces : undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["extraAnnotations"] = state ? state.extraAnnotations : undefined;
-            resourceInputs["extraLabels"] = state ? state.extraLabels : undefined;
-            resourceInputs["generatedRoleRules"] = state ? state.generatedRoleRules : undefined;
-            resourceInputs["kubernetesRoleName"] = state ? state.kubernetesRoleName : undefined;
-            resourceInputs["kubernetesRoleType"] = state ? state.kubernetesRoleType : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nameTemplate"] = state ? state.nameTemplate : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["serviceAccountName"] = state ? state.serviceAccountName : undefined;
-            resourceInputs["tokenDefaultTtl"] = state ? state.tokenDefaultTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["allowedKubernetesNamespaceSelector"] = state?.allowedKubernetesNamespaceSelector;
+            resourceInputs["allowedKubernetesNamespaces"] = state?.allowedKubernetesNamespaces;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["extraAnnotations"] = state?.extraAnnotations;
+            resourceInputs["extraLabels"] = state?.extraLabels;
+            resourceInputs["generatedRoleRules"] = state?.generatedRoleRules;
+            resourceInputs["kubernetesRoleName"] = state?.kubernetesRoleName;
+            resourceInputs["kubernetesRoleType"] = state?.kubernetesRoleType;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nameTemplate"] = state?.nameTemplate;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["serviceAccountName"] = state?.serviceAccountName;
+            resourceInputs["tokenDefaultTtl"] = state?.tokenDefaultTtl;
+            resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            resourceInputs["allowedKubernetesNamespaceSelector"] = args ? args.allowedKubernetesNamespaceSelector : undefined;
-            resourceInputs["allowedKubernetesNamespaces"] = args ? args.allowedKubernetesNamespaces : undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["extraAnnotations"] = args ? args.extraAnnotations : undefined;
-            resourceInputs["extraLabels"] = args ? args.extraLabels : undefined;
-            resourceInputs["generatedRoleRules"] = args ? args.generatedRoleRules : undefined;
-            resourceInputs["kubernetesRoleName"] = args ? args.kubernetesRoleName : undefined;
-            resourceInputs["kubernetesRoleType"] = args ? args.kubernetesRoleType : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nameTemplate"] = args ? args.nameTemplate : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["serviceAccountName"] = args ? args.serviceAccountName : undefined;
-            resourceInputs["tokenDefaultTtl"] = args ? args.tokenDefaultTtl : undefined;
-            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["allowedKubernetesNamespaceSelector"] = args?.allowedKubernetesNamespaceSelector;
+            resourceInputs["allowedKubernetesNamespaces"] = args?.allowedKubernetesNamespaces;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["extraAnnotations"] = args?.extraAnnotations;
+            resourceInputs["extraLabels"] = args?.extraLabels;
+            resourceInputs["generatedRoleRules"] = args?.generatedRoleRules;
+            resourceInputs["kubernetesRoleName"] = args?.kubernetesRoleName;
+            resourceInputs["kubernetesRoleType"] = args?.kubernetesRoleType;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nameTemplate"] = args?.nameTemplate;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["serviceAccountName"] = args?.serviceAccountName;
+            resourceInputs["tokenDefaultTtl"] = args?.tokenDefaultTtl;
+            resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);

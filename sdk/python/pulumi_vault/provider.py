@@ -73,8 +73,7 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[_builtins.int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
         :param pulumi.Input[_builtins.str] namespace: The namespace to use. Available only for Vault Enterprise.
-        :param pulumi.Input[_builtins.bool] set_namespace_from_token: In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-               token namespace as the root namespace for all resources.
+        :param pulumi.Input[_builtins.bool] set_namespace_from_token: In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
         :param pulumi.Input[_builtins.bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[_builtins.bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[_builtins.bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.
@@ -415,8 +414,7 @@ class ProviderArgs:
     @pulumi.getter(name="setNamespaceFromToken")
     def set_namespace_from_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-        token namespace as the root namespace for all resources.
+        In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
         """
         return pulumi.get(self, "set_namespace_from_token")
 
@@ -575,8 +573,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[_builtins.int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
         :param pulumi.Input[_builtins.str] namespace: The namespace to use. Available only for Vault Enterprise.
-        :param pulumi.Input[_builtins.bool] set_namespace_from_token: In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-               token namespace as the root namespace for all resources.
+        :param pulumi.Input[_builtins.bool] set_namespace_from_token: In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
         :param pulumi.Input[_builtins.bool] skip_child_token: Set this to true to prevent the creation of ephemeral child token used by this provider.
         :param pulumi.Input[_builtins.bool] skip_get_vault_version: Skip the dynamic fetching of the Vault server version.
         :param pulumi.Input[_builtins.bool] skip_tls_verify: Set this to true only if the target Vault server is an insecure development instance.

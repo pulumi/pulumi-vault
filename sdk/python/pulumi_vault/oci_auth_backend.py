@@ -44,8 +44,7 @@ class OciAuthBackendArgs:
         :param pulumi.Input[_builtins.str] path: Unique name of the auth backend to configure.
         :param pulumi.Input[_builtins.int] rotation_period: The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
         :param pulumi.Input[_builtins.str] rotation_schedule: The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
-        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-               Can only be used with rotation_schedule.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         :param pulumi.Input['OciAuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -173,8 +172,7 @@ class OciAuthBackendArgs:
     @pulumi.getter(name="rotationWindow")
     def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-        Can only be used with rotation_schedule.
+        The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         """
         return pulumi.get(self, "rotation_window")
 
@@ -225,8 +223,7 @@ class _OciAuthBackendState:
         :param pulumi.Input[_builtins.str] path: Unique name of the auth backend to configure.
         :param pulumi.Input[_builtins.int] rotation_period: The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
         :param pulumi.Input[_builtins.str] rotation_schedule: The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
-        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-               Can only be used with rotation_schedule.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         :param pulumi.Input['OciAuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -369,8 +366,7 @@ class _OciAuthBackendState:
     @pulumi.getter(name="rotationWindow")
     def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-        Can only be used with rotation_schedule.
+        The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         """
         return pulumi.get(self, "rotation_window")
 
@@ -443,8 +439,7 @@ class OciAuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] path: Unique name of the auth backend to configure.
         :param pulumi.Input[_builtins.int] rotation_period: The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
         :param pulumi.Input[_builtins.str] rotation_schedule: The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
-        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-               Can only be used with rotation_schedule.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         :param pulumi.Input[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -564,8 +559,7 @@ class OciAuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] path: Unique name of the auth backend to configure.
         :param pulumi.Input[_builtins.int] rotation_period: The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
         :param pulumi.Input[_builtins.str] rotation_schedule: The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
-        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-               Can only be used with rotation_schedule.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         :param pulumi.Input[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
@@ -666,8 +660,7 @@ class OciAuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="rotationWindow")
     def rotation_window(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-        Can only be used with rotation_schedule.
+        The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         """
         return pulumi.get(self, "rotation_window")
 

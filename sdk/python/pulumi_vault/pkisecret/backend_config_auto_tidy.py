@@ -47,8 +47,7 @@ class BackendConfigAutoTidyArgs:
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether automatic tidy is enabled or not.
-        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-               time after being marked revoked or deactivated.
+        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         :param pulumi.Input[_builtins.str] interval_duration: Interval at which to run an auto-tidy operation. This is the time
                between tidy invocations (after one finishes to the start of the next).
         :param pulumi.Input[_builtins.str] issuer_safety_buffer: The amount of extra time that must have passed beyond issuer's
@@ -164,8 +163,7 @@ class BackendConfigAutoTidyArgs:
     @pulumi.getter(name="acmeAccountSafetyBuffer")
     def acme_account_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-        time after being marked revoked or deactivated.
+        The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         """
         return pulumi.get(self, "acme_account_safety_buffer")
 
@@ -462,8 +460,7 @@ class _BackendConfigAutoTidyState:
                  tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering BackendConfigAutoTidy resources.
-        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-               time after being marked revoked or deactivated.
+        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether automatic tidy is enabled or not.
@@ -559,8 +556,7 @@ class _BackendConfigAutoTidyState:
     @pulumi.getter(name="acmeAccountSafetyBuffer")
     def acme_account_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-        time after being marked revoked or deactivated.
+        The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         """
         return pulumi.get(self, "acme_account_safety_buffer")
 
@@ -907,8 +903,7 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-               time after being marked revoked or deactivated.
+        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether automatic tidy is enabled or not.
@@ -1094,8 +1089,7 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-               time after being marked revoked or deactivated.
+        :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether automatic tidy is enabled or not.
@@ -1173,8 +1167,7 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
     @pulumi.getter(name="acmeAccountSafetyBuffer")
     def acme_account_safety_buffer(self) -> pulumi.Output[_builtins.str]:
         """
-        The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of
-        time after being marked revoked or deactivated.
+        The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         """
         return pulumi.get(self, "acme_account_safety_buffer")
 

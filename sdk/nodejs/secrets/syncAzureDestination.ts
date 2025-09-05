@@ -65,57 +65,57 @@ export class SyncAzureDestination extends pulumi.CustomResource {
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
      * variable.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * Client Secret of an Azure app registration.
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_SECRET` environment
      * variable.
      */
-    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
      * Specifies a cloud for the client. The default is Azure Public Cloud.
      */
-    public readonly cloud!: pulumi.Output<string | undefined>;
+    declare public readonly cloud: pulumi.Output<string | undefined>;
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    public readonly customTags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly customTags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    public readonly granularity!: pulumi.Output<string | undefined>;
+    declare public readonly granularity: pulumi.Output<string | undefined>;
     /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
      * variable.
      */
-    public readonly keyVaultUri!: pulumi.Output<string | undefined>;
+    declare public readonly keyVaultUri: pulumi.Output<string | undefined>;
     /**
      * Unique name of the Azure destination.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    public readonly secretNameTemplate!: pulumi.Output<string>;
+    declare public readonly secretNameTemplate: pulumi.Output<string>;
     /**
      * ID of the target Azure tenant.
      * Can be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment
      * variable.
      */
-    public readonly tenantId!: pulumi.Output<string | undefined>;
+    declare public readonly tenantId: pulumi.Output<string | undefined>;
     /**
      * The type of the secrets destination (`azure-kv`).
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a SyncAzureDestination resource with the given unique name, arguments, and options.
@@ -130,29 +130,29 @@ export class SyncAzureDestination extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncAzureDestinationState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["cloud"] = state ? state.cloud : undefined;
-            resourceInputs["customTags"] = state ? state.customTags : undefined;
-            resourceInputs["granularity"] = state ? state.granularity : undefined;
-            resourceInputs["keyVaultUri"] = state ? state.keyVaultUri : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["secretNameTemplate"] = state ? state.secretNameTemplate : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["cloud"] = state?.cloud;
+            resourceInputs["customTags"] = state?.customTags;
+            resourceInputs["granularity"] = state?.granularity;
+            resourceInputs["keyVaultUri"] = state?.keyVaultUri;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["secretNameTemplate"] = state?.secretNameTemplate;
+            resourceInputs["tenantId"] = state?.tenantId;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SyncAzureDestinationArgs | undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
-            resourceInputs["cloud"] = args ? args.cloud : undefined;
-            resourceInputs["customTags"] = args ? args.customTags : undefined;
-            resourceInputs["granularity"] = args ? args.granularity : undefined;
-            resourceInputs["keyVaultUri"] = args ? args.keyVaultUri : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["secretNameTemplate"] = args ? args.secretNameTemplate : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["cloud"] = args?.cloud;
+            resourceInputs["customTags"] = args?.customTags;
+            resourceInputs["granularity"] = args?.granularity;
+            resourceInputs["keyVaultUri"] = args?.keyVaultUri;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["secretNameTemplate"] = args?.secretNameTemplate;
+            resourceInputs["tenantId"] = args?.tenantId;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

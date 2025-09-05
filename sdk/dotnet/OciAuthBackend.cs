@@ -98,8 +98,7 @@ namespace Pulumi.Vault
         public Output<string?> RotationSchedule { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-        /// Can only be used with rotation_schedule.
+        /// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         /// </summary>
         [Output("rotationWindow")]
         public Output<int?> RotationWindow { get; private set; } = null!;
@@ -224,8 +223,7 @@ namespace Pulumi.Vault
         public Input<string>? RotationSchedule { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-        /// Can only be used with rotation_schedule.
+        /// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
@@ -314,8 +312,7 @@ namespace Pulumi.Vault
         public Input<string>? RotationSchedule { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered.
-        /// Can only be used with rotation_schedule.
+        /// The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }

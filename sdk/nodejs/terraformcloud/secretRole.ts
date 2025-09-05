@@ -60,26 +60,26 @@ export class SecretRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretRole.__pulumiType;
     }
 
-    public readonly backend!: pulumi.Output<string | undefined>;
+    declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
-    public readonly maxTtl!: pulumi.Output<number | undefined>;
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly maxTtl: pulumi.Output<number | undefined>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
-    public readonly organization!: pulumi.Output<string | undefined>;
-    public readonly teamId!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
+    declare public readonly organization: pulumi.Output<string | undefined>;
+    declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * Specifies the TTL for this role, in seconds.
      */
-    public readonly ttl!: pulumi.Output<number | undefined>;
-    public readonly userId!: pulumi.Output<string | undefined>;
+    declare public readonly ttl: pulumi.Output<number | undefined>;
+    declare public readonly userId: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretRole resource with the given unique name, arguments, and options.
@@ -94,24 +94,24 @@ export class SecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["organization"] = state ? state.organization : undefined;
-            resourceInputs["teamId"] = state ? state.teamId : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["organization"] = state?.organization;
+            resourceInputs["teamId"] = state?.teamId;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["organization"] = args ? args.organization : undefined;
-            resourceInputs["teamId"] = args ? args.teamId : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["organization"] = args?.organization;
+            resourceInputs["teamId"] = args?.teamId;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretRole.__pulumiType, name, resourceInputs, opts);

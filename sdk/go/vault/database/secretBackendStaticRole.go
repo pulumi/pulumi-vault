@@ -99,8 +99,7 @@ type SecretBackendStaticRole struct {
 	// The unique name of the Vault mount to configure.
 	Backend          pulumi.StringOutput    `pulumi:"backend"`
 	CredentialConfig pulumi.StringMapOutput `pulumi:"credentialConfig"`
-	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-	// be done in `credentialConfig`.
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType pulumi.StringOutput `pulumi:"credentialType"`
 	// The unique name of the database connection to use for the static role.
 	DbName pulumi.StringOutput `pulumi:"dbName"`
@@ -185,8 +184,7 @@ type secretBackendStaticRoleState struct {
 	// The unique name of the Vault mount to configure.
 	Backend          *string           `pulumi:"backend"`
 	CredentialConfig map[string]string `pulumi:"credentialConfig"`
-	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-	// be done in `credentialConfig`.
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType *string `pulumi:"credentialType"`
 	// The unique name of the database connection to use for the static role.
 	DbName *string `pulumi:"dbName"`
@@ -226,8 +224,7 @@ type SecretBackendStaticRoleState struct {
 	// The unique name of the Vault mount to configure.
 	Backend          pulumi.StringPtrInput
 	CredentialConfig pulumi.StringMapInput
-	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-	// be done in `credentialConfig`.
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType pulumi.StringPtrInput
 	// The unique name of the database connection to use for the static role.
 	DbName pulumi.StringPtrInput
@@ -271,8 +268,7 @@ type secretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
 	Backend          string            `pulumi:"backend"`
 	CredentialConfig map[string]string `pulumi:"credentialConfig"`
-	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-	// be done in `credentialConfig`.
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType *string `pulumi:"credentialType"`
 	// The unique name of the database connection to use for the static role.
 	DbName string `pulumi:"dbName"`
@@ -313,8 +309,7 @@ type SecretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
 	Backend          pulumi.StringInput
 	CredentialConfig pulumi.StringMapInput
-	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-	// be done in `credentialConfig`.
+	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType pulumi.StringPtrInput
 	// The unique name of the database connection to use for the static role.
 	DbName pulumi.StringInput
@@ -446,8 +441,7 @@ func (o SecretBackendStaticRoleOutput) CredentialConfig() pulumi.StringMapOutput
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringMapOutput { return v.CredentialConfig }).(pulumi.StringMapOutput)
 }
 
-// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
-// be done in `credentialConfig`.
+// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 func (o SecretBackendStaticRoleOutput) CredentialType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringOutput { return v.CredentialType }).(pulumi.StringOutput)
 }

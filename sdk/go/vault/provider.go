@@ -112,8 +112,7 @@ type providerArgs struct {
 	MaxRetriesCcc *int `pulumi:"maxRetriesCcc"`
 	// The namespace to use. Available only for Vault Enterprise.
 	Namespace *string `pulumi:"namespace"`
-	// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-	// token namespace as the root namespace for all resources.
+	// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
 	SetNamespaceFromToken *bool `pulumi:"setNamespaceFromToken"`
 	// Set this to true to prevent the creation of ephemeral child token used by this provider.
 	SkipChildToken *bool `pulumi:"skipChildToken"`
@@ -176,8 +175,7 @@ type ProviderArgs struct {
 	MaxRetriesCcc pulumi.IntPtrInput
 	// The namespace to use. Available only for Vault Enterprise.
 	Namespace pulumi.StringPtrInput
-	// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the
-	// token namespace as the root namespace for all resources.
+	// In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
 	SetNamespaceFromToken pulumi.BoolPtrInput
 	// Set this to true to prevent the creation of ephemeral child token used by this provider.
 	SkipChildToken pulumi.BoolPtrInput

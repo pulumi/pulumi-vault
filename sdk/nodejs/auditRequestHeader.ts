@@ -55,15 +55,15 @@ export class AuditRequestHeader extends pulumi.CustomResource {
     /**
      * Whether this header's value should be HMAC'd in the audit logs.
      */
-    public readonly hmac!: pulumi.Output<boolean | undefined>;
+    declare public readonly hmac: pulumi.Output<boolean | undefined>;
     /**
      * The name of the request header to audit.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
 
     /**
      * Create a AuditRequestHeader resource with the given unique name, arguments, and options.
@@ -78,14 +78,14 @@ export class AuditRequestHeader extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuditRequestHeaderState | undefined;
-            resourceInputs["hmac"] = state ? state.hmac : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["hmac"] = state?.hmac;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
         } else {
             const args = argsOrState as AuditRequestHeaderArgs | undefined;
-            resourceInputs["hmac"] = args ? args.hmac : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["hmac"] = args?.hmac;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AuditRequestHeader.__pulumiType, name, resourceInputs, opts);

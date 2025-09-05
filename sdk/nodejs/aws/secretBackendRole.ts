@@ -73,13 +73,13 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * The path the AWS secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    public readonly backend!: pulumi.Output<string>;
+    declare public readonly backend: pulumi.Output<string>;
     /**
      * Specifies the type of credential to be used when
      * retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
      * `federationToken`.
      */
-    public readonly credentialType!: pulumi.Output<string>;
+    declare public readonly credentialType: pulumi.Output<string>;
     /**
      * The default TTL in seconds for STS credentials.
      * When a TTL is not specified when STS credentials are requested,
@@ -87,12 +87,12 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * then this default TTL will be used. Valid only when `credentialType` is one of
      * `assumedRole` or `federationToken`.
      */
-    public readonly defaultStsTtl!: pulumi.Output<number>;
+    declare public readonly defaultStsTtl: pulumi.Output<number>;
     /**
      * External ID to set for assume role creds. 
      * Valid only when `credentialType` is set to `assumedRole`.
      */
-    public readonly externalId!: pulumi.Output<string | undefined>;
+    declare public readonly externalId: pulumi.Output<string | undefined>;
     /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
@@ -101,37 +101,37 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * policies from each group in `iamGroups` combined with the `policyDocument`
      * and `policyArns` parameters.
      */
-    public readonly iamGroups!: pulumi.Output<string[] | undefined>;
+    declare public readonly iamGroups: pulumi.Output<string[] | undefined>;
     /**
      * A map of strings representing key/value pairs
      * to be used as tags for any IAM user that is created by this role.
      */
-    public readonly iamTags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly iamTags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
      */
-    public readonly maxStsTtl!: pulumi.Output<number>;
+    declare public readonly maxStsTtl: pulumi.Output<number>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * The ARN of the AWS Permissions 
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
      */
-    public readonly permissionsBoundaryArn!: pulumi.Output<string | undefined>;
+    declare public readonly permissionsBoundaryArn: pulumi.Output<string | undefined>;
     /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
@@ -141,7 +141,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      */
-    public readonly policyArns!: pulumi.Output<string[] | undefined>;
+    declare public readonly policyArns: pulumi.Output<string[] | undefined>;
     /**
      * The IAM policy document for the role. The
      * behavior depends on the credential type. With `iamUser`, the policy document
@@ -149,24 +149,24 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * user has. With `assumedRole` and `federationToken`, the policy document will
      * act as a filter on what the credentials can do, similar to `policyArns`.
      */
-    public readonly policyDocument!: pulumi.Output<string | undefined>;
+    declare public readonly policyDocument: pulumi.Output<string | undefined>;
     /**
      * Specifies the ARNs of the AWS roles this Vault role
      * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      */
-    public readonly roleArns!: pulumi.Output<string[] | undefined>;
+    declare public readonly roleArns: pulumi.Output<string[] | undefined>;
     /**
      * A map of strings representing key/value pairs to be set
      * during assume role creds creation. Valid only when `credentialType` is set to
      * `assumedRole`.
      */
-    public readonly sessionTags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly sessionTags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The path for the user name. Valid only when 
      * `credentialType` is `iamUser`. Default is `/`.
      */
-    public readonly userPath!: pulumi.Output<string | undefined>;
+    declare public readonly userPath: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackendRole resource with the given unique name, arguments, and options.
@@ -181,44 +181,44 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
-            resourceInputs["backend"] = state ? state.backend : undefined;
-            resourceInputs["credentialType"] = state ? state.credentialType : undefined;
-            resourceInputs["defaultStsTtl"] = state ? state.defaultStsTtl : undefined;
-            resourceInputs["externalId"] = state ? state.externalId : undefined;
-            resourceInputs["iamGroups"] = state ? state.iamGroups : undefined;
-            resourceInputs["iamTags"] = state ? state.iamTags : undefined;
-            resourceInputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["permissionsBoundaryArn"] = state ? state.permissionsBoundaryArn : undefined;
-            resourceInputs["policyArns"] = state ? state.policyArns : undefined;
-            resourceInputs["policyDocument"] = state ? state.policyDocument : undefined;
-            resourceInputs["roleArns"] = state ? state.roleArns : undefined;
-            resourceInputs["sessionTags"] = state ? state.sessionTags : undefined;
-            resourceInputs["userPath"] = state ? state.userPath : undefined;
+            resourceInputs["backend"] = state?.backend;
+            resourceInputs["credentialType"] = state?.credentialType;
+            resourceInputs["defaultStsTtl"] = state?.defaultStsTtl;
+            resourceInputs["externalId"] = state?.externalId;
+            resourceInputs["iamGroups"] = state?.iamGroups;
+            resourceInputs["iamTags"] = state?.iamTags;
+            resourceInputs["maxStsTtl"] = state?.maxStsTtl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["permissionsBoundaryArn"] = state?.permissionsBoundaryArn;
+            resourceInputs["policyArns"] = state?.policyArns;
+            resourceInputs["policyDocument"] = state?.policyDocument;
+            resourceInputs["roleArns"] = state?.roleArns;
+            resourceInputs["sessionTags"] = state?.sessionTags;
+            resourceInputs["userPath"] = state?.userPath;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.backend === undefined) && !opts.urn) {
+            if (args?.backend === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
-            if ((!args || args.credentialType === undefined) && !opts.urn) {
+            if (args?.credentialType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'credentialType'");
             }
-            resourceInputs["backend"] = args ? args.backend : undefined;
-            resourceInputs["credentialType"] = args ? args.credentialType : undefined;
-            resourceInputs["defaultStsTtl"] = args ? args.defaultStsTtl : undefined;
-            resourceInputs["externalId"] = args ? args.externalId : undefined;
-            resourceInputs["iamGroups"] = args ? args.iamGroups : undefined;
-            resourceInputs["iamTags"] = args ? args.iamTags : undefined;
-            resourceInputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["permissionsBoundaryArn"] = args ? args.permissionsBoundaryArn : undefined;
-            resourceInputs["policyArns"] = args ? args.policyArns : undefined;
-            resourceInputs["policyDocument"] = args ? args.policyDocument : undefined;
-            resourceInputs["roleArns"] = args ? args.roleArns : undefined;
-            resourceInputs["sessionTags"] = args ? args.sessionTags : undefined;
-            resourceInputs["userPath"] = args ? args.userPath : undefined;
+            resourceInputs["backend"] = args?.backend;
+            resourceInputs["credentialType"] = args?.credentialType;
+            resourceInputs["defaultStsTtl"] = args?.defaultStsTtl;
+            resourceInputs["externalId"] = args?.externalId;
+            resourceInputs["iamGroups"] = args?.iamGroups;
+            resourceInputs["iamTags"] = args?.iamTags;
+            resourceInputs["maxStsTtl"] = args?.maxStsTtl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["permissionsBoundaryArn"] = args?.permissionsBoundaryArn;
+            resourceInputs["policyArns"] = args?.policyArns;
+            resourceInputs["policyDocument"] = args?.policyDocument;
+            resourceInputs["roleArns"] = args?.roleArns;
+            resourceInputs["sessionTags"] = args?.sessionTags;
+            resourceInputs["userPath"] = args?.userPath;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);

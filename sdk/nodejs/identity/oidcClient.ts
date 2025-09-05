@@ -71,53 +71,53 @@ export class OidcClient extends pulumi.CustomResource {
     /**
      * The time-to-live for access tokens obtained by the client.
      */
-    public readonly accessTokenTtl!: pulumi.Output<number>;
+    declare public readonly accessTokenTtl: pulumi.Output<number>;
     /**
      * A list of assignment resources associated with the client.
      */
-    public readonly assignments!: pulumi.Output<string[] | undefined>;
+    declare public readonly assignments: pulumi.Output<string[] | undefined>;
     /**
      * The Client ID returned by Vault.
      */
-    public /*out*/ readonly clientId!: pulumi.Output<string>;
+    declare public /*out*/ readonly clientId: pulumi.Output<string>;
     /**
      * The Client Secret Key returned by Vault.
      * For public OpenID Clients `clientSecret` is set to an empty string `""`
      */
-    public /*out*/ readonly clientSecret!: pulumi.Output<string>;
+    declare public /*out*/ readonly clientSecret: pulumi.Output<string>;
     /**
      * The client type based on its ability to maintain confidentiality of credentials.
      * The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
      */
-    public readonly clientType!: pulumi.Output<string>;
+    declare public readonly clientType: pulumi.Output<string>;
     /**
      * The time-to-live for ID tokens obtained by the client. 
      * The value should be less than the `verificationTtl` on the key.
      */
-    public readonly idTokenTtl!: pulumi.Output<number>;
+    declare public readonly idTokenTtl: pulumi.Output<number>;
     /**
      * A reference to a named key resource in Vault.
      * This cannot be modified after creation. If not provided, the `default`
      * key is used.
      */
-    public readonly key!: pulumi.Output<string>;
+    declare public readonly key: pulumi.Output<string>;
     /**
      * The name of the client.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Redirection URI values used by the client. 
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      */
-    public readonly redirectUris!: pulumi.Output<string[] | undefined>;
+    declare public readonly redirectUris: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a OidcClient resource with the given unique name, arguments, and options.
@@ -132,26 +132,26 @@ export class OidcClient extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OidcClientState | undefined;
-            resourceInputs["accessTokenTtl"] = state ? state.accessTokenTtl : undefined;
-            resourceInputs["assignments"] = state ? state.assignments : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["clientType"] = state ? state.clientType : undefined;
-            resourceInputs["idTokenTtl"] = state ? state.idTokenTtl : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["redirectUris"] = state ? state.redirectUris : undefined;
+            resourceInputs["accessTokenTtl"] = state?.accessTokenTtl;
+            resourceInputs["assignments"] = state?.assignments;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientType"] = state?.clientType;
+            resourceInputs["idTokenTtl"] = state?.idTokenTtl;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["redirectUris"] = state?.redirectUris;
         } else {
             const args = argsOrState as OidcClientArgs | undefined;
-            resourceInputs["accessTokenTtl"] = args ? args.accessTokenTtl : undefined;
-            resourceInputs["assignments"] = args ? args.assignments : undefined;
-            resourceInputs["clientType"] = args ? args.clientType : undefined;
-            resourceInputs["idTokenTtl"] = args ? args.idTokenTtl : undefined;
-            resourceInputs["key"] = args ? args.key : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["redirectUris"] = args ? args.redirectUris : undefined;
+            resourceInputs["accessTokenTtl"] = args?.accessTokenTtl;
+            resourceInputs["assignments"] = args?.assignments;
+            resourceInputs["clientType"] = args?.clientType;
+            resourceInputs["idTokenTtl"] = args?.idTokenTtl;
+            resourceInputs["key"] = args?.key;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["redirectUris"] = args?.redirectUris;
             resourceInputs["clientId"] = undefined /*out*/;
             resourceInputs["clientSecret"] = undefined /*out*/;
         }

@@ -59,55 +59,55 @@ export class MfaOkta extends pulumi.CustomResource {
     /**
      * Okta API token.
      */
-    public readonly apiToken!: pulumi.Output<string>;
+    declare public readonly apiToken: pulumi.Output<string>;
     /**
      * The base domain to use for API requests.
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
      * Method ID.
      */
-    public /*out*/ readonly methodId!: pulumi.Output<string>;
+    declare public /*out*/ readonly methodId: pulumi.Output<string>;
     /**
      * Mount accessor.
      */
-    public /*out*/ readonly mountAccessor!: pulumi.Output<string>;
+    declare public /*out*/ readonly mountAccessor: pulumi.Output<string>;
     /**
      * Method name.
      */
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    public /*out*/ readonly namespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespaceId: pulumi.Output<string>;
     /**
      * Method's namespace path.
      */
-    public /*out*/ readonly namespacePath!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespacePath: pulumi.Output<string>;
     /**
      * Name of the organization to be used in the Okta API.
      */
-    public readonly orgName!: pulumi.Output<string>;
+    declare public readonly orgName: pulumi.Output<string>;
     /**
      * Only match the primary email for the account.
      */
-    public readonly primaryEmail!: pulumi.Output<boolean | undefined>;
+    declare public readonly primaryEmail: pulumi.Output<boolean | undefined>;
     /**
      * MFA type.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    public readonly usernameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly usernameFormat: pulumi.Output<string | undefined>;
     /**
      * Resource UUID.
      */
-    public /*out*/ readonly uuid!: pulumi.Output<string>;
+    declare public /*out*/ readonly uuid: pulumi.Output<string>;
 
     /**
      * Create a MfaOkta resource with the given unique name, arguments, and options.
@@ -122,33 +122,33 @@ export class MfaOkta extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MfaOktaState | undefined;
-            resourceInputs["apiToken"] = state ? state.apiToken : undefined;
-            resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
-            resourceInputs["methodId"] = state ? state.methodId : undefined;
-            resourceInputs["mountAccessor"] = state ? state.mountAccessor : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["namespacePath"] = state ? state.namespacePath : undefined;
-            resourceInputs["orgName"] = state ? state.orgName : undefined;
-            resourceInputs["primaryEmail"] = state ? state.primaryEmail : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["usernameFormat"] = state ? state.usernameFormat : undefined;
-            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["apiToken"] = state?.apiToken;
+            resourceInputs["baseUrl"] = state?.baseUrl;
+            resourceInputs["methodId"] = state?.methodId;
+            resourceInputs["mountAccessor"] = state?.mountAccessor;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["namespacePath"] = state?.namespacePath;
+            resourceInputs["orgName"] = state?.orgName;
+            resourceInputs["primaryEmail"] = state?.primaryEmail;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["usernameFormat"] = state?.usernameFormat;
+            resourceInputs["uuid"] = state?.uuid;
         } else {
             const args = argsOrState as MfaOktaArgs | undefined;
-            if ((!args || args.apiToken === undefined) && !opts.urn) {
+            if (args?.apiToken === undefined && !opts.urn) {
                 throw new Error("Missing required property 'apiToken'");
             }
-            if ((!args || args.orgName === undefined) && !opts.urn) {
+            if (args?.orgName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgName'");
             }
             resourceInputs["apiToken"] = args?.apiToken ? pulumi.secret(args.apiToken) : undefined;
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["orgName"] = args ? args.orgName : undefined;
-            resourceInputs["primaryEmail"] = args ? args.primaryEmail : undefined;
-            resourceInputs["usernameFormat"] = args ? args.usernameFormat : undefined;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["orgName"] = args?.orgName;
+            resourceInputs["primaryEmail"] = args?.primaryEmail;
+            resourceInputs["usernameFormat"] = args?.usernameFormat;
             resourceInputs["methodId"] = undefined /*out*/;
             resourceInputs["mountAccessor"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;

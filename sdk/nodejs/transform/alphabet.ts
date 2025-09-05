@@ -57,22 +57,22 @@ export class Alphabet extends pulumi.CustomResource {
     /**
      * A string of characters that contains the alphabet set.
      */
-    public readonly alphabet!: pulumi.Output<string | undefined>;
+    declare public readonly alphabet: pulumi.Output<string | undefined>;
     /**
      * The name of the alphabet.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
 
     /**
      * Create a Alphabet resource with the given unique name, arguments, and options.
@@ -87,19 +87,19 @@ export class Alphabet extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlphabetState | undefined;
-            resourceInputs["alphabet"] = state ? state.alphabet : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["alphabet"] = state?.alphabet;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
         } else {
             const args = argsOrState as AlphabetArgs | undefined;
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            resourceInputs["alphabet"] = args ? args.alphabet : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["alphabet"] = args?.alphabet;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Alphabet.__pulumiType, name, resourceInputs, opts);

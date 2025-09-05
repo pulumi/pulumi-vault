@@ -50,19 +50,19 @@ export class Keys extends pulumi.CustomResource {
     /**
      * Configuration block for AWS Managed Keys
      */
-    public readonly aws!: pulumi.Output<outputs.managed.KeysAw[] | undefined>;
+    declare public readonly aws: pulumi.Output<outputs.managed.KeysAw[] | undefined>;
     /**
      * Configuration block for Azure Managed Keys
      */
-    public readonly azures!: pulumi.Output<outputs.managed.KeysAzure[] | undefined>;
+    declare public readonly azures: pulumi.Output<outputs.managed.KeysAzure[] | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Configuration block for PKCS Managed Keys
      */
-    public readonly pkcs!: pulumi.Output<outputs.managed.KeysPkc[] | undefined>;
+    declare public readonly pkcs: pulumi.Output<outputs.managed.KeysPkc[] | undefined>;
 
     /**
      * Create a Keys resource with the given unique name, arguments, and options.
@@ -77,16 +77,16 @@ export class Keys extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KeysState | undefined;
-            resourceInputs["aws"] = state ? state.aws : undefined;
-            resourceInputs["azures"] = state ? state.azures : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["pkcs"] = state ? state.pkcs : undefined;
+            resourceInputs["aws"] = state?.aws;
+            resourceInputs["azures"] = state?.azures;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["pkcs"] = state?.pkcs;
         } else {
             const args = argsOrState as KeysArgs | undefined;
-            resourceInputs["aws"] = args ? args.aws : undefined;
-            resourceInputs["azures"] = args ? args.azures : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["pkcs"] = args ? args.pkcs : undefined;
+            resourceInputs["aws"] = args?.aws;
+            resourceInputs["azures"] = args?.azures;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["pkcs"] = args?.pkcs;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Keys.__pulumiType, name, resourceInputs, opts);
