@@ -27,7 +27,8 @@ class AuthBackendConfigIdentityArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendConfigIdentity resource.
-        :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.str] ec2_alias: How to generate the identity alias when using the ec2 auth method. Valid choices are
                `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
@@ -58,7 +59,8 @@ class AuthBackendConfigIdentityArgs:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique name of the auth backend to configure.
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
         """
         return pulumi.get(self, "backend")
 
@@ -145,7 +147,8 @@ class _AuthBackendConfigIdentityState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfigIdentity resources.
-        :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.str] ec2_alias: How to generate the identity alias when using the ec2 auth method. Valid choices are
                `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
@@ -176,7 +179,8 @@ class _AuthBackendConfigIdentityState:
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique name of the auth backend to configure.
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
         """
         return pulumi.get(self, "backend")
 
@@ -296,7 +300,8 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.str] ec2_alias: How to generate the identity alias when using the ec2 auth method. Valid choices are
                `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
@@ -404,7 +409,8 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
+        :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
+               mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.str] ec2_alias: How to generate the identity alias when using the ec2 auth method. Valid choices are
                `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
@@ -434,7 +440,8 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Unique name of the auth backend to configure.
+        The path the AWS auth backend being configured was
+        mounted at.  Defaults to `aws`.
         """
         return pulumi.get(self, "backend")
 

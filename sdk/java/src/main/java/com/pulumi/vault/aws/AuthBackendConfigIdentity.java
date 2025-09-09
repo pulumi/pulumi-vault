@@ -77,14 +77,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity")
 public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResource {
     /**
-     * Unique name of the auth backend to configure.
+     * The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      * 
      */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
     /**
-     * @return Unique name of the auth backend to configure.
+     * @return The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      * 
      */
     public Output<Optional<String>> backend() {

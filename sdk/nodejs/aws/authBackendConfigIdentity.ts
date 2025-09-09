@@ -63,7 +63,8 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
     }
 
     /**
-     * Unique name of the auth backend to configure.
+     * The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      */
     declare public readonly backend: pulumi.Output<string | undefined>;
     /**
@@ -132,7 +133,8 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
  */
 export interface AuthBackendConfigIdentityState {
     /**
-     * Unique name of the auth backend to configure.
+     * The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      */
     backend?: pulumi.Input<string>;
     /**
@@ -169,7 +171,8 @@ export interface AuthBackendConfigIdentityState {
  */
 export interface AuthBackendConfigIdentityArgs {
     /**
-     * Unique name of the auth backend to configure.
+     * The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      */
     backend?: pulumi.Input<string>;
     /**

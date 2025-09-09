@@ -106,6 +106,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly connectionTimeout: pulumi.Output<number | undefined>;
     /**
+     * The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     */
+    declare public readonly credentialType: pulumi.Output<string>;
+    /**
      * Default lease duration for tokens and secrets in seconds
      */
     declare public readonly defaultLeaseTtlSeconds: pulumi.Output<number>;
@@ -262,6 +266,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsCert"] = state?.clientTlsCert;
             resourceInputs["clientTlsKey"] = state?.clientTlsKey;
             resourceInputs["connectionTimeout"] = state?.connectionTimeout;
+            resourceInputs["credentialType"] = state?.credentialType;
             resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
             resourceInputs["description"] = state?.description;
@@ -310,6 +315,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsCert"] = args?.clientTlsCert ? pulumi.secret(args.clientTlsCert) : undefined;
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
             resourceInputs["connectionTimeout"] = args?.connectionTimeout;
+            resourceInputs["credentialType"] = args?.credentialType;
             resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
             resourceInputs["description"] = args?.description;
@@ -399,6 +405,10 @@ export interface SecretBackendState {
      * the next URL in the configuration.
      */
     connectionTimeout?: pulumi.Input<number>;
+    /**
+     * The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     */
+    credentialType?: pulumi.Input<string>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
@@ -579,6 +589,10 @@ export interface SecretBackendArgs {
      * the next URL in the configuration.
      */
     connectionTimeout?: pulumi.Input<number>;
+    /**
+     * The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     */
+    credentialType?: pulumi.Input<string>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */

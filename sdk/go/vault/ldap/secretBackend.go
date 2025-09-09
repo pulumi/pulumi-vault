@@ -79,6 +79,8 @@ type SecretBackend struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout pulumi.IntPtrOutput `pulumi:"connectionTimeout"`
+	// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+	CredentialType pulumi.StringOutput `pulumi:"credentialType"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -228,6 +230,8 @@ type secretBackendState struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout *int `pulumi:"connectionTimeout"`
+	// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+	CredentialType *string `pulumi:"credentialType"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -327,6 +331,8 @@ type SecretBackendState struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout pulumi.IntPtrInput
+	// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+	CredentialType pulumi.StringPtrInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
@@ -428,6 +434,8 @@ type secretBackendArgs struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout *int `pulumi:"connectionTimeout"`
+	// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+	CredentialType *string `pulumi:"credentialType"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -526,6 +534,8 @@ type SecretBackendArgs struct {
 	// Timeout, in seconds, when attempting to connect to the LDAP server before trying
 	// the next URL in the configuration.
 	ConnectionTimeout pulumi.IntPtrInput
+	// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+	CredentialType pulumi.StringPtrInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
@@ -742,6 +752,11 @@ func (o SecretBackendOutput) ClientTlsKey() pulumi.StringPtrOutput {
 // the next URL in the configuration.
 func (o SecretBackendOutput) ConnectionTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.ConnectionTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+func (o SecretBackendOutput) CredentialType() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.CredentialType }).(pulumi.StringOutput)
 }
 
 // Default lease duration for tokens and secrets in seconds
