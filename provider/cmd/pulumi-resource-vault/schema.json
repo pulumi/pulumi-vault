@@ -7295,7 +7295,7 @@
             "properties": {
                 "backend": {
                     "type": "string",
-                    "description": "Unique name of the auth backend to configure."
+                    "description": "The path the AWS auth backend being configured was\nmounted at.  Defaults to `aws`.\n"
                 },
                 "ec2Alias": {
                     "type": "string",
@@ -7327,7 +7327,7 @@
             "inputProperties": {
                 "backend": {
                     "type": "string",
-                    "description": "Unique name of the auth backend to configure.",
+                    "description": "The path the AWS auth backend being configured was\nmounted at.  Defaults to `aws`.\n",
                     "willReplaceOnChanges": true
                 },
                 "ec2Alias": {
@@ -7363,7 +7363,7 @@
                 "properties": {
                     "backend": {
                         "type": "string",
-                        "description": "Unique name of the auth backend to configure.",
+                        "description": "The path the AWS auth backend being configured was\nmounted at.  Defaults to `aws`.\n",
                         "willReplaceOnChanges": true
                     },
                     "ec2Alias": {
@@ -25882,6 +25882,10 @@
                     "type": "integer",
                     "description": "Timeout, in seconds, when attempting to connect to the LDAP server before trying\nthe next URL in the configuration.\n"
                 },
+                "credentialType": {
+                    "type": "string",
+                    "description": "The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.\n"
+                },
                 "defaultLeaseTtlSeconds": {
                     "type": "integer",
                     "description": "Default lease duration for tokens and secrets in seconds"
@@ -26018,6 +26022,7 @@
                 "auditNonHmacResponseKeys",
                 "binddn",
                 "bindpass",
+                "credentialType",
                 "defaultLeaseTtlSeconds",
                 "forceNoCache",
                 "maxLeaseTtlSeconds",
@@ -26084,6 +26089,10 @@
                 "connectionTimeout": {
                     "type": "integer",
                     "description": "Timeout, in seconds, when attempting to connect to the LDAP server before trying\nthe next URL in the configuration.\n"
+                },
+                "credentialType": {
+                    "type": "string",
+                    "description": "The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.\n"
                 },
                 "defaultLeaseTtlSeconds": {
                     "type": "integer",
@@ -26284,6 +26293,10 @@
                     "connectionTimeout": {
                         "type": "integer",
                         "description": "Timeout, in seconds, when attempting to connect to the LDAP server before trying\nthe next URL in the configuration.\n"
+                    },
+                    "credentialType": {
+                        "type": "string",
+                        "description": "The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.\n"
                     },
                     "defaultLeaseTtlSeconds": {
                         "type": "integer",

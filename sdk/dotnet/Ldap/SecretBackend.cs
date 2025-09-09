@@ -115,6 +115,12 @@ namespace Pulumi.Vault.Ldap
         public Output<int?> ConnectionTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        /// </summary>
+        [Output("credentialType")]
+        public Output<string> CredentialType { get; private set; } = null!;
+
+        /// <summary>
         /// Default lease duration for tokens and secrets in seconds
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
@@ -475,6 +481,12 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? ConnectionTimeout { get; set; }
 
         /// <summary>
+        /// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
+
+        /// <summary>
         /// Default lease duration for tokens and secrets in seconds
         /// </summary>
         [Input("defaultLeaseTtlSeconds")]
@@ -813,6 +825,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("connectionTimeout")]
         public Input<int>? ConnectionTimeout { get; set; }
+
+        /// <summary>
+        /// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
 
         /// <summary>
         /// Default lease duration for tokens and secrets in seconds

@@ -189,6 +189,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     * 
+     */
+    @Import(name="credentialType")
+    private @Nullable Output<String> credentialType;
+
+    /**
+     * @return The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     * 
+     */
+    public Optional<Output<String>> credentialType() {
+        return Optional.ofNullable(this.credentialType);
+    }
+
+    /**
      * Default lease duration for tokens and secrets in seconds
      * 
      */
@@ -676,6 +691,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.clientTlsCert = $.clientTlsCert;
         this.clientTlsKey = $.clientTlsKey;
         this.connectionTimeout = $.connectionTimeout;
+        this.credentialType = $.credentialType;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
@@ -999,6 +1015,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder connectionTimeout(Integer connectionTimeout) {
             return connectionTimeout(Output.of(connectionTimeout));
+        }
+
+        /**
+         * @param credentialType The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(@Nullable Output<String> credentialType) {
+            $.credentialType = credentialType;
+            return this;
+        }
+
+        /**
+         * @param credentialType The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(String credentialType) {
+            return credentialType(Output.of(credentialType));
         }
 
         /**

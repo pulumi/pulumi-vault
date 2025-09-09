@@ -231,6 +231,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.connectionTimeout);
     }
     /**
+     * The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     * 
+     */
+    @Export(name="credentialType", refs={String.class}, tree="[0]")
+    private Output<String> credentialType;
+
+    /**
+     * @return The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+     * 
+     */
+    public Output<String> credentialType() {
+        return this.credentialType;
+    }
+    /**
      * Default lease duration for tokens and secrets in seconds
      * 
      */

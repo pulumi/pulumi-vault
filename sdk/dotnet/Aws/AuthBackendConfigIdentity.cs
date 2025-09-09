@@ -55,7 +55,8 @@ namespace Pulumi.Vault.Aws
     public partial class AuthBackendConfigIdentity : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Unique name of the auth backend to configure.
+        /// The path the AWS auth backend being configured was
+        /// mounted at.  Defaults to `aws`.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -144,7 +145,8 @@ namespace Pulumi.Vault.Aws
     public sealed class AuthBackendConfigIdentityArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique name of the auth backend to configure.
+        /// The path the AWS auth backend being configured was
+        /// mounted at.  Defaults to `aws`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -207,7 +209,8 @@ namespace Pulumi.Vault.Aws
     public sealed class AuthBackendConfigIdentityState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique name of the auth backend to configure.
+        /// The path the AWS auth backend being configured was
+        /// mounted at.  Defaults to `aws`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }

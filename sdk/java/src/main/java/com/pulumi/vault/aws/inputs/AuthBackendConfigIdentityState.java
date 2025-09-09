@@ -17,14 +17,16 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
     public static final AuthBackendConfigIdentityState Empty = new AuthBackendConfigIdentityState();
 
     /**
-     * Unique name of the auth backend to configure.
+     * The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      * 
      */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
     /**
-     * @return Unique name of the auth backend to configure.
+     * @return The path the AWS auth backend being configured was
+     * mounted at.  Defaults to `aws`.
      * 
      */
     public Optional<Output<String>> backend() {
@@ -150,7 +152,8 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
         }
 
         /**
-         * @param backend Unique name of the auth backend to configure.
+         * @param backend The path the AWS auth backend being configured was
+         * mounted at.  Defaults to `aws`.
          * 
          * @return builder
          * 
@@ -161,7 +164,8 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
         }
 
         /**
-         * @param backend Unique name of the auth backend to configure.
+         * @param backend The path the AWS auth backend being configured was
+         * mounted at.  Defaults to `aws`.
          * 
          * @return builder
          * 

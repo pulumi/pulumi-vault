@@ -63,7 +63,8 @@ import (
 type AuthBackendConfigIdentity struct {
 	pulumi.CustomResourceState
 
-	// Unique name of the auth backend to configure.
+	// The path the AWS auth backend being configured was
+	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// How to generate the identity alias when using the ec2 auth method. Valid choices are
 	// `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
@@ -114,7 +115,8 @@ func GetAuthBackendConfigIdentity(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendConfigIdentity resources.
 type authBackendConfigIdentityState struct {
-	// Unique name of the auth backend to configure.
+	// The path the AWS auth backend being configured was
+	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
 	// How to generate the identity alias when using the ec2 auth method. Valid choices are
 	// `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
@@ -136,7 +138,8 @@ type authBackendConfigIdentityState struct {
 }
 
 type AuthBackendConfigIdentityState struct {
-	// Unique name of the auth backend to configure.
+	// The path the AWS auth backend being configured was
+	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
 	// How to generate the identity alias when using the ec2 auth method. Valid choices are
 	// `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
@@ -162,7 +165,8 @@ func (AuthBackendConfigIdentityState) ElementType() reflect.Type {
 }
 
 type authBackendConfigIdentityArgs struct {
-	// Unique name of the auth backend to configure.
+	// The path the AWS auth backend being configured was
+	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
 	// How to generate the identity alias when using the ec2 auth method. Valid choices are
 	// `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
@@ -185,7 +189,8 @@ type authBackendConfigIdentityArgs struct {
 
 // The set of arguments for constructing a AuthBackendConfigIdentity resource.
 type AuthBackendConfigIdentityArgs struct {
-	// Unique name of the auth backend to configure.
+	// The path the AWS auth backend being configured was
+	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
 	// How to generate the identity alias when using the ec2 auth method. Valid choices are
 	// `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
@@ -293,7 +298,8 @@ func (o AuthBackendConfigIdentityOutput) ToAuthBackendConfigIdentityOutputWithCo
 	return o
 }
 
-// Unique name of the auth backend to configure.
+// The path the AWS auth backend being configured was
+// mounted at.  Defaults to `aws`.
 func (o AuthBackendConfigIdentityOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfigIdentity) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }

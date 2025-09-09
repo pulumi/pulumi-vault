@@ -29,6 +29,7 @@ class SecretBackendArgs:
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -73,6 +74,7 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
@@ -134,6 +136,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "client_tls_key", client_tls_key)
         if connection_timeout is not None:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -316,6 +320,18 @@ class SecretBackendArgs:
     @connection_timeout.setter
     def connection_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "connection_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credential_type", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -704,6 +720,7 @@ class _SecretBackendState:
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -749,6 +766,7 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
@@ -814,6 +832,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "client_tls_key", client_tls_key)
         if connection_timeout is not None:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -1008,6 +1028,18 @@ class _SecretBackendState:
     @connection_timeout.setter
     def connection_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "connection_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credential_type", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -1398,6 +1430,7 @@ class SecretBackend(pulumi.CustomResource):
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1469,6 +1502,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
@@ -1569,6 +1603,7 @@ class SecretBackend(pulumi.CustomResource):
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1622,6 +1657,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["client_tls_cert"] = None if client_tls_cert is None else pulumi.Output.secret(client_tls_cert)
             __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
             __props__.__dict__["connection_timeout"] = connection_timeout
+            __props__.__dict__["credential_type"] = credential_type
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
@@ -1676,6 +1712,7 @@ class SecretBackend(pulumi.CustomResource):
             client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
             client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
             connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+            credential_type: Optional[pulumi.Input[_builtins.str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1726,6 +1763,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_tls_key: Client certificate key to provide to the LDAP server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
@@ -1784,6 +1822,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["client_tls_cert"] = client_tls_cert
         __props__.__dict__["client_tls_key"] = client_tls_key
         __props__.__dict__["connection_timeout"] = connection_timeout
+        __props__.__dict__["credential_type"] = credential_type
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
@@ -1905,6 +1944,14 @@ class SecretBackend(pulumi.CustomResource):
         the next URL in the configuration.
         """
         return pulumi.get(self, "connection_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        """
+        return pulumi.get(self, "credential_type")
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
