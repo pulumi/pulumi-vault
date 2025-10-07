@@ -34,7 +34,7 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly bool? AnyMount;
         /// <summary>
-        /// The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
+        /// The curve to use for an ECDSA key. Used when KeyType is 'ECDSA'. Required if 'allow_generate_key' is true
         /// </summary>
         public readonly string? Curve;
         /// <summary>

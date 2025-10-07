@@ -369,7 +369,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
     }
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     @Export(name="managedKeyId", refs={String.class}, tree="[0]")
@@ -377,7 +377,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     public Output<String> managedKeyId() {
@@ -385,7 +385,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
     }
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     @Export(name="managedKeyName", refs={String.class}, tree="[0]")
@@ -393,7 +393,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     public Output<String> managedKeyName() {

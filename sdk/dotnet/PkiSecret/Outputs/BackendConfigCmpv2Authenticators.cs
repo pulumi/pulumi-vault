@@ -14,7 +14,7 @@ namespace Pulumi.Vault.PkiSecret.Outputs
     public sealed class BackendConfigCmpv2Authenticators
     {
         /// <summary>
-        /// "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        /// "The accessor (required) and CertRole (optional) properties for cert auth backends".
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Cert;
 

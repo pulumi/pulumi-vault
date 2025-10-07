@@ -83,7 +83,7 @@ import javax.annotation.Nullable;
 public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * Configures how identity aliases are generated.
-     * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
      * 
      */
     @Export(name="aliasNameSource", refs={String.class}, tree="[0]")
@@ -91,7 +91,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Configures how identity aliases are generated.
-     * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
      * 
      */
     public Output<String> aliasNameSource() {
@@ -100,7 +100,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * Audience claim to verify in the JWT.
      * 
-     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * &gt; Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
      * before setting this to something other its default value. There are **important** security
      * implications to be aware of.
      * 
@@ -111,7 +111,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return Audience claim to verify in the JWT.
      * 
-     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * &gt; Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
      * before setting this to something other its default value. There are **important** security
      * implications to be aware of.
      * 
@@ -134,28 +134,28 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
-     * List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+     * List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
      * 
      */
     @Export(name="boundServiceAccountNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundServiceAccountNames;
 
     /**
-     * @return List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+     * @return List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
      * 
      */
     public Output<List<String>> boundServiceAccountNames() {
         return this.boundServiceAccountNames;
     }
     /**
-     * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+     * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     @Export(name="boundServiceAccountNamespaces", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundServiceAccountNamespaces;
 
     /**
-     * @return List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+     * @return List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     public Output<List<String>> boundServiceAccountNamespaces() {

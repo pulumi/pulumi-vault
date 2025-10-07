@@ -141,14 +141,14 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     @Export(name="secretType", refs={String.class}, tree="[0]")
     private Output<String> secretType;
 
     /**
-     * @return Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * @return Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     public Output<String> secretType() {
@@ -197,14 +197,14 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
         return this.staticAccount;
     }
     /**
-     * List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+     * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      * 
      */
     @Export(name="tokenScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenScopes;
 
     /**
-     * @return List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+     * @return List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      * 
      */
     public Output<Optional<List<String>>> tokenScopes() {

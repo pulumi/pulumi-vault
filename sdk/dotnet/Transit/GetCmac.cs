@@ -105,7 +105,7 @@ namespace Pulumi.Vault.Transit
         private List<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public List<ImmutableDictionary<string, string>> BatchResults
         {
@@ -114,7 +114,7 @@ namespace Pulumi.Vault.Transit
         }
 
         /// <summary>
-        /// The CMAC returned from Vault if using `input`
+        /// The CMAC returned from Vault if using `Input`
         /// </summary>
         [Input("cmac")]
         public string? Cmac { get; set; }
@@ -160,7 +160,7 @@ namespace Pulumi.Vault.Transit
         private InputList<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> BatchResults
         {
@@ -169,7 +169,7 @@ namespace Pulumi.Vault.Transit
         }
 
         /// <summary>
-        /// The CMAC returned from Vault if using `input`
+        /// The CMAC returned from Vault if using `Input`
         /// </summary>
         [Input("cmac")]
         public Input<string>? Cmac { get; set; }
@@ -207,11 +207,11 @@ namespace Pulumi.Vault.Transit
     {
         public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchInputs;
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchResults;
         /// <summary>
-        /// The CMAC returned from Vault if using `input`
+        /// The CMAC returned from Vault if using `Input`
         /// </summary>
         public readonly string Cmac;
         /// <summary>

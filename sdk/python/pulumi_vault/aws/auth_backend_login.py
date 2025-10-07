@@ -604,6 +604,43 @@ class AuthBackendLogin(pulumi.CustomResource):
         instance metadata. For more information, see the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.AuthBackend("aws",
+            type="aws",
+            path="aws")
+        example = vault.aws.AuthBackendClient("example",
+            backend=aws.path,
+            access_key="123456789012",
+            secret_key="AWSSECRETKEYGOESHERE")
+        example_auth_backend_role = vault.aws.AuthBackendRole("example",
+            backend=aws.path,
+            role="test-role",
+            auth_type="ec2",
+            bound_ami_id="ami-8c1be5f6",
+            bound_account_id="123456789012",
+            bound_vpc_id="vpc-b61106d4",
+            bound_subnet_id="vpc-133128f1",
+            bound_iam_instance_profile_arns=["arn:aws:iam::123456789012:instance-profile/MyProfile"],
+            ttl=60,
+            max_ttl=120,
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            opts = pulumi.ResourceOptions(depends_on=[example]))
+        example_auth_backend_login = vault.aws.AuthBackendLogin("example",
+            backend=example_vault_auth_backend["path"],
+            role=example_auth_backend_role.role,
+            identity="BASE64ENCODEDIDENTITYDOCUMENT",
+            signature="BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the AWS auth backend. Defaults to
@@ -646,6 +683,43 @@ class AuthBackendLogin(pulumi.CustomResource):
         accomplished using a signed identity request from IAM or using ec2
         instance metadata. For more information, see the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.AuthBackend("aws",
+            type="aws",
+            path="aws")
+        example = vault.aws.AuthBackendClient("example",
+            backend=aws.path,
+            access_key="123456789012",
+            secret_key="AWSSECRETKEYGOESHERE")
+        example_auth_backend_role = vault.aws.AuthBackendRole("example",
+            backend=aws.path,
+            role="test-role",
+            auth_type="ec2",
+            bound_ami_id="ami-8c1be5f6",
+            bound_account_id="123456789012",
+            bound_vpc_id="vpc-b61106d4",
+            bound_subnet_id="vpc-133128f1",
+            bound_iam_instance_profile_arns=["arn:aws:iam::123456789012:instance-profile/MyProfile"],
+            ttl=60,
+            max_ttl=120,
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ],
+            opts = pulumi.ResourceOptions(depends_on=[example]))
+        example_auth_backend_login = vault.aws.AuthBackendLogin("example",
+            backend=example_vault_auth_backend["path"],
+            role=example_auth_backend_role.role,
+            identity="BASE64ENCODEDIDENTITYDOCUMENT",
+            signature="BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
+        ```
 
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.

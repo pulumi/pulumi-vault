@@ -61,6 +61,49 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.gcp.AuthBackend;
+ * import com.pulumi.vault.gcp.AuthBackendArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input("vault-gcp-credentials.json")
+ *                 .build()).result())
+ *             .rotationSchedule("0 * * * SAT")
+ *             .rotationWindow(3600)
+ *             .customEndpoint(AuthBackendCustomEndpointArgs.builder()
+ *                 .api("www.googleapis.com")
+ *                 .iam("iam.googleapis.com")
+ *                 .crm("cloudresourcemanager.googleapis.com")
+ *                 .compute("compute.googleapis.com")
+ *                 .build()[0])
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * GCP authentication backends can be imported using the backend name, e.g.
@@ -374,7 +417,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
@@ -382,7 +425,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Output<Optional<String>> serviceAccountEmail() {

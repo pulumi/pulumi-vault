@@ -87,7 +87,7 @@ namespace Pulumi.Vault.Aws
     public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If set to `true`, allows migration of
+        /// If set to `True`, allows migration of
         /// the underlying instance where the client resides.
         /// </summary>
         [Output("allowInstanceMigration")]
@@ -95,7 +95,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The auth type permitted for this role. Valid choices
-        /// are `ec2` and `iam`. Defaults to `iam`.
+        /// are `Ec2` and `Iam`. Defaults to `Iam`.
         /// </summary>
         [Output("authType")]
         public Output<string?> AuthType { get; private set; } = null!;
@@ -109,8 +109,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they should be using the
-        /// account ID specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// account ID specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         [Output("boundAccountIds")]
         public Output<ImmutableArray<string>> BoundAccountIds { get; private set; } = null!;
@@ -118,8 +118,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that they should be using the AMI ID
-        /// specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         [Output("boundAmiIds")]
         public Output<ImmutableArray<string>> BoundAmiIds { get; private set; } = null!;
@@ -135,15 +135,15 @@ namespace Pulumi.Vault.Aws
         /// the EC2 instances that can perform the login operation that they must be
         /// associated with an IAM instance profile ARN which has a prefix that matches
         /// the value specified by this field. The value is prefix-matched as though it
-        /// were a glob ending in `*`. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// were a glob ending in `*`. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         [Output("boundIamInstanceProfileArns")]
         public Output<ImmutableArray<string>> BoundIamInstanceProfileArns { get; private set; } = null!;
 
         /// <summary>
         /// If set, defines the IAM principal that
-        /// must be authenticated when `auth_type` is set to `iam`. Wildcards are
+        /// must be authenticated when `AuthType` is set to `Iam`. Wildcards are
         /// supported at the end of the ARN.
         /// </summary>
         [Output("boundIamPrincipalArns")]
@@ -152,8 +152,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they must match the IAM
-        /// role ARN specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// role ARN specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         [Output("boundIamRoleArns")]
         public Output<ImmutableArray<string>> BoundIamRoleArns { get; private set; } = null!;
@@ -161,8 +161,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that the region in their identity
-        /// document must match the one specified by this field. `auth_type` must be set
-        /// to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        /// document must match the one specified by this field. `AuthType` must be set
+        /// to `Ec2` or `InferredEntityType` must be set to `Ec2Instance` to use this
         /// constraint.
         /// </summary>
         [Output("boundRegions")]
@@ -171,8 +171,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they be associated with
-        /// the subnet ID that matches the value specified by this field. `auth_type`
-        /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        /// the subnet ID that matches the value specified by this field. `AuthType`
+        /// must be set to `Ec2` or `InferredEntityType` must be set to `Ec2Instance`
         /// to use this constraint.
         /// </summary>
         [Output("boundSubnetIds")]
@@ -181,35 +181,35 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that they be associated with the VPC ID
-        /// that matches the value specified by this field. `auth_type` must be set to
-        /// `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        /// that matches the value specified by this field. `AuthType` must be set to
+        /// `Ec2` or `InferredEntityType` must be set to `Ec2Instance` to use this
         /// constraint.
         /// </summary>
         [Output("boundVpcIds")]
         public Output<ImmutableArray<string>> BoundVpcIds { get; private set; } = null!;
 
         /// <summary>
-        /// IF set to `true`, only allows a
+        /// IF set to `True`, only allows a
         /// single token to be granted per instance ID. This can only be set when
-        /// `auth_type` is set to `ec2`.
+        /// `AuthType` is set to `Ec2`.
         /// </summary>
         [Output("disallowReauthentication")]
         public Output<bool?> DisallowReauthentication { get; private set; } = null!;
 
         /// <summary>
-        /// When `inferred_entity_type` is set, this
+        /// When `InferredEntityType` is set, this
         /// is the region to search for the inferred entities. Required if
-        /// `inferred_entity_type` is set. This only applies when `auth_type` is set to
-        /// `iam`.
+        /// `InferredEntityType` is set. This only applies when `AuthType` is set to
+        /// `Iam`.
         /// </summary>
         [Output("inferredAwsRegion")]
         public Output<string?> InferredAwsRegion { get; private set; } = null!;
 
         /// <summary>
         /// If set, instructs Vault to turn on
-        /// inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+        /// inferencing. The only valid value is `Ec2Instance`, which instructs Vault to
         /// infer that the role comes from an EC2 instance in an IAM instance profile.
-        /// This only applies when `auth_type` is set to `iam`.
+        /// This only applies when `AuthType` is set to `Iam`.
         /// </summary>
         [Output("inferredEntityType")]
         public Output<string?> InferredEntityType { get; private set; } = null!;
@@ -217,7 +217,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -225,16 +225,16 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Only valid when
-        /// `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+        /// `AuthType` is `Iam`. If set to `True`, the `BoundIamPrincipalArns` are
         /// resolved to [AWS Unique
         /// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
         /// for the bound principal ARN. This field is ignored when a
-        /// `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+        /// `BoundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
         /// closely mimics the behavior of AWS services in that if an IAM user or role is
         /// deleted and a new one is recreated with the same name, those new users or
         /// roles won't get access to roles in Vault that were permissioned to the prior
-        /// principals of the same name. Defaults to `true`.
-        /// Once set to `true`, this cannot be changed to `false` without recreating the role.
+        /// principals of the same name. Defaults to `True`.
+        /// Once set to `True`, this cannot be changed to `False` without recreating the role.
         /// </summary>
         [Output("resolveAwsUniqueIds")]
         public Output<bool?> ResolveAwsUniqueIds { get; private set; } = null!;
@@ -253,8 +253,8 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// If set, enable role tags for this role. The value set
-        /// for this field should be the key of the tag on the EC2 instance. `auth_type`
-        /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        /// for this field should be the key of the tag on the EC2 instance. `AuthType`
+        /// must be set to `Ec2` or `InferredEntityType` must be set to `Ec2Instance`
         /// to use this constraint.
         /// </summary>
         [Output("roleTag")]
@@ -361,7 +361,7 @@ namespace Pulumi.Vault.Aws
     public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set to `true`, allows migration of
+        /// If set to `True`, allows migration of
         /// the underlying instance where the client resides.
         /// </summary>
         [Input("allowInstanceMigration")]
@@ -369,7 +369,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The auth type permitted for this role. Valid choices
-        /// are `ec2` and `iam`. Defaults to `iam`.
+        /// are `Ec2` and `Iam`. Defaults to `Iam`.
         /// </summary>
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
@@ -386,8 +386,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they should be using the
-        /// account ID specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// account ID specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundAccountIds
         {
@@ -401,8 +401,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that they should be using the AMI ID
-        /// specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundAmiIds
         {
@@ -430,8 +430,8 @@ namespace Pulumi.Vault.Aws
         /// the EC2 instances that can perform the login operation that they must be
         /// associated with an IAM instance profile ARN which has a prefix that matches
         /// the value specified by this field. The value is prefix-matched as though it
-        /// were a glob ending in `*`. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// were a glob ending in `*`. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundIamInstanceProfileArns
         {
@@ -444,7 +444,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// If set, defines the IAM principal that
-        /// must be authenticated when `auth_type` is set to `iam`. Wildcards are
+        /// must be authenticated when `AuthType` is set to `Iam`. Wildcards are
         /// supported at the end of the ARN.
         /// </summary>
         public InputList<string> BoundIamPrincipalArns
@@ -459,8 +459,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they must match the IAM
-        /// role ARN specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// role ARN specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundIamRoleArns
         {
@@ -474,8 +474,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that the region in their identity
-        /// document must match the one specified by this field. `auth_type` must be set
-        /// to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        /// document must match the one specified by this field. `AuthType` must be set
+        /// to `Ec2` or `InferredEntityType` must be set to `Ec2Instance` to use this
         /// constraint.
         /// </summary>
         public InputList<string> BoundRegions
@@ -490,8 +490,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they be associated with
-        /// the subnet ID that matches the value specified by this field. `auth_type`
-        /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        /// the subnet ID that matches the value specified by this field. `AuthType`
+        /// must be set to `Ec2` or `InferredEntityType` must be set to `Ec2Instance`
         /// to use this constraint.
         /// </summary>
         public InputList<string> BoundSubnetIds
@@ -506,8 +506,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that they be associated with the VPC ID
-        /// that matches the value specified by this field. `auth_type` must be set to
-        /// `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        /// that matches the value specified by this field. `AuthType` must be set to
+        /// `Ec2` or `InferredEntityType` must be set to `Ec2Instance` to use this
         /// constraint.
         /// </summary>
         public InputList<string> BoundVpcIds
@@ -517,27 +517,27 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// IF set to `true`, only allows a
+        /// IF set to `True`, only allows a
         /// single token to be granted per instance ID. This can only be set when
-        /// `auth_type` is set to `ec2`.
+        /// `AuthType` is set to `Ec2`.
         /// </summary>
         [Input("disallowReauthentication")]
         public Input<bool>? DisallowReauthentication { get; set; }
 
         /// <summary>
-        /// When `inferred_entity_type` is set, this
+        /// When `InferredEntityType` is set, this
         /// is the region to search for the inferred entities. Required if
-        /// `inferred_entity_type` is set. This only applies when `auth_type` is set to
-        /// `iam`.
+        /// `InferredEntityType` is set. This only applies when `AuthType` is set to
+        /// `Iam`.
         /// </summary>
         [Input("inferredAwsRegion")]
         public Input<string>? InferredAwsRegion { get; set; }
 
         /// <summary>
         /// If set, instructs Vault to turn on
-        /// inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+        /// inferencing. The only valid value is `Ec2Instance`, which instructs Vault to
         /// infer that the role comes from an EC2 instance in an IAM instance profile.
-        /// This only applies when `auth_type` is set to `iam`.
+        /// This only applies when `AuthType` is set to `Iam`.
         /// </summary>
         [Input("inferredEntityType")]
         public Input<string>? InferredEntityType { get; set; }
@@ -545,7 +545,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -553,16 +553,16 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Only valid when
-        /// `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+        /// `AuthType` is `Iam`. If set to `True`, the `BoundIamPrincipalArns` are
         /// resolved to [AWS Unique
         /// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
         /// for the bound principal ARN. This field is ignored when a
-        /// `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+        /// `BoundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
         /// closely mimics the behavior of AWS services in that if an IAM user or role is
         /// deleted and a new one is recreated with the same name, those new users or
         /// roles won't get access to roles in Vault that were permissioned to the prior
-        /// principals of the same name. Defaults to `true`.
-        /// Once set to `true`, this cannot be changed to `false` without recreating the role.
+        /// principals of the same name. Defaults to `True`.
+        /// Once set to `True`, this cannot be changed to `False` without recreating the role.
         /// </summary>
         [Input("resolveAwsUniqueIds")]
         public Input<bool>? ResolveAwsUniqueIds { get; set; }
@@ -575,8 +575,8 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// If set, enable role tags for this role. The value set
-        /// for this field should be the key of the tag on the EC2 instance. `auth_type`
-        /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        /// for this field should be the key of the tag on the EC2 instance. `AuthType`
+        /// must be set to `Ec2` or `InferredEntityType` must be set to `Ec2Instance`
         /// to use this constraint.
         /// </summary>
         [Input("roleTag")]
@@ -657,7 +657,7 @@ namespace Pulumi.Vault.Aws
     public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set to `true`, allows migration of
+        /// If set to `True`, allows migration of
         /// the underlying instance where the client resides.
         /// </summary>
         [Input("allowInstanceMigration")]
@@ -665,7 +665,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The auth type permitted for this role. Valid choices
-        /// are `ec2` and `iam`. Defaults to `iam`.
+        /// are `Ec2` and `Iam`. Defaults to `Iam`.
         /// </summary>
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
@@ -682,8 +682,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they should be using the
-        /// account ID specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// account ID specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundAccountIds
         {
@@ -697,8 +697,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that they should be using the AMI ID
-        /// specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundAmiIds
         {
@@ -726,8 +726,8 @@ namespace Pulumi.Vault.Aws
         /// the EC2 instances that can perform the login operation that they must be
         /// associated with an IAM instance profile ARN which has a prefix that matches
         /// the value specified by this field. The value is prefix-matched as though it
-        /// were a glob ending in `*`. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// were a glob ending in `*`. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundIamInstanceProfileArns
         {
@@ -740,7 +740,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// If set, defines the IAM principal that
-        /// must be authenticated when `auth_type` is set to `iam`. Wildcards are
+        /// must be authenticated when `AuthType` is set to `Iam`. Wildcards are
         /// supported at the end of the ARN.
         /// </summary>
         public InputList<string> BoundIamPrincipalArns
@@ -755,8 +755,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they must match the IAM
-        /// role ARN specified by this field. `auth_type` must be set to `ec2` or
-        /// `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+        /// role ARN specified by this field. `AuthType` must be set to `Ec2` or
+        /// `InferredEntityType` must be set to `Ec2Instance` to use this constraint.
         /// </summary>
         public InputList<string> BoundIamRoleArns
         {
@@ -770,8 +770,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that the region in their identity
-        /// document must match the one specified by this field. `auth_type` must be set
-        /// to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        /// document must match the one specified by this field. `AuthType` must be set
+        /// to `Ec2` or `InferredEntityType` must be set to `Ec2Instance` to use this
         /// constraint.
         /// </summary>
         public InputList<string> BoundRegions
@@ -786,8 +786,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2
         /// instances that can perform the login operation that they be associated with
-        /// the subnet ID that matches the value specified by this field. `auth_type`
-        /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        /// the subnet ID that matches the value specified by this field. `AuthType`
+        /// must be set to `Ec2` or `InferredEntityType` must be set to `Ec2Instance`
         /// to use this constraint.
         /// </summary>
         public InputList<string> BoundSubnetIds
@@ -802,8 +802,8 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// If set, defines a constraint on the EC2 instances
         /// that can perform the login operation that they be associated with the VPC ID
-        /// that matches the value specified by this field. `auth_type` must be set to
-        /// `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+        /// that matches the value specified by this field. `AuthType` must be set to
+        /// `Ec2` or `InferredEntityType` must be set to `Ec2Instance` to use this
         /// constraint.
         /// </summary>
         public InputList<string> BoundVpcIds
@@ -813,27 +813,27 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// IF set to `true`, only allows a
+        /// IF set to `True`, only allows a
         /// single token to be granted per instance ID. This can only be set when
-        /// `auth_type` is set to `ec2`.
+        /// `AuthType` is set to `Ec2`.
         /// </summary>
         [Input("disallowReauthentication")]
         public Input<bool>? DisallowReauthentication { get; set; }
 
         /// <summary>
-        /// When `inferred_entity_type` is set, this
+        /// When `InferredEntityType` is set, this
         /// is the region to search for the inferred entities. Required if
-        /// `inferred_entity_type` is set. This only applies when `auth_type` is set to
-        /// `iam`.
+        /// `InferredEntityType` is set. This only applies when `AuthType` is set to
+        /// `Iam`.
         /// </summary>
         [Input("inferredAwsRegion")]
         public Input<string>? InferredAwsRegion { get; set; }
 
         /// <summary>
         /// If set, instructs Vault to turn on
-        /// inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+        /// inferencing. The only valid value is `Ec2Instance`, which instructs Vault to
         /// infer that the role comes from an EC2 instance in an IAM instance profile.
-        /// This only applies when `auth_type` is set to `iam`.
+        /// This only applies when `AuthType` is set to `Iam`.
         /// </summary>
         [Input("inferredEntityType")]
         public Input<string>? InferredEntityType { get; set; }
@@ -841,7 +841,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -849,16 +849,16 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Only valid when
-        /// `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+        /// `AuthType` is `Iam`. If set to `True`, the `BoundIamPrincipalArns` are
         /// resolved to [AWS Unique
         /// IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
         /// for the bound principal ARN. This field is ignored when a
-        /// `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+        /// `BoundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
         /// closely mimics the behavior of AWS services in that if an IAM user or role is
         /// deleted and a new one is recreated with the same name, those new users or
         /// roles won't get access to roles in Vault that were permissioned to the prior
-        /// principals of the same name. Defaults to `true`.
-        /// Once set to `true`, this cannot be changed to `false` without recreating the role.
+        /// principals of the same name. Defaults to `True`.
+        /// Once set to `True`, this cannot be changed to `False` without recreating the role.
         /// </summary>
         [Input("resolveAwsUniqueIds")]
         public Input<bool>? ResolveAwsUniqueIds { get; set; }
@@ -877,8 +877,8 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// If set, enable role tags for this role. The value set
-        /// for this field should be the key of the tag on the EC2 instance. `auth_type`
-        /// must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+        /// for this field should be the key of the tag on the EC2 instance. `AuthType`
+        /// must be set to `Ec2` or `InferredEntityType` must be set to `Ec2Instance`
         /// to use this constraint.
         /// </summary>
         [Input("roleTag")]

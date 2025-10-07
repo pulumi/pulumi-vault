@@ -19,6 +19,68 @@ import javax.annotation.Nullable;
 /**
  * Reads role tag information from an AWS auth backend in Vault.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.aws.AuthBackendRole;
+ * import com.pulumi.vault.aws.AuthBackendRoleArgs;
+ * import com.pulumi.vault.aws.AuthBackendRoleTag;
+ * import com.pulumi.vault.aws.AuthBackendRoleTagArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()
+ *             .path("%s")
+ *             .type("aws")
+ *             .build());
+ * 
+ *         var role = new AuthBackendRole("role", AuthBackendRoleArgs.builder()
+ *             .backend(aws.path())
+ *             .role("%s")
+ *             .authType("ec2")
+ *             .boundAccountId("123456789012")
+ *             .policies(List.of(            
+ *                 "dev",
+ *                 "prod",
+ *                 "qa",
+ *                 "test"))
+ *             .roleTag("VaultRoleTag")
+ *             .build());
+ * 
+ *         var test = new AuthBackendRoleTag("test", AuthBackendRoleTagArgs.builder()
+ *             .backend(aws.path())
+ *             .role(role.role())
+ *             .policies(            
+ *                 "prod",
+ *                 "dev",
+ *                 "test")
+ *             .maxTtl("1h")
+ *             .instanceId("i-1234567")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="vault:aws/authBackendRoleTag:AuthBackendRoleTag")
 public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {

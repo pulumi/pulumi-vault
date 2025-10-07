@@ -36,9 +36,9 @@ namespace Pulumi.Vault.Azure
         /// 
         /// ## Caveats
         /// 
-        /// The `validate_creds` option requires read-access to the `backend` config endpoint.
+        /// The `ValidateCreds` option requires read-access to the `Backend` config endpoint.
         /// If the effective Vault role does not have the required permissions then valid values 
-        /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+        /// are required to be set for: `SubscriptionId`, `TenantId`, `Environment`.
         /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
@@ -68,9 +68,9 @@ namespace Pulumi.Vault.Azure
         /// 
         /// ## Caveats
         /// 
-        /// The `validate_creds` option requires read-access to the `backend` config endpoint.
+        /// The `ValidateCreds` option requires read-access to the `Backend` config endpoint.
         /// If the effective Vault role does not have the required permissions then valid values 
-        /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+        /// are required to be set for: `SubscriptionId`, `TenantId`, `Environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
@@ -100,9 +100,9 @@ namespace Pulumi.Vault.Azure
         /// 
         /// ## Caveats
         /// 
-        /// The `validate_creds` option requires read-access to the `backend` config endpoint.
+        /// The `ValidateCreds` option requires read-access to the `Backend` config endpoint.
         /// If the effective Vault role does not have the required permissions then valid values 
-        /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+        /// are required to be set for: `SubscriptionId`, `TenantId`, `Environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
@@ -138,7 +138,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -169,7 +169,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The subscription ID to use during credential
-        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// validation. Defaults to the subscription ID configured in the Vault `Backend`.
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
@@ -177,7 +177,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The tenant ID to use during credential validation.
-        /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// Defaults to the tenant ID configured in the Vault `Backend`.
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
@@ -185,9 +185,9 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// Whether generated credentials should be 
-        /// validated before being returned. Defaults to `false`, which returns
+        /// validated before being returned. Defaults to `False`, which returns
         /// credentials without checking whether they have fully propagated throughout
-        /// Azure Active Directory. Designating `true` activates testing.
+        /// Azure Active Directory. Designating `True` activates testing.
         /// </summary>
         [Input("validateCreds")]
         public bool? ValidateCreds { get; set; }
@@ -227,7 +227,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -258,7 +258,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The subscription ID to use during credential
-        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
+        /// validation. Defaults to the subscription ID configured in the Vault `Backend`.
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
@@ -266,7 +266,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The tenant ID to use during credential validation.
-        /// Defaults to the tenant ID configured in the Vault `backend`.
+        /// Defaults to the tenant ID configured in the Vault `Backend`.
         /// *See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
@@ -274,9 +274,9 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// Whether generated credentials should be 
-        /// validated before being returned. Defaults to `false`, which returns
+        /// validated before being returned. Defaults to `False`, which returns
         /// credentials without checking whether they have fully propagated throughout
-        /// Azure Active Directory. Designating `true` activates testing.
+        /// Azure Active Directory. Designating `True` activates testing.
         /// </summary>
         [Input("validateCreds")]
         public Input<bool>? ValidateCreds { get; set; }

@@ -66,12 +66,12 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// A templatized LDIF string used to create a user
-        /// account. This may contain multiple LDIF entries. The `creation_ldif` can also
+        /// account. This may contain multiple LDIF entries. The `CreationLdif` can also
         /// be used to add the user account to an existing group. All LDIF entries are
         /// performed in order. If Vault encounters an error while executing the
-        /// `creation_ldif` it will stop at the first error and not execute any remaining
-        /// LDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF
-        /// entries in `rollback_ldif` will be executed. See `rollback_ldif` for more
+        /// `CreationLdif` it will stop at the first error and not execute any remaining
+        /// LDIF entries. If an error occurs and `RollbackLdif` is specified, the LDIF
+        /// entries in `RollbackLdif` will be executed. See `RollbackLdif` for more
         /// details. This field may optionally be provided as a base64 encoded string.
         /// </summary>
         [Output("creationLdif")]
@@ -87,7 +87,7 @@ namespace Pulumi.Vault.Ldap
         /// A templatized LDIF string used to delete the
         /// user account once its TTL has expired. This may contain multiple LDIF
         /// entries. All LDIF entries are performed in order. If Vault encounters an
-        /// error while executing an entry in the `deletion_ldif` it will attempt to
+        /// error while executing an entry in the `DeletionLdif` it will attempt to
         /// continue executing any remaining entries. This field may optionally be
         /// provided as a base64 encoded string.
         /// </summary>
@@ -102,7 +102,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Output("mount")]
         public Output<string?> Mount { get; private set; } = null!;
@@ -110,7 +110,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -124,10 +124,10 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// A templatized LDIF string used to attempt to
-        /// rollback any changes in the event that execution of the `creation_ldif` results
+        /// rollback any changes in the event that execution of the `CreationLdif` results
         /// in an error. This may contain multiple LDIF entries. All LDIF entries are
         /// performed in order. If Vault encounters an error while executing an entry in
-        /// the `rollback_ldif` it will attempt to continue executing any remaining
+        /// the `RollbackLdif` it will attempt to continue executing any remaining
         /// entries. This field may optionally be provided as a base64 encoded string.
         /// </summary>
         [Output("rollbackLdif")]
@@ -136,7 +136,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// A template used to generate a dynamic
         /// username. This will be used to fill in the `.Username` field within the
-        /// `creation_ldif` string.
+        /// `CreationLdif` string.
         /// </summary>
         [Output("usernameTemplate")]
         public Output<string?> UsernameTemplate { get; private set; } = null!;
@@ -189,12 +189,12 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// A templatized LDIF string used to create a user
-        /// account. This may contain multiple LDIF entries. The `creation_ldif` can also
+        /// account. This may contain multiple LDIF entries. The `CreationLdif` can also
         /// be used to add the user account to an existing group. All LDIF entries are
         /// performed in order. If Vault encounters an error while executing the
-        /// `creation_ldif` it will stop at the first error and not execute any remaining
-        /// LDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF
-        /// entries in `rollback_ldif` will be executed. See `rollback_ldif` for more
+        /// `CreationLdif` it will stop at the first error and not execute any remaining
+        /// LDIF entries. If an error occurs and `RollbackLdif` is specified, the LDIF
+        /// entries in `RollbackLdif` will be executed. See `RollbackLdif` for more
         /// details. This field may optionally be provided as a base64 encoded string.
         /// </summary>
         [Input("creationLdif", required: true)]
@@ -210,7 +210,7 @@ namespace Pulumi.Vault.Ldap
         /// A templatized LDIF string used to delete the
         /// user account once its TTL has expired. This may contain multiple LDIF
         /// entries. All LDIF entries are performed in order. If Vault encounters an
-        /// error while executing an entry in the `deletion_ldif` it will attempt to
+        /// error while executing an entry in the `DeletionLdif` it will attempt to
         /// continue executing any remaining entries. This field may optionally be
         /// provided as a base64 encoded string.
         /// </summary>
@@ -225,7 +225,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
@@ -233,7 +233,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -247,10 +247,10 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// A templatized LDIF string used to attempt to
-        /// rollback any changes in the event that execution of the `creation_ldif` results
+        /// rollback any changes in the event that execution of the `CreationLdif` results
         /// in an error. This may contain multiple LDIF entries. All LDIF entries are
         /// performed in order. If Vault encounters an error while executing an entry in
-        /// the `rollback_ldif` it will attempt to continue executing any remaining
+        /// the `RollbackLdif` it will attempt to continue executing any remaining
         /// entries. This field may optionally be provided as a base64 encoded string.
         /// </summary>
         [Input("rollbackLdif")]
@@ -259,7 +259,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// A template used to generate a dynamic
         /// username. This will be used to fill in the `.Username` field within the
-        /// `creation_ldif` string.
+        /// `CreationLdif` string.
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }
@@ -274,12 +274,12 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// A templatized LDIF string used to create a user
-        /// account. This may contain multiple LDIF entries. The `creation_ldif` can also
+        /// account. This may contain multiple LDIF entries. The `CreationLdif` can also
         /// be used to add the user account to an existing group. All LDIF entries are
         /// performed in order. If Vault encounters an error while executing the
-        /// `creation_ldif` it will stop at the first error and not execute any remaining
-        /// LDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF
-        /// entries in `rollback_ldif` will be executed. See `rollback_ldif` for more
+        /// `CreationLdif` it will stop at the first error and not execute any remaining
+        /// LDIF entries. If an error occurs and `RollbackLdif` is specified, the LDIF
+        /// entries in `RollbackLdif` will be executed. See `RollbackLdif` for more
         /// details. This field may optionally be provided as a base64 encoded string.
         /// </summary>
         [Input("creationLdif")]
@@ -295,7 +295,7 @@ namespace Pulumi.Vault.Ldap
         /// A templatized LDIF string used to delete the
         /// user account once its TTL has expired. This may contain multiple LDIF
         /// entries. All LDIF entries are performed in order. If Vault encounters an
-        /// error while executing an entry in the `deletion_ldif` it will attempt to
+        /// error while executing an entry in the `DeletionLdif` it will attempt to
         /// continue executing any remaining entries. This field may optionally be
         /// provided as a base64 encoded string.
         /// </summary>
@@ -310,7 +310,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
@@ -318,7 +318,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -332,10 +332,10 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// A templatized LDIF string used to attempt to
-        /// rollback any changes in the event that execution of the `creation_ldif` results
+        /// rollback any changes in the event that execution of the `CreationLdif` results
         /// in an error. This may contain multiple LDIF entries. All LDIF entries are
         /// performed in order. If Vault encounters an error while executing an entry in
-        /// the `rollback_ldif` it will attempt to continue executing any remaining
+        /// the `RollbackLdif` it will attempt to continue executing any remaining
         /// entries. This field may optionally be provided as a base64 encoded string.
         /// </summary>
         [Input("rollbackLdif")]
@@ -344,7 +344,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// A template used to generate a dynamic
         /// username. This will be used to fill in the `.Username` field within the
-        /// `creation_ldif` string.
+        /// `CreationLdif` string.
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }

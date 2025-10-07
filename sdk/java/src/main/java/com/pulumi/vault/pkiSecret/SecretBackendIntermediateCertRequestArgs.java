@@ -208,14 +208,14 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
     }
 
     /**
-     * Specifies key_usage to encode in the generated certificate.
+     * Specifies keyUsage to encode in the generated certificate.
      * 
      */
     @Import(name="keyUsages")
     private @Nullable Output<List<String>> keyUsages;
 
     /**
-     * @return Specifies key_usage to encode in the generated certificate.
+     * @return Specifies keyUsage to encode in the generated certificate.
      * 
      */
     public Optional<Output<List<String>>> keyUsages() {
@@ -239,7 +239,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     @Import(name="managedKeyId")
@@ -247,7 +247,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
     /**
      * @return The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     public Optional<Output<String>> managedKeyId() {
@@ -256,7 +256,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     @Import(name="managedKeyName")
@@ -264,7 +264,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
     /**
      * @return The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     public Optional<Output<String>> managedKeyName() {
@@ -791,7 +791,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
         }
 
         /**
-         * @param keyUsages Specifies key_usage to encode in the generated certificate.
+         * @param keyUsages Specifies keyUsage to encode in the generated certificate.
          * 
          * @return builder
          * 
@@ -802,7 +802,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
         }
 
         /**
-         * @param keyUsages Specifies key_usage to encode in the generated certificate.
+         * @param keyUsages Specifies keyUsage to encode in the generated certificate.
          * 
          * @return builder
          * 
@@ -812,7 +812,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
         }
 
         /**
-         * @param keyUsages Specifies key_usage to encode in the generated certificate.
+         * @param keyUsages Specifies keyUsage to encode in the generated certificate.
          * 
          * @return builder
          * 
@@ -844,7 +844,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
         /**
          * @param managedKeyId The ID of the previously configured managed key. This field is
-         * required if `type` is `kms` and it conflicts with `managed_key_name`
+         * required if `type` is `kms` and it conflicts with `managedKeyName`
          * 
          * @return builder
          * 
@@ -856,7 +856,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
         /**
          * @param managedKeyId The ID of the previously configured managed key. This field is
-         * required if `type` is `kms` and it conflicts with `managed_key_name`
+         * required if `type` is `kms` and it conflicts with `managedKeyName`
          * 
          * @return builder
          * 
@@ -867,7 +867,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
         /**
          * @param managedKeyName The name of the previously configured managed key. This field is
-         * required if `type` is `kms`  and it conflicts with `managed_key_id`
+         * required if `type` is `kms`  and it conflicts with `managedKeyId`
          * 
          * @return builder
          * 
@@ -879,7 +879,7 @@ public final class SecretBackendIntermediateCertRequestArgs extends com.pulumi.r
 
         /**
          * @param managedKeyName The name of the previously configured managed key. This field is
-         * required if `type` is `kms`  and it conflicts with `managed_key_id`
+         * required if `type` is `kms`  and it conflicts with `managedKeyId`
          * 
          * @return builder
          * 

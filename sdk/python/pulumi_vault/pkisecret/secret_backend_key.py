@@ -348,6 +348,25 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         Creates a key on a PKI Secret Backend for Vault.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            path="pki",
+            type="pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
+        key = vault.pkisecret.SecretBackendKey("key",
+            mount=pki.path,
+            type="exported",
+            key_name="example-key",
+            key_type="rsa",
+            key_bits=2048)
+        ```
+
         ## Import
 
         PKI secret backend key can be imported using the `id`, e.g.
@@ -382,6 +401,25 @@ class SecretBackendKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates a key on a PKI Secret Backend for Vault.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            path="pki",
+            type="pki",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
+        key = vault.pkisecret.SecretBackendKey("key",
+            mount=pki.path,
+            type="exported",
+            key_name="example-key",
+            key_type="rsa",
+            key_bits=2048)
+        ```
 
         ## Import
 

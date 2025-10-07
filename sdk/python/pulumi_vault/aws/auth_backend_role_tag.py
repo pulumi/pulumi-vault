@@ -357,6 +357,39 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         """
         Reads role tag information from an AWS auth backend in Vault.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.AuthBackend("aws",
+            path="%s",
+            type="aws")
+        role = vault.aws.AuthBackendRole("role",
+            backend=aws.path,
+            role="%s",
+            auth_type="ec2",
+            bound_account_id="123456789012",
+            policies=[
+                "dev",
+                "prod",
+                "qa",
+                "test",
+            ],
+            role_tag="VaultRoleTag")
+        test = vault.aws.AuthBackendRoleTag("test",
+            backend=aws.path,
+            role=role.role,
+            policies=[
+                "prod",
+                "dev",
+                "test",
+            ],
+            max_ttl="1h",
+            instance_id="i-1234567")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -381,6 +414,39 @@ class AuthBackendRoleTag(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Reads role tag information from an AWS auth backend in Vault.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.AuthBackend("aws",
+            path="%s",
+            type="aws")
+        role = vault.aws.AuthBackendRole("role",
+            backend=aws.path,
+            role="%s",
+            auth_type="ec2",
+            bound_account_id="123456789012",
+            policies=[
+                "dev",
+                "prod",
+                "qa",
+                "test",
+            ],
+            role_tag="VaultRoleTag")
+        test = vault.aws.AuthBackendRoleTag("test",
+            backend=aws.path,
+            role=role.role,
+            policies=[
+                "prod",
+                "dev",
+                "test",
+            ],
+            max_ttl="1h",
+            instance_id="i-1234567")
+        ```
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleTagArgs args: The arguments to use to populate this resource's properties.

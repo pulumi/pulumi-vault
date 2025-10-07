@@ -15,6 +15,29 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Kubernetes.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policies"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.Policies),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
@@ -23,6 +46,29 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Kubernetes.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policies"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.Policies),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
@@ -31,6 +77,29 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Kubernetes.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policies"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.Policies),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
@@ -55,7 +124,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -84,8 +153,8 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public int? TokenExplicitMaxTtl { get; set; }
@@ -142,9 +211,9 @@ namespace Pulumi.Vault.Kubernetes
         public int? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
+        /// The type of token that should be generated. Can be `Service`,
+        /// `Batch`, or `Default` to use the mount's tuned default (which unless changed will be
+        /// `Service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
         /// </summary>
@@ -175,7 +244,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -204,8 +273,8 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
@@ -262,9 +331,9 @@ namespace Pulumi.Vault.Kubernetes
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
+        /// The type of token that should be generated. Can be `Service`,
+        /// `Batch`, or `Default` to use the mount's tuned default (which unless changed will be
+        /// `Service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
         /// </summary>
@@ -291,11 +360,11 @@ namespace Pulumi.Vault.Kubernetes
         public readonly string? Audience;
         public readonly string? Backend;
         /// <summary>
-        /// List of service account names able to access this role. If set to "*" all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        /// List of service account names able to access this role. If set to "*" all names are allowed, both this and BoundServiceAccountNamespaces can not be "*".
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccountNames;
         /// <summary>
-        /// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        /// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and BoundServiceAccountNames can not be set to "*".
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccountNamespaces;
         /// <summary>
@@ -313,8 +382,8 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         public readonly int? TokenExplicitMaxTtl;
         /// <summary>
@@ -351,9 +420,9 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public readonly int? TokenTtl;
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
+        /// The type of token that should be generated. Can be `Service`,
+        /// `Batch`, or `Default` to use the mount's tuned default (which unless changed will be
+        /// `Service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
         /// </summary>

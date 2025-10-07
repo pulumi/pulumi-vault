@@ -13,18 +13,24 @@ namespace Pulumi.Vault.Transit
     {
         /// <summary>
         /// This is a data source which can be used to generate a signature using a Vault Transit key.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetSignResult> InvokeAsync(GetSignArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSignResult>("vault:transit/getSign:getSign", args ?? new GetSignArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to generate a signature using a Vault Transit key.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetSignResult> Invoke(GetSignInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSignResult>("vault:transit/getSign:getSign", args ?? new GetSignInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to generate a signature using a Vault Transit key.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetSignResult> Invoke(GetSignInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSignResult>("vault:transit/getSign:getSign", args ?? new GetSignInvokeArgs(), options.WithDefaults());
@@ -45,7 +51,7 @@ namespace Pulumi.Vault.Transit
         private List<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public List<ImmutableDictionary<string, string>> BatchResults
         {
@@ -87,7 +93,7 @@ namespace Pulumi.Vault.Transit
         public string? SaltLength { get; set; }
 
         /// <summary>
-        /// The signature returned from Vault if using `input`
+        /// The signature returned from Vault if using `Input`
         /// </summary>
         [Input("signature")]
         public string? Signature { get; set; }
@@ -118,7 +124,7 @@ namespace Pulumi.Vault.Transit
         private InputList<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> BatchResults
         {
@@ -160,7 +166,7 @@ namespace Pulumi.Vault.Transit
         public Input<string>? SaltLength { get; set; }
 
         /// <summary>
-        /// The signature returned from Vault if using `input`
+        /// The signature returned from Vault if using `Input`
         /// </summary>
         [Input("signature")]
         public Input<string>? Signature { get; set; }
@@ -183,7 +189,7 @@ namespace Pulumi.Vault.Transit
     {
         public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchInputs;
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchResults;
         public readonly string? Context;
@@ -202,7 +208,7 @@ namespace Pulumi.Vault.Transit
         public readonly string? Reference;
         public readonly string? SaltLength;
         /// <summary>
-        /// The signature returned from Vault if using `input`
+        /// The signature returned from Vault if using `Input`
         /// </summary>
         public readonly string Signature;
         public readonly string? SignatureAlgorithm;

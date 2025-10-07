@@ -189,7 +189,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -209,7 +209,7 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
-        /// to `consul`.
+        /// to `Consul`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -221,7 +221,7 @@ namespace Pulumi.Vault.Consul
         public Output<string?> PluginVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the URL scheme to use. Defaults to `http`.
+        /// Specifies the URL scheme to use. Defaults to `Http`.
         /// </summary>
         [Output("scheme")]
         public Output<string?> Scheme { get; private set; } = null!;
@@ -460,7 +460,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -492,7 +492,7 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
-        /// to `consul`.
+        /// to `Consul`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -504,7 +504,7 @@ namespace Pulumi.Vault.Consul
         public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
-        /// Specifies the URL scheme to use. Defaults to `http`.
+        /// Specifies the URL scheme to use. Defaults to `Http`.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }
@@ -715,7 +715,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -747,7 +747,7 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
-        /// to `consul`.
+        /// to `Consul`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -759,7 +759,7 @@ namespace Pulumi.Vault.Consul
         public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
-        /// Specifies the URL scheme to use. Defaults to `http`.
+        /// Specifies the URL scheme to use. Defaults to `Http`.
         /// </summary>
         [Input("scheme")]
         public Input<string>? Scheme { get; set; }

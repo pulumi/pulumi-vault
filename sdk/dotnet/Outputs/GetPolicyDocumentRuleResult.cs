@@ -18,11 +18,11 @@ namespace Pulumi.Vault.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyDocumentRuleAllowedParameterResult> AllowedParameters;
         /// <summary>
-        /// A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
+        /// A list of capabilities that this rule apply to `Path`. For example, ["read", "write"].
         /// </summary>
         public readonly ImmutableArray<string> Capabilities;
         /// <summary>
-        /// Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+        /// Blacklists a list of parameter and values. Any values specified here take precedence over `AllowedParameter`. See Parameters below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPolicyDocumentRuleDeniedParameterResult> DeniedParameters;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Vault.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RequiredParameters;
         /// <summary>
-        /// A list of event types to subscribe to when using `subscribe` capability.
+        /// A list of event types to subscribe to when using `Subscribe` capability.
         /// </summary>
         public readonly ImmutableArray<string> SubscribeEventTypes;
 

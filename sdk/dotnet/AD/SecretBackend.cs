@@ -53,7 +53,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ad`.
+        /// not begin or end with a `/`. Defaults to `Ad`.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -130,7 +130,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
-        /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        /// user group membership. Examples: `Cn` or `memberOf`, etc. Defaults to `Cn`.
         /// </summary>
         [Output("groupattr")]
         public Output<string?> Groupattr { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Output("insecureTls")]
         public Output<bool?> InsecureTls { get; private set; } = null!;
@@ -184,7 +184,7 @@ namespace Pulumi.Vault.AD
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -210,15 +210,15 @@ namespace Pulumi.Vault.AD
         public Output<bool> Starttls { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Maximum TLS version to use. Accepted values are `Tls10`, `Tls11`,
+        /// `Tls12` or `Tls13`. Defaults to `Tls12`.
         /// </summary>
         [Output("tlsMaxVersion")]
         public Output<string> TlsMaxVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Minimum TLS version to use. Accepted values are `Tls10`, `Tls11`,
+        /// `Tls12` or `Tls13`. Defaults to `Tls12`.
         /// </summary>
         [Output("tlsMinVersion")]
         public Output<string> TlsMinVersion { get; private set; } = null!;
@@ -261,7 +261,7 @@ namespace Pulumi.Vault.AD
         public Output<bool?> UseTokenGroups { get; private set; } = null!;
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used when searching users. Defaults to `Cn`.
         /// </summary>
         [Output("userattr")]
         public Output<string?> Userattr { get; private set; } = null!;
@@ -333,7 +333,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ad`.
+        /// not begin or end with a `/`. Defaults to `Ad`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -440,7 +440,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
-        /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        /// user group membership. Examples: `Cn` or `memberOf`, etc. Defaults to `Cn`.
         /// </summary>
         [Input("groupattr")]
         public Input<string>? Groupattr { get; set; }
@@ -460,7 +460,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -494,7 +494,7 @@ namespace Pulumi.Vault.AD
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -520,15 +520,15 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Starttls { get; set; }
 
         /// <summary>
-        /// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Maximum TLS version to use. Accepted values are `Tls10`, `Tls11`,
+        /// `Tls12` or `Tls13`. Defaults to `Tls12`.
         /// </summary>
         [Input("tlsMaxVersion")]
         public Input<string>? TlsMaxVersion { get; set; }
 
         /// <summary>
-        /// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Minimum TLS version to use. Accepted values are `Tls10`, `Tls11`,
+        /// `Tls12` or `Tls13`. Defaults to `Tls12`.
         /// </summary>
         [Input("tlsMinVersion")]
         public Input<string>? TlsMinVersion { get; set; }
@@ -571,7 +571,7 @@ namespace Pulumi.Vault.AD
         public Input<bool>? UseTokenGroups { get; set; }
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used when searching users. Defaults to `Cn`.
         /// </summary>
         [Input("userattr")]
         public Input<string>? Userattr { get; set; }
@@ -599,7 +599,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ad`.
+        /// not begin or end with a `/`. Defaults to `Ad`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -706,7 +706,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
-        /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
+        /// user group membership. Examples: `Cn` or `memberOf`, etc. Defaults to `Cn`.
         /// </summary>
         [Input("groupattr")]
         public Input<string>? Groupattr { get; set; }
@@ -726,7 +726,7 @@ namespace Pulumi.Vault.AD
 
         /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -760,7 +760,7 @@ namespace Pulumi.Vault.AD
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -786,15 +786,15 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Starttls { get; set; }
 
         /// <summary>
-        /// Maximum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Maximum TLS version to use. Accepted values are `Tls10`, `Tls11`,
+        /// `Tls12` or `Tls13`. Defaults to `Tls12`.
         /// </summary>
         [Input("tlsMaxVersion")]
         public Input<string>? TlsMaxVersion { get; set; }
 
         /// <summary>
-        /// Minimum TLS version to use. Accepted values are `tls10`, `tls11`,
-        /// `tls12` or `tls13`. Defaults to `tls12`.
+        /// Minimum TLS version to use. Accepted values are `Tls10`, `Tls11`,
+        /// `Tls12` or `Tls13`. Defaults to `Tls12`.
         /// </summary>
         [Input("tlsMinVersion")]
         public Input<string>? TlsMinVersion { get; set; }
@@ -837,7 +837,7 @@ namespace Pulumi.Vault.AD
         public Input<bool>? UseTokenGroups { get; set; }
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used when searching users. Defaults to `Cn`.
         /// </summary>
         [Input("userattr")]
         public Input<string>? Userattr { get; set; }

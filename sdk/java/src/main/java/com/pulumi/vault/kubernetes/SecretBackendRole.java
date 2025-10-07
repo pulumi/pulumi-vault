@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * Example using `service_account_name` mode:
+ * Example using `serviceAccountName` mode:
  * 
  * <pre>
  * {@code
@@ -83,7 +83,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * Example using `kubernetes_role_name` mode:
+ * Example using `kubernetesRoleName` mode:
  * 
  * <pre>
  * {@code
@@ -146,7 +146,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * Example using `generated_role_rules` mode:
+ * Example using `generatedRoleRules` mode:
  * 
  * <pre>
  * {@code
@@ -232,7 +232,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * A label selector for Kubernetes namespaces
      * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
      * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
-     * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+     * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      * 
      */
     @Export(name="allowedKubernetesNamespaceSelector", refs={String.class}, tree="[0]")
@@ -242,7 +242,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @return A label selector for Kubernetes namespaces
      * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
      * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
-     * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+     * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      * 
      */
     public Output<Optional<String>> allowedKubernetesNamespaceSelector() {
@@ -251,7 +251,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * The list of Kubernetes namespaces this role
      * can generate credentials for. If set to `*` all namespaces are allowed. If set with
-     * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
+     * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
      * 
      */
     @Export(name="allowedKubernetesNamespaces", refs={List.class,String.class}, tree="[0,1]")
@@ -260,7 +260,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return The list of Kubernetes namespaces this role
      * can generate credentials for. If set to `*` all namespaces are allowed. If set with
-     * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
+     * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
      * 
      */
     public Output<Optional<List<String>>> allowedKubernetesNamespaces() {
@@ -320,8 +320,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The Role or ClusterRole rules to use when generating
-     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-     * and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
+     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
      * when credentials are requested.
      * 
      */
@@ -330,8 +330,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The Role or ClusterRole rules to use when generating
-     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
-     * and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
+     * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
+     * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
      * when credentials are requested.
      * 
      */
@@ -340,8 +340,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The pre-existing Role or ClusterRole to bind a
-     * generated service account to. Mutually exclusive with `service_account_name` and
-     * `generated_role_rules`. If set, Kubernetes token, service account, and role
+     * generated service account to. Mutually exclusive with `serviceAccountName` and
+     * `generatedRoleRules`. If set, Kubernetes token, service account, and role
      * binding objects will be created when credentials are requested.
      * 
      */
@@ -350,8 +350,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The pre-existing Role or ClusterRole to bind a
-     * generated service account to. Mutually exclusive with `service_account_name` and
-     * `generated_role_rules`. If set, Kubernetes token, service account, and role
+     * generated service account to. Mutually exclusive with `serviceAccountName` and
+     * `generatedRoleRules`. If set, Kubernetes token, service account, and role
      * binding objects will be created when credentials are requested.
      * 
      */
@@ -426,7 +426,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The pre-existing service account to generate tokens for.
-     * Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
+     * Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
      * Kubernetes token will be created when credentials are requested.
      * 
      */
@@ -435,7 +435,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The pre-existing service account to generate tokens for.
-     * Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
+     * Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
      * Kubernetes token will be created when credentials are requested.
      * 
      */

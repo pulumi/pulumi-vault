@@ -7,6 +7,27 @@ import * as utilities from "../utilities";
 /**
  * Creates a key on a PKI Secret Backend for Vault.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const pki = new vault.Mount("pki", {
+ *     path: "pki",
+ *     type: "pki",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     maxLeaseTtlSeconds: 86400,
+ * });
+ * const key = new vault.pkisecret.SecretBackendKey("key", {
+ *     mount: pki.path,
+ *     type: "exported",
+ *     keyName: "example-key",
+ *     keyType: "rsa",
+ *     keyBits: 2048,
+ * });
+ * ```
+ *
  * ## Import
  *
  * PKI secret backend key can be imported using the `id`, e.g.

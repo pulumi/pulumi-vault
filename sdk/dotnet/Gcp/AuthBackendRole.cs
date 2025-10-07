@@ -93,7 +93,7 @@ namespace Pulumi.Vault.Gcp
         public Output<ImmutableArray<string>> BoundRegions { get; private set; } = null!;
 
         /// <summary>
-        /// GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
+        /// GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `Iam`)
         /// </summary>
         [Output("boundServiceAccounts")]
         public Output<ImmutableArray<string>> BoundServiceAccounts { get; private set; } = null!;
@@ -107,7 +107,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -174,7 +174,7 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// Type of GCP authentication role (either `gce` or `iam`)
+        /// Type of GCP authentication role (either `Gce` or `Iam`)
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -277,7 +277,7 @@ namespace Pulumi.Vault.Gcp
         private InputList<string>? _boundServiceAccounts;
 
         /// <summary>
-        /// GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
+        /// GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `Iam`)
         /// </summary>
         public InputList<string> BoundServiceAccounts
         {
@@ -299,7 +299,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -378,7 +378,7 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// Type of GCP authentication role (either `gce` or `iam`)
+        /// Type of GCP authentication role (either `Gce` or `Iam`)
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -443,7 +443,7 @@ namespace Pulumi.Vault.Gcp
         private InputList<string>? _boundServiceAccounts;
 
         /// <summary>
-        /// GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
+        /// GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `Iam`)
         /// </summary>
         public InputList<string> BoundServiceAccounts
         {
@@ -465,7 +465,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -544,7 +544,7 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? TokenType { get; set; }
 
         /// <summary>
-        /// Type of GCP authentication role (either `gce` or `iam`)
+        /// Type of GCP authentication role (either `Gce` or `Iam`)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

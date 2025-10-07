@@ -18,6 +18,52 @@ import javax.annotation.Nullable;
 /**
  * Creates a key on a PKI Secret Backend for Vault.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.pkiSecret.SecretBackendKey;
+ * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pki = new Mount("pki", MountArgs.builder()
+ *             .path("pki")
+ *             .type("pki")
+ *             .defaultLeaseTtlSeconds(3600)
+ *             .maxLeaseTtlSeconds(86400)
+ *             .build());
+ * 
+ *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
+ *             .mount(pki.path())
+ *             .type("exported")
+ *             .keyName("example-key")
+ *             .keyType("rsa")
+ *             .keyBits(2048)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * PKI secret backend key can be imported using the `id`, e.g.

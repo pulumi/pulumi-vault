@@ -46,7 +46,7 @@ namespace Pulumi.Vault.Secrets
     public partial class SyncConfig : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Disables the syncing process between Vault and external destinations. Defaults to `false`.
+        /// Disables the syncing process between Vault and external destinations. Defaults to `False`.
         /// </summary>
         [Output("disabled")]
         public Output<bool?> Disabled { get; private set; } = null!;
@@ -112,7 +112,7 @@ namespace Pulumi.Vault.Secrets
     public sealed class SyncConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Disables the syncing process between Vault and external destinations. Defaults to `false`.
+        /// Disables the syncing process between Vault and external destinations. Defaults to `False`.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
@@ -140,7 +140,7 @@ namespace Pulumi.Vault.Secrets
     public sealed class SyncConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Disables the syncing process between Vault and external destinations. Defaults to `false`.
+        /// Disables the syncing process between Vault and external destinations. Defaults to `False`.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }

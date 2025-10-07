@@ -93,14 +93,14 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+        /// Type of secret generated for this static account. Accepted values: `AccessToken`, `ServiceAccountKey`. Defaults to `AccessToken`.
         /// </summary>
         [Output("secretType")]
         public Output<string> SecretType { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumi.Vault.Gcp
         public Output<string> StaticAccount { get; private set; } = null!;
 
         /// <summary>
-        /// List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+        /// List of OAuth scopes to assign to `AccessToken` secrets generated under this static account (`AccessToken` static accounts only).
         /// </summary>
         [Output("tokenScopes")]
         public Output<ImmutableArray<string>> TokenScopes { get; private set; } = null!;
@@ -196,14 +196,14 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+        /// Type of secret generated for this static account. Accepted values: `AccessToken`, `ServiceAccountKey`. Defaults to `AccessToken`.
         /// </summary>
         [Input("secretType")]
         public Input<string>? SecretType { get; set; }
@@ -224,7 +224,7 @@ namespace Pulumi.Vault.Gcp
         private InputList<string>? _tokenScopes;
 
         /// <summary>
-        /// List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+        /// List of OAuth scopes to assign to `AccessToken` secrets generated under this static account (`AccessToken` static accounts only).
         /// </summary>
         public InputList<string> TokenScopes
         {
@@ -261,14 +261,14 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+        /// Type of secret generated for this static account. Accepted values: `AccessToken`, `ServiceAccountKey`. Defaults to `AccessToken`.
         /// </summary>
         [Input("secretType")]
         public Input<string>? SecretType { get; set; }
@@ -295,7 +295,7 @@ namespace Pulumi.Vault.Gcp
         private InputList<string>? _tokenScopes;
 
         /// <summary>
-        /// List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+        /// List of OAuth scopes to assign to `AccessToken` secrets generated under this static account (`AccessToken` static accounts only).
         /// </summary>
         public InputList<string> TokenScopes
         {

@@ -6,6 +6,36 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.aws.SecretBackend("aws", {
+ *     accessKey: "AKIA.....",
+ *     secretKey: "SECRETKEYFROMAWS",
+ * });
+ * const role = new vault.aws.SecretBackendRole("role", {
+ *     backend: aws.path,
+ *     name: "test",
+ *     policy: `{
+ *   "Version": "2012-10-17",
+ *   "Statement": [
+ *     {
+ *       "Effect": "Allow",
+ *       "Action": "iam:*",
+ *       "Resource": "*"
+ *     }
+ *   ]
+ * }
+ * `,
+ * });
+ * // generally, these blocks would be in a different module
+ * const creds = pulumi.all([aws.path, role.name]).apply(([path, name]) => vault.aws.getAccessCredentialsOutput({
+ *     backend: path,
+ *     role: name,
+ * }));
+ * ```
  */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -108,6 +138,36 @@ export interface GetAccessCredentialsResult {
 }
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.aws.SecretBackend("aws", {
+ *     accessKey: "AKIA.....",
+ *     secretKey: "SECRETKEYFROMAWS",
+ * });
+ * const role = new vault.aws.SecretBackendRole("role", {
+ *     backend: aws.path,
+ *     name: "test",
+ *     policy: `{
+ *   "Version": "2012-10-17",
+ *   "Statement": [
+ *     {
+ *       "Effect": "Allow",
+ *       "Action": "iam:*",
+ *       "Resource": "*"
+ *     }
+ *   ]
+ * }
+ * `,
+ * });
+ * // generally, these blocks would be in a different module
+ * const creds = pulumi.all([aws.path, role.name]).apply(([path, name]) => vault.aws.getAccessCredentialsOutput({
+ *     backend: path,
+ *     role: name,
+ * }));
+ * ```
  */
 export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
