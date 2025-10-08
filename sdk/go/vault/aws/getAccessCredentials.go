@@ -12,6 +12,60 @@ import (
 )
 
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//				AccessKey: pulumi.String("AKIA....."),
+//				SecretKey: pulumi.String("SECRETKEYFROMAWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			role, err := aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
+//				Backend: aws.Path,
+//				Name:    pulumi.String("test"),
+//				Policy: `{
+//	  "Version": "2012-10-17",
+//	  "Statement": [
+//	    {
+//	      "Effect": "Allow",
+//	      "Action": "iam:*",
+//	      "Resource": "*"
+//	    }
+//	  ]
+//	}
+//
+// `,
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// generally, these blocks would be in a different module
+//			_ = pulumi.All(aws.Path, role.Name).ApplyT(func(_args []interface{}) (aws.GetAccessCredentialsResult, error) {
+//				path := _args[0].(*string)
+//				name := _args[1].(string)
+//				return aws.GetAccessCredentialsResult(interface{}(aws.GetAccessCredentialsOutput(ctx, aws.GetAccessCredentialsOutputArgs{
+//					Backend: path,
+//					Role:    name,
+//				}, nil))), nil
+//			}).(aws.GetAccessCredentialsResultOutput)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetAccessCredentials(ctx *pulumi.Context, args *GetAccessCredentialsArgs, opts ...pulumi.InvokeOption) (*GetAccessCredentialsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAccessCredentialsResult

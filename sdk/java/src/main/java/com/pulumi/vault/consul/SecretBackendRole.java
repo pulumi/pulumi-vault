@@ -66,8 +66,8 @@ import javax.annotation.Nullable;
  * 
  * ## Note About Required Arguments
  * 
- * *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
- * `node_identities` is required for a token. If desired, any combination of the four arguments up-to and
+ * *At least one* of the four arguments `consulPolicies`, `consulRoles`, `serviceIdentities`, or
+ * `nodeIdentities` is required for a token. If desired, any combination of the four arguments up-to and
  * including all four, is valid.
  * 
  * ## Import
@@ -237,7 +237,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The list of Consul ACL policies to associate with these roles.
-     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
@@ -246,7 +246,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The list of Consul ACL policies to associate with these roles.
-     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */

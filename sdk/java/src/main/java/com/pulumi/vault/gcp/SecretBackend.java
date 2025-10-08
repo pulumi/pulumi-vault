@@ -99,7 +99,7 @@ import javax.annotation.Nullable;
  * 
  * The following write-only attributes are supported:
  * 
- * * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+ * * `credentialsWo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
  *   **Note**: This property is write-only and will not be read from the API.
  * 
  */
@@ -190,14 +190,14 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.credentials);
     }
     /**
-     * The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * The version of the `credentialsWo`. For more info see updating write-only attributes.
      * 
      */
     @Export(name="credentialsWoVersion", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> credentialsWoVersion;
 
     /**
-     * @return The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * @return The version of the `credentialsWo`. For more info see updating write-only attributes.
      * 
      */
     public Output<Optional<Integer>> credentialsWoVersion() {
@@ -539,7 +539,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
@@ -547,7 +547,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Output<Optional<String>> serviceAccountEmail() {

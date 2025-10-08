@@ -11,6 +11,55 @@ namespace Pulumi.Vault.Aws
 {
     /// <summary>
     /// Reads role tag information from an AWS auth backend in Vault.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var aws = new Vault.AuthBackend("aws", new()
+    ///     {
+    ///         Path = "%s",
+    ///         Type = "aws",
+    ///     });
+    /// 
+    ///     var role = new Vault.Aws.AuthBackendRole("role", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         Role = "%s",
+    ///         AuthType = "ec2",
+    ///         BoundAccountId = "123456789012",
+    ///         Policies = new[]
+    ///         {
+    ///             "dev",
+    ///             "prod",
+    ///             "qa",
+    ///             "test",
+    ///         },
+    ///         RoleTag = "VaultRoleTag",
+    ///     });
+    /// 
+    ///     var test = new Vault.Aws.AuthBackendRoleTag("test", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         Role = role.Role,
+    ///         Policies = new[]
+    ///         {
+    ///             "prod",
+    ///             "dev",
+    ///             "test",
+    ///         },
+    ///         MaxTtl = "1h",
+    ///         InstanceId = "i-1234567",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendRoleTag:AuthBackendRoleTag")]
     public partial class AuthBackendRoleTag : global::Pulumi.CustomResource
@@ -49,7 +98,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -160,7 +209,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -227,7 +276,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

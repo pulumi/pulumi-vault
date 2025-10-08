@@ -20,7 +20,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
     /**
      * Configures how identity aliases are generated.
-     * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
      * 
      */
     @Import(name="aliasNameSource")
@@ -28,7 +28,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
     /**
      * @return Configures how identity aliases are generated.
-     * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+     * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
      * 
      */
     public Optional<Output<String>> aliasNameSource() {
@@ -38,7 +38,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     /**
      * Audience claim to verify in the JWT.
      * 
-     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * &gt; Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
      * before setting this to something other its default value. There are **important** security
      * implications to be aware of.
      * 
@@ -49,7 +49,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     /**
      * @return Audience claim to verify in the JWT.
      * 
-     * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+     * &gt; Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
      * before setting this to something other its default value. There are **important** security
      * implications to be aware of.
      * 
@@ -74,14 +74,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+     * List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
      * 
      */
     @Import(name="boundServiceAccountNames")
     private @Nullable Output<List<String>> boundServiceAccountNames;
 
     /**
-     * @return List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+     * @return List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
      * 
      */
     public Optional<Output<List<String>>> boundServiceAccountNames() {
@@ -89,14 +89,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+     * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     @Import(name="boundServiceAccountNamespaces")
     private @Nullable Output<List<String>> boundServiceAccountNamespaces;
 
     /**
-     * @return List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+     * @return List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     public Optional<Output<List<String>>> boundServiceAccountNamespaces() {
@@ -315,7 +315,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param aliasNameSource Configures how identity aliases are generated.
-         * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+         * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
          * 
          * @return builder
          * 
@@ -327,7 +327,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param aliasNameSource Configures how identity aliases are generated.
-         * Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+         * Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
          * 
          * @return builder
          * 
@@ -339,7 +339,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         /**
          * @param audience Audience claim to verify in the JWT.
          * 
-         * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+         * &gt; Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
          * before setting this to something other its default value. There are **important** security
          * implications to be aware of.
          * 
@@ -354,7 +354,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         /**
          * @param audience Audience claim to verify in the JWT.
          * 
-         * &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+         * &gt; Please see [aliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
          * before setting this to something other its default value. There are **important** security
          * implications to be aware of.
          * 
@@ -387,7 +387,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundServiceAccountNames List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+         * @param boundServiceAccountNames List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
          * 
          * @return builder
          * 
@@ -398,7 +398,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundServiceAccountNames List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+         * @param boundServiceAccountNames List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
          * 
          * @return builder
          * 
@@ -408,7 +408,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundServiceAccountNames List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+         * @param boundServiceAccountNames List of service account names able to access this role. If set to `[&#34;*&#34;]` all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
          * 
          * @return builder
          * 
@@ -418,7 +418,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+         * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
          * 
          * @return builder
          * 
@@ -429,7 +429,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+         * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
          * 
          * @return builder
          * 
@@ -439,7 +439,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+         * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
          * 
          * @return builder
          * 

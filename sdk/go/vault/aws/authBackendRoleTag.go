@@ -13,6 +13,64 @@ import (
 )
 
 // Reads role tag information from an AWS auth backend in Vault.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//				Path: pulumi.String("%s"),
+//				Type: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			role, err := aws.NewAuthBackendRole(ctx, "role", &aws.AuthBackendRoleArgs{
+//				Backend:        aws.Path,
+//				Role:           pulumi.String("%s"),
+//				AuthType:       pulumi.String("ec2"),
+//				BoundAccountId: "123456789012",
+//				Policies: []string{
+//					"dev",
+//					"prod",
+//					"qa",
+//					"test",
+//				},
+//				RoleTag: pulumi.String("VaultRoleTag"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendRoleTag(ctx, "test", &aws.AuthBackendRoleTagArgs{
+//				Backend: aws.Path,
+//				Role:    role.Role,
+//				Policies: pulumi.StringArray{
+//					pulumi.String("prod"),
+//					pulumi.String("dev"),
+//					pulumi.String("test"),
+//				},
+//				MaxTtl:     pulumi.String("1h"),
+//				InstanceId: pulumi.String("i-1234567"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AuthBackendRoleTag struct {
 	pulumi.CustomResourceState
 

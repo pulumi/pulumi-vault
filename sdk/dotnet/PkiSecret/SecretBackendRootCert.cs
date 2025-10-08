@@ -127,7 +127,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Provides a name to the specified issuer. The name must be unique
-        /// across all issuers and not be the reserved value `default`
+        /// across all issuers and not be the reserved value `Default`
         /// </summary>
         [Output("issuerName")]
         public Output<string> IssuerName { get; private set; } = null!;
@@ -152,7 +152,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// When a new key is created with this request, optionally specifies
-        /// the name for this. The global ref `default` may not be used as a name.
+        /// the name for this. The global ref `Default` may not be used as a name.
         /// </summary>
         [Output("keyName")]
         public Output<string> KeyName { get; private set; } = null!;
@@ -178,14 +178,14 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The ID of the previously configured managed key. This field is
-        /// required if `type` is `kms` and it conflicts with `managed_key_name`
+        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`
         /// </summary>
         [Output("managedKeyId")]
         public Output<string> ManagedKeyId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the previously configured managed key. This field is
-        /// required if `type` is `kms`  and it conflicts with `managed_key_id`
+        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`
         /// </summary>
         [Output("managedKeyName")]
         public Output<string> ManagedKeyName { get; private set; } = null!;
@@ -199,7 +199,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -458,7 +458,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Provides a name to the specified issuer. The name must be unique
-        /// across all issuers and not be the reserved value `default`
+        /// across all issuers and not be the reserved value `Default`
         /// </summary>
         [Input("issuerName")]
         public Input<string>? IssuerName { get; set; }
@@ -471,7 +471,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// When a new key is created with this request, optionally specifies
-        /// the name for this. The global ref `default` may not be used as a name.
+        /// the name for this. The global ref `Default` may not be used as a name.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
@@ -497,14 +497,14 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The ID of the previously configured managed key. This field is
-        /// required if `type` is `kms` and it conflicts with `managed_key_name`
+        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
         /// The name of the previously configured managed key. This field is
-        /// required if `type` is `kms`  and it conflicts with `managed_key_id`
+        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -518,7 +518,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -781,7 +781,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Provides a name to the specified issuer. The name must be unique
-        /// across all issuers and not be the reserved value `default`
+        /// across all issuers and not be the reserved value `Default`
         /// </summary>
         [Input("issuerName")]
         public Input<string>? IssuerName { get; set; }
@@ -806,7 +806,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// When a new key is created with this request, optionally specifies
-        /// the name for this. The global ref `default` may not be used as a name.
+        /// the name for this. The global ref `Default` may not be used as a name.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
@@ -832,14 +832,14 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The ID of the previously configured managed key. This field is
-        /// required if `type` is `kms` and it conflicts with `managed_key_name`
+        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
         /// The name of the previously configured managed key. This field is
-        /// required if `type` is `kms`  and it conflicts with `managed_key_id`
+        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -853,7 +853,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

@@ -203,6 +203,35 @@ def get_access_credentials(backend: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    aws = vault.aws.SecretBackend("aws",
+        access_key="AKIA.....",
+        secret_key="SECRETKEYFROMAWS")
+    role = vault.aws.SecretBackendRole("role",
+        backend=aws.path,
+        name="test",
+        policy=\"\"\"{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "iam:*",
+          "Resource": "*"
+        }
+      ]
+    }
+    \"\"\")
+    # generally, these blocks would be in a different module
+    creds = pulumi.Output.all(
+        path=aws.path,
+        name=role.name
+    ).apply(lambda resolved_outputs: vault.aws.get_access_credentials_output(backend=resolved_outputs['path'],
+        role=resolved_outputs['name']))
+    ```
+
 
     :param _builtins.str backend: The path to the AWS secret backend to
            read credentials from, with no leading or trailing `/`s.
@@ -261,6 +290,35 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[_builtins.str]]
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    aws = vault.aws.SecretBackend("aws",
+        access_key="AKIA.....",
+        secret_key="SECRETKEYFROMAWS")
+    role = vault.aws.SecretBackendRole("role",
+        backend=aws.path,
+        name="test",
+        policy=\"\"\"{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "iam:*",
+          "Resource": "*"
+        }
+      ]
+    }
+    \"\"\")
+    # generally, these blocks would be in a different module
+    creds = pulumi.Output.all(
+        path=aws.path,
+        name=role.name
+    ).apply(lambda resolved_outputs: vault.aws.get_access_credentials_output(backend=resolved_outputs['path'],
+        role=resolved_outputs['name']))
+    ```
 
 
     :param _builtins.str backend: The path to the AWS secret backend to

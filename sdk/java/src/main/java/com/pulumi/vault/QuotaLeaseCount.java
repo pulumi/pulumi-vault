@@ -88,7 +88,7 @@ public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
     }
     /**
      * The maximum number of leases to be allowed by the quota
-     * rule. The `max_leases` must be positive.
+     * rule. The `maxLeases` must be positive.
      * 
      */
     @Export(name="maxLeases", refs={Integer.class}, tree="[0]")
@@ -96,7 +96,7 @@ public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The maximum number of leases to be allowed by the quota
-     * rule. The `max_leases` must be positive.
+     * rule. The `maxLeases` must be positive.
      * 
      */
     public Output<Integer> maxLeases() {

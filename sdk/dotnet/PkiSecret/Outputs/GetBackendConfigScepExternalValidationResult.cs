@@ -14,7 +14,7 @@ namespace Pulumi.Vault.PkiSecret.Outputs
     public sealed class GetBackendConfigScepExternalValidationResult
     {
         /// <summary>
-        /// The tenant_id, client_id, client_secret and environment properties for Microsoft Intune validation of SCEP requests.
+        /// The tenant_id, client_id, ClientSecret and environment properties for Microsoft Intune validation of SCEP requests.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Intune;
 

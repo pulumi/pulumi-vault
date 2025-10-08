@@ -20,7 +20,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
     public static final SecretV2State Empty = new SecretV2State();
 
     /**
-     * This flag is required if `cas_required` is set to true
+     * This flag is required if `casRequired` is set to true
      * on either the secret or the engine&#39;s config. In order for a
      * write operation to be successful, cas must be set to the current version
      * of the secret.
@@ -30,7 +30,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Integer> cas;
 
     /**
-     * @return This flag is required if `cas_required` is set to true
+     * @return This flag is required if `casRequired` is set to true
      * on either the secret or the engine&#39;s config. In order for a
      * write operation to be successful, cas must be set to the current version
      * of the secret.
@@ -106,14 +106,14 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      * 
      */
     @Import(name="dataJsonWoVersion")
     private @Nullable Output<Integer> dataJsonWoVersion;
 
     /**
-     * @return The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * @return The version of the `dataJsonWo`. For more info see updating write-only attributes.
      * 
      */
     public Optional<Output<Integer>> dataJsonWoVersion() {
@@ -293,7 +293,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cas This flag is required if `cas_required` is set to true
+         * @param cas This flag is required if `casRequired` is set to true
          * on either the secret or the engine&#39;s config. In order for a
          * write operation to be successful, cas must be set to the current version
          * of the secret.
@@ -307,7 +307,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cas This flag is required if `cas_required` is set to true
+         * @param cas This flag is required if `casRequired` is set to true
          * on either the secret or the engine&#39;s config. In order for a
          * write operation to be successful, cas must be set to the current version
          * of the secret.
@@ -403,7 +403,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dataJsonWoVersion The version of the `data_json_wo`. For more info see updating write-only attributes.
+         * @param dataJsonWoVersion The version of the `dataJsonWo`. For more info see updating write-only attributes.
          * 
          * @return builder
          * 
@@ -414,7 +414,7 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dataJsonWoVersion The version of the `data_json_wo`. For more info see updating write-only attributes.
+         * @param dataJsonWoVersion The version of the `dataJsonWo`. For more info see updating write-only attributes.
          * 
          * @return builder
          * 

@@ -14,6 +14,46 @@ import (
 
 // Creates a key on a PKI Secret Backend for Vault.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/pkisecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+//				Path:                   pulumi.String("pki"),
+//				Type:                   pulumi.String("pki"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = pkisecret.NewSecretBackendKey(ctx, "key", &pkisecret.SecretBackendKeyArgs{
+//				Mount:   pki.Path,
+//				Type:    pulumi.String("exported"),
+//				KeyName: pulumi.String("example-key"),
+//				KeyType: pulumi.String("rsa"),
+//				KeyBits: pulumi.Int(2048),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // PKI secret backend key can be imported using the `id`, e.g.

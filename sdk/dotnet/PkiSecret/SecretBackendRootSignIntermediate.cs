@@ -57,20 +57,20 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// A list of the issuing and intermediate CA certificates in the `format` specified.
+        /// A list of the issuing and intermediate CA certificates in the `Format` specified.
         /// </summary>
         [Output("caChains")]
         public Output<ImmutableArray<string>> CaChains { get; private set; } = null!;
 
         /// <summary>
-        /// The intermediate CA certificate in the `format` specified.
+        /// The intermediate CA certificate in the `Format` specified.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
         /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
-        /// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+        /// Requires the `Format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         /// </summary>
         [Output("certificateBundle")]
         public Output<string> CertificateBundle { get; private set; } = null!;
@@ -137,15 +137,15 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. May
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Output("issuerRef")]
         public Output<string?> IssuerRef { get; private set; } = null!;
 
         /// <summary>
-        /// The issuing CA certificate in the `format` specified.
+        /// The issuing CA certificate in the `Format` specified.
         /// </summary>
         [Output("issuingCa")]
         public Output<string> IssuingCa { get; private set; } = null!;
@@ -171,7 +171,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Province { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// If set to `True`, the certificate will be revoked on resource destruction.
         /// </summary>
         [Output("revoke")]
         public Output<bool?> Revoke { get; private set; } = null!;
@@ -455,9 +455,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. May
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
@@ -489,7 +489,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -594,7 +594,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Province { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// If set to `True`, the certificate will be revoked on resource destruction.
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }
@@ -677,7 +677,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _caChains;
 
         /// <summary>
-        /// A list of the issuing and intermediate CA certificates in the `format` specified.
+        /// A list of the issuing and intermediate CA certificates in the `Format` specified.
         /// </summary>
         public InputList<string> CaChains
         {
@@ -686,14 +686,14 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The intermediate CA certificate in the `format` specified.
+        /// The intermediate CA certificate in the `Format` specified.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
         /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
-        /// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
+        /// Requires the `Format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         /// </summary>
         [Input("certificateBundle")]
         public Input<string>? CertificateBundle { get; set; }
@@ -790,15 +790,15 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. May
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
 
         /// <summary>
-        /// The issuing CA certificate in the `format` specified.
+        /// The issuing CA certificate in the `Format` specified.
         /// </summary>
         [Input("issuingCa")]
         public Input<string>? IssuingCa { get; set; }
@@ -830,7 +830,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -935,7 +935,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Province { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// If set to `True`, the certificate will be revoked on resource destruction.
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }

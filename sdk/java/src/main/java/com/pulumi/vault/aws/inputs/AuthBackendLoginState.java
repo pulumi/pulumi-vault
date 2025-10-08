@@ -168,7 +168,7 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
 
     /**
      * The duration in seconds the token will be valid, relative
-     * to the time in `lease_start_time`.
+     * to the time in `leaseStartTime`.
      * 
      */
     @Import(name="leaseDuration")
@@ -176,7 +176,7 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The duration in seconds the token will be valid, relative
-     * to the time in `lease_start_time`.
+     * to the time in `leaseStartTime`.
      * 
      */
     public Optional<Output<Integer>> leaseDuration() {
@@ -579,7 +579,7 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param leaseDuration The duration in seconds the token will be valid, relative
-         * to the time in `lease_start_time`.
+         * to the time in `leaseStartTime`.
          * 
          * @return builder
          * 
@@ -591,7 +591,7 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
 
         /**
          * @param leaseDuration The duration in seconds the token will be valid, relative
-         * to the time in `lease_start_time`.
+         * to the time in `leaseStartTime`.
          * 
          * @return builder
          * 

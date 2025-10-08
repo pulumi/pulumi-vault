@@ -124,14 +124,14 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.credentialConfig);
     }
     /**
-     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
+     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsaPrivateKey&#34; or &#34;clientCertificate&#34;.The configuration can be done in `credentialConfig`.
      * 
      */
     @Export(name="credentialType", refs={String.class}, tree="[0]")
     private Output<String> credentialType;
 
     /**
-     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
+     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsaPrivateKey&#34; or &#34;clientCertificate&#34;.The configuration can be done in `credentialConfig`.
      * 
      */
     public Output<String> credentialType() {
@@ -187,7 +187,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     }
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
-     * Mutually exclusive with `rotation_schedule`.
+     * Mutually exclusive with `rotationSchedule`.
      * 
      */
     @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
@@ -195,7 +195,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
 
     /**
      * @return The amount of time Vault should wait before rotating the password, in seconds.
-     * Mutually exclusive with `rotation_schedule`.
+     * Mutually exclusive with `rotationSchedule`.
      * 
      */
     public Output<Optional<Integer>> rotationPeriod() {
@@ -203,9 +203,9 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     }
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
-     * Mutually exclusive with `rotation_period`.
+     * Mutually exclusive with `rotationPeriod`.
      * 
-     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      * 
      */
@@ -214,9 +214,9 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
 
     /**
      * @return A cron-style string that will define the schedule on which rotations should occur.
-     * Mutually exclusive with `rotation_period`.
+     * Mutually exclusive with `rotationPeriod`.
      * 
-     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      * 
      */
@@ -239,7 +239,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     }
     /**
      * The amount of time, in seconds, in which rotations are allowed to occur starting
-     * from a given `rotation_schedule`.
+     * from a given `rotationSchedule`.
      * 
      */
     @Export(name="rotationWindow", refs={Integer.class}, tree="[0]")
@@ -247,7 +247,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
 
     /**
      * @return The amount of time, in seconds, in which rotations are allowed to occur starting
-     * from a given `rotation_schedule`.
+     * from a given `rotationSchedule`.
      * 
      */
     public Output<Optional<Integer>> rotationWindow() {

@@ -6,6 +6,42 @@ import * as utilities from "../utilities";
 
 /**
  * Reads role tag information from an AWS auth backend in Vault.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.AuthBackend("aws", {
+ *     path: "%s",
+ *     type: "aws",
+ * });
+ * const role = new vault.aws.AuthBackendRole("role", {
+ *     backend: aws.path,
+ *     role: "%s",
+ *     authType: "ec2",
+ *     boundAccountId: "123456789012",
+ *     policies: [
+ *         "dev",
+ *         "prod",
+ *         "qa",
+ *         "test",
+ *     ],
+ *     roleTag: "VaultRoleTag",
+ * });
+ * const test = new vault.aws.AuthBackendRoleTag("test", {
+ *     backend: aws.path,
+ *     role: role.role,
+ *     policies: [
+ *         "prod",
+ *         "dev",
+ *         "test",
+ *     ],
+ *     maxTtl: "1h",
+ *     instanceId: "i-1234567",
+ * });
+ * ```
  */
 export class AuthBackendRoleTag extends pulumi.CustomResource {
     /**

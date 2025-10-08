@@ -14,6 +14,69 @@ namespace Pulumi.Vault.Aws
     /// accomplished using a signed identity request from IAM or using ec2
     /// instance metadata. For more information, see the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/aws.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var aws = new Vault.AuthBackend("aws", new()
+    ///     {
+    ///         Type = "aws",
+    ///         Path = "aws",
+    ///     });
+    /// 
+    ///     var example = new Vault.Aws.AuthBackendClient("example", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         AccessKey = "123456789012",
+    ///         SecretKey = "AWSSECRETKEYGOESHERE",
+    ///     });
+    /// 
+    ///     var exampleAuthBackendRole = new Vault.Aws.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = aws.Path,
+    ///         Role = "test-role",
+    ///         AuthType = "ec2",
+    ///         BoundAmiId = "ami-8c1be5f6",
+    ///         BoundAccountId = "123456789012",
+    ///         BoundVpcId = "vpc-b61106d4",
+    ///         BoundSubnetId = "vpc-133128f1",
+    ///         BoundIamInstanceProfileArns = new[]
+    ///         {
+    ///             "arn:aws:iam::123456789012:instance-profile/MyProfile",
+    ///         },
+    ///         Ttl = 60,
+    ///         MaxTtl = 120,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             example,
+    ///         },
+    ///     });
+    /// 
+    ///     var exampleAuthBackendLogin = new Vault.Aws.AuthBackendLogin("example", new()
+    ///     {
+    ///         Backend = exampleVaultAuthBackend.Path,
+    ///         Role = exampleAuthBackendRole.Role,
+    ///         Identity = "BASE64ENCODEDIDENTITYDOCUMENT",
+    ///         Signature = "BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendLogin:AuthBackendLogin")]
     public partial class AuthBackendLogin : global::Pulumi.CustomResource
@@ -80,7 +143,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The duration in seconds the token will be valid, relative
-        /// to the time in `lease_start_time`.
+        /// to the time in `LeaseStartTime`.
         /// </summary>
         [Output("leaseDuration")]
         public Output<int> LeaseDuration { get; private set; } = null!;
@@ -98,7 +161,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -243,7 +306,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -361,7 +424,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The duration in seconds the token will be valid, relative
-        /// to the time in `lease_start_time`.
+        /// to the time in `LeaseStartTime`.
         /// </summary>
         [Input("leaseDuration")]
         public Input<int>? LeaseDuration { get; set; }
@@ -385,7 +448,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
