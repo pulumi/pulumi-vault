@@ -100,14 +100,14 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     @Import(name="secretType")
     private @Nullable Output<String> secretType;
 
     /**
-     * @return Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * @return Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     public Optional<Output<String>> secretType() {
@@ -115,14 +115,14 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+     * List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      * 
      */
     @Import(name="tokenScopes")
     private @Nullable Output<List<String>> tokenScopes;
 
     /**
-     * @return List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+     * @return List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      * 
      */
     public Optional<Output<List<String>>> tokenScopes() {
@@ -281,7 +281,7 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretType Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+         * @param secretType Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
          * 
          * @return builder
          * 
@@ -292,7 +292,7 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretType Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+         * @param secretType Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
          * 
          * @return builder
          * 
@@ -302,7 +302,7 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenScopes List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+         * @param tokenScopes List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
          * 
          * @return builder
          * 
@@ -313,7 +313,7 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenScopes List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+         * @param tokenScopes List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
          * 
          * @return builder
          * 
@@ -323,7 +323,7 @@ public final class SecretRolesetArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenScopes List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+         * @param tokenScopes List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
          * 
          * @return builder
          * 

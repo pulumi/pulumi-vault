@@ -26,7 +26,7 @@ public final class GetPolicyDocumentRule {
      */
     private List<String> capabilities;
     /**
-     * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+     * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
      * 
      */
     private @Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters;
@@ -77,7 +77,7 @@ public final class GetPolicyDocumentRule {
         return this.capabilities;
     }
     /**
-     * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+     * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
      * 
      */
     public List<GetPolicyDocumentRuleDeniedParameter> deniedParameters() {

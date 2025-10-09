@@ -39,7 +39,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * The type of matching assertion to perform on
-     * `bound_attributes_type`.
+     * `boundAttributesType`.
      * 
      */
     @Import(name="boundAttributesType")
@@ -47,7 +47,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return The type of matching assertion to perform on
-     * `bound_attributes_type`.
+     * `boundAttributesType`.
      * 
      */
     public Optional<Output<String>> boundAttributesType() {
@@ -70,14 +70,14 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The type of matching assertion to perform on `bound_subjects`.
+     * The type of matching assertion to perform on `boundSubjects`.
      * 
      */
     @Import(name="boundSubjectsType")
     private @Nullable Output<String> boundSubjectsType;
 
     /**
-     * @return The type of matching assertion to perform on `bound_subjects`.
+     * @return The type of matching assertion to perform on `boundSubjects`.
      * 
      */
     public Optional<Output<String>> boundSubjectsType() {
@@ -352,7 +352,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param boundAttributesType The type of matching assertion to perform on
-         * `bound_attributes_type`.
+         * `boundAttributesType`.
          * 
          * @return builder
          * 
@@ -364,7 +364,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param boundAttributesType The type of matching assertion to perform on
-         * `bound_attributes_type`.
+         * `boundAttributesType`.
          * 
          * @return builder
          * 
@@ -405,7 +405,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundSubjectsType The type of matching assertion to perform on `bound_subjects`.
+         * @param boundSubjectsType The type of matching assertion to perform on `boundSubjects`.
          * 
          * @return builder
          * 
@@ -416,7 +416,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundSubjectsType The type of matching assertion to perform on `bound_subjects`.
+         * @param boundSubjectsType The type of matching assertion to perform on `boundSubjects`.
          * 
          * @return builder
          * 

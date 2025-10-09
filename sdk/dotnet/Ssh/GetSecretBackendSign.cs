@@ -154,13 +154,13 @@ namespace Pulumi.Vault.Ssh
         public string PublicKey { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the Requested Time To Live. Cannot be greater than the role's max_ttl value. If not provided, the role's ttl value will be used. Note that the role values default to system values if not explicitly set.
+        /// Specifies the Requested Time To Live. Cannot be greater than the role's MaxTtl value. If not provided, the role's ttl value will be used. Note that the role values default to system values if not explicitly set.
         /// </summary>
         [Input("ttl")]
         public string? Ttl { get; set; }
 
         /// <summary>
-        /// Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allow_empty_principals or a value has been set for either the default_user or default_user_template role parameters.
+        /// Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified AllowEmptyPrincipals or a value has been set for either the DefaultUser or DefaultUserTemplate role parameters.
         /// </summary>
         [Input("validPrincipals")]
         public string? ValidPrincipals { get; set; }
@@ -231,13 +231,13 @@ namespace Pulumi.Vault.Ssh
         public Input<string> PublicKey { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the Requested Time To Live. Cannot be greater than the role's max_ttl value. If not provided, the role's ttl value will be used. Note that the role values default to system values if not explicitly set.
+        /// Specifies the Requested Time To Live. Cannot be greater than the role's MaxTtl value. If not provided, the role's ttl value will be used. Note that the role values default to system values if not explicitly set.
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }
 
         /// <summary>
-        /// Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allow_empty_principals or a value has been set for either the default_user or default_user_template role parameters.
+        /// Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified AllowEmptyPrincipals or a value has been set for either the DefaultUser or DefaultUserTemplate role parameters.
         /// </summary>
         [Input("validPrincipals")]
         public Input<string>? ValidPrincipals { get; set; }

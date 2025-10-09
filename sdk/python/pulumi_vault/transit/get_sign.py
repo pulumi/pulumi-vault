@@ -219,6 +219,8 @@ def get_sign(batch_inputs: Optional[Sequence[Mapping[str, _builtins.str]]] = Non
     """
     This is a data source which can be used to generate a signature using a Vault Transit key.
 
+    ## Example Usage
+
 
     :param Sequence[Mapping[str, _builtins.str]] batch_results: The results returned from Vault if using `batch_input`
     :param _builtins.str signature: The signature returned from Vault if using `input`
@@ -280,6 +282,8 @@ def get_sign_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mappin
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSignResult]:
     """
     This is a data source which can be used to generate a signature using a Vault Transit key.
+
+    ## Example Usage
 
 
     :param Sequence[Mapping[str, _builtins.str]] batch_results: The results returned from Vault if using `batch_input`

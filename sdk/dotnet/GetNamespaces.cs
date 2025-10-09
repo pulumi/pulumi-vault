@@ -231,13 +231,13 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
 
         /// <summary>
-        /// If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+        /// If `True`, it will returns all child namespaces of the given namespace. Defaults to `False`, which returns only direct child namespaces.
         /// </summary>
         [Input("recursive")]
         public bool? Recursive { get; set; }
@@ -253,13 +253,13 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
+        /// If `True`, it will returns all child namespaces of the given namespace. Defaults to `False`, which returns only direct child namespaces.
         /// </summary>
         [Input("recursive")]
         public Input<bool>? Recursive { get; set; }

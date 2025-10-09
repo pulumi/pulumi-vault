@@ -93,12 +93,12 @@ import javax.annotation.Nullable;
  * 
  * ### Custom Metadata Configuration Options
  * 
- * * `max_versions` - (Optional) The number of versions to keep per key.
+ * * `maxVersions` - (Optional) The number of versions to keep per key.
  * 
- * * `cas_required` - (Optional) If true, all keys will require the cas
+ * * `casRequired` - (Optional) If true, all keys will require the cas
  * parameter to be set on all write requests.
  * 
- * * `delete_version_after` - (Optional) If set, specifies the length of time before
+ * * `deleteVersionAfter` - (Optional) If set, specifies the length of time before
  * a version is deleted. Accepts duration in integer seconds.
  * 
  * * `data` - (Optional) A string to string map describing the secret.
@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  * 
  * The following write-only attributes are supported:
  * 
- * * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+ * * `dataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
  *   **Note**: This property is write-only and will not be read from the API.
  * 
  * ## Import
@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:kv/secretV2:SecretV2")
 public class SecretV2 extends com.pulumi.resources.CustomResource {
     /**
-     * This flag is required if `cas_required` is set to true
+     * This flag is required if `casRequired` is set to true
      * on either the secret or the engine&#39;s config. In order for a
      * write operation to be successful, cas must be set to the current version
      * of the secret.
@@ -132,7 +132,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Integer> cas;
 
     /**
-     * @return This flag is required if `cas_required` is set to true
+     * @return This flag is required if `casRequired` is set to true
      * on either the secret or the engine&#39;s config. In order for a
      * write operation to be successful, cas must be set to the current version
      * of the secret.
@@ -200,14 +200,14 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dataJson);
     }
     /**
-     * The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      * 
      */
     @Export(name="dataJsonWoVersion", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> dataJsonWoVersion;
 
     /**
-     * @return The version of the `data_json_wo`. For more info see updating write-only attributes.
+     * @return The version of the `dataJsonWo`. For more info see updating write-only attributes.
      * 
      */
     public Output<Optional<Integer>> dataJsonWoVersion() {

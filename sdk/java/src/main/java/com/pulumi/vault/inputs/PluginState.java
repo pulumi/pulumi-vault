@@ -32,14 +32,14 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Command to execute the plugin, relative to the server&#39;s configured `plugin_directory`.
+     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
      * 
      */
     @Import(name="command")
     private @Nullable Output<String> command;
 
     /**
-     * @return Command to execute the plugin, relative to the server&#39;s configured `plugin_directory`.
+     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
      * 
      */
     public Optional<Output<String>> command() {
@@ -96,14 +96,14 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Vault plugin runtime to use if `oci_image` is specified.
+     * Vault plugin runtime to use if `ociImage` is specified.
      * 
      */
     @Import(name="runtime")
     private @Nullable Output<String> runtime;
 
     /**
-     * @return Vault plugin runtime to use if `oci_image` is specified.
+     * @return Vault plugin runtime to use if `ociImage` is specified.
      * 
      */
     public Optional<Output<String>> runtime() {
@@ -219,7 +219,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param command Command to execute the plugin, relative to the server&#39;s configured `plugin_directory`.
+         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
          * 
          * @return builder
          * 
@@ -230,7 +230,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param command Command to execute the plugin, relative to the server&#39;s configured `plugin_directory`.
+         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
          * 
          * @return builder
          * 
@@ -317,7 +317,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param runtime Vault plugin runtime to use if `oci_image` is specified.
+         * @param runtime Vault plugin runtime to use if `ociImage` is specified.
          * 
          * @return builder
          * 
@@ -328,7 +328,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param runtime Vault plugin runtime to use if `oci_image` is specified.
+         * @param runtime Vault plugin runtime to use if `ociImage` is specified.
          * 
          * @return builder
          * 

@@ -87,7 +87,7 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -119,8 +119,8 @@ namespace Pulumi.Vault.AppRole
         public Output<int?> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
-        /// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        /// Set to `True` to use the wrapped secret-id accessor as the resource ID.
+        /// If `False` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
         /// invalidated through unwrapping.
         /// </summary>
         [Output("withWrappedAccessor")]
@@ -232,7 +232,7 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -274,8 +274,8 @@ namespace Pulumi.Vault.AppRole
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
-        /// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        /// Set to `True` to use the wrapped secret-id accessor as the resource ID.
+        /// If `False` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
         /// invalidated through unwrapping.
         /// </summary>
         [Input("withWrappedAccessor")]
@@ -333,7 +333,7 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -375,8 +375,8 @@ namespace Pulumi.Vault.AppRole
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
-        /// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
+        /// Set to `True` to use the wrapped secret-id accessor as the resource ID.
+        /// If `False` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
         /// invalidated through unwrapping.
         /// </summary>
         [Input("withWrappedAccessor")]

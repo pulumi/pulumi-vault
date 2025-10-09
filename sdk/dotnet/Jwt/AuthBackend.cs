@@ -146,13 +146,13 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> JwksCaPem { get; private set; } = null!;
 
         /// <summary>
-        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `JwksUrl` or `JwksCaPem`. Requires Vault 1.16+.
         /// </summary>
         [Output("jwksPairs")]
         public Output<ImmutableArray<ImmutableDictionary<string, string>>> JwksPairs { get; private set; } = null!;
 
         /// <summary>
-        /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        /// JWKS URL to use to authenticate signatures. Cannot be used with "OidcDiscoveryUrl" or "JwtValidationPubkeys".
         /// </summary>
         [Output("jwksUrl")]
         public Output<string?> JwksUrl { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Pulumi.Vault.Jwt
         public Output<ImmutableArray<string>> JwtSupportedAlgs { get; private set; } = null!;
 
         /// <summary>
-        /// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        /// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `OidcDiscoveryUrl`
         /// </summary>
         [Output("jwtValidationPubkeys")]
         public Output<ImmutableArray<string>> JwtValidationPubkeys { get; private set; } = null!;
@@ -178,7 +178,7 @@ namespace Pulumi.Vault.Jwt
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -189,7 +189,7 @@ namespace Pulumi.Vault.Jwt
         /// 
         /// * tune - (Optional) Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Output("namespaceInState")]
         public Output<bool?> NamespaceInState { get; private set; } = null!;
@@ -213,19 +213,19 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> OidcDiscoveryCaPem { get; private set; } = null!;
 
         /// <summary>
-        /// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        /// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `JwtValidationPubkeys`
         /// </summary>
         [Output("oidcDiscoveryUrl")]
         public Output<string?> OidcDiscoveryUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        /// The response mode to be used in the OAuth2 request. Allowed values are `Query` and `FormPost`. Defaults to `Query`. If using Vault namespaces, and `OidcResponseMode` is `FormPost`, then `NamespaceInState` should be set to `False`.
         /// </summary>
         [Output("oidcResponseMode")]
         public Output<string?> OidcResponseMode { get; private set; } = null!;
 
         /// <summary>
-        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `IdToken` may only be used if `OidcResponseMode` is set to `FormPost`.
         /// </summary>
         [Output("oidcResponseTypes")]
         public Output<ImmutableArray<string>> OidcResponseTypes { get; private set; } = null!;
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.Jwt
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
         /// <summary>
-        /// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        /// Type of auth backend. Should be one of `Jwt` or `Oidc`. Default - `Jwt`
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -336,7 +336,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<ImmutableDictionary<string, string>>? _jwksPairs;
 
         /// <summary>
-        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `JwksUrl` or `JwksCaPem`. Requires Vault 1.16+.
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> JwksPairs
         {
@@ -345,7 +345,7 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        /// JWKS URL to use to authenticate signatures. Cannot be used with "OidcDiscoveryUrl" or "JwtValidationPubkeys".
         /// </summary>
         [Input("jwksUrl")]
         public Input<string>? JwksUrl { get; set; }
@@ -366,7 +366,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _jwtValidationPubkeys;
 
         /// <summary>
-        /// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        /// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `OidcDiscoveryUrl`
         /// </summary>
         public InputList<string> JwtValidationPubkeys
         {
@@ -383,7 +383,7 @@ namespace Pulumi.Vault.Jwt
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -394,7 +394,7 @@ namespace Pulumi.Vault.Jwt
         /// 
         /// * tune - (Optional) Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("namespaceInState")]
         public Input<bool>? NamespaceInState { get; set; }
@@ -428,13 +428,13 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? OidcDiscoveryCaPem { get; set; }
 
         /// <summary>
-        /// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        /// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `JwtValidationPubkeys`
         /// </summary>
         [Input("oidcDiscoveryUrl")]
         public Input<string>? OidcDiscoveryUrl { get; set; }
 
         /// <summary>
-        /// The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        /// The response mode to be used in the OAuth2 request. Allowed values are `Query` and `FormPost`. Defaults to `Query`. If using Vault namespaces, and `OidcResponseMode` is `FormPost`, then `NamespaceInState` should be set to `False`.
         /// </summary>
         [Input("oidcResponseMode")]
         public Input<string>? OidcResponseMode { get; set; }
@@ -443,7 +443,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _oidcResponseTypes;
 
         /// <summary>
-        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `IdToken` may only be used if `OidcResponseMode` is set to `FormPost`.
         /// </summary>
         public InputList<string> OidcResponseTypes
         {
@@ -473,7 +473,7 @@ namespace Pulumi.Vault.Jwt
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
         /// <summary>
-        /// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        /// Type of auth backend. Should be one of `Jwt` or `Oidc`. Default - `Jwt`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -527,7 +527,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<ImmutableDictionary<string, string>>? _jwksPairs;
 
         /// <summary>
-        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+        /// List of JWKS URL and optional CA certificate pairs. Cannot be used with `JwksUrl` or `JwksCaPem`. Requires Vault 1.16+.
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> JwksPairs
         {
@@ -536,7 +536,7 @@ namespace Pulumi.Vault.Jwt
         }
 
         /// <summary>
-        /// JWKS URL to use to authenticate signatures. Cannot be used with "oidc_discovery_url" or "jwt_validation_pubkeys".
+        /// JWKS URL to use to authenticate signatures. Cannot be used with "OidcDiscoveryUrl" or "JwtValidationPubkeys".
         /// </summary>
         [Input("jwksUrl")]
         public Input<string>? JwksUrl { get; set; }
@@ -557,7 +557,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _jwtValidationPubkeys;
 
         /// <summary>
-        /// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+        /// A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `OidcDiscoveryUrl`
         /// </summary>
         public InputList<string> JwtValidationPubkeys
         {
@@ -574,7 +574,7 @@ namespace Pulumi.Vault.Jwt
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -585,7 +585,7 @@ namespace Pulumi.Vault.Jwt
         /// 
         /// * tune - (Optional) Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("namespaceInState")]
         public Input<bool>? NamespaceInState { get; set; }
@@ -619,13 +619,13 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? OidcDiscoveryCaPem { get; set; }
 
         /// <summary>
-        /// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+        /// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `JwtValidationPubkeys`
         /// </summary>
         [Input("oidcDiscoveryUrl")]
         public Input<string>? OidcDiscoveryUrl { get; set; }
 
         /// <summary>
-        /// The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+        /// The response mode to be used in the OAuth2 request. Allowed values are `Query` and `FormPost`. Defaults to `Query`. If using Vault namespaces, and `OidcResponseMode` is `FormPost`, then `NamespaceInState` should be set to `False`.
         /// </summary>
         [Input("oidcResponseMode")]
         public Input<string>? OidcResponseMode { get; set; }
@@ -634,7 +634,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _oidcResponseTypes;
 
         /// <summary>
-        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+        /// List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `IdToken` may only be used if `OidcResponseMode` is set to `FormPost`.
         /// </summary>
         public InputList<string> OidcResponseTypes
         {
@@ -664,7 +664,7 @@ namespace Pulumi.Vault.Jwt
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         /// <summary>
-        /// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        /// Type of auth backend. Should be one of `Jwt` or `Oidc`. Default - `Jwt`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

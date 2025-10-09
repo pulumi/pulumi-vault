@@ -90,7 +90,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
     /**
      * Limit the amount of time a
      * server can go without leader contact before being considered failed. This only takes
-     * effect when `cleanup_dead_servers` is set.
+     * effect when `cleanupDeadServers` is set.
      * 
      */
     @Export(name="deadServerLastContactThreshold", refs={String.class}, tree="[0]")
@@ -99,7 +99,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
     /**
      * @return Limit the amount of time a
      * server can go without leader contact before being considered failed. This only takes
-     * effect when `cleanup_dead_servers` is set.
+     * effect when `cleanupDeadServers` is set.
      * 
      */
     public Output<Optional<String>> deadServerLastContactThreshold() {

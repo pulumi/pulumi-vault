@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
 public class BackendRole extends com.pulumi.resources.CustomResource {
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      * 
      */
     @Export(name="applicationObjectId", refs={String.class}, tree="[0]")
@@ -94,7 +94,7 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      * 
      */
     public Output<Optional<String>> applicationObjectId() {

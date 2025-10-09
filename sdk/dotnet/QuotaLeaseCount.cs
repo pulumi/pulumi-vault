@@ -51,14 +51,14 @@ namespace Pulumi.Vault
     public partial class QuotaLeaseCount : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// If set to `True` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `True` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         /// </summary>
         [Output("inheritable")]
         public Output<bool?> Inheritable { get; private set; } = null!;
 
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
-        /// rule. The `max_leases` must be positive.
+        /// rule. The `MaxLeases` must be positive.
         /// </summary>
         [Output("maxLeases")]
         public Output<int> MaxLeases { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -81,7 +81,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        /// `namespace1/auth/userpass` adds a `Quota` to `Userpass` in `Namespace1`.
         /// Updating this field on an existing quota can have "moving" effects. For example, updating
         /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
         /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
@@ -90,7 +90,7 @@ namespace Pulumi.Vault
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// If set on a quota where `Path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         /// </summary>
         [Output("role")]
         public Output<string?> Role { get; private set; } = null!;
@@ -142,14 +142,14 @@ namespace Pulumi.Vault
     public sealed class QuotaLeaseCountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// If set to `True` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `True` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         /// </summary>
         [Input("inheritable")]
         public Input<bool>? Inheritable { get; set; }
 
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
-        /// rule. The `max_leases` must be positive.
+        /// rule. The `MaxLeases` must be positive.
         /// </summary>
         [Input("maxLeases", required: true)]
         public Input<int> MaxLeases { get; set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -172,7 +172,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        /// `namespace1/auth/userpass` adds a `Quota` to `Userpass` in `Namespace1`.
         /// Updating this field on an existing quota can have "moving" effects. For example, updating
         /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
         /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
@@ -181,7 +181,7 @@ namespace Pulumi.Vault
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// If set on a quota where `Path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
@@ -195,14 +195,14 @@ namespace Pulumi.Vault
     public sealed class QuotaLeaseCountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// If set to `True` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `True` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         /// </summary>
         [Input("inheritable")]
         public Input<bool>? Inheritable { get; set; }
 
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
-        /// rule. The `max_leases` must be positive.
+        /// rule. The `MaxLeases` must be positive.
         /// </summary>
         [Input("maxLeases")]
         public Input<int>? MaxLeases { get; set; }
@@ -216,7 +216,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -225,7 +225,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        /// `namespace1/auth/userpass` adds a `Quota` to `Userpass` in `Namespace1`.
         /// Updating this field on an existing quota can have "moving" effects. For example, updating
         /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
         /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
@@ -234,7 +234,7 @@ namespace Pulumi.Vault
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// If set on a quota where `Path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

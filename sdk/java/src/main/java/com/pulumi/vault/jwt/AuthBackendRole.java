@@ -133,7 +133,7 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:jwt/authBackendRole:AuthBackendRole")
 public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
-     * The list of allowed values for redirect_uri during OIDC logins.
+     * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      * 
      */
@@ -141,7 +141,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<String>> allowedRedirectUris;
 
     /**
-     * @return The list of allowed values for redirect_uri during OIDC logins.
+     * @return The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      * 
      */
@@ -200,7 +200,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * How to interpret values in the claims/values
-     * map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      * 
      */
@@ -209,7 +209,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return How to interpret values in the claims/values
-     * map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      * 
      */
@@ -561,9 +561,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.userClaim;
     }
     /**
-     * Specifies if the `user_claim` value uses
+     * Specifies if the `userClaim` value uses
      * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      * 
      */
@@ -571,9 +571,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> userClaimJsonPointer;
 
     /**
-     * @return Specifies if the `user_claim` value uses
+     * @return Specifies if the `userClaim` value uses
      * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      * 
      */
