@@ -249,7 +249,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     @Import(name="issuerRef")
@@ -259,7 +259,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
      * @return Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     public Optional<Output<String>> issuerRef() {
@@ -1106,7 +1106,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
          * @param issuerRef Specifies the default issuer of this request. May
          * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
          * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-         * overriding the role&#39;s `issuer_ref` value.
+         * overriding the role&#39;s `issuerRef` value.
          * 
          * @return builder
          * 
@@ -1120,7 +1120,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
          * @param issuerRef Specifies the default issuer of this request. May
          * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
          * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-         * overriding the role&#39;s `issuer_ref` value.
+         * overriding the role&#39;s `issuerRef` value.
          * 
          * @return builder
          * 

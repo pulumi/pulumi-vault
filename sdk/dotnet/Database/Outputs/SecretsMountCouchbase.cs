@@ -19,7 +19,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
-        /// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        /// Required if `Tls` is `True`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         /// </summary>
         public readonly string? Base64Pem;
         /// <summary>
@@ -37,7 +37,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? DisableAutomatedRotation;
         /// <summary>
-        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `Tls` is `True`.
         /// </summary>
         public readonly ImmutableArray<string> Hosts;
         /// <summary>

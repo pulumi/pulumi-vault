@@ -55,9 +55,9 @@ public final class AzureFunctions {
      * 
      * ## Caveats
      * 
-     * The `validate_creds` option requires read-access to the `backend` config endpoint.
+     * The `validateCreds` option requires read-access to the `backend` config endpoint.
      * If the effective Vault role does not have the required permissions then valid values
-     * are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+     * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
      * 
      */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args) {
@@ -103,9 +103,9 @@ public final class AzureFunctions {
      * 
      * ## Caveats
      * 
-     * The `validate_creds` option requires read-access to the `backend` config endpoint.
+     * The `validateCreds` option requires read-access to the `backend` config endpoint.
      * If the effective Vault role does not have the required permissions then valid values
-     * are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+     * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
      * 
      */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args) {
@@ -151,9 +151,9 @@ public final class AzureFunctions {
      * 
      * ## Caveats
      * 
-     * The `validate_creds` option requires read-access to the `backend` config endpoint.
+     * The `validateCreds` option requires read-access to the `backend` config endpoint.
      * If the effective Vault role does not have the required permissions then valid values
-     * are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+     * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
      * 
      */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions options) {
@@ -199,9 +199,9 @@ public final class AzureFunctions {
      * 
      * ## Caveats
      * 
-     * The `validate_creds` option requires read-access to the `backend` config endpoint.
+     * The `validateCreds` option requires read-access to the `backend` config endpoint.
      * If the effective Vault role does not have the required permissions then valid values
-     * are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+     * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
      * 
      */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOutputOptions options) {
@@ -247,9 +247,9 @@ public final class AzureFunctions {
      * 
      * ## Caveats
      * 
-     * The `validate_creds` option requires read-access to the `backend` config endpoint.
+     * The `validateCreds` option requires read-access to the `backend` config endpoint.
      * If the effective Vault role does not have the required permissions then valid values
-     * are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+     * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
      * 
      */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args, InvokeOptions options) {

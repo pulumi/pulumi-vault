@@ -55,7 +55,7 @@ namespace Pulumi.Vault.GitHub
     public partial class Team : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Path where the github auth backend is mounted. Defaults to `github`
+        /// Path where the github auth backend is mounted. Defaults to `Github`
         /// if not specified.
         /// </summary>
         [Output("backend")]
@@ -64,7 +64,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -130,7 +130,7 @@ namespace Pulumi.Vault.GitHub
     public sealed class TeamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Path where the github auth backend is mounted. Defaults to `github`
+        /// Path where the github auth backend is mounted. Defaults to `Github`
         /// if not specified.
         /// </summary>
         [Input("backend")]
@@ -139,7 +139,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -173,7 +173,7 @@ namespace Pulumi.Vault.GitHub
     public sealed class TeamState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Path where the github auth backend is mounted. Defaults to `github`
+        /// Path where the github auth backend is mounted. Defaults to `Github`
         /// if not specified.
         /// </summary>
         [Input("backend")]
@@ -182,7 +182,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

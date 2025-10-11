@@ -112,14 +112,14 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      * 
      */
     @Import(name="jwksPairs")
     private @Nullable Output<List<Map<String,String>>> jwksPairs;
 
     /**
-     * @return List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * @return List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      * 
      */
     public Optional<Output<List<Map<String,String>>>> jwksPairs() {
@@ -127,14 +127,14 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
+     * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidcDiscoveryUrl&#34; or &#34;jwtValidationPubkeys&#34;.
      * 
      */
     @Import(name="jwksUrl")
     private @Nullable Output<String> jwksUrl;
 
     /**
-     * @return JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
+     * @return JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidcDiscoveryUrl&#34; or &#34;jwtValidationPubkeys&#34;.
      * 
      */
     public Optional<Output<String>> jwksUrl() {
@@ -157,14 +157,14 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+     * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      * 
      */
     @Import(name="jwtValidationPubkeys")
     private @Nullable Output<List<String>> jwtValidationPubkeys;
 
     /**
-     * @return A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+     * @return A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      * 
      */
     public Optional<Output<List<String>>> jwtValidationPubkeys() {
@@ -276,14 +276,14 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+     * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      * 
      */
     @Import(name="oidcDiscoveryUrl")
     private @Nullable Output<String> oidcDiscoveryUrl;
 
     /**
-     * @return The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+     * @return The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      * 
      */
     public Optional<Output<String>> oidcDiscoveryUrl() {
@@ -291,14 +291,14 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      * 
      */
     @Import(name="oidcResponseMode")
     private @Nullable Output<String> oidcResponseMode;
 
     /**
-     * @return The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+     * @return The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      * 
      */
     public Optional<Output<String>> oidcResponseMode() {
@@ -306,14 +306,14 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+     * List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      * 
      */
     @Import(name="oidcResponseTypes")
     private @Nullable Output<List<String>> oidcResponseTypes;
 
     /**
-     * @return List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+     * @return List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      * 
      */
     public Optional<Output<List<String>>> oidcResponseTypes() {
@@ -547,7 +547,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
          * 
          * @return builder
          * 
@@ -558,7 +558,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
          * 
          * @return builder
          * 
@@ -568,7 +568,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+         * @param jwksPairs List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
          * 
          * @return builder
          * 
@@ -578,7 +578,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwksUrl JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
+         * @param jwksUrl JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidcDiscoveryUrl&#34; or &#34;jwtValidationPubkeys&#34;.
          * 
          * @return builder
          * 
@@ -589,7 +589,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwksUrl JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
+         * @param jwksUrl JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidcDiscoveryUrl&#34; or &#34;jwtValidationPubkeys&#34;.
          * 
          * @return builder
          * 
@@ -630,7 +630,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwtValidationPubkeys A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+         * @param jwtValidationPubkeys A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
          * 
          * @return builder
          * 
@@ -641,7 +641,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwtValidationPubkeys A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+         * @param jwtValidationPubkeys A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
          * 
          * @return builder
          * 
@@ -651,7 +651,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jwtValidationPubkeys A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+         * @param jwtValidationPubkeys A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
          * 
          * @return builder
          * 
@@ -801,7 +801,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
          * 
          * @return builder
          * 
@@ -812,7 +812,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
          * 
          * @return builder
          * 
@@ -822,7 +822,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcResponseMode The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+         * @param oidcResponseMode The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
          * 
          * @return builder
          * 
@@ -833,7 +833,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcResponseMode The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+         * @param oidcResponseMode The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
          * 
          * @return builder
          * 
@@ -843,7 +843,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcResponseTypes List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+         * @param oidcResponseTypes List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
          * 
          * @return builder
          * 
@@ -854,7 +854,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcResponseTypes List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+         * @param oidcResponseTypes List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
          * 
          * @return builder
          * 
@@ -864,7 +864,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcResponseTypes List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+         * @param oidcResponseTypes List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
          * 
          * @return builder
          * 

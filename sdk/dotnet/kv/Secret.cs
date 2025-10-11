@@ -52,10 +52,10 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Required Vault Capabilities
     /// 
-    /// Use of this resource requires the `create` or `update` capability
+    /// Use of this resource requires the `Create` or `Update` capability
     /// (depending on whether the resource already exists) on the given path,
-    /// the `delete` capability if the resource is removed from configuration,
-    /// and the `read` capability for drift detection (by default).
+    /// the `Delete` capability if the resource is removed from configuration,
+    /// and the `Read` capability for drift detection (by default).
     /// 
     /// ## Import
     /// 
@@ -87,7 +87,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -170,7 +170,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -229,7 +229,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

@@ -203,7 +203,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Within the directory or bucket
-        /// prefix given by `path_prefix`, the file or object name of snapshot files
+        /// prefix given by `PathPrefix`, the file or object name of snapshot files
         /// will start with this string.
         /// </summary>
         [Output("filePrefix")]
@@ -254,17 +254,17 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// `&lt;required&gt;` - For `storage_type = "local"`, the directory to
+        /// `&lt;required&gt;` - For `StorageType = "local"`, the directory to
         /// write the snapshots in. For cloud storage types, the bucket prefix to use.
         /// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
-        /// Types `local` and `aws-s3` the trailing `/` is optional.
+        /// Types `Local` and `aws-s3` the trailing `/` is optional.
         /// </summary>
         [Output("pathPrefix")]
         public Output<string> PathPrefix { get; private set; } = null!;
@@ -280,7 +280,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// `&lt;required&gt;` - One of "local", "azure-blob", "aws-s3",
         /// or "google-gcs". The remaining parameters described below are all specific to
-        /// the selected `storage_type` and prefixed accordingly.
+        /// the selected `StorageType` and prefixed accordingly.
         /// </summary>
         [Output("storageType")]
         public Output<string> StorageType { get; private set; } = null!;
@@ -429,7 +429,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Within the directory or bucket
-        /// prefix given by `path_prefix`, the file or object name of snapshot files
+        /// prefix given by `PathPrefix`, the file or object name of snapshot files
         /// will start with this string.
         /// </summary>
         [Input("filePrefix")]
@@ -480,17 +480,17 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - For `storage_type = "local"`, the directory to
+        /// `&lt;required&gt;` - For `StorageType = "local"`, the directory to
         /// write the snapshots in. For cloud storage types, the bucket prefix to use.
         /// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
-        /// Types `local` and `aws-s3` the trailing `/` is optional.
+        /// Types `Local` and `aws-s3` the trailing `/` is optional.
         /// </summary>
         [Input("pathPrefix", required: true)]
         public Input<string> PathPrefix { get; set; } = null!;
@@ -506,7 +506,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// `&lt;required&gt;` - One of "local", "azure-blob", "aws-s3",
         /// or "google-gcs". The remaining parameters described below are all specific to
-        /// the selected `storage_type` and prefixed accordingly.
+        /// the selected `StorageType` and prefixed accordingly.
         /// </summary>
         [Input("storageType", required: true)]
         public Input<string> StorageType { get; set; } = null!;
@@ -617,7 +617,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Within the directory or bucket
-        /// prefix given by `path_prefix`, the file or object name of snapshot files
+        /// prefix given by `PathPrefix`, the file or object name of snapshot files
         /// will start with this string.
         /// </summary>
         [Input("filePrefix")]
@@ -668,17 +668,17 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - For `storage_type = "local"`, the directory to
+        /// `&lt;required&gt;` - For `StorageType = "local"`, the directory to
         /// write the snapshots in. For cloud storage types, the bucket prefix to use.
         /// Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
-        /// Types `local` and `aws-s3` the trailing `/` is optional.
+        /// Types `Local` and `aws-s3` the trailing `/` is optional.
         /// </summary>
         [Input("pathPrefix")]
         public Input<string>? PathPrefix { get; set; }
@@ -694,7 +694,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// `&lt;required&gt;` - One of "local", "azure-blob", "aws-s3",
         /// or "google-gcs". The remaining parameters described below are all specific to
-        /// the selected `storage_type` and prefixed accordingly.
+        /// the selected `StorageType` and prefixed accordingly.
         /// </summary>
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }

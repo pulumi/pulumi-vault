@@ -178,7 +178,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Unique identifier for the organization to which the target API Key belongs.
-     * Required if `project_id` is not set.
+     * Required if `projectId` is not set.
      * 
      */
     @Export(name="organizationId", refs={String.class}, tree="[0]")
@@ -186,7 +186,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Unique identifier for the organization to which the target API Key belongs.
-     * Required if `project_id` is not set.
+     * Required if `projectId` is not set.
      * 
      */
     public Output<Optional<String>> organizationId() {
@@ -194,7 +194,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Unique identifier for the project to which the target API Key belongs.
-     * Required if `organization_id` is not set.
+     * Required if `organizationId` is not set.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
@@ -202,7 +202,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Unique identifier for the project to which the target API Key belongs.
-     * Required if `organization_id` is not set.
+     * Required if `organizationId` is not set.
      * 
      */
     public Output<Optional<String>> projectId() {

@@ -45,8 +45,8 @@ namespace Pulumi.Vault.Consul
     /// 
     /// ## Note About Required Arguments
     /// 
-    /// *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
-    /// `node_identities` is required for a token. If desired, any combination of the four arguments up-to and
+    /// *At least one* of the four arguments `ConsulPolicies`, `ConsulRoles`, `ServiceIdentities`, or
+    /// `NodeIdentities` is required for a token. If desired, any combination of the four arguments up-to and
     /// including all four, is valid.
     /// 
     /// ## Import
@@ -61,7 +61,7 @@ namespace Pulumi.Vault.Consul
     public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `Path` or `Backend` is required.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -107,7 +107,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -129,8 +129,8 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
-        /// **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
-        /// `policies`, remains supported for legacy users, but Vault has deprecated this field.
+        /// **NOTE:** The new parameter `ConsulPolicies` should be used in favor of this. This parameter,
+        /// `Policies`, remains supported for legacy users, but Vault has deprecated this field.
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
@@ -195,7 +195,7 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `Path` or `Backend` is required.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -253,7 +253,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -284,8 +284,8 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
-        /// **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
-        /// `policies`, remains supported for legacy users, but Vault has deprecated this field.
+        /// **NOTE:** The new parameter `ConsulPolicies` should be used in favor of this. This parameter,
+        /// `Policies`, remains supported for legacy users, but Vault has deprecated this field.
         /// </summary>
         public InputList<string> Policies
         {
@@ -321,7 +321,7 @@ namespace Pulumi.Vault.Consul
     public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
+        /// The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `Path` or `Backend` is required.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -379,7 +379,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -410,8 +410,8 @@ namespace Pulumi.Vault.Consul
 
         /// <summary>
         /// The list of Consul ACL policies to associate with these roles.
-        /// **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
-        /// `policies`, remains supported for legacy users, but Vault has deprecated this field.
+        /// **NOTE:** The new parameter `ConsulPolicies` should be used in favor of this. This parameter,
+        /// `Policies`, remains supported for legacy users, but Vault has deprecated this field.
         /// </summary>
         public InputList<string> Policies
         {

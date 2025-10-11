@@ -115,7 +115,7 @@ namespace Pulumi.Vault.Ldap
         public Output<int?> ConnectionTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        /// The type of credential to generate. Valid values include `Password` and `Phrase`. Default is `Password`.
         /// </summary>
         [Output("credentialType")]
         public Output<string> CredentialType { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Output("insecureTls")]
         public Output<bool?> InsecureTls { get; private set; } = null!;
@@ -196,7 +196,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -222,7 +222,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -263,7 +263,7 @@ namespace Pulumi.Vault.Ldap
         public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
-        /// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include `Openldap`, `Ad`, and `Racf`. Default is `Openldap`.
         /// </summary>
         [Output("schema")]
         public Output<string> Schema { get; private set; } = null!;
@@ -301,7 +301,7 @@ namespace Pulumi.Vault.Ldap
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used when searching users. Defaults to `Cn`.
         /// </summary>
         [Output("userattr")]
         public Output<string> Userattr { get; private set; } = null!;
@@ -481,7 +481,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? ConnectionTimeout { get; set; }
 
         /// <summary>
-        /// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        /// The type of credential to generate. Valid values include `Password` and `Phrase`. Default is `Password`.
         /// </summary>
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
@@ -542,7 +542,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -568,7 +568,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -606,7 +606,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -647,7 +647,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
-        /// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include `Openldap`, `Ad`, and `Racf`. Default is `Openldap`.
         /// </summary>
         [Input("schema")]
         public Input<string>? Schema { get; set; }
@@ -685,7 +685,7 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used when searching users. Defaults to `Cn`.
         /// </summary>
         [Input("userattr")]
         public Input<string>? Userattr { get; set; }
@@ -827,7 +827,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? ConnectionTimeout { get; set; }
 
         /// <summary>
-        /// The type of credential to generate. Valid values include `password` and `phrase`. Default is `password`.
+        /// The type of credential to generate. Valid values include `Password` and `Phrase`. Default is `Password`.
         /// </summary>
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
@@ -888,7 +888,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
-        /// Defaults to `false`.
+        /// Defaults to `False`.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -914,7 +914,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -952,7 +952,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -993,7 +993,7 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
-        /// The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include `Openldap`, `Ad`, and `Racf`. Default is `Openldap`.
         /// </summary>
         [Input("schema")]
         public Input<string>? Schema { get; set; }
@@ -1031,7 +1031,7 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Attribute used when searching users. Defaults to `cn`.
+        /// Attribute used when searching users. Defaults to `Cn`.
         /// </summary>
         [Input("userattr")]
         public Input<string>? Userattr { get; set; }

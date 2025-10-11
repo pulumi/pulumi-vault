@@ -91,12 +91,12 @@ import javax.annotation.Nullable;
  * 
  * The following write-only attributes are supported for all DBs that support username/password:
  * 
- * * `password_wo` - (Optional) The password for the user. Can be updated.
+ * * `passwordWo` - (Optional) The password for the user. Can be updated.
  *   **Note**: This property is write-only and will not be read from the API.
  * 
  * The following write-only attribute is supported only for Snowflake DB:
  * 
- * * `private_key_wo` - (Optional) The private key associated with the Snowflake user.
+ * * `privateKeyWo` - (Optional) The private key associated with the Snowflake user.
  *   **Note**: This property is write-only and will not be read from the API.
  * 
  * ## Import

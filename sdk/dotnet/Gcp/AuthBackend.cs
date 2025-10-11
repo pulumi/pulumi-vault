@@ -105,7 +105,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
-        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("identityTokenAudience")]
         public Output<string?> IdentityTokenAudience { get; private set; } = null!;
@@ -132,7 +132,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -180,7 +180,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// Service Account to impersonate for plugin workload identity federation.
-        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Required with `IdentityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("serviceAccountEmail")]
         public Output<string?> ServiceAccountEmail { get; private set; } = null!;
@@ -188,7 +188,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Output("tune")]
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
@@ -305,7 +305,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
-        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("identityTokenAudience")]
         public Input<string>? IdentityTokenAudience { get; set; }
@@ -332,7 +332,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -380,7 +380,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// Service Account to impersonate for plugin workload identity federation.
-        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Required with `IdentityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
@@ -388,7 +388,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
@@ -469,7 +469,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
-        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("identityTokenAudience")]
         public Input<string>? IdentityTokenAudience { get; set; }
@@ -496,7 +496,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -544,7 +544,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// Service Account to impersonate for plugin workload identity federation.
-        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Required with `IdentityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
@@ -552,7 +552,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }

@@ -280,7 +280,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     @Export(name="issuerRef", refs={String.class}, tree="[0]")
@@ -290,7 +290,7 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * @return Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     public Output<Optional<String>> issuerRef() {

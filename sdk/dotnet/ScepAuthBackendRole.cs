@@ -60,7 +60,7 @@ namespace Pulumi.Vault
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The static challenge to use if auth_type is "static-challenge", not used for other auth types.
+        /// The static challenge to use if AuthType is "static-challenge", not used for other auth types.
         /// </summary>
         [Output("challenge")]
         public Output<string?> Challenge { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -196,7 +196,7 @@ namespace Pulumi.Vault
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// The static challenge to use if auth_type is "static-challenge", not used for other auth types.
+        /// The static challenge to use if AuthType is "static-challenge", not used for other auth types.
         /// </summary>
         [Input("challenge")]
         public Input<string>? Challenge { get; set; }
@@ -213,7 +213,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -306,7 +306,7 @@ namespace Pulumi.Vault
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// The static challenge to use if auth_type is "static-challenge", not used for other auth types.
+        /// The static challenge to use if AuthType is "static-challenge", not used for other auth types.
         /// </summary>
         [Input("challenge")]
         public Input<string>? Challenge { get; set; }
@@ -323,7 +323,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

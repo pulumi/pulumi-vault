@@ -57,14 +57,14 @@ namespace Pulumi.Vault.AppRole
     {
         /// <summary>
         /// The unique name of the auth backend to configure.
-        /// Defaults to `approle`.
+        /// Defaults to `Approle`.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not to require `secret_id` to be
-        /// presented when logging in using this AppRole. Defaults to `true`.
+        /// Whether or not to require `SecretId` to be
+        /// presented when logging in using this AppRole. Defaults to `True`.
         /// </summary>
         [Output("bindSecretId")]
         public Output<bool?> BindSecretId { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -215,14 +215,14 @@ namespace Pulumi.Vault.AppRole
     {
         /// <summary>
         /// The unique name of the auth backend to configure.
-        /// Defaults to `approle`.
+        /// Defaults to `Approle`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Whether or not to require `secret_id` to be
-        /// presented when logging in using this AppRole. Defaults to `true`.
+        /// Whether or not to require `SecretId` to be
+        /// presented when logging in using this AppRole. Defaults to `True`.
         /// </summary>
         [Input("bindSecretId")]
         public Input<bool>? BindSecretId { get; set; }
@@ -230,7 +230,7 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -353,14 +353,14 @@ namespace Pulumi.Vault.AppRole
     {
         /// <summary>
         /// The unique name of the auth backend to configure.
-        /// Defaults to `approle`.
+        /// Defaults to `Approle`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Whether or not to require `secret_id` to be
-        /// presented when logging in using this AppRole. Defaults to `true`.
+        /// Whether or not to require `SecretId` to be
+        /// presented when logging in using this AppRole. Defaults to `True`.
         /// </summary>
         [Input("bindSecretId")]
         public Input<bool>? BindSecretId { get; set; }
@@ -368,7 +368,7 @@ namespace Pulumi.Vault.AppRole
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

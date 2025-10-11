@@ -73,7 +73,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -110,8 +110,8 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// (Optional) If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Output("tokenExplicitMaxTtl")]
         public Output<int?> TokenExplicitMaxTtl { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Output("tune")]
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
@@ -245,7 +245,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -288,8 +288,8 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// (Optional) If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
@@ -354,7 +354,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
@@ -397,7 +397,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -440,8 +440,8 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// (Optional) If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
@@ -506,7 +506,7 @@ namespace Pulumi.Vault.GitHub
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }

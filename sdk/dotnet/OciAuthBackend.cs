@@ -73,7 +73,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -106,7 +106,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Output("tune")]
         public Output<Outputs.OciAuthBackendTune> Tune { get; private set; } = null!;
@@ -198,7 +198,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -231,7 +231,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.OciAuthBackendTuneArgs>? Tune { get; set; }
@@ -287,7 +287,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -320,7 +320,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Extra configuration block. Structure is documented below.
         /// 
-        /// The `tune` block is used to tune the auth backend:
+        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("tune")]
         public Input<Inputs.OciAuthBackendTuneGetArgs>? Tune { get; set; }

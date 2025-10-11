@@ -101,8 +101,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies the type of credential to be used when
-     * retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
-     * `federation_token`.
+     * retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
+     * `federationToken`.
      * 
      */
     @Export(name="credentialType", refs={String.class}, tree="[0]")
@@ -110,8 +110,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies the type of credential to be used when
-     * retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
-     * `federation_token`.
+     * retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
+     * `federationToken`.
      * 
      */
     public Output<String> credentialType() {
@@ -121,8 +121,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The default TTL in seconds for STS credentials.
      * When a TTL is not specified when STS credentials are requested,
      * and a default TTL is specified on the role,
-     * then this default TTL will be used. Valid only when `credential_type` is one of
-     * `assumed_role` or `federation_token`.
+     * then this default TTL will be used. Valid only when `credentialType` is one of
+     * `assumedRole` or `federationToken`.
      * 
      */
     @Export(name="defaultStsTtl", refs={Integer.class}, tree="[0]")
@@ -132,8 +132,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @return The default TTL in seconds for STS credentials.
      * When a TTL is not specified when STS credentials are requested,
      * and a default TTL is specified on the role,
-     * then this default TTL will be used. Valid only when `credential_type` is one of
-     * `assumed_role` or `federation_token`.
+     * then this default TTL will be used. Valid only when `credentialType` is one of
+     * `assumedRole` or `federationToken`.
      * 
      */
     public Output<Integer> defaultStsTtl() {
@@ -141,7 +141,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * External ID to set for assume role creds.
-     * Valid only when `credential_type` is set to `assumed_role`.
+     * Valid only when `credentialType` is set to `assumedRole`.
      * 
      */
     @Export(name="externalId", refs={String.class}, tree="[0]")
@@ -149,7 +149,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return External ID to set for assume role creds.
-     * Valid only when `credential_type` is set to `assumed_role`.
+     * Valid only when `credentialType` is set to `assumedRole`.
      * 
      */
     public Output<Optional<String>> externalId() {
@@ -158,10 +158,10 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
-     * type of `assumed_role` or `federation_token`, the policies sent to the
+     * type of `assumedRole` or `federationToken`, the policies sent to the
      * corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
-     * policies from each group in `iam_groups` combined with the `policy_document`
-     * and `policy_arns` parameters.
+     * policies from each group in `iamGroups` combined with the `policyDocument`
+     * and `policyArns` parameters.
      * 
      */
     @Export(name="iamGroups", refs={List.class,String.class}, tree="[0,1]")
@@ -170,10 +170,10 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
-     * type of `assumed_role` or `federation_token`, the policies sent to the
+     * type of `assumedRole` or `federationToken`, the policies sent to the
      * corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
-     * policies from each group in `iam_groups` combined with the `policy_document`
-     * and `policy_arns` parameters.
+     * policies from each group in `iamGroups` combined with the `policyDocument`
+     * and `policyArns` parameters.
      * 
      */
     public Output<Optional<List<String>>> iamGroups() {
@@ -197,8 +197,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The max allowed TTL in seconds for STS credentials
-     * (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
-     * one of `assumed_role` or `federation_token`.
+     * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
+     * one of `assumedRole` or `federationToken`.
      * 
      */
     @Export(name="maxStsTtl", refs={Integer.class}, tree="[0]")
@@ -206,8 +206,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The max allowed TTL in seconds for STS credentials
-     * (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
-     * one of `assumed_role` or `federation_token`.
+     * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
+     * one of `assumedRole` or `federationToken`.
      * 
      */
     public Output<Integer> maxStsTtl() {
@@ -252,7 +252,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * The ARN of the AWS Permissions
      * Boundary to attach to IAM users created in the role. Valid only when
-     * `credential_type` is `iam_user`. If not specified, then no permissions boundary
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
      * 
      */
@@ -262,7 +262,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return The ARN of the AWS Permissions
      * Boundary to attach to IAM users created in the role. Valid only when
-     * `credential_type` is `iam_user`. If not specified, then no permissions boundary
+     * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
      * 
      */
@@ -271,11 +271,11 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies a list of AWS managed policy ARNs. The
-     * behavior depends on the credential type. With `iam_user`, the policies will be
-     * attached to IAM users when they are requested. With `assumed_role` and
-     * `federation_token`, the policy ARNs will act as a filter on what the credentials
-     * can do, similar to `policy_document`. When `credential_type` is `iam_user` or
-     * `federation_token`, at least one of `policy_document` or `policy_arns` must
+     * behavior depends on the credential type. With `iamUser`, the policies will be
+     * attached to IAM users when they are requested. With `assumedRole` and
+     * `federationToken`, the policy ARNs will act as a filter on what the credentials
+     * can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+     * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      * 
      */
@@ -284,11 +284,11 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies a list of AWS managed policy ARNs. The
-     * behavior depends on the credential type. With `iam_user`, the policies will be
-     * attached to IAM users when they are requested. With `assumed_role` and
-     * `federation_token`, the policy ARNs will act as a filter on what the credentials
-     * can do, similar to `policy_document`. When `credential_type` is `iam_user` or
-     * `federation_token`, at least one of `policy_document` or `policy_arns` must
+     * behavior depends on the credential type. With `iamUser`, the policies will be
+     * attached to IAM users when they are requested. With `assumedRole` and
+     * `federationToken`, the policy ARNs will act as a filter on what the credentials
+     * can do, similar to `policyDocument`. When `credentialType` is `iamUser` or
+     * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      * 
      */
@@ -297,10 +297,10 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The IAM policy document for the role. The
-     * behavior depends on the credential type. With `iam_user`, the policy document
+     * behavior depends on the credential type. With `iamUser`, the policy document
      * will be attached to the IAM user generated and augment the permissions the IAM
-     * user has. With `assumed_role` and `federation_token`, the policy document will
-     * act as a filter on what the credentials can do, similar to `policy_arns`.
+     * user has. With `assumedRole` and `federationToken`, the policy document will
+     * act as a filter on what the credentials can do, similar to `policyArns`.
      * 
      */
     @Export(name="policyDocument", refs={String.class}, tree="[0]")
@@ -308,10 +308,10 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The IAM policy document for the role. The
-     * behavior depends on the credential type. With `iam_user`, the policy document
+     * behavior depends on the credential type. With `iamUser`, the policy document
      * will be attached to the IAM user generated and augment the permissions the IAM
-     * user has. With `assumed_role` and `federation_token`, the policy document will
-     * act as a filter on what the credentials can do, similar to `policy_arns`.
+     * user has. With `assumedRole` and `federationToken`, the policy document will
+     * act as a filter on what the credentials can do, similar to `policyArns`.
      * 
      */
     public Output<Optional<String>> policyDocument() {
@@ -319,7 +319,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies the ARNs of the AWS roles this Vault role
-     * is allowed to assume. Required when `credential_type` is `assumed_role` and
+     * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      * 
      */
@@ -328,7 +328,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies the ARNs of the AWS roles this Vault role
-     * is allowed to assume. Required when `credential_type` is `assumed_role` and
+     * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      * 
      */
@@ -337,8 +337,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * A map of strings representing key/value pairs to be set
-     * during assume role creds creation. Valid only when `credential_type` is set to
-     * `assumed_role`.
+     * during assume role creds creation. Valid only when `credentialType` is set to
+     * `assumedRole`.
      * 
      */
     @Export(name="sessionTags", refs={Map.class,String.class}, tree="[0,1,1]")
@@ -346,8 +346,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return A map of strings representing key/value pairs to be set
-     * during assume role creds creation. Valid only when `credential_type` is set to
-     * `assumed_role`.
+     * during assume role creds creation. Valid only when `credentialType` is set to
+     * `assumedRole`.
      * 
      */
     public Output<Optional<Map<String,String>>> sessionTags() {
@@ -355,7 +355,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The path for the user name. Valid only when
-     * `credential_type` is `iam_user`. Default is `/`.
+     * `credentialType` is `iamUser`. Default is `/`.
      * 
      */
     @Export(name="userPath", refs={String.class}, tree="[0]")
@@ -363,7 +363,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The path for the user name. Valid only when
-     * `credential_type` is `iam_user`. Default is `/`.
+     * `credentialType` is `iamUser`. Default is `/`.
      * 
      */
     public Output<Optional<String>> userPath() {
