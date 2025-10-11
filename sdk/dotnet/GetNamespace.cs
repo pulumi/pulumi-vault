@@ -207,7 +207,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
@@ -215,7 +215,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The path of the namespace. Must not have a trailing `/`.
         /// If not specified or empty, path attributes are set for the current namespace
-        /// based on the `namespace` arguments of the provider and this data source.
+        /// based on the `Namespace` arguments of the provider and this data source.
         /// Other path related attributes will be empty in this case.
         /// </summary>
         [Input("path")]
@@ -232,7 +232,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
@@ -240,7 +240,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The path of the namespace. Must not have a trailing `/`.
         /// If not specified or empty, path attributes are set for the current namespace
-        /// based on the `namespace` arguments of the provider and this data source.
+        /// based on the `Namespace` arguments of the provider and this data source.
         /// Other path related attributes will be empty in this case.
         /// </summary>
         [Input("path")]
@@ -258,7 +258,7 @@ namespace Pulumi.Vault
     {
         /// <summary>
         /// (Optional) A map of strings containing arbitrary metadata for the namespace.
-        /// Only fetched if `path` is specified.
+        /// Only fetched if `Path` is specified.
         /// *Requires Vault 1.12+.*
         /// </summary>
         public readonly ImmutableDictionary<string, string> CustomMetadata;
@@ -269,13 +269,13 @@ namespace Pulumi.Vault
         public readonly string? Namespace;
         /// <summary>
         /// Vault server's internal ID of the namespace.
-        /// Only fetched if `path` is specified.
+        /// Only fetched if `Path` is specified.
         /// </summary>
         public readonly string NamespaceId;
         public readonly string? Path;
         /// <summary>
-        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-        /// The path is relative to the provider's `namespace` argument.
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `Namespace`.
+        /// The path is relative to the provider's `Namespace` argument.
         /// </summary>
         public readonly string PathFq;
 

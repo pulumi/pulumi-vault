@@ -264,14 +264,14 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return Codegen.optional(this.keyType);
     }
     /**
-     * Specifies key_usage to encode in the generated certificate.
+     * Specifies keyUsage to encode in the generated certificate.
      * 
      */
     @Export(name="keyUsages", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> keyUsages;
 
     /**
-     * @return Specifies key_usage to encode in the generated certificate.
+     * @return Specifies keyUsage to encode in the generated certificate.
      * 
      */
     public Output<Optional<List<String>>> keyUsages() {
@@ -293,7 +293,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
     }
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     @Export(name="managedKeyId", refs={String.class}, tree="[0]")
@@ -301,7 +301,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
 
     /**
      * @return The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     public Output<Optional<String>> managedKeyId() {
@@ -309,7 +309,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
     }
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     @Export(name="managedKeyName", refs={String.class}, tree="[0]")
@@ -317,7 +317,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
 
     /**
      * @return The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     public Output<Optional<String>> managedKeyName() {

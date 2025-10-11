@@ -195,7 +195,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -214,7 +214,7 @@ namespace Pulumi.Vault.Azure
         public Output<ImmutableArray<string>> PassthroughRequestHeaders { get; private set; } = null!;
 
         /// <summary>
-        /// The unique path this backend should be mounted at. Defaults to `azure`.
+        /// The unique path this backend should be mounted at. Defaults to `Azure`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -503,7 +503,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -534,7 +534,7 @@ namespace Pulumi.Vault.Azure
         }
 
         /// <summary>
-        /// The unique path this backend should be mounted at. Defaults to `azure`.
+        /// The unique path this backend should be mounted at. Defaults to `Azure`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -804,7 +804,7 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -835,7 +835,7 @@ namespace Pulumi.Vault.Azure
         }
 
         /// <summary>
-        /// The unique path this backend should be mounted at. Defaults to `azure`.
+        /// The unique path this backend should be mounted at. Defaults to `Azure`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

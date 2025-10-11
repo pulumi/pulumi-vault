@@ -13,6 +13,8 @@ import (
 )
 
 // Reads role tag information from an AWS auth backend in Vault.
+//
+// ## Example Usage
 type AuthBackendRoleTag struct {
 	pulumi.CustomResourceState
 

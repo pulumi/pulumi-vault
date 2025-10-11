@@ -164,14 +164,14 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
         return this.roleset;
     }
     /**
-     * Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     @Export(name="secretType", refs={String.class}, tree="[0]")
     private Output<String> secretType;
 
     /**
-     * @return Type of secret generated for this role set. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * @return Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     public Output<String> secretType() {
@@ -192,14 +192,14 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
         return this.serviceAccountEmail;
     }
     /**
-     * List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+     * List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      * 
      */
     @Export(name="tokenScopes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenScopes;
 
     /**
-     * @return List of OAuth scopes to assign to `access_token` secrets generated under this role set (`access_token` role sets only).
+     * @return List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      * 
      */
     public Output<Optional<List<String>>> tokenScopes() {

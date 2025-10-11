@@ -68,8 +68,8 @@ public final class GetAuthBackendRoleResult {
     /**
      * @return If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
      * 
      */
     private @Nullable Integer tokenExplicitMaxTtl;
@@ -205,8 +205,8 @@ public final class GetAuthBackendRoleResult {
     /**
      * @return If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
      * 
      */
     public Optional<Integer> tokenExplicitMaxTtl() {

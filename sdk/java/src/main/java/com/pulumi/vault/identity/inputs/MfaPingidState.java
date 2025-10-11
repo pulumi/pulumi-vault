@@ -17,14 +17,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     public static final MfaPingidState Empty = new MfaPingidState();
 
     /**
-     * The admin URL, derived from &#34;settings_file_base64&#34;
+     * The admin URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Import(name="adminUrl")
     private @Nullable Output<String> adminUrl;
 
     /**
-     * @return The admin URL, derived from &#34;settings_file_base64&#34;
+     * @return The admin URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Optional<Output<String>> adminUrl() {
@@ -32,14 +32,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
+     * A unique identifier of the organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Import(name="authenticatorUrl")
     private @Nullable Output<String> authenticatorUrl;
 
     /**
-     * @return A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
+     * @return A unique identifier of the organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Optional<Output<String>> authenticatorUrl() {
@@ -47,14 +47,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The IDP URL, derived from &#34;settings_file_base64&#34;
+     * The IDP URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Import(name="idpUrl")
     private @Nullable Output<String> idpUrl;
 
     /**
-     * @return The IDP URL, derived from &#34;settings_file_base64&#34;
+     * @return The IDP URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Optional<Output<String>> idpUrl() {
@@ -152,14 +152,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
+     * The name of the PingID client organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Import(name="orgAlias")
     private @Nullable Output<String> orgAlias;
 
     /**
-     * @return The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
+     * @return The name of the PingID client organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Optional<Output<String>> orgAlias() {
@@ -197,14 +197,14 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Use signature value, derived from &#34;settings_file_base64&#34;
+     * Use signature value, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Import(name="useSignature")
     private @Nullable Output<Boolean> useSignature;
 
     /**
-     * @return Use signature value, derived from &#34;settings_file_base64&#34;
+     * @return Use signature value, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Optional<Output<Boolean>> useSignature() {
@@ -280,7 +280,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param adminUrl The admin URL, derived from &#34;settings_file_base64&#34;
+         * @param adminUrl The admin URL, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -291,7 +291,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param adminUrl The admin URL, derived from &#34;settings_file_base64&#34;
+         * @param adminUrl The admin URL, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -301,7 +301,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param authenticatorUrl A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
+         * @param authenticatorUrl A unique identifier of the organization, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -312,7 +312,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param authenticatorUrl A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
+         * @param authenticatorUrl A unique identifier of the organization, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -322,7 +322,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param idpUrl The IDP URL, derived from &#34;settings_file_base64&#34;
+         * @param idpUrl The IDP URL, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -333,7 +333,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param idpUrl The IDP URL, derived from &#34;settings_file_base64&#34;
+         * @param idpUrl The IDP URL, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -469,7 +469,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgAlias The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
+         * @param orgAlias The name of the PingID client organization, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -480,7 +480,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orgAlias The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
+         * @param orgAlias The name of the PingID client organization, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -532,7 +532,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useSignature Use signature value, derived from &#34;settings_file_base64&#34;
+         * @param useSignature Use signature value, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 
@@ -543,7 +543,7 @@ public final class MfaPingidState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param useSignature Use signature value, derived from &#34;settings_file_base64&#34;
+         * @param useSignature Use signature value, derived from &#34;settingsFileBase64&#34;
          * 
          * @return builder
          * 

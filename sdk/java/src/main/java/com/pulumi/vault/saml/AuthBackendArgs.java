@@ -84,7 +84,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The PEM encoded certificate of the identity provider. Mutually exclusive
-     * with `idp_metadata_url`.
+     * with `idpMetadataUrl`.
      * 
      */
     @Import(name="idpCert")
@@ -92,7 +92,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The PEM encoded certificate of the identity provider. Mutually exclusive
-     * with `idp_metadata_url`.
+     * with `idpMetadataUrl`.
      * 
      */
     public Optional<Output<String>> idpCert() {
@@ -101,7 +101,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The entity ID of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     @Import(name="idpEntityId")
@@ -109,7 +109,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The entity ID of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     public Optional<Output<String>> idpEntityId() {
@@ -133,7 +133,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The SSO URL of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     @Import(name="idpSsoUrl")
@@ -141,7 +141,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The SSO URL of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     public Optional<Output<String>> idpSsoUrl() {
@@ -340,7 +340,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idpCert The PEM encoded certificate of the identity provider. Mutually exclusive
-         * with `idp_metadata_url`.
+         * with `idpMetadataUrl`.
          * 
          * @return builder
          * 
@@ -352,7 +352,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idpCert The PEM encoded certificate of the identity provider. Mutually exclusive
-         * with `idp_metadata_url`.
+         * with `idpMetadataUrl`.
          * 
          * @return builder
          * 
@@ -363,7 +363,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idpEntityId The entity ID of the identity provider. Mutually exclusive with
-         * `idp_metadata_url`.
+         * `idpMetadataUrl`.
          * 
          * @return builder
          * 
@@ -375,7 +375,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idpEntityId The entity ID of the identity provider. Mutually exclusive with
-         * `idp_metadata_url`.
+         * `idpMetadataUrl`.
          * 
          * @return builder
          * 
@@ -407,7 +407,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idpSsoUrl The SSO URL of the identity provider. Mutually exclusive with
-         * `idp_metadata_url`.
+         * `idpMetadataUrl`.
          * 
          * @return builder
          * 
@@ -419,7 +419,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idpSsoUrl The SSO URL of the identity provider. Mutually exclusive with
-         * `idp_metadata_url`.
+         * `idpMetadataUrl`.
          * 
          * @return builder
          * 

@@ -14,7 +14,7 @@ namespace Pulumi.Vault.PkiSecret.Outputs
     public sealed class GetBackendConfigScepAuthenticatorResult
     {
         /// <summary>
-        /// The accessor and cert_role properties for cert auth backends.
+        /// The accessor and CertRole properties for cert auth backends.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Cert;
         /// <summary>

@@ -87,14 +87,14 @@ public final class BackendConfigEstArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
+     * Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
      * 
      */
     @Import(name="defaultPathPolicy")
     private @Nullable Output<String> defaultPathPolicy;
 
     /**
-     * @return Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
+     * @return Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
      * 
      */
     public Optional<Output<String>> defaultPathPolicy() {
@@ -302,7 +302,7 @@ public final class BackendConfigEstArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param defaultPathPolicy Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
+         * @param defaultPathPolicy Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
          * 
          * @return builder
          * 
@@ -313,7 +313,7 @@ public final class BackendConfigEstArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param defaultPathPolicy Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
+         * @param defaultPathPolicy Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
          * 
          * @return builder
          * 

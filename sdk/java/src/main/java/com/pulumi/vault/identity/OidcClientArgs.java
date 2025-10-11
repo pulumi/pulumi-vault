@@ -66,7 +66,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The time-to-live for ID tokens obtained by the client.
-     * The value should be less than the `verification_ttl` on the key.
+     * The value should be less than the `verificationTtl` on the key.
      * 
      */
     @Import(name="idTokenTtl")
@@ -74,7 +74,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The time-to-live for ID tokens obtained by the client.
-     * The value should be less than the `verification_ttl` on the key.
+     * The value should be less than the `verificationTtl` on the key.
      * 
      */
     public Optional<Output<Integer>> idTokenTtl() {
@@ -138,7 +138,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Redirection URI values used by the client.
-     * One of these values must exactly match the `redirect_uri` parameter value
+     * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      * 
      */
@@ -147,7 +147,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Redirection URI values used by the client.
-     * One of these values must exactly match the `redirect_uri` parameter value
+     * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      * 
      */
@@ -263,7 +263,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idTokenTtl The time-to-live for ID tokens obtained by the client.
-         * The value should be less than the `verification_ttl` on the key.
+         * The value should be less than the `verificationTtl` on the key.
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idTokenTtl The time-to-live for ID tokens obtained by the client.
-         * The value should be less than the `verification_ttl` on the key.
+         * The value should be less than the `verificationTtl` on the key.
          * 
          * @return builder
          * 
@@ -359,7 +359,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param redirectUris Redirection URI values used by the client.
-         * One of these values must exactly match the `redirect_uri` parameter value
+         * One of these values must exactly match the `redirectUri` parameter value
          * used in each authentication request.
          * 
          * @return builder
@@ -372,7 +372,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param redirectUris Redirection URI values used by the client.
-         * One of these values must exactly match the `redirect_uri` parameter value
+         * One of these values must exactly match the `redirectUri` parameter value
          * used in each authentication request.
          * 
          * @return builder
@@ -384,7 +384,7 @@ public final class OidcClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param redirectUris Redirection URI values used by the client.
-         * One of these values must exactly match the `redirect_uri` parameter value
+         * One of these values must exactly match the `redirectUri` parameter value
          * used in each authentication request.
          * 
          * @return builder

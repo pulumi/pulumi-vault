@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 public final class GetCmacResult {
     private @Nullable List<Map<String,String>> batchInputs;
     /**
-     * @return The results returned from Vault if using `batch_input`
+     * @return The results returned from Vault if using `batchInput`
      * 
      */
     private List<Map<String,String>> batchResults;
@@ -44,7 +44,7 @@ public final class GetCmacResult {
         return this.batchInputs == null ? List.of() : this.batchInputs;
     }
     /**
-     * @return The results returned from Vault if using `batch_input`
+     * @return The results returned from Vault if using `batchInput`
      * 
      */
     public List<Map<String,String>> batchResults() {

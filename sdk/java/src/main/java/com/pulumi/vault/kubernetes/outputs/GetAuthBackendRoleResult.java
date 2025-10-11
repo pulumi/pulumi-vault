@@ -27,12 +27,12 @@ public final class GetAuthBackendRoleResult {
     private @Nullable String audience;
     private @Nullable String backend;
     /**
-     * @return List of service account names able to access this role. If set to &#34;*&#34; all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+     * @return List of service account names able to access this role. If set to &#34;*&#34; all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
      * 
      */
     private List<String> boundServiceAccountNames;
     /**
-     * @return List of namespaces allowed to access this role. If set to &#34;*&#34; all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+     * @return List of namespaces allowed to access this role. If set to &#34;*&#34; all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     private List<String> boundServiceAccountNamespaces;
@@ -53,8 +53,8 @@ public final class GetAuthBackendRoleResult {
     /**
      * @return If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
      * 
      */
     private @Nullable Integer tokenExplicitMaxTtl;
@@ -126,14 +126,14 @@ public final class GetAuthBackendRoleResult {
         return Optional.ofNullable(this.backend);
     }
     /**
-     * @return List of service account names able to access this role. If set to &#34;*&#34; all names are allowed, both this and bound_service_account_namespaces can not be &#34;*&#34;.
+     * @return List of service account names able to access this role. If set to &#34;*&#34; all names are allowed, both this and boundServiceAccountNamespaces can not be &#34;*&#34;.
      * 
      */
     public List<String> boundServiceAccountNames() {
         return this.boundServiceAccountNames;
     }
     /**
-     * @return List of namespaces allowed to access this role. If set to &#34;*&#34; all namespaces are allowed, both this and bound_service_account_names can not be set to &#34;*&#34;.
+     * @return List of namespaces allowed to access this role. If set to &#34;*&#34; all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     public List<String> boundServiceAccountNamespaces() {
@@ -164,8 +164,8 @@ public final class GetAuthBackendRoleResult {
     /**
      * @return If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
      * 
      */
     public Optional<Integer> tokenExplicitMaxTtl() {

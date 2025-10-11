@@ -68,7 +68,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The maximum password time-to-live in seconds. Defaults
-        /// to the configuration max_ttl if not provided.
+        /// to the configuration MaxTtl if not provided.
         /// </summary>
         [Output("maxTtl")]
         public Output<int> MaxTtl { get; private set; } = null!;
@@ -89,7 +89,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -164,7 +164,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The maximum password time-to-live in seconds. Defaults
-        /// to the configuration max_ttl if not provided.
+        /// to the configuration MaxTtl if not provided.
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
@@ -185,7 +185,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -228,7 +228,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The maximum password time-to-live in seconds. Defaults
-        /// to the configuration max_ttl if not provided.
+        /// to the configuration MaxTtl if not provided.
         /// </summary>
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
@@ -249,7 +249,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

@@ -50,14 +50,14 @@ public final class ScepAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The static challenge to use if auth_type is &#34;static-challenge&#34;, not used for other auth types.
+     * The static challenge to use if authType is &#34;static-challenge&#34;, not used for other auth types.
      * 
      */
     @Import(name="challenge")
     private @Nullable Output<String> challenge;
 
     /**
-     * @return The static challenge to use if auth_type is &#34;static-challenge&#34;, not used for other auth types.
+     * @return The static challenge to use if authType is &#34;static-challenge&#34;, not used for other auth types.
      * 
      */
     public Optional<Output<String>> challenge() {
@@ -323,7 +323,7 @@ public final class ScepAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param challenge The static challenge to use if auth_type is &#34;static-challenge&#34;, not used for other auth types.
+         * @param challenge The static challenge to use if authType is &#34;static-challenge&#34;, not used for other auth types.
          * 
          * @return builder
          * 
@@ -334,7 +334,7 @@ public final class ScepAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param challenge The static challenge to use if auth_type is &#34;static-challenge&#34;, not used for other auth types.
+         * @param challenge The static challenge to use if authType is &#34;static-challenge&#34;, not used for other auth types.
          * 
          * @return builder
          * 

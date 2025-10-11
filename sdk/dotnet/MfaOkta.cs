@@ -82,7 +82,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -105,7 +105,7 @@ namespace Pulumi.Vault
         /// `(string)` - A format string for mapping Identity names to MFA method names. 
         /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         /// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
+        /// - alias.name: The name returned by the mount configured via the `MountAccessor` parameter
         /// - entity.name: The name configured for the Entity
         /// - alias.metadata.`&lt;key&gt;`: The value of the Alias's metadata parameter
         /// - entity.metadata.`&lt;key&gt;`: The value of the Entity's metadata parameter
@@ -202,7 +202,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -225,7 +225,7 @@ namespace Pulumi.Vault
         /// `(string)` - A format string for mapping Identity names to MFA method names. 
         /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         /// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
+        /// - alias.name: The name returned by the mount configured via the `MountAccessor` parameter
         /// - entity.name: The name configured for the Entity
         /// - alias.metadata.`&lt;key&gt;`: The value of the Alias's metadata parameter
         /// - entity.metadata.`&lt;key&gt;`: The value of the Entity's metadata parameter
@@ -280,7 +280,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -303,7 +303,7 @@ namespace Pulumi.Vault
         /// `(string)` - A format string for mapping Identity names to MFA method names. 
         /// Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         /// If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
-        /// - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
+        /// - alias.name: The name returned by the mount configured via the `MountAccessor` parameter
         /// - entity.name: The name configured for the Entity
         /// - alias.metadata.`&lt;key&gt;`: The value of the Alias's metadata parameter
         /// - entity.metadata.`&lt;key&gt;`: The value of the Entity's metadata parameter

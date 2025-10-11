@@ -33,7 +33,7 @@ public final class GetBackendConfigEstResult {
      */
     private Boolean defaultMount;
     /**
-     * @return Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
+     * @return Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
      * 
      */
     private String defaultPathPolicy;
@@ -90,7 +90,7 @@ public final class GetBackendConfigEstResult {
         return this.defaultMount;
     }
     /**
-     * @return Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
+     * @return Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:&lt;role_name&gt;.
      * 
      */
     public String defaultPathPolicy() {

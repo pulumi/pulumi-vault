@@ -28,14 +28,14 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The results returned from Vault if using `batch_input`
+     * The results returned from Vault if using `batchInput`
      * 
      */
     @Import(name="batchResults")
     private @Nullable Output<List<Map<String,String>>> batchResults;
 
     /**
-     * @return The results returned from Vault if using `batch_input`
+     * @return The results returned from Vault if using `batchInput`
      * 
      */
     public Optional<Output<List<Map<String,String>>>> batchResults() {
@@ -225,7 +225,7 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param batchResults The results returned from Vault if using `batch_input`
+         * @param batchResults The results returned from Vault if using `batchInput`
          * 
          * @return builder
          * 
@@ -236,7 +236,7 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param batchResults The results returned from Vault if using `batch_input`
+         * @param batchResults The results returned from Vault if using `batchInput`
          * 
          * @return builder
          * 
@@ -246,7 +246,7 @@ public final class GetVerifyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param batchResults The results returned from Vault if using `batch_input`
+         * @param batchResults The results returned from Vault if using `batchInput`
          * 
          * @return builder
          * 

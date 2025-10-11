@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 /**
  * Reads role tag information from an AWS auth backend in Vault.
  * 
+ * ## Example Usage
+ * 
  */
 @ResourceType(type="vault:aws/authBackendRoleTag:AuthBackendRoleTag")
 public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {

@@ -12,6 +12,8 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// Creates a key on a PKI Secret Backend for Vault.
     /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// PKI secret backend key can be imported using the `id`, e.g.
@@ -46,13 +48,13 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// When a new key is created with this request, optionally specifies the name for this. 
-        /// The global ref `default` may not be used as a name.
+        /// The global ref `Default` may not be used as a name.
         /// </summary>
         [Output("keyName")]
         public Output<string?> KeyName { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        /// Specifies the desired key type; must be `Rsa`, `Ed25519` or `Ec`.
         /// </summary>
         [Output("keyType")]
         public Output<string> KeyType { get; private set; } = null!;
@@ -72,14 +74,14 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -147,13 +149,13 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// When a new key is created with this request, optionally specifies the name for this. 
-        /// The global ref `default` may not be used as a name.
+        /// The global ref `Default` may not be used as a name.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
 
         /// <summary>
-        /// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        /// Specifies the desired key type; must be `Rsa`, `Ed25519` or `Ec`.
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
@@ -173,14 +175,14 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -216,13 +218,13 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// When a new key is created with this request, optionally specifies the name for this. 
-        /// The global ref `default` may not be used as a name.
+        /// The global ref `Default` may not be used as a name.
         /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
 
         /// <summary>
-        /// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        /// Specifies the desired key type; must be `Rsa`, `Ed25519` or `Ec`.
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
@@ -242,14 +244,14 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

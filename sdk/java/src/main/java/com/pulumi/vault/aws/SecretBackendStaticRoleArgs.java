@@ -20,7 +20,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     /**
      * Specifies the ARN of the role that Vault should assume.
      * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-     * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+     * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      * 
      */
@@ -30,7 +30,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     /**
      * @return Specifies the ARN of the role that Vault should assume.
      * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-     * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+     * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      * 
      */
@@ -40,7 +40,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
     /**
      * Specifies the session name to use when assuming the role.
-     * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+     * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      * 
      */
@@ -49,7 +49,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
     /**
      * @return Specifies the session name to use when assuming the role.
-     * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+     * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      * 
      */
@@ -193,7 +193,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         /**
          * @param assumeRoleArn Specifies the ARN of the role that Vault should assume.
          * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-         * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+         * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
          * Requires Vault 1.19+. *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -207,7 +207,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         /**
          * @param assumeRoleArn Specifies the ARN of the role that Vault should assume.
          * When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-         * If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+         * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
          * Requires Vault 1.19+. *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -219,7 +219,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
         /**
          * @param assumeRoleSessionName Specifies the session name to use when assuming the role.
-         * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+         * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
          * Requires Vault 1.19+. *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -232,7 +232,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
         /**
          * @param assumeRoleSessionName Specifies the session name to use when assuming the role.
-         * If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+         * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
          * Requires Vault 1.19+. *Available only for Vault Enterprise*.
          * 
          * @return builder

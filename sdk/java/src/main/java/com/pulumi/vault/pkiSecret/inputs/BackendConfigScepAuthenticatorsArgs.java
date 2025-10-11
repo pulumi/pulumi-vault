@@ -17,14 +17,14 @@ public final class BackendConfigScepAuthenticatorsArgs extends com.pulumi.resour
     public static final BackendConfigScepAuthenticatorsArgs Empty = new BackendConfigScepAuthenticatorsArgs();
 
     /**
-     * The accessor and cert_role properties for cert auth backends
+     * The accessor and certRole properties for cert auth backends
      * 
      */
     @Import(name="cert")
     private @Nullable Output<Map<String,String>> cert;
 
     /**
-     * @return The accessor and cert_role properties for cert auth backends
+     * @return The accessor and certRole properties for cert auth backends
      * 
      */
     public Optional<Output<Map<String,String>>> cert() {
@@ -72,7 +72,7 @@ public final class BackendConfigScepAuthenticatorsArgs extends com.pulumi.resour
         }
 
         /**
-         * @param cert The accessor and cert_role properties for cert auth backends
+         * @param cert The accessor and certRole properties for cert auth backends
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class BackendConfigScepAuthenticatorsArgs extends com.pulumi.resour
         }
 
         /**
-         * @param cert The accessor and cert_role properties for cert auth backends
+         * @param cert The accessor and certRole properties for cert auth backends
          * 
          * @return builder
          * 

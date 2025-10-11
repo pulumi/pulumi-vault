@@ -139,8 +139,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they should be using the
-     * account ID specified by this field. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * account ID specified by this field. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     @Export(name="boundAccountIds", refs={List.class,String.class}, tree="[0,1]")
@@ -149,8 +149,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return If set, defines a constraint on the EC2
      * instances that can perform the login operation that they should be using the
-     * account ID specified by this field. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * account ID specified by this field. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     public Output<Optional<List<String>>> boundAccountIds() {
@@ -159,8 +159,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they should be using the AMI ID
-     * specified by this field. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * specified by this field. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     @Export(name="boundAmiIds", refs={List.class,String.class}, tree="[0,1]")
@@ -169,8 +169,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they should be using the AMI ID
-     * specified by this field. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * specified by this field. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     public Output<Optional<List<String>>> boundAmiIds() {
@@ -195,8 +195,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * the EC2 instances that can perform the login operation that they must be
      * associated with an IAM instance profile ARN which has a prefix that matches
      * the value specified by this field. The value is prefix-matched as though it
-     * were a glob ending in `*`. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * were a glob ending in `*`. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     @Export(name="boundIamInstanceProfileArns", refs={List.class,String.class}, tree="[0,1]")
@@ -207,8 +207,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * the EC2 instances that can perform the login operation that they must be
      * associated with an IAM instance profile ARN which has a prefix that matches
      * the value specified by this field. The value is prefix-matched as though it
-     * were a glob ending in `*`. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * were a glob ending in `*`. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     public Output<Optional<List<String>>> boundIamInstanceProfileArns() {
@@ -216,7 +216,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * If set, defines the IAM principal that
-     * must be authenticated when `auth_type` is set to `iam`. Wildcards are
+     * must be authenticated when `authType` is set to `iam`. Wildcards are
      * supported at the end of the ARN.
      * 
      */
@@ -225,7 +225,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return If set, defines the IAM principal that
-     * must be authenticated when `auth_type` is set to `iam`. Wildcards are
+     * must be authenticated when `authType` is set to `iam`. Wildcards are
      * supported at the end of the ARN.
      * 
      */
@@ -235,8 +235,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they must match the IAM
-     * role ARN specified by this field. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * role ARN specified by this field. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     @Export(name="boundIamRoleArns", refs={List.class,String.class}, tree="[0,1]")
@@ -245,8 +245,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return If set, defines a constraint on the EC2
      * instances that can perform the login operation that they must match the IAM
-     * role ARN specified by this field. `auth_type` must be set to `ec2` or
-     * `inferred_entity_type` must be set to `ec2_instance` to use this constraint.
+     * role ARN specified by this field. `authType` must be set to `ec2` or
+     * `inferredEntityType` must be set to `ec2Instance` to use this constraint.
      * 
      */
     public Output<Optional<List<String>>> boundIamRoleArns() {
@@ -255,8 +255,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that the region in their identity
-     * document must match the one specified by this field. `auth_type` must be set
-     * to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+     * document must match the one specified by this field. `authType` must be set
+     * to `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      * 
      */
@@ -266,8 +266,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return If set, defines a constraint on the EC2 instances
      * that can perform the login operation that the region in their identity
-     * document must match the one specified by this field. `auth_type` must be set
-     * to `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+     * document must match the one specified by this field. `authType` must be set
+     * to `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      * 
      */
@@ -277,8 +277,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * If set, defines a constraint on the EC2
      * instances that can perform the login operation that they be associated with
-     * the subnet ID that matches the value specified by this field. `auth_type`
-     * must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+     * the subnet ID that matches the value specified by this field. `authType`
+     * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      * 
      */
@@ -288,8 +288,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return If set, defines a constraint on the EC2
      * instances that can perform the login operation that they be associated with
-     * the subnet ID that matches the value specified by this field. `auth_type`
-     * must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+     * the subnet ID that matches the value specified by this field. `authType`
+     * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      * 
      */
@@ -299,8 +299,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they be associated with the VPC ID
-     * that matches the value specified by this field. `auth_type` must be set to
-     * `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+     * that matches the value specified by this field. `authType` must be set to
+     * `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      * 
      */
@@ -310,8 +310,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return If set, defines a constraint on the EC2 instances
      * that can perform the login operation that they be associated with the VPC ID
-     * that matches the value specified by this field. `auth_type` must be set to
-     * `ec2` or `inferred_entity_type` must be set to `ec2_instance` to use this
+     * that matches the value specified by this field. `authType` must be set to
+     * `ec2` or `inferredEntityType` must be set to `ec2Instance` to use this
      * constraint.
      * 
      */
@@ -321,7 +321,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * IF set to `true`, only allows a
      * single token to be granted per instance ID. This can only be set when
-     * `auth_type` is set to `ec2`.
+     * `authType` is set to `ec2`.
      * 
      */
     @Export(name="disallowReauthentication", refs={Boolean.class}, tree="[0]")
@@ -330,16 +330,16 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return IF set to `true`, only allows a
      * single token to be granted per instance ID. This can only be set when
-     * `auth_type` is set to `ec2`.
+     * `authType` is set to `ec2`.
      * 
      */
     public Output<Optional<Boolean>> disallowReauthentication() {
         return Codegen.optional(this.disallowReauthentication);
     }
     /**
-     * When `inferred_entity_type` is set, this
+     * When `inferredEntityType` is set, this
      * is the region to search for the inferred entities. Required if
-     * `inferred_entity_type` is set. This only applies when `auth_type` is set to
+     * `inferredEntityType` is set. This only applies when `authType` is set to
      * `iam`.
      * 
      */
@@ -347,9 +347,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> inferredAwsRegion;
 
     /**
-     * @return When `inferred_entity_type` is set, this
+     * @return When `inferredEntityType` is set, this
      * is the region to search for the inferred entities. Required if
-     * `inferred_entity_type` is set. This only applies when `auth_type` is set to
+     * `inferredEntityType` is set. This only applies when `authType` is set to
      * `iam`.
      * 
      */
@@ -358,9 +358,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * If set, instructs Vault to turn on
-     * inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+     * inferencing. The only valid value is `ec2Instance`, which instructs Vault to
      * infer that the role comes from an EC2 instance in an IAM instance profile.
-     * This only applies when `auth_type` is set to `iam`.
+     * This only applies when `authType` is set to `iam`.
      * 
      */
     @Export(name="inferredEntityType", refs={String.class}, tree="[0]")
@@ -368,9 +368,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return If set, instructs Vault to turn on
-     * inferencing. The only valid value is `ec2_instance`, which instructs Vault to
+     * inferencing. The only valid value is `ec2Instance`, which instructs Vault to
      * infer that the role comes from an EC2 instance in an IAM instance profile.
-     * This only applies when `auth_type` is set to `iam`.
+     * This only applies when `authType` is set to `iam`.
      * 
      */
     public Output<Optional<String>> inferredEntityType() {
@@ -398,11 +398,11 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Only valid when
-     * `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+     * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
      * resolved to [AWS Unique
      * IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
      * for the bound principal ARN. This field is ignored when a
-     * `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+     * `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
      * closely mimics the behavior of AWS services in that if an IAM user or role is
      * deleted and a new one is recreated with the same name, those new users or
      * roles won&#39;t get access to roles in Vault that were permissioned to the prior
@@ -415,11 +415,11 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Only valid when
-     * `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
+     * `authType` is `iam`. If set to `true`, the `boundIamPrincipalArns` are
      * resolved to [AWS Unique
      * IDs](http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids)
      * for the bound principal ARN. This field is ignored when a
-     * `bound_iam_principal_arn` ends in a wildcard. Resolving to unique IDs more
+     * `boundIamPrincipalArn` ends in a wildcard. Resolving to unique IDs more
      * closely mimics the behavior of AWS services in that if an IAM user or role is
      * deleted and a new one is recreated with the same name, those new users or
      * roles won&#39;t get access to roles in Vault that were permissioned to the prior
@@ -460,8 +460,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * If set, enable role tags for this role. The value set
-     * for this field should be the key of the tag on the EC2 instance. `auth_type`
-     * must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+     * for this field should be the key of the tag on the EC2 instance. `authType`
+     * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      * 
      */
@@ -470,8 +470,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return If set, enable role tags for this role. The value set
-     * for this field should be the key of the tag on the EC2 instance. `auth_type`
-     * must be set to `ec2` or `inferred_entity_type` must be set to `ec2_instance`
+     * for this field should be the key of the tag on the EC2 instance. `authType`
+     * must be set to `ec2` or `inferredEntityType` must be set to `ec2Instance`
      * to use this constraint.
      * 
      */

@@ -64,28 +64,28 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Required Vault Capabilities
     /// 
-    /// Use of this resource requires the `create` or `update` capability
+    /// Use of this resource requires the `Create` or `Update` capability
     /// (depending on whether the resource already exists) on the given path,
-    /// the `delete` capability if the resource is removed from configuration,
-    /// and the `read` capability for drift detection (by default).
+    /// the `Delete` capability if the resource is removed from configuration,
+    /// and the `Read` capability for drift detection (by default).
     /// 
     /// ### Custom Metadata Configuration Options
     /// 
-    /// * `max_versions` - (Optional) The number of versions to keep per key.
+    /// * `MaxVersions` - (Optional) The number of versions to keep per key.
     /// 
-    /// * `cas_required` - (Optional) If true, all keys will require the cas
+    /// * `CasRequired` - (Optional) If true, all keys will require the cas
     /// parameter to be set on all write requests.
     /// 
-    /// * `delete_version_after` - (Optional) If set, specifies the length of time before
+    /// * `DeleteVersionAfter` - (Optional) If set, specifies the length of time before
     /// a version is deleted. Accepts duration in integer seconds.
     /// 
-    /// * `data` - (Optional) A string to string map describing the secret.
+    /// * `Data` - (Optional) A string to string map describing the secret.
     /// 
     /// ## Ephemeral Attributes Reference
     /// 
     /// The following write-only attributes are supported:
     /// 
-    /// * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
+    /// * `DataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
     ///   **Note**: This property is write-only and will not be read from the API.
     /// 
     /// ## Import
@@ -100,7 +100,7 @@ namespace Pulumi.Vault.kv
     public partial class SecretV2 : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// This flag is required if `cas_required` is set to true
+        /// This flag is required if `CasRequired` is set to true
         /// on either the secret or the engine's config. In order for a
         /// write operation to be successful, cas must be set to the current version
         /// of the secret.
@@ -133,7 +133,7 @@ namespace Pulumi.Vault.kv
         public Output<string?> DataJson { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the `data_json_wo`. For more info see updating write-only attributes.
+        /// The version of the `DataJsonWo`. For more info see updating write-only attributes.
         /// </summary>
         [Output("dataJsonWoVersion")]
         public Output<int?> DataJsonWoVersion { get; private set; } = null!;
@@ -176,7 +176,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.kv
     public sealed class SecretV2Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This flag is required if `cas_required` is set to true
+        /// This flag is required if `CasRequired` is set to true
         /// on either the secret or the engine's config. In order for a
         /// write operation to be successful, cas must be set to the current version
         /// of the secret.
@@ -280,7 +280,7 @@ namespace Pulumi.Vault.kv
         }
 
         /// <summary>
-        /// The version of the `data_json_wo`. For more info see updating write-only attributes.
+        /// The version of the `DataJsonWo`. For more info see updating write-only attributes.
         /// </summary>
         [Input("dataJsonWoVersion")]
         public Input<int>? DataJsonWoVersion { get; set; }
@@ -317,7 +317,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -344,7 +344,7 @@ namespace Pulumi.Vault.kv
     public sealed class SecretV2State : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This flag is required if `cas_required` is set to true
+        /// This flag is required if `CasRequired` is set to true
         /// on either the secret or the engine's config. In order for a
         /// write operation to be successful, cas must be set to the current version
         /// of the secret.
@@ -398,7 +398,7 @@ namespace Pulumi.Vault.kv
         }
 
         /// <summary>
-        /// The version of the `data_json_wo`. For more info see updating write-only attributes.
+        /// The version of the `DataJsonWo`. For more info see updating write-only attributes.
         /// </summary>
         [Input("dataJsonWoVersion")]
         public Input<int>? DataJsonWoVersion { get; set; }
@@ -447,7 +447,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

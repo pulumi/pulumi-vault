@@ -248,28 +248,28 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.jwksCaPem);
     }
     /**
-     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      * 
      */
     @Export(name="jwksPairs", refs={List.class,Map.class,String.class}, tree="[0,[1,2,2]]")
     private Output</* @Nullable */ List<Map<String,String>>> jwksPairs;
 
     /**
-     * @return List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwks_url` or `jwks_ca_pem`. Requires Vault 1.16+.
+     * @return List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      * 
      */
     public Output<Optional<List<Map<String,String>>>> jwksPairs() {
         return Codegen.optional(this.jwksPairs);
     }
     /**
-     * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
+     * JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidcDiscoveryUrl&#34; or &#34;jwtValidationPubkeys&#34;.
      * 
      */
     @Export(name="jwksUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> jwksUrl;
 
     /**
-     * @return JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidc_discovery_url&#34; or &#34;jwt_validation_pubkeys&#34;.
+     * @return JWKS URL to use to authenticate signatures. Cannot be used with &#34;oidcDiscoveryUrl&#34; or &#34;jwtValidationPubkeys&#34;.
      * 
      */
     public Output<Optional<String>> jwksUrl() {
@@ -290,14 +290,14 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.jwtSupportedAlgs);
     }
     /**
-     * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+     * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      * 
      */
     @Export(name="jwtValidationPubkeys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> jwtValidationPubkeys;
 
     /**
-     * @return A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidc_discovery_url`
+     * @return A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      * 
      */
     public Output<Optional<List<String>>> jwtValidationPubkeys() {
@@ -402,42 +402,42 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.oidcDiscoveryCaPem);
     }
     /**
-     * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+     * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      * 
      */
     @Export(name="oidcDiscoveryUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcDiscoveryUrl;
 
     /**
-     * @return The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
+     * @return The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      * 
      */
     public Output<Optional<String>> oidcDiscoveryUrl() {
         return Codegen.optional(this.oidcDiscoveryUrl);
     }
     /**
-     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+     * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      * 
      */
     @Export(name="oidcResponseMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcResponseMode;
 
     /**
-     * @return The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
+     * @return The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      * 
      */
     public Output<Optional<String>> oidcResponseMode() {
         return Codegen.optional(this.oidcResponseMode);
     }
     /**
-     * List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+     * List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      * 
      */
     @Export(name="oidcResponseTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> oidcResponseTypes;
 
     /**
-     * @return List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `id_token` may only be used if `oidc_response_mode` is set to `form_post`.
+     * @return List of response types to request. Allowed values are &#39;code&#39; and &#39;id_token&#39;. Defaults to `[&#34;code&#34;]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      * 
      */
     public Output<Optional<List<String>>> oidcResponseTypes() {

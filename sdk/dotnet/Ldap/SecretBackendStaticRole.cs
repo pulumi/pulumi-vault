@@ -56,7 +56,7 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// Distinguished name (DN) of the existing LDAP entry to manage
-        /// password rotation for. If given, it will take precedence over `username` for the LDAP
+        /// password rotation for. If given, it will take precedence over `Username` for the LDAP
         /// search performed during password rotation. Cannot be modified after creation.
         /// </summary>
         [Output("dn")]
@@ -64,7 +64,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Output("mount")]
         public Output<string?> Mount { get; private set; } = null!;
@@ -72,7 +72,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -151,7 +151,7 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// Distinguished name (DN) of the existing LDAP entry to manage
-        /// password rotation for. If given, it will take precedence over `username` for the LDAP
+        /// password rotation for. If given, it will take precedence over `Username` for the LDAP
         /// search performed during password rotation. Cannot be modified after creation.
         /// </summary>
         [Input("dn")]
@@ -159,7 +159,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
@@ -167,7 +167,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -208,7 +208,7 @@ namespace Pulumi.Vault.Ldap
     {
         /// <summary>
         /// Distinguished name (DN) of the existing LDAP entry to manage
-        /// password rotation for. If given, it will take precedence over `username` for the LDAP
+        /// password rotation for. If given, it will take precedence over `Username` for the LDAP
         /// search performed during password rotation. Cannot be modified after creation.
         /// </summary>
         [Input("dn")]
@@ -216,7 +216,7 @@ namespace Pulumi.Vault.Ldap
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `ldap`.
+        /// not begin or end with a `/`. Defaults to `Ldap`.
         /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
@@ -224,7 +224,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

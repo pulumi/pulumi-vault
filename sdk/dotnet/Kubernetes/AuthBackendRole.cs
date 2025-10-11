@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Kubernetes
     {
         /// <summary>
         /// Configures how identity aliases are generated.
-        /// Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        /// Valid choices are: `ServiceaccountUid`, `ServiceaccountName`. (vault-1.9+)
         /// </summary>
         [Output("aliasNameSource")]
         public Output<string> AliasNameSource { get; private set; } = null!;
@@ -75,7 +75,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// 
-        /// &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        /// &gt; Please see [AliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
         /// before setting this to something other its default value. There are **important** security
         /// implications to be aware of.
         /// </summary>
@@ -89,13 +89,13 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and BoundServiceAccountNamespaces can not be "*".
         /// </summary>
         [Output("boundServiceAccountNames")]
         public Output<ImmutableArray<string>> BoundServiceAccountNames { get; private set; } = null!;
 
         /// <summary>
-        /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and BoundServiceAccountNames can not be set to "*".
         /// </summary>
         [Output("boundServiceAccountNamespaces")]
         public Output<ImmutableArray<string>> BoundServiceAccountNamespaces { get; private set; } = null!;
@@ -103,7 +103,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -217,7 +217,7 @@ namespace Pulumi.Vault.Kubernetes
     {
         /// <summary>
         /// Configures how identity aliases are generated.
-        /// Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        /// Valid choices are: `ServiceaccountUid`, `ServiceaccountName`. (vault-1.9+)
         /// </summary>
         [Input("aliasNameSource")]
         public Input<string>? AliasNameSource { get; set; }
@@ -225,7 +225,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// 
-        /// &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        /// &gt; Please see [AliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
         /// before setting this to something other its default value. There are **important** security
         /// implications to be aware of.
         /// </summary>
@@ -242,7 +242,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _boundServiceAccountNames;
 
         /// <summary>
-        /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and BoundServiceAccountNamespaces can not be "*".
         /// </summary>
         public InputList<string> BoundServiceAccountNames
         {
@@ -254,7 +254,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _boundServiceAccountNamespaces;
 
         /// <summary>
-        /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and BoundServiceAccountNames can not be set to "*".
         /// </summary>
         public InputList<string> BoundServiceAccountNamespaces
         {
@@ -265,7 +265,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -353,7 +353,7 @@ namespace Pulumi.Vault.Kubernetes
     {
         /// <summary>
         /// Configures how identity aliases are generated.
-        /// Valid choices are: `serviceaccount_uid`, `serviceaccount_name`. (vault-1.9+)
+        /// Valid choices are: `ServiceaccountUid`, `ServiceaccountName`. (vault-1.9+)
         /// </summary>
         [Input("aliasNameSource")]
         public Input<string>? AliasNameSource { get; set; }
@@ -361,7 +361,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// 
-        /// &gt; Please see [alias_name_source](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
+        /// &gt; Please see [AliasNameSource](https://www.vaultproject.io/api-docs/auth/kubernetes#alias_name_source)
         /// before setting this to something other its default value. There are **important** security
         /// implications to be aware of.
         /// </summary>
@@ -378,7 +378,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _boundServiceAccountNames;
 
         /// <summary>
-        /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        /// List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and BoundServiceAccountNamespaces can not be "*".
         /// </summary>
         public InputList<string> BoundServiceAccountNames
         {
@@ -390,7 +390,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _boundServiceAccountNamespaces;
 
         /// <summary>
-        /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and BoundServiceAccountNames can not be set to "*".
         /// </summary>
         public InputList<string> BoundServiceAccountNamespaces
         {
@@ -401,7 +401,7 @@ namespace Pulumi.Vault.Kubernetes
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

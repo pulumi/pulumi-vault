@@ -94,7 +94,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
-     * Whether or not to require `secret_id` to be
+     * Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      * 
      */
@@ -102,7 +102,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> bindSecretId;
 
     /**
-     * @return Whether or not to require `secret_id` to be
+     * @return Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      * 
      */

@@ -109,8 +109,8 @@ public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArg
     /**
      * If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
      * 
      */
     @Import(name="tokenExplicitMaxTtl")
@@ -119,8 +119,8 @@ public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArg
     /**
      * @return If set, will encode an
      * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+     * `tokenMaxTtl` would otherwise allow a renewal.
      * 
      */
     public Optional<Output<Integer>> tokenExplicitMaxTtl() {
@@ -426,8 +426,8 @@ public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArg
         /**
          * @param tokenExplicitMaxTtl If set, will encode an
          * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-         * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-         * `token_max_ttl` would otherwise allow a renewal.
+         * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+         * `tokenMaxTtl` would otherwise allow a renewal.
          * 
          * @return builder
          * 
@@ -440,8 +440,8 @@ public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArg
         /**
          * @param tokenExplicitMaxTtl If set, will encode an
          * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-         * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-         * `token_max_ttl` would otherwise allow a renewal.
+         * onto the token in number of seconds. This is a hard cap even if `tokenTtl` and
+         * `tokenMaxTtl` would otherwise allow a renewal.
          * 
          * @return builder
          * 

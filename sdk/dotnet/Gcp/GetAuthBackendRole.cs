@@ -111,7 +111,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -140,8 +140,8 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public int? TokenExplicitMaxTtl { get; set; }
@@ -198,9 +198,9 @@ namespace Pulumi.Vault.Gcp
         public int? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
+        /// The type of token that should be generated. Can be `Service`,
+        /// `Batch`, or `Default` to use the mount's tuned default (which unless changed will be
+        /// `Service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
         /// </summary>
@@ -224,7 +224,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -253,8 +253,8 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         [Input("tokenExplicitMaxTtl")]
         public Input<int>? TokenExplicitMaxTtl { get; set; }
@@ -311,9 +311,9 @@ namespace Pulumi.Vault.Gcp
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
+        /// The type of token that should be generated. Can be `Service`,
+        /// `Batch`, or `Default` to use the mount's tuned default (which unless changed will be
+        /// `Service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
         /// </summary>
@@ -332,11 +332,11 @@ namespace Pulumi.Vault.Gcp
     {
         public readonly string? Backend;
         /// <summary>
-        /// GCP regions bound to the role. Returned when `type` is `gce`.
+        /// GCP regions bound to the role. Returned when `Type` is `Gce`.
         /// </summary>
         public readonly ImmutableArray<string> BoundInstanceGroups;
         /// <summary>
-        /// GCP labels bound to the role. Returned when `type` is `gce`.
+        /// GCP labels bound to the role. Returned when `Type` is `Gce`.
         /// </summary>
         public readonly ImmutableArray<string> BoundLabels;
         /// <summary>
@@ -344,15 +344,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         public readonly ImmutableArray<string> BoundProjects;
         /// <summary>
-        /// GCP regions bound to the role. Returned when `type` is `gce`.
+        /// GCP regions bound to the role. Returned when `Type` is `Gce`.
         /// </summary>
         public readonly ImmutableArray<string> BoundRegions;
         /// <summary>
-        /// GCP service accounts bound to the role. Returned when `type` is `iam`.
+        /// GCP service accounts bound to the role. Returned when `Type` is `Iam`.
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccounts;
         /// <summary>
-        /// GCP zones bound to the role. Returned when `type` is `gce`.
+        /// GCP zones bound to the role. Returned when `Type` is `Gce`.
         /// </summary>
         public readonly ImmutableArray<string> BoundZones;
         /// <summary>
@@ -374,8 +374,8 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// If set, will encode an
         /// [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        /// onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        /// `token_max_ttl` would otherwise allow a renewal.
+        /// onto the token in number of seconds. This is a hard cap even if `TokenTtl` and
+        /// `TokenMaxTtl` would otherwise allow a renewal.
         /// </summary>
         public readonly int? TokenExplicitMaxTtl;
         /// <summary>
@@ -412,15 +412,15 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         public readonly int? TokenTtl;
         /// <summary>
-        /// The type of token that should be generated. Can be `service`,
-        /// `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        /// `service` tokens). For token store roles, there are two additional possibilities:
+        /// The type of token that should be generated. Can be `Service`,
+        /// `Batch`, or `Default` to use the mount's tuned default (which unless changed will be
+        /// `Service` tokens). For token store roles, there are two additional possibilities:
         /// `default-service` and `default-batch` which specify the type to return unless the client
         /// requests a different type at generation time.
         /// </summary>
         public readonly string? TokenType;
         /// <summary>
-        /// Type of GCP role. Expected values are `iam` or `gce`.
+        /// Type of GCP role. Expected values are `Iam` or `Gce`.
         /// </summary>
         public readonly string Type;
 

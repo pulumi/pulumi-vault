@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Managed.Inputs
         public Input<string> KeyLabel { get; set; } = null!;
 
         /// <summary>
-        /// The name of the kms_library stanza to use from Vault's config to lookup the local library path
+        /// The name of the KmsLibrary stanza to use from Vault's config to lookup the local library path
         /// </summary>
         [Input("library", required: true)]
         public Input<string> Library { get; set; } = null!;

@@ -485,12 +485,16 @@ public final class TransitFunctions {
     /**
      * This is a data source which can be used to generate a signature using a Vault Transit key.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetSignResult> getSign(GetSignArgs args) {
         return getSign(args, InvokeOptions.Empty);
     }
     /**
      * This is a data source which can be used to generate a signature using a Vault Transit key.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetSignResult> getSignPlain(GetSignPlainArgs args) {
@@ -499,12 +503,16 @@ public final class TransitFunctions {
     /**
      * This is a data source which can be used to generate a signature using a Vault Transit key.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetSignResult> getSign(GetSignArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:transit/getSign:getSign", TypeShape.of(GetSignResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This is a data source which can be used to generate a signature using a Vault Transit key.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetSignResult> getSign(GetSignArgs args, InvokeOutputOptions options) {
@@ -513,12 +521,16 @@ public final class TransitFunctions {
     /**
      * This is a data source which can be used to generate a signature using a Vault Transit key.
      * 
+     * ## Example Usage
+     * 
      */
     public static CompletableFuture<GetSignResult> getSignPlain(GetSignPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transit/getSign:getSign", TypeShape.of(GetSignResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This is a data source which can be used to verify a signature using a Vault Transit key.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetVerifyResult> getVerify(GetVerifyArgs args) {
@@ -527,12 +539,16 @@ public final class TransitFunctions {
     /**
      * This is a data source which can be used to verify a signature using a Vault Transit key.
      * 
+     * ## Example Usage
+     * 
      */
     public static CompletableFuture<GetVerifyResult> getVerifyPlain(GetVerifyPlainArgs args) {
         return getVerifyPlain(args, InvokeOptions.Empty);
     }
     /**
      * This is a data source which can be used to verify a signature using a Vault Transit key.
+     * 
+     * ## Example Usage
      * 
      */
     public static Output<GetVerifyResult> getVerify(GetVerifyArgs args, InvokeOptions options) {
@@ -541,12 +557,16 @@ public final class TransitFunctions {
     /**
      * This is a data source which can be used to verify a signature using a Vault Transit key.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetVerifyResult> getVerify(GetVerifyArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:transit/getVerify:getVerify", TypeShape.of(GetVerifyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This is a data source which can be used to verify a signature using a Vault Transit key.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetVerifyResult> getVerifyPlain(GetVerifyPlainArgs args, InvokeOptions options) {

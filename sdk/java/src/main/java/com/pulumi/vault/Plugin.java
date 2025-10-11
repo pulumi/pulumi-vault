@@ -89,14 +89,14 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.args);
     }
     /**
-     * Command to execute the plugin, relative to the server&#39;s configured `plugin_directory`.
+     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
      * 
      */
     @Export(name="command", refs={String.class}, tree="[0]")
     private Output<String> command;
 
     /**
-     * @return Command to execute the plugin, relative to the server&#39;s configured `plugin_directory`.
+     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
      * 
      */
     public Output<String> command() {
@@ -149,14 +149,14 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.ociImage);
     }
     /**
-     * Vault plugin runtime to use if `oci_image` is specified.
+     * Vault plugin runtime to use if `ociImage` is specified.
      * 
      */
     @Export(name="runtime", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> runtime;
 
     /**
-     * @return Vault plugin runtime to use if `oci_image` is specified.
+     * @return Vault plugin runtime to use if `ociImage` is specified.
      * 
      */
     public Output<Optional<String>> runtime() {

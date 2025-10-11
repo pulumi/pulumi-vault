@@ -35,14 +35,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
+     * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      * 
      */
     @Import(name="allowBareDomains")
     private @Nullable Output<Boolean> allowBareDomains;
 
     /**
-     * @return Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
+     * @return Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      * 
      */
     public Optional<Output<Boolean>> allowBareDomains() {
@@ -84,14 +84,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
+     * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      * 
      */
     @Import(name="allowSubdomains")
     private @Nullable Output<Boolean> allowSubdomains;
 
     /**
-     * @return Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
+     * @return Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      * 
      */
     public Optional<Output<Boolean>> allowSubdomains() {
@@ -114,14 +114,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies if users can override the key ID for a signed certificate with the `key_id` field.
+     * Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      * 
      */
     @Import(name="allowUserKeyIds")
     private @Nullable Output<Boolean> allowUserKeyIds;
 
     /**
-     * @return Specifies if users can override the key ID for a signed certificate with the `key_id` field.
+     * @return Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      * 
      */
     public Optional<Output<Boolean>> allowUserKeyIds() {
@@ -159,7 +159,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies if `allowed_domains` can be declared using
+     * Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      * 
      */
@@ -167,7 +167,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     private @Nullable Output<Boolean> allowedDomainsTemplate;
 
     /**
-     * @return Specifies if `allowed_domains` can be declared using
+     * @return Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      * 
      */
@@ -225,14 +225,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      * 
      */
     @Import(name="allowedUsersTemplate")
     private @Nullable Output<Boolean> allowedUsersTemplate;
 
     /**
-     * @return Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+     * @return Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      * 
      */
     public Optional<Output<Boolean>> allowedUsersTemplate() {
@@ -315,14 +315,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      * 
      */
     @Import(name="defaultUserTemplate")
     private @Nullable Output<Boolean> defaultUserTemplate;
 
     /**
-     * @return If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * @return If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      * 
      */
     public Optional<Output<Boolean>> defaultUserTemplate() {
@@ -512,7 +512,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowBareDomains Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
+         * @param allowBareDomains Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
          * 
          * @return builder
          * 
@@ -523,7 +523,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowBareDomains Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
+         * @param allowBareDomains Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
          * 
          * @return builder
          * 
@@ -579,7 +579,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowSubdomains Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
+         * @param allowSubdomains Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
          * 
          * @return builder
          * 
@@ -590,7 +590,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowSubdomains Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
+         * @param allowSubdomains Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
          * 
          * @return builder
          * 
@@ -621,7 +621,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowUserKeyIds Specifies if users can override the key ID for a signed certificate with the `key_id` field.
+         * @param allowUserKeyIds Specifies if users can override the key ID for a signed certificate with the `keyId` field.
          * 
          * @return builder
          * 
@@ -632,7 +632,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowUserKeyIds Specifies if users can override the key ID for a signed certificate with the `key_id` field.
+         * @param allowUserKeyIds Specifies if users can override the key ID for a signed certificate with the `keyId` field.
          * 
          * @return builder
          * 
@@ -684,7 +684,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedDomainsTemplate Specifies if `allowed_domains` can be declared using
+         * @param allowedDomainsTemplate Specifies if `allowedDomains` can be declared using
          * identity template policies. Non-templated domains are also permitted.
          * 
          * @return builder
@@ -696,7 +696,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedDomainsTemplate Specifies if `allowed_domains` can be declared using
+         * @param allowedDomainsTemplate Specifies if `allowedDomains` can be declared using
          * identity template policies. Non-templated domains are also permitted.
          * 
          * @return builder
@@ -786,7 +786,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedUsersTemplate Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+         * @param allowedUsersTemplate Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
          * 
          * @return builder
          * 
@@ -797,7 +797,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedUsersTemplate Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+         * @param allowedUsersTemplate Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
          * 
          * @return builder
          * 
@@ -912,7 +912,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param defaultUserTemplate If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+         * @param defaultUserTemplate If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
          * 
          * @return builder
          * 
@@ -923,7 +923,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param defaultUserTemplate If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+         * @param defaultUserTemplate If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
          * 
          * @return builder
          * 

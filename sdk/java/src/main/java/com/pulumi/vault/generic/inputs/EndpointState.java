@@ -80,7 +80,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
     /**
      * - (Optional) True/false. If set to true,
      *   ignore any fields present when the endpoint is read but that were not
-     *   in `data_json`. Also, if a field that was written is not returned when
+     *   in `dataJson`. Also, if a field that was written is not returned when
      *   the endpoint is read, treat that field as being up to date. You should
      *   set this to `true` when writing to endpoint that, when read, returns a
      *   different set of fields from the ones you wrote, as is common with
@@ -93,7 +93,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return - (Optional) True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
-     * in `data_json`. Also, if a field that was written is not returned when
+     * in `dataJson`. Also, if a field that was written is not returned when
      * the endpoint is read, treat that field as being up to date. You should
      * set this to `true` when writing to endpoint that, when read, returns a
      * different set of fields from the ones you wrote, as is common with
@@ -151,7 +151,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
      *   returned from Vault by the write operation and whose values are the
      *   corresponding values. This map can only represent string data, so
      *   any non-string values returned from Vault are serialized as JSON.
-     *   Only fields set in `write_fields` are present in the JSON data.
+     *   Only fields set in `writeFields` are present in the JSON data.
      * 
      */
     @Import(name="writeData")
@@ -162,7 +162,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
      * returned from Vault by the write operation and whose values are the
      * corresponding values. This map can only represent string data, so
      * any non-string values returned from Vault are serialized as JSON.
-     * Only fields set in `write_fields` are present in the JSON data.
+     * Only fields set in `writeFields` are present in the JSON data.
      * 
      */
     public Optional<Output<Map<String,String>>> writeData() {
@@ -171,7 +171,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * - The JSON data returned by the write operation.
-     *   Only fields set in `write_fields` are present in the JSON data.
+     *   Only fields set in `writeFields` are present in the JSON data.
      * 
      */
     @Import(name="writeDataJson")
@@ -179,7 +179,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return - The JSON data returned by the write operation.
-     * Only fields set in `write_fields` are present in the JSON data.
+     * Only fields set in `writeFields` are present in the JSON data.
      * 
      */
     public Optional<Output<String>> writeDataJson() {
@@ -188,12 +188,12 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * - (Optional). A list of fields that should be returned
-     *   in `write_data_json` and `write_data`. If omitted, data returned by
+     *   in `writeDataJson` and `writeData`. If omitted, data returned by
      *   the write operation is not available to the resource or included in
      *   state. This helps to avoid accidental storage of sensitive values in
      *   state. Some endpoints, such as many dynamic secrets endpoints, return
      *   data from writing to an endpoint rather than reading it. You should
-     *   use `write_fields` if you need information returned in this way.
+     *   use `writeFields` if you need information returned in this way.
      * 
      */
     @Import(name="writeFields")
@@ -201,12 +201,12 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return - (Optional). A list of fields that should be returned
-     * in `write_data_json` and `write_data`. If omitted, data returned by
+     * in `writeDataJson` and `writeData`. If omitted, data returned by
      * the write operation is not available to the resource or included in
      * state. This helps to avoid accidental storage of sensitive values in
      * state. Some endpoints, such as many dynamic secrets endpoints, return
      * data from writing to an endpoint rather than reading it. You should
-     * use `write_fields` if you need information returned in this way.
+     * use `writeFields` if you need information returned in this way.
      * 
      */
     public Optional<Output<List<String>>> writeFields() {
@@ -325,7 +325,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ignoreAbsentFields - (Optional) True/false. If set to true,
          * ignore any fields present when the endpoint is read but that were not
-         * in `data_json`. Also, if a field that was written is not returned when
+         * in `dataJson`. Also, if a field that was written is not returned when
          * the endpoint is read, treat that field as being up to date. You should
          * set this to `true` when writing to endpoint that, when read, returns a
          * different set of fields from the ones you wrote, as is common with
@@ -342,7 +342,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ignoreAbsentFields - (Optional) True/false. If set to true,
          * ignore any fields present when the endpoint is read but that were not
-         * in `data_json`. Also, if a field that was written is not returned when
+         * in `dataJson`. Also, if a field that was written is not returned when
          * the endpoint is read, treat that field as being up to date. You should
          * set this to `true` when writing to endpoint that, when read, returns a
          * different set of fields from the ones you wrote, as is common with
@@ -414,7 +414,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
          * returned from Vault by the write operation and whose values are the
          * corresponding values. This map can only represent string data, so
          * any non-string values returned from Vault are serialized as JSON.
-         * Only fields set in `write_fields` are present in the JSON data.
+         * Only fields set in `writeFields` are present in the JSON data.
          * 
          * @return builder
          * 
@@ -429,7 +429,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
          * returned from Vault by the write operation and whose values are the
          * corresponding values. This map can only represent string data, so
          * any non-string values returned from Vault are serialized as JSON.
-         * Only fields set in `write_fields` are present in the JSON data.
+         * Only fields set in `writeFields` are present in the JSON data.
          * 
          * @return builder
          * 
@@ -440,7 +440,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param writeDataJson - The JSON data returned by the write operation.
-         * Only fields set in `write_fields` are present in the JSON data.
+         * Only fields set in `writeFields` are present in the JSON data.
          * 
          * @return builder
          * 
@@ -452,7 +452,7 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param writeDataJson - The JSON data returned by the write operation.
-         * Only fields set in `write_fields` are present in the JSON data.
+         * Only fields set in `writeFields` are present in the JSON data.
          * 
          * @return builder
          * 
@@ -463,12 +463,12 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param writeFields - (Optional). A list of fields that should be returned
-         * in `write_data_json` and `write_data`. If omitted, data returned by
+         * in `writeDataJson` and `writeData`. If omitted, data returned by
          * the write operation is not available to the resource or included in
          * state. This helps to avoid accidental storage of sensitive values in
          * state. Some endpoints, such as many dynamic secrets endpoints, return
          * data from writing to an endpoint rather than reading it. You should
-         * use `write_fields` if you need information returned in this way.
+         * use `writeFields` if you need information returned in this way.
          * 
          * @return builder
          * 
@@ -480,12 +480,12 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param writeFields - (Optional). A list of fields that should be returned
-         * in `write_data_json` and `write_data`. If omitted, data returned by
+         * in `writeDataJson` and `writeData`. If omitted, data returned by
          * the write operation is not available to the resource or included in
          * state. This helps to avoid accidental storage of sensitive values in
          * state. Some endpoints, such as many dynamic secrets endpoints, return
          * data from writing to an endpoint rather than reading it. You should
-         * use `write_fields` if you need information returned in this way.
+         * use `writeFields` if you need information returned in this way.
          * 
          * @return builder
          * 
@@ -496,12 +496,12 @@ public final class EndpointState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param writeFields - (Optional). A list of fields that should be returned
-         * in `write_data_json` and `write_data`. If omitted, data returned by
+         * in `writeDataJson` and `writeData`. If omitted, data returned by
          * the write operation is not available to the resource or included in
          * state. This helps to avoid accidental storage of sensitive values in
          * state. Some endpoints, such as many dynamic secrets endpoints, return
          * data from writing to an endpoint rather than reading it. You should
-         * use `write_fields` if you need information returned in this way.
+         * use `writeFields` if you need information returned in this way.
          * 
          * @return builder
          * 

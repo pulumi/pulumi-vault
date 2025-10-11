@@ -141,14 +141,14 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
      * 
      */
     @Import(name="allowedDomainsTemplate")
     private @Nullable Output<Boolean> allowedDomainsTemplate;
 
     /**
-     * @return Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * @return Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
      * 
      */
     public Optional<Output<Boolean>> allowedDomainsTemplate() {
@@ -201,14 +201,14 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
      * 
      */
     @Import(name="allowedUriSansTemplate")
     private @Nullable Output<Boolean> allowedUriSansTemplate;
 
     /**
-     * @return Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+     * @return Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
      * 
      */
     public Optional<Output<Boolean>> allowedUriSansTemplate() {
@@ -399,7 +399,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     @Import(name="issuerRef")
@@ -409,7 +409,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
      * @return Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     public Optional<Output<String>> issuerRef() {
@@ -624,14 +624,14 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+     * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      * 
      */
     @Import(name="policyIdentifier")
     private @Nullable Output<List<SecretBackendRolePolicyIdentifierArgs>> policyIdentifier;
 
     /**
-     * @return (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+     * @return (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      * 
      */
     public Optional<Output<List<SecretBackendRolePolicyIdentifierArgs>>> policyIdentifier() {
@@ -639,14 +639,14 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+     * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      * 
      */
     @Import(name="policyIdentifiers")
     private @Nullable Output<List<String>> policyIdentifiers;
 
     /**
-     * @return Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+     * @return Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      * 
      */
     public Optional<Output<List<String>>> policyIdentifiers() {
@@ -699,7 +699,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
      * 
      * Example usage:
      * 
@@ -708,7 +708,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     private @Nullable Output<String> serialNumberSource;
 
     /**
-     * @return Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+     * @return Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
      * 
      * Example usage:
      * 
@@ -1076,7 +1076,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedDomainsTemplate Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+         * @param allowedDomainsTemplate Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
          * 
          * @return builder
          * 
@@ -1087,7 +1087,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedDomainsTemplate Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+         * @param allowedDomainsTemplate Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
          * 
          * @return builder
          * 
@@ -1190,7 +1190,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedUriSansTemplate Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+         * @param allowedUriSansTemplate Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
          * 
          * @return builder
          * 
@@ -1201,7 +1201,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedUriSansTemplate Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+         * @param allowedUriSansTemplate Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
          * 
          * @return builder
          * 
@@ -1516,7 +1516,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          * @param issuerRef Specifies the default issuer of this request. May
          * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
          * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-         * overriding the role&#39;s `issuer_ref` value.
+         * overriding the role&#39;s `issuerRef` value.
          * 
          * @return builder
          * 
@@ -1530,7 +1530,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          * @param issuerRef Specifies the default issuer of this request. May
          * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
          * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-         * overriding the role&#39;s `issuer_ref` value.
+         * overriding the role&#39;s `issuerRef` value.
          * 
          * @return builder
          * 
@@ -1867,7 +1867,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
          * 
          * @return builder
          * 
@@ -1878,7 +1878,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
          * 
          * @return builder
          * 
@@ -1888,7 +1888,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+         * @param policyIdentifier (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
          * 
          * @return builder
          * 
@@ -1898,7 +1898,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
          * 
          * @return builder
          * 
@@ -1909,7 +1909,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
          * 
          * @return builder
          * 
@@ -1919,7 +1919,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+         * @param policyIdentifiers Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
          * 
          * @return builder
          * 
@@ -2012,7 +2012,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param serialNumberSource Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+         * @param serialNumberSource Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
          * 
          * Example usage:
          * 
@@ -2025,7 +2025,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param serialNumberSource Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+         * @param serialNumberSource Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
          * 
          * Example usage:
          * 

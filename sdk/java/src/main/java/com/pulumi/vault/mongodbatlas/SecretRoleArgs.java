@@ -115,7 +115,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Unique identifier for the organization to which the target API Key belongs.
-     * Required if `project_id` is not set.
+     * Required if `projectId` is not set.
      * 
      */
     @Import(name="organizationId")
@@ -123,7 +123,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Unique identifier for the organization to which the target API Key belongs.
-     * Required if `project_id` is not set.
+     * Required if `projectId` is not set.
      * 
      */
     public Optional<Output<String>> organizationId() {
@@ -132,7 +132,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Unique identifier for the project to which the target API Key belongs.
-     * Required if `organization_id` is not set.
+     * Required if `organizationId` is not set.
      * 
      */
     @Import(name="projectId")
@@ -140,7 +140,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Unique identifier for the project to which the target API Key belongs.
-     * Required if `organization_id` is not set.
+     * Required if `organizationId` is not set.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -380,7 +380,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param organizationId Unique identifier for the organization to which the target API Key belongs.
-         * Required if `project_id` is not set.
+         * Required if `projectId` is not set.
          * 
          * @return builder
          * 
@@ -392,7 +392,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param organizationId Unique identifier for the organization to which the target API Key belongs.
-         * Required if `project_id` is not set.
+         * Required if `projectId` is not set.
          * 
          * @return builder
          * 
@@ -403,7 +403,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectId Unique identifier for the project to which the target API Key belongs.
-         * Required if `organization_id` is not set.
+         * Required if `organizationId` is not set.
          * 
          * @return builder
          * 
@@ -415,7 +415,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectId Unique identifier for the project to which the target API Key belongs.
-         * Required if `organization_id` is not set.
+         * Required if `organizationId` is not set.
          * 
          * @return builder
          * 

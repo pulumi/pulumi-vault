@@ -98,11 +98,11 @@ namespace Pulumi.Vault.Identity
     public partial class GroupPolicies : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// 
-        /// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+        /// If `True`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
         /// 
-        /// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
+        /// If set to `False`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         /// </summary>
         [Output("exclusive")]
         public Output<bool?> Exclusive { get; private set; } = null!;
@@ -122,7 +122,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -181,11 +181,11 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupPoliciesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// 
-        /// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+        /// If `True`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
         /// 
-        /// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
+        /// If set to `False`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
@@ -199,7 +199,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -226,11 +226,11 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupPoliciesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// 
-        /// If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
+        /// If `True`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
         /// 
-        /// If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
+        /// If set to `False`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
         /// </summary>
         [Input("exclusive")]
         public Input<bool>? Exclusive { get; set; }
@@ -250,7 +250,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

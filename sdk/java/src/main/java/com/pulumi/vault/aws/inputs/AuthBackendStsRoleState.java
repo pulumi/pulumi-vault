@@ -85,7 +85,7 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
 
     /**
      * The STS role to assume when verifying requests made
-     * by EC2 instances in the account specified by `account_id`.
+     * by EC2 instances in the account specified by `accountId`.
      * 
      */
     @Import(name="stsRole")
@@ -93,7 +93,7 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
 
     /**
      * @return The STS role to assume when verifying requests made
-     * by EC2 instances in the account specified by `account_id`.
+     * by EC2 instances in the account specified by `accountId`.
      * 
      */
     public Optional<Output<String>> stsRole() {
@@ -222,7 +222,7 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
 
         /**
          * @param stsRole The STS role to assume when verifying requests made
-         * by EC2 instances in the account specified by `account_id`.
+         * by EC2 instances in the account specified by `accountId`.
          * 
          * @return builder
          * 
@@ -234,7 +234,7 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
 
         /**
          * @param stsRole The STS role to assume when verifying requests made
-         * by EC2 instances in the account specified by `account_id`.
+         * by EC2 instances in the account specified by `accountId`.
          * 
          * @return builder
          * 

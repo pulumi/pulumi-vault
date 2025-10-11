@@ -21,7 +21,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      * 
      */
     @Import(name="applicationObjectId")
@@ -29,7 +29,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Application Object ID for an existing service principal that will
-     * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
+     * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      * 
      */
     public Optional<Output<String>> applicationObjectId() {
@@ -268,7 +268,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param applicationObjectId Application Object ID for an existing service principal that will
-         * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
+         * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
          * 
          * @return builder
          * 
@@ -280,7 +280,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param applicationObjectId Application Object ID for an existing service principal that will
-         * be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
+         * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
          * 
          * @return builder
          * 

@@ -48,14 +48,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     @Import(name="keyBits")
     private @Nullable Output<Integer> keyBits;
 
     /**
-     * @return Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * @return Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     public Optional<Output<Integer>> keyBits() {
@@ -63,14 +63,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     @Import(name="keyType")
     private @Nullable Output<String> keyType;
 
     /**
-     * @return Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * @return Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     public Optional<Output<String>> keyType() {
@@ -78,14 +78,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
      * 
      */
     @Import(name="managedKeyId")
     private @Nullable Output<String> managedKeyId;
 
     /**
-     * @return The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * @return The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
      * 
      */
     public Optional<Output<String>> managedKeyId() {
@@ -93,14 +93,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      * 
      */
     @Import(name="managedKeyName")
     private @Nullable Output<String> managedKeyName;
 
     /**
-     * @return The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * @return The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      * 
      */
     public Optional<Output<String>> managedKeyName() {
@@ -129,14 +129,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * The private key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return The private key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -144,14 +144,14 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The public key part the SSH CA key pair; required if generate_signing_key is false.
+     * The public key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     @Import(name="publicKey")
     private @Nullable Output<String> publicKey;
 
     /**
-     * @return The public key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return The public key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     public Optional<Output<String>> publicKey() {
@@ -233,7 +233,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keyBits Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * @param keyBits Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keyBits Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * @param keyBits Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
          * 
          * @return builder
          * 
@@ -254,7 +254,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keyType Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * @param keyType Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
          * 
          * @return builder
          * 
@@ -265,7 +265,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keyType Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * @param keyType Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
          * 
          * @return builder
          * 
@@ -286,7 +286,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyName The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+         * @param managedKeyName The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
          * 
          * @return builder
          * 
@@ -307,7 +307,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyName The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+         * @param managedKeyName The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
          * 
          * @return builder
          * 
@@ -344,7 +344,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey The private key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param privateKey The private key part the SSH CA key pair; required if generateSigningKey is false.
          * 
          * @return builder
          * 
@@ -355,7 +355,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param privateKey The private key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param privateKey The private key part the SSH CA key pair; required if generateSigningKey is false.
          * 
          * @return builder
          * 
@@ -365,7 +365,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param publicKey The public key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param publicKey The public key part the SSH CA key pair; required if generateSigningKey is false.
          * 
          * @return builder
          * 
@@ -376,7 +376,7 @@ public final class SecretBackendCaState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param publicKey The public key part the SSH CA key pair; required if generate_signing_key is false.
+         * @param publicKey The public key part the SSH CA key pair; required if generateSigningKey is false.
          * 
          * @return builder
          * 

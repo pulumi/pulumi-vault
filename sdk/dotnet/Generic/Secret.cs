@@ -39,7 +39,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// true/false.  Only applicable for kv-v2 stores.
-        /// If set to `true`, permanently deletes all versions for
+        /// If set to `True`, permanently deletes all versions for
         /// the specified key. The default behavior is to only delete the latest version of the
         /// secret.
         /// </summary>
@@ -48,7 +48,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// true/false. Set this to true if your vault
-        /// authentication is not able to read the data. Setting this to `true` will
+        /// authentication is not able to read the data. Setting this to `True` will
         /// break drift detection. Defaults to false.
         /// </summary>
         [Output("disableRead")]
@@ -57,7 +57,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// true/false.  Only applicable for kv-v2 stores.
-        /// If set to `true`, permanently deletes all versions for
+        /// If set to `True`, permanently deletes all versions for
         /// the specified key. The default behavior is to only delete the latest version of the
         /// secret.
         /// </summary>
@@ -152,7 +152,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// true/false. Set this to true if your vault
-        /// authentication is not able to read the data. Setting this to `true` will
+        /// authentication is not able to read the data. Setting this to `True` will
         /// break drift detection. Defaults to false.
         /// </summary>
         [Input("disableRead")]
@@ -161,7 +161,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -223,7 +223,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// true/false.  Only applicable for kv-v2 stores.
-        /// If set to `true`, permanently deletes all versions for
+        /// If set to `True`, permanently deletes all versions for
         /// the specified key. The default behavior is to only delete the latest version of the
         /// secret.
         /// </summary>
@@ -232,7 +232,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// true/false. Set this to true if your vault
-        /// authentication is not able to read the data. Setting this to `true` will
+        /// authentication is not able to read the data. Setting this to `True` will
         /// break drift detection. Defaults to false.
         /// </summary>
         [Input("disableRead")]
@@ -241,7 +241,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

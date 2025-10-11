@@ -107,7 +107,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+     * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      * 
      */
     @Import(name="ttl")
@@ -116,7 +116,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
     /**
      * @return Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+     * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      * 
      */
     public Optional<String> ttl() {
@@ -239,7 +239,7 @@ public final class GetAccessCredentialsPlainArgs extends com.pulumi.resources.In
         /**
          * @param ttl Specifies the TTL for the use of the STS token. This
          * is specified as a string with a duration suffix. Valid only when
-         * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+         * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
          * 
          * @return builder
          * 

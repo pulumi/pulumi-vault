@@ -144,7 +144,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
     /**
      * Specifies what will be used as the `scheme://host:port`
      * component for the `iss` claim of ID tokens. This value is computed using the
-     * `issuer_host` and `https_enabled` fields.
+     * `issuerHost` and `httpsEnabled` fields.
      * 
      */
     @Export(name="issuer", refs={String.class}, tree="[0]")
@@ -153,7 +153,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
     /**
      * @return Specifies what will be used as the `scheme://host:port`
      * component for the `iss` claim of ID tokens. This value is computed using the
-     * `issuer_host` and `https_enabled` fields.
+     * `issuerHost` and `httpsEnabled` fields.
      * 
      */
     public Output<String> issuer() {

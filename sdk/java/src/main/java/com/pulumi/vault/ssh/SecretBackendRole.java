@@ -99,14 +99,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return this.algorithmSigner;
     }
     /**
-     * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
+     * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      * 
      */
     @Export(name="allowBareDomains", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowBareDomains;
 
     /**
-     * @return Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
+     * @return Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      * 
      */
     public Output<Optional<Boolean>> allowBareDomains() {
@@ -145,14 +145,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowHostCertificates);
     }
     /**
-     * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
+     * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      * 
      */
     @Export(name="allowSubdomains", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowSubdomains;
 
     /**
-     * @return Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
+     * @return Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      * 
      */
     public Output<Optional<Boolean>> allowSubdomains() {
@@ -173,14 +173,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowUserCertificates);
     }
     /**
-     * Specifies if users can override the key ID for a signed certificate with the `key_id` field.
+     * Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      * 
      */
     @Export(name="allowUserKeyIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowUserKeyIds;
 
     /**
-     * @return Specifies if users can override the key ID for a signed certificate with the `key_id` field.
+     * @return Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      * 
      */
     public Output<Optional<Boolean>> allowUserKeyIds() {
@@ -215,7 +215,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedDomains);
     }
     /**
-     * Specifies if `allowed_domains` can be declared using
+     * Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      * 
      */
@@ -223,7 +223,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     private Output<Boolean> allowedDomainsTemplate;
 
     /**
-     * @return Specifies if `allowed_domains` can be declared using
+     * @return Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      * 
      */
@@ -277,14 +277,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedUsers);
     }
     /**
-     * Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+     * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      * 
      */
     @Export(name="allowedUsersTemplate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowedUsersTemplate;
 
     /**
-     * @return Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
+     * @return Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      * 
      */
     public Output<Optional<Boolean>> allowedUsersTemplate() {
@@ -361,14 +361,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.defaultUser);
     }
     /**
-     * If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      * 
      */
     @Export(name="defaultUserTemplate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> defaultUserTemplate;
 
     /**
-     * @return If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+     * @return If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      * 
      */
     public Output<Optional<Boolean>> defaultUserTemplate() {

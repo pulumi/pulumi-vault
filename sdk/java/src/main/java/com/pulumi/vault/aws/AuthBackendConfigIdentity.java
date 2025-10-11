@@ -92,7 +92,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
     }
     /**
      * How to generate the identity alias when using the ec2 auth method. Valid choices are
-     * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+     * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
      * 
      */
     @Export(name="ec2Alias", refs={String.class}, tree="[0]")
@@ -100,7 +100,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
 
     /**
      * @return How to generate the identity alias when using the ec2 auth method. Valid choices are
-     * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+     * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
      * 
      */
     public Output<Optional<String>> ec2Alias() {
@@ -108,7 +108,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
     }
     /**
      * The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `ec2_alias`
+     * added to both audit logs, and on the `ec2Alias`
      * 
      */
     @Export(name="ec2Metadatas", refs={List.class,String.class}, tree="[0,1]")
@@ -116,7 +116,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
 
     /**
      * @return The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `ec2_alias`
+     * added to both audit logs, and on the `ec2Alias`
      * 
      */
     public Output<Optional<List<String>>> ec2Metadatas() {
@@ -124,7 +124,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
     }
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
-     * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
      * 
      */
     @Export(name="iamAlias", refs={String.class}, tree="[0]")
@@ -132,7 +132,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
 
     /**
      * @return How to generate the identity alias when using the iam auth method. Valid choices are
-     * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
      * 
      */
     public Output<Optional<String>> iamAlias() {
@@ -140,7 +140,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
     }
     /**
      * The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `iam_alias`
+     * added to both audit logs, and on the `iamAlias`
      * 
      */
     @Export(name="iamMetadatas", refs={List.class,String.class}, tree="[0,1]")
@@ -148,7 +148,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
 
     /**
      * @return The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `iam_alias`
+     * added to both audit logs, and on the `iamAlias`
      * 
      */
     public Output<Optional<List<String>>> iamMetadatas() {

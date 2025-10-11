@@ -604,6 +604,8 @@ class AuthBackendLogin(pulumi.CustomResource):
         instance metadata. For more information, see the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html).
 
+        ## Example Usage
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the AWS auth backend. Defaults to
@@ -646,6 +648,8 @@ class AuthBackendLogin(pulumi.CustomResource):
         accomplished using a signed identity request from IAM or using ec2
         instance metadata. For more information, see the [Vault
         documentation](https://www.vaultproject.io/docs/auth/aws.html).
+
+        ## Example Usage
 
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.

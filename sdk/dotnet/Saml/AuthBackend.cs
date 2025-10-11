@@ -64,7 +64,7 @@ namespace Pulumi.Vault.Saml
         public Output<string?> DefaultRole { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, opts out of mount migration on path updates.
+        /// If set to `True`, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
         [Output("disableRemount")]
@@ -78,14 +78,14 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The PEM encoded certificate of the identity provider. Mutually exclusive
-        /// with `idp_metadata_url`.
+        /// with `IdpMetadataUrl`.
         /// </summary>
         [Output("idpCert")]
         public Output<string?> IdpCert { get; private set; } = null!;
 
         /// <summary>
         /// The entity ID of the identity provider. Mutually exclusive with
-        /// `idp_metadata_url`.
+        /// `IdpMetadataUrl`.
         /// </summary>
         [Output("idpEntityId")]
         public Output<string?> IdpEntityId { get; private set; } = null!;
@@ -98,7 +98,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The SSO URL of the identity provider. Mutually exclusive with 
-        /// `idp_metadata_url`.
+        /// `IdpMetadataUrl`.
         /// </summary>
         [Output("idpSsoUrl")]
         public Output<string?> IdpSsoUrl { get; private set; } = null!;
@@ -106,7 +106,7 @@ namespace Pulumi.Vault.Saml
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -120,7 +120,7 @@ namespace Pulumi.Vault.Saml
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, logs additional, potentially sensitive
+        /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
         /// </summary>
@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? DefaultRole { get; set; }
 
         /// <summary>
-        /// If set to `true`, opts out of mount migration on path updates.
+        /// If set to `True`, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
         [Input("disableRemount")]
@@ -207,14 +207,14 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The PEM encoded certificate of the identity provider. Mutually exclusive
-        /// with `idp_metadata_url`.
+        /// with `IdpMetadataUrl`.
         /// </summary>
         [Input("idpCert")]
         public Input<string>? IdpCert { get; set; }
 
         /// <summary>
         /// The entity ID of the identity provider. Mutually exclusive with
-        /// `idp_metadata_url`.
+        /// `IdpMetadataUrl`.
         /// </summary>
         [Input("idpEntityId")]
         public Input<string>? IdpEntityId { get; set; }
@@ -227,7 +227,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The SSO URL of the identity provider. Mutually exclusive with 
-        /// `idp_metadata_url`.
+        /// `IdpMetadataUrl`.
         /// </summary>
         [Input("idpSsoUrl")]
         public Input<string>? IdpSsoUrl { get; set; }
@@ -235,7 +235,7 @@ namespace Pulumi.Vault.Saml
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -249,7 +249,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// If set to `true`, logs additional, potentially sensitive
+        /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
         /// </summary>
@@ -284,7 +284,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? DefaultRole { get; set; }
 
         /// <summary>
-        /// If set to `true`, opts out of mount migration on path updates.
+        /// If set to `True`, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
         [Input("disableRemount")]
@@ -298,14 +298,14 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The PEM encoded certificate of the identity provider. Mutually exclusive
-        /// with `idp_metadata_url`.
+        /// with `IdpMetadataUrl`.
         /// </summary>
         [Input("idpCert")]
         public Input<string>? IdpCert { get; set; }
 
         /// <summary>
         /// The entity ID of the identity provider. Mutually exclusive with
-        /// `idp_metadata_url`.
+        /// `IdpMetadataUrl`.
         /// </summary>
         [Input("idpEntityId")]
         public Input<string>? IdpEntityId { get; set; }
@@ -318,7 +318,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The SSO URL of the identity provider. Mutually exclusive with 
-        /// `idp_metadata_url`.
+        /// `IdpMetadataUrl`.
         /// </summary>
         [Input("idpSsoUrl")]
         public Input<string>? IdpSsoUrl { get; set; }
@@ -326,7 +326,7 @@ namespace Pulumi.Vault.Saml
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -340,7 +340,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// If set to `true`, logs additional, potentially sensitive
+        /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
         /// </summary>

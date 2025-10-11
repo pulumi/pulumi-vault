@@ -91,10 +91,10 @@ namespace Pulumi.Vault.Generic
     /// 
     /// ## Required Vault Capabilities
     /// 
-    /// Use of this resource requires the `create` or `update` capability
+    /// Use of this resource requires the `Create` or `Update` capability
     /// (depending on whether the resource already exists) on the given path. If
-    /// `disable_delete` is false, the `delete` capability is also required. If
-    /// `disable_read` is false, the `read` capability is required.
+    /// `DisableDelete` is false, the `Delete` capability is also required. If
+    /// `DisableRead` is false, the `Read` capability is required.
     /// 
     /// ## Import
     /// 
@@ -121,8 +121,8 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// True/false. Set this to true if your vault
         /// authentication is not able to read the data or if the endpoint does
-        /// not support the `GET` method. Setting this to `true` will break drift
-        /// detection. You should set this to `true` for endpoints that are
+        /// not support the `GET` method. Setting this to `True` will break drift
+        /// detection. You should set this to `True` for endpoints that are
         /// write-only. Defaults to false.
         /// </summary>
         [Output("disableRead")]
@@ -131,9 +131,9 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// - (Optional) True/false. If set to true,
         /// ignore any fields present when the endpoint is read but that were not
-        /// in `data_json`. Also, if a field that was written is not returned when
+        /// in `DataJson`. Also, if a field that was written is not returned when
         /// the endpoint is read, treat that field as being up to date. You should
-        /// set this to `true` when writing to endpoint that, when read, returns a
+        /// set this to `True` when writing to endpoint that, when read, returns a
         /// different set of fields from the ones you wrote, as is common with
         /// many configuration endpoints. Defaults to false.
         /// </summary>
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -163,26 +163,26 @@ namespace Pulumi.Vault.Generic
         /// returned from Vault by the write operation and whose values are the
         /// corresponding values. This map can only represent string data, so
         /// any non-string values returned from Vault are serialized as JSON.
-        /// Only fields set in `write_fields` are present in the JSON data.
+        /// Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         [Output("writeData")]
         public Output<ImmutableDictionary<string, string>> WriteData { get; private set; } = null!;
 
         /// <summary>
         /// - The JSON data returned by the write operation.
-        /// Only fields set in `write_fields` are present in the JSON data.
+        /// Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         [Output("writeDataJson")]
         public Output<string> WriteDataJson { get; private set; } = null!;
 
         /// <summary>
         /// - (Optional). A list of fields that should be returned
-        /// in `write_data_json` and `write_data`. If omitted, data returned by
+        /// in `WriteDataJson` and `WriteData`. If omitted, data returned by
         /// the write operation is not available to the resource or included in
         /// state. This helps to avoid accidental storage of sensitive values in
         /// state. Some endpoints, such as many dynamic secrets endpoints, return
         /// data from writing to an endpoint rather than reading it. You should
-        /// use `write_fields` if you need information returned in this way.
+        /// use `WriteFields` if you need information returned in this way.
         /// </summary>
         [Output("writeFields")]
         public Output<ImmutableArray<string>> WriteFields { get; private set; } = null!;
@@ -265,8 +265,8 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// True/false. Set this to true if your vault
         /// authentication is not able to read the data or if the endpoint does
-        /// not support the `GET` method. Setting this to `true` will break drift
-        /// detection. You should set this to `true` for endpoints that are
+        /// not support the `GET` method. Setting this to `True` will break drift
+        /// detection. You should set this to `True` for endpoints that are
         /// write-only. Defaults to false.
         /// </summary>
         [Input("disableRead")]
@@ -275,9 +275,9 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// - (Optional) True/false. If set to true,
         /// ignore any fields present when the endpoint is read but that were not
-        /// in `data_json`. Also, if a field that was written is not returned when
+        /// in `DataJson`. Also, if a field that was written is not returned when
         /// the endpoint is read, treat that field as being up to date. You should
-        /// set this to `true` when writing to endpoint that, when read, returns a
+        /// set this to `True` when writing to endpoint that, when read, returns a
         /// different set of fields from the ones you wrote, as is common with
         /// many configuration endpoints. Defaults to false.
         /// </summary>
@@ -287,7 +287,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -307,12 +307,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional). A list of fields that should be returned
-        /// in `write_data_json` and `write_data`. If omitted, data returned by
+        /// in `WriteDataJson` and `WriteData`. If omitted, data returned by
         /// the write operation is not available to the resource or included in
         /// state. This helps to avoid accidental storage of sensitive values in
         /// state. Some endpoints, such as many dynamic secrets endpoints, return
         /// data from writing to an endpoint rather than reading it. You should
-        /// use `write_fields` if you need information returned in this way.
+        /// use `WriteFields` if you need information returned in this way.
         /// </summary>
         public InputList<string> WriteFields
         {
@@ -356,8 +356,8 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// True/false. Set this to true if your vault
         /// authentication is not able to read the data or if the endpoint does
-        /// not support the `GET` method. Setting this to `true` will break drift
-        /// detection. You should set this to `true` for endpoints that are
+        /// not support the `GET` method. Setting this to `True` will break drift
+        /// detection. You should set this to `True` for endpoints that are
         /// write-only. Defaults to false.
         /// </summary>
         [Input("disableRead")]
@@ -366,9 +366,9 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// - (Optional) True/false. If set to true,
         /// ignore any fields present when the endpoint is read but that were not
-        /// in `data_json`. Also, if a field that was written is not returned when
+        /// in `DataJson`. Also, if a field that was written is not returned when
         /// the endpoint is read, treat that field as being up to date. You should
-        /// set this to `true` when writing to endpoint that, when read, returns a
+        /// set this to `True` when writing to endpoint that, when read, returns a
         /// different set of fields from the ones you wrote, as is common with
         /// many configuration endpoints. Defaults to false.
         /// </summary>
@@ -378,7 +378,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -401,7 +401,7 @@ namespace Pulumi.Vault.Generic
         /// returned from Vault by the write operation and whose values are the
         /// corresponding values. This map can only represent string data, so
         /// any non-string values returned from Vault are serialized as JSON.
-        /// Only fields set in `write_fields` are present in the JSON data.
+        /// Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         public InputMap<string> WriteData
         {
@@ -411,7 +411,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - The JSON data returned by the write operation.
-        /// Only fields set in `write_fields` are present in the JSON data.
+        /// Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         [Input("writeDataJson")]
         public Input<string>? WriteDataJson { get; set; }
@@ -421,12 +421,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional). A list of fields that should be returned
-        /// in `write_data_json` and `write_data`. If omitted, data returned by
+        /// in `WriteDataJson` and `WriteData`. If omitted, data returned by
         /// the write operation is not available to the resource or included in
         /// state. This helps to avoid accidental storage of sensitive values in
         /// state. Some endpoints, such as many dynamic secrets endpoints, return
         /// data from writing to an endpoint rather than reading it. You should
-        /// use `write_fields` if you need information returned in this way.
+        /// use `WriteFields` if you need information returned in this way.
         /// </summary>
         public InputList<string> WriteFields
         {

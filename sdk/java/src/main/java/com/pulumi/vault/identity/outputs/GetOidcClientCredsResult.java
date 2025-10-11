@@ -19,7 +19,7 @@ public final class GetOidcClientCredsResult {
     private String clientId;
     /**
      * @return The Client Secret Key returned by Vault.
-     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+     * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
      * 
      */
     private String clientSecret;
@@ -41,7 +41,7 @@ public final class GetOidcClientCredsResult {
     }
     /**
      * @return The Client Secret Key returned by Vault.
-     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+     * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
      * 
      */
     public String clientSecret() {

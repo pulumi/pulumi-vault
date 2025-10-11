@@ -153,14 +153,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
+     * The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     @Import(name="library", required=true)
     private Output<String> library;
 
     /**
-     * @return The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
+     * @return The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     public Output<String> library() {
@@ -486,7 +486,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param library The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
+         * @param library The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
          * 
          * @return builder
          * 
@@ -497,7 +497,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param library The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
+         * @param library The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
          * 
          * @return builder
          * 

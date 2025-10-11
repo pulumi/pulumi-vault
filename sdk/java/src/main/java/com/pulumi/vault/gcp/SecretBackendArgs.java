@@ -95,14 +95,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * The version of the `credentialsWo`. For more info see updating write-only attributes.
      * 
      */
     @Import(name="credentialsWoVersion")
     private @Nullable Output<Integer> credentialsWoVersion;
 
     /**
-     * @return The version of the `credentials_wo`. For more info see updating write-only attributes.
+     * @return The version of the `credentialsWo`. For more info see updating write-only attributes.
      * 
      */
     public Optional<Output<Integer>> credentialsWoVersion() {
@@ -467,7 +467,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Import(name="serviceAccountEmail")
@@ -475,7 +475,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Optional<Output<String>> serviceAccountEmail() {
@@ -680,7 +680,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentialsWoVersion The version of the `credentials_wo`. For more info see updating write-only attributes.
+         * @param credentialsWoVersion The version of the `credentialsWo`. For more info see updating write-only attributes.
          * 
          * @return builder
          * 
@@ -691,7 +691,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentialsWoVersion The version of the `credentials_wo`. For more info see updating write-only attributes.
+         * @param credentialsWoVersion The version of the `credentialsWo`. For more info see updating write-only attributes.
          * 
          * @return builder
          * 
@@ -1210,7 +1210,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param serviceAccountEmail Service Account to impersonate for plugin workload identity federation.
-         * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 
@@ -1222,7 +1222,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param serviceAccountEmail Service Account to impersonate for plugin workload identity federation.
-         * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 

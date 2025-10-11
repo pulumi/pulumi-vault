@@ -12,6 +12,8 @@ import (
 )
 
 // This is a data source which can be used to verify a signature using a Vault Transit key.
+//
+// ## Example Usage
 func GetVerify(ctx *pulumi.Context, args *GetVerifyArgs, opts ...pulumi.InvokeOption) (*GetVerifyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVerifyResult

@@ -70,14 +70,14 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     @Import(name="secretType")
     private @Nullable Output<String> secretType;
 
     /**
-     * @return Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+     * @return Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      * 
      */
     public Optional<Output<String>> secretType() {
@@ -115,14 +115,14 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+     * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      * 
      */
     @Import(name="tokenScopes")
     private @Nullable Output<List<String>> tokenScopes;
 
     /**
-     * @return List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+     * @return List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      * 
      */
     public Optional<Output<List<String>>> tokenScopes() {
@@ -239,7 +239,7 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param secretType Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+         * @param secretType Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
          * 
          * @return builder
          * 
@@ -250,7 +250,7 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param secretType Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
+         * @param secretType Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
          * 
          * @return builder
          * 
@@ -302,7 +302,7 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenScopes List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+         * @param tokenScopes List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
          * 
          * @return builder
          * 
@@ -313,7 +313,7 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenScopes List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+         * @param tokenScopes List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
          * 
          * @return builder
          * 
@@ -323,7 +323,7 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenScopes List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
+         * @param tokenScopes List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
          * 
          * @return builder
          * 

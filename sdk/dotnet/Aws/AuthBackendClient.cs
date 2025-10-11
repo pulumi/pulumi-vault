@@ -76,14 +76,14 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS access key that Vault should use for the
-        /// auth backend. Mutually exclusive with `identity_token_audience`.
+        /// auth backend. Mutually exclusive with `IdentityTokenAudience`.
         /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
 
         /// <summary>
         /// The path the AWS auth backend being configured was
-        /// mounted at.  Defaults to `aws`.
+        /// mounted at.  Defaults to `Aws`.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Vault.Aws
         public Output<string?> IamServerIdHeaderValue { get; private set; } = null!;
 
         /// <summary>
-        /// The audience claim value. Mutually exclusive with `access_key`. 
+        /// The audience claim value. Mutually exclusive with `AccessKey`. 
         /// Requires Vault 1.17+. *Available only for Vault Enterprise*
         /// </summary>
         [Output("identityTokenAudience")]
@@ -140,7 +140,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -191,14 +191,14 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Override the default region when making STS API 
-        /// calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        /// calls. The `StsEndpoint` argument must be set when using `StsRegion`.
         /// </summary>
         [Output("stsRegion")]
         public Output<string?> StsRegion { get; private set; } = null!;
 
         /// <summary>
         /// Available in Vault v1.15+. If set, 
-        /// overrides both `sts_endpoint` and `sts_region` to instead use the region
+        /// overrides both `StsEndpoint` and `StsRegion` to instead use the region
         /// specified in the client request headers for IAM-based authentication.
         /// This can be useful when you have client requests coming from different
         /// regions and want flexibility in which regional STS API is used.
@@ -262,7 +262,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS access key that Vault should use for the
-        /// auth backend. Mutually exclusive with `identity_token_audience`.
+        /// auth backend. Mutually exclusive with `IdentityTokenAudience`.
         /// </summary>
         public Input<string>? AccessKey
         {
@@ -276,7 +276,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The path the AWS auth backend being configured was
-        /// mounted at.  Defaults to `aws`.
+        /// mounted at.  Defaults to `Aws`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -310,7 +310,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamServerIdHeaderValue { get; set; }
 
         /// <summary>
-        /// The audience claim value. Mutually exclusive with `access_key`. 
+        /// The audience claim value. Mutually exclusive with `AccessKey`. 
         /// Requires Vault 1.17+. *Available only for Vault Enterprise*
         /// </summary>
         [Input("identityTokenAudience")]
@@ -333,7 +333,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -394,14 +394,14 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Override the default region when making STS API 
-        /// calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        /// calls. The `StsEndpoint` argument must be set when using `StsRegion`.
         /// </summary>
         [Input("stsRegion")]
         public Input<string>? StsRegion { get; set; }
 
         /// <summary>
         /// Available in Vault v1.15+. If set, 
-        /// overrides both `sts_endpoint` and `sts_region` to instead use the region
+        /// overrides both `StsEndpoint` and `StsRegion` to instead use the region
         /// specified in the client request headers for IAM-based authentication.
         /// This can be useful when you have client requests coming from different
         /// regions and want flexibility in which regional STS API is used.
@@ -422,7 +422,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS access key that Vault should use for the
-        /// auth backend. Mutually exclusive with `identity_token_audience`.
+        /// auth backend. Mutually exclusive with `IdentityTokenAudience`.
         /// </summary>
         public Input<string>? AccessKey
         {
@@ -436,7 +436,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The path the AWS auth backend being configured was
-        /// mounted at.  Defaults to `aws`.
+        /// mounted at.  Defaults to `Aws`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -470,7 +470,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamServerIdHeaderValue { get; set; }
 
         /// <summary>
-        /// The audience claim value. Mutually exclusive with `access_key`. 
+        /// The audience claim value. Mutually exclusive with `AccessKey`. 
         /// Requires Vault 1.17+. *Available only for Vault Enterprise*
         /// </summary>
         [Input("identityTokenAudience")]
@@ -493,7 +493,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -554,14 +554,14 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Override the default region when making STS API 
-        /// calls. The `sts_endpoint` argument must be set when using `sts_region`.
+        /// calls. The `StsEndpoint` argument must be set when using `StsRegion`.
         /// </summary>
         [Input("stsRegion")]
         public Input<string>? StsRegion { get; set; }
 
         /// <summary>
         /// Available in Vault v1.15+. If set, 
-        /// overrides both `sts_endpoint` and `sts_region` to instead use the region
+        /// overrides both `StsEndpoint` and `StsRegion` to instead use the region
         /// specified in the client request headers for IAM-based authentication.
         /// This can be useful when you have client requests coming from different
         /// regions and want flexibility in which regional STS API is used.

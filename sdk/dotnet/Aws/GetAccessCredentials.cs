@@ -43,7 +43,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -73,7 +73,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the TTL for the use of the STS token. This
         /// is specified as a string with a duration suffix. Valid only when
-        /// `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+        /// `CredentialType` of the connected `vault.aws.SecretBackendRole` resource is `AssumedRole` or `FederationToken`
         /// </summary>
         [Input("ttl")]
         public string? Ttl { get; set; }
@@ -105,7 +105,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -135,7 +135,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the TTL for the use of the STS token. This
         /// is specified as a string with a duration suffix. Valid only when
-        /// `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+        /// `CredentialType` of the connected `vault.aws.SecretBackendRole` resource is `AssumedRole` or `FederationToken`
         /// </summary>
         [Input("ttl")]
         public Input<string>? Ttl { get; set; }

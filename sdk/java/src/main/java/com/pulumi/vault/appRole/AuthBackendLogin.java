@@ -233,7 +233,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     }
     /**
      * The secret ID of the role to log in with. Required
-     * unless `bind_secret_id` is set to false on the role.
+     * unless `bindSecretId` is set to false on the role.
      * 
      */
     @Export(name="secretId", refs={String.class}, tree="[0]")
@@ -241,7 +241,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The secret ID of the role to log in with. Required
-     * unless `bind_secret_id` is set to false on the role.
+     * unless `bindSecretId` is set to false on the role.
      * 
      */
     public Output<Optional<String>> secretId() {

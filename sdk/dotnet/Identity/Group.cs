@@ -74,7 +74,7 @@ namespace Pulumi.Vault.Identity
     /// ## Caveats
     /// 
     /// It's important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
-    /// Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
+    /// Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `Name`.
     /// 
     /// This sort of pattern should be avoided:
     /// ```csharp
@@ -130,7 +130,7 @@ namespace Pulumi.Vault.Identity
     public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+        /// `False` by default. If set to `True`, this resource will ignore any Entity IDs
         /// returned from Vault or specified in the resource. You can use
         /// `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
         /// decoupled manner.
@@ -139,7 +139,7 @@ namespace Pulumi.Vault.Identity
         public Output<bool?> ExternalMemberEntityIds { get; private set; } = null!;
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Group IDs
+        /// `False` by default. If set to `True`, this resource will ignore any Group IDs
         /// returned from Vault or specified in the resource. You can use
         /// `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
         /// decoupled manner.
@@ -148,7 +148,7 @@ namespace Pulumi.Vault.Identity
         public Output<bool?> ExternalMemberGroupIds { get; private set; } = null!;
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies returned from
+        /// `False` by default. If set to `True`, this resource will ignore any policies returned from
         /// Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
         /// policies for this group in a decoupled manner.
         /// </summary>
@@ -156,13 +156,13 @@ namespace Pulumi.Vault.Identity
         public Output<bool?> ExternalPolicies { get; private set; } = null!;
 
         /// <summary>
-        /// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Entity IDs to be assigned as group members. Not allowed on `External` groups.
         /// </summary>
         [Output("memberEntityIds")]
         public Output<ImmutableArray<string>> MemberEntityIds { get; private set; } = null!;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Group IDs to be assigned as group members. Not allowed on `External` groups.
         /// </summary>
         [Output("memberGroupIds")]
         public Output<ImmutableArray<string>> MemberGroupIds { get; private set; } = null!;
@@ -182,7 +182,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -195,7 +195,7 @@ namespace Pulumi.Vault.Identity
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the group, internal or external. Defaults to `internal`.
+        /// Type of the group, internal or external. Defaults to `Internal`.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -247,7 +247,7 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+        /// `False` by default. If set to `True`, this resource will ignore any Entity IDs
         /// returned from Vault or specified in the resource. You can use
         /// `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
         /// decoupled manner.
@@ -256,7 +256,7 @@ namespace Pulumi.Vault.Identity
         public Input<bool>? ExternalMemberEntityIds { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Group IDs
+        /// `False` by default. If set to `True`, this resource will ignore any Group IDs
         /// returned from Vault or specified in the resource. You can use
         /// `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
         /// decoupled manner.
@@ -265,7 +265,7 @@ namespace Pulumi.Vault.Identity
         public Input<bool>? ExternalMemberGroupIds { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies returned from
+        /// `False` by default. If set to `True`, this resource will ignore any policies returned from
         /// Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
         /// policies for this group in a decoupled manner.
         /// </summary>
@@ -276,7 +276,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberEntityIds;
 
         /// <summary>
-        /// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Entity IDs to be assigned as group members. Not allowed on `External` groups.
         /// </summary>
         public InputList<string> MemberEntityIds
         {
@@ -288,7 +288,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberGroupIds;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Group IDs to be assigned as group members. Not allowed on `External` groups.
         /// </summary>
         public InputList<string> MemberGroupIds
         {
@@ -317,7 +317,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -336,7 +336,7 @@ namespace Pulumi.Vault.Identity
         }
 
         /// <summary>
-        /// Type of the group, internal or external. Defaults to `internal`.
+        /// Type of the group, internal or external. Defaults to `Internal`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -350,7 +350,7 @@ namespace Pulumi.Vault.Identity
     public sealed class GroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Entity IDs
+        /// `False` by default. If set to `True`, this resource will ignore any Entity IDs
         /// returned from Vault or specified in the resource. You can use
         /// `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
         /// decoupled manner.
@@ -359,7 +359,7 @@ namespace Pulumi.Vault.Identity
         public Input<bool>? ExternalMemberEntityIds { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any Group IDs
+        /// `False` by default. If set to `True`, this resource will ignore any Group IDs
         /// returned from Vault or specified in the resource. You can use
         /// `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
         /// decoupled manner.
@@ -368,7 +368,7 @@ namespace Pulumi.Vault.Identity
         public Input<bool>? ExternalMemberGroupIds { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies returned from
+        /// `False` by default. If set to `True`, this resource will ignore any policies returned from
         /// Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
         /// policies for this group in a decoupled manner.
         /// </summary>
@@ -379,7 +379,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberEntityIds;
 
         /// <summary>
-        /// A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Entity IDs to be assigned as group members. Not allowed on `External` groups.
         /// </summary>
         public InputList<string> MemberEntityIds
         {
@@ -391,7 +391,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _memberGroupIds;
 
         /// <summary>
-        /// A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
+        /// A list of Group IDs to be assigned as group members. Not allowed on `External` groups.
         /// </summary>
         public InputList<string> MemberGroupIds
         {
@@ -420,7 +420,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -439,7 +439,7 @@ namespace Pulumi.Vault.Identity
         }
 
         /// <summary>
-        /// Type of the group, internal or external. Defaults to `internal`.
+        /// Type of the group, internal or external. Defaults to `Internal`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

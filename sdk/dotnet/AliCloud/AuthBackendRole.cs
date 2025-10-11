@@ -57,7 +57,7 @@ namespace Pulumi.Vault.AliCloud
 
         /// <summary>
         /// Path to the mounted AliCloud auth backend.
-        /// Defaults to `alicloud`
+        /// Defaults to `Alicloud`
         /// 
         /// For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         /// </summary>
@@ -67,7 +67,7 @@ namespace Pulumi.Vault.AliCloud
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -188,7 +188,7 @@ namespace Pulumi.Vault.AliCloud
 
         /// <summary>
         /// Path to the mounted AliCloud auth backend.
-        /// Defaults to `alicloud`
+        /// Defaults to `Alicloud`
         /// 
         /// For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         /// </summary>
@@ -198,7 +198,7 @@ namespace Pulumi.Vault.AliCloud
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -293,7 +293,7 @@ namespace Pulumi.Vault.AliCloud
 
         /// <summary>
         /// Path to the mounted AliCloud auth backend.
-        /// Defaults to `alicloud`
+        /// Defaults to `Alicloud`
         /// 
         /// For more details on the usage of each argument consult the [Vault AliCloud API documentation](https://www.vaultproject.io/api-docs/auth/alicloud).
         /// </summary>
@@ -303,7 +303,7 @@ namespace Pulumi.Vault.AliCloud
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

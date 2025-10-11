@@ -90,7 +90,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// The following write-only attributes are supported for all DBs that support username/password:
     /// 
-    /// * `password_wo` - (Optional) The password for the user. Can be updated.
+    /// * `PasswordWo` - (Optional) The password for the user. Can be updated.
     ///   **Note**: This property is write-only and will not be read from the API.
     /// 
     /// ## Import

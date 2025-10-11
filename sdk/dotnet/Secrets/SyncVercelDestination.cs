@@ -57,7 +57,7 @@ namespace Pulumi.Vault.Secrets
 
         /// <summary>
         /// Deployment environments where the environment variables
-        /// are available. Accepts `development`, `preview` and `production`.
+        /// are available. Accepts `Development`, `Preview` and `Production`.
         /// </summary>
         [Output("deploymentEnvironments")]
         public Output<ImmutableArray<string>> DeploymentEnvironments { get; private set; } = null!;
@@ -78,7 +78,7 @@ namespace Pulumi.Vault.Secrets
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumi.Vault.Secrets
 
         /// <summary>
         /// Deployment environments where the environment variables
-        /// are available. Accepts `development`, `preview` and `production`.
+        /// are available. Accepts `Development`, `Preview` and `Production`.
         /// </summary>
         public InputList<string> DeploymentEnvironments
         {
@@ -204,7 +204,7 @@ namespace Pulumi.Vault.Secrets
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumi.Vault.Secrets
 
         /// <summary>
         /// Deployment environments where the environment variables
-        /// are available. Accepts `development`, `preview` and `production`.
+        /// are available. Accepts `Development`, `Preview` and `Production`.
         /// </summary>
         public InputList<string> DeploymentEnvironments
         {
@@ -282,7 +282,7 @@ namespace Pulumi.Vault.Secrets
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }

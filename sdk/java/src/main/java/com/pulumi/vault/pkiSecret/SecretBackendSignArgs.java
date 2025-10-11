@@ -35,14 +35,14 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+     * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      * 
      */
     @Import(name="autoRenew")
     private @Nullable Output<Boolean> autoRenew;
 
     /**
-     * @return If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+     * @return If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      * 
      */
     public Optional<Output<Boolean>> autoRenew() {
@@ -65,14 +65,14 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
      * 
      */
     @Import(name="certMetadata")
     private @Nullable Output<String> certMetadata;
 
     /**
-     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
      * 
      */
     public Optional<Output<String>> certMetadata() {
@@ -158,7 +158,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
      * Specifies the default issuer of this request. Can
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     @Import(name="issuerRef")
@@ -168,7 +168,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
      * @return Specifies the default issuer of this request. Can
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     public Optional<Output<String>> issuerRef() {
@@ -358,7 +358,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
          * 
          * @return builder
          * 
@@ -369,7 +369,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
          * 
          * @return builder
          * 
@@ -400,7 +400,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
          * 
          * @return builder
          * 
@@ -411,7 +411,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
          * 
          * @return builder
          * 
@@ -539,7 +539,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
          * @param issuerRef Specifies the default issuer of this request. Can
          * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
          * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-         * overriding the role&#39;s `issuer_ref` value.
+         * overriding the role&#39;s `issuerRef` value.
          * 
          * @return builder
          * 
@@ -553,7 +553,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
          * @param issuerRef Specifies the default issuer of this request. Can
          * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
          * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-         * overriding the role&#39;s `issuer_ref` value.
+         * overriding the role&#39;s `issuerRef` value.
          * 
          * @return builder
          * 

@@ -64,7 +64,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The Client Secret Key returned by Vault.
-     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+     * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
      * 
      */
     @Import(name="clientSecret")
@@ -72,7 +72,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The Client Secret Key returned by Vault.
-     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+     * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
      * 
      */
     public Optional<Output<String>> clientSecret() {
@@ -98,7 +98,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The time-to-live for ID tokens obtained by the client.
-     * The value should be less than the `verification_ttl` on the key.
+     * The value should be less than the `verificationTtl` on the key.
      * 
      */
     @Import(name="idTokenTtl")
@@ -106,7 +106,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The time-to-live for ID tokens obtained by the client.
-     * The value should be less than the `verification_ttl` on the key.
+     * The value should be less than the `verificationTtl` on the key.
      * 
      */
     public Optional<Output<Integer>> idTokenTtl() {
@@ -170,7 +170,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Redirection URI values used by the client.
-     * One of these values must exactly match the `redirect_uri` parameter value
+     * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      * 
      */
@@ -179,7 +179,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Redirection URI values used by the client.
-     * One of these values must exactly match the `redirect_uri` parameter value
+     * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      * 
      */
@@ -295,7 +295,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientSecret The Client Secret Key returned by Vault.
-         * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+         * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
          * 
          * @return builder
          * 
@@ -307,7 +307,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientSecret The Client Secret Key returned by Vault.
-         * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+         * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
          * 
          * @return builder
          * 
@@ -341,7 +341,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idTokenTtl The time-to-live for ID tokens obtained by the client.
-         * The value should be less than the `verification_ttl` on the key.
+         * The value should be less than the `verificationTtl` on the key.
          * 
          * @return builder
          * 
@@ -353,7 +353,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param idTokenTtl The time-to-live for ID tokens obtained by the client.
-         * The value should be less than the `verification_ttl` on the key.
+         * The value should be less than the `verificationTtl` on the key.
          * 
          * @return builder
          * 
@@ -437,7 +437,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param redirectUris Redirection URI values used by the client.
-         * One of these values must exactly match the `redirect_uri` parameter value
+         * One of these values must exactly match the `redirectUri` parameter value
          * used in each authentication request.
          * 
          * @return builder
@@ -450,7 +450,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param redirectUris Redirection URI values used by the client.
-         * One of these values must exactly match the `redirect_uri` parameter value
+         * One of these values must exactly match the `redirectUri` parameter value
          * used in each authentication request.
          * 
          * @return builder
@@ -462,7 +462,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param redirectUris Redirection URI values used by the client.
-         * One of these values must exactly match the `redirect_uri` parameter value
+         * One of these values must exactly match the `redirectUri` parameter value
          * used in each authentication request.
          * 
          * @return builder

@@ -374,7 +374,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
@@ -382,7 +382,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Output<Optional<String>> serviceAccountEmail() {

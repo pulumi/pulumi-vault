@@ -82,8 +82,8 @@ public final class GetSecretArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * If set to true, stores `lease_start_time` in the TF state.
-     * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+     * If set to true, stores `leaseStartTime` in the TF state.
+     * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
      * on every `pulumi preview` and will require a `pulumi up`.
      * 
      */
@@ -91,8 +91,8 @@ public final class GetSecretArgs extends com.pulumi.resources.InvokeArgs {
     private @Nullable Output<Boolean> withLeaseStartTime;
 
     /**
-     * @return If set to true, stores `lease_start_time` in the TF state.
-     * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+     * @return If set to true, stores `leaseStartTime` in the TF state.
+     * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
      * on every `pulumi preview` and will require a `pulumi up`.
      * 
      */
@@ -209,8 +209,8 @@ public final class GetSecretArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param withLeaseStartTime If set to true, stores `lease_start_time` in the TF state.
-         * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+         * @param withLeaseStartTime If set to true, stores `leaseStartTime` in the TF state.
+         * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
          * on every `pulumi preview` and will require a `pulumi up`.
          * 
          * @return builder
@@ -222,8 +222,8 @@ public final class GetSecretArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param withLeaseStartTime If set to true, stores `lease_start_time` in the TF state.
-         * Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+         * @param withLeaseStartTime If set to true, stores `leaseStartTime` in the TF state.
+         * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
          * on every `pulumi preview` and will require a `pulumi up`.
          * 
          * @return builder

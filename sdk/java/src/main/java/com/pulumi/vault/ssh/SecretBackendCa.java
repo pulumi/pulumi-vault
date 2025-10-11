@@ -100,56 +100,56 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.generateSigningKey);
     }
     /**
-     * Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     @Export(name="keyBits", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> keyBits;
 
     /**
-     * @return Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * @return Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     public Output<Optional<Integer>> keyBits() {
         return Codegen.optional(this.keyBits);
     }
     /**
-     * Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyType;
 
     /**
-     * @return Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * @return Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      * 
      */
     public Output<Optional<String>> keyType() {
         return Codegen.optional(this.keyType);
     }
     /**
-     * The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
      * 
      */
     @Export(name="managedKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyId;
 
     /**
-     * @return The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+     * @return The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
      * 
      */
     public Output<Optional<String>> managedKeyId() {
         return Codegen.optional(this.managedKeyId);
     }
     /**
-     * The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      * 
      */
     @Export(name="managedKeyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyName;
 
     /**
-     * @return The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+     * @return The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      * 
      */
     public Output<Optional<String>> managedKeyName() {
@@ -176,28 +176,28 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * The private key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
-     * @return The private key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return The private key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     public Output<String> privateKey() {
         return this.privateKey;
     }
     /**
-     * The public key part the SSH CA key pair; required if generate_signing_key is false.
+     * The public key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     /**
-     * @return The public key part the SSH CA key pair; required if generate_signing_key is false.
+     * @return The public key part the SSH CA key pair; required if generateSigningKey is false.
      * 
      */
     public Output<String> publicKey() {

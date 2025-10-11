@@ -49,14 +49,14 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
     }
 
     /**
-     * Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+     * Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
      * 
      */
     @Import(name="deniedParameters")
     private @Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters;
 
     /**
-     * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+     * @return Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
      * 
      */
     public Optional<List<GetPolicyDocumentRuleDeniedParameter>> deniedParameters() {
@@ -228,7 +228,7 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param deniedParameters Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+         * @param deniedParameters Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
          * 
          * @return builder
          * 
@@ -239,7 +239,7 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param deniedParameters Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+         * @param deniedParameters Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
          * 
          * @return builder
          * 

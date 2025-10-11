@@ -341,7 +341,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     @Import(name="managedKeyId")
@@ -349,7 +349,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
     /**
      * @return The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managed_key_name`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`
      * 
      */
     public Optional<Output<String>> managedKeyId() {
@@ -358,7 +358,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     @Import(name="managedKeyName")
@@ -366,7 +366,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
     /**
      * @return The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managed_key_id`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`
      * 
      */
     public Optional<Output<String>> managedKeyName() {
@@ -1240,7 +1240,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
         /**
          * @param managedKeyId The ID of the previously configured managed key. This field is
-         * required if `type` is `kms` and it conflicts with `managed_key_name`
+         * required if `type` is `kms` and it conflicts with `managedKeyName`
          * 
          * @return builder
          * 
@@ -1252,7 +1252,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
         /**
          * @param managedKeyId The ID of the previously configured managed key. This field is
-         * required if `type` is `kms` and it conflicts with `managed_key_name`
+         * required if `type` is `kms` and it conflicts with `managedKeyName`
          * 
          * @return builder
          * 
@@ -1263,7 +1263,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
         /**
          * @param managedKeyName The name of the previously configured managed key. This field is
-         * required if `type` is `kms`  and it conflicts with `managed_key_id`
+         * required if `type` is `kms`  and it conflicts with `managedKeyId`
          * 
          * @return builder
          * 
@@ -1275,7 +1275,7 @@ public final class SecretBackendRootCertState extends com.pulumi.resources.Resou
 
         /**
          * @param managedKeyName The name of the previously configured managed key. This field is
-         * required if `type` is `kms`  and it conflicts with `managed_key_id`
+         * required if `type` is `kms`  and it conflicts with `managedKeyId`
          * 
          * @return builder
          * 

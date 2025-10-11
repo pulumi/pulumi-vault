@@ -72,7 +72,7 @@ namespace Pulumi.Vault.Transit
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `Derived` to be set to `True`.
         /// </summary>
         [Output("convergentEncryption")]
         public Output<bool?> ConvergentEncryption { get; private set; } = null!;
@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Transit
 
         /// <summary>
         /// The elliptic curve algorithm to use for hybrid signatures.
-        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `Ed25519`.
         /// </summary>
         [Output("hybridKeyTypeEc")]
         public Output<string?> HybridKeyTypeEc { get; private set; } = null!;
@@ -116,21 +116,21 @@ namespace Pulumi.Vault.Transit
         public Output<int?> KeySize { get; private set; } = null!;
 
         /// <summary>
-        /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-        /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-        /// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
+        /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `Type` of the encryption key.
+        /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `Id` which is just a hash of the key's metadata.
+        /// * for key types `Ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         /// </summary>
         [Output("keys")]
         public Output<ImmutableArray<ImmutableDictionary<string, string>>> Keys { get; private set; } = null!;
 
         /// <summary>
-        /// Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        /// Latest key version available. This value is 1-indexed, so if `LatestVersion` is `1`, then the key's information can be referenced from `Keys` by selecting element `0`
         /// </summary>
         [Output("latestVersion")]
         public Output<int> LatestVersion { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        /// Minimum key version available for use. If keys have been archived by increasing `MinDecryptionVersion`, this attribute will reflect that change.
         /// </summary>
         [Output("minAvailableVersion")]
         public Output<int> MinAvailableVersion { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -198,7 +198,7 @@ namespace Pulumi.Vault.Transit
         public Output<bool> SupportsSigning { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `Ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `Hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `ManagedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `Hybrid`, and `slh-dsa`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Output("type")]
@@ -271,7 +271,7 @@ namespace Pulumi.Vault.Transit
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `Derived` to be set to `True`.
         /// </summary>
         [Input("convergentEncryption")]
         public Input<bool>? ConvergentEncryption { get; set; }
@@ -296,7 +296,7 @@ namespace Pulumi.Vault.Transit
 
         /// <summary>
         /// The elliptic curve algorithm to use for hybrid signatures.
-        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `Ed25519`.
         /// </summary>
         [Input("hybridKeyTypeEc")]
         public Input<string>? HybridKeyTypeEc { get; set; }
@@ -335,7 +335,7 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -353,7 +353,7 @@ namespace Pulumi.Vault.Transit
         public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `Ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `Hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `ManagedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `Hybrid`, and `slh-dsa`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]
@@ -388,7 +388,7 @@ namespace Pulumi.Vault.Transit
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
+        /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `Derived` to be set to `True`.
         /// </summary>
         [Input("convergentEncryption")]
         public Input<bool>? ConvergentEncryption { get; set; }
@@ -413,7 +413,7 @@ namespace Pulumi.Vault.Transit
 
         /// <summary>
         /// The elliptic curve algorithm to use for hybrid signatures.
-        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+        /// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `Ed25519`.
         /// </summary>
         [Input("hybridKeyTypeEc")]
         public Input<string>? HybridKeyTypeEc { get; set; }
@@ -435,9 +435,9 @@ namespace Pulumi.Vault.Transit
         private InputList<ImmutableDictionary<string, string>>? _keys;
 
         /// <summary>
-        /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
-        /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
-        /// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
+        /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `Type` of the encryption key.
+        /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `Id` which is just a hash of the key's metadata.
+        /// * for key types `Ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> Keys
         {
@@ -446,13 +446,13 @@ namespace Pulumi.Vault.Transit
         }
 
         /// <summary>
-        /// Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        /// Latest key version available. This value is 1-indexed, so if `LatestVersion` is `1`, then the key's information can be referenced from `Keys` by selecting element `0`
         /// </summary>
         [Input("latestVersion")]
         public Input<int>? LatestVersion { get; set; }
 
         /// <summary>
-        /// Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+        /// Minimum key version available for use. If keys have been archived by increasing `MinDecryptionVersion`, this attribute will reflect that change.
         /// </summary>
         [Input("minAvailableVersion")]
         public Input<int>? MinAvailableVersion { get; set; }
@@ -478,7 +478,7 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -520,7 +520,7 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? SupportsSigning { get; set; }
 
         /// <summary>
-        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
+        /// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `Ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `Hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `ManagedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `Hybrid`, and `slh-dsa`.
         /// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
         /// </summary>
         [Input("type")]

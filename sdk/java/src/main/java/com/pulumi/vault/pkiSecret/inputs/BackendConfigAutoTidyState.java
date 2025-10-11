@@ -316,7 +316,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
 
     /**
      * Set to true to automatically remove expired issuers past the
-     * `issuer_safety_buffer`. No keys will be removed as part of this operation.
+     * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      * 
      */
     @Import(name="tidyExpiredIssuers")
@@ -324,7 +324,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
 
     /**
      * @return Set to true to automatically remove expired issuers past the
-     * `issuer_safety_buffer`. No keys will be removed as part of this operation.
+     * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      * 
      */
     public Optional<Output<Boolean>> tidyExpiredIssuers() {
@@ -332,7 +332,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
     }
 
     /**
-     * Set to true to move the legacy `ca_bundle` from
+     * Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      * 
      */
@@ -340,7 +340,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
     private @Nullable Output<Boolean> tidyMoveLegacyCaBundle;
 
     /**
-     * @return Set to true to move the legacy `ca_bundle` from
+     * @return Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      * 
      */
@@ -857,7 +857,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
 
         /**
          * @param tidyExpiredIssuers Set to true to automatically remove expired issuers past the
-         * `issuer_safety_buffer`. No keys will be removed as part of this operation.
+         * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
          * 
          * @return builder
          * 
@@ -869,7 +869,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
 
         /**
          * @param tidyExpiredIssuers Set to true to automatically remove expired issuers past the
-         * `issuer_safety_buffer`. No keys will be removed as part of this operation.
+         * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
          * 
          * @return builder
          * 
@@ -879,7 +879,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param tidyMoveLegacyCaBundle Set to true to move the legacy `ca_bundle` from
+         * @param tidyMoveLegacyCaBundle Set to true to move the legacy `caBundle` from
          * `/config/ca_bundle` to `/config/ca_bundle.bak`.
          * 
          * @return builder
@@ -891,7 +891,7 @@ public final class BackendConfigAutoTidyState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param tidyMoveLegacyCaBundle Set to true to move the legacy `ca_bundle` from
+         * @param tidyMoveLegacyCaBundle Set to true to move the legacy `caBundle` from
          * `/config/ca_bundle` to `/config/ca_bundle.bak`.
          * 
          * @return builder

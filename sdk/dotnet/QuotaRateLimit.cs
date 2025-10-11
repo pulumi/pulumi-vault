@@ -57,18 +57,18 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Attribute used to group requests for rate limiting. Limits are enforced independently for each
-        /// group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
-        /// `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
-        /// that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+        /// group. Valid `GroupBy` modes are: 1) `Ip` that groups requests by their source IP address (**`GroupBy` defaults to
+        /// `Ip` if unset, which is the only supported mode in community edition**); 2) `None` that groups together all requests
+        /// that match the rate limit quota rule; 3) `EntityThenIp` that groups requests by their entity ID for authenticated
         /// requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
-        /// connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+        /// connected to an entity); and 4) `EntityThenNone` which also groups requests by their entity ID when available, but
         /// the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         /// </summary>
         [Output("groupBy")]
         public Output<string> GroupBy { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// If set to `True` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `True` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         /// </summary>
         [Output("inheritable")]
         public Output<bool?> Inheritable { get; private set; } = null!;
@@ -88,7 +88,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -97,7 +97,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        /// `namespace1/auth/userpass` adds a `Quota` to `Userpass` in `Namespace1`.
         /// Updating this field on an existing quota can have "moving" effects. For example, updating
         /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
         /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
@@ -107,21 +107,21 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// The maximum number of requests at any given second to be allowed by the quota
-        /// rule. The `rate` must be positive.
+        /// rule. The `Rate` must be positive.
         /// </summary>
         [Output("rate")]
         public Output<double> Rate { get; private set; } = null!;
 
         /// <summary>
-        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// If set on a quota where `Path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         /// </summary>
         [Output("role")]
         public Output<string?> Role { get; private set; } = null!;
 
         /// <summary>
-        /// Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+        /// Can only be set for the `GroupBy` modes `EntityThenIp` or `EntityThenNone`. This is
         /// the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
-        /// that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+        /// that contain an entity ID are subject to the `Rate` field instead. Defaults to the same value as `Rate`.
         /// </summary>
         [Output("secondaryRate")]
         public Output<double> SecondaryRate { get; private set; } = null!;
@@ -181,18 +181,18 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Attribute used to group requests for rate limiting. Limits are enforced independently for each
-        /// group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
-        /// `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
-        /// that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+        /// group. Valid `GroupBy` modes are: 1) `Ip` that groups requests by their source IP address (**`GroupBy` defaults to
+        /// `Ip` if unset, which is the only supported mode in community edition**); 2) `None` that groups together all requests
+        /// that match the rate limit quota rule; 3) `EntityThenIp` that groups requests by their entity ID for authenticated
         /// requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
-        /// connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+        /// connected to an entity); and 4) `EntityThenNone` which also groups requests by their entity ID when available, but
         /// the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         /// </summary>
         [Input("groupBy")]
         public Input<string>? GroupBy { get; set; }
 
         /// <summary>
-        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// If set to `True` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `True` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         /// </summary>
         [Input("inheritable")]
         public Input<bool>? Inheritable { get; set; }
@@ -212,7 +212,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -221,7 +221,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        /// `namespace1/auth/userpass` adds a `Quota` to `Userpass` in `Namespace1`.
         /// Updating this field on an existing quota can have "moving" effects. For example, updating
         /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
         /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
@@ -231,21 +231,21 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// The maximum number of requests at any given second to be allowed by the quota
-        /// rule. The `rate` must be positive.
+        /// rule. The `Rate` must be positive.
         /// </summary>
         [Input("rate", required: true)]
         public Input<double> Rate { get; set; } = null!;
 
         /// <summary>
-        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// If set on a quota where `Path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+        /// Can only be set for the `GroupBy` modes `EntityThenIp` or `EntityThenNone`. This is
         /// the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
-        /// that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+        /// that contain an entity ID are subject to the `Rate` field instead. Defaults to the same value as `Rate`.
         /// </summary>
         [Input("secondaryRate")]
         public Input<double>? SecondaryRate { get; set; }
@@ -267,18 +267,18 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Attribute used to group requests for rate limiting. Limits are enforced independently for each
-        /// group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
-        /// `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
-        /// that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+        /// group. Valid `GroupBy` modes are: 1) `Ip` that groups requests by their source IP address (**`GroupBy` defaults to
+        /// `Ip` if unset, which is the only supported mode in community edition**); 2) `None` that groups together all requests
+        /// that match the rate limit quota rule; 3) `EntityThenIp` that groups requests by their entity ID for authenticated
         /// requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
-        /// connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+        /// connected to an entity); and 4) `EntityThenNone` which also groups requests by their entity ID when available, but
         /// the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
         /// </summary>
         [Input("groupBy")]
         public Input<string>? GroupBy { get; set; }
 
         /// <summary>
-        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// If set to `True` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `True` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         /// </summary>
         [Input("inheritable")]
         public Input<bool>? Inheritable { get; set; }
@@ -298,7 +298,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -307,7 +307,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Path of the mount or namespace to apply the quota. A blank path configures a
         /// global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
-        /// `namespace1/auth/userpass` adds a `quota` to `userpass` in `namespace1`.
+        /// `namespace1/auth/userpass` adds a `Quota` to `Userpass` in `Namespace1`.
         /// Updating this field on an existing quota can have "moving" effects. For example, updating
         /// `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
         /// a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
@@ -317,21 +317,21 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// The maximum number of requests at any given second to be allowed by the quota
-        /// rule. The `rate` must be positive.
+        /// rule. The `Rate` must be positive.
         /// </summary>
         [Input("rate")]
         public Input<double>? Rate { get; set; }
 
         /// <summary>
-        /// If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
+        /// If set on a quota where `Path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+        /// Can only be set for the `GroupBy` modes `EntityThenIp` or `EntityThenNone`. This is
         /// the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
-        /// that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
+        /// that contain an entity ID are subject to the `Rate` field instead. Defaults to the same value as `Rate`.
         /// </summary>
         [Input("secondaryRate")]
         public Input<double>? SecondaryRate { get; set; }

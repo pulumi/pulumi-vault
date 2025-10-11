@@ -102,7 +102,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -110,14 +110,14 @@ namespace Pulumi.Vault.MongoDBAtlas
 
         /// <summary>
         /// Unique identifier for the organization to which the target API Key belongs. 
-        /// Required if `project_id` is not set.
+        /// Required if `ProjectId` is not set.
         /// </summary>
         [Output("organizationId")]
         public Output<string?> OrganizationId { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier for the project to which the target API Key belongs.
-        /// Required if `organization_id` is not set.
+        /// Required if `OrganizationId` is not set.
         /// </summary>
         [Output("projectId")]
         public Output<string?> ProjectId { get; private set; } = null!;
@@ -231,7 +231,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -239,14 +239,14 @@ namespace Pulumi.Vault.MongoDBAtlas
 
         /// <summary>
         /// Unique identifier for the organization to which the target API Key belongs. 
-        /// Required if `project_id` is not set.
+        /// Required if `ProjectId` is not set.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// Unique identifier for the project to which the target API Key belongs.
-        /// Required if `organization_id` is not set.
+        /// Required if `OrganizationId` is not set.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -334,7 +334,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -342,14 +342,14 @@ namespace Pulumi.Vault.MongoDBAtlas
 
         /// <summary>
         /// Unique identifier for the organization to which the target API Key belongs. 
-        /// Required if `project_id` is not set.
+        /// Required if `ProjectId` is not set.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// Unique identifier for the project to which the target API Key belongs.
-        /// Required if `organization_id` is not set.
+        /// Required if `OrganizationId` is not set.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

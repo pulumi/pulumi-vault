@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Inputs
         private List<string>? _capabilities;
 
         /// <summary>
-        /// A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
+        /// A list of capabilities that this rule apply to `Path`. For example, ["read", "write"].
         /// </summary>
         public List<string> Capabilities
         {
@@ -40,7 +40,7 @@ namespace Pulumi.Vault.Inputs
         private List<Inputs.GetPolicyDocumentRuleDeniedParameterArgs>? _deniedParameters;
 
         /// <summary>
-        /// Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+        /// Blacklists a list of parameter and values. Any values specified here take precedence over `AllowedParameter`. See Parameters below.
         /// </summary>
         public List<Inputs.GetPolicyDocumentRuleDeniedParameterArgs> DeniedParameters
         {
@@ -88,7 +88,7 @@ namespace Pulumi.Vault.Inputs
         private List<string>? _subscribeEventTypes;
 
         /// <summary>
-        /// A list of event types to subscribe to when using `subscribe` capability.
+        /// A list of event types to subscribe to when using `Subscribe` capability.
         /// </summary>
         public List<string> SubscribeEventTypes
         {

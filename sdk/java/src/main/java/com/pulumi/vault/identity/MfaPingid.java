@@ -63,42 +63,42 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:identity/mfaPingid:MfaPingid")
 public class MfaPingid extends com.pulumi.resources.CustomResource {
     /**
-     * The admin URL, derived from &#34;settings_file_base64&#34;
+     * The admin URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Export(name="adminUrl", refs={String.class}, tree="[0]")
     private Output<String> adminUrl;
 
     /**
-     * @return The admin URL, derived from &#34;settings_file_base64&#34;
+     * @return The admin URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Output<String> adminUrl() {
         return this.adminUrl;
     }
     /**
-     * A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
+     * A unique identifier of the organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Export(name="authenticatorUrl", refs={String.class}, tree="[0]")
     private Output<String> authenticatorUrl;
 
     /**
-     * @return A unique identifier of the organization, derived from &#34;settings_file_base64&#34;
+     * @return A unique identifier of the organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Output<String> authenticatorUrl() {
         return this.authenticatorUrl;
     }
     /**
-     * The IDP URL, derived from &#34;settings_file_base64&#34;
+     * The IDP URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Export(name="idpUrl", refs={String.class}, tree="[0]")
     private Output<String> idpUrl;
 
     /**
-     * @return The IDP URL, derived from &#34;settings_file_base64&#34;
+     * @return The IDP URL, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Output<String> idpUrl() {
@@ -189,14 +189,14 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
         return this.namespacePath;
     }
     /**
-     * The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
+     * The name of the PingID client organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Export(name="orgAlias", refs={String.class}, tree="[0]")
     private Output<String> orgAlias;
 
     /**
-     * @return The name of the PingID client organization, derived from &#34;settings_file_base64&#34;
+     * @return The name of the PingID client organization, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Output<String> orgAlias() {
@@ -231,14 +231,14 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
-     * Use signature value, derived from &#34;settings_file_base64&#34;
+     * Use signature value, derived from &#34;settingsFileBase64&#34;
      * 
      */
     @Export(name="useSignature", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useSignature;
 
     /**
-     * @return Use signature value, derived from &#34;settings_file_base64&#34;
+     * @return Use signature value, derived from &#34;settingsFileBase64&#34;
      * 
      */
     public Output<Boolean> useSignature() {

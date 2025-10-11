@@ -53,9 +53,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * Specifies the configuration
-     * for the given `credential_type`.
+     * for the given `credentialType`.
      * 
-     * The following options are available for each `credential_type` value:
+     * The following options are available for each `credentialType` value:
      * 
      */
     @Import(name="credentialConfig")
@@ -63,9 +63,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return Specifies the configuration
-     * for the given `credential_type`.
+     * for the given `credentialType`.
      * 
-     * The following options are available for each `credential_type` value:
+     * The following options are available for each `credentialType` value:
      * 
      */
     public Optional<Output<Map<String,String>>> credentialConfig() {
@@ -74,7 +74,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * Specifies the type of credential that
-     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin&#39;s API page for credential types supported by individual databases.
      * 
      */
@@ -83,7 +83,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return Specifies the type of credential that
-     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin&#39;s API page for credential types supported by individual databases.
      * 
      */
@@ -321,9 +321,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param credentialConfig Specifies the configuration
-         * for the given `credential_type`.
+         * for the given `credentialType`.
          * 
-         * The following options are available for each `credential_type` value:
+         * The following options are available for each `credentialType` value:
          * 
          * @return builder
          * 
@@ -335,9 +335,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param credentialConfig Specifies the configuration
-         * for the given `credential_type`.
+         * for the given `credentialType`.
          * 
-         * The following options are available for each `credential_type` value:
+         * The following options are available for each `credentialType` value:
          * 
          * @return builder
          * 
@@ -348,7 +348,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param credentialType Specifies the type of credential that
-         * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+         * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
          * See the plugin&#39;s API page for credential types supported by individual databases.
          * 
          * @return builder
@@ -361,7 +361,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param credentialType Specifies the type of credential that
-         * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+         * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
          * See the plugin&#39;s API page for credential types supported by individual databases.
          * 
          * @return builder

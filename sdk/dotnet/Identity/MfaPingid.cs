@@ -42,19 +42,19 @@ namespace Pulumi.Vault.Identity
     public partial class MfaPingid : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The admin URL, derived from "settings_file_base64"
+        /// The admin URL, derived from "SettingsFileBase64"
         /// </summary>
         [Output("adminUrl")]
         public Output<string> AdminUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A unique identifier of the organization, derived from "settings_file_base64"
+        /// A unique identifier of the organization, derived from "SettingsFileBase64"
         /// </summary>
         [Output("authenticatorUrl")]
         public Output<string> AuthenticatorUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The IDP URL, derived from "settings_file_base64"
+        /// The IDP URL, derived from "SettingsFileBase64"
         /// </summary>
         [Output("idpUrl")]
         public Output<string> IdpUrl { get; private set; } = null!;
@@ -96,7 +96,7 @@ namespace Pulumi.Vault.Identity
         public Output<string> NamespacePath { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the PingID client organization, derived from "settings_file_base64"
+        /// The name of the PingID client organization, derived from "SettingsFileBase64"
         /// </summary>
         [Output("orgAlias")]
         public Output<string> OrgAlias { get; private set; } = null!;
@@ -114,7 +114,7 @@ namespace Pulumi.Vault.Identity
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Use signature value, derived from "settings_file_base64"
+        /// Use signature value, derived from "SettingsFileBase64"
         /// </summary>
         [Output("useSignature")]
         public Output<bool> UseSignature { get; private set; } = null!;
@@ -204,19 +204,19 @@ namespace Pulumi.Vault.Identity
     public sealed class MfaPingidState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The admin URL, derived from "settings_file_base64"
+        /// The admin URL, derived from "SettingsFileBase64"
         /// </summary>
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
         /// <summary>
-        /// A unique identifier of the organization, derived from "settings_file_base64"
+        /// A unique identifier of the organization, derived from "SettingsFileBase64"
         /// </summary>
         [Input("authenticatorUrl")]
         public Input<string>? AuthenticatorUrl { get; set; }
 
         /// <summary>
-        /// The IDP URL, derived from "settings_file_base64"
+        /// The IDP URL, derived from "SettingsFileBase64"
         /// </summary>
         [Input("idpUrl")]
         public Input<string>? IdpUrl { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumi.Vault.Identity
         public Input<string>? NamespacePath { get; set; }
 
         /// <summary>
-        /// The name of the PingID client organization, derived from "settings_file_base64"
+        /// The name of the PingID client organization, derived from "SettingsFileBase64"
         /// </summary>
         [Input("orgAlias")]
         public Input<string>? OrgAlias { get; set; }
@@ -276,7 +276,7 @@ namespace Pulumi.Vault.Identity
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Use signature value, derived from "settings_file_base64"
+        /// Use signature value, derived from "SettingsFileBase64"
         /// </summary>
         [Input("useSignature")]
         public Input<bool>? UseSignature { get; set; }

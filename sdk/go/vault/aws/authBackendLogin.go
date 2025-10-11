@@ -15,6 +15,8 @@ import (
 // accomplished using a signed identity request from IAM or using ec2
 // instance metadata. For more information, see the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/aws.html).
+//
+// ## Example Usage
 type AuthBackendLogin struct {
 	pulumi.CustomResourceState
 

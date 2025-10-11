@@ -80,7 +80,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the ARN of the role that Vault should assume.
         /// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-        /// If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        /// If `AssumeRoleArn` is provided, `AssumeRoleSessionName` must also be provided.
         /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("assumeRoleArn")]
@@ -88,7 +88,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Specifies the session name to use when assuming the role.
-        /// If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        /// If `AssumeRoleSessionName` is provided, `AssumeRoleArn` must also be provided.
         /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("assumeRoleSessionName")]
@@ -96,7 +96,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`
+        /// not begin or end with a `/`. Defaults to `Aws`
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
@@ -118,7 +118,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -185,7 +185,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the ARN of the role that Vault should assume.
         /// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-        /// If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        /// If `AssumeRoleArn` is provided, `AssumeRoleSessionName` must also be provided.
         /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("assumeRoleArn")]
@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Specifies the session name to use when assuming the role.
-        /// If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        /// If `AssumeRoleSessionName` is provided, `AssumeRoleArn` must also be provided.
         /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("assumeRoleSessionName")]
@@ -201,7 +201,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`
+        /// not begin or end with a `/`. Defaults to `Aws`
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -223,7 +223,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -252,7 +252,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// Specifies the ARN of the role that Vault should assume.
         /// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
-        /// If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        /// If `AssumeRoleArn` is provided, `AssumeRoleSessionName` must also be provided.
         /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("assumeRoleArn")]
@@ -260,7 +260,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Specifies the session name to use when assuming the role.
-        /// If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        /// If `AssumeRoleSessionName` is provided, `AssumeRoleArn` must also be provided.
         /// Requires Vault 1.19+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("assumeRoleSessionName")]
@@ -268,7 +268,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`
+        /// not begin or end with a `/`. Defaults to `Aws`
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -290,7 +290,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

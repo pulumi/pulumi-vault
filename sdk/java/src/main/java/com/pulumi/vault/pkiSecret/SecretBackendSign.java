@@ -103,14 +103,14 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.altNames);
     }
     /**
-     * If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+     * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      * 
      */
     @Export(name="autoRenew", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> autoRenew;
 
     /**
-     * @return If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+     * @return If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      * 
      */
     public Output<Optional<Boolean>> autoRenew() {
@@ -145,14 +145,14 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return this.caChains;
     }
     /**
-     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
      * 
      */
     @Export(name="certMetadata", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> certMetadata;
 
     /**
-     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
      * 
      */
     public Output<Optional<String>> certMetadata() {
@@ -260,7 +260,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      * Specifies the default issuer of this request. Can
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     @Export(name="issuerRef", refs={String.class}, tree="[0]")
@@ -270,7 +270,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      * @return Specifies the default issuer of this request. Can
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-     * overriding the role&#39;s `issuer_ref` value.
+     * overriding the role&#39;s `issuerRef` value.
      * 
      */
     public Output<Optional<String>> issuerRef() {
@@ -367,14 +367,14 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.otherSans);
     }
     /**
-     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      * 
      */
     @Export(name="renewPending", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> renewPending;
 
     /**
-     * @return `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+     * @return `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      * 
      */
     public Output<Boolean> renewPending() {

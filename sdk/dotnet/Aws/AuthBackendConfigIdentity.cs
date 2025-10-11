@@ -56,35 +56,35 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The path the AWS auth backend being configured was
-        /// mounted at.  Defaults to `aws`.
+        /// mounted at.  Defaults to `Aws`.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
         /// How to generate the identity alias when using the ec2 auth method. Valid choices are
-        /// `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+        /// `RoleId`, `InstanceId`, and `ImageId`. Defaults to `RoleId`
         /// </summary>
         [Output("ec2Alias")]
         public Output<string?> Ec2Alias { get; private set; } = null!;
 
         /// <summary>
-        /// The metadata to include on the token returned by the `login` endpoint. This metadata will be
-        /// added to both audit logs, and on the `ec2_alias`
+        /// The metadata to include on the token returned by the `Login` endpoint. This metadata will be
+        /// added to both audit logs, and on the `Ec2Alias`
         /// </summary>
         [Output("ec2Metadatas")]
         public Output<ImmutableArray<string>> Ec2Metadatas { get; private set; } = null!;
 
         /// <summary>
         /// How to generate the identity alias when using the iam auth method. Valid choices are
-        /// `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+        /// `RoleId`, `UniqueId`, and `FullArn`. Defaults to `RoleId`
         /// </summary>
         [Output("iamAlias")]
         public Output<string?> IamAlias { get; private set; } = null!;
 
         /// <summary>
-        /// The metadata to include on the token returned by the `login` endpoint. This metadata will be
-        /// added to both audit logs, and on the `iam_alias`
+        /// The metadata to include on the token returned by the `Login` endpoint. This metadata will be
+        /// added to both audit logs, and on the `IamAlias`
         /// </summary>
         [Output("iamMetadatas")]
         public Output<ImmutableArray<string>> IamMetadatas { get; private set; } = null!;
@@ -92,7 +92,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -146,14 +146,14 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The path the AWS auth backend being configured was
-        /// mounted at.  Defaults to `aws`.
+        /// mounted at.  Defaults to `Aws`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
         /// How to generate the identity alias when using the ec2 auth method. Valid choices are
-        /// `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+        /// `RoleId`, `InstanceId`, and `ImageId`. Defaults to `RoleId`
         /// </summary>
         [Input("ec2Alias")]
         public Input<string>? Ec2Alias { get; set; }
@@ -162,8 +162,8 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _ec2Metadatas;
 
         /// <summary>
-        /// The metadata to include on the token returned by the `login` endpoint. This metadata will be
-        /// added to both audit logs, and on the `ec2_alias`
+        /// The metadata to include on the token returned by the `Login` endpoint. This metadata will be
+        /// added to both audit logs, and on the `Ec2Alias`
         /// </summary>
         public InputList<string> Ec2Metadatas
         {
@@ -173,7 +173,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// How to generate the identity alias when using the iam auth method. Valid choices are
-        /// `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+        /// `RoleId`, `UniqueId`, and `FullArn`. Defaults to `RoleId`
         /// </summary>
         [Input("iamAlias")]
         public Input<string>? IamAlias { get; set; }
@@ -182,8 +182,8 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _iamMetadatas;
 
         /// <summary>
-        /// The metadata to include on the token returned by the `login` endpoint. This metadata will be
-        /// added to both audit logs, and on the `iam_alias`
+        /// The metadata to include on the token returned by the `Login` endpoint. This metadata will be
+        /// added to both audit logs, and on the `IamAlias`
         /// </summary>
         public InputList<string> IamMetadatas
         {
@@ -194,7 +194,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -210,14 +210,14 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The path the AWS auth backend being configured was
-        /// mounted at.  Defaults to `aws`.
+        /// mounted at.  Defaults to `Aws`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
         /// <summary>
         /// How to generate the identity alias when using the ec2 auth method. Valid choices are
-        /// `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+        /// `RoleId`, `InstanceId`, and `ImageId`. Defaults to `RoleId`
         /// </summary>
         [Input("ec2Alias")]
         public Input<string>? Ec2Alias { get; set; }
@@ -226,8 +226,8 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _ec2Metadatas;
 
         /// <summary>
-        /// The metadata to include on the token returned by the `login` endpoint. This metadata will be
-        /// added to both audit logs, and on the `ec2_alias`
+        /// The metadata to include on the token returned by the `Login` endpoint. This metadata will be
+        /// added to both audit logs, and on the `Ec2Alias`
         /// </summary>
         public InputList<string> Ec2Metadatas
         {
@@ -237,7 +237,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// How to generate the identity alias when using the iam auth method. Valid choices are
-        /// `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+        /// `RoleId`, `UniqueId`, and `FullArn`. Defaults to `RoleId`
         /// </summary>
         [Input("iamAlias")]
         public Input<string>? IamAlias { get; set; }
@@ -246,8 +246,8 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _iamMetadatas;
 
         /// <summary>
-        /// The metadata to include on the token returned by the `login` endpoint. This metadata will be
-        /// added to both audit logs, and on the `iam_alias`
+        /// The metadata to include on the token returned by the `Login` endpoint. This metadata will be
+        /// added to both audit logs, and on the `IamAlias`
         /// </summary>
         public InputList<string> IamMetadatas
         {
@@ -258,7 +258,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

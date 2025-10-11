@@ -90,12 +90,12 @@ import javax.annotation.Nullable;
 public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResource {
     /**
      * A templatized LDIF string used to create a user
-     * account. This may contain multiple LDIF entries. The `creation_ldif` can also
+     * account. This may contain multiple LDIF entries. The `creationLdif` can also
      * be used to add the user account to an existing group. All LDIF entries are
      * performed in order. If Vault encounters an error while executing the
-     * `creation_ldif` it will stop at the first error and not execute any remaining
-     * LDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF
-     * entries in `rollback_ldif` will be executed. See `rollback_ldif` for more
+     * `creationLdif` it will stop at the first error and not execute any remaining
+     * LDIF entries. If an error occurs and `rollbackLdif` is specified, the LDIF
+     * entries in `rollbackLdif` will be executed. See `rollbackLdif` for more
      * details. This field may optionally be provided as a base64 encoded string.
      * 
      */
@@ -104,12 +104,12 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
 
     /**
      * @return A templatized LDIF string used to create a user
-     * account. This may contain multiple LDIF entries. The `creation_ldif` can also
+     * account. This may contain multiple LDIF entries. The `creationLdif` can also
      * be used to add the user account to an existing group. All LDIF entries are
      * performed in order. If Vault encounters an error while executing the
-     * `creation_ldif` it will stop at the first error and not execute any remaining
-     * LDIF entries. If an error occurs and `rollback_ldif` is specified, the LDIF
-     * entries in `rollback_ldif` will be executed. See `rollback_ldif` for more
+     * `creationLdif` it will stop at the first error and not execute any remaining
+     * LDIF entries. If an error occurs and `rollbackLdif` is specified, the LDIF
+     * entries in `rollbackLdif` will be executed. See `rollbackLdif` for more
      * details. This field may optionally be provided as a base64 encoded string.
      * 
      */
@@ -134,7 +134,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * A templatized LDIF string used to delete the
      * user account once its TTL has expired. This may contain multiple LDIF
      * entries. All LDIF entries are performed in order. If Vault encounters an
-     * error while executing an entry in the `deletion_ldif` it will attempt to
+     * error while executing an entry in the `deletionLdif` it will attempt to
      * continue executing any remaining entries. This field may optionally be
      * provided as a base64 encoded string.
      * 
@@ -146,7 +146,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * @return A templatized LDIF string used to delete the
      * user account once its TTL has expired. This may contain multiple LDIF
      * entries. All LDIF entries are performed in order. If Vault encounters an
-     * error while executing an entry in the `deletion_ldif` it will attempt to
+     * error while executing an entry in the `deletionLdif` it will attempt to
      * continue executing any remaining entries. This field may optionally be
      * provided as a base64 encoded string.
      * 
@@ -220,10 +220,10 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
     }
     /**
      * A templatized LDIF string used to attempt to
-     * rollback any changes in the event that execution of the `creation_ldif` results
+     * rollback any changes in the event that execution of the `creationLdif` results
      * in an error. This may contain multiple LDIF entries. All LDIF entries are
      * performed in order. If Vault encounters an error while executing an entry in
-     * the `rollback_ldif` it will attempt to continue executing any remaining
+     * the `rollbackLdif` it will attempt to continue executing any remaining
      * entries. This field may optionally be provided as a base64 encoded string.
      * 
      */
@@ -232,10 +232,10 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
 
     /**
      * @return A templatized LDIF string used to attempt to
-     * rollback any changes in the event that execution of the `creation_ldif` results
+     * rollback any changes in the event that execution of the `creationLdif` results
      * in an error. This may contain multiple LDIF entries. All LDIF entries are
      * performed in order. If Vault encounters an error while executing an entry in
-     * the `rollback_ldif` it will attempt to continue executing any remaining
+     * the `rollbackLdif` it will attempt to continue executing any remaining
      * entries. This field may optionally be provided as a base64 encoded string.
      * 
      */
@@ -245,7 +245,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
     /**
      * A template used to generate a dynamic
      * username. This will be used to fill in the `.Username` field within the
-     * `creation_ldif` string.
+     * `creationLdif` string.
      * 
      */
     @Export(name="usernameTemplate", refs={String.class}, tree="[0]")
@@ -254,7 +254,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
     /**
      * @return A template used to generate a dynamic
      * username. This will be used to fill in the `.Username` field within the
-     * `creation_ldif` string.
+     * `creationLdif` string.
      * 
      */
     public Output<Optional<String>> usernameTemplate() {

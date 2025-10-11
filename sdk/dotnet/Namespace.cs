@@ -73,7 +73,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -92,8 +92,8 @@ namespace Pulumi.Vault
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
-        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-        /// The path is relative to the provider's `namespace` argument.
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `Namespace`.
+        /// The path is relative to the provider's `Namespace` argument.
         /// </summary>
         [Output("pathFq")]
         public Output<string> PathFq { get; private set; } = null!;
@@ -160,7 +160,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -173,8 +173,8 @@ namespace Pulumi.Vault
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-        /// The path is relative to the provider's `namespace` argument.
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `Namespace`.
+        /// The path is relative to the provider's `Namespace` argument.
         /// </summary>
         [Input("pathFq")]
         public Input<string>? PathFq { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -222,8 +222,8 @@ namespace Pulumi.Vault
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-        /// The path is relative to the provider's `namespace` argument.
+        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `Namespace`.
+        /// The path is relative to the provider's `Namespace` argument.
         /// </summary>
         [Input("pathFq")]
         public Input<string>? PathFq { get; set; }

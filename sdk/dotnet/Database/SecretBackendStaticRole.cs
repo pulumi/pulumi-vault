@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableDictionary<string, string>?> CredentialConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
+        /// The credential type for the user, can be one of "password", "RsaPrivateKey" or "ClientCertificate".The configuration can be done in `CredentialConfig`.
         /// </summary>
         [Output("credentialType")]
         public Output<string> CredentialType { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -125,16 +125,16 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
-        /// Mutually exclusive with `rotation_schedule`.
+        /// Mutually exclusive with `RotationSchedule`.
         /// </summary>
         [Output("rotationPeriod")]
         public Output<int?> RotationPeriod { get; private set; } = null!;
 
         /// <summary>
         /// A cron-style string that will define the schedule on which rotations should occur.
-        /// Mutually exclusive with `rotation_period`.
+        /// Mutually exclusive with `RotationPeriod`.
         /// 
-        /// **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        /// **Warning**: The `RotationPeriod` and `RotationSchedule` fields are
         /// mutually exclusive. One of them must be set but not both.
         /// </summary>
         [Output("rotationSchedule")]
@@ -148,7 +148,7 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time, in seconds, in which rotations are allowed to occur starting
-        /// from a given `rotation_schedule`.
+        /// from a given `RotationSchedule`.
         /// </summary>
         [Output("rotationWindow")]
         public Output<int?> RotationWindow { get; private set; } = null!;
@@ -239,7 +239,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
+        /// The credential type for the user, can be one of "password", "RsaPrivateKey" or "ClientCertificate".The configuration can be done in `CredentialConfig`.
         /// </summary>
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
@@ -259,7 +259,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -267,16 +267,16 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
-        /// Mutually exclusive with `rotation_schedule`.
+        /// Mutually exclusive with `RotationSchedule`.
         /// </summary>
         [Input("rotationPeriod")]
         public Input<int>? RotationPeriod { get; set; }
 
         /// <summary>
         /// A cron-style string that will define the schedule on which rotations should occur.
-        /// Mutually exclusive with `rotation_period`.
+        /// Mutually exclusive with `RotationPeriod`.
         /// 
-        /// **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        /// **Warning**: The `RotationPeriod` and `RotationSchedule` fields are
         /// mutually exclusive. One of them must be set but not both.
         /// </summary>
         [Input("rotationSchedule")]
@@ -296,7 +296,7 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time, in seconds, in which rotations are allowed to occur starting
-        /// from a given `rotation_schedule`.
+        /// from a given `RotationSchedule`.
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
@@ -355,7 +355,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
+        /// The credential type for the user, can be one of "password", "RsaPrivateKey" or "ClientCertificate".The configuration can be done in `CredentialConfig`.
         /// </summary>
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
@@ -375,7 +375,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -383,16 +383,16 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
-        /// Mutually exclusive with `rotation_schedule`.
+        /// Mutually exclusive with `RotationSchedule`.
         /// </summary>
         [Input("rotationPeriod")]
         public Input<int>? RotationPeriod { get; set; }
 
         /// <summary>
         /// A cron-style string that will define the schedule on which rotations should occur.
-        /// Mutually exclusive with `rotation_period`.
+        /// Mutually exclusive with `RotationPeriod`.
         /// 
-        /// **Warning**: The `rotation_period` and `rotation_schedule` fields are
+        /// **Warning**: The `RotationPeriod` and `RotationSchedule` fields are
         /// mutually exclusive. One of them must be set but not both.
         /// </summary>
         [Input("rotationSchedule")]
@@ -412,7 +412,7 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// The amount of time, in seconds, in which rotations are allowed to occur starting
-        /// from a given `rotation_schedule`.
+        /// from a given `RotationSchedule`.
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }

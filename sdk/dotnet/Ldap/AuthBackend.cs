@@ -63,7 +63,7 @@ namespace Pulumi.Vault.Ldap
         public Output<string> Binddn { get; private set; } = null!;
 
         /// <summary>
-        /// Password to use with `binddn` when performing user search
+        /// Password to use with `Binddn` when performing user search
         /// </summary>
         [Output("bindpass")]
         public Output<string> Bindpass { get; private set; } = null!;
@@ -87,7 +87,7 @@ namespace Pulumi.Vault.Ldap
         public Output<string> ClientTlsKey { get; private set; } = null!;
 
         /// <summary>
-        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `Url` (integer: 30)
         /// </summary>
         [Output("connectionTimeout")]
         public Output<int> ConnectionTimeout { get; private set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -372,7 +372,7 @@ namespace Pulumi.Vault.Ldap
         private Input<string>? _bindpass;
 
         /// <summary>
-        /// Password to use with `binddn` when performing user search
+        /// Password to use with `Binddn` when performing user search
         /// </summary>
         public Input<string>? Bindpass
         {
@@ -412,7 +412,7 @@ namespace Pulumi.Vault.Ldap
         }
 
         /// <summary>
-        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `Url` (integer: 30)
         /// </summary>
         [Input("connectionTimeout")]
         public Input<int>? ConnectionTimeout { get; set; }
@@ -488,7 +488,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -672,7 +672,7 @@ namespace Pulumi.Vault.Ldap
         private Input<string>? _bindpass;
 
         /// <summary>
-        /// Password to use with `binddn` when performing user search
+        /// Password to use with `Binddn` when performing user search
         /// </summary>
         public Input<string>? Bindpass
         {
@@ -712,7 +712,7 @@ namespace Pulumi.Vault.Ldap
         }
 
         /// <summary>
-        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `Url` (integer: 30)
         /// </summary>
         [Input("connectionTimeout")]
         public Input<int>? ConnectionTimeout { get; set; }
@@ -788,7 +788,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

@@ -39,7 +39,7 @@ public final class KeysAw {
      */
     private @Nullable Boolean anyMount;
     /**
-     * @return The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
+     * @return The curve to use for an ECDSA key. Used when keyType is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     private @Nullable String curve;
@@ -121,7 +121,7 @@ public final class KeysAw {
         return Optional.ofNullable(this.anyMount);
     }
     /**
-     * @return The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
+     * @return The curve to use for an ECDSA key. Used when keyType is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<String> curve() {

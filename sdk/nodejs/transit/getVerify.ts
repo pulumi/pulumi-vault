@@ -6,6 +6,8 @@ import * as utilities from "../utilities";
 
 /**
  * This is a data source which can be used to verify a signature using a Vault Transit key.
+ *
+ * ## Example Usage
  */
 export function getVerify(args: GetVerifyArgs, opts?: pulumi.InvokeOptions): Promise<GetVerifyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -99,6 +101,8 @@ export interface GetVerifyResult {
 }
 /**
  * This is a data source which can be used to verify a signature using a Vault Transit key.
+ *
+ * ## Example Usage
  */
 export function getVerifyOutput(args: GetVerifyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVerifyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

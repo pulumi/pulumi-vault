@@ -60,7 +60,7 @@ namespace Pulumi.Vault.Kmip
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -68,7 +68,7 @@ namespace Pulumi.Vault.Kmip
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `kmip`.
+        /// not begin or end with a `/`. Defaults to `Kmip`.
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
@@ -134,7 +134,7 @@ namespace Pulumi.Vault.Kmip
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -142,7 +142,7 @@ namespace Pulumi.Vault.Kmip
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `kmip`.
+        /// not begin or end with a `/`. Defaults to `Kmip`.
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumi.Vault.Kmip
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -178,7 +178,7 @@ namespace Pulumi.Vault.Kmip
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `kmip`.
+        /// not begin or end with a `/`. Defaults to `Kmip`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

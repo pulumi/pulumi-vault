@@ -60,7 +60,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// The following write-only attributes are supported:
     /// 
-    /// * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
+    /// * `CredentialsWo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
     ///   **Note**: This property is write-only and will not be read from the API.
     /// </summary>
     [VaultResourceType("vault:gcp/secretBackend:SecretBackend")]
@@ -103,7 +103,7 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the `credentials_wo`. For more info see updating write-only attributes.
+        /// The version of the `CredentialsWo`. For more info see updating write-only attributes.
         /// </summary>
         [Output("credentialsWoVersion")]
         public Output<int?> CredentialsWoVersion { get; private set; } = null!;
@@ -155,7 +155,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
-        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("identityTokenAudience")]
         public Output<string?> IdentityTokenAudience { get; private set; } = null!;
@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -213,7 +213,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `gcp`.
+        /// not begin or end with a `/`. Defaults to `Gcp`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -255,7 +255,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// Service Account to impersonate for plugin workload identity federation.
-        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Required with `IdentityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("serviceAccountEmail")]
         public Output<string?> ServiceAccountEmail { get; private set; } = null!;
@@ -375,7 +375,7 @@ namespace Pulumi.Vault.Gcp
         }
 
         /// <summary>
-        /// The version of the `credentials_wo`. For more info see updating write-only attributes.
+        /// The version of the `CredentialsWo`. For more info see updating write-only attributes.
         /// </summary>
         [Input("credentialsWoVersion")]
         public Input<int>? CredentialsWoVersion { get; set; }
@@ -433,7 +433,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
-        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("identityTokenAudience")]
         public Input<string>? IdentityTokenAudience { get; set; }
@@ -471,7 +471,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -503,7 +503,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `gcp`.
+        /// not begin or end with a `/`. Defaults to `Gcp`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -545,7 +545,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// Service Account to impersonate for plugin workload identity federation.
-        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Required with `IdentityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
@@ -629,7 +629,7 @@ namespace Pulumi.Vault.Gcp
         }
 
         /// <summary>
-        /// The version of the `credentials_wo`. For more info see updating write-only attributes.
+        /// The version of the `CredentialsWo`. For more info see updating write-only attributes.
         /// </summary>
         [Input("credentialsWoVersion")]
         public Input<int>? CredentialsWoVersion { get; set; }
@@ -687,7 +687,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
-        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("identityTokenAudience")]
         public Input<string>? IdentityTokenAudience { get; set; }
@@ -725,7 +725,7 @@ namespace Pulumi.Vault.Gcp
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -757,7 +757,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `gcp`.
+        /// not begin or end with a `/`. Defaults to `Gcp`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -799,7 +799,7 @@ namespace Pulumi.Vault.Gcp
 
         /// <summary>
         /// Service Account to impersonate for plugin workload identity federation.
-        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// Required with `IdentityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }

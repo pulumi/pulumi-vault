@@ -62,7 +62,7 @@ namespace Pulumi.Vault
         public Output<ImmutableArray<string>> Args { get; private set; } = null!;
 
         /// <summary>
-        /// Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`.
         /// </summary>
         [Output("command")]
         public Output<string> Command { get; private set; } = null!;
@@ -81,14 +81,14 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Specifies OCI image to run. If specified, setting
-        /// `command`, `args`, and `env` will update the container's entrypoint, args, and
+        /// `Command`, `Args`, and `Env` will update the container's entrypoint, args, and
         /// environment variables (append-only) respectively.
         /// </summary>
         [Output("ociImage")]
         public Output<string?> OciImage { get; private set; } = null!;
 
         /// <summary>
-        /// Vault plugin runtime to use if `oci_image` is specified.
+        /// Vault plugin runtime to use if `OciImage` is specified.
         /// </summary>
         [Output("runtime")]
         public Output<string?> Runtime { get; private set; } = null!;
@@ -174,7 +174,7 @@ namespace Pulumi.Vault
         }
 
         /// <summary>
-        /// Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`.
         /// </summary>
         [Input("command", required: true)]
         public Input<string> Command { get; set; } = null!;
@@ -203,14 +203,14 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Specifies OCI image to run. If specified, setting
-        /// `command`, `args`, and `env` will update the container's entrypoint, args, and
+        /// `Command`, `Args`, and `Env` will update the container's entrypoint, args, and
         /// environment variables (append-only) respectively.
         /// </summary>
         [Input("ociImage")]
         public Input<string>? OciImage { get; set; }
 
         /// <summary>
-        /// Vault plugin runtime to use if `oci_image` is specified.
+        /// Vault plugin runtime to use if `OciImage` is specified.
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
@@ -254,7 +254,7 @@ namespace Pulumi.Vault
         }
 
         /// <summary>
-        /// Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`.
         /// </summary>
         [Input("command")]
         public Input<string>? Command { get; set; }
@@ -283,14 +283,14 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Specifies OCI image to run. If specified, setting
-        /// `command`, `args`, and `env` will update the container's entrypoint, args, and
+        /// `Command`, `Args`, and `Env` will update the container's entrypoint, args, and
         /// environment variables (append-only) respectively.
         /// </summary>
         [Input("ociImage")]
         public Input<string>? OciImage { get; set; }
 
         /// <summary>
-        /// Vault plugin runtime to use if `oci_image` is specified.
+        /// Vault plugin runtime to use if `OciImage` is specified.
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }

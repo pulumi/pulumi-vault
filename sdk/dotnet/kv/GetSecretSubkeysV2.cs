@@ -56,7 +56,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Task<GetSecretSubkeysV2Result> InvokeAsync(GetSecretSubkeysV2Args args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2Args(), options.WithDefaults());
@@ -106,7 +106,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Output<GetSecretSubkeysV2Result> Invoke(GetSecretSubkeysV2InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2InvokeArgs(), options.WithDefaults());
@@ -156,7 +156,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Output<GetSecretSubkeysV2Result> Invoke(GetSecretSubkeysV2InvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2InvokeArgs(), options.WithDefaults());
@@ -168,7 +168,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Specifies the deepest nesting level to provide in the output.
         /// If non-zero, keys that reside at the specified depth value will be
-        /// artificially treated as leaves and will thus be `null` even if further
+        /// artificially treated as leaves and will thus be `Null` even if further
         /// underlying sub-keys exist.
         /// </summary>
         [Input("depth")]
@@ -192,7 +192,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -216,7 +216,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Specifies the deepest nesting level to provide in the output.
         /// If non-zero, keys that reside at the specified depth value will be
-        /// artificially treated as leaves and will thus be `null` even if further
+        /// artificially treated as leaves and will thus be `Null` even if further
         /// underlying sub-keys exist.
         /// </summary>
         [Input("depth")]
@@ -240,7 +240,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

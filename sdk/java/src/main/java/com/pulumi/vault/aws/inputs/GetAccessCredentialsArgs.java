@@ -108,7 +108,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+     * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      * 
      */
     @Import(name="ttl")
@@ -117,7 +117,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
     /**
      * @return Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
-     * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+     * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      * 
      */
     public Optional<Output<String>> ttl() {
@@ -297,7 +297,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         /**
          * @param ttl Specifies the TTL for the use of the STS token. This
          * is specified as a string with a duration suffix. Valid only when
-         * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+         * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
          * 
          * @return builder
          * 
@@ -310,7 +310,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         /**
          * @param ttl Specifies the TTL for the use of the STS token. This
          * is specified as a string with a duration suffix. Valid only when
-         * `credential_type` of the connected `vault.aws.SecretBackendRole` resource is `assumed_role` or `federation_token`
+         * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
          * 
          * @return builder
          * 

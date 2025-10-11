@@ -101,7 +101,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The type of matching assertion to perform on
-     * `bound_attributes_type`.
+     * `boundAttributesType`.
      * 
      */
     @Export(name="boundAttributesType", refs={String.class}, tree="[0]")
@@ -109,7 +109,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The type of matching assertion to perform on
-     * `bound_attributes_type`.
+     * `boundAttributesType`.
      * 
      */
     public Output<String> boundAttributesType() {
@@ -130,14 +130,14 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.boundSubjects);
     }
     /**
-     * The type of matching assertion to perform on `bound_subjects`.
+     * The type of matching assertion to perform on `boundSubjects`.
      * 
      */
     @Export(name="boundSubjectsType", refs={String.class}, tree="[0]")
     private Output<String> boundSubjectsType;
 
     /**
-     * @return The type of matching assertion to perform on `bound_subjects`.
+     * @return The type of matching assertion to perform on `boundSubjects`.
      * 
      */
     public Output<String> boundSubjectsType() {

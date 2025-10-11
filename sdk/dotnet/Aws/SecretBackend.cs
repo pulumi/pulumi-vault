@@ -146,7 +146,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -166,7 +166,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
+        /// not begin or end with a `/`. Defaults to `Aws`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -230,19 +230,19 @@ namespace Pulumi.Vault.Aws
         public Output<string?> StsEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        /// Ordered list of `StsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
         /// </summary>
         [Output("stsFallbackEndpoints")]
         public Output<ImmutableArray<string>> StsFallbackEndpoints { get; private set; } = null!;
 
         /// <summary>
-        /// Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        /// Ordered list of `StsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
         /// </summary>
         [Output("stsFallbackRegions")]
         public Output<ImmutableArray<string>> StsFallbackRegions { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        /// Specifies the region of the STS endpoint. Should be included if `StsEndpoint` is supplied. Requires Vault 1.19+
         /// </summary>
         [Output("stsRegion")]
         public Output<string?> StsRegion { get; private set; } = null!;
@@ -472,7 +472,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -504,7 +504,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
+        /// not begin or end with a `/`. Defaults to `Aws`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -581,7 +581,7 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _stsFallbackEndpoints;
 
         /// <summary>
-        /// Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        /// Ordered list of `StsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
         /// </summary>
         public InputList<string> StsFallbackEndpoints
         {
@@ -593,7 +593,7 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _stsFallbackRegions;
 
         /// <summary>
-        /// Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        /// Ordered list of `StsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
         /// </summary>
         public InputList<string> StsFallbackRegions
         {
@@ -602,7 +602,7 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        /// Specifies the region of the STS endpoint. Should be included if `StsEndpoint` is supplied. Requires Vault 1.19+
         /// </summary>
         [Input("stsRegion")]
         public Input<string>? StsRegion { get; set; }
@@ -795,7 +795,7 @@ namespace Pulumi.Vault.Aws
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -827,7 +827,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `aws`.
+        /// not begin or end with a `/`. Defaults to `Aws`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -904,7 +904,7 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _stsFallbackEndpoints;
 
         /// <summary>
-        /// Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        /// Ordered list of `StsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
         /// </summary>
         public InputList<string> StsFallbackEndpoints
         {
@@ -916,7 +916,7 @@ namespace Pulumi.Vault.Aws
         private InputList<string>? _stsFallbackRegions;
 
         /// <summary>
-        /// Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        /// Ordered list of `StsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
         /// </summary>
         public InputList<string> StsFallbackRegions
         {
@@ -925,7 +925,7 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        /// Specifies the region of the STS endpoint. Should be included if `StsEndpoint` is supplied. Requires Vault 1.19+
         /// </summary>
         [Input("stsRegion")]
         public Input<string>? StsRegion { get; set; }

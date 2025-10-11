@@ -52,7 +52,7 @@ public final class OidcProviderState extends com.pulumi.resources.ResourceArgs {
     /**
      * Specifies what will be used as the `scheme://host:port`
      * component for the `iss` claim of ID tokens. This value is computed using the
-     * `issuer_host` and `https_enabled` fields.
+     * `issuerHost` and `httpsEnabled` fields.
      * 
      */
     @Import(name="issuer")
@@ -61,7 +61,7 @@ public final class OidcProviderState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Specifies what will be used as the `scheme://host:port`
      * component for the `iss` claim of ID tokens. This value is computed using the
-     * `issuer_host` and `https_enabled` fields.
+     * `issuerHost` and `httpsEnabled` fields.
      * 
      */
     public Optional<Output<String>> issuer() {
@@ -222,7 +222,7 @@ public final class OidcProviderState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param issuer Specifies what will be used as the `scheme://host:port`
          * component for the `iss` claim of ID tokens. This value is computed using the
-         * `issuer_host` and `https_enabled` fields.
+         * `issuerHost` and `httpsEnabled` fields.
          * 
          * @return builder
          * 
@@ -235,7 +235,7 @@ public final class OidcProviderState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param issuer Specifies what will be used as the `scheme://host:port`
          * component for the `iss` claim of ID tokens. This value is computed using the
-         * `issuer_host` and `https_enabled` fields.
+         * `issuerHost` and `httpsEnabled` fields.
          * 
          * @return builder
          * 

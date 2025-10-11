@@ -12,6 +12,8 @@ import (
 )
 
 // This is a data source which can be used to generate a signature using a Vault Transit key.
+//
+// ## Example Usage
 func GetSign(ctx *pulumi.Context, args *GetSignArgs, opts ...pulumi.InvokeOption) (*GetSignResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSignResult

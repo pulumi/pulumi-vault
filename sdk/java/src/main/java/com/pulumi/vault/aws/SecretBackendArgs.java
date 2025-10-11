@@ -520,14 +520,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+     * Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
      * 
      */
     @Import(name="stsFallbackEndpoints")
     private @Nullable Output<List<String>> stsFallbackEndpoints;
 
     /**
-     * @return Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+     * @return Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
      * 
      */
     public Optional<Output<List<String>>> stsFallbackEndpoints() {
@@ -535,14 +535,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     * Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
      * 
      */
     @Import(name="stsFallbackRegions")
     private @Nullable Output<List<String>> stsFallbackRegions;
 
     /**
-     * @return Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     * @return Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
      * 
      */
     public Optional<Output<List<String>>> stsFallbackRegions() {
@@ -550,14 +550,14 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+     * Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
      * 
      */
     @Import(name="stsRegion")
     private @Nullable Output<String> stsRegion;
 
     /**
-     * @return Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+     * @return Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
      * 
      */
     public Optional<Output<String>> stsRegion() {
@@ -1391,7 +1391,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsFallbackEndpoints Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+         * @param stsFallbackEndpoints Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1402,7 +1402,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsFallbackEndpoints Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+         * @param stsFallbackEndpoints Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1412,7 +1412,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsFallbackEndpoints Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+         * @param stsFallbackEndpoints Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1422,7 +1422,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsFallbackRegions Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+         * @param stsFallbackRegions Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1433,7 +1433,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsFallbackRegions Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+         * @param stsFallbackRegions Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1443,7 +1443,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsFallbackRegions Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+         * @param stsFallbackRegions Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1453,7 +1453,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsRegion Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+         * @param stsRegion Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
          * 
          * @return builder
          * 
@@ -1464,7 +1464,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param stsRegion Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+         * @param stsRegion Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
          * 
          * @return builder
          * 

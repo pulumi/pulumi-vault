@@ -1544,6 +1544,10 @@ public final class VaultFunctions {
      * }
      * </pre>
      * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces() {
         return getNamespaces(GetNamespacesArgs.Empty, InvokeOptions.Empty);
@@ -1615,6 +1619,10 @@ public final class VaultFunctions {
      * }
      * }
      * </pre>
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain() {
@@ -1688,6 +1696,10 @@ public final class VaultFunctions {
      * }
      * </pre>
      * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces(GetNamespacesArgs args) {
         return getNamespaces(args, InvokeOptions.Empty);
@@ -1759,6 +1771,10 @@ public final class VaultFunctions {
      * }
      * }
      * </pre>
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(GetNamespacesPlainArgs args) {
@@ -1832,6 +1848,10 @@ public final class VaultFunctions {
      * }
      * </pre>
      * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces(GetNamespacesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
@@ -1904,6 +1924,10 @@ public final class VaultFunctions {
      * }
      * </pre>
      * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces(GetNamespacesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
@@ -1975,6 +1999,10 @@ public final class VaultFunctions {
      * }
      * }
      * </pre>
+     * 
+     * ### Child namespace details
+     * 
+     * To fetch the details of child namespaces:
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(GetNamespacesPlainArgs args, InvokeOptions options) {

@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * instance metadata. For more information, see the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/aws.html).
  * 
+ * ## Example Usage
+ * 
  */
 @ResourceType(type="vault:aws/authBackendLogin:AuthBackendLogin")
 public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
@@ -167,7 +169,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     }
     /**
      * The duration in seconds the token will be valid, relative
-     * to the time in `lease_start_time`.
+     * to the time in `leaseStartTime`.
      * 
      */
     @Export(name="leaseDuration", refs={Integer.class}, tree="[0]")
@@ -175,7 +177,7 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The duration in seconds the token will be valid, relative
-     * to the time in `lease_start_time`.
+     * to the time in `leaseStartTime`.
      * 
      */
     public Output<Integer> leaseDuration() {

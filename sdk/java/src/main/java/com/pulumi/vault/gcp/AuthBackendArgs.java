@@ -325,7 +325,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Import(name="serviceAccountEmail")
@@ -333,7 +333,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Service Account to impersonate for plugin workload identity federation.
-     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Optional<Output<String>> serviceAccountEmail() {
@@ -816,7 +816,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param serviceAccountEmail Service Account to impersonate for plugin workload identity federation.
-         * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 
@@ -828,7 +828,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param serviceAccountEmail Service Account to impersonate for plugin workload identity federation.
-         * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 

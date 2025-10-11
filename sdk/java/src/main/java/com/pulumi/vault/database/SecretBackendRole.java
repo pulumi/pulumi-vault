@@ -118,9 +118,9 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies the configuration
-     * for the given `credential_type`.
+     * for the given `credentialType`.
      * 
-     * The following options are available for each `credential_type` value:
+     * The following options are available for each `credentialType` value:
      * 
      */
     @Export(name="credentialConfig", refs={Map.class,String.class}, tree="[0,1,1]")
@@ -128,9 +128,9 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies the configuration
-     * for the given `credential_type`.
+     * for the given `credentialType`.
      * 
-     * The following options are available for each `credential_type` value:
+     * The following options are available for each `credentialType` value:
      * 
      */
     public Output<Optional<Map<String,String>>> credentialConfig() {
@@ -138,7 +138,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies the type of credential that
-     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin&#39;s API page for credential types supported by individual databases.
      * 
      */
@@ -147,7 +147,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies the type of credential that
-     * will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+     * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin&#39;s API page for credential types supported by individual databases.
      * 
      */

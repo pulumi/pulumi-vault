@@ -93,14 +93,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
+     * The curve to use for an ECDSA key. Used when keyType is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     @Import(name="curve")
     private @Nullable Output<String> curve;
 
     /**
-     * @return The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
+     * @return The curve to use for an ECDSA key. Used when keyType is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<Output<String>> curve() {
@@ -370,7 +370,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
+         * @param curve The curve to use for an ECDSA key. Used when keyType is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -381,7 +381,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
+         * @param curve The curve to use for an ECDSA key. Used when keyType is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 

@@ -74,7 +74,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AltNames { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If set to `True`, certs will be renewed if the expiration is within `MinSecondsRemaining`. Default `False`
         /// </summary>
         [Output("autoRenew")]
         public Output<bool?> AutoRenew { get; private set; } = null!;
@@ -92,7 +92,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> CaChains { get; private set; } = null!;
 
         /// <summary>
-        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's NoStoreMetadata must be set to false, otherwise an error is returned when specified.
         /// </summary>
         [Output("certMetadata")]
         public Output<string?> CertMetadata { get; private set; } = null!;
@@ -141,9 +141,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. Can
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Output("issuerRef")]
         public Output<string?> IssuerRef { get; private set; } = null!;
@@ -169,7 +169,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -188,7 +188,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> OtherSans { get; private set; } = null!;
 
         /// <summary>
-        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// `True` if the current time (during refresh) is after the start of the early renewal window declared by `MinSecondsRemaining`, and `False` otherwise; if `AutoRenew` is set to `True` then the provider will plan to replace the certificate once renewal is pending.
         /// </summary>
         [Output("renewPending")]
         public Output<bool> RenewPending { get; private set; } = null!;
@@ -270,7 +270,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If set to `True`, certs will be renewed if the expiration is within `MinSecondsRemaining`. Default `False`
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
@@ -282,7 +282,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's NoStoreMetadata must be set to false, otherwise an error is returned when specified.
         /// </summary>
         [Input("certMetadata")]
         public Input<string>? CertMetadata { get; set; }
@@ -325,9 +325,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. Can
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
@@ -347,7 +347,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -410,7 +410,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If set to `True`, certs will be renewed if the expiration is within `MinSecondsRemaining`. Default `False`
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
@@ -434,7 +434,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's NoStoreMetadata must be set to false, otherwise an error is returned when specified.
         /// </summary>
         [Input("certMetadata")]
         public Input<string>? CertMetadata { get; set; }
@@ -489,9 +489,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. Can
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
@@ -517,7 +517,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -542,7 +542,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// `True` if the current time (during refresh) is after the start of the early renewal window declared by `MinSecondsRemaining`, and `False` otherwise; if `AutoRenew` is set to `True` then the provider will plan to replace the certificate once renewal is pending.
         /// </summary>
         [Input("renewPending")]
         public Input<bool>? RenewPending { get; set; }

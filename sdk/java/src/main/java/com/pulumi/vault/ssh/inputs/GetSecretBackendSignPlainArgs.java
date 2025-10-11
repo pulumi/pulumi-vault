@@ -129,14 +129,14 @@ public final class GetSecretBackendSignPlainArgs extends com.pulumi.resources.In
     }
 
     /**
-     * Specifies the Requested Time To Live. Cannot be greater than the role&#39;s max_ttl value. If not provided, the role&#39;s ttl value will be used. Note that the role values default to system values if not explicitly set.
+     * Specifies the Requested Time To Live. Cannot be greater than the role&#39;s maxTtl value. If not provided, the role&#39;s ttl value will be used. Note that the role values default to system values if not explicitly set.
      * 
      */
     @Import(name="ttl")
     private @Nullable String ttl;
 
     /**
-     * @return Specifies the Requested Time To Live. Cannot be greater than the role&#39;s max_ttl value. If not provided, the role&#39;s ttl value will be used. Note that the role values default to system values if not explicitly set.
+     * @return Specifies the Requested Time To Live. Cannot be greater than the role&#39;s maxTtl value. If not provided, the role&#39;s ttl value will be used. Note that the role values default to system values if not explicitly set.
      * 
      */
     public Optional<String> ttl() {
@@ -144,14 +144,14 @@ public final class GetSecretBackendSignPlainArgs extends com.pulumi.resources.In
     }
 
     /**
-     * Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allow_empty_principals or a value has been set for either the default_user or default_user_template role parameters.
+     * Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allowEmptyPrincipals or a value has been set for either the defaultUser or defaultUserTemplate role parameters.
      * 
      */
     @Import(name="validPrincipals")
     private @Nullable String validPrincipals;
 
     /**
-     * @return Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allow_empty_principals or a value has been set for either the default_user or default_user_template role parameters.
+     * @return Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allowEmptyPrincipals or a value has been set for either the defaultUser or defaultUserTemplate role parameters.
      * 
      */
     public Optional<String> validPrincipals() {
@@ -274,7 +274,7 @@ public final class GetSecretBackendSignPlainArgs extends com.pulumi.resources.In
         }
 
         /**
-         * @param ttl Specifies the Requested Time To Live. Cannot be greater than the role&#39;s max_ttl value. If not provided, the role&#39;s ttl value will be used. Note that the role values default to system values if not explicitly set.
+         * @param ttl Specifies the Requested Time To Live. Cannot be greater than the role&#39;s maxTtl value. If not provided, the role&#39;s ttl value will be used. Note that the role values default to system values if not explicitly set.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class GetSecretBackendSignPlainArgs extends com.pulumi.resources.In
         }
 
         /**
-         * @param validPrincipals Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allow_empty_principals or a value has been set for either the default_user or default_user_template role parameters.
+         * @param validPrincipals Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allowEmptyPrincipals or a value has been set for either the defaultUser or defaultUserTemplate role parameters.
          * 
          * @return builder
          * 

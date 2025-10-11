@@ -348,6 +348,8 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         Creates a key on a PKI Secret Backend for Vault.
 
+        ## Example Usage
+
         ## Import
 
         PKI secret backend key can be imported using the `id`, e.g.
@@ -382,6 +384,8 @@ class SecretBackendKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates a key on a PKI Secret Backend for Vault.
+
+        ## Example Usage
 
         ## Import
 

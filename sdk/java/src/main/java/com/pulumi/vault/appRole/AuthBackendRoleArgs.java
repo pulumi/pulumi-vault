@@ -37,7 +37,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Whether or not to require `secret_id` to be
+     * Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      * 
      */
@@ -45,7 +45,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     private @Nullable Output<Boolean> bindSecretId;
 
     /**
-     * @return Whether or not to require `secret_id` to be
+     * @return Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      * 
      */
@@ -358,7 +358,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindSecretId Whether or not to require `secret_id` to be
+         * @param bindSecretId Whether or not to require `secretId` to be
          * presented when logging in using this AppRole. Defaults to `true`.
          * 
          * @return builder
@@ -370,7 +370,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindSecretId Whether or not to require `secret_id` to be
+         * @param bindSecretId Whether or not to require `secretId` to be
          * presented when logging in using this AppRole. Defaults to `true`.
          * 
          * @return builder

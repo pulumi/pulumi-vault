@@ -59,7 +59,7 @@ public final class KeysPkc {
      */
     private String keyLabel;
     /**
-     * @return The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
+     * @return The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     private String library;
@@ -159,7 +159,7 @@ public final class KeysPkc {
         return this.keyLabel;
     }
     /**
-     * @return The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
+     * @return The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     public String library() {

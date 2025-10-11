@@ -35,7 +35,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * How to generate the identity alias when using the ec2 auth method. Valid choices are
-     * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+     * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
      * 
      */
     @Import(name="ec2Alias")
@@ -43,7 +43,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * @return How to generate the identity alias when using the ec2 auth method. Valid choices are
-     * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+     * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
      * 
      */
     public Optional<Output<String>> ec2Alias() {
@@ -52,7 +52,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `ec2_alias`
+     * added to both audit logs, and on the `ec2Alias`
      * 
      */
     @Import(name="ec2Metadatas")
@@ -60,7 +60,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * @return The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `ec2_alias`
+     * added to both audit logs, and on the `ec2Alias`
      * 
      */
     public Optional<Output<List<String>>> ec2Metadatas() {
@@ -69,7 +69,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
-     * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
      * 
      */
     @Import(name="iamAlias")
@@ -77,7 +77,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * @return How to generate the identity alias when using the iam auth method. Valid choices are
-     * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
      * 
      */
     public Optional<Output<String>> iamAlias() {
@@ -86,7 +86,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `iam_alias`
+     * added to both audit logs, and on the `iamAlias`
      * 
      */
     @Import(name="iamMetadatas")
@@ -94,7 +94,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
     /**
      * @return The metadata to include on the token returned by the `login` endpoint. This metadata will be
-     * added to both audit logs, and on the `iam_alias`
+     * added to both audit logs, and on the `iamAlias`
      * 
      */
     public Optional<Output<List<String>>> iamMetadatas() {
@@ -176,7 +176,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param ec2Alias How to generate the identity alias when using the ec2 auth method. Valid choices are
-         * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+         * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
          * 
          * @return builder
          * 
@@ -188,7 +188,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param ec2Alias How to generate the identity alias when using the ec2 auth method. Valid choices are
-         * `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
+         * `roleId`, `instanceId`, and `imageId`. Defaults to `roleId`
          * 
          * @return builder
          * 
@@ -199,7 +199,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param ec2Metadatas The metadata to include on the token returned by the `login` endpoint. This metadata will be
-         * added to both audit logs, and on the `ec2_alias`
+         * added to both audit logs, and on the `ec2Alias`
          * 
          * @return builder
          * 
@@ -211,7 +211,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param ec2Metadatas The metadata to include on the token returned by the `login` endpoint. This metadata will be
-         * added to both audit logs, and on the `ec2_alias`
+         * added to both audit logs, and on the `ec2Alias`
          * 
          * @return builder
          * 
@@ -222,7 +222,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param ec2Metadatas The metadata to include on the token returned by the `login` endpoint. This metadata will be
-         * added to both audit logs, and on the `ec2_alias`
+         * added to both audit logs, and on the `ec2Alias`
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param iamAlias How to generate the identity alias when using the iam auth method. Valid choices are
-         * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+         * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
          * 
          * @return builder
          * 
@@ -245,7 +245,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param iamAlias How to generate the identity alias when using the iam auth method. Valid choices are
-         * `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+         * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
          * 
          * @return builder
          * 
@@ -256,7 +256,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param iamMetadatas The metadata to include on the token returned by the `login` endpoint. This metadata will be
-         * added to both audit logs, and on the `iam_alias`
+         * added to both audit logs, and on the `iamAlias`
          * 
          * @return builder
          * 
@@ -268,7 +268,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param iamMetadatas The metadata to include on the token returned by the `login` endpoint. This metadata will be
-         * added to both audit logs, and on the `iam_alias`
+         * added to both audit logs, and on the `iamAlias`
          * 
          * @return builder
          * 
@@ -279,7 +279,7 @@ public final class AuthBackendConfigIdentityState extends com.pulumi.resources.R
 
         /**
          * @param iamMetadatas The metadata to include on the token returned by the `login` endpoint. This metadata will be
-         * added to both audit logs, and on the `iam_alias`
+         * added to both audit logs, and on the `iamAlias`
          * 
          * @return builder
          * 

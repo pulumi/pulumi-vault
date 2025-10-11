@@ -34,7 +34,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ### KV 
         /// 
-        /// For this example, consider `example` as a path for a KV engine.
+        /// For this example, consider `Example` as a path for a KV engine.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Task<GetSecretResult> InvokeAsync(GetSecretArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithDefaults());
@@ -90,7 +90,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ### KV 
         /// 
-        /// For this example, consider `example` as a path for a KV engine.
+        /// For this example, consider `Example` as a path for a KV engine.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -118,7 +118,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
@@ -146,7 +146,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ### KV 
         /// 
-        /// For this example, consider `example` as a path for a KV engine.
+        /// For this example, consider `Example` as a path for a KV engine.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -174,7 +174,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
@@ -186,7 +186,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -211,8 +211,8 @@ namespace Pulumi.Vault.Generic
         public int? Version { get; set; }
 
         /// <summary>
-        /// If set to true, stores `lease_start_time` in the TF state.
-        /// Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+        /// If set to true, stores `LeaseStartTime` in the TF state.
+        /// Note that storing the `LeaseStartTime` in the TF state will cause a persistent drift
         /// on every `pulumi preview` and will require a `pulumi up`.
         /// </summary>
         [Input("withLeaseStartTime")]
@@ -229,7 +229,7 @@ namespace Pulumi.Vault.Generic
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -254,8 +254,8 @@ namespace Pulumi.Vault.Generic
         public Input<int>? Version { get; set; }
 
         /// <summary>
-        /// If set to true, stores `lease_start_time` in the TF state.
-        /// Note that storing the `lease_start_time` in the TF state will cause a persistent drift
+        /// If set to true, stores `LeaseStartTime` in the TF state.
+        /// Note that storing the `LeaseStartTime` in the TF state will cause a persistent drift
         /// on every `pulumi preview` and will require a `pulumi up`.
         /// </summary>
         [Input("withLeaseStartTime")]
