@@ -42,14 +42,14 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
-     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
+     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsaPrivateKey&#34; or &#34;clientCertificate&#34;.The configuration can be done in `credentialConfig`.
      * 
      */
     @Import(name="credentialType")
     private @Nullable Output<String> credentialType;
 
     /**
-     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
+     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsaPrivateKey&#34; or &#34;clientCertificate&#34;.The configuration can be done in `credentialConfig`.
      * 
      */
     public Optional<Output<String>> credentialType() {
@@ -109,7 +109,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
-     * Mutually exclusive with `rotation_schedule`.
+     * Mutually exclusive with `rotationSchedule`.
      * 
      */
     @Import(name="rotationPeriod")
@@ -117,7 +117,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * @return The amount of time Vault should wait before rotating the password, in seconds.
-     * Mutually exclusive with `rotation_schedule`.
+     * Mutually exclusive with `rotationSchedule`.
      * 
      */
     public Optional<Output<Integer>> rotationPeriod() {
@@ -126,9 +126,9 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
-     * Mutually exclusive with `rotation_period`.
+     * Mutually exclusive with `rotationPeriod`.
      * 
-     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      * 
      */
@@ -137,9 +137,9 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * @return A cron-style string that will define the schedule on which rotations should occur.
-     * Mutually exclusive with `rotation_period`.
+     * Mutually exclusive with `rotationPeriod`.
      * 
-     * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+     * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      * 
      */
@@ -164,7 +164,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * The amount of time, in seconds, in which rotations are allowed to occur starting
-     * from a given `rotation_schedule`.
+     * from a given `rotationSchedule`.
      * 
      */
     @Import(name="rotationWindow")
@@ -172,7 +172,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     /**
      * @return The amount of time, in seconds, in which rotations are allowed to occur starting
-     * from a given `rotation_schedule`.
+     * from a given `rotationSchedule`.
      * 
      */
     public Optional<Output<Integer>> rotationWindow() {
@@ -297,7 +297,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
+         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsaPrivateKey&#34; or &#34;clientCertificate&#34;.The configuration can be done in `credentialConfig`.
          * 
          * @return builder
          * 
@@ -308,7 +308,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration can be done in `credential_config`.
+         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsaPrivateKey&#34; or &#34;clientCertificate&#34;.The configuration can be done in `credentialConfig`.
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
-         * Mutually exclusive with `rotation_schedule`.
+         * Mutually exclusive with `rotationSchedule`.
          * 
          * @return builder
          * 
@@ -400,7 +400,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
-         * Mutually exclusive with `rotation_schedule`.
+         * Mutually exclusive with `rotationSchedule`.
          * 
          * @return builder
          * 
@@ -411,9 +411,9 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
-         * Mutually exclusive with `rotation_period`.
+         * Mutually exclusive with `rotationPeriod`.
          * 
-         * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+         * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
          * mutually exclusive. One of them must be set but not both.
          * 
          * @return builder
@@ -426,9 +426,9 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationSchedule A cron-style string that will define the schedule on which rotations should occur.
-         * Mutually exclusive with `rotation_period`.
+         * Mutually exclusive with `rotationPeriod`.
          * 
-         * **Warning**: The `rotation_period` and `rotation_schedule` fields are
+         * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
          * mutually exclusive. One of them must be set but not both.
          * 
          * @return builder
@@ -471,7 +471,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationWindow The amount of time, in seconds, in which rotations are allowed to occur starting
-         * from a given `rotation_schedule`.
+         * from a given `rotationSchedule`.
          * 
          * @return builder
          * 
@@ -483,7 +483,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         /**
          * @param rotationWindow The amount of time, in seconds, in which rotations are allowed to occur starting
-         * from a given `rotation_schedule`.
+         * from a given `rotationSchedule`.
          * 
          * @return builder
          * 

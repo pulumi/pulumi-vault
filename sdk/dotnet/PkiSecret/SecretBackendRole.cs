@@ -109,7 +109,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AllowedDomains { get; private set; } = null!;
 
         /// <summary>
-        /// Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// Flag, if set, `AllowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
         /// </summary>
         [Output("allowedDomainsTemplate")]
         public Output<bool?> AllowedDomainsTemplate { get; private set; } = null!;
@@ -133,7 +133,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AllowedUriSans { get; private set; } = null!;
 
         /// <summary>
-        /// Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// Flag, if set, `AllowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
         /// </summary>
         [Output("allowedUriSansTemplate")]
         public Output<bool> AllowedUriSansTemplate { get; private set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> ClientFlag { get; private set; } = null!;
 
         /// <summary>
-        /// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        /// Validations to run on the Common Name field of the certificate, choices: `Email`, `Hostname`, `Disabled`
         /// </summary>
         [Output("cnValidations")]
         public Output<ImmutableArray<string>> CnValidations { get; private set; } = null!;
@@ -212,9 +212,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. May
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Output("issuerRef")]
         public Output<string> IssuerRef { get; private set; } = null!;
@@ -226,8 +226,8 @@ namespace Pulumi.Vault.PkiSecret
         public Output<int?> KeyBits { get; private set; } = null!;
 
         /// <summary>
-        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
-        /// Defaults to `rsa`
+        /// The generated key type, choices: `Rsa`, `Ec`, `Ed25519`, `Any`
+        /// Defaults to `Rsa`
         /// </summary>
         [Output("keyType")]
         public Output<string?> KeyType { get; private set; } = null!;
@@ -261,7 +261,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -304,13 +304,13 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> Organizations { get; private set; } = null!;
 
         /// <summary>
-        /// (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        /// (Vault 1.11+ only) A block for specifying policy identifers. The `PolicyIdentifier` block can be repeated, and supports the following arguments:
         /// </summary>
         [Output("policyIdentifier")]
         public Output<ImmutableArray<Outputs.SecretBackendRolePolicyIdentifier>> PolicyIdentifier { get; private set; } = null!;
 
         /// <summary>
-        /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+        /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `PolicyIdentifier` blocks instead
         /// </summary>
         [Output("policyIdentifiers")]
         public Output<ImmutableArray<string>> PolicyIdentifiers { get; private set; } = null!;
@@ -334,7 +334,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> RequireCn { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the SerialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the SerialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
         /// 
         /// Example usage:
         /// </summary>
@@ -484,7 +484,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// Flag, if set, `AllowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
         /// </summary>
         [Input("allowedDomainsTemplate")]
         public Input<bool>? AllowedDomainsTemplate { get; set; }
@@ -526,7 +526,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// Flag, if set, `AllowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
         /// </summary>
         [Input("allowedUriSansTemplate")]
         public Input<bool>? AllowedUriSansTemplate { get; set; }
@@ -565,7 +565,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _cnValidations;
 
         /// <summary>
-        /// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        /// Validations to run on the Common Name field of the certificate, choices: `Email`, `Hostname`, `Disabled`
         /// </summary>
         public InputList<string> CnValidations
         {
@@ -635,9 +635,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. May
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
@@ -649,8 +649,8 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
-        /// Defaults to `rsa`
+        /// The generated key type, choices: `Rsa`, `Ec`, `Ed25519`, `Any`
+        /// Defaults to `Rsa`
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
@@ -696,7 +696,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -754,7 +754,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<Inputs.SecretBackendRolePolicyIdentifierArgs>? _policyIdentifier;
 
         /// <summary>
-        /// (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        /// (Vault 1.11+ only) A block for specifying policy identifers. The `PolicyIdentifier` block can be repeated, and supports the following arguments:
         /// </summary>
         public InputList<Inputs.SecretBackendRolePolicyIdentifierArgs> PolicyIdentifier
         {
@@ -766,7 +766,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _policyIdentifiers;
 
         /// <summary>
-        /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+        /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `PolicyIdentifier` blocks instead
         /// </summary>
         public InputList<string> PolicyIdentifiers
         {
@@ -805,7 +805,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? RequireCn { get; set; }
 
         /// <summary>
-        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the SerialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the SerialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
         /// 
         /// Example usage:
         /// </summary>
@@ -923,7 +923,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// Flag, if set, `allowed_domains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// Flag, if set, `AllowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
         /// </summary>
         [Input("allowedDomainsTemplate")]
         public Input<bool>? AllowedDomainsTemplate { get; set; }
@@ -965,7 +965,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// Flag, if set, `allowed_uri_sans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
+        /// Flag, if set, `AllowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.&lt;mount accessor&gt;.name}}`.
         /// </summary>
         [Input("allowedUriSansTemplate")]
         public Input<bool>? AllowedUriSansTemplate { get; set; }
@@ -1004,7 +1004,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _cnValidations;
 
         /// <summary>
-        /// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        /// Validations to run on the Common Name field of the certificate, choices: `Email`, `Hostname`, `Disabled`
         /// </summary>
         public InputList<string> CnValidations
         {
@@ -1074,9 +1074,9 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the default issuer of this request. May
-        /// be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
+        /// be the value `Default`, a name, or an issuer ID. Use ACLs to prevent access to
         /// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
-        /// overriding the role's `issuer_ref` value.
+        /// overriding the role's `IssuerRef` value.
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
@@ -1088,8 +1088,8 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
-        /// Defaults to `rsa`
+        /// The generated key type, choices: `Rsa`, `Ec`, `Ed25519`, `Any`
+        /// Defaults to `Rsa`
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
@@ -1135,7 +1135,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -1193,7 +1193,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<Inputs.SecretBackendRolePolicyIdentifierGetArgs>? _policyIdentifier;
 
         /// <summary>
-        /// (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        /// (Vault 1.11+ only) A block for specifying policy identifers. The `PolicyIdentifier` block can be repeated, and supports the following arguments:
         /// </summary>
         public InputList<Inputs.SecretBackendRolePolicyIdentifierGetArgs> PolicyIdentifier
         {
@@ -1205,7 +1205,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _policyIdentifiers;
 
         /// <summary>
-        /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
+        /// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `PolicyIdentifier` blocks instead
         /// </summary>
         public InputList<string> PolicyIdentifiers
         {
@@ -1244,7 +1244,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? RequireCn { get; set; }
 
         /// <summary>
-        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the SerialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the SerialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
         /// 
         /// Example usage:
         /// </summary>

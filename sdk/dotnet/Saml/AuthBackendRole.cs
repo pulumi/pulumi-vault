@@ -79,7 +79,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The type of matching assertion to perform on
-        /// `bound_attributes_type`.
+        /// `BoundAttributesType`.
         /// </summary>
         [Output("boundAttributesType")]
         public Output<string> BoundAttributesType { get; private set; } = null!;
@@ -91,7 +91,7 @@ namespace Pulumi.Vault.Saml
         public Output<ImmutableArray<string>> BoundSubjects { get; private set; } = null!;
 
         /// <summary>
-        /// The type of matching assertion to perform on `bound_subjects`.
+        /// The type of matching assertion to perform on `BoundSubjects`.
         /// </summary>
         [Output("boundSubjectsType")]
         public Output<string> BoundSubjectsType { get; private set; } = null!;
@@ -112,7 +112,7 @@ namespace Pulumi.Vault.Saml
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -239,7 +239,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The type of matching assertion to perform on
-        /// `bound_attributes_type`.
+        /// `BoundAttributesType`.
         /// </summary>
         [Input("boundAttributesType")]
         public Input<string>? BoundAttributesType { get; set; }
@@ -257,7 +257,7 @@ namespace Pulumi.Vault.Saml
         }
 
         /// <summary>
-        /// The type of matching assertion to perform on `bound_subjects`.
+        /// The type of matching assertion to perform on `BoundSubjects`.
         /// </summary>
         [Input("boundSubjectsType")]
         public Input<string>? BoundSubjectsType { get; set; }
@@ -278,7 +278,7 @@ namespace Pulumi.Vault.Saml
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -379,7 +379,7 @@ namespace Pulumi.Vault.Saml
 
         /// <summary>
         /// The type of matching assertion to perform on
-        /// `bound_attributes_type`.
+        /// `BoundAttributesType`.
         /// </summary>
         [Input("boundAttributesType")]
         public Input<string>? BoundAttributesType { get; set; }
@@ -397,7 +397,7 @@ namespace Pulumi.Vault.Saml
         }
 
         /// <summary>
-        /// The type of matching assertion to perform on `bound_subjects`.
+        /// The type of matching assertion to perform on `BoundSubjects`.
         /// </summary>
         [Input("boundSubjectsType")]
         public Input<string>? BoundSubjectsType { get; set; }
@@ -418,7 +418,7 @@ namespace Pulumi.Vault.Saml
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

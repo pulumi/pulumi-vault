@@ -50,7 +50,7 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string KeyLabel;
         /// <summary>
-        /// The name of the kms_library stanza to use from Vault's config to lookup the local library path
+        /// The name of the KmsLibrary stanza to use from Vault's config to lookup the local library path
         /// </summary>
         public readonly string Library;
         /// <summary>

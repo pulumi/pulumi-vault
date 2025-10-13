@@ -6,6 +6,8 @@ import * as utilities from "../utilities";
 
 /**
  * Reads role tag information from an AWS auth backend in Vault.
+ *
+ * ## Example Usage
  */
 export class AuthBackendRoleTag extends pulumi.CustomResource {
     /**

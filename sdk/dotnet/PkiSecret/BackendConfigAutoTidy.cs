@@ -102,7 +102,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -168,13 +168,13 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Set to true to automatically remove expired issuers past the
-        /// `issuer_safety_buffer`. No keys will be removed as part of this operation.
+        /// `IssuerSafetyBuffer`. No keys will be removed as part of this operation.
         /// </summary>
         [Output("tidyExpiredIssuers")]
         public Output<bool?> TidyExpiredIssuers { get; private set; } = null!;
 
         /// <summary>
-        /// Set to true to move the legacy `ca_bundle` from
+        /// Set to true to move the legacy `CaBundle` from
         /// `/config/ca_bundle` to `/config/ca_bundle.bak`.
         /// </summary>
         [Output("tidyMoveLegacyCaBundle")]
@@ -307,7 +307,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -373,13 +373,13 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Set to true to automatically remove expired issuers past the
-        /// `issuer_safety_buffer`. No keys will be removed as part of this operation.
+        /// `IssuerSafetyBuffer`. No keys will be removed as part of this operation.
         /// </summary>
         [Input("tidyExpiredIssuers")]
         public Input<bool>? TidyExpiredIssuers { get; set; }
 
         /// <summary>
-        /// Set to true to move the legacy `ca_bundle` from
+        /// Set to true to move the legacy `CaBundle` from
         /// `/config/ca_bundle` to `/config/ca_bundle.bak`.
         /// </summary>
         [Input("tidyMoveLegacyCaBundle")]
@@ -474,7 +474,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -540,13 +540,13 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Set to true to automatically remove expired issuers past the
-        /// `issuer_safety_buffer`. No keys will be removed as part of this operation.
+        /// `IssuerSafetyBuffer`. No keys will be removed as part of this operation.
         /// </summary>
         [Input("tidyExpiredIssuers")]
         public Input<bool>? TidyExpiredIssuers { get; set; }
 
         /// <summary>
-        /// Set to true to move the legacy `ca_bundle` from
+        /// Set to true to move the legacy `CaBundle` from
         /// `/config/ca_bundle` to `/config/ca_bundle.bak`.
         /// </summary>
         [Input("tidyMoveLegacyCaBundle")]

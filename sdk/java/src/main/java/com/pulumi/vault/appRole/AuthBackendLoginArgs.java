@@ -69,7 +69,7 @@ public final class AuthBackendLoginArgs extends com.pulumi.resources.ResourceArg
 
     /**
      * The secret ID of the role to log in with. Required
-     * unless `bind_secret_id` is set to false on the role.
+     * unless `bindSecretId` is set to false on the role.
      * 
      */
     @Import(name="secretId")
@@ -77,7 +77,7 @@ public final class AuthBackendLoginArgs extends com.pulumi.resources.ResourceArg
 
     /**
      * @return The secret ID of the role to log in with. Required
-     * unless `bind_secret_id` is set to false on the role.
+     * unless `bindSecretId` is set to false on the role.
      * 
      */
     public Optional<Output<String>> secretId() {
@@ -182,7 +182,7 @@ public final class AuthBackendLoginArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param secretId The secret ID of the role to log in with. Required
-         * unless `bind_secret_id` is set to false on the role.
+         * unless `bindSecretId` is set to false on the role.
          * 
          * @return builder
          * 
@@ -194,7 +194,7 @@ public final class AuthBackendLoginArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param secretId The secret ID of the role to log in with. Required
-         * unless `bind_secret_id` is set to false on the role.
+         * unless `bindSecretId` is set to false on the role.
          * 
          * @return builder
          * 

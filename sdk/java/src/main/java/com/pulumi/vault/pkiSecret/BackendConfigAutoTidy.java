@@ -348,7 +348,7 @@ public class BackendConfigAutoTidy extends com.pulumi.resources.CustomResource {
     }
     /**
      * Set to true to automatically remove expired issuers past the
-     * `issuer_safety_buffer`. No keys will be removed as part of this operation.
+     * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      * 
      */
     @Export(name="tidyExpiredIssuers", refs={Boolean.class}, tree="[0]")
@@ -356,14 +356,14 @@ public class BackendConfigAutoTidy extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Set to true to automatically remove expired issuers past the
-     * `issuer_safety_buffer`. No keys will be removed as part of this operation.
+     * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      * 
      */
     public Output<Optional<Boolean>> tidyExpiredIssuers() {
         return Codegen.optional(this.tidyExpiredIssuers);
     }
     /**
-     * Set to true to move the legacy `ca_bundle` from
+     * Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      * 
      */
@@ -371,7 +371,7 @@ public class BackendConfigAutoTidy extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ Boolean> tidyMoveLegacyCaBundle;
 
     /**
-     * @return Set to true to move the legacy `ca_bundle` from
+     * @return Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      * 
      */

@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class BackendConfigCmpv2Authenticators {
     /**
-     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * @return &#34;The accessor (required) and certRole (optional) properties for cert auth backends&#34;.
      * 
      */
     private @Nullable Map<String,String> cert;
 
     private BackendConfigCmpv2Authenticators() {}
     /**
-     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * @return &#34;The accessor (required) and certRole (optional) properties for cert auth backends&#34;.
      * 
      */
     public Map<String,String> cert() {

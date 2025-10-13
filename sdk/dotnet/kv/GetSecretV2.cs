@@ -57,7 +57,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Task<GetSecretV2Result> InvokeAsync(GetSecretV2Args args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2Args(), options.WithDefaults());
@@ -108,7 +108,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Output<GetSecretV2Result> Invoke(GetSecretV2InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2InvokeArgs(), options.WithDefaults());
@@ -159,7 +159,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// Use of this resource requires the `Read` capability on the given path.
         /// </summary>
         public static Output<GetSecretV2Result> Invoke(GetSecretV2InvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2InvokeArgs(), options.WithDefaults());
@@ -186,7 +186,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -224,7 +224,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

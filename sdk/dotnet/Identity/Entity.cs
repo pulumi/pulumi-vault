@@ -48,13 +48,13 @@ namespace Pulumi.Vault.Identity
     public partial class Entity : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// True/false Is this entity currently disabled. Defaults to `false`
+        /// True/false Is this entity currently disabled. Defaults to `False`
         /// </summary>
         [Output("disabled")]
         public Output<bool?> Disabled { get; private set; } = null!;
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// `False` by default. If set to `True`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         /// </summary>
         [Output("externalPolicies")]
         public Output<bool?> ExternalPolicies { get; private set; } = null!;
@@ -74,7 +74,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -133,13 +133,13 @@ namespace Pulumi.Vault.Identity
     public sealed class EntityArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// True/false Is this entity currently disabled. Defaults to `false`
+        /// True/false Is this entity currently disabled. Defaults to `False`
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// `False` by default. If set to `True`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -165,7 +165,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -192,13 +192,13 @@ namespace Pulumi.Vault.Identity
     public sealed class EntityState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// True/false Is this entity currently disabled. Defaults to `false`
+        /// True/false Is this entity currently disabled. Defaults to `False`
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
+        /// `False` by default. If set to `True`, this resource will ignore any policies return from Vault or specified in the resource. You can use `vault.identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         /// </summary>
         [Input("externalPolicies")]
         public Input<bool>? ExternalPolicies { get; set; }
@@ -224,7 +224,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

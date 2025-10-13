@@ -35,14 +35,14 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+     * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      * 
      */
     @Import(name="autoRenew")
     private @Nullable Output<Boolean> autoRenew;
 
     /**
-     * @return If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+     * @return If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      * 
      */
     public Optional<Output<Boolean>> autoRenew() {
@@ -65,14 +65,14 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
      * 
      */
     @Import(name="certMetadata")
     private @Nullable Output<String> certMetadata;
 
     /**
-     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+     * @return A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
      * 
      */
     public Optional<Output<String>> certMetadata() {
@@ -251,14 +251,14 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      * 
      */
     @Import(name="revoke")
     private @Nullable Output<Boolean> revoke;
 
     /**
-     * @return If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+     * @return If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      * 
      */
     public Optional<Output<Boolean>> revoke() {
@@ -400,7 +400,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
          * 
          * @return builder
          * 
@@ -411,7 +411,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+         * @param autoRenew If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
          * 
          * @return builder
          * 
@@ -442,7 +442,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
          * 
          * @return builder
          * 
@@ -453,7 +453,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s no_store_metadata must be set to false, otherwise an error is returned when specified.
+         * @param certMetadata A base 64 encoded value or an empty string to associate with the certificate&#39;s serial number. The role&#39;s noStoreMetadata must be set to false, otherwise an error is returned when specified.
          * 
          * @return builder
          * 
@@ -720,7 +720,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param revoke If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+         * @param revoke If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
          * 
          * @return builder
          * 
@@ -731,7 +731,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param revoke If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+         * @param revoke If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
          * 
          * @return builder
          * 

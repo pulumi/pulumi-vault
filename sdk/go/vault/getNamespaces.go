@@ -62,6 +62,10 @@ import (
 //	}
 //
 // ```
+//
+// ### Child namespace details
+//
+// To fetch the details of child namespaces:
 func GetNamespaces(ctx *pulumi.Context, args *GetNamespacesArgs, opts ...pulumi.InvokeOption) (*GetNamespacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNamespacesResult

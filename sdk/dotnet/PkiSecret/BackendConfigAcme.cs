@@ -97,7 +97,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the policy to be used for non-role-qualified ACME requests.
-        /// Allowed values are `forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
+        /// Allowed values are `Forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
         /// </summary>
         [Output("defaultDirectoryPolicy")]
         public Output<string> DefaultDirectoryPolicy { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -221,7 +221,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the policy to be used for non-role-qualified ACME requests.
-        /// Allowed values are `forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
+        /// Allowed values are `Forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
         /// </summary>
         [Input("defaultDirectoryPolicy")]
         public Input<string>? DefaultDirectoryPolicy { get; set; }
@@ -255,7 +255,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -307,7 +307,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the policy to be used for non-role-qualified ACME requests.
-        /// Allowed values are `forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
+        /// Allowed values are `Forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
         /// </summary>
         [Input("defaultDirectoryPolicy")]
         public Input<string>? DefaultDirectoryPolicy { get; set; }
@@ -341,7 +341,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

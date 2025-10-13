@@ -43,7 +43,7 @@ namespace Pulumi.Vault.Managed.Inputs
         public Input<bool>? AnyMount { get; set; }
 
         /// <summary>
-        /// The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
+        /// The curve to use for an ECDSA key. Used when KeyType is 'ECDSA'. Required if 'allow_generate_key' is true
         /// </summary>
         [Input("curve")]
         public Input<string>? Curve { get; set; }

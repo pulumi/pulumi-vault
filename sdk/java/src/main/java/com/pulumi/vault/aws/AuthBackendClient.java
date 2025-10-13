@@ -116,7 +116,7 @@ import javax.annotation.Nullable;
 public class AuthBackendClient extends com.pulumi.resources.CustomResource {
     /**
      * The AWS access key that Vault should use for the
-     * auth backend. Mutually exclusive with `identity_token_audience`.
+     * auth backend. Mutually exclusive with `identityTokenAudience`.
      * 
      */
     @Export(name="accessKey", refs={String.class}, tree="[0]")
@@ -124,7 +124,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The AWS access key that Vault should use for the
-     * auth backend. Mutually exclusive with `identity_token_audience`.
+     * auth backend. Mutually exclusive with `identityTokenAudience`.
      * 
      */
     public Output<Optional<String>> accessKey() {
@@ -211,7 +211,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.iamServerIdHeaderValue);
     }
     /**
-     * The audience claim value. Mutually exclusive with `access_key`.
+     * The audience claim value. Mutually exclusive with `accessKey`.
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      * 
      */
@@ -219,7 +219,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> identityTokenAudience;
 
     /**
-     * @return The audience claim value. Mutually exclusive with `access_key`.
+     * @return The audience claim value. Mutually exclusive with `accessKey`.
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      * 
      */
@@ -378,7 +378,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
     }
     /**
      * Override the default region when making STS API
-     * calls. The `sts_endpoint` argument must be set when using `sts_region`.
+     * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      * 
      */
     @Export(name="stsRegion", refs={String.class}, tree="[0]")
@@ -386,7 +386,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Override the default region when making STS API
-     * calls. The `sts_endpoint` argument must be set when using `sts_region`.
+     * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      * 
      */
     public Output<Optional<String>> stsRegion() {
@@ -394,7 +394,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
     }
     /**
      * Available in Vault v1.15+. If set,
-     * overrides both `sts_endpoint` and `sts_region` to instead use the region
+     * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
      * This can be useful when you have client requests coming from different
      * regions and want flexibility in which regional STS API is used.
@@ -405,7 +405,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Available in Vault v1.15+. If set,
-     * overrides both `sts_endpoint` and `sts_region` to instead use the region
+     * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
      * This can be useful when you have client requests coming from different
      * regions and want flexibility in which regional STS API is used.

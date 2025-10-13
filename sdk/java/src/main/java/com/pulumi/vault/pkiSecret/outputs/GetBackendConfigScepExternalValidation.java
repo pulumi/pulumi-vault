@@ -12,14 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetBackendConfigScepExternalValidation {
     /**
-     * @return The tenant_id, client_id, client_secret and environment properties for Microsoft Intune validation of SCEP requests.
+     * @return The tenant_id, client_id, clientSecret and environment properties for Microsoft Intune validation of SCEP requests.
      * 
      */
     private @Nullable Map<String,String> intune;
 
     private GetBackendConfigScepExternalValidation() {}
     /**
-     * @return The tenant_id, client_id, client_secret and environment properties for Microsoft Intune validation of SCEP requests.
+     * @return The tenant_id, client_id, clientSecret and environment properties for Microsoft Intune validation of SCEP requests.
      * 
      */
     public Map<String,String> intune() {

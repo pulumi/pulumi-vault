@@ -92,7 +92,7 @@ namespace Pulumi.Vault.Identity
     public partial class OidcRole : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The value that will be included in the `aud` field of all the OIDC identity
+        /// The value that will be included in the `Aud` field of all the OIDC identity
         /// tokens issued by this role
         /// </summary>
         [Output("clientId")]
@@ -114,7 +114,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -182,7 +182,7 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The value that will be included in the `aud` field of all the OIDC identity
+        /// The value that will be included in the `Aud` field of all the OIDC identity
         /// tokens issued by this role
         /// </summary>
         [Input("clientId")]
@@ -204,7 +204,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -234,7 +234,7 @@ namespace Pulumi.Vault.Identity
     public sealed class OidcRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The value that will be included in the `aud` field of all the OIDC identity
+        /// The value that will be included in the `Aud` field of all the OIDC identity
         /// tokens issued by this role
         /// </summary>
         [Input("clientId")]
@@ -256,7 +256,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

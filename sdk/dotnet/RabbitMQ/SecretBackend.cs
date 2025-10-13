@@ -141,7 +141,7 @@ namespace Pulumi.Vault.RabbitMQ
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -173,7 +173,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `rabbitmq`.
+        /// not begin or end with a `/`. Defaults to `Rabbitmq`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -204,7 +204,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// Specifies whether to verify connection URI, username, and password.
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// </summary>
         [Output("verifyConnection")]
         public Output<bool?> VerifyConnection { get; private set; } = null!;
@@ -384,7 +384,7 @@ namespace Pulumi.Vault.RabbitMQ
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -438,7 +438,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `rabbitmq`.
+        /// not begin or end with a `/`. Defaults to `Rabbitmq`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -479,7 +479,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// Specifies whether to verify connection URI, username, and password.
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// </summary>
         [Input("verifyConnection")]
         public Input<bool>? VerifyConnection { get; set; }
@@ -622,7 +622,7 @@ namespace Pulumi.Vault.RabbitMQ
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -676,7 +676,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
-        /// not begin or end with a `/`. Defaults to `rabbitmq`.
+        /// not begin or end with a `/`. Defaults to `Rabbitmq`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -717,7 +717,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// Specifies whether to verify connection URI, username, and password.
-        /// Defaults to `true`.
+        /// Defaults to `True`.
         /// </summary>
         [Input("verifyConnection")]
         public Input<bool>? VerifyConnection { get; set; }

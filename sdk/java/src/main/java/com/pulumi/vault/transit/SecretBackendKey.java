@@ -243,28 +243,28 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return this.keys;
     }
     /**
-     * Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key&#39;s information can be referenced from `keys` by selecting element `0`
+     * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key&#39;s information can be referenced from `keys` by selecting element `0`
      * 
      */
     @Export(name="latestVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> latestVersion;
 
     /**
-     * @return Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key&#39;s information can be referenced from `keys` by selecting element `0`
+     * @return Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key&#39;s information can be referenced from `keys` by selecting element `0`
      * 
      */
     public Output<Integer> latestVersion() {
         return this.latestVersion;
     }
     /**
-     * Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+     * Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
      * 
      */
     @Export(name="minAvailableVersion", refs={Integer.class}, tree="[0]")
     private Output<Integer> minAvailableVersion;
 
     /**
-     * @return Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
+     * @return Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
      * 
      */
     public Output<Integer> minAvailableVersion() {
@@ -413,7 +413,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return this.supportsSigning;
     }
     /**
-     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
+     * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */
@@ -421,7 +421,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> type;
 
     /**
-     * @return Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
+     * @return Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
      */

@@ -249,6 +249,8 @@ def get_verify(batch_inputs: Optional[Sequence[Mapping[str, _builtins.str]]] = N
     """
     This is a data source which can be used to verify a signature using a Vault Transit key.
 
+    ## Example Usage
+
 
     :param Sequence[Mapping[str, _builtins.str]] batch_results: The results returned from Vault if using `batch_input`
     :param _builtins.bool valid: Returns `true` if the signature verification succeeded and `false` otherwise
@@ -319,6 +321,8 @@ def get_verify_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVerifyResult]:
     """
     This is a data source which can be used to verify a signature using a Vault Transit key.
+
+    ## Example Usage
 
 
     :param Sequence[Mapping[str, _builtins.str]] batch_results: The results returned from Vault if using `batch_input`

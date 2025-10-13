@@ -123,7 +123,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
     }
     /**
      * The Client Secret Key returned by Vault.
-     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+     * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
@@ -131,7 +131,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The Client Secret Key returned by Vault.
-     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
+     * For public OpenID Clients `clientSecret` is set to an empty string `&#34;&#34;`
      * 
      */
     public Output<String> clientSecret() {
@@ -155,7 +155,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
     }
     /**
      * The time-to-live for ID tokens obtained by the client.
-     * The value should be less than the `verification_ttl` on the key.
+     * The value should be less than the `verificationTtl` on the key.
      * 
      */
     @Export(name="idTokenTtl", refs={Integer.class}, tree="[0]")
@@ -163,7 +163,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The time-to-live for ID tokens obtained by the client.
-     * The value should be less than the `verification_ttl` on the key.
+     * The value should be less than the `verificationTtl` on the key.
      * 
      */
     public Output<Integer> idTokenTtl() {
@@ -223,7 +223,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
     }
     /**
      * Redirection URI values used by the client.
-     * One of these values must exactly match the `redirect_uri` parameter value
+     * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      * 
      */
@@ -232,7 +232,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Redirection URI values used by the client.
-     * One of these values must exactly match the `redirect_uri` parameter value
+     * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      * 
      */

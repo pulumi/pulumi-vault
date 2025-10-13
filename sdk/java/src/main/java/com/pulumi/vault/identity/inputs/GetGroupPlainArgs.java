@@ -31,10 +31,10 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * Accessor of the mount to which the alias belongs to.
-     * This should be supplied in conjunction with `alias_name`.
+     * This should be supplied in conjunction with `aliasName`.
      * 
-     * The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
-     * `alias_name` and `alias_mount_accessor`.
+     * The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+     * `aliasName` and `aliasMountAccessor`.
      * 
      */
     @Import(name="aliasMountAccessor")
@@ -42,10 +42,10 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * @return Accessor of the mount to which the alias belongs to.
-     * This should be supplied in conjunction with `alias_name`.
+     * This should be supplied in conjunction with `aliasName`.
      * 
-     * The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
-     * `alias_name` and `alias_mount_accessor`.
+     * The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+     * `aliasName` and `aliasMountAccessor`.
      * 
      */
     public Optional<String> aliasMountAccessor() {
@@ -54,7 +54,7 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * Name of the alias. This should be supplied in conjunction with
-     * `alias_mount_accessor`.
+     * `aliasMountAccessor`.
      * 
      */
     @Import(name="aliasName")
@@ -62,7 +62,7 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * @return Name of the alias. This should be supplied in conjunction with
-     * `alias_mount_accessor`.
+     * `aliasMountAccessor`.
      * 
      */
     public Optional<String> aliasName() {
@@ -162,10 +162,10 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param aliasMountAccessor Accessor of the mount to which the alias belongs to.
-         * This should be supplied in conjunction with `alias_name`.
+         * This should be supplied in conjunction with `aliasName`.
          * 
-         * The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
-         * `alias_name` and `alias_mount_accessor`.
+         * The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
+         * `aliasName` and `aliasMountAccessor`.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param aliasName Name of the alias. This should be supplied in conjunction with
-         * `alias_mount_accessor`.
+         * `aliasMountAccessor`.
          * 
          * @return builder
          * 

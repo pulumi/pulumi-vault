@@ -357,6 +357,8 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         """
         Reads role tag information from an AWS auth backend in Vault.
 
+        ## Example Usage
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -381,6 +383,8 @@ class AuthBackendRoleTag(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Reads role tag information from an AWS auth backend in Vault.
+
+        ## Example Usage
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleTagArgs args: The arguments to use to populate this resource's properties.

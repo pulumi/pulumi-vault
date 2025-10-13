@@ -184,7 +184,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
     /**
      * The list of Consul ACL policies to associate with these roles.
-     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
@@ -193,7 +193,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
     /**
      * @return The list of Consul ACL policies to associate with these roles.
-     * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+     * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      * 
      */
@@ -527,7 +527,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
         /**
          * @param policies The list of Consul ACL policies to associate with these roles.
-         * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+         * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
          * `policies`, remains supported for legacy users, but Vault has deprecated this field.
          * 
          * @return builder
@@ -540,7 +540,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
         /**
          * @param policies The list of Consul ACL policies to associate with these roles.
-         * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+         * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
          * `policies`, remains supported for legacy users, but Vault has deprecated this field.
          * 
          * @return builder
@@ -552,7 +552,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
         /**
          * @param policies The list of Consul ACL policies to associate with these roles.
-         * **NOTE:** The new parameter `consul_policies` should be used in favor of this. This parameter,
+         * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
          * `policies`, remains supported for legacy users, but Vault has deprecated this field.
          * 
          * @return builder

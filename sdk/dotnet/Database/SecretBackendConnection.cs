@@ -50,12 +50,12 @@ namespace Pulumi.Vault.Database
     /// 
     /// The following write-only attributes are supported for all DBs that support username/password:
     /// 
-    /// * `password_wo` - (Optional) The password for the user. Can be updated.
+    /// * `PasswordWo` - (Optional) The password for the user. Can be updated.
     ///   **Note**: This property is write-only and will not be read from the API.
     /// 
     /// The following write-only attribute is supported only for Snowflake DB:
     /// 
-    /// * `private_key_wo` - (Optional) The private key associated with the Snowflake user.
+    /// * `PrivateKeyWo` - (Optional) The private key associated with the Snowflake user.
     ///   **Note**: This property is write-only and will not be read from the API.
     /// 
     /// ## Import
@@ -175,7 +175,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -424,7 +424,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -641,7 +641,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

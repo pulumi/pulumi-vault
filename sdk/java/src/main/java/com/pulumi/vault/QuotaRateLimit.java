@@ -89,11 +89,11 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
     }
     /**
      * Attribute used to group requests for rate limiting. Limits are enforced independently for each
-     * group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+     * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
      * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
-     * that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+     * that match the rate limit quota rule; 3) `entityThenIp` that groups requests by their entity ID for authenticated
      * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
-     * connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+     * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
      * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
      * 
      */
@@ -102,11 +102,11 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Attribute used to group requests for rate limiting. Limits are enforced independently for each
-     * group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
+     * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
      * `ip` if unset, which is the only supported mode in community edition**); 2) `none` that groups together all requests
-     * that match the rate limit quota rule; 3) `entity_then_ip` that groups requests by their entity ID for authenticated
+     * that match the rate limit quota rule; 3) `entityThenIp` that groups requests by their entity ID for authenticated
      * requests that carry one, or by their IP for unauthenticated requests (or requests whose authentication is not
-     * connected to an entity); and 4) `entity_then_none` which also groups requests by their entity ID when available, but
+     * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
      * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
      * 
      */
@@ -230,7 +230,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.role);
     }
     /**
-     * Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+     * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
      * the rate limit applied to the requests that fall under the &#34;ip&#34; or &#34;none&#34; groupings, while the authenticated requests
      * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
      * 
@@ -239,7 +239,7 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
     private Output<Double> secondaryRate;
 
     /**
-     * @return Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
+     * @return Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
      * the rate limit applied to the requests that fall under the &#34;ip&#34; or &#34;none&#34; groupings, while the authenticated requests
      * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
      * 
