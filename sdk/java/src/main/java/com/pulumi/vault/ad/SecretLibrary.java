@@ -112,7 +112,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
     }
     /**
      * The maximum password time-to-live in seconds. Defaults to the configuration
-     * max_ttl if not provided.
+     * maxTtl if not provided.
      * 
      */
     @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
@@ -120,7 +120,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The maximum password time-to-live in seconds. Defaults to the configuration
-     * max_ttl if not provided.
+     * maxTtl if not provided.
      * 
      */
     public Output<Integer> maxTtl() {

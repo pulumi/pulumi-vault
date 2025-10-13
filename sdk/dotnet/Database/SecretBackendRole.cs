@@ -81,16 +81,16 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Specifies the configuration
-        /// for the given `credential_type`.
+        /// for the given `CredentialType`.
         /// 
-        /// The following options are available for each `credential_type` value:
+        /// The following options are available for each `CredentialType` value:
         /// </summary>
         [Output("credentialConfig")]
         public Output<ImmutableDictionary<string, string>?> CredentialConfig { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the type of credential that
-        /// will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        /// will be generated for the role. Options include: `Password`, `RsaPrivateKey`, `ClientCertificate`.
         /// See the plugin's API page for credential types supported by individual databases.
         /// </summary>
         [Output("credentialType")]
@@ -126,7 +126,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -223,9 +223,9 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Specifies the configuration
-        /// for the given `credential_type`.
+        /// for the given `CredentialType`.
         /// 
-        /// The following options are available for each `credential_type` value:
+        /// The following options are available for each `CredentialType` value:
         /// </summary>
         public InputMap<string> CredentialConfig
         {
@@ -235,7 +235,7 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Specifies the type of credential that
-        /// will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        /// will be generated for the role. Options include: `Password`, `RsaPrivateKey`, `ClientCertificate`.
         /// See the plugin's API page for credential types supported by individual databases.
         /// </summary>
         [Input("credentialType")]
@@ -271,7 +271,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -348,9 +348,9 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Specifies the configuration
-        /// for the given `credential_type`.
+        /// for the given `CredentialType`.
         /// 
-        /// The following options are available for each `credential_type` value:
+        /// The following options are available for each `CredentialType` value:
         /// </summary>
         public InputMap<string> CredentialConfig
         {
@@ -360,7 +360,7 @@ namespace Pulumi.Vault.Database
 
         /// <summary>
         /// Specifies the type of credential that
-        /// will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
+        /// will be generated for the role. Options include: `Password`, `RsaPrivateKey`, `ClientCertificate`.
         /// See the plugin's API page for credential types supported by individual databases.
         /// </summary>
         [Input("credentialType")]
@@ -396,7 +396,7 @@ namespace Pulumi.Vault.Database
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
+        /// The `Namespace` is always relative to the provider's configured namespace.
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

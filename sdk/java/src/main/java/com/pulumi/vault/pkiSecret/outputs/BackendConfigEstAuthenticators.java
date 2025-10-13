@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class BackendConfigEstAuthenticators {
     /**
-     * @return The accessor (required) and cert_role (optional) properties for cert auth backends.
+     * @return The accessor (required) and certRole (optional) properties for cert auth backends.
      * 
      */
     private @Nullable Map<String,String> cert;
@@ -24,7 +24,7 @@ public final class BackendConfigEstAuthenticators {
 
     private BackendConfigEstAuthenticators() {}
     /**
-     * @return The accessor (required) and cert_role (optional) properties for cert auth backends.
+     * @return The accessor (required) and certRole (optional) properties for cert auth backends.
      * 
      */
     public Map<String,String> cert() {

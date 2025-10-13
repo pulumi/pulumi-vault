@@ -45,7 +45,7 @@ namespace Pulumi.Vault
     public partial class EgpPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        /// Enforcement level of Sentinel policy. Can be either `Advisory` or `soft-mandatory` or `hard-mandatory`
         /// </summary>
         [Output("enforcementLevel")]
         public Output<string> EnforcementLevel { get; private set; } = null!;
@@ -59,7 +59,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -124,7 +124,7 @@ namespace Pulumi.Vault
     public sealed class EgpPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        /// Enforcement level of Sentinel policy. Can be either `Advisory` or `soft-mandatory` or `hard-mandatory`
         /// </summary>
         [Input("enforcementLevel", required: true)]
         public Input<string> EnforcementLevel { get; set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -171,7 +171,7 @@ namespace Pulumi.Vault
     public sealed class EgpPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
+        /// Enforcement level of Sentinel policy. Can be either `Advisory` or `soft-mandatory` or `hard-mandatory`
         /// </summary>
         [Input("enforcementLevel")]
         public Input<string>? EnforcementLevel { get; set; }
@@ -185,7 +185,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

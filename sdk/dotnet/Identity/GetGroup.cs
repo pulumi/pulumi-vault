@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `create` capability on `/identity/lookup/group`.
+        /// Use of this resource requires the `Create` capability on `/identity/lookup/group`.
         /// </summary>
         public static Task<GetGroupResult> InvokeAsync(GetGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
@@ -58,7 +58,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `create` capability on `/identity/lookup/group`.
+        /// Use of this resource requires the `Create` capability on `/identity/lookup/group`.
         /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
@@ -84,7 +84,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `create` capability on `/identity/lookup/group`.
+        /// Use of this resource requires the `Create` capability on `/identity/lookup/group`.
         /// </summary>
         public static Output<GetGroupResult> Invoke(GetGroupInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetGroupResult>("vault:identity/getGroup:getGroup", args ?? new GetGroupInvokeArgs(), options.WithDefaults());
@@ -101,17 +101,17 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// Accessor of the mount to which the alias belongs to.
-        /// This should be supplied in conjunction with `alias_name`.
+        /// This should be supplied in conjunction with `AliasName`.
         /// 
-        /// The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
-        /// `alias_name` and `alias_mount_accessor`.
+        /// The lookup criteria can be `GroupName`, `GroupId`, `AliasId`, or a combination of
+        /// `AliasName` and `AliasMountAccessor`.
         /// </summary>
         [Input("aliasMountAccessor")]
         public string? AliasMountAccessor { get; set; }
 
         /// <summary>
         /// Name of the alias. This should be supplied in conjunction with
-        /// `alias_mount_accessor`.
+        /// `AliasMountAccessor`.
         /// </summary>
         [Input("aliasName")]
         public string? AliasName { get; set; }
@@ -131,7 +131,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -153,17 +153,17 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// Accessor of the mount to which the alias belongs to.
-        /// This should be supplied in conjunction with `alias_name`.
+        /// This should be supplied in conjunction with `AliasName`.
         /// 
-        /// The lookup criteria can be `group_name`, `group_id`, `alias_id`, or a combination of
-        /// `alias_name` and `alias_mount_accessor`.
+        /// The lookup criteria can be `GroupName`, `GroupId`, `AliasId`, or a combination of
+        /// `AliasName` and `AliasMountAccessor`.
         /// </summary>
         [Input("aliasMountAccessor")]
         public Input<string>? AliasMountAccessor { get; set; }
 
         /// <summary>
         /// Name of the alias. This should be supplied in conjunction with
-        /// `alias_mount_accessor`.
+        /// `AliasMountAccessor`.
         /// </summary>
         [Input("aliasName")]
         public Input<string>? AliasName { get; set; }
@@ -183,7 +183,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

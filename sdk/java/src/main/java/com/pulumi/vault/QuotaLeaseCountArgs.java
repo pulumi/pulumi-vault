@@ -35,7 +35,7 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * The maximum number of leases to be allowed by the quota
-     * rule. The `max_leases` must be positive.
+     * rule. The `maxLeases` must be positive.
      * 
      */
     @Import(name="maxLeases", required=true)
@@ -43,7 +43,7 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return The maximum number of leases to be allowed by the quota
-     * rule. The `max_leases` must be positive.
+     * rule. The `maxLeases` must be positive.
      * 
      */
     public Output<Integer> maxLeases() {
@@ -178,7 +178,7 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param maxLeases The maximum number of leases to be allowed by the quota
-         * rule. The `max_leases` must be positive.
+         * rule. The `maxLeases` must be positive.
          * 
          * @return builder
          * 
@@ -190,7 +190,7 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param maxLeases The maximum number of leases to be allowed by the quota
-         * rule. The `max_leases` must be positive.
+         * rule. The `maxLeases` must be positive.
          * 
          * @return builder
          * 

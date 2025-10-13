@@ -108,7 +108,7 @@ namespace Pulumi.Vault.Okta
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -121,7 +121,7 @@ namespace Pulumi.Vault.Okta
         public Output<string> Organization { get; private set; } = null!;
 
         /// <summary>
-        /// Path to mount the Okta auth backend. Default to path `okta`.
+        /// Path to mount the Okta auth backend. Default to path `Okta`.
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
@@ -285,7 +285,7 @@ namespace Pulumi.Vault.Okta
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -298,7 +298,7 @@ namespace Pulumi.Vault.Okta
         public Input<string> Organization { get; set; } = null!;
 
         /// <summary>
-        /// Path to mount the Okta auth backend. Default to path `okta`.
+        /// Path to mount the Okta auth backend. Default to path `Okta`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -454,7 +454,7 @@ namespace Pulumi.Vault.Okta
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -467,7 +467,7 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Organization { get; set; }
 
         /// <summary>
-        /// Path to mount the Okta auth backend. Default to path `okta`.
+        /// Path to mount the Okta auth backend. Default to path `Okta`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }

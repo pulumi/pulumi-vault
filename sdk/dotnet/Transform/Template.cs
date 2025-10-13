@@ -21,7 +21,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// ## Example Usage
     /// 
-    /// Please note that the `pattern` below holds a regex. The regex shown
+    /// Please note that the `Pattern` below holds a regex. The regex shown
     /// is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
     /// docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
     /// backslashes must be escaped to appear correctly in Vault. For further
@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Transform
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -202,7 +202,7 @@ namespace Pulumi.Vault.Transform
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -269,7 +269,7 @@ namespace Pulumi.Vault.Transform
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

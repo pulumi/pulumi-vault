@@ -52,7 +52,7 @@ public final class SecretLibraryState extends com.pulumi.resources.ResourceArgs 
 
     /**
      * The maximum password time-to-live in seconds. Defaults to the configuration
-     * max_ttl if not provided.
+     * maxTtl if not provided.
      * 
      */
     @Import(name="maxTtl")
@@ -60,7 +60,7 @@ public final class SecretLibraryState extends com.pulumi.resources.ResourceArgs 
 
     /**
      * @return The maximum password time-to-live in seconds. Defaults to the configuration
-     * max_ttl if not provided.
+     * maxTtl if not provided.
      * 
      */
     public Optional<Output<Integer>> maxTtl() {
@@ -213,7 +213,7 @@ public final class SecretLibraryState extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param maxTtl The maximum password time-to-live in seconds. Defaults to the configuration
-         * max_ttl if not provided.
+         * maxTtl if not provided.
          * 
          * @return builder
          * 
@@ -225,7 +225,7 @@ public final class SecretLibraryState extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param maxTtl The maximum password time-to-live in seconds. Defaults to the configuration
-         * max_ttl if not provided.
+         * maxTtl if not provided.
          * 
          * @return builder
          * 

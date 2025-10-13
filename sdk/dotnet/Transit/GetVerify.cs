@@ -13,18 +13,24 @@ namespace Pulumi.Vault.Transit
     {
         /// <summary>
         /// This is a data source which can be used to verify a signature using a Vault Transit key.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetVerifyResult> InvokeAsync(GetVerifyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVerifyResult>("vault:transit/getVerify:getVerify", args ?? new GetVerifyArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to verify a signature using a Vault Transit key.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetVerifyResult> Invoke(GetVerifyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVerifyResult>("vault:transit/getVerify:getVerify", args ?? new GetVerifyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// This is a data source which can be used to verify a signature using a Vault Transit key.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetVerifyResult> Invoke(GetVerifyInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetVerifyResult>("vault:transit/getVerify:getVerify", args ?? new GetVerifyInvokeArgs(), options.WithDefaults());
@@ -45,7 +51,7 @@ namespace Pulumi.Vault.Transit
         private List<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public List<ImmutableDictionary<string, string>> BatchResults
         {
@@ -102,7 +108,7 @@ namespace Pulumi.Vault.Transit
         public string? SignatureContext { get; set; }
 
         /// <summary>
-        /// Returns `true` if the signature verification succeeded and `false` otherwise
+        /// Returns `True` if the signature verification succeeded and `False` otherwise
         /// </summary>
         [Input("valid")]
         public bool? Valid { get; set; }
@@ -127,7 +133,7 @@ namespace Pulumi.Vault.Transit
         private InputList<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public InputList<ImmutableDictionary<string, string>> BatchResults
         {
@@ -184,7 +190,7 @@ namespace Pulumi.Vault.Transit
         public Input<string>? SignatureContext { get; set; }
 
         /// <summary>
-        /// Returns `true` if the signature verification succeeded and `false` otherwise
+        /// Returns `True` if the signature verification succeeded and `False` otherwise
         /// </summary>
         [Input("valid")]
         public Input<bool>? Valid { get; set; }
@@ -201,7 +207,7 @@ namespace Pulumi.Vault.Transit
     {
         public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchInputs;
         /// <summary>
-        /// The results returned from Vault if using `batch_input`
+        /// The results returned from Vault if using `BatchInput`
         /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchResults;
         public readonly string? Cmac;
@@ -225,7 +231,7 @@ namespace Pulumi.Vault.Transit
         public readonly string? SignatureAlgorithm;
         public readonly string? SignatureContext;
         /// <summary>
-        /// Returns `true` if the signature verification succeeded and `false` otherwise
+        /// Returns `True` if the signature verification succeeded and `False` otherwise
         /// </summary>
         public readonly bool Valid;
 

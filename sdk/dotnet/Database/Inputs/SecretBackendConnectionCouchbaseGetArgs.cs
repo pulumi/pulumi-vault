@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _base64Pem;
 
         /// <summary>
-        /// Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        /// Required if `Tls` is `True`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         /// </summary>
         public Input<string>? Base64Pem
         {
@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Database.Inputs
         private InputList<string>? _hosts;
 
         /// <summary>
-        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `Tls` is `True`.
         /// </summary>
         public InputList<string> Hosts
         {

@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
 /**
  * Creates a key on a PKI Secret Backend for Vault.
  * 
+ * ## Example Usage
+ * 
  * ## Import
  * 
  * PKI secret backend key can be imported using the `id`, e.g.

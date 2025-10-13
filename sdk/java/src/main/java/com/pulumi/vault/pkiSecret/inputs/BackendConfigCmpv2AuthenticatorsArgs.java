@@ -17,14 +17,14 @@ public final class BackendConfigCmpv2AuthenticatorsArgs extends com.pulumi.resou
     public static final BackendConfigCmpv2AuthenticatorsArgs Empty = new BackendConfigCmpv2AuthenticatorsArgs();
 
     /**
-     * &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * &#34;The accessor (required) and certRole (optional) properties for cert auth backends&#34;.
      * 
      */
     @Import(name="cert")
     private @Nullable Output<Map<String,String>> cert;
 
     /**
-     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * @return &#34;The accessor (required) and certRole (optional) properties for cert auth backends&#34;.
      * 
      */
     public Optional<Output<Map<String,String>>> cert() {
@@ -56,7 +56,7 @@ public final class BackendConfigCmpv2AuthenticatorsArgs extends com.pulumi.resou
         }
 
         /**
-         * @param cert &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+         * @param cert &#34;The accessor (required) and certRole (optional) properties for cert auth backends&#34;.
          * 
          * @return builder
          * 
@@ -67,7 +67,7 @@ public final class BackendConfigCmpv2AuthenticatorsArgs extends com.pulumi.resou
         }
 
         /**
-         * @param cert &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+         * @param cert &#34;The accessor (required) and certRole (optional) properties for cert auth backends&#34;.
          * 
          * @return builder
          * 

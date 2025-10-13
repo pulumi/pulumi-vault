@@ -385,7 +385,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     }
     /**
      * Within the directory or bucket
-     * prefix given by `path_prefix`, the file or object name of snapshot files
+     * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      * 
      */
@@ -394,7 +394,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
 
     /**
      * @return Within the directory or bucket
-     * prefix given by `path_prefix`, the file or object name of snapshot files
+     * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      * 
      */
@@ -520,7 +520,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.namespace);
     }
     /**
-     * `&lt;required&gt;` - For `storage_type = &#34;local&#34;`, the directory to
+     * `&lt;required&gt;` - For `storageType = &#34;local&#34;`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
@@ -530,7 +530,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     private Output<String> pathPrefix;
 
     /**
-     * @return `&lt;required&gt;` - For `storage_type = &#34;local&#34;`, the directory to
+     * @return `&lt;required&gt;` - For `storageType = &#34;local&#34;`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
@@ -560,7 +560,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     /**
      * `&lt;required&gt;` - One of &#34;local&#34;, &#34;azure-blob&#34;, &#34;aws-s3&#34;,
      * or &#34;google-gcs&#34;. The remaining parameters described below are all specific to
-     * the selected `storage_type` and prefixed accordingly.
+     * the selected `storageType` and prefixed accordingly.
      * 
      */
     @Export(name="storageType", refs={String.class}, tree="[0]")
@@ -569,7 +569,7 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     /**
      * @return `&lt;required&gt;` - One of &#34;local&#34;, &#34;azure-blob&#34;, &#34;aws-s3&#34;,
      * or &#34;google-gcs&#34;. The remaining parameters described below are all specific to
-     * the selected `storage_type` and prefixed accordingly.
+     * the selected `storageType` and prefixed accordingly.
      * 
      */
     public Output<String> storageType() {

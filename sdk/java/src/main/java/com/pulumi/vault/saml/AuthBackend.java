@@ -131,7 +131,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * The PEM encoded certificate of the identity provider. Mutually exclusive
-     * with `idp_metadata_url`.
+     * with `idpMetadataUrl`.
      * 
      */
     @Export(name="idpCert", refs={String.class}, tree="[0]")
@@ -139,7 +139,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The PEM encoded certificate of the identity provider. Mutually exclusive
-     * with `idp_metadata_url`.
+     * with `idpMetadataUrl`.
      * 
      */
     public Output<Optional<String>> idpCert() {
@@ -147,7 +147,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * The entity ID of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     @Export(name="idpEntityId", refs={String.class}, tree="[0]")
@@ -155,7 +155,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The entity ID of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     public Output<Optional<String>> idpEntityId() {
@@ -177,7 +177,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * The SSO URL of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     @Export(name="idpSsoUrl", refs={String.class}, tree="[0]")
@@ -185,7 +185,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The SSO URL of the identity provider. Mutually exclusive with
-     * `idp_metadata_url`.
+     * `idpMetadataUrl`.
      * 
      */
     public Output<Optional<String>> idpSsoUrl() {

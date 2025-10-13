@@ -60,25 +60,25 @@ namespace Pulumi.Vault.Ssh
         public Output<bool?> GenerateSigningKey { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// Specifies the desired key bits for the generated SSH CA key when `GenerateSigningKey` is set to `True`.
         /// </summary>
         [Output("keyBits")]
         public Output<int?> KeyBits { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// Specifies the desired key type for the generated SSH CA key when `GenerateSigningKey` is set to `True`.
         /// </summary>
         [Output("keyType")]
         public Output<string?> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        /// The id of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
         /// </summary>
         [Output("managedKeyId")]
         public Output<string?> ManagedKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        /// The name of the managed key to use. When using a managed key, this field or ManagedKeyId is required.
         /// </summary>
         [Output("managedKeyName")]
         public Output<string?> ManagedKeyName { get; private set; } = null!;
@@ -86,20 +86,20 @@ namespace Pulumi.Vault.Ssh
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The private key part the SSH CA key pair; required if GenerateSigningKey is false.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// The public key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The public key part the SSH CA key pair; required if GenerateSigningKey is false.
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
@@ -167,25 +167,25 @@ namespace Pulumi.Vault.Ssh
         public Input<bool>? GenerateSigningKey { get; set; }
 
         /// <summary>
-        /// Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// Specifies the desired key bits for the generated SSH CA key when `GenerateSigningKey` is set to `True`.
         /// </summary>
         [Input("keyBits")]
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// Specifies the desired key type for the generated SSH CA key when `GenerateSigningKey` is set to `True`.
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        /// The id of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
-        /// The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        /// The name of the managed key to use. When using a managed key, this field or ManagedKeyId is required.
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Ssh
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -203,7 +203,7 @@ namespace Pulumi.Vault.Ssh
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The private key part the SSH CA key pair; required if GenerateSigningKey is false.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -216,7 +216,7 @@ namespace Pulumi.Vault.Ssh
         }
 
         /// <summary>
-        /// The public key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The public key part the SSH CA key pair; required if GenerateSigningKey is false.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
@@ -242,25 +242,25 @@ namespace Pulumi.Vault.Ssh
         public Input<bool>? GenerateSigningKey { get; set; }
 
         /// <summary>
-        /// Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// Specifies the desired key bits for the generated SSH CA key when `GenerateSigningKey` is set to `True`.
         /// </summary>
         [Input("keyBits")]
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// Specifies the desired key type for the generated SSH CA key when `GenerateSigningKey` is set to `True`.
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        /// The id of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
-        /// The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
+        /// The name of the managed key to use. When using a managed key, this field or ManagedKeyId is required.
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -268,7 +268,7 @@ namespace Pulumi.Vault.Ssh
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -278,7 +278,7 @@ namespace Pulumi.Vault.Ssh
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The private key part the SSH CA key pair; required if GenerateSigningKey is false.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -291,7 +291,7 @@ namespace Pulumi.Vault.Ssh
         }
 
         /// <summary>
-        /// The public key part the SSH CA key pair; required if generate_signing_key is false.
+        /// The public key part the SSH CA key pair; required if GenerateSigningKey is false.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }

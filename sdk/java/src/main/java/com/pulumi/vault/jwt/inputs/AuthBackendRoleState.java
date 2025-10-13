@@ -20,7 +20,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     public static final AuthBackendRoleState Empty = new AuthBackendRoleState();
 
     /**
-     * The list of allowed values for redirect_uri during OIDC logins.
+     * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      * 
      */
@@ -28,7 +28,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     private @Nullable Output<List<String>> allowedRedirectUris;
 
     /**
-     * @return The list of allowed values for redirect_uri during OIDC logins.
+     * @return The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      * 
      */
@@ -91,7 +91,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
     /**
      * How to interpret values in the claims/values
-     * map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      * 
      */
@@ -100,7 +100,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
     /**
      * @return How to interpret values in the claims/values
-     * map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+     * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      * 
      */
@@ -475,9 +475,9 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies if the `user_claim` value uses
+     * Specifies if the `userClaim` value uses
      * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      * 
      */
@@ -485,9 +485,9 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     private @Nullable Output<Boolean> userClaimJsonPointer;
 
     /**
-     * @return Specifies if the `user_claim` value uses
+     * @return Specifies if the `userClaim` value uses
      * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-     * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+     * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      * 
      */
@@ -567,7 +567,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param allowedRedirectUris The list of allowed values for redirect_uri during OIDC logins.
+         * @param allowedRedirectUris The list of allowed values for redirectUri during OIDC logins.
          * Required for OIDC roles
          * 
          * @return builder
@@ -579,7 +579,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param allowedRedirectUris The list of allowed values for redirect_uri during OIDC logins.
+         * @param allowedRedirectUris The list of allowed values for redirectUri during OIDC logins.
          * Required for OIDC roles
          * 
          * @return builder
@@ -590,7 +590,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param allowedRedirectUris The list of allowed values for redirect_uri during OIDC logins.
+         * @param allowedRedirectUris The list of allowed values for redirectUri during OIDC logins.
          * Required for OIDC roles
          * 
          * @return builder
@@ -684,7 +684,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param boundClaimsType How to interpret values in the claims/values
-         * map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+         * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
          * match). Requires Vault 1.4.0 or above.
          * 
          * @return builder
@@ -697,7 +697,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param boundClaimsType How to interpret values in the claims/values
-         * map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+         * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
          * match). Requires Vault 1.4.0 or above.
          * 
          * @return builder
@@ -1237,9 +1237,9 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param userClaimJsonPointer Specifies if the `user_claim` value uses
+         * @param userClaimJsonPointer Specifies if the `userClaim` value uses
          * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-         * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+         * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
          * Requires Vault 1.11+.
          * 
          * @return builder
@@ -1251,9 +1251,9 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param userClaimJsonPointer Specifies if the `user_claim` value uses
+         * @param userClaimJsonPointer Specifies if the `userClaim` value uses
          * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-         * syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+         * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
          * Requires Vault 1.11+.
          * 
          * @return builder

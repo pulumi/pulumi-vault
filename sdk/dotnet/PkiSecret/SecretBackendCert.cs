@@ -46,7 +46,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> AltNames { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If set to `True`, certs will be renewed if the expiration is within `MinSecondsRemaining`. Default `False`
         /// </summary>
         [Output("autoRenew")]
         public Output<bool?> AutoRenew { get; private set; } = null!;
@@ -64,7 +64,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> CaChain { get; private set; } = null!;
 
         /// <summary>
-        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's NoStoreMetadata must be set to false, otherwise an error is returned when specified.
         /// </summary>
         [Output("certMetadata")]
         public Output<string?> CertMetadata { get; private set; } = null!;
@@ -132,7 +132,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -169,19 +169,19 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> PrivateKeyType { get; private set; } = null!;
 
         /// <summary>
-        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// `True` if the current time (during refresh) is after the start of the early renewal window declared by `MinSecondsRemaining`, and `False` otherwise; if `AutoRenew` is set to `True` then the provider will plan to replace the certificate once renewal is pending.
         /// </summary>
         [Output("renewPending")]
         public Output<bool> RenewPending { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        /// If set to `True`, the certificate will be revoked on resource destruction using the `Revoke` PKI API. Conflicts with `RevokeWithKey`. Default `False`.
         /// </summary>
         [Output("revoke")]
         public Output<bool?> Revoke { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        /// If set to `True`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `Revoke`. Default `False`
         /// </summary>
         [Output("revokeWithKey")]
         public Output<bool?> RevokeWithKey { get; private set; } = null!;
@@ -273,7 +273,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If set to `True`, certs will be renewed if the expiration is within `MinSecondsRemaining`. Default `False`
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
@@ -285,7 +285,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's NoStoreMetadata must be set to false, otherwise an error is returned when specified.
         /// </summary>
         [Input("certMetadata")]
         public Input<string>? CertMetadata { get; set; }
@@ -341,7 +341,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -372,13 +372,13 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? PrivateKeyFormat { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        /// If set to `True`, the certificate will be revoked on resource destruction using the `Revoke` PKI API. Conflicts with `RevokeWithKey`. Default `False`.
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        /// If set to `True`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `Revoke`. Default `False`
         /// </summary>
         [Input("revokeWithKey")]
         public Input<bool>? RevokeWithKey { get; set; }
@@ -434,7 +434,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
+        /// If set to `True`, certs will be renewed if the expiration is within `MinSecondsRemaining`. Default `False`
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
@@ -452,7 +452,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? CaChain { get; set; }
 
         /// <summary>
-        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's NoStoreMetadata must be set to false, otherwise an error is returned when specified.
         /// </summary>
         [Input("certMetadata")]
         public Input<string>? CertMetadata { get; set; }
@@ -526,7 +526,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -579,19 +579,19 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? PrivateKeyType { get; set; }
 
         /// <summary>
-        /// `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
+        /// `True` if the current time (during refresh) is after the start of the early renewal window declared by `MinSecondsRemaining`, and `False` otherwise; if `AutoRenew` is set to `True` then the provider will plan to replace the certificate once renewal is pending.
         /// </summary>
         [Input("renewPending")]
         public Input<bool>? RenewPending { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
+        /// If set to `True`, the certificate will be revoked on resource destruction using the `Revoke` PKI API. Conflicts with `RevokeWithKey`. Default `False`.
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        /// If set to `True`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `Revoke`. Default `False`
         /// </summary>
         [Input("revokeWithKey")]
         public Input<bool>? RevokeWithKey { get; set; }

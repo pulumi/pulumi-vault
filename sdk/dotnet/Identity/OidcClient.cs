@@ -87,28 +87,28 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// The Client Secret Key returned by Vault.
-        /// For public OpenID Clients `client_secret` is set to an empty string `""`
+        /// For public OpenID Clients `ClientSecret` is set to an empty string `""`
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
         /// The client type based on its ability to maintain confidentiality of credentials.
-        /// The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
+        /// The following client types are supported: `Confidential`, `Public`. Defaults to `Confidential`.
         /// </summary>
         [Output("clientType")]
         public Output<string> ClientType { get; private set; } = null!;
 
         /// <summary>
         /// The time-to-live for ID tokens obtained by the client. 
-        /// The value should be less than the `verification_ttl` on the key.
+        /// The value should be less than the `VerificationTtl` on the key.
         /// </summary>
         [Output("idTokenTtl")]
         public Output<int> IdTokenTtl { get; private set; } = null!;
 
         /// <summary>
         /// A reference to a named key resource in Vault.
-        /// This cannot be modified after creation. If not provided, the `default`
+        /// This cannot be modified after creation. If not provided, the `Default`
         /// key is used.
         /// </summary>
         [Output("key")]
@@ -123,7 +123,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -131,7 +131,7 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// Redirection URI values used by the client. 
-        /// One of these values must exactly match the `redirect_uri` parameter value
+        /// One of these values must exactly match the `RedirectUri` parameter value
         /// used in each authentication request.
         /// </summary>
         [Output("redirectUris")]
@@ -207,21 +207,21 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// The client type based on its ability to maintain confidentiality of credentials.
-        /// The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
+        /// The following client types are supported: `Confidential`, `Public`. Defaults to `Confidential`.
         /// </summary>
         [Input("clientType")]
         public Input<string>? ClientType { get; set; }
 
         /// <summary>
         /// The time-to-live for ID tokens obtained by the client. 
-        /// The value should be less than the `verification_ttl` on the key.
+        /// The value should be less than the `VerificationTtl` on the key.
         /// </summary>
         [Input("idTokenTtl")]
         public Input<int>? IdTokenTtl { get; set; }
 
         /// <summary>
         /// A reference to a named key resource in Vault.
-        /// This cannot be modified after creation. If not provided, the `default`
+        /// This cannot be modified after creation. If not provided, the `Default`
         /// key is used.
         /// </summary>
         [Input("key")]
@@ -236,7 +236,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -247,7 +247,7 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// Redirection URI values used by the client. 
-        /// One of these values must exactly match the `redirect_uri` parameter value
+        /// One of these values must exactly match the `RedirectUri` parameter value
         /// used in each authentication request.
         /// </summary>
         public InputList<string> RedirectUris
@@ -293,7 +293,7 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// The Client Secret Key returned by Vault.
-        /// For public OpenID Clients `client_secret` is set to an empty string `""`
+        /// For public OpenID Clients `ClientSecret` is set to an empty string `""`
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -307,21 +307,21 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// The client type based on its ability to maintain confidentiality of credentials.
-        /// The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
+        /// The following client types are supported: `Confidential`, `Public`. Defaults to `Confidential`.
         /// </summary>
         [Input("clientType")]
         public Input<string>? ClientType { get; set; }
 
         /// <summary>
         /// The time-to-live for ID tokens obtained by the client. 
-        /// The value should be less than the `verification_ttl` on the key.
+        /// The value should be less than the `VerificationTtl` on the key.
         /// </summary>
         [Input("idTokenTtl")]
         public Input<int>? IdTokenTtl { get; set; }
 
         /// <summary>
         /// A reference to a named key resource in Vault.
-        /// This cannot be modified after creation. If not provided, the `default`
+        /// This cannot be modified after creation. If not provided, the `Default`
         /// key is used.
         /// </summary>
         [Input("key")]
@@ -336,7 +336,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -347,7 +347,7 @@ namespace Pulumi.Vault.Identity
 
         /// <summary>
         /// Redirection URI values used by the client. 
-        /// One of these values must exactly match the `redirect_uri` parameter value
+        /// One of these values must exactly match the `RedirectUri` parameter value
         /// used in each authentication request.
         /// </summary>
         public InputList<string> RedirectUris

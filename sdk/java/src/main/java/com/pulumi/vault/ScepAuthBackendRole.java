@@ -97,14 +97,14 @@ public class ScepAuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
-     * The static challenge to use if auth_type is &#34;static-challenge&#34;, not used for other auth types.
+     * The static challenge to use if authType is &#34;static-challenge&#34;, not used for other auth types.
      * 
      */
     @Export(name="challenge", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> challenge;
 
     /**
-     * @return The static challenge to use if auth_type is &#34;static-challenge&#34;, not used for other auth types.
+     * @return The static challenge to use if authType is &#34;static-challenge&#34;, not used for other auth types.
      * 
      */
     public Output<Optional<String>> challenge() {

@@ -51,7 +51,7 @@ namespace Pulumi.Vault.Identity
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the scope. The `openid` scope name is reserved.
+        /// The name of the scope. The `Openid` scope name is reserved.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -59,7 +59,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -124,7 +124,7 @@ namespace Pulumi.Vault.Identity
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the scope. The `openid` scope name is reserved.
+        /// The name of the scope. The `Openid` scope name is reserved.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -132,7 +132,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -159,7 +159,7 @@ namespace Pulumi.Vault.Identity
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The name of the scope. The `openid` scope name is reserved.
+        /// The name of the scope. The `Openid` scope name is reserved.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -167,7 +167,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

@@ -105,7 +105,7 @@ namespace Pulumi.Vault.Jwt
     public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The list of allowed values for redirect_uri during OIDC logins.
+        /// The list of allowed values for RedirectUri during OIDC logins.
         /// Required for OIDC roles
         /// </summary>
         [Output("allowedRedirectUris")]
@@ -113,14 +113,14 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The unique name of the auth backend to configure.
-        /// Defaults to `jwt`.
+        /// Defaults to `Jwt`.
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// (Required for roles of type `Jwt`, optional for roles of
+        /// type `Oidc`) List of `Aud` claims to match against. Any match is sufficient.
         /// </summary>
         [Output("boundAudiences")]
         public Output<ImmutableArray<string>> BoundAudiences { get; private set; } = null!;
@@ -135,14 +135,14 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// How to interpret values in the claims/values
-        /// map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        /// map (`BoundClaims`): can be either `String` (exact match) or `Glob` (wildcard
         /// match). Requires Vault 1.4.0 or above.
         /// </summary>
         [Output("boundClaimsType")]
         public Output<string> BoundClaimsType { get; private set; } = null!;
 
         /// <summary>
-        /// If set, requires that the `sub` claim matches
+        /// If set, requires that the `Sub` claim matches
         /// this value.
         /// </summary>
         [Output("boundSubject")]
@@ -170,7 +170,7 @@ namespace Pulumi.Vault.Jwt
         public Output<bool?> DisableBoundClaimsParsing { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of leeway to add to expiration (`exp`) claims to account for
+        /// The amount of leeway to add to expiration (`Exp`) claims to account for
         /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
@@ -196,14 +196,14 @@ namespace Pulumi.Vault.Jwt
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of leeway to add to not before (`nbf`) claims to account for
+        /// The amount of leeway to add to not before (`Nbf`) claims to account for
         /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
@@ -292,9 +292,9 @@ namespace Pulumi.Vault.Jwt
         public Output<string> UserClaim { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if the `user_claim` value uses
+        /// Specifies if the `UserClaim` value uses
         /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-        /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        /// syntax for referencing claims. By default, the `UserClaim` value will not use JSON pointer.
         /// Requires Vault 1.11+.
         /// </summary>
         [Output("userClaimJsonPointer")]
@@ -358,7 +358,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _allowedRedirectUris;
 
         /// <summary>
-        /// The list of allowed values for redirect_uri during OIDC logins.
+        /// The list of allowed values for RedirectUri during OIDC logins.
         /// Required for OIDC roles
         /// </summary>
         public InputList<string> AllowedRedirectUris
@@ -369,7 +369,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The unique name of the auth backend to configure.
-        /// Defaults to `jwt`.
+        /// Defaults to `Jwt`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -378,8 +378,8 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// (Required for roles of type `Jwt`, optional for roles of
+        /// type `Oidc`) List of `Aud` claims to match against. Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -403,14 +403,14 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// How to interpret values in the claims/values
-        /// map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        /// map (`BoundClaims`): can be either `String` (exact match) or `Glob` (wildcard
         /// match). Requires Vault 1.4.0 or above.
         /// </summary>
         [Input("boundClaimsType")]
         public Input<string>? BoundClaimsType { get; set; }
 
         /// <summary>
-        /// If set, requires that the `sub` claim matches
+        /// If set, requires that the `Sub` claim matches
         /// this value.
         /// </summary>
         [Input("boundSubject")]
@@ -444,7 +444,7 @@ namespace Pulumi.Vault.Jwt
         public Input<bool>? DisableBoundClaimsParsing { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to expiration (`exp`) claims to account for
+        /// The amount of leeway to add to expiration (`Exp`) claims to account for
         /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
@@ -470,14 +470,14 @@ namespace Pulumi.Vault.Jwt
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to not before (`nbf`) claims to account for
+        /// The amount of leeway to add to not before (`Nbf`) claims to account for
         /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
@@ -584,9 +584,9 @@ namespace Pulumi.Vault.Jwt
         public Input<string> UserClaim { get; set; } = null!;
 
         /// <summary>
-        /// Specifies if the `user_claim` value uses
+        /// Specifies if the `UserClaim` value uses
         /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-        /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        /// syntax for referencing claims. By default, the `UserClaim` value will not use JSON pointer.
         /// Requires Vault 1.11+.
         /// </summary>
         [Input("userClaimJsonPointer")]
@@ -612,7 +612,7 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _allowedRedirectUris;
 
         /// <summary>
-        /// The list of allowed values for redirect_uri during OIDC logins.
+        /// The list of allowed values for RedirectUri during OIDC logins.
         /// Required for OIDC roles
         /// </summary>
         public InputList<string> AllowedRedirectUris
@@ -623,7 +623,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The unique name of the auth backend to configure.
-        /// Defaults to `jwt`.
+        /// Defaults to `Jwt`.
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
@@ -632,8 +632,8 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (Required for roles of type `jwt`, optional for roles of
-        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
+        /// (Required for roles of type `Jwt`, optional for roles of
+        /// type `Oidc`) List of `Aud` claims to match against. Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -657,14 +657,14 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// How to interpret values in the claims/values
-        /// map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
+        /// map (`BoundClaims`): can be either `String` (exact match) or `Glob` (wildcard
         /// match). Requires Vault 1.4.0 or above.
         /// </summary>
         [Input("boundClaimsType")]
         public Input<string>? BoundClaimsType { get; set; }
 
         /// <summary>
-        /// If set, requires that the `sub` claim matches
+        /// If set, requires that the `Sub` claim matches
         /// this value.
         /// </summary>
         [Input("boundSubject")]
@@ -698,7 +698,7 @@ namespace Pulumi.Vault.Jwt
         public Input<bool>? DisableBoundClaimsParsing { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to expiration (`exp`) claims to account for
+        /// The amount of leeway to add to expiration (`Exp`) claims to account for
         /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
@@ -724,14 +724,14 @@ namespace Pulumi.Vault.Jwt
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The amount of leeway to add to not before (`nbf`) claims to account for
+        /// The amount of leeway to add to not before (`Nbf`) claims to account for
         /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
@@ -838,9 +838,9 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? UserClaim { get; set; }
 
         /// <summary>
-        /// Specifies if the `user_claim` value uses
+        /// Specifies if the `UserClaim` value uses
         /// [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
-        /// syntax for referencing claims. By default, the `user_claim` value will not use JSON pointer.
+        /// syntax for referencing claims. By default, the `UserClaim` value will not use JSON pointer.
         /// Requires Vault 1.11+.
         /// </summary>
         [Input("userClaimJsonPointer")]
