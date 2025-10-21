@@ -53,6 +53,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only field for the root credential password used in the connection URL
+        /// </summary>
+        public readonly string? PasswordWo;
+        /// <summary>
         /// Version counter for root credential password write-only field
         /// </summary>
         public readonly int? PasswordWoVersion;
@@ -60,6 +65,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The private key configured for the admin user in Snowflake.
+        /// </summary>
+        public readonly string? PrivateKeyWo;
         /// <summary>
         /// Version counter for the private key key-pair credentials write-only field
         /// </summary>
@@ -118,9 +128,13 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? passwordWo,
+
             int? passwordWoVersion,
 
             string? pluginName,
+
+            string? privateKeyWo,
 
             int? privateKeyWoVersion,
 
@@ -147,8 +161,10 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             Name = name;
             Password = password;
+            PasswordWo = passwordWo;
             PasswordWoVersion = passwordWoVersion;
             PluginName = pluginName;
+            PrivateKeyWo = privateKeyWo;
             PrivateKeyWoVersion = privateKeyWoVersion;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;

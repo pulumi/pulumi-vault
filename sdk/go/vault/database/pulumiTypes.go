@@ -931,6 +931,9 @@ type SecretBackendConnectionHana struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -961,6 +964,9 @@ type SecretBackendConnectionHanaArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -1074,6 +1080,12 @@ func (o SecretBackendConnectionHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionHanaOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionHanaOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -1165,6 +1177,17 @@ func (o SecretBackendConnectionHanaPtrOutput) Password() pulumi.StringPtrOutput 
 			return nil
 		}
 		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionHanaPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1507,6 +1530,9 @@ type SecretBackendConnectionMongodb struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -1537,6 +1563,9 @@ type SecretBackendConnectionMongodbArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -1647,6 +1676,12 @@ func (o SecretBackendConnectionMongodbOutput) Password() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMongodbOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMongodbOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -1733,6 +1768,17 @@ func (o SecretBackendConnectionMongodbPtrOutput) Password() pulumi.StringPtrOutp
 			return nil
 		}
 		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMongodbPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1956,6 +2002,9 @@ type SecretBackendConnectionMssql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -1990,6 +2039,9 @@ type SecretBackendConnectionMssqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -2110,6 +2162,12 @@ func (o SecretBackendConnectionMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMssqlOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMssqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -2219,6 +2277,17 @@ func (o SecretBackendConnectionMssqlPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMssqlPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMssqlPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *int {
@@ -2262,6 +2331,9 @@ type SecretBackendConnectionMysql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -2300,6 +2372,9 @@ type SecretBackendConnectionMysqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -2421,6 +2496,12 @@ func (o SecretBackendConnectionMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -2535,6 +2616,17 @@ func (o SecretBackendConnectionMysqlPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *int {
@@ -2608,6 +2700,9 @@ type SecretBackendConnectionMysqlAurora struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -2646,6 +2741,9 @@ type SecretBackendConnectionMysqlAuroraArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -2767,6 +2865,12 @@ func (o SecretBackendConnectionMysqlAuroraOutput) Password() pulumi.StringPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlAuroraOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlAuroraOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -2881,6 +2985,17 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *int {
@@ -2954,6 +3069,9 @@ type SecretBackendConnectionMysqlLegacy struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -2992,6 +3110,9 @@ type SecretBackendConnectionMysqlLegacyArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -3113,6 +3234,12 @@ func (o SecretBackendConnectionMysqlLegacyOutput) Password() pulumi.StringPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlLegacyOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlLegacyOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -3227,6 +3354,17 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *int {
@@ -3300,6 +3438,9 @@ type SecretBackendConnectionMysqlRds struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -3338,6 +3479,9 @@ type SecretBackendConnectionMysqlRdsArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// A JSON encoded credential for use with IAM authorization
@@ -3459,6 +3603,12 @@ func (o SecretBackendConnectionMysqlRdsOutput) Password() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlRdsOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlRdsOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -3573,6 +3723,17 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionMysqlRdsPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionMysqlRdsPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *int {
@@ -3646,6 +3807,9 @@ type SecretBackendConnectionOracle struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Set to true in order to split statements after semi-colons.
@@ -3680,6 +3844,9 @@ type SecretBackendConnectionOracleArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Set to true in order to split statements after semi-colons.
@@ -3797,6 +3964,12 @@ func (o SecretBackendConnectionOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionOracleOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionOracleOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -3901,6 +4074,17 @@ func (o SecretBackendConnectionOraclePtrOutput) Password() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionOraclePtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionOraclePtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *int {
@@ -3958,6 +4142,9 @@ type SecretBackendConnectionPostgresql struct {
 	Password *string `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -4004,6 +4191,9 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -4137,6 +4327,12 @@ func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutp
 // When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 func (o SecretBackendConnectionPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionPostgresqlOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
 
 // Version counter for root credential password write-only field
@@ -4280,6 +4476,17 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) PasswordAuthentication() pul
 			return nil
 		}
 		return v.PasswordAuthentication
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionPostgresqlPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4821,6 +5028,9 @@ type SecretBackendConnectionRedshift struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -4853,6 +5063,9 @@ type SecretBackendConnectionRedshiftArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
@@ -4968,6 +5181,12 @@ func (o SecretBackendConnectionRedshiftOutput) Password() pulumi.StringPtrOutput
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionRedshiftOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionRedshiftOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -5067,6 +5286,17 @@ func (o SecretBackendConnectionRedshiftPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionRedshiftPtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionRedshiftPtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *int {
@@ -5110,8 +5340,14 @@ type SecretBackendConnectionSnowflake struct {
 	//
 	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key configured for the admin user in Snowflake.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
 	// Version counter for the private key key-pair credentials write-only field
 	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// The root credential username used in the connection URL
@@ -5144,8 +5380,14 @@ type SecretBackendConnectionSnowflakeArgs struct {
 	//
 	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key configured for the admin user in Snowflake.
+	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
 	// Version counter for the private key key-pair credentials write-only field
 	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
 	// The root credential username used in the connection URL
@@ -5258,9 +5500,21 @@ func (o SecretBackendConnectionSnowflakeOutput) Password() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionSnowflakeOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key configured for the admin user in Snowflake.
+func (o SecretBackendConnectionSnowflakeOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
 }
 
 // Version counter for the private key key-pair credentials write-only field
@@ -5354,6 +5608,17 @@ func (o SecretBackendConnectionSnowflakePtrOutput) Password() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretBackendConnectionSnowflakePtrOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordWo
+	}).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretBackendConnectionSnowflakePtrOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
@@ -5362,6 +5627,17 @@ func (o SecretBackendConnectionSnowflakePtrOutput) PasswordWoVersion() pulumi.In
 		}
 		return v.PasswordWoVersion
 	}).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key configured for the admin user in Snowflake.
+func (o SecretBackendConnectionSnowflakePtrOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKeyWo
+	}).(pulumi.StringPtrOutput)
 }
 
 // Version counter for the private key key-pair credentials write-only field
@@ -6285,6 +6561,9 @@ type SecretsMountHana struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -6343,6 +6622,9 @@ type SecretsMountHanaArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -6468,6 +6750,12 @@ func (o SecretsMountHanaOutput) Name() pulumi.StringOutput {
 // The root credential password used in the connection URL
 func (o SecretsMountHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountHanaOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
 
 // Version counter for root credential password write-only field
@@ -6849,6 +7137,9 @@ type SecretsMountMongodb struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -6907,6 +7198,9 @@ type SecretsMountMongodbArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -7029,6 +7323,12 @@ func (o SecretsMountMongodbOutput) Name() pulumi.StringOutput {
 // The root credential password used in the connection URL
 func (o SecretsMountMongodbOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountMongodbOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
 
 // Version counter for root credential password write-only field
@@ -7356,6 +7656,9 @@ type SecretsMountMssql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -7418,6 +7721,9 @@ type SecretsMountMssqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -7552,6 +7858,12 @@ func (o SecretsMountMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountMssqlOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountMssqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -7646,6 +7958,9 @@ type SecretsMountMysql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -7712,6 +8027,9 @@ type SecretsMountMysqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -7847,6 +8165,12 @@ func (o SecretsMountMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountMysqlOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountMysqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -7956,6 +8280,9 @@ type SecretsMountMysqlAurora struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8022,6 +8349,9 @@ type SecretsMountMysqlAuroraArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8157,6 +8487,12 @@ func (o SecretsMountMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountMysqlAuroraOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountMysqlAuroraOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -8266,6 +8602,9 @@ type SecretsMountMysqlLegacy struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8332,6 +8671,9 @@ type SecretsMountMysqlLegacyArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8467,6 +8809,12 @@ func (o SecretsMountMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountMysqlLegacyOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountMysqlLegacyOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -8576,6 +8924,9 @@ type SecretsMountMysqlRd struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8642,6 +8993,9 @@ type SecretsMountMysqlRdArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8777,6 +9131,12 @@ func (o SecretsMountMysqlRdOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountMysqlRdOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountMysqlRdOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -8886,6 +9246,9 @@ type SecretsMountOracle struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -8948,6 +9311,9 @@ type SecretsMountOracleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -9079,6 +9445,12 @@ func (o SecretsMountOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountOracleOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountOracleOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -9182,6 +9554,9 @@ type SecretsMountPostgresql struct {
 	Password *string `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -9256,6 +9631,9 @@ type SecretsMountPostgresqlArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -9403,6 +9781,12 @@ func (o SecretsMountPostgresqlOutput) Password() pulumi.StringPtrOutput {
 // When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 func (o SecretsMountPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountPostgresqlOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
 
 // Version counter for root credential password write-only field
@@ -10027,6 +10411,9 @@ type SecretsMountRedshift struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -10087,6 +10474,9 @@ type SecretsMountRedshiftArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
@@ -10216,6 +10606,12 @@ func (o SecretsMountRedshiftOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountRedshiftOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountRedshiftOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -10310,10 +10706,16 @@ type SecretsMountSnowflake struct {
 	//
 	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key configured for the admin user in Snowflake.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
 	// Version counter for the private key key-pair credentials write-only field
 	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10372,10 +10774,16 @@ type SecretsMountSnowflakeArgs struct {
 	//
 	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only field for the root credential password used in the connection URL
+	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The private key configured for the admin user in Snowflake.
+	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
 	// Version counter for the private key key-pair credentials write-only field
 	PrivateKeyWoVersion pulumi.IntPtrInput `pulumi:"privateKeyWoVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10500,6 +10908,12 @@ func (o SecretsMountSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only field for the root credential password used in the connection URL
+func (o SecretsMountSnowflakeOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
 // Version counter for root credential password write-only field
 func (o SecretsMountSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
@@ -10508,6 +10922,12 @@ func (o SecretsMountSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountSnowflakeOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The private key configured for the admin user in Snowflake.
+func (o SecretsMountSnowflakeOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
 }
 
 // Version counter for the private key key-pair credentials write-only field

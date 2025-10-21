@@ -44,6 +44,12 @@ public final class SecretBackendConnectionHana {
      */
     private @Nullable String password;
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -98,6 +104,14 @@ public final class SecretBackendConnectionHana {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -127,6 +141,7 @@ public final class SecretBackendConnectionHana {
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String username;
         public Builder() {}
@@ -138,6 +153,7 @@ public final class SecretBackendConnectionHana {
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.username = defaults.username;
         }
@@ -179,6 +195,12 @@ public final class SecretBackendConnectionHana {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
+            return this;
+        }
+        @CustomType.Setter
         public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
 
             this.passwordWoVersion = passwordWoVersion;
@@ -198,6 +220,7 @@ public final class SecretBackendConnectionHana {
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.username = username;
             return _resultValue;

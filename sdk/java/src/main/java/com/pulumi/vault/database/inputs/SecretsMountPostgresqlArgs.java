@@ -207,6 +207,23 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
      * Version counter for root credential password write-only field
      * 
      */
@@ -441,6 +458,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.name = $.name;
         this.password = $.password;
         this.passwordAuthentication = $.passwordAuthentication;
+        this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
         this.privateKey = $.privateKey;
@@ -742,6 +760,29 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder passwordAuthentication(String passwordAuthentication) {
             return passwordAuthentication(Output.of(passwordAuthentication));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
         }
 
         /**

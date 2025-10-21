@@ -190,6 +190,22 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.credentials);
     }
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     * 
+     */
+    @Export(name="credentialsWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> credentialsWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     * 
+     */
+    public Output<Optional<String>> credentialsWo() {
+        return Codegen.optional(this.credentialsWo);
+    }
+    /**
      * The version of the `credentialsWo`. For more info see updating write-only attributes.
      * 
      */
@@ -594,7 +610,8 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "credentials"
+                "credentials",
+                "credentialsWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

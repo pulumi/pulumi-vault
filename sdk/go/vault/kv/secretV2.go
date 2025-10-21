@@ -131,6 +131,9 @@ type SecretV2 struct {
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrOutput `pulumi:"dataJson"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-Only JSON-encoded secret data to write.
+	DataJsonWo pulumi.StringPtrOutput `pulumi:"dataJsonWo"`
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion pulumi.IntPtrOutput `pulumi:"dataJsonWoVersion"`
 	// If set to true, permanently deletes all
@@ -172,9 +175,13 @@ func NewSecretV2(ctx *pulumi.Context,
 	if args.DataJson != nil {
 		args.DataJson = pulumi.ToSecret(args.DataJson).(pulumi.StringPtrInput)
 	}
+	if args.DataJsonWo != nil {
+		args.DataJsonWo = pulumi.ToSecret(args.DataJsonWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"data",
 		"dataJson",
+		"dataJsonWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -219,6 +226,9 @@ type secretV2State struct {
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson *string `pulumi:"dataJson"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-Only JSON-encoded secret data to write.
+	DataJsonWo *string `pulumi:"dataJsonWo"`
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion *int `pulumi:"dataJsonWoVersion"`
 	// If set to true, permanently deletes all
@@ -267,6 +277,9 @@ type SecretV2State struct {
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-Only JSON-encoded secret data to write.
+	DataJsonWo pulumi.StringPtrInput
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion pulumi.IntPtrInput
 	// If set to true, permanently deletes all
@@ -312,6 +325,9 @@ type secretV2Args struct {
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson *string `pulumi:"dataJson"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-Only JSON-encoded secret data to write.
+	DataJsonWo *string `pulumi:"dataJsonWo"`
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion *int `pulumi:"dataJsonWoVersion"`
 	// If set to true, permanently deletes all
@@ -350,6 +366,9 @@ type SecretV2Args struct {
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-Only JSON-encoded secret data to write.
+	DataJsonWo pulumi.StringPtrInput
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion pulumi.IntPtrInput
 	// If set to true, permanently deletes all
@@ -490,6 +509,12 @@ func (o SecretV2Output) Data() pulumi.StringMapOutput {
 // written as the secret data at the given path.
 func (o SecretV2Output) DataJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretV2) pulumi.StringPtrOutput { return v.DataJson }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-Only JSON-encoded secret data to write.
+func (o SecretV2Output) DataJsonWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretV2) pulumi.StringPtrOutput { return v.DataJsonWo }).(pulumi.StringPtrOutput)
 }
 
 // The version of the `dataJsonWo`. For more info see updating write-only attributes.

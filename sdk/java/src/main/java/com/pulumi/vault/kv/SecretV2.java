@@ -200,6 +200,22 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.dataJson);
     }
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     * 
+     */
+    @Export(name="dataJsonWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> dataJsonWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     * 
+     */
+    public Output<Optional<String>> dataJsonWo() {
+        return Codegen.optional(this.dataJsonWo);
+    }
+    /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      * 
      */
@@ -383,7 +399,8 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "data",
-                "dataJson"
+                "dataJson",
+                "dataJsonWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

@@ -133,6 +133,13 @@ namespace Pulumi.Vault.kv
         public Output<string?> DataJson { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-Only JSON-encoded secret data to write.
+        /// </summary>
+        [Output("dataJsonWo")]
+        public Output<string?> DataJsonWo { get; private set; } = null!;
+
+        /// <summary>
         /// The version of the `DataJsonWo`. For more info see updating write-only attributes.
         /// </summary>
         [Output("dataJsonWoVersion")]
@@ -221,6 +228,7 @@ namespace Pulumi.Vault.kv
                 {
                     "data",
                     "dataJson",
+                    "dataJsonWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -276,6 +284,23 @@ namespace Pulumi.Vault.kv
             {
                 var emptySecret = Output.CreateSecret(0);
                 _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("dataJsonWo")]
+        private Input<string>? _dataJsonWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-Only JSON-encoded secret data to write.
+        /// </summary>
+        public Input<string>? DataJsonWo
+        {
+            get => _dataJsonWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataJsonWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 
@@ -394,6 +419,23 @@ namespace Pulumi.Vault.kv
             {
                 var emptySecret = Output.CreateSecret(0);
                 _dataJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("dataJsonWo")]
+        private Input<string>? _dataJsonWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-Only JSON-encoded secret data to write.
+        /// </summary>
+        public Input<string>? DataJsonWo
+        {
+            get => _dataJsonWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataJsonWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

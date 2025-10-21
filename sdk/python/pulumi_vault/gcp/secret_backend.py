@@ -24,6 +24,7 @@ class SecretBackendArgs:
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -55,6 +56,8 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -104,6 +107,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if credentials_wo is not None:
+            pulumi.set(__self__, "credentials_wo", credentials_wo)
         if credentials_wo_version is not None:
             pulumi.set(__self__, "credentials_wo_version", credentials_wo_version)
         if default_lease_ttl_seconds is not None:
@@ -212,6 +217,19 @@ class SecretBackendArgs:
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWo")
+    def credentials_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only JSON-encoded credentials to use to connect to GCP
+        """
+        return pulumi.get(self, "credentials_wo")
+
+    @credentials_wo.setter
+    def credentials_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credentials_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsWoVersion")
@@ -525,6 +543,7 @@ class _SecretBackendState:
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -557,6 +576,8 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -608,6 +629,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if credentials_wo is not None:
+            pulumi.set(__self__, "credentials_wo", credentials_wo)
         if credentials_wo_version is not None:
             pulumi.set(__self__, "credentials_wo_version", credentials_wo_version)
         if default_lease_ttl_seconds is not None:
@@ -728,6 +751,19 @@ class _SecretBackendState:
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWo")
+    def credentials_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only JSON-encoded credentials to use to connect to GCP
+        """
+        return pulumi.get(self, "credentials_wo")
+
+    @credentials_wo.setter
+    def credentials_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credentials_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsWoVersion")
@@ -1043,6 +1079,7 @@ class SecretBackend(pulumi.CustomResource):
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1110,6 +1147,8 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -1210,6 +1249,7 @@ class SecretBackend(pulumi.CustomResource):
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1248,6 +1288,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
+            __props__.__dict__["credentials_wo"] = None if credentials_wo is None else pulumi.Output.secret(credentials_wo)
             __props__.__dict__["credentials_wo_version"] = credentials_wo_version
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
@@ -1273,7 +1314,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["service_account_email"] = service_account_email
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials", "credentialsWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:gcp/secretBackend:SecretBackend',
@@ -1291,6 +1332,7 @@ class SecretBackend(pulumi.CustomResource):
             audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             credentials: Optional[pulumi.Input[_builtins.str]] = None,
+            credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
             credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1328,6 +1370,8 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -1377,6 +1421,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["credentials"] = credentials
+        __props__.__dict__["credentials_wo"] = credentials_wo
         __props__.__dict__["credentials_wo_version"] = credentials_wo_version
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
@@ -1450,6 +1495,15 @@ class SecretBackend(pulumi.CustomResource):
         JSON-encoded credentials to use to connect to GCP
         """
         return pulumi.get(self, "credentials")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWo")
+    def credentials_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only JSON-encoded credentials to use to connect to GCP
+        """
+        return pulumi.get(self, "credentials_wo")
 
     @_builtins.property
     @pulumi.getter(name="credentialsWoVersion")

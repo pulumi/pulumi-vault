@@ -170,6 +170,23 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
      * Version counter for root credential password write-only field
      * 
      */
@@ -197,6 +214,23 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key configured for the admin user in Snowflake.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key configured for the admin user in Snowflake.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
     }
 
     /**
@@ -341,8 +375,10 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
         this.maxOpenConnections = $.maxOpenConnections;
         this.name = $.name;
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
+        this.privateKeyWo = $.privateKeyWo;
         this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.rootRotationStatements = $.rootRotationStatements;
         this.rotationPeriod = $.rotationPeriod;
@@ -586,6 +622,29 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
         }
 
         /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
          * @param passwordWoVersion Version counter for root credential password write-only field
          * 
          * @return builder
@@ -625,6 +684,29 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
          */
         public Builder pluginName(String pluginName) {
             return pluginName(Output.of(pluginName));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The private key configured for the admin user in Snowflake.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The private key configured for the admin user in Snowflake.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
         }
 
         /**
