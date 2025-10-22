@@ -46,6 +46,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? PasswordAuthentication;
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only field for the root credential password used in the connection URL
+        /// </summary>
+        public readonly string? PasswordWo;
+        /// <summary>
         /// Version counter for root credential password write-only field
         /// </summary>
         public readonly int? PasswordWoVersion;
@@ -96,6 +101,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? passwordAuthentication,
 
+            string? passwordWo,
+
             int? passwordWoVersion,
 
             string? privateKey,
@@ -120,6 +127,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             Password = password;
             PasswordAuthentication = passwordAuthentication;
+            PasswordWo = passwordWo;
             PasswordWoVersion = passwordWoVersion;
             PrivateKey = privateKey;
             SelfManaged = selfManaged;

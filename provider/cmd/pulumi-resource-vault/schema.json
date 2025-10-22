@@ -992,6 +992,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1079,6 +1084,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1148,6 +1158,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1188,6 +1203,11 @@
                 "password": {
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
+                    "secret": true
+                },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
                     "secret": true
                 },
                 "passwordWoVersion": {
@@ -1246,6 +1266,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1300,6 +1325,11 @@
                 "password": {
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
+                    "secret": true
+                },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
                     "secret": true
                 },
                 "passwordWoVersion": {
@@ -1358,6 +1388,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1414,6 +1449,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1467,6 +1507,11 @@
                 "passwordAuthentication": {
                     "type": "string",
                     "description": "When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.\n"
+                },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
                 },
                 "passwordWoVersion": {
                     "type": "integer",
@@ -1597,6 +1642,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -1636,9 +1686,19 @@
                     "deprecationMessage": "Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
+                },
+                "privateKeyWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe private key configured for the admin user in Snowflake.\n",
+                    "secret": true
                 },
                 "privateKeyWoVersion": {
                     "type": "integer",
@@ -2039,6 +2099,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -2247,6 +2312,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -2437,6 +2507,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -2537,6 +2612,11 @@
                 "password": {
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
+                    "secret": true
+                },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
                     "secret": true
                 },
                 "passwordWoVersion": {
@@ -2655,6 +2735,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -2769,6 +2854,11 @@
                 "password": {
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
+                    "secret": true
+                },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
                     "secret": true
                 },
                 "passwordWoVersion": {
@@ -2887,6 +2977,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -3003,6 +3098,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -3116,6 +3216,11 @@
                 "passwordAuthentication": {
                     "type": "string",
                     "description": "When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.\n"
+                },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
                 },
                 "passwordWoVersion": {
                     "type": "integer",
@@ -3426,6 +3531,11 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -3525,6 +3635,11 @@
                     "deprecationMessage": "Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.",
                     "secret": true
                 },
+                "passwordWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only field for the root credential password used in the connection URL\n",
+                    "secret": true
+                },
                 "passwordWoVersion": {
                     "type": "integer",
                     "description": "Version counter for root credential password write-only field\n"
@@ -3532,6 +3647,11 @@
                 "pluginName": {
                     "type": "string",
                     "description": "Specifies the name of the plugin to use.\n"
+                },
+                "privateKeyWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe private key configured for the admin user in Snowflake.\n",
+                    "secret": true
                 },
                 "privateKeyWoVersion": {
                     "type": "integer",
@@ -13698,6 +13818,11 @@
                     "description": "JSON-encoded credentials to use to connect to GCP",
                     "secret": true
                 },
+                "credentialsWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only JSON-encoded credentials to use to connect to GCP",
+                    "secret": true
+                },
                 "credentialsWoVersion": {
                     "type": "integer",
                     "description": "The version of the \u003cspan pulumi-lang-nodejs=\"`credentialsWo`\" pulumi-lang-dotnet=\"`CredentialsWo`\" pulumi-lang-go=\"`credentialsWo`\" pulumi-lang-python=\"`credentials_wo`\" pulumi-lang-yaml=\"`credentialsWo`\" pulumi-lang-java=\"`credentialsWo`\"\u003e`credentials_wo`\u003c/span\u003e. For more info see updating write-only attributes.\n"
@@ -13843,6 +13968,11 @@
                 "credentials": {
                     "type": "string",
                     "description": "JSON-encoded credentials to use to connect to GCP",
+                    "secret": true
+                },
+                "credentialsWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only JSON-encoded credentials to use to connect to GCP",
                     "secret": true
                 },
                 "credentialsWoVersion": {
@@ -13993,6 +14123,11 @@
                     "credentials": {
                         "type": "string",
                         "description": "JSON-encoded credentials to use to connect to GCP",
+                        "secret": true
+                    },
+                    "credentialsWo": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-only JSON-encoded credentials to use to connect to GCP",
                         "secret": true
                     },
                     "credentialsWoVersion": {
@@ -24880,6 +25015,11 @@
                     "description": "JSON-encoded string that will be\nwritten as the secret data at the given path.\n",
                     "secret": true
                 },
+                "dataJsonWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-Only JSON-encoded secret data to write.",
+                    "secret": true
+                },
                 "dataJsonWoVersion": {
                     "type": "integer",
                     "description": "The version of the \u003cspan pulumi-lang-nodejs=\"`dataJsonWo`\" pulumi-lang-dotnet=\"`DataJsonWo`\" pulumi-lang-go=\"`dataJsonWo`\" pulumi-lang-python=\"`data_json_wo`\" pulumi-lang-yaml=\"`dataJsonWo`\" pulumi-lang-java=\"`dataJsonWo`\"\u003e`data_json_wo`\u003c/span\u003e. For more info see updating write-only attributes.\n"
@@ -24945,6 +25085,11 @@
                     "description": "JSON-encoded string that will be\nwritten as the secret data at the given path.\n",
                     "secret": true
                 },
+                "dataJsonWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-Only JSON-encoded secret data to write.",
+                    "secret": true
+                },
                 "dataJsonWoVersion": {
                     "type": "integer",
                     "description": "The version of the \u003cspan pulumi-lang-nodejs=\"`dataJsonWo`\" pulumi-lang-dotnet=\"`DataJsonWo`\" pulumi-lang-go=\"`dataJsonWo`\" pulumi-lang-python=\"`data_json_wo`\" pulumi-lang-yaml=\"`dataJsonWo`\" pulumi-lang-java=\"`dataJsonWo`\"\u003e`data_json_wo`\u003c/span\u003e. For more info see updating write-only attributes.\n"
@@ -25006,6 +25151,11 @@
                     "dataJson": {
                         "type": "string",
                         "description": "JSON-encoded string that will be\nwritten as the secret data at the given path.\n",
+                        "secret": true
+                    },
+                    "dataJsonWo": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nWrite-Only JSON-encoded secret data to write.",
                         "secret": true
                     },
                     "dataJsonWoVersion": {

@@ -54,6 +54,12 @@ public final class SecretBackendConnectionPostgresql {
      */
     private @Nullable String passwordAuthentication;
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -152,6 +158,14 @@ public final class SecretBackendConnectionPostgresql {
         return Optional.ofNullable(this.passwordAuthentication);
     }
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -225,6 +239,7 @@ public final class SecretBackendConnectionPostgresql {
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
         private @Nullable String passwordAuthentication;
+        private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String privateKey;
         private @Nullable Boolean selfManaged;
@@ -244,6 +259,7 @@ public final class SecretBackendConnectionPostgresql {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
     	      this.passwordAuthentication = defaults.passwordAuthentication;
+    	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.privateKey = defaults.privateKey;
     	      this.selfManaged = defaults.selfManaged;
@@ -300,6 +316,12 @@ public final class SecretBackendConnectionPostgresql {
         public Builder passwordAuthentication(@Nullable String passwordAuthentication) {
 
             this.passwordAuthentication = passwordAuthentication;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
             return this;
         }
         @CustomType.Setter
@@ -360,6 +382,7 @@ public final class SecretBackendConnectionPostgresql {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
             _resultValue.passwordAuthentication = passwordAuthentication;
+            _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.privateKey = privateKey;
             _resultValue.selfManaged = selfManaged;

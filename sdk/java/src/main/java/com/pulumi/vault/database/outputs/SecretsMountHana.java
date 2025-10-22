@@ -70,6 +70,12 @@ public final class SecretsMountHana {
      */
     private @Nullable String password;
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -190,6 +196,14 @@ public final class SecretsMountHana {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -270,6 +284,7 @@ public final class SecretsMountHana {
         private @Nullable Integer maxOpenConnections;
         private String name;
         private @Nullable String password;
+        private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
         private @Nullable List<String> rootRotationStatements;
@@ -291,6 +306,7 @@ public final class SecretsMountHana {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
@@ -367,6 +383,12 @@ public final class SecretsMountHana {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
+            return this;
+        }
+        @CustomType.Setter
         public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
 
             this.passwordWoVersion = passwordWoVersion;
@@ -429,6 +451,7 @@ public final class SecretsMountHana {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
             _resultValue.rootRotationStatements = rootRotationStatements;

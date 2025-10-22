@@ -78,6 +78,23 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     * 
+     */
+    @Import(name="dataJsonWo")
+    private @Nullable Output<String> dataJsonWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     * 
+     */
+    public Optional<Output<String>> dataJsonWo() {
+        return Optional.ofNullable(this.dataJsonWo);
+    }
+
+    /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      * 
      */
@@ -204,6 +221,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
         this.cas = $.cas;
         this.customMetadata = $.customMetadata;
         this.dataJson = $.dataJson;
+        this.dataJsonWo = $.dataJsonWo;
         this.dataJsonWoVersion = $.dataJsonWoVersion;
         this.deleteAllVersions = $.deleteAllVersions;
         this.disableRead = $.disableRead;
@@ -304,6 +322,29 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dataJson(String dataJson) {
             return dataJson(Output.of(dataJson));
+        }
+
+        /**
+         * @param dataJsonWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-Only JSON-encoded secret data to write.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataJsonWo(@Nullable Output<String> dataJsonWo) {
+            $.dataJsonWo = dataJsonWo;
+            return this;
+        }
+
+        /**
+         * @param dataJsonWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-Only JSON-encoded secret data to write.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dataJsonWo(String dataJsonWo) {
+            return dataJsonWo(Output.of(dataJsonWo));
         }
 
         /**

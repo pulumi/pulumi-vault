@@ -135,6 +135,11 @@ export class SecretV2 extends pulumi.CustomResource {
      */
     declare public readonly dataJson: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     */
+    declare public readonly dataJsonWo: pulumi.Output<string | undefined>;
+    /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      */
     declare public readonly dataJsonWoVersion: pulumi.Output<number | undefined>;
@@ -196,6 +201,7 @@ export class SecretV2 extends pulumi.CustomResource {
             resourceInputs["customMetadata"] = state?.customMetadata;
             resourceInputs["data"] = state?.data;
             resourceInputs["dataJson"] = state?.dataJson;
+            resourceInputs["dataJsonWo"] = state?.dataJsonWo;
             resourceInputs["dataJsonWoVersion"] = state?.dataJsonWoVersion;
             resourceInputs["deleteAllVersions"] = state?.deleteAllVersions;
             resourceInputs["disableRead"] = state?.disableRead;
@@ -213,6 +219,7 @@ export class SecretV2 extends pulumi.CustomResource {
             resourceInputs["cas"] = args?.cas;
             resourceInputs["customMetadata"] = args?.customMetadata;
             resourceInputs["dataJson"] = args?.dataJson ? pulumi.secret(args.dataJson) : undefined;
+            resourceInputs["dataJsonWo"] = args?.dataJsonWo ? pulumi.secret(args.dataJsonWo) : undefined;
             resourceInputs["dataJsonWoVersion"] = args?.dataJsonWoVersion;
             resourceInputs["deleteAllVersions"] = args?.deleteAllVersions;
             resourceInputs["disableRead"] = args?.disableRead;
@@ -225,7 +232,7 @@ export class SecretV2 extends pulumi.CustomResource {
             resourceInputs["path"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["data", "dataJson"] };
+        const secretOpts = { additionalSecretOutputs: ["data", "dataJson", "dataJsonWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretV2.__pulumiType, name, resourceInputs, opts);
     }
@@ -262,6 +269,11 @@ export interface SecretV2State {
      * written as the secret data at the given path.
      */
     dataJson?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     */
+    dataJsonWo?: pulumi.Input<string>;
     /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      */
@@ -330,6 +342,11 @@ export interface SecretV2Args {
      * written as the secret data at the given path.
      */
     dataJson?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-Only JSON-encoded secret data to write.
+     */
+    dataJsonWo?: pulumi.Input<string>;
     /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      */

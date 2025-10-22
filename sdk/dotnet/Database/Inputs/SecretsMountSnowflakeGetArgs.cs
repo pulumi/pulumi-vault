@@ -92,6 +92,23 @@ namespace Pulumi.Vault.Database.Inputs
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only field for the root credential password used in the connection URL
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// Version counter for root credential password write-only field
         /// </summary>
@@ -103,6 +120,23 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The private key configured for the admin user in Snowflake.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Version counter for the private key key-pair credentials write-only field
