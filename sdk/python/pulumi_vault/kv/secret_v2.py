@@ -25,6 +25,7 @@ class SecretV2Args:
                  cas: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
                  data_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -43,6 +44,8 @@ class SecretV2Args:
                Configuration Options for more info.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-Only JSON-encoded secret data to write.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -65,6 +68,8 @@ class SecretV2Args:
             pulumi.set(__self__, "custom_metadata", custom_metadata)
         if data_json is not None:
             pulumi.set(__self__, "data_json", data_json)
+        if data_json_wo is not None:
+            pulumi.set(__self__, "data_json_wo", data_json_wo)
         if data_json_wo_version is not None:
             pulumi.set(__self__, "data_json_wo_version", data_json_wo_version)
         if delete_all_versions is not None:
@@ -131,6 +136,19 @@ class SecretV2Args:
     @data_json.setter
     def data_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "data_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataJsonWo")
+    def data_json_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-Only JSON-encoded secret data to write.
+        """
+        return pulumi.get(self, "data_json_wo")
+
+    @data_json_wo.setter
+    def data_json_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_json_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWoVersion")
@@ -220,6 +238,7 @@ class _SecretV2State:
                  custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  data_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -244,6 +263,8 @@ class _SecretV2State:
                so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-Only JSON-encoded secret data to write.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -273,6 +294,8 @@ class _SecretV2State:
             pulumi.set(__self__, "data", data)
         if data_json is not None:
             pulumi.set(__self__, "data_json", data_json)
+        if data_json_wo is not None:
+            pulumi.set(__self__, "data_json_wo", data_json_wo)
         if data_json_wo_version is not None:
             pulumi.set(__self__, "data_json_wo_version", data_json_wo_version)
         if delete_all_versions is not None:
@@ -349,6 +372,19 @@ class _SecretV2State:
     @data_json.setter
     def data_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "data_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataJsonWo")
+    def data_json_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-Only JSON-encoded secret data to write.
+        """
+        return pulumi.get(self, "data_json_wo")
+
+    @data_json_wo.setter
+    def data_json_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_json_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWoVersion")
@@ -476,6 +512,7 @@ class SecretV2(pulumi.CustomResource):
                  cas: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
                  data_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -567,6 +604,8 @@ class SecretV2(pulumi.CustomResource):
                Configuration Options for more info.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-Only JSON-encoded secret data to write.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -679,6 +718,7 @@ class SecretV2(pulumi.CustomResource):
                  cas: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
                  data_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -698,6 +738,7 @@ class SecretV2(pulumi.CustomResource):
             __props__.__dict__["cas"] = cas
             __props__.__dict__["custom_metadata"] = custom_metadata
             __props__.__dict__["data_json"] = None if data_json is None else pulumi.Output.secret(data_json)
+            __props__.__dict__["data_json_wo"] = None if data_json_wo is None else pulumi.Output.secret(data_json_wo)
             __props__.__dict__["data_json_wo_version"] = data_json_wo_version
             __props__.__dict__["delete_all_versions"] = delete_all_versions
             __props__.__dict__["disable_read"] = disable_read
@@ -710,7 +751,7 @@ class SecretV2(pulumi.CustomResource):
             __props__.__dict__["data"] = None
             __props__.__dict__["metadata"] = None
             __props__.__dict__["path"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["data", "dataJson"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["data", "dataJson", "dataJsonWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretV2, __self__).__init__(
             'vault:kv/secretV2:SecretV2',
@@ -726,6 +767,7 @@ class SecretV2(pulumi.CustomResource):
             custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
             data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             data_json: Optional[pulumi.Input[_builtins.str]] = None,
+            data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
             data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
             disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -755,6 +797,8 @@ class SecretV2(pulumi.CustomResource):
                so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
+        :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-Only JSON-encoded secret data to write.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -781,6 +825,7 @@ class SecretV2(pulumi.CustomResource):
         __props__.__dict__["custom_metadata"] = custom_metadata
         __props__.__dict__["data"] = data
         __props__.__dict__["data_json"] = data_json
+        __props__.__dict__["data_json_wo"] = data_json_wo
         __props__.__dict__["data_json_wo_version"] = data_json_wo_version
         __props__.__dict__["delete_all_versions"] = delete_all_versions
         __props__.__dict__["disable_read"] = disable_read
@@ -833,6 +878,15 @@ class SecretV2(pulumi.CustomResource):
         written as the secret data at the given path.
         """
         return pulumi.get(self, "data_json")
+
+    @_builtins.property
+    @pulumi.getter(name="dataJsonWo")
+    def data_json_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-Only JSON-encoded secret data to write.
+        """
+        return pulumi.get(self, "data_json_wo")
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWoVersion")

@@ -69,6 +69,12 @@ public final class SecretsMountSnowflake {
     @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     private @Nullable String password;
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    private @Nullable String passwordWo;
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -78,6 +84,12 @@ public final class SecretsMountSnowflake {
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key configured for the admin user in Snowflake.
+     * 
+     */
+    private @Nullable String privateKeyWo;
     /**
      * @return Version counter for the private key key-pair credentials write-only field
      * 
@@ -196,6 +208,14 @@ public final class SecretsMountSnowflake {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only field for the root credential password used in the connection URL
+     * 
+     */
+    public Optional<String> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+    /**
      * @return Version counter for root credential password write-only field
      * 
      */
@@ -208,6 +228,14 @@ public final class SecretsMountSnowflake {
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The private key configured for the admin user in Snowflake.
+     * 
+     */
+    public Optional<String> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
     }
     /**
      * @return Version counter for the private key key-pair credentials write-only field
@@ -289,8 +317,10 @@ public final class SecretsMountSnowflake {
         private @Nullable Integer maxOpenConnections;
         private String name;
         private @Nullable String password;
+        private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
+        private @Nullable String privateKeyWo;
         private @Nullable Integer privateKeyWoVersion;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
@@ -311,8 +341,10 @@ public final class SecretsMountSnowflake {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
+    	      this.privateKeyWo = defaults.privateKeyWo;
     	      this.privateKeyWoVersion = defaults.privateKeyWoVersion;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
@@ -383,6 +415,12 @@ public final class SecretsMountSnowflake {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordWo(@Nullable String passwordWo) {
+
+            this.passwordWo = passwordWo;
+            return this;
+        }
+        @CustomType.Setter
         public Builder passwordWoVersion(@Nullable Integer passwordWoVersion) {
 
             this.passwordWoVersion = passwordWoVersion;
@@ -392,6 +430,12 @@ public final class SecretsMountSnowflake {
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder privateKeyWo(@Nullable String privateKeyWo) {
+
+            this.privateKeyWo = privateKeyWo;
             return this;
         }
         @CustomType.Setter
@@ -456,8 +500,10 @@ public final class SecretsMountSnowflake {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
+            _resultValue.privateKeyWo = privateKeyWo;
             _resultValue.privateKeyWoVersion = privateKeyWoVersion;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;

@@ -103,6 +103,13 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only JSON-encoded credentials to use to connect to GCP
+        /// </summary>
+        [Output("credentialsWo")]
+        public Output<string?> CredentialsWo { get; private set; } = null!;
+
+        /// <summary>
         /// The version of the `CredentialsWo`. For more info see updating write-only attributes.
         /// </summary>
         [Output("credentialsWoVersion")]
@@ -286,6 +293,7 @@ namespace Pulumi.Vault.Gcp
                 AdditionalSecretOutputs =
                 {
                     "credentials",
+                    "credentialsWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -371,6 +379,23 @@ namespace Pulumi.Vault.Gcp
             {
                 var emptySecret = Output.CreateSecret(0);
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("credentialsWo")]
+        private Input<string>? _credentialsWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only JSON-encoded credentials to use to connect to GCP
+        /// </summary>
+        public Input<string>? CredentialsWo
+        {
+            get => _credentialsWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentialsWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 
@@ -625,6 +650,23 @@ namespace Pulumi.Vault.Gcp
             {
                 var emptySecret = Output.CreateSecret(0);
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("credentialsWo")]
+        private Input<string>? _credentialsWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only JSON-encoded credentials to use to connect to GCP
+        /// </summary>
+        public Input<string>? CredentialsWo
+        {
+            get => _credentialsWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentialsWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

@@ -96,6 +96,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly credentials: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     */
+    declare public readonly credentialsWo: pulumi.Output<string | undefined>;
+    /**
      * The version of the `credentialsWo`. For more info see updating write-only attributes.
      */
     declare public readonly credentialsWoVersion: pulumi.Output<number | undefined>;
@@ -225,6 +230,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["auditNonHmacRequestKeys"] = state?.auditNonHmacRequestKeys;
             resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
             resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["credentialsWo"] = state?.credentialsWo;
             resourceInputs["credentialsWoVersion"] = state?.credentialsWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
@@ -256,6 +262,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
             resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
+            resourceInputs["credentialsWo"] = args?.credentialsWo ? pulumi.secret(args.credentialsWo) : undefined;
             resourceInputs["credentialsWoVersion"] = args?.credentialsWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
@@ -283,7 +290,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["credentials"] };
+        const secretOpts = { additionalSecretOutputs: ["credentials", "credentialsWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -317,6 +324,11 @@ export interface SecretBackendState {
      * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     */
+    credentialsWo?: pulumi.Input<string>;
     /**
      * The version of the `credentialsWo`. For more info see updating write-only attributes.
      */
@@ -453,6 +465,11 @@ export interface SecretBackendArgs {
      * JSON-encoded credentials to use to connect to GCP
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     */
+    credentialsWo?: pulumi.Input<string>;
     /**
      * The version of the `credentialsWo`. For more info see updating write-only attributes.
      */

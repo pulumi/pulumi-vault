@@ -97,6 +97,9 @@ type SecretBackend struct {
 	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON-encoded credentials to use to connect to GCP
+	CredentialsWo pulumi.StringPtrOutput `pulumi:"credentialsWo"`
 	// The version of the `credentialsWo`. For more info see updating write-only attributes.
 	CredentialsWoVersion pulumi.IntPtrOutput `pulumi:"credentialsWoVersion"`
 	// Default lease duration for secrets in seconds
@@ -171,8 +174,12 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Credentials != nil {
 		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
 	}
+	if args.CredentialsWo != nil {
+		args.CredentialsWo = pulumi.ToSecret(args.CredentialsWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"credentials",
+		"credentialsWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -210,6 +217,9 @@ type secretBackendState struct {
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON-encoded credentials to use to connect to GCP
+	CredentialsWo *string `pulumi:"credentialsWo"`
 	// The version of the `credentialsWo`. For more info see updating write-only attributes.
 	CredentialsWoVersion *int `pulumi:"credentialsWoVersion"`
 	// Default lease duration for secrets in seconds
@@ -287,6 +297,9 @@ type SecretBackendState struct {
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON-encoded credentials to use to connect to GCP
+	CredentialsWo pulumi.StringPtrInput
 	// The version of the `credentialsWo`. For more info see updating write-only attributes.
 	CredentialsWoVersion pulumi.IntPtrInput
 	// Default lease duration for secrets in seconds
@@ -366,6 +379,9 @@ type secretBackendArgs struct {
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON-encoded credentials to use to connect to GCP
+	CredentialsWo *string `pulumi:"credentialsWo"`
 	// The version of the `credentialsWo`. For more info see updating write-only attributes.
 	CredentialsWoVersion *int `pulumi:"credentialsWoVersion"`
 	// Default lease duration for secrets in seconds
@@ -442,6 +458,9 @@ type SecretBackendArgs struct {
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON-encoded credentials to use to connect to GCP
+	CredentialsWo pulumi.StringPtrInput
 	// The version of the `credentialsWo`. For more info see updating write-only attributes.
 	CredentialsWoVersion pulumi.IntPtrInput
 	// Default lease duration for secrets in seconds
@@ -621,6 +640,12 @@ func (o SecretBackendOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput
 // JSON-encoded credentials to use to connect to GCP
 func (o SecretBackendOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only JSON-encoded credentials to use to connect to GCP
+func (o SecretBackendOutput) CredentialsWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.CredentialsWo }).(pulumi.StringPtrOutput)
 }
 
 // The version of the `credentialsWo`. For more info see updating write-only attributes.

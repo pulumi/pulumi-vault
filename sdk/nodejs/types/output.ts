@@ -732,6 +732,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -806,6 +811,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -864,6 +874,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -902,6 +917,11 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
         /**
          * Version counter for root credential password write-only field
          */
@@ -954,6 +974,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -1004,6 +1029,11 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
         /**
          * Version counter for root credential password write-only field
          */
@@ -1056,6 +1086,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -1107,6 +1142,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -1157,6 +1197,11 @@ export namespace database {
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
         passwordAuthentication?: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
         /**
          * Version counter for root credential password write-only field
          */
@@ -1267,6 +1312,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -1304,9 +1354,19 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The private key configured for the admin user in Snowflake.
+         */
+        privateKeyWo?: string;
         /**
          * Version counter for the private key key-pair credentials write-only field
          */
@@ -1635,6 +1695,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -1805,6 +1870,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -1959,6 +2029,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -2045,6 +2120,11 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
         /**
          * Version counter for root credential password write-only field
          */
@@ -2145,6 +2225,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -2243,6 +2328,11 @@ export namespace database {
          * The root credential password used in the connection URL
          */
         password?: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
         /**
          * Version counter for root credential password write-only field
          */
@@ -2343,6 +2433,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -2442,6 +2537,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -2540,6 +2640,11 @@ export namespace database {
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
         passwordAuthentication?: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
         /**
          * Version counter for root credential password write-only field
          */
@@ -2794,6 +2899,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -2879,6 +2989,11 @@ export namespace database {
          */
         password?: string;
         /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only field for the root credential password used in the connection URL
+         */
+        passwordWo?: string;
+        /**
          * Version counter for root credential password write-only field
          */
         passwordWoVersion?: number;
@@ -2886,6 +3001,11 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
+        /**
+         * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The private key configured for the admin user in Snowflake.
+         */
+        privateKeyWo?: string;
         /**
          * Version counter for the private key key-pair credentials write-only field
          */

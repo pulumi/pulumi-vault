@@ -110,6 +110,23 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     * 
+     */
+    @Import(name="credentialsWo")
+    private @Nullable Output<String> credentialsWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON-encoded credentials to use to connect to GCP
+     * 
+     */
+    public Optional<Output<String>> credentialsWo() {
+        return Optional.ofNullable(this.credentialsWo);
+    }
+
+    /**
      * The version of the `credentialsWo`. For more info see updating write-only attributes.
      * 
      */
@@ -506,6 +523,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.auditNonHmacRequestKeys = $.auditNonHmacRequestKeys;
         this.auditNonHmacResponseKeys = $.auditNonHmacResponseKeys;
         this.credentials = $.credentials;
+        this.credentialsWo = $.credentialsWo;
         this.credentialsWoVersion = $.credentialsWoVersion;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.delegatedAuthAccessors = $.delegatedAuthAccessors;
@@ -714,6 +732,29 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder credentials(String credentials) {
             return credentials(Output.of(credentials));
+        }
+
+        /**
+         * @param credentialsWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only JSON-encoded credentials to use to connect to GCP
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWo(@Nullable Output<String> credentialsWo) {
+            $.credentialsWo = credentialsWo;
+            return this;
+        }
+
+        /**
+         * @param credentialsWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only JSON-encoded credentials to use to connect to GCP
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWo(String credentialsWo) {
+            return credentialsWo(Output.of(credentialsWo));
         }
 
         /**
