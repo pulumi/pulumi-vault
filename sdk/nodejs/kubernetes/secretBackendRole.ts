@@ -108,9 +108,9 @@ import * as utilities from "../utilities";
  *     tokenDefaultTtl: 21600,
  *     kubernetesRoleType: "Role",
  *     generatedRoleRules: `rules:
- * - apiGroups: [""]
- *   resources: ["pods"]
- *   verbs: ["list"]
+ * - apiGroups: [\\"\\"]
+ *   resources: [\\"pods\\"]
+ *   verbs: [\\"list\\"]
  * `,
  *     extraLabels: {
  *         id: "abc123",

@@ -138,7 +138,7 @@ type Backend struct {
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
-	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
 	RootPasswordTtl pulumi.IntOutput `pulumi:"rootPasswordTtl"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -274,7 +274,7 @@ type backendState struct {
 	Path *string `pulumi:"path"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion *string `pulumi:"pluginVersion"`
-	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
 	RootPasswordTtl *int `pulumi:"rootPasswordTtl"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -356,7 +356,7 @@ type BackendState struct {
 	Path pulumi.StringPtrInput
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrInput
-	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
 	RootPasswordTtl pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -440,7 +440,7 @@ type backendArgs struct {
 	Path *string `pulumi:"path"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion *string `pulumi:"pluginVersion"`
-	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
 	RootPasswordTtl *int `pulumi:"rootPasswordTtl"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -521,7 +521,7 @@ type BackendArgs struct {
 	Path pulumi.StringPtrInput
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrInput
-	// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+	// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
 	RootPasswordTtl pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -767,7 +767,7 @@ func (o BackendOutput) PluginVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
-// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
 func (o BackendOutput) RootPasswordTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *Backend) pulumi.IntOutput { return v.RootPasswordTtl }).(pulumi.IntOutput)
 }

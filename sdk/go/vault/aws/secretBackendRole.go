@@ -38,12 +38,12 @@ import (
 //				Name:           pulumi.String("deploy"),
 //				CredentialType: pulumi.String("iam_user"),
 //				PolicyDocument: pulumi.String(`{
-//	  "Version": "2012-10-17",
-//	  "Statement": [
+//	  \"Version\": \"2012-10-17\",
+//	  \"Statement\": [
 //	    {
-//	      "Effect": "Allow",
-//	      "Action": "iam:*",
-//	      "Resource": "*"
+//	      \"Effect\": \"Allow\",
+//	      \"Action\": \"iam:*\",
+//	      \"Resource\": \"*\"
 //	    }
 //	  ]
 //	}
@@ -100,6 +100,8 @@ type SecretBackendRole struct {
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
 	MaxStsTtl pulumi.IntOutput `pulumi:"maxStsTtl"`
+	// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+	MfaSerialNumber pulumi.StringPtrOutput `pulumi:"mfaSerialNumber"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -206,6 +208,8 @@ type secretBackendRoleState struct {
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
 	MaxStsTtl *int `pulumi:"maxStsTtl"`
+	// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+	MfaSerialNumber *string `pulumi:"mfaSerialNumber"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
@@ -277,6 +281,8 @@ type SecretBackendRoleState struct {
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
 	MaxStsTtl pulumi.IntPtrInput
+	// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+	MfaSerialNumber pulumi.StringPtrInput
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
@@ -352,6 +358,8 @@ type secretBackendRoleArgs struct {
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
 	MaxStsTtl *int `pulumi:"maxStsTtl"`
+	// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+	MfaSerialNumber *string `pulumi:"mfaSerialNumber"`
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name *string `pulumi:"name"`
@@ -424,6 +432,8 @@ type SecretBackendRoleArgs struct {
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
 	MaxStsTtl pulumi.IntPtrInput
+	// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+	MfaSerialNumber pulumi.StringPtrInput
 	// The name to identify this role within the backend.
 	// Must be unique within the backend.
 	Name pulumi.StringPtrInput
@@ -600,6 +610,11 @@ func (o SecretBackendRoleOutput) IamTags() pulumi.StringMapOutput {
 // one of `assumedRole` or `federationToken`.
 func (o SecretBackendRoleOutput) MaxStsTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntOutput { return v.MaxStsTtl }).(pulumi.IntOutput)
+}
+
+// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+func (o SecretBackendRoleOutput) MfaSerialNumber() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.MfaSerialNumber }).(pulumi.StringPtrOutput)
 }
 
 // The name to identify this role within the backend.

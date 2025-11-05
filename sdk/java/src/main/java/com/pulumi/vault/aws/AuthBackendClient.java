@@ -96,6 +96,9 @@ import javax.annotation.Nullable;
  *             .secretKey("INSERT_AWS_SECRET_KEY")
  *             .rotationSchedule("0 * * * SAT")
  *             .rotationWindow(3600)
+ *             .allowedStsHeaderValues(            
+ *                 "X-Custom-Header",
+ *                 "X-Another-Header")
  *             .build());
  * 
  *     }
@@ -129,6 +132,24 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> accessKey() {
         return Codegen.optional(this.accessKey);
+    }
+    /**
+     * List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     * 
+     */
+    @Export(name="allowedStsHeaderValues", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedStsHeaderValues;
+
+    /**
+     * @return List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedStsHeaderValues() {
+        return Codegen.optional(this.allowedStsHeaderValues);
     }
     /**
      * The path the AWS auth backend being configured was

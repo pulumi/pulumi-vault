@@ -21,6 +21,110 @@ import javax.annotation.Nullable;
 /**
  * Allows setting the EST configuration on a PKI Secret Backend
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+ * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+ * import com.pulumi.vault.pkiSecret.BackendConfigEst;
+ * import com.pulumi.vault.pkiSecret.BackendConfigEstArgs;
+ * import com.pulumi.vault.pkiSecret.inputs.BackendConfigEstAuthenticatorsArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FormatArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pki = new Mount("pki", MountArgs.builder()
+ *             .path("pki-root")
+ *             .type("pki")
+ *             .description("PKI secret engine mount")
+ *             .build());
+ * 
+ *         var estRole = new SecretBackendRole("estRole", SecretBackendRoleArgs.builder()
+ *             .backend(pki.path())
+ *             .name("est-role")
+ *             .ttl("3600")
+ *             .keyType("ec")
+ *             .keyBits(256)
+ *             .build());
+ * 
+ *         var estRole2 = new SecretBackendRole("estRole2", SecretBackendRoleArgs.builder()
+ *             .backend(pki.path())
+ *             .name("est-role-2")
+ *             .ttl("3600")
+ *             .keyType("ec")
+ *             .keyBits(256)
+ *             .build());
+ * 
+ *         var example = new BackendConfigEst("example", BackendConfigEstArgs.builder()
+ *             .backend(pki.path())
+ *             .enabled(true)
+ *             .defaultMount(true)
+ *             .defaultPathPolicy(StdFunctions.format(FormatArgs.builder()
+ *                 .input("role:%s")
+ *                 .args(estRole.name())
+ *                 .build()).result())
+ *             .labelToPathPolicy(Map.ofEntries(
+ *                 Map.entry("test-label", "sign-verbatim"),
+ *                 Map.entry("test-label-2", StdFunctions.format(FormatArgs.builder()
+ *                     .input("role:%s")
+ *                     .args(estRole2.name())
+ *                     .build()).result())
+ *             ))
+ *             .authenticators(BackendConfigEstAuthenticatorsArgs.builder()
+ *                 .cert(Map.ofEntries(
+ *                     Map.entry("accessor", "test"),
+ *                     Map.entry("cert_role", "cert-auth-role")
+ *                 ))
+ *                 .userpass(Map.of("accessor", "test2"))
+ *                 .build())
+ *             .enableSentinelParsing(true)
+ *             .auditFields(            
+ *                 "csr",
+ *                 "common_name",
+ *                 "alt_names",
+ *                 "ip_sans",
+ *                 "uri_sans",
+ *                 "other_sans",
+ *                 "signature_bits",
+ *                 "exclude_cn_from_sans",
+ *                 "ou",
+ *                 "organization",
+ *                 "country",
+ *                 "locality",
+ *                 "province",
+ *                 "street_address",
+ *                 "postal_code",
+ *                 "serial_number",
+ *                 "use_pss",
+ *                 "key_type",
+ *                 "key_bits",
+ *                 "add_basic_constraints")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * The PKI config cluster can be imported using the resource&#39;s `id`.

@@ -114,6 +114,10 @@ export class BackendRole extends pulumi.CustomResource {
      */
     declare public readonly permanentlyDelete: pulumi.Output<boolean>;
     /**
+     * If set to true, persists the created service principal and application for the lifetime of the role
+     */
+    declare public readonly persistApp: pulumi.Output<boolean | undefined>;
+    /**
      * Name of the Azure role
      */
     declare public readonly role: pulumi.Output<string>;
@@ -154,6 +158,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["maxTtl"] = state?.maxTtl;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["permanentlyDelete"] = state?.permanentlyDelete;
+            resourceInputs["persistApp"] = state?.persistApp;
             resourceInputs["role"] = state?.role;
             resourceInputs["signInAudience"] = state?.signInAudience;
             resourceInputs["tags"] = state?.tags;
@@ -172,6 +177,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["maxTtl"] = args?.maxTtl;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["permanentlyDelete"] = args?.permanentlyDelete;
+            resourceInputs["persistApp"] = args?.persistApp;
             resourceInputs["role"] = args?.role;
             resourceInputs["signInAudience"] = args?.signInAudience;
             resourceInputs["tags"] = args?.tags;
@@ -228,6 +234,10 @@ export interface BackendRoleState {
      * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
      */
     permanentlyDelete?: pulumi.Input<boolean>;
+    /**
+     * If set to true, persists the created service principal and application for the lifetime of the role
+     */
+    persistApp?: pulumi.Input<boolean>;
     /**
      * Name of the Azure role
      */
@@ -294,6 +304,10 @@ export interface BackendRoleArgs {
      * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
      */
     permanentlyDelete?: pulumi.Input<boolean>;
+    /**
+     * If set to true, persists the created service principal and application for the lifetime of the role
+     */
+    persistApp?: pulumi.Input<boolean>;
     /**
      * Name of the Azure role
      */

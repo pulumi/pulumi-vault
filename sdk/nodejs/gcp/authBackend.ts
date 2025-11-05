@@ -102,6 +102,22 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly disableRemount: pulumi.Output<boolean | undefined>;
     /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     */
+    declare public readonly gceAlias: pulumi.Output<string>;
+    /**
+     * Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+     */
+    declare public readonly gceMetadatas: pulumi.Output<string[]>;
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     */
+    declare public readonly iamAlias: pulumi.Output<string>;
+    /**
+     * Controls the metadata to include on the token returned by the login endpoint.
+     */
+    declare public readonly iamMetadatas: pulumi.Output<string[]>;
+    /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -188,6 +204,10 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
             resourceInputs["disableRemount"] = state?.disableRemount;
+            resourceInputs["gceAlias"] = state?.gceAlias;
+            resourceInputs["gceMetadatas"] = state?.gceMetadatas;
+            resourceInputs["iamAlias"] = state?.iamAlias;
+            resourceInputs["iamMetadatas"] = state?.iamMetadatas;
             resourceInputs["identityTokenAudience"] = state?.identityTokenAudience;
             resourceInputs["identityTokenKey"] = state?.identityTokenKey;
             resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
@@ -210,6 +230,10 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args?.description;
             resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
             resourceInputs["disableRemount"] = args?.disableRemount;
+            resourceInputs["gceAlias"] = args?.gceAlias;
+            resourceInputs["gceMetadatas"] = args?.gceMetadatas;
+            resourceInputs["iamAlias"] = args?.iamAlias;
+            resourceInputs["iamMetadatas"] = args?.iamMetadatas;
             resourceInputs["identityTokenAudience"] = args?.identityTokenAudience;
             resourceInputs["identityTokenKey"] = args?.identityTokenKey;
             resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
@@ -275,6 +299,22 @@ export interface AuthBackendState {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     */
+    gceAlias?: pulumi.Input<string>;
+    /**
+     * Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+     */
+    gceMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     */
+    iamAlias?: pulumi.Input<string>;
+    /**
+     * Controls the metadata to include on the token returned by the login endpoint.
+     */
+    iamMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
@@ -381,6 +421,22 @@ export interface AuthBackendArgs {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     */
+    gceAlias?: pulumi.Input<string>;
+    /**
+     * Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+     */
+    gceMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     */
+    iamAlias?: pulumi.Input<string>;
+    /**
+     * Controls the metadata to include on the token returned by the login endpoint.
+     */
+    iamMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).

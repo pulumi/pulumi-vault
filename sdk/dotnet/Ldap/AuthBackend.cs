@@ -34,6 +34,10 @@ namespace Pulumi.Vault.Ldap
     ///         Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
     ///         RotationSchedule = "0 * * * SAT",
     ///         RotationWindow = 3600,
+    ///         RequestTimeout = 30,
+    ///         DereferenceAliases = "always",
+    ///         EnableSamaccountnameLogin = false,
+    ///         AnonymousGroupSearch = false,
     ///     });
     /// 
     /// });
@@ -55,6 +59,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("accessor")]
         public Output<string> Accessor { get; private set; } = null!;
+
+        /// <summary>
+        /// Allows anonymous group searches.
+        /// </summary>
+        [Output("anonymousGroupSearch")]
+        public Output<bool> AnonymousGroupSearch { get; private set; } = null!;
 
         /// <summary>
         /// DN of object to bind when performing user search
@@ -99,6 +109,12 @@ namespace Pulumi.Vault.Ldap
         public Output<bool> DenyNullBind { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+        /// </summary>
+        [Output("dereferenceAliases")]
+        public Output<string> DereferenceAliases { get; private set; } = null!;
+
+        /// <summary>
         /// Description for the LDAP auth backend mount
         /// </summary>
         [Output("description")]
@@ -122,6 +138,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("discoverdn")]
         public Output<bool> Discoverdn { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables login using the sAMAccountName attribute.
+        /// </summary>
+        [Output("enableSamaccountnameLogin")]
+        public Output<bool> EnableSamaccountnameLogin { get; private set; } = null!;
 
         /// <summary>
         /// LDAP attribute to follow on objects returned by groupfilter
@@ -174,6 +196,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// The timeout(in sec) for requests to the LDAP server.
+        /// </summary>
+        [Output("requestTimeout")]
+        public Output<int> RequestTimeout { get; private set; } = null!;
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -264,10 +292,19 @@ namespace Pulumi.Vault.Ldap
         public Output<int?> TokenTtl { get; private set; } = null!;
 
         /// <summary>
-        /// The type of token to generate, service or batch
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
         /// </summary>
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
+
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Output("tune")]
+        public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
         /// <summary>
         /// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
@@ -363,6 +400,12 @@ namespace Pulumi.Vault.Ldap
     public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allows anonymous group searches.
+        /// </summary>
+        [Input("anonymousGroupSearch")]
+        public Input<bool>? AnonymousGroupSearch { get; set; }
+
+        /// <summary>
         /// DN of object to bind when performing user search
         /// </summary>
         [Input("binddn")]
@@ -424,6 +467,12 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? DenyNullBind { get; set; }
 
         /// <summary>
+        /// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+        /// </summary>
+        [Input("dereferenceAliases")]
+        public Input<string>? DereferenceAliases { get; set; }
+
+        /// <summary>
         /// Description for the LDAP auth backend mount
         /// </summary>
         [Input("description")]
@@ -447,6 +496,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
+
+        /// <summary>
+        /// Enables login using the sAMAccountName attribute.
+        /// </summary>
+        [Input("enableSamaccountnameLogin")]
+        public Input<bool>? EnableSamaccountnameLogin { get; set; }
 
         /// <summary>
         /// LDAP attribute to follow on objects returned by groupfilter
@@ -499,6 +554,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// The timeout(in sec) for requests to the LDAP server.
+        /// </summary>
+        [Input("requestTimeout")]
+        public Input<int>? RequestTimeout { get; set; }
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -601,10 +662,19 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token to generate, service or batch
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
+
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
         /// <summary>
         /// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
@@ -663,6 +733,12 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Accessor { get; set; }
 
         /// <summary>
+        /// Allows anonymous group searches.
+        /// </summary>
+        [Input("anonymousGroupSearch")]
+        public Input<bool>? AnonymousGroupSearch { get; set; }
+
+        /// <summary>
         /// DN of object to bind when performing user search
         /// </summary>
         [Input("binddn")]
@@ -724,6 +800,12 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? DenyNullBind { get; set; }
 
         /// <summary>
+        /// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+        /// </summary>
+        [Input("dereferenceAliases")]
+        public Input<string>? DereferenceAliases { get; set; }
+
+        /// <summary>
         /// Description for the LDAP auth backend mount
         /// </summary>
         [Input("description")]
@@ -747,6 +829,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("discoverdn")]
         public Input<bool>? Discoverdn { get; set; }
+
+        /// <summary>
+        /// Enables login using the sAMAccountName attribute.
+        /// </summary>
+        [Input("enableSamaccountnameLogin")]
+        public Input<bool>? EnableSamaccountnameLogin { get; set; }
 
         /// <summary>
         /// LDAP attribute to follow on objects returned by groupfilter
@@ -799,6 +887,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// The timeout(in sec) for requests to the LDAP server.
+        /// </summary>
+        [Input("requestTimeout")]
+        public Input<int>? RequestTimeout { get; set; }
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -901,10 +995,19 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? TokenTtl { get; set; }
 
         /// <summary>
-        /// The type of token to generate, service or batch
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
+
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         /// <summary>
         /// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.

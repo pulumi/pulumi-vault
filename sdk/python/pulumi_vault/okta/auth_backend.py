@@ -39,6 +39,7 @@ class AuthBackendArgs:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
@@ -104,6 +105,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
         if users is not None:
             pulumi.set(__self__, "users", users)
 
@@ -331,6 +334,15 @@ class AuthBackendArgs:
 
     @_builtins.property
     @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
+    @_builtins.property
+    @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
         """
         Associate Okta users with groups or policies within Vault.
@@ -365,6 +377,7 @@ class _AuthBackendState:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
@@ -434,6 +447,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
         if users is not None:
             pulumi.set(__self__, "users", users)
 
@@ -673,6 +688,15 @@ class _AuthBackendState:
 
     @_builtins.property
     @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
+    @_builtins.property
+    @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
         """
         Associate Okta users with groups or policies within Vault.
@@ -709,6 +733,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
                  __props__=None):
         """
@@ -849,6 +874,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -879,6 +905,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
+            __props__.__dict__["tune"] = tune
             __props__.__dict__["users"] = users
             __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
@@ -912,6 +939,7 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             token_type: Optional[pulumi.Input[_builtins.str]] = None,
+            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
@@ -971,6 +999,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["token_policies"] = token_policies
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
+        __props__.__dict__["tune"] = tune
         __props__.__dict__["users"] = users
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -1131,6 +1160,11 @@ class AuthBackend(pulumi.CustomResource):
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
+        return pulumi.get(self, "tune")
 
     @_builtins.property
     @pulumi.getter

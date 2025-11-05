@@ -178,6 +178,48 @@ class Keys(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        keys = vault.managed.Keys("keys", aws=[
+            {
+                "name": "aws-key-1",
+                "access_key": aws_access_key,
+                "secret_key": aws_secret_key,
+                "key_bits": "2048",
+                "key_type": "RSA",
+                "kms_key": "alias/vault_aws_key_1",
+            },
+            {
+                "name": "aws-key-2",
+                "access_key": aws_access_key,
+                "secret_key": aws_secret_key,
+                "key_bits": "4096",
+                "key_type": "RSA",
+                "kms_key": "alias/vault_aws_key_2",
+            },
+        ])
+        pki = vault.Mount("pki",
+            path="pki",
+            type="pki",
+            description="Example mount for managed keys",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=36000,
+            allowed_managed_keys=[
+                keys.aws[0].name,
+                keys.aws[1].name,
+            ])
+        ```
+
+        ## Caveats
+
+        This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
+        There can only be one such resource in the TF state, and if there are already provisioned managed
+        keys in Vault, we recommend using `pulumi import` instead.
+
         ## Import
 
         Mounts can be imported using the `id` of `default`, e.g.
@@ -203,6 +245,48 @@ class Keys(pulumi.CustomResource):
         A resource that manages the lifecycle of all [Managed Keys](https://www.vaultproject.io/docs/enterprise/managed-keys) in Vault.
 
         **Note** this feature is available only with Vault Enterprise.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        keys = vault.managed.Keys("keys", aws=[
+            {
+                "name": "aws-key-1",
+                "access_key": aws_access_key,
+                "secret_key": aws_secret_key,
+                "key_bits": "2048",
+                "key_type": "RSA",
+                "kms_key": "alias/vault_aws_key_1",
+            },
+            {
+                "name": "aws-key-2",
+                "access_key": aws_access_key,
+                "secret_key": aws_secret_key,
+                "key_bits": "4096",
+                "key_type": "RSA",
+                "kms_key": "alias/vault_aws_key_2",
+            },
+        ])
+        pki = vault.Mount("pki",
+            path="pki",
+            type="pki",
+            description="Example mount for managed keys",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=36000,
+            allowed_managed_keys=[
+                keys.aws[0].name,
+                keys.aws[1].name,
+            ])
+        ```
+
+        ## Caveats
+
+        This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
+        There can only be one such resource in the TF state, and if there are already provisioned managed
+        keys in Vault, we recommend using `pulumi import` instead.
 
         ## Import
 

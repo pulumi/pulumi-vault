@@ -28,7 +28,10 @@ class AuthBackendConfigArgs:
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None):
@@ -52,10 +55,16 @@ class AuthBackendConfigArgs:
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+               Defaults to `3`.
+        :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
+               Defaults to `60`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.int] retry_delay: The initial delay in seconds between retries for Azure API requests.
+               Defaults to `4`.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -83,8 +92,14 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "identity_token_audience", identity_token_audience)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+        if max_retry_delay is not None:
+            pulumi.set(__self__, "max_retry_delay", max_retry_delay)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if retry_delay is not None:
+            pulumi.set(__self__, "retry_delay", retry_delay)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -210,6 +225,32 @@ class AuthBackendConfigArgs:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Maximum number of retries for Azure API requests. 
+        Defaults to `3`.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetryDelay")
+    def max_retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum delay in seconds between retries for Azure API requests.
+        Defaults to `60`.
+        """
+        return pulumi.get(self, "max_retry_delay")
+
+    @max_retry_delay.setter
+    def max_retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retry_delay", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -223,6 +264,19 @@ class AuthBackendConfigArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "namespace", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retryDelay")
+    def retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The initial delay in seconds between retries for Azure API requests.
+        Defaults to `4`.
+        """
+        return pulumi.get(self, "retry_delay")
+
+    @retry_delay.setter
+    def retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "retry_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -278,8 +332,11 @@ class _AuthBackendConfigState:
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  resource: Optional[pulumi.Input[_builtins.str]] = None,
+                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -300,12 +357,18 @@ class _AuthBackendConfigState:
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+               Defaults to `3`.
+        :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
+               Defaults to `60`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] resource: The configured URL for the application registered in
                Azure Active Directory.
+        :param pulumi.Input[_builtins.int] retry_delay: The initial delay in seconds between retries for Azure API requests.
+               Defaults to `4`.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -333,10 +396,16 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "identity_token_audience", identity_token_audience)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
+        if max_retry_delay is not None:
+            pulumi.set(__self__, "max_retry_delay", max_retry_delay)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if resource is not None:
             pulumi.set(__self__, "resource", resource)
+        if retry_delay is not None:
+            pulumi.set(__self__, "retry_delay", retry_delay)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -438,6 +507,32 @@ class _AuthBackendConfigState:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Maximum number of retries for Azure API requests. 
+        Defaults to `3`.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetryDelay")
+    def max_retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum delay in seconds between retries for Azure API requests.
+        Defaults to `60`.
+        """
+        return pulumi.get(self, "max_retry_delay")
+
+    @max_retry_delay.setter
+    def max_retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retry_delay", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -464,6 +559,19 @@ class _AuthBackendConfigState:
     @resource.setter
     def resource(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "resource", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retryDelay")
+    def retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The initial delay in seconds between retries for Azure API requests.
+        Defaults to `4`.
+        """
+        return pulumi.get(self, "retry_delay")
+
+    @retry_delay.setter
+    def retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "retry_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -535,8 +643,11 @@ class AuthBackendConfig(pulumi.CustomResource):
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  resource: Optional[pulumi.Input[_builtins.str]] = None,
+                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -602,12 +713,18 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+               Defaults to `3`.
+        :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
+               Defaults to `60`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] resource: The configured URL for the application registered in
                Azure Active Directory.
+        :param pulumi.Input[_builtins.int] retry_delay: The initial delay in seconds between retries for Azure API requests.
+               Defaults to `4`.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -693,8 +810,11 @@ class AuthBackendConfig(pulumi.CustomResource):
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  resource: Optional[pulumi.Input[_builtins.str]] = None,
+                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -715,10 +835,13 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__.__dict__["environment"] = environment
             __props__.__dict__["identity_token_audience"] = identity_token_audience
             __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+            __props__.__dict__["max_retries"] = max_retries
+            __props__.__dict__["max_retry_delay"] = max_retry_delay
             __props__.__dict__["namespace"] = namespace
             if resource is None and not opts.urn:
                 raise TypeError("Missing required property 'resource'")
             __props__.__dict__["resource"] = resource
+            __props__.__dict__["retry_delay"] = retry_delay
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
@@ -744,8 +867,11 @@ class AuthBackendConfig(pulumi.CustomResource):
             environment: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+            max_retries: Optional[pulumi.Input[_builtins.int]] = None,
+            max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             resource: Optional[pulumi.Input[_builtins.str]] = None,
+            retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -771,12 +897,18 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+               Defaults to `3`.
+        :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
+               Defaults to `60`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] resource: The configured URL for the application registered in
                Azure Active Directory.
+        :param pulumi.Input[_builtins.int] retry_delay: The initial delay in seconds between retries for Azure API requests.
+               Defaults to `4`.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -801,8 +933,11 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["environment"] = environment
         __props__.__dict__["identity_token_audience"] = identity_token_audience
         __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+        __props__.__dict__["max_retries"] = max_retries
+        __props__.__dict__["max_retry_delay"] = max_retry_delay
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["resource"] = resource
+        __props__.__dict__["retry_delay"] = retry_delay
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
@@ -873,6 +1008,24 @@ class AuthBackendConfig(pulumi.CustomResource):
         return pulumi.get(self, "identity_token_ttl")
 
     @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Maximum number of retries for Azure API requests. 
+        Defaults to `3`.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetryDelay")
+    def max_retry_delay(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The maximum delay in seconds between retries for Azure API requests.
+        Defaults to `60`.
+        """
+        return pulumi.get(self, "max_retry_delay")
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -891,6 +1044,15 @@ class AuthBackendConfig(pulumi.CustomResource):
         Azure Active Directory.
         """
         return pulumi.get(self, "resource")
+
+    @_builtins.property
+    @pulumi.getter(name="retryDelay")
+    def retry_delay(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The initial delay in seconds between retries for Azure API requests.
+        Defaults to `4`.
+        """
+        return pulumi.get(self, "retry_delay")
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")

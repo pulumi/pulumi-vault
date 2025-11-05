@@ -23,6 +23,75 @@ import javax.annotation.Nullable;
  * 
  * **Note** this feature is available only with Vault Enterprise.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.managed.Keys;
+ * import com.pulumi.vault.managed.KeysArgs;
+ * import com.pulumi.vault.managed.inputs.KeysAwArgs;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var keys = new Keys("keys", KeysArgs.builder()
+ *             .aws(            
+ *                 KeysAwArgs.builder()
+ *                     .name("aws-key-1")
+ *                     .accessKey(awsAccessKey)
+ *                     .secretKey(awsSecretKey)
+ *                     .keyBits("2048")
+ *                     .keyType("RSA")
+ *                     .kmsKey("alias/vault_aws_key_1")
+ *                     .build(),
+ *                 KeysAwArgs.builder()
+ *                     .name("aws-key-2")
+ *                     .accessKey(awsAccessKey)
+ *                     .secretKey(awsSecretKey)
+ *                     .keyBits("4096")
+ *                     .keyType("RSA")
+ *                     .kmsKey("alias/vault_aws_key_2")
+ *                     .build())
+ *             .build());
+ * 
+ *         var pki = new Mount("pki", MountArgs.builder()
+ *             .path("pki")
+ *             .type("pki")
+ *             .description("Example mount for managed keys")
+ *             .defaultLeaseTtlSeconds(3600)
+ *             .maxLeaseTtlSeconds(36000)
+ *             .allowedManagedKeys(            
+ *                 keys.aws().applyValue(_aws -> _aws[0].name()),
+ *                 keys.aws().applyValue(_aws -> _aws[1].name()))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Caveats
+ * 
+ * This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
+ * There can only be one such resource in the TF state, and if there are already provisioned managed
+ * keys in Vault, we recommend using `pulumi import` instead.
+ * 
  * ## Import
  * 
  * Mounts can be imported using the `id` of `default`, e.g.

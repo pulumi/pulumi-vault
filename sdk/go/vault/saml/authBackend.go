@@ -87,6 +87,10 @@ type AuthBackend struct {
 	// Path where the auth backend will be mounted. Defaults to `auth/saml`
 	// if not specified.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTuneOutput `pulumi:"tune"`
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -158,6 +162,10 @@ type authBackendState struct {
 	// Path where the auth backend will be mounted. Defaults to `auth/saml`
 	// if not specified.
 	Path *string `pulumi:"path"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune *AuthBackendTune `pulumi:"tune"`
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -194,6 +202,10 @@ type AuthBackendState struct {
 	// Path where the auth backend will be mounted. Defaults to `auth/saml`
 	// if not specified.
 	Path pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTunePtrInput
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -234,6 +246,10 @@ type authBackendArgs struct {
 	// Path where the auth backend will be mounted. Defaults to `auth/saml`
 	// if not specified.
 	Path *string `pulumi:"path"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune *AuthBackendTune `pulumi:"tune"`
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -271,6 +287,10 @@ type AuthBackendArgs struct {
 	// Path where the auth backend will be mounted. Defaults to `auth/saml`
 	// if not specified.
 	Path pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTunePtrInput
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -421,6 +441,13 @@ func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
 // if not specified.
 func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Extra configuration block. Structure is documented below.
+//
+// The `tune` block is used to tune the auth backend:
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
 
 // If set to `true`, logs additional, potentially sensitive

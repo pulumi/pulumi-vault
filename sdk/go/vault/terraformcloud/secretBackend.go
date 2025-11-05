@@ -97,6 +97,10 @@ type SecretBackend struct {
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput      `pulumi:"sealWrap"`
 	Token    pulumi.StringPtrOutput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	TokenWo pulumi.StringPtrOutput `pulumi:"tokenWo"`
+	// Version counter for write-only secret data.
+	TokenWoVersion pulumi.IntPtrOutput `pulumi:"tokenWoVersion"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -109,8 +113,12 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Token != nil {
 		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
 	}
+	if args.TokenWo != nil {
+		args.TokenWo = pulumi.ToSecret(args.TokenWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"token",
+		"tokenWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -184,6 +192,10 @@ type secretBackendState struct {
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool   `pulumi:"sealWrap"`
 	Token    *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version counter for write-only secret data.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 type SecretBackendState struct {
@@ -235,6 +247,10 @@ type SecretBackendState struct {
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	Token    pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	TokenWo pulumi.StringPtrInput
+	// Version counter for write-only secret data.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -288,6 +304,10 @@ type secretBackendArgs struct {
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool   `pulumi:"sealWrap"`
 	Token    *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version counter for write-only secret data.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
@@ -338,6 +358,10 @@ type SecretBackendArgs struct {
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	Token    pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	TokenWo pulumi.StringPtrInput
+	// Version counter for write-only secret data.
+	TokenWoVersion pulumi.IntPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {
@@ -545,6 +569,16 @@ func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
 
 func (o SecretBackendOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o SecretBackendOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for write-only secret data.
+func (o SecretBackendOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

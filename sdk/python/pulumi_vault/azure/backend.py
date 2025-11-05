@@ -87,7 +87,7 @@ class BackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        :param pulumi.Input[_builtins.int] root_password_ttl: Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -497,7 +497,7 @@ class BackendArgs:
     @pulumi.getter(name="rootPasswordTtl")
     def root_password_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         """
         return pulumi.get(self, "root_password_ttl")
 
@@ -631,7 +631,7 @@ class _BackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        :param pulumi.Input[_builtins.int] root_password_ttl: Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -1035,7 +1035,7 @@ class _BackendState:
     @pulumi.getter(name="rootPasswordTtl")
     def root_password_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         """
         return pulumi.get(self, "root_password_ttl")
 
@@ -1229,7 +1229,7 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        :param pulumi.Input[_builtins.int] root_password_ttl: Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -1461,7 +1461,7 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.int] root_password_ttl: The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        :param pulumi.Input[_builtins.int] root_password_ttl: Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
@@ -1733,7 +1733,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="rootPasswordTtl")
     def root_password_ttl(self) -> pulumi.Output[_builtins.int]:
         """
-        The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         """
         return pulumi.get(self, "root_password_ttl")
 

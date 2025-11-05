@@ -232,6 +232,38 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
         return this.identityTokenTtl;
     }
     /**
+     * Maximum number of retries for Azure API requests.
+     * Defaults to `3`.
+     * 
+     */
+    @Export(name="maxRetries", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxRetries;
+
+    /**
+     * @return Maximum number of retries for Azure API requests.
+     * Defaults to `3`.
+     * 
+     */
+    public Output<Optional<Integer>> maxRetries() {
+        return Codegen.optional(this.maxRetries);
+    }
+    /**
+     * The maximum delay in seconds between retries for Azure API requests.
+     * Defaults to `60`.
+     * 
+     */
+    @Export(name="maxRetryDelay", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxRetryDelay;
+
+    /**
+     * @return The maximum delay in seconds between retries for Azure API requests.
+     * Defaults to `60`.
+     * 
+     */
+    public Output<Optional<Integer>> maxRetryDelay() {
+        return Codegen.optional(this.maxRetryDelay);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -266,6 +298,22 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      */
     public Output<String> resource() {
         return this.resource;
+    }
+    /**
+     * The initial delay in seconds between retries for Azure API requests.
+     * Defaults to `4`.
+     * 
+     */
+    @Export(name="retryDelay", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> retryDelay;
+
+    /**
+     * @return The initial delay in seconds between retries for Azure API requests.
+     * Defaults to `4`.
+     * 
+     */
+    public Output<Optional<Integer>> retryDelay() {
+        return Codegen.optional(this.retryDelay);
     }
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.

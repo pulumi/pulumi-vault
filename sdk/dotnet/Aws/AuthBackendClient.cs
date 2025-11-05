@@ -58,6 +58,11 @@ namespace Pulumi.Vault.Aws
     ///         SecretKey = "INSERT_AWS_SECRET_KEY",
     ///         RotationSchedule = "0 * * * SAT",
     ///         RotationWindow = 3600,
+    ///         AllowedStsHeaderValues = new[]
+    ///         {
+    ///             "X-Custom-Header",
+    ///             "X-Another-Header",
+    ///         },
     ///     });
     /// 
     /// });
@@ -80,6 +85,14 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
+
+        /// <summary>
+        /// List of additional headers that are allowed to be in STS request headers.
+        /// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+        /// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+        /// </summary>
+        [Output("allowedStsHeaderValues")]
+        public Output<ImmutableArray<string>> AllowedStsHeaderValues { get; private set; } = null!;
 
         /// <summary>
         /// The path the AWS auth backend being configured was
@@ -274,6 +287,20 @@ namespace Pulumi.Vault.Aws
             }
         }
 
+        [Input("allowedStsHeaderValues")]
+        private InputList<string>? _allowedStsHeaderValues;
+
+        /// <summary>
+        /// List of additional headers that are allowed to be in STS request headers.
+        /// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+        /// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+        /// </summary>
+        public InputList<string> AllowedStsHeaderValues
+        {
+            get => _allowedStsHeaderValues ?? (_allowedStsHeaderValues = new InputList<string>());
+            set => _allowedStsHeaderValues = value;
+        }
+
         /// <summary>
         /// The path the AWS auth backend being configured was
         /// mounted at.  Defaults to `Aws`.
@@ -432,6 +459,20 @@ namespace Pulumi.Vault.Aws
                 var emptySecret = Output.CreateSecret(0);
                 _accessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
+        }
+
+        [Input("allowedStsHeaderValues")]
+        private InputList<string>? _allowedStsHeaderValues;
+
+        /// <summary>
+        /// List of additional headers that are allowed to be in STS request headers.
+        /// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+        /// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+        /// </summary>
+        public InputList<string> AllowedStsHeaderValues
+        {
+            get => _allowedStsHeaderValues ?? (_allowedStsHeaderValues = new InputList<string>());
+            set => _allowedStsHeaderValues = value;
         }
 
         /// <summary>

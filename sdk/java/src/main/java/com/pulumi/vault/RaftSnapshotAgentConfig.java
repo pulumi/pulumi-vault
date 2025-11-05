@@ -56,55 +56,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * ### AWS S3
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.aws.AwsFunctions;
- * import com.pulumi.aws.inputs.GetRegionArgs;
- * import com.pulumi.vault.RaftSnapshotAgentConfig;
- * import com.pulumi.vault.RaftSnapshotAgentConfigArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var config = ctx.config();
- *         final var awsAccessKeyId = config.get("awsAccessKeyId");
- *         final var awsSecretAccessKey = config.get("awsSecretAccessKey");
- *         final var current = AwsFunctions.getRegion(GetRegionArgs.builder()
- *             .build());
- * 
- *         var s3Backups = new RaftSnapshotAgentConfig("s3Backups", RaftSnapshotAgentConfigArgs.builder()
- *             .name("s3")
- *             .intervalSeconds(86400)
- *             .retain(7)
- *             .pathPrefix("/path/in/bucket")
- *             .storageType("aws-s3")
- *             .awsS3Bucket("my-bucket")
- *             .awsS3Region(current.name())
- *             .awsAccessKeyId(awsAccessKeyId)
- *             .awsSecretAccessKey(awsSecretAccessKey)
- *             .awsS3EnableKms(true)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ### Azure BLOB
  * 
  * <pre>

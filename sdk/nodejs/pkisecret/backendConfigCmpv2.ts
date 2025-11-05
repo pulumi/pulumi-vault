@@ -9,6 +9,72 @@ import * as utilities from "../utilities";
 /**
  * Allows setting the CMPv2 configuration on a PKI Secret Backend
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const pki = new vault.Mount("pki", {
+ *     path: "pki-root",
+ *     type: "pki",
+ *     description: "PKI secret engine mount",
+ * });
+ * const cmpv2Role = new vault.pkisecret.SecretBackendRole("cmpv2_role", {
+ *     backend: pki.path,
+ *     name: "cmpv2-role",
+ *     ttl: "3600",
+ *     keyType: "ec",
+ *     keyBits: 256,
+ * });
+ * const cmpv2Role2 = new vault.pkisecret.SecretBackendRole("cmpv2_role_2", {
+ *     backend: pki.path,
+ *     name: "cmpv2-role-2",
+ *     ttl: "3600",
+ *     keyType: "ec",
+ *     keyBits: 256,
+ * });
+ * const example = new vault.pkisecret.BackendConfigCmpv2("example", {
+ *     backend: pki.path,
+ *     enabled: true,
+ *     defaultPathPolicy: std.format({
+ *         input: "role:%s",
+ *         args: [cmpv2Role.name],
+ *     }).then(invoke => invoke.result),
+ *     authenticators: {
+ *         cert: {
+ *             accessor: "test",
+ *             cert_role: "cert-auth-role",
+ *         },
+ *     },
+ *     enableSentinelParsing: true,
+ *     auditFields: [
+ *         "csr",
+ *         "common_name",
+ *         "alt_names",
+ *         "ip_sans",
+ *         "uri_sans",
+ *         "other_sans",
+ *         "signature_bits",
+ *         "exclude_cn_from_sans",
+ *         "ou",
+ *         "organization",
+ *         "country",
+ *         "locality",
+ *         "province",
+ *         "street_address",
+ *         "postal_code",
+ *         "serial_number",
+ *         "use_pss",
+ *         "key_type",
+ *         "key_bits",
+ *         "add_basic_constraints",
+ *     ],
+ *     disabledValidations: ["DisableMatchingKeyIdValidation"],
+ * });
+ * ```
+ *
  * ## Import
  *
  * The PKI config cluster can be imported using the resource's `id`.

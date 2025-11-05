@@ -15,3 +15,5 @@ from .secret_backend import *
 from .secret_backend_dynamic_role import *
 from .secret_backend_library_set import *
 from .secret_backend_static_role import *
+from ._inputs import *
+from . import outputs

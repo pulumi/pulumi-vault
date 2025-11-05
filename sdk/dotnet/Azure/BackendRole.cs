@@ -126,6 +126,12 @@ namespace Pulumi.Vault.Azure
         public Output<bool> PermanentlyDelete { get; private set; } = null!;
 
         /// <summary>
+        /// If set to true, persists the created service principal and application for the lifetime of the role
+        /// </summary>
+        [Output("persistApp")]
+        public Output<bool?> PersistApp { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the Azure role
         /// </summary>
         [Output("role")]
@@ -270,6 +276,12 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? PermanentlyDelete { get; set; }
 
         /// <summary>
+        /// If set to true, persists the created service principal and application for the lifetime of the role
+        /// </summary>
+        [Input("persistApp")]
+        public Input<bool>? PersistApp { get; set; }
+
+        /// <summary>
         /// Name of the Azure role
         /// </summary>
         [Input("role", required: true)]
@@ -380,6 +392,12 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("permanentlyDelete")]
         public Input<bool>? PermanentlyDelete { get; set; }
+
+        /// <summary>
+        /// If set to true, persists the created service principal and application for the lifetime of the role
+        /// </summary>
+        [Input("persistApp")]
+        public Input<bool>? PersistApp { get; set; }
 
         /// <summary>
         /// Name of the Azure role

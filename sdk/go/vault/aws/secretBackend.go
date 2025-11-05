@@ -63,6 +63,8 @@ type SecretBackend struct {
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
+	// Number of max retries the client should use for recoverable errors.
+	MaxRetries pulumi.IntPtrOutput `pulumi:"maxRetries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -190,6 +192,8 @@ type secretBackendState struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// Number of max retries the client should use for recoverable errors.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -277,6 +281,8 @@ type SecretBackendState struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// Number of max retries the client should use for recoverable errors.
+	MaxRetries pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -366,6 +372,8 @@ type secretBackendArgs struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// Number of max retries the client should use for recoverable errors.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -452,6 +460,8 @@ type SecretBackendArgs struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// Number of max retries the client should use for recoverable errors.
+	MaxRetries pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -683,6 +693,11 @@ func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 // Maximum possible lease duration for secrets in seconds
 func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// Number of max retries the client should use for recoverable errors.
+func (o SecretBackendOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxRetries }).(pulumi.IntPtrOutput)
 }
 
 // The namespace to provision the resource in.

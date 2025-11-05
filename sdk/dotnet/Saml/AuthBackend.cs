@@ -120,6 +120,14 @@ namespace Pulumi.Vault.Saml
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Output("tune")]
+        public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
+
+        /// <summary>
         /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
@@ -249,6 +257,14 @@ namespace Pulumi.Vault.Saml
         public Input<string>? Path { get; set; }
 
         /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
+
+        /// <summary>
         /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
@@ -338,6 +354,14 @@ namespace Pulumi.Vault.Saml
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         /// <summary>
         /// If set to `True`, logs additional, potentially sensitive

@@ -422,8 +422,8 @@ class Endpoint(pulumi.CustomResource):
             path="auth/userpass/users/u1",
             ignore_absent_fields=True,
             data_json=\"\"\"{
-          "policies": ["p1"],
-          "password": "changeme"
+          \\"policies\\": [\\"p1\\"],
+          \\"password\\": \\"changeme\\"
         }
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[userpass]))
@@ -432,7 +432,7 @@ class Endpoint(pulumi.CustomResource):
             disable_read=True,
             disable_delete=True,
             data_json=\"\"\"{
-          "password": "changeme"
+          \\"password\\": \\"changeme\\"
         }
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[u1]))
@@ -443,8 +443,8 @@ class Endpoint(pulumi.CustomResource):
             ignore_absent_fields=True,
             write_fields=["id"],
             data_json=\"\"\"{
-          "alias_name": "u1",
-          "alias_mount_accessor": vault_auth_backend.userpass.accessor
+          \\"alias_name\\": \\"u1\\",
+          \\"alias_mount_accessor\\": vault_auth_backend.userpass.accessor
         }
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[u1_token]))
@@ -515,8 +515,8 @@ class Endpoint(pulumi.CustomResource):
             path="auth/userpass/users/u1",
             ignore_absent_fields=True,
             data_json=\"\"\"{
-          "policies": ["p1"],
-          "password": "changeme"
+          \\"policies\\": [\\"p1\\"],
+          \\"password\\": \\"changeme\\"
         }
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[userpass]))
@@ -525,7 +525,7 @@ class Endpoint(pulumi.CustomResource):
             disable_read=True,
             disable_delete=True,
             data_json=\"\"\"{
-          "password": "changeme"
+          \\"password\\": \\"changeme\\"
         }
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[u1]))
@@ -536,8 +536,8 @@ class Endpoint(pulumi.CustomResource):
             ignore_absent_fields=True,
             write_fields=["id"],
             data_json=\"\"\"{
-          "alias_name": "u1",
-          "alias_mount_accessor": vault_auth_backend.userpass.accessor
+          \\"alias_name\\": \\"u1\\",
+          \\"alias_mount_accessor\\": vault_auth_backend.userpass.accessor
         }
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[u1_token]))

@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AuthBackendArgs', 'AuthBackend']
 
@@ -20,6 +22,7 @@ __all__ = ['AuthBackendArgs', 'AuthBackend']
 class AuthBackendArgs:
     def __init__(__self__, *,
                  url: pulumi.Input[_builtins.str],
+                 anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -28,10 +31,12 @@ class AuthBackendArgs:
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deny_null_bind: Optional[pulumi.Input[_builtins.bool]] = None,
+                 dereference_aliases: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  discoverdn: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enable_samaccountname_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  groupattr: Optional[pulumi.Input[_builtins.str]] = None,
                  groupdn: Optional[pulumi.Input[_builtins.str]] = None,
                  groupfilter: Optional[pulumi.Input[_builtins.str]] = None,
@@ -40,6 +45,7 @@ class AuthBackendArgs:
                  max_page_size: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 request_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -55,6 +61,7 @@ class AuthBackendArgs:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  upndomain: Optional[pulumi.Input[_builtins.str]] = None,
                  use_token_groups: Optional[pulumi.Input[_builtins.bool]] = None,
                  userattr: Optional[pulumi.Input[_builtins.str]] = None,
@@ -64,17 +71,20 @@ class AuthBackendArgs:
         """
         The set of arguments for constructing a AuthBackend resource.
         :param pulumi.Input[_builtins.str] url: The URL of the LDAP server
+        :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[_builtins.bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
+        :param pulumi.Input[_builtins.str] dereference_aliases: Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
         :param pulumi.Input[_builtins.str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
+        :param pulumi.Input[_builtins.bool] enable_samaccountname_login: Enables login using the sAMAccountName attribute.
         :param pulumi.Input[_builtins.str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[_builtins.str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[_builtins.str] groupfilter: Go template used to construct group membership query
@@ -87,6 +97,7 @@ class AuthBackendArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to mount the LDAP auth backend under
+        :param pulumi.Input[_builtins.int] request_timeout: The timeout(in sec) for requests to the LDAP server.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -105,7 +116,11 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.int] token_period: Generated Token's Period
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[_builtins.bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
         :param pulumi.Input[_builtins.str] userattr: Attribute on user object matching username passed in
@@ -114,6 +129,8 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.bool] username_as_alias: Force the auth method to use the username passed by the user as the alias name.
         """
         pulumi.set(__self__, "url", url)
+        if anonymous_group_search is not None:
+            pulumi.set(__self__, "anonymous_group_search", anonymous_group_search)
         if binddn is not None:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
@@ -130,6 +147,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
         if deny_null_bind is not None:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
+        if dereference_aliases is not None:
+            pulumi.set(__self__, "dereference_aliases", dereference_aliases)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_automated_rotation is not None:
@@ -138,6 +157,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
+        if enable_samaccountname_login is not None:
+            pulumi.set(__self__, "enable_samaccountname_login", enable_samaccountname_login)
         if groupattr is not None:
             pulumi.set(__self__, "groupattr", groupattr)
         if groupdn is not None:
@@ -154,6 +175,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if request_timeout is not None:
+            pulumi.set(__self__, "request_timeout", request_timeout)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -184,6 +207,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
         if upndomain is not None:
             pulumi.set(__self__, "upndomain", upndomain)
         if use_token_groups is not None:
@@ -208,6 +233,18 @@ class AuthBackendArgs:
     @url.setter
     def url(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="anonymousGroupSearch")
+    def anonymous_group_search(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allows anonymous group searches.
+        """
+        return pulumi.get(self, "anonymous_group_search")
+
+    @anonymous_group_search.setter
+    def anonymous_group_search(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "anonymous_group_search", value)
 
     @_builtins.property
     @pulumi.getter
@@ -300,6 +337,18 @@ class AuthBackendArgs:
         pulumi.set(self, "deny_null_bind", value)
 
     @_builtins.property
+    @pulumi.getter(name="dereferenceAliases")
+    def dereference_aliases(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+        """
+        return pulumi.get(self, "dereference_aliases")
+
+    @dereference_aliases.setter
+    def dereference_aliases(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dereference_aliases", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -347,6 +396,18 @@ class AuthBackendArgs:
     @discoverdn.setter
     def discoverdn(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "discoverdn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableSamaccountnameLogin")
+    def enable_samaccountname_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enables login using the sAMAccountName attribute.
+        """
+        return pulumi.get(self, "enable_samaccountname_login")
+
+    @enable_samaccountname_login.setter
+    def enable_samaccountname_login(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_samaccountname_login", value)
 
     @_builtins.property
     @pulumi.getter
@@ -447,6 +508,18 @@ class AuthBackendArgs:
     @path.setter
     def path(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The timeout(in sec) for requests to the LDAP server.
+        """
+        return pulumi.get(self, "request_timeout")
+
+    @request_timeout.setter
+    def request_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "request_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -624,13 +697,28 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of token to generate, service or batch
+        Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
     def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
 
     @_builtins.property
     @pulumi.getter
@@ -709,6 +797,7 @@ class AuthBackendArgs:
 class _AuthBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[_builtins.str]] = None,
+                 anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -717,10 +806,12 @@ class _AuthBackendState:
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deny_null_bind: Optional[pulumi.Input[_builtins.bool]] = None,
+                 dereference_aliases: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  discoverdn: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enable_samaccountname_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  groupattr: Optional[pulumi.Input[_builtins.str]] = None,
                  groupdn: Optional[pulumi.Input[_builtins.str]] = None,
                  groupfilter: Optional[pulumi.Input[_builtins.str]] = None,
@@ -729,6 +820,7 @@ class _AuthBackendState:
                  max_page_size: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 request_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -744,6 +836,7 @@ class _AuthBackendState:
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  upndomain: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  use_token_groups: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -754,17 +847,20 @@ class _AuthBackendState:
         """
         Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[_builtins.str] accessor: The accessor for this auth mount.
+        :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[_builtins.bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
+        :param pulumi.Input[_builtins.str] dereference_aliases: Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
         :param pulumi.Input[_builtins.str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
+        :param pulumi.Input[_builtins.bool] enable_samaccountname_login: Enables login using the sAMAccountName attribute.
         :param pulumi.Input[_builtins.str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[_builtins.str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[_builtins.str] groupfilter: Go template used to construct group membership query
@@ -777,6 +873,7 @@ class _AuthBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to mount the LDAP auth backend under
+        :param pulumi.Input[_builtins.int] request_timeout: The timeout(in sec) for requests to the LDAP server.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -795,7 +892,11 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.int] token_period: Generated Token's Period
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[_builtins.str] url: The URL of the LDAP server
         :param pulumi.Input[_builtins.bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
@@ -806,6 +907,8 @@ class _AuthBackendState:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
+        if anonymous_group_search is not None:
+            pulumi.set(__self__, "anonymous_group_search", anonymous_group_search)
         if binddn is not None:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
@@ -822,6 +925,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
         if deny_null_bind is not None:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
+        if dereference_aliases is not None:
+            pulumi.set(__self__, "dereference_aliases", dereference_aliases)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_automated_rotation is not None:
@@ -830,6 +935,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if discoverdn is not None:
             pulumi.set(__self__, "discoverdn", discoverdn)
+        if enable_samaccountname_login is not None:
+            pulumi.set(__self__, "enable_samaccountname_login", enable_samaccountname_login)
         if groupattr is not None:
             pulumi.set(__self__, "groupattr", groupattr)
         if groupdn is not None:
@@ -846,6 +953,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if request_timeout is not None:
+            pulumi.set(__self__, "request_timeout", request_timeout)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -876,6 +985,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
         if upndomain is not None:
             pulumi.set(__self__, "upndomain", upndomain)
         if url is not None:
@@ -902,6 +1013,18 @@ class _AuthBackendState:
     @accessor.setter
     def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "accessor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="anonymousGroupSearch")
+    def anonymous_group_search(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allows anonymous group searches.
+        """
+        return pulumi.get(self, "anonymous_group_search")
+
+    @anonymous_group_search.setter
+    def anonymous_group_search(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "anonymous_group_search", value)
 
     @_builtins.property
     @pulumi.getter
@@ -994,6 +1117,18 @@ class _AuthBackendState:
         pulumi.set(self, "deny_null_bind", value)
 
     @_builtins.property
+    @pulumi.getter(name="dereferenceAliases")
+    def dereference_aliases(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+        """
+        return pulumi.get(self, "dereference_aliases")
+
+    @dereference_aliases.setter
+    def dereference_aliases(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dereference_aliases", value)
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1041,6 +1176,18 @@ class _AuthBackendState:
     @discoverdn.setter
     def discoverdn(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "discoverdn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enableSamaccountnameLogin")
+    def enable_samaccountname_login(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enables login using the sAMAccountName attribute.
+        """
+        return pulumi.get(self, "enable_samaccountname_login")
+
+    @enable_samaccountname_login.setter
+    def enable_samaccountname_login(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enable_samaccountname_login", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1141,6 +1288,18 @@ class _AuthBackendState:
     @path.setter
     def path(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The timeout(in sec) for requests to the LDAP server.
+        """
+        return pulumi.get(self, "request_timeout")
+
+    @request_timeout.setter
+    def request_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "request_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -1318,13 +1477,28 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of token to generate, service or batch
+        Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
     def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1417,6 +1591,7 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1425,10 +1600,12 @@ class AuthBackend(pulumi.CustomResource):
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deny_null_bind: Optional[pulumi.Input[_builtins.bool]] = None,
+                 dereference_aliases: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  discoverdn: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enable_samaccountname_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  groupattr: Optional[pulumi.Input[_builtins.str]] = None,
                  groupdn: Optional[pulumi.Input[_builtins.str]] = None,
                  groupfilter: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1437,6 +1614,7 @@ class AuthBackend(pulumi.CustomResource):
                  max_page_size: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 request_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1452,6 +1630,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  upndomain: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  use_token_groups: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1479,7 +1658,11 @@ class AuthBackend(pulumi.CustomResource):
             groupdn="OU=Groups,DC=example,DC=org",
             groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
             rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
+            rotation_window=3600,
+            request_timeout=30,
+            dereference_aliases="always",
+            enable_samaccountname_login=False,
+            anonymous_group_search=False)
         ```
 
         ## Import
@@ -1492,17 +1675,20 @@ class AuthBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[_builtins.bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
+        :param pulumi.Input[_builtins.str] dereference_aliases: Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
         :param pulumi.Input[_builtins.str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
+        :param pulumi.Input[_builtins.bool] enable_samaccountname_login: Enables login using the sAMAccountName attribute.
         :param pulumi.Input[_builtins.str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[_builtins.str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[_builtins.str] groupfilter: Go template used to construct group membership query
@@ -1515,6 +1701,7 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to mount the LDAP auth backend under
+        :param pulumi.Input[_builtins.int] request_timeout: The timeout(in sec) for requests to the LDAP server.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -1533,7 +1720,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] token_period: Generated Token's Period
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[_builtins.str] url: The URL of the LDAP server
         :param pulumi.Input[_builtins.bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
@@ -1567,7 +1758,11 @@ class AuthBackend(pulumi.CustomResource):
             groupdn="OU=Groups,DC=example,DC=org",
             groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
             rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
+            rotation_window=3600,
+            request_timeout=30,
+            dereference_aliases="always",
+            enable_samaccountname_login=False,
+            anonymous_group_search=False)
         ```
 
         ## Import
@@ -1593,6 +1788,7 @@ class AuthBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1601,10 +1797,12 @@ class AuthBackend(pulumi.CustomResource):
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  deny_null_bind: Optional[pulumi.Input[_builtins.bool]] = None,
+                 dereference_aliases: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  discoverdn: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enable_samaccountname_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  groupattr: Optional[pulumi.Input[_builtins.str]] = None,
                  groupdn: Optional[pulumi.Input[_builtins.str]] = None,
                  groupfilter: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1613,6 +1811,7 @@ class AuthBackend(pulumi.CustomResource):
                  max_page_size: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 request_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1628,6 +1827,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  upndomain: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  use_token_groups: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1644,6 +1844,7 @@ class AuthBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
+            __props__.__dict__["anonymous_group_search"] = anonymous_group_search
             __props__.__dict__["binddn"] = binddn
             __props__.__dict__["bindpass"] = None if bindpass is None else pulumi.Output.secret(bindpass)
             __props__.__dict__["case_sensitive_names"] = case_sensitive_names
@@ -1652,10 +1853,12 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
             __props__.__dict__["connection_timeout"] = connection_timeout
             __props__.__dict__["deny_null_bind"] = deny_null_bind
+            __props__.__dict__["dereference_aliases"] = dereference_aliases
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["discoverdn"] = discoverdn
+            __props__.__dict__["enable_samaccountname_login"] = enable_samaccountname_login
             __props__.__dict__["groupattr"] = groupattr
             __props__.__dict__["groupdn"] = groupdn
             __props__.__dict__["groupfilter"] = groupfilter
@@ -1664,6 +1867,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["max_page_size"] = max_page_size
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
+            __props__.__dict__["request_timeout"] = request_timeout
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
@@ -1679,6 +1883,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
+            __props__.__dict__["tune"] = tune
             __props__.__dict__["upndomain"] = upndomain
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
@@ -1702,6 +1907,7 @@ class AuthBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[_builtins.str]] = None,
+            anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
             binddn: Optional[pulumi.Input[_builtins.str]] = None,
             bindpass: Optional[pulumi.Input[_builtins.str]] = None,
             case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1710,10 +1916,12 @@ class AuthBackend(pulumi.CustomResource):
             client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
             connection_timeout: Optional[pulumi.Input[_builtins.int]] = None,
             deny_null_bind: Optional[pulumi.Input[_builtins.bool]] = None,
+            dereference_aliases: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
             discoverdn: Optional[pulumi.Input[_builtins.bool]] = None,
+            enable_samaccountname_login: Optional[pulumi.Input[_builtins.bool]] = None,
             groupattr: Optional[pulumi.Input[_builtins.str]] = None,
             groupdn: Optional[pulumi.Input[_builtins.str]] = None,
             groupfilter: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1722,6 +1930,7 @@ class AuthBackend(pulumi.CustomResource):
             max_page_size: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
+            request_timeout: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1737,6 +1946,7 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             token_type: Optional[pulumi.Input[_builtins.str]] = None,
+            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
             upndomain: Optional[pulumi.Input[_builtins.str]] = None,
             url: Optional[pulumi.Input[_builtins.str]] = None,
             use_token_groups: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1752,17 +1962,20 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] accessor: The accessor for this auth mount.
+        :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
         :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[_builtins.bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
+        :param pulumi.Input[_builtins.str] dereference_aliases: Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
         :param pulumi.Input[_builtins.str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[_builtins.bool] discoverdn: Use anonymous bind to discover the bind DN of a user.
+        :param pulumi.Input[_builtins.bool] enable_samaccountname_login: Enables login using the sAMAccountName attribute.
         :param pulumi.Input[_builtins.str] groupattr: LDAP attribute to follow on objects returned by groupfilter
         :param pulumi.Input[_builtins.str] groupdn: Base DN under which to perform group search
         :param pulumi.Input[_builtins.str] groupfilter: Go template used to construct group membership query
@@ -1775,6 +1988,7 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to mount the LDAP auth backend under
+        :param pulumi.Input[_builtins.int] request_timeout: The timeout(in sec) for requests to the LDAP server.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -1793,7 +2007,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] token_period: Generated Token's Period
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
-        :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
+        :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[_builtins.str] url: The URL of the LDAP server
         :param pulumi.Input[_builtins.bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
@@ -1807,6 +2025,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__ = _AuthBackendState.__new__(_AuthBackendState)
 
         __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["anonymous_group_search"] = anonymous_group_search
         __props__.__dict__["binddn"] = binddn
         __props__.__dict__["bindpass"] = bindpass
         __props__.__dict__["case_sensitive_names"] = case_sensitive_names
@@ -1815,10 +2034,12 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["client_tls_key"] = client_tls_key
         __props__.__dict__["connection_timeout"] = connection_timeout
         __props__.__dict__["deny_null_bind"] = deny_null_bind
+        __props__.__dict__["dereference_aliases"] = dereference_aliases
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["discoverdn"] = discoverdn
+        __props__.__dict__["enable_samaccountname_login"] = enable_samaccountname_login
         __props__.__dict__["groupattr"] = groupattr
         __props__.__dict__["groupdn"] = groupdn
         __props__.__dict__["groupfilter"] = groupfilter
@@ -1827,6 +2048,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["max_page_size"] = max_page_size
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
+        __props__.__dict__["request_timeout"] = request_timeout
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
@@ -1842,6 +2064,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["token_policies"] = token_policies
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
+        __props__.__dict__["tune"] = tune
         __props__.__dict__["upndomain"] = upndomain
         __props__.__dict__["url"] = url
         __props__.__dict__["use_token_groups"] = use_token_groups
@@ -1858,6 +2081,14 @@ class AuthBackend(pulumi.CustomResource):
         The accessor for this auth mount.
         """
         return pulumi.get(self, "accessor")
+
+    @_builtins.property
+    @pulumi.getter(name="anonymousGroupSearch")
+    def anonymous_group_search(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Allows anonymous group searches.
+        """
+        return pulumi.get(self, "anonymous_group_search")
 
     @_builtins.property
     @pulumi.getter
@@ -1918,6 +2149,14 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "deny_null_bind")
 
     @_builtins.property
+    @pulumi.getter(name="dereferenceAliases")
+    def dereference_aliases(self) -> pulumi.Output[_builtins.str]:
+        """
+        Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+        """
+        return pulumi.get(self, "dereference_aliases")
+
+    @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1949,6 +2188,14 @@ class AuthBackend(pulumi.CustomResource):
         Use anonymous bind to discover the bind DN of a user.
         """
         return pulumi.get(self, "discoverdn")
+
+    @_builtins.property
+    @pulumi.getter(name="enableSamaccountnameLogin")
+    def enable_samaccountname_login(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Enables login using the sAMAccountName attribute.
+        """
+        return pulumi.get(self, "enable_samaccountname_login")
 
     @_builtins.property
     @pulumi.getter
@@ -2017,6 +2264,14 @@ class AuthBackend(pulumi.CustomResource):
         Path to mount the LDAP auth backend under
         """
         return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="requestTimeout")
+    def request_timeout(self) -> pulumi.Output[_builtins.int]:
+        """
+        The timeout(in sec) for requests to the LDAP server.
+        """
+        return pulumi.get(self, "request_timeout")
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -2138,9 +2393,20 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenType")
     def token_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The type of token to generate, service or batch
+        Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
         """
         return pulumi.get(self, "token_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
 
     @_builtins.property
     @pulumi.getter

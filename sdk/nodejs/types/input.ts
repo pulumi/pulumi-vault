@@ -3319,6 +3319,53 @@ export namespace kv {
     }
 }
 
+export namespace ldap {
+    export interface AuthBackendTune {
+        /**
+         * List of headers to whitelist and allowing
+         * a plugin to include them in the response.
+         */
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the request data object.
+         */
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the response data object.
+         */
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the default time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
+        defaultLeaseTtl?: pulumi.Input<string>;
+        /**
+         * Specifies whether to show this mount in
+         * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+         */
+        listingVisibility?: pulumi.Input<string>;
+        /**
+         * Specifies the maximum time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
+        maxLeaseTtl?: pulumi.Input<string>;
+        /**
+         * List of headers to whitelist and
+         * pass from the request to the backend.
+         */
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the type of tokens that should be returned by
+         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
+         */
+        tokenType?: pulumi.Input<string>;
+    }
+}
+
 export namespace managed {
     export interface KeysAw {
         /**
@@ -3522,6 +3569,41 @@ export namespace okta {
         policies: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface AuthBackendTune {
+        /**
+         * List of headers to whitelist and allowing a plugin to include them in the response.
+         */
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+         */
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+         */
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the default time-to-live duration. This overrides the global default. A value of 0 is equivalent to the system default TTL
+         */
+        defaultLeaseTtl?: pulumi.Input<string>;
+        /**
+         * Specifies whether to show this mount in the UI-specific listing endpoint. Valid values are "unauth" or "hidden". If not set, behaves like "hidden".
+         */
+        listingVisibility?: pulumi.Input<string>;
+        /**
+         * Specifies the maximum time-to-live duration. This overrides the global default. A value of 0 are equivalent and set to the system max TTL.
+         */
+        maxLeaseTtl?: pulumi.Input<string>;
+        /**
+         * List of headers to whitelist and pass from the request to the backend.
+         */
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the type of tokens that should be returned by the mount.
+         */
+        tokenType?: pulumi.Input<string>;
+    }
+
     export interface AuthBackendUser {
         /**
          * Groups within the Okta auth backend to associate with this user
@@ -3635,6 +3717,53 @@ export namespace rabbitMq {
          * The write permissions for this vhost.
          */
         write: pulumi.Input<string>;
+    }
+}
+
+export namespace saml {
+    export interface AuthBackendTune {
+        /**
+         * List of headers to whitelist and allowing
+         * a plugin to include them in the response.
+         */
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the request data object.
+         */
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the response data object.
+         */
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the default time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
+        defaultLeaseTtl?: pulumi.Input<string>;
+        /**
+         * Specifies whether to show this mount in
+         * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+         */
+        listingVisibility?: pulumi.Input<string>;
+        /**
+         * Specifies the maximum time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
+        maxLeaseTtl?: pulumi.Input<string>;
+        /**
+         * List of headers to whitelist and
+         * pass from the request to the backend.
+         */
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the type of tokens that should be returned by
+         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
+         */
+        tokenType?: pulumi.Input<string>;
     }
 }
 

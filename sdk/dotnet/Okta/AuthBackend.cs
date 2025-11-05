@@ -187,6 +187,9 @@ namespace Pulumi.Vault.Okta
         [Output("tokenType")]
         public Output<string?> TokenType { get; private set; } = null!;
 
+        [Output("tune")]
+        public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
+
         /// <summary>
         /// Associate Okta users with groups or policies within Vault.
         /// See below for more details.
@@ -386,6 +389,9 @@ namespace Pulumi.Vault.Okta
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
 
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
+
         [Input("users")]
         private InputList<Inputs.AuthBackendUserArgs>? _users;
 
@@ -554,6 +560,9 @@ namespace Pulumi.Vault.Okta
         /// </summary>
         [Input("tokenType")]
         public Input<string>? TokenType { get; set; }
+
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         [Input("users")]
         private InputList<Inputs.AuthBackendUserGetArgs>? _users;

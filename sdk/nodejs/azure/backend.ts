@@ -180,7 +180,7 @@ export class Backend extends pulumi.CustomResource {
      */
     declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
-     * The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      */
     declare public readonly rootPasswordTtl: pulumi.Output<number>;
     /**
@@ -425,7 +425,7 @@ export interface BackendState {
      */
     pluginVersion?: pulumi.Input<string>;
     /**
-     * The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      */
     rootPasswordTtl?: pulumi.Input<number>;
     /**
@@ -572,7 +572,7 @@ export interface BackendArgs {
      */
     pluginVersion?: pulumi.Input<string>;
     /**
-     * The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      */
     rootPasswordTtl?: pulumi.Input<number>;
     /**

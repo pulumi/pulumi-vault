@@ -31,6 +31,7 @@ class BackendRoleArgs:
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
                  sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
@@ -52,6 +53,7 @@ class BackendRoleArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        :param pulumi.Input[_builtins.bool] persist_app: If set to true, persists the created service principal and application for the lifetime of the role
         :param pulumi.Input[_builtins.str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
                Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of Azure tags to attach to an application. Requires Vault 1.16+.
@@ -77,6 +79,8 @@ class BackendRoleArgs:
             pulumi.set(__self__, "namespace", namespace)
         if permanently_delete is not None:
             pulumi.set(__self__, "permanently_delete", permanently_delete)
+        if persist_app is not None:
+            pulumi.set(__self__, "persist_app", persist_app)
         if sign_in_audience is not None:
             pulumi.set(__self__, "sign_in_audience", sign_in_audience)
         if tags is not None:
@@ -211,6 +215,18 @@ class BackendRoleArgs:
         pulumi.set(self, "permanently_delete", value)
 
     @_builtins.property
+    @pulumi.getter(name="persistApp")
+    def persist_app(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, persists the created service principal and application for the lifetime of the role
+        """
+        return pulumi.get(self, "persist_app")
+
+    @persist_app.setter
+    def persist_app(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "persist_app", value)
+
+    @_builtins.property
     @pulumi.getter(name="signInAudience")
     def sign_in_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -261,6 +277,7 @@ class _BackendRoleState:
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -282,6 +299,7 @@ class _BackendRoleState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        :param pulumi.Input[_builtins.bool] persist_app: If set to true, persists the created service principal and application for the lifetime of the role
         :param pulumi.Input[_builtins.str] role: Name of the Azure role
         :param pulumi.Input[_builtins.str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
                Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
@@ -307,6 +325,8 @@ class _BackendRoleState:
             pulumi.set(__self__, "namespace", namespace)
         if permanently_delete is not None:
             pulumi.set(__self__, "permanently_delete", permanently_delete)
+        if persist_app is not None:
+            pulumi.set(__self__, "persist_app", persist_app)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if sign_in_audience is not None:
@@ -431,6 +451,18 @@ class _BackendRoleState:
         pulumi.set(self, "permanently_delete", value)
 
     @_builtins.property
+    @pulumi.getter(name="persistApp")
+    def persist_app(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to true, persists the created service principal and application for the lifetime of the role
+        """
+        return pulumi.get(self, "persist_app")
+
+    @persist_app.setter
+    def persist_app(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "persist_app", value)
+
+    @_builtins.property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -496,6 +528,7 @@ class BackendRole(pulumi.CustomResource):
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -552,6 +585,7 @@ class BackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        :param pulumi.Input[_builtins.bool] persist_app: If set to true, persists the created service principal and application for the lifetime of the role
         :param pulumi.Input[_builtins.str] role: Name of the Azure role
         :param pulumi.Input[_builtins.str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
                Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
@@ -623,6 +657,7 @@ class BackendRole(pulumi.CustomResource):
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
                  role: Optional[pulumi.Input[_builtins.str]] = None,
                  sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -645,6 +680,7 @@ class BackendRole(pulumi.CustomResource):
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["permanently_delete"] = permanently_delete
+            __props__.__dict__["persist_app"] = persist_app
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
@@ -670,6 +706,7 @@ class BackendRole(pulumi.CustomResource):
             max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
+            persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
             role: Optional[pulumi.Input[_builtins.str]] = None,
             sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -696,6 +733,7 @@ class BackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        :param pulumi.Input[_builtins.bool] persist_app: If set to true, persists the created service principal and application for the lifetime of the role
         :param pulumi.Input[_builtins.str] role: Name of the Azure role
         :param pulumi.Input[_builtins.str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
                Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
@@ -716,6 +754,7 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["permanently_delete"] = permanently_delete
+        __props__.__dict__["persist_app"] = persist_app
         __props__.__dict__["role"] = role
         __props__.__dict__["sign_in_audience"] = sign_in_audience
         __props__.__dict__["tags"] = tags
@@ -799,6 +838,14 @@ class BackendRole(pulumi.CustomResource):
         deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         """
         return pulumi.get(self, "permanently_delete")
+
+    @_builtins.property
+    @pulumi.getter(name="persistApp")
+    def persist_app(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If set to true, persists the created service principal and application for the lifetime of the role
+        """
+        return pulumi.get(self, "persist_app")
 
     @_builtins.property
     @pulumi.getter

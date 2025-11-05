@@ -39,6 +39,7 @@ class SecretBackendArgs:
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -48,7 +49,8 @@ class SecretBackendArgs:
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -76,6 +78,7 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_ttl: The maximum TTL for long-lived credentials (i.e. service account keys).
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -96,6 +99,7 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.int] ttl: The default TTL for long-lived credentials (i.e. service account keys).
         """
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
@@ -137,6 +141,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
@@ -157,6 +163,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if service_account_email is not None:
             pulumi.set(__self__, "service_account_email", service_account_email)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
 
     @_builtins.property
     @pulumi.getter(name="allowedManagedKeys")
@@ -404,6 +412,18 @@ class SecretBackendArgs:
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum TTL for long-lived credentials (i.e. service account keys).
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -533,6 +553,18 @@ class SecretBackendArgs:
     def service_account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_email", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The default TTL for long-lived credentials (i.e. service account keys).
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ttl", value)
+
 
 @pulumi.input_type
 class _SecretBackendState:
@@ -558,6 +590,7 @@ class _SecretBackendState:
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -567,7 +600,8 @@ class _SecretBackendState:
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[_builtins.str] accessor: The accessor of the created GCP mount.
@@ -596,6 +630,7 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_ttl: The maximum TTL for long-lived credentials (i.e. service account keys).
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -616,6 +651,7 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.int] ttl: The default TTL for long-lived credentials (i.e. service account keys).
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -659,6 +695,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if max_ttl is not None:
+            pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
@@ -679,6 +717,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if service_account_email is not None:
             pulumi.set(__self__, "service_account_email", service_account_email)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
 
     @_builtins.property
     @pulumi.getter
@@ -938,6 +978,18 @@ class _SecretBackendState:
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum TTL for long-lived credentials (i.e. service account keys).
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @max_ttl.setter
+    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_ttl", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1067,6 +1119,18 @@ class _SecretBackendState:
     def service_account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_email", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The default TTL for long-lived credentials (i.e. service account keys).
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ttl", value)
+
 
 @pulumi.type_token("vault:gcp/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
@@ -1094,6 +1158,7 @@ class SecretBackend(pulumi.CustomResource):
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1104,6 +1169,7 @@ class SecretBackend(pulumi.CustomResource):
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -1167,6 +1233,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_ttl: The maximum TTL for long-lived credentials (i.e. service account keys).
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1187,6 +1254,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.int] ttl: The default TTL for long-lived credentials (i.e. service account keys).
         """
         ...
     @overload
@@ -1264,6 +1332,7 @@ class SecretBackend(pulumi.CustomResource):
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1274,6 +1343,7 @@ class SecretBackend(pulumi.CustomResource):
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
+                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1303,6 +1373,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["listing_visibility"] = listing_visibility
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
             __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
@@ -1313,6 +1384,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["service_account_email"] = service_account_email
+            __props__.__dict__["ttl"] = ttl
             __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials", "credentialsWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -1347,6 +1419,7 @@ class SecretBackend(pulumi.CustomResource):
             listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
             local: Optional[pulumi.Input[_builtins.bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+            max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1356,7 +1429,8 @@ class SecretBackend(pulumi.CustomResource):
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_account_email: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackend':
+            service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
+            ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1390,6 +1464,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_ttl: The maximum TTL for long-lived credentials (i.e. service account keys).
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1410,6 +1485,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.int] ttl: The default TTL for long-lived credentials (i.e. service account keys).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1436,6 +1512,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["listing_visibility"] = listing_visibility
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
         __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
@@ -1446,6 +1523,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["service_account_email"] = service_account_email
+        __props__.__dict__["ttl"] = ttl
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1622,6 +1700,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "max_lease_ttl_seconds")
 
     @_builtins.property
+    @pulumi.getter(name="maxTtl")
+    def max_ttl(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The maximum TTL for long-lived credentials (i.e. service account keys).
+        """
+        return pulumi.get(self, "max_ttl")
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -1710,4 +1796,12 @@ class SecretBackend(pulumi.CustomResource):
         Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "service_account_email")
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The default TTL for long-lived credentials (i.e. service account keys).
+        """
+        return pulumi.get(self, "ttl")
 

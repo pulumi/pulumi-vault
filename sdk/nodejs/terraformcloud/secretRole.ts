@@ -62,6 +62,11 @@ export class SecretRole extends pulumi.CustomResource {
 
     declare public readonly backend: pulumi.Output<string | undefined>;
     /**
+     * The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+     */
+    declare public readonly credentialType: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
+    /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     declare public readonly maxTtl: pulumi.Output<number | undefined>;
@@ -95,6 +100,8 @@ export class SecretRole extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
             resourceInputs["backend"] = state?.backend;
+            resourceInputs["credentialType"] = state?.credentialType;
+            resourceInputs["description"] = state?.description;
             resourceInputs["maxTtl"] = state?.maxTtl;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -105,6 +112,8 @@ export class SecretRole extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SecretRoleArgs | undefined;
             resourceInputs["backend"] = args?.backend;
+            resourceInputs["credentialType"] = args?.credentialType;
+            resourceInputs["description"] = args?.description;
             resourceInputs["maxTtl"] = args?.maxTtl;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -123,6 +132,11 @@ export class SecretRole extends pulumi.CustomResource {
  */
 export interface SecretRoleState {
     backend?: pulumi.Input<string>;
+    /**
+     * The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+     */
+    credentialType?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
@@ -149,6 +163,11 @@ export interface SecretRoleState {
  */
 export interface SecretRoleArgs {
     backend?: pulumi.Input<string>;
+    /**
+     * The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+     */
+    credentialType?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */

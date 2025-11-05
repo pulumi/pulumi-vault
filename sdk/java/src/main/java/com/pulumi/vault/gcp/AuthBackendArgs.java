@@ -10,6 +10,7 @@ import com.pulumi.vault.gcp.inputs.AuthBackendTuneArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -136,6 +137,66 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> disableRemount() {
         return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    @Import(name="gceAlias")
+    private @Nullable Output<String> gceAlias;
+
+    /**
+     * @return Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    public Optional<Output<String>> gceAlias() {
+        return Optional.ofNullable(this.gceAlias);
+    }
+
+    /**
+     * Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+     * 
+     */
+    @Import(name="gceMetadatas")
+    private @Nullable Output<List<String>> gceMetadatas;
+
+    /**
+     * @return Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+     * 
+     */
+    public Optional<Output<List<String>>> gceMetadatas() {
+        return Optional.ofNullable(this.gceMetadatas);
+    }
+
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    @Import(name="iamAlias")
+    private @Nullable Output<String> iamAlias;
+
+    /**
+     * @return Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    public Optional<Output<String>> iamAlias() {
+        return Optional.ofNullable(this.iamAlias);
+    }
+
+    /**
+     * Controls the metadata to include on the token returned by the login endpoint.
+     * 
+     */
+    @Import(name="iamMetadatas")
+    private @Nullable Output<List<String>> iamMetadatas;
+
+    /**
+     * @return Controls the metadata to include on the token returned by the login endpoint.
+     * 
+     */
+    public Optional<Output<List<String>>> iamMetadatas() {
+        return Optional.ofNullable(this.iamMetadatas);
     }
 
     /**
@@ -369,6 +430,10 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.disableRemount = $.disableRemount;
+        this.gceAlias = $.gceAlias;
+        this.gceMetadatas = $.gceMetadatas;
+        this.iamAlias = $.iamAlias;
+        this.iamMetadatas = $.iamMetadatas;
         this.identityTokenAudience = $.identityTokenAudience;
         this.identityTokenKey = $.identityTokenKey;
         this.identityTokenTtl = $.identityTokenTtl;
@@ -561,6 +626,110 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder disableRemount(Boolean disableRemount) {
             return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
+         * @param gceAlias Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gceAlias(@Nullable Output<String> gceAlias) {
+            $.gceAlias = gceAlias;
+            return this;
+        }
+
+        /**
+         * @param gceAlias Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gceAlias(String gceAlias) {
+            return gceAlias(Output.of(gceAlias));
+        }
+
+        /**
+         * @param gceMetadatas Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gceMetadatas(@Nullable Output<List<String>> gceMetadatas) {
+            $.gceMetadatas = gceMetadatas;
+            return this;
+        }
+
+        /**
+         * @param gceMetadatas Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gceMetadatas(List<String> gceMetadatas) {
+            return gceMetadatas(Output.of(gceMetadatas));
+        }
+
+        /**
+         * @param gceMetadatas Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gceMetadatas(String... gceMetadatas) {
+            return gceMetadatas(List.of(gceMetadatas));
+        }
+
+        /**
+         * @param iamAlias Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamAlias(@Nullable Output<String> iamAlias) {
+            $.iamAlias = iamAlias;
+            return this;
+        }
+
+        /**
+         * @param iamAlias Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamAlias(String iamAlias) {
+            return iamAlias(Output.of(iamAlias));
+        }
+
+        /**
+         * @param iamMetadatas Controls the metadata to include on the token returned by the login endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamMetadatas(@Nullable Output<List<String>> iamMetadatas) {
+            $.iamMetadatas = iamMetadatas;
+            return this;
+        }
+
+        /**
+         * @param iamMetadatas Controls the metadata to include on the token returned by the login endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamMetadatas(List<String> iamMetadatas) {
+            return iamMetadatas(Output.of(iamMetadatas));
+        }
+
+        /**
+         * @param iamMetadatas Controls the metadata to include on the token returned by the login endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamMetadatas(String... iamMetadatas) {
+            return iamMetadatas(List.of(iamMetadatas));
         }
 
         /**

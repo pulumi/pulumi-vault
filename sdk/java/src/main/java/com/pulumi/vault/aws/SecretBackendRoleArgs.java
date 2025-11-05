@@ -157,6 +157,21 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     * 
+     */
+    @Import(name="mfaSerialNumber")
+    private @Nullable Output<String> mfaSerialNumber;
+
+    /**
+     * @return The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     * 
+     */
+    public Optional<Output<String>> mfaSerialNumber() {
+        return Optional.ofNullable(this.mfaSerialNumber);
+    }
+
+    /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      * 
@@ -330,6 +345,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.iamGroups = $.iamGroups;
         this.iamTags = $.iamTags;
         this.maxStsTtl = $.maxStsTtl;
+        this.mfaSerialNumber = $.mfaSerialNumber;
         this.name = $.name;
         this.namespace = $.namespace;
         this.permissionsBoundaryArn = $.permissionsBoundaryArn;
@@ -550,6 +566,27 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder maxStsTtl(Integer maxStsTtl) {
             return maxStsTtl(Output.of(maxStsTtl));
+        }
+
+        /**
+         * @param mfaSerialNumber The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaSerialNumber(@Nullable Output<String> mfaSerialNumber) {
+            $.mfaSerialNumber = mfaSerialNumber;
+            return this;
+        }
+
+        /**
+         * @param mfaSerialNumber The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaSerialNumber(String mfaSerialNumber) {
+            return mfaSerialNumber(Output.of(mfaSerialNumber));
         }
 
         /**

@@ -5,6 +5,7 @@ package com.pulumi.vault.saml.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.vault.saml.inputs.AuthBackendTuneArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -186,6 +187,25 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Import(name="tune")
+    private @Nullable Output<AuthBackendTuneArgs> tune;
+
+    /**
+     * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Optional<Output<AuthBackendTuneArgs>> tune() {
+        return Optional.ofNullable(this.tune);
+    }
+
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
@@ -217,6 +237,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.idpSsoUrl = $.idpSsoUrl;
         this.namespace = $.namespace;
         this.path = $.path;
+        this.tune = $.tune;
         this.verboseLogging = $.verboseLogging;
     }
 
@@ -475,6 +496,31 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param tune Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tune(@Nullable Output<AuthBackendTuneArgs> tune) {
+            $.tune = tune;
+            return this;
+        }
+
+        /**
+         * @param tune Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tune(AuthBackendTuneArgs tune) {
+            return tune(Output.of(tune));
         }
 
         /**

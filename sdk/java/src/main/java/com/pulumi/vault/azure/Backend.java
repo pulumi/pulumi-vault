@@ -480,14 +480,14 @@ public class Backend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.pluginVersion);
     }
     /**
-     * The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      * 
      */
     @Export(name="rootPasswordTtl", refs={Integer.class}, tree="[0]")
     private Output<Integer> rootPasswordTtl;
 
     /**
-     * @return The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * @return Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      * 
      */
     public Output<Integer> rootPasswordTtl() {

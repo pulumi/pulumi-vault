@@ -410,6 +410,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.maxLeaseTtlSeconds);
     }
     /**
+     * The maximum TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxTtl;
+
+    /**
+     * @return The maximum TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    public Output<Optional<Integer>> maxTtl() {
+        return Codegen.optional(this.maxTtl);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -568,6 +582,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> serviceAccountEmail() {
         return Codegen.optional(this.serviceAccountEmail);
+    }
+    /**
+     * The default TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> ttl;
+
+    /**
+     * @return The default TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    public Output<Optional<Integer>> ttl() {
+        return Codegen.optional(this.ttl);
     }
 
     /**

@@ -11,6 +11,49 @@ import * as utilities from "../utilities";
  *
  * **Note** this feature is available only with Vault Enterprise.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const keys = new vault.managed.Keys("keys", {aws: [
+ *     {
+ *         name: "aws-key-1",
+ *         accessKey: awsAccessKey,
+ *         secretKey: awsSecretKey,
+ *         keyBits: "2048",
+ *         keyType: "RSA",
+ *         kmsKey: "alias/vault_aws_key_1",
+ *     },
+ *     {
+ *         name: "aws-key-2",
+ *         accessKey: awsAccessKey,
+ *         secretKey: awsSecretKey,
+ *         keyBits: "4096",
+ *         keyType: "RSA",
+ *         kmsKey: "alias/vault_aws_key_2",
+ *     },
+ * ]});
+ * const pki = new vault.Mount("pki", {
+ *     path: "pki",
+ *     type: "pki",
+ *     description: "Example mount for managed keys",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     maxLeaseTtlSeconds: 36000,
+ *     allowedManagedKeys: [
+ *         keys.aws.apply(aws => aws?.[0]?.name),
+ *         keys.aws.apply(aws => aws?.[1]?.name),
+ *     ],
+ * });
+ * ```
+ *
+ * ## Caveats
+ *
+ * This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
+ * There can only be one such resource in the TF state, and if there are already provisioned managed
+ * keys in Vault, we recommend using `pulumi import` instead.
+ *
  * ## Import
  *
  * Mounts can be imported using the `id` of `default`, e.g.

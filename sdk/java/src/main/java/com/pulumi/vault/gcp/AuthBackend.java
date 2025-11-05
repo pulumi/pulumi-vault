@@ -199,6 +199,62 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRemount);
     }
     /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    @Export(name="gceAlias", refs={String.class}, tree="[0]")
+    private Output<String> gceAlias;
+
+    /**
+     * @return Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    public Output<String> gceAlias() {
+        return this.gceAlias;
+    }
+    /**
+     * Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+     * 
+     */
+    @Export(name="gceMetadatas", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> gceMetadatas;
+
+    /**
+     * @return Controls which instance metadata fields from the GCE login are captured into Vault&#39;s token metadata or audit logs.
+     * 
+     */
+    public Output<List<String>> gceMetadatas() {
+        return this.gceMetadatas;
+    }
+    /**
+     * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    @Export(name="iamAlias", refs={String.class}, tree="[0]")
+    private Output<String> iamAlias;
+
+    /**
+     * @return Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+     * 
+     */
+    public Output<String> iamAlias() {
+        return this.iamAlias;
+    }
+    /**
+     * Controls the metadata to include on the token returned by the login endpoint.
+     * 
+     */
+    @Export(name="iamMetadatas", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> iamMetadatas;
+
+    /**
+     * @return Controls the metadata to include on the token returned by the login endpoint.
+     * 
+     */
+    public Output<List<String>> iamMetadatas() {
+        return this.iamMetadatas;
+    }
+    /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.

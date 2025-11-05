@@ -315,6 +315,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.maxLeaseTtlSeconds;
     }
     /**
+     * Number of max retries the client should use for recoverable errors.
+     * 
+     */
+    @Export(name="maxRetries", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxRetries;
+
+    /**
+     * @return Number of max retries the client should use for recoverable errors.
+     * 
+     */
+    public Output<Optional<Integer>> maxRetries() {
+        return Codegen.optional(this.maxRetries);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).

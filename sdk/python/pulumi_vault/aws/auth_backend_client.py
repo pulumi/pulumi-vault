@@ -20,6 +20,7 @@ __all__ = ['AuthBackendClientArgs', 'AuthBackendClient']
 class AuthBackendClientArgs:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -41,6 +42,9 @@ class AuthBackendClientArgs:
         The set of arguments for constructing a AuthBackendClient resource.
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
                auth backend. Mutually exclusive with `identity_token_audience`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_sts_header_values: List of additional headers that are allowed to be in STS request headers.
+               The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+               removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -84,6 +88,8 @@ class AuthBackendClientArgs:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
+        if allowed_sts_header_values is not None:
+            pulumi.set(__self__, "allowed_sts_header_values", allowed_sts_header_values)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if disable_automated_rotation is not None:
@@ -131,6 +137,20 @@ class AuthBackendClientArgs:
     @access_key.setter
     def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "access_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedStsHeaderValues")
+    def allowed_sts_header_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of additional headers that are allowed to be in STS request headers.
+        The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+        removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+        """
+        return pulumi.get(self, "allowed_sts_header_values")
+
+    @allowed_sts_header_values.setter
+    def allowed_sts_header_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_sts_header_values", value)
 
     @_builtins.property
     @pulumi.getter
@@ -364,6 +384,7 @@ class AuthBackendClientArgs:
 class _AuthBackendClientState:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -385,6 +406,9 @@ class _AuthBackendClientState:
         Input properties used for looking up and filtering AuthBackendClient resources.
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
                auth backend. Mutually exclusive with `identity_token_audience`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_sts_header_values: List of additional headers that are allowed to be in STS request headers.
+               The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+               removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -428,6 +452,8 @@ class _AuthBackendClientState:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
+        if allowed_sts_header_values is not None:
+            pulumi.set(__self__, "allowed_sts_header_values", allowed_sts_header_values)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if disable_automated_rotation is not None:
@@ -475,6 +501,20 @@ class _AuthBackendClientState:
     @access_key.setter
     def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "access_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedStsHeaderValues")
+    def allowed_sts_header_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of additional headers that are allowed to be in STS request headers.
+        The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+        removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+        """
+        return pulumi.get(self, "allowed_sts_header_values")
+
+    @allowed_sts_header_values.setter
+    def allowed_sts_header_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_sts_header_values", value)
 
     @_builtins.property
     @pulumi.getter
@@ -711,6 +751,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -756,7 +797,11 @@ class AuthBackendClient(pulumi.CustomResource):
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY",
             rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
+            rotation_window=3600,
+            allowed_sts_header_values=[
+                "X-Custom-Header",
+                "X-Another-Header",
+            ])
         ```
 
         ## Import
@@ -771,6 +816,9 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
                auth backend. Mutually exclusive with `identity_token_audience`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_sts_header_values: List of additional headers that are allowed to be in STS request headers.
+               The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+               removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -845,7 +893,11 @@ class AuthBackendClient(pulumi.CustomResource):
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY",
             rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
+            rotation_window=3600,
+            allowed_sts_header_values=[
+                "X-Custom-Header",
+                "X-Another-Header",
+            ])
         ```
 
         ## Import
@@ -872,6 +924,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -899,6 +952,7 @@ class AuthBackendClient(pulumi.CustomResource):
             __props__ = AuthBackendClientArgs.__new__(AuthBackendClientArgs)
 
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
+            __props__.__dict__["allowed_sts_header_values"] = allowed_sts_header_values
             __props__.__dict__["backend"] = backend
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["ec2_endpoint"] = ec2_endpoint
@@ -929,6 +983,7 @@ class AuthBackendClient(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[_builtins.str]] = None,
+            allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
@@ -955,6 +1010,9 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
                auth backend. Mutually exclusive with `identity_token_audience`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_sts_header_values: List of additional headers that are allowed to be in STS request headers.
+               The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+               removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -1001,6 +1059,7 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__ = _AuthBackendClientState.__new__(_AuthBackendClientState)
 
         __props__.__dict__["access_key"] = access_key
+        __props__.__dict__["allowed_sts_header_values"] = allowed_sts_header_values
         __props__.__dict__["backend"] = backend
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["ec2_endpoint"] = ec2_endpoint
@@ -1028,6 +1087,16 @@ class AuthBackendClient(pulumi.CustomResource):
         auth backend. Mutually exclusive with `identity_token_audience`.
         """
         return pulumi.get(self, "access_key")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedStsHeaderValues")
+    def allowed_sts_header_values(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of additional headers that are allowed to be in STS request headers.
+        The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+        removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+        """
+        return pulumi.get(self, "allowed_sts_header_values")
 
     @_builtins.property
     @pulumi.getter

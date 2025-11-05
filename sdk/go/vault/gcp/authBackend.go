@@ -78,6 +78,14 @@ type AuthBackend struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	GceAlias pulumi.StringOutput `pulumi:"gceAlias"`
+	// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+	GceMetadatas pulumi.StringArrayOutput `pulumi:"gceMetadatas"`
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	IamAlias pulumi.StringOutput `pulumi:"iamAlias"`
+	// Controls the metadata to include on the token returned by the login endpoint.
+	IamMetadatas pulumi.StringArrayOutput `pulumi:"iamMetadatas"`
 	// The audience claim value for plugin identity
 	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
 	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -179,6 +187,14 @@ type authBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	GceAlias *string `pulumi:"gceAlias"`
+	// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+	GceMetadatas []string `pulumi:"gceMetadatas"`
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	IamAlias *string `pulumi:"iamAlias"`
+	// Controls the metadata to include on the token returned by the login endpoint.
+	IamMetadatas []string `pulumi:"iamMetadatas"`
 	// The audience claim value for plugin identity
 	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
 	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -244,6 +260,14 @@ type AuthBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	GceAlias pulumi.StringPtrInput
+	// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+	GceMetadatas pulumi.StringArrayInput
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	IamAlias pulumi.StringPtrInput
+	// Controls the metadata to include on the token returned by the login endpoint.
+	IamMetadatas pulumi.StringArrayInput
 	// The audience claim value for plugin identity
 	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
 	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -311,6 +335,14 @@ type authBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	GceAlias *string `pulumi:"gceAlias"`
+	// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+	GceMetadatas []string `pulumi:"gceMetadatas"`
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	IamAlias *string `pulumi:"iamAlias"`
+	// Controls the metadata to include on the token returned by the login endpoint.
+	IamMetadatas []string `pulumi:"iamMetadatas"`
 	// The audience claim value for plugin identity
 	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
 	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -375,6 +407,14 @@ type AuthBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	GceAlias pulumi.StringPtrInput
+	// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+	GceMetadatas pulumi.StringArrayInput
+	// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+	IamAlias pulumi.StringPtrInput
+	// Controls the metadata to include on the token returned by the login endpoint.
+	IamMetadatas pulumi.StringArrayInput
 	// The audience claim value for plugin identity
 	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
 	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -548,6 +588,26 @@ func (o AuthBackendOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
+// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+func (o AuthBackendOutput) GceAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.GceAlias }).(pulumi.StringOutput)
+}
+
+// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+func (o AuthBackendOutput) GceMetadatas() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.GceMetadatas }).(pulumi.StringArrayOutput)
+}
+
+// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+func (o AuthBackendOutput) IamAlias() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.IamAlias }).(pulumi.StringOutput)
+}
+
+// Controls the metadata to include on the token returned by the login endpoint.
+func (o AuthBackendOutput) IamMetadatas() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.IamMetadatas }).(pulumi.StringArrayOutput)
 }
 
 // The audience claim value for plugin identity

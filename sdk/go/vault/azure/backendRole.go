@@ -99,6 +99,8 @@ type BackendRole struct {
 	// Indicates whether the applications and service principals created by Vault will be permanently
 	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
 	PermanentlyDelete pulumi.BoolOutput `pulumi:"permanentlyDelete"`
+	// If set to true, persists the created service principal and application for the lifetime of the role
+	PersistApp pulumi.BoolPtrOutput `pulumi:"persistApp"`
 	// Name of the Azure role
 	Role pulumi.StringOutput `pulumi:"role"`
 	// Specifies the security principal types that are allowed to sign in to the application.
@@ -168,6 +170,8 @@ type backendRoleState struct {
 	// Indicates whether the applications and service principals created by Vault will be permanently
 	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
 	PermanentlyDelete *bool `pulumi:"permanentlyDelete"`
+	// If set to true, persists the created service principal and application for the lifetime of the role
+	PersistApp *bool `pulumi:"persistApp"`
 	// Name of the Azure role
 	Role *string `pulumi:"role"`
 	// Specifies the security principal types that are allowed to sign in to the application.
@@ -205,6 +209,8 @@ type BackendRoleState struct {
 	// Indicates whether the applications and service principals created by Vault will be permanently
 	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
 	PermanentlyDelete pulumi.BoolPtrInput
+	// If set to true, persists the created service principal and application for the lifetime of the role
+	PersistApp pulumi.BoolPtrInput
 	// Name of the Azure role
 	Role pulumi.StringPtrInput
 	// Specifies the security principal types that are allowed to sign in to the application.
@@ -246,6 +252,8 @@ type backendRoleArgs struct {
 	// Indicates whether the applications and service principals created by Vault will be permanently
 	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
 	PermanentlyDelete *bool `pulumi:"permanentlyDelete"`
+	// If set to true, persists the created service principal and application for the lifetime of the role
+	PersistApp *bool `pulumi:"persistApp"`
 	// Name of the Azure role
 	Role string `pulumi:"role"`
 	// Specifies the security principal types that are allowed to sign in to the application.
@@ -284,6 +292,8 @@ type BackendRoleArgs struct {
 	// Indicates whether the applications and service principals created by Vault will be permanently
 	// deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
 	PermanentlyDelete pulumi.BoolPtrInput
+	// If set to true, persists the created service principal and application for the lifetime of the role
+	PersistApp pulumi.BoolPtrInput
 	// Name of the Azure role
 	Role pulumi.StringInput
 	// Specifies the security principal types that are allowed to sign in to the application.
@@ -432,6 +442,11 @@ func (o BackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 // deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
 func (o BackendRoleOutput) PermanentlyDelete() pulumi.BoolOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.BoolOutput { return v.PermanentlyDelete }).(pulumi.BoolOutput)
+}
+
+// If set to true, persists the created service principal and application for the lifetime of the role
+func (o BackendRoleOutput) PersistApp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.BoolPtrOutput { return v.PersistApp }).(pulumi.BoolPtrOutput)
 }
 
 // Name of the Azure role

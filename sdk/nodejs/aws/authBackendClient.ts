@@ -33,6 +33,10 @@ import * as utilities from "../utilities";
  *     secretKey: "INSERT_AWS_SECRET_KEY",
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
+ *     allowedStsHeaderValues: [
+ *         "X-Custom-Header",
+ *         "X-Another-Header",
+ *     ],
  * });
  * ```
  *
@@ -77,6 +81,12 @@ export class AuthBackendClient extends pulumi.CustomResource {
      * auth backend. Mutually exclusive with `identityTokenAudience`.
      */
     declare public readonly accessKey: pulumi.Output<string | undefined>;
+    /**
+     * List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     */
+    declare public readonly allowedStsHeaderValues: pulumi.Output<string[] | undefined>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
@@ -183,6 +193,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendClientState | undefined;
             resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["allowedStsHeaderValues"] = state?.allowedStsHeaderValues;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
             resourceInputs["ec2Endpoint"] = state?.ec2Endpoint;
@@ -203,6 +214,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
         } else {
             const args = argsOrState as AuthBackendClientArgs | undefined;
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
+            resourceInputs["allowedStsHeaderValues"] = args?.allowedStsHeaderValues;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
             resourceInputs["ec2Endpoint"] = args?.ec2Endpoint;
@@ -237,6 +249,12 @@ export interface AuthBackendClientState {
      * auth backend. Mutually exclusive with `identityTokenAudience`.
      */
     accessKey?: pulumi.Input<string>;
+    /**
+     * List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     */
+    allowedStsHeaderValues?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
@@ -339,6 +357,12 @@ export interface AuthBackendClientArgs {
      * auth backend. Mutually exclusive with `identityTokenAudience`.
      */
     accessKey?: pulumi.Input<string>;
+    /**
+     * List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     */
+    allowedStsHeaderValues?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.

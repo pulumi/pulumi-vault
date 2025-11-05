@@ -114,6 +114,7 @@ type AuthBackend struct {
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
+	Tune      AuthBackendTuneOutput  `pulumi:"tune"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users AuthBackendUserTypeArrayOutput `pulumi:"users"`
@@ -202,7 +203,8 @@ type authBackendState struct {
 	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
-	TokenType *string `pulumi:"tokenType"`
+	TokenType *string          `pulumi:"tokenType"`
+	Tune      *AuthBackendTune `pulumi:"tune"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users []AuthBackendUserType `pulumi:"users"`
@@ -253,6 +255,7 @@ type AuthBackendState struct {
 	TokenTtl pulumi.IntPtrInput
 	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
+	Tune      AuthBackendTunePtrInput
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users AuthBackendUserTypeArrayInput
@@ -304,7 +307,8 @@ type authBackendArgs struct {
 	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
 	// The type of token to generate, service or batch
-	TokenType *string `pulumi:"tokenType"`
+	TokenType *string          `pulumi:"tokenType"`
+	Tune      *AuthBackendTune `pulumi:"tune"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users []AuthBackendUserType `pulumi:"users"`
@@ -354,6 +358,7 @@ type AuthBackendArgs struct {
 	TokenTtl pulumi.IntPtrInput
 	// The type of token to generate, service or batch
 	TokenType pulumi.StringPtrInput
+	Tune      AuthBackendTunePtrInput
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
 	Users AuthBackendUserTypeArrayInput
@@ -545,6 +550,10 @@ func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
 // The type of token to generate, service or batch
 func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
 
 // Associate Okta users with groups or policies within Vault.

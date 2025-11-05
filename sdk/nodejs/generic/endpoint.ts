@@ -16,8 +16,8 @@ import * as utilities from "../utilities";
  *     path: "auth/userpass/users/u1",
  *     ignoreAbsentFields: true,
  *     dataJson: `{
- *   "policies": ["p1"],
- *   "password": "changeme"
+ *   \\"policies\\": [\\"p1\\"],
+ *   \\"password\\": \\"changeme\\"
  * }
  * `,
  * }, {
@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *     disableRead: true,
  *     disableDelete: true,
  *     dataJson: `{
- *   "password": "changeme"
+ *   \\"password\\": \\"changeme\\"
  * }
  * `,
  * }, {
@@ -41,8 +41,8 @@ import * as utilities from "../utilities";
  *     ignoreAbsentFields: true,
  *     writeFields: ["id"],
  *     dataJson: `{
- *   "alias_name": "u1",
- *   "alias_mount_accessor": vault_auth_backend.userpass.accessor
+ *   \\"alias_name\\": \\"u1\\",
+ *   \\"alias_mount_accessor\\": vault_auth_backend.userpass.accessor
  * }
  * `,
  * }, {

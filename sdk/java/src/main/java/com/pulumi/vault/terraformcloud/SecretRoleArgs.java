@@ -24,6 +24,28 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The type of credential to generate. Valid values are &#39;team&#39;, &#39;team_legacy&#39;, &#39;user&#39;, or &#39;organization&#39;. Can only create multiple-team tokens with `team`.
+     * 
+     */
+    @Import(name="credentialType")
+    private @Nullable Output<String> credentialType;
+
+    /**
+     * @return The type of credential to generate. Valid values are &#39;team&#39;, &#39;team_legacy&#39;, &#39;user&#39;, or &#39;organization&#39;. Can only create multiple-team tokens with `team`.
+     * 
+     */
+    public Optional<Output<String>> credentialType() {
+        return Optional.ofNullable(this.credentialType);
+    }
+
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Maximum TTL for leases associated with this role, in seconds.
      * 
      */
@@ -106,6 +128,8 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     private SecretRoleArgs(SecretRoleArgs $) {
         this.backend = $.backend;
+        this.credentialType = $.credentialType;
+        this.description = $.description;
         this.maxTtl = $.maxTtl;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -140,6 +164,36 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param credentialType The type of credential to generate. Valid values are &#39;team&#39;, &#39;team_legacy&#39;, &#39;user&#39;, or &#39;organization&#39;. Can only create multiple-team tokens with `team`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(@Nullable Output<String> credentialType) {
+            $.credentialType = credentialType;
+            return this;
+        }
+
+        /**
+         * @param credentialType The type of credential to generate. Valid values are &#39;team&#39;, &#39;team_legacy&#39;, &#39;user&#39;, or &#39;organization&#39;. Can only create multiple-team tokens with `team`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(String credentialType) {
+            return credentialType(Output.of(credentialType));
+        }
+
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

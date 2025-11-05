@@ -196,9 +196,9 @@ import javax.annotation.Nullable;
  *             .kubernetesRoleType("Role")
  *             .generatedRoleRules("""
  * rules:
- * - apiGroups: [""]
- *   resources: ["pods"]
- *   verbs: ["list"]
+ * - apiGroups: [\"\"]
+ *   resources: [\"pods\"]
+ *   verbs: [\"list\"]
  *             """)
  *             .extraLabels(Map.ofEntries(
  *                 Map.entry("id", "abc123"),

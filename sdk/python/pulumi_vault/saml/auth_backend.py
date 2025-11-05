@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AuthBackendArgs', 'AuthBackend']
 
@@ -29,6 +31,7 @@ class AuthBackendArgs:
                  idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
@@ -51,6 +54,9 @@ class AuthBackendArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -73,6 +79,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
         if verbose_logging is not None:
             pulumi.set(__self__, "verbose_logging", verbose_logging)
 
@@ -206,6 +214,20 @@ class AuthBackendArgs:
         pulumi.set(self, "path", value)
 
     @_builtins.property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
+    @_builtins.property
     @pulumi.getter(name="verboseLogging")
     def verbose_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -233,6 +255,7 @@ class _AuthBackendState:
                  idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
@@ -255,6 +278,9 @@ class _AuthBackendState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -279,6 +305,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
         if verbose_logging is not None:
             pulumi.set(__self__, "verbose_logging", verbose_logging)
 
@@ -412,6 +440,20 @@ class _AuthBackendState:
         pulumi.set(self, "path", value)
 
     @_builtins.property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
+    @_builtins.property
     @pulumi.getter(name="verboseLogging")
     def verbose_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -442,6 +484,7 @@ class AuthBackend(pulumi.CustomResource):
                  idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -492,6 +535,9 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -554,6 +600,7 @@ class AuthBackend(pulumi.CustomResource):
                  idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -578,6 +625,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["idp_sso_url"] = idp_sso_url
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
+            __props__.__dict__["tune"] = tune
             __props__.__dict__["verbose_logging"] = verbose_logging
         super(AuthBackend, __self__).__init__(
             'vault:saml/authBackend:AuthBackend',
@@ -599,6 +647,7 @@ class AuthBackend(pulumi.CustomResource):
             idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
+            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
             verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
@@ -626,6 +675,9 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -644,6 +696,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["idp_sso_url"] = idp_sso_url
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
+        __props__.__dict__["tune"] = tune
         __props__.__dict__["verbose_logging"] = verbose_logging
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -735,6 +788,16 @@ class AuthBackend(pulumi.CustomResource):
         if not specified.
         """
         return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
 
     @_builtins.property
     @pulumi.getter(name="verboseLogging")

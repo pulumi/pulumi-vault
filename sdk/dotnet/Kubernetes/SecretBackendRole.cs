@@ -157,9 +157,9 @@ namespace Pulumi.Vault.Kubernetes
     ///         TokenDefaultTtl = 21600,
     ///         KubernetesRoleType = "Role",
     ///         GeneratedRoleRules = @"rules:
-    /// - apiGroups: [""""]
-    ///   resources: [""pods""]
-    ///   verbs: [""list""]
+    /// - apiGroups: [\""\""]
+    ///   resources: [\""pods\""]
+    ///   verbs: [\""list\""]
     /// ",
     ///         ExtraLabels = 
     ///         {

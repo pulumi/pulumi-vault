@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.okta.AuthBackendArgs;
 import com.pulumi.vault.okta.inputs.AuthBackendState;
 import com.pulumi.vault.okta.outputs.AuthBackendGroup;
+import com.pulumi.vault.okta.outputs.AuthBackendTune;
 import com.pulumi.vault.okta.outputs.AuthBackendUser;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -358,6 +359,12 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> tokenType() {
         return Codegen.optional(this.tokenType);
+    }
+    @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
+    private Output<AuthBackendTune> tune;
+
+    public Output<AuthBackendTune> tune() {
+        return this.tune;
     }
     /**
      * Associate Okta users with groups or policies within Vault.

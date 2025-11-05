@@ -29,16 +29,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
-//				Path:             pulumi.String("ldap"),
-//				Url:              pulumi.String("ldaps://dc-01.example.org"),
-//				Userdn:           pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
-//				Userattr:         pulumi.String("sAMAccountName"),
-//				Upndomain:        pulumi.String("EXAMPLE.ORG"),
-//				Discoverdn:       pulumi.Bool(false),
-//				Groupdn:          pulumi.String("OU=Groups,DC=example,DC=org"),
-//				Groupfilter:      pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
-//				RotationSchedule: pulumi.String("0 * * * SAT"),
-//				RotationWindow:   pulumi.Int(3600),
+//				Path:                      pulumi.String("ldap"),
+//				Url:                       pulumi.String("ldaps://dc-01.example.org"),
+//				Userdn:                    pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+//				Userattr:                  pulumi.String("sAMAccountName"),
+//				Upndomain:                 pulumi.String("EXAMPLE.ORG"),
+//				Discoverdn:                pulumi.Bool(false),
+//				Groupdn:                   pulumi.String("OU=Groups,DC=example,DC=org"),
+//				Groupfilter:               pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
+//				RotationSchedule:          pulumi.String("0 * * * SAT"),
+//				RotationWindow:            pulumi.Int(3600),
+//				RequestTimeout:            pulumi.Int(30),
+//				DereferenceAliases:        pulumi.String("always"),
+//				EnableSamaccountnameLogin: pulumi.Bool(false),
+//				AnonymousGroupSearch:      pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -61,6 +65,8 @@ type AuthBackend struct {
 
 	// The accessor for this auth mount.
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// Allows anonymous group searches.
+	AnonymousGroupSearch pulumi.BoolOutput `pulumi:"anonymousGroupSearch"`
 	// DN of object to bind when performing user search
 	Binddn pulumi.StringOutput `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search
@@ -75,6 +81,8 @@ type AuthBackend struct {
 	ConnectionTimeout pulumi.IntOutput `pulumi:"connectionTimeout"`
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind pulumi.BoolOutput `pulumi:"denyNullBind"`
+	// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+	DereferenceAliases pulumi.StringOutput `pulumi:"dereferenceAliases"`
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -84,6 +92,8 @@ type AuthBackend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind DN of a user.
 	Discoverdn pulumi.BoolOutput `pulumi:"discoverdn"`
+	// Enables login using the sAMAccountName attribute.
+	EnableSamaccountnameLogin pulumi.BoolOutput `pulumi:"enableSamaccountnameLogin"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringOutput `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -104,6 +114,8 @@ type AuthBackend struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// The timeout(in sec) for requests to the LDAP server.
+	RequestTimeout pulumi.IntOutput `pulumi:"requestTimeout"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
@@ -136,8 +148,13 @@ type AuthBackend struct {
 	TokenPolicies pulumi.StringArrayOutput `pulumi:"tokenPolicies"`
 	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
-	// The type of token to generate, service or batch
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTuneOutput `pulumi:"tune"`
 	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain pulumi.StringOutput `pulumi:"upndomain"`
 	// The URL of the LDAP server
@@ -200,6 +217,8 @@ func GetAuthBackend(ctx *pulumi.Context,
 type authBackendState struct {
 	// The accessor for this auth mount.
 	Accessor *string `pulumi:"accessor"`
+	// Allows anonymous group searches.
+	AnonymousGroupSearch *bool `pulumi:"anonymousGroupSearch"`
 	// DN of object to bind when performing user search
 	Binddn *string `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search
@@ -214,6 +233,8 @@ type authBackendState struct {
 	ConnectionTimeout *int `pulumi:"connectionTimeout"`
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind *bool `pulumi:"denyNullBind"`
+	// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+	DereferenceAliases *string `pulumi:"dereferenceAliases"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -223,6 +244,8 @@ type authBackendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind DN of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
+	// Enables login using the sAMAccountName attribute.
+	EnableSamaccountnameLogin *bool `pulumi:"enableSamaccountnameLogin"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -243,6 +266,8 @@ type authBackendState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
+	// The timeout(in sec) for requests to the LDAP server.
+	RequestTimeout *int `pulumi:"requestTimeout"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
@@ -275,8 +300,13 @@ type authBackendState struct {
 	TokenPolicies []string `pulumi:"tokenPolicies"`
 	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// The type of token to generate, service or batch
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune *AuthBackendTune `pulumi:"tune"`
 	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain *string `pulumi:"upndomain"`
 	// The URL of the LDAP server
@@ -296,6 +326,8 @@ type authBackendState struct {
 type AuthBackendState struct {
 	// The accessor for this auth mount.
 	Accessor pulumi.StringPtrInput
+	// Allows anonymous group searches.
+	AnonymousGroupSearch pulumi.BoolPtrInput
 	// DN of object to bind when performing user search
 	Binddn pulumi.StringPtrInput
 	// Password to use with `binddn` when performing user search
@@ -310,6 +342,8 @@ type AuthBackendState struct {
 	ConnectionTimeout pulumi.IntPtrInput
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind pulumi.BoolPtrInput
+	// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+	DereferenceAliases pulumi.StringPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -319,6 +353,8 @@ type AuthBackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Use anonymous bind to discover the bind DN of a user.
 	Discoverdn pulumi.BoolPtrInput
+	// Enables login using the sAMAccountName attribute.
+	EnableSamaccountnameLogin pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -339,6 +375,8 @@ type AuthBackendState struct {
 	Namespace pulumi.StringPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
+	// The timeout(in sec) for requests to the LDAP server.
+	RequestTimeout pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	RotationPeriod pulumi.IntPtrInput
@@ -371,8 +409,13 @@ type AuthBackendState struct {
 	TokenPolicies pulumi.StringArrayInput
 	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrInput
-	// The type of token to generate, service or batch
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTunePtrInput
 	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain pulumi.StringPtrInput
 	// The URL of the LDAP server
@@ -394,6 +437,8 @@ func (AuthBackendState) ElementType() reflect.Type {
 }
 
 type authBackendArgs struct {
+	// Allows anonymous group searches.
+	AnonymousGroupSearch *bool `pulumi:"anonymousGroupSearch"`
 	// DN of object to bind when performing user search
 	Binddn *string `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search
@@ -408,6 +453,8 @@ type authBackendArgs struct {
 	ConnectionTimeout *int `pulumi:"connectionTimeout"`
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind *bool `pulumi:"denyNullBind"`
+	// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+	DereferenceAliases *string `pulumi:"dereferenceAliases"`
 	// Description for the LDAP auth backend mount
 	Description *string `pulumi:"description"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -417,6 +464,8 @@ type authBackendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind DN of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
+	// Enables login using the sAMAccountName attribute.
+	EnableSamaccountnameLogin *bool `pulumi:"enableSamaccountnameLogin"`
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr *string `pulumi:"groupattr"`
 	// Base DN under which to perform group search
@@ -437,6 +486,8 @@ type authBackendArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path to mount the LDAP auth backend under
 	Path *string `pulumi:"path"`
+	// The timeout(in sec) for requests to the LDAP server.
+	RequestTimeout *int `pulumi:"requestTimeout"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
@@ -469,8 +520,13 @@ type authBackendArgs struct {
 	TokenPolicies []string `pulumi:"tokenPolicies"`
 	// The initial ttl of the token to generate in seconds
 	TokenTtl *int `pulumi:"tokenTtl"`
-	// The type of token to generate, service or batch
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType *string `pulumi:"tokenType"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune *AuthBackendTune `pulumi:"tune"`
 	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain *string `pulumi:"upndomain"`
 	// The URL of the LDAP server
@@ -489,6 +545,8 @@ type authBackendArgs struct {
 
 // The set of arguments for constructing a AuthBackend resource.
 type AuthBackendArgs struct {
+	// Allows anonymous group searches.
+	AnonymousGroupSearch pulumi.BoolPtrInput
 	// DN of object to bind when performing user search
 	Binddn pulumi.StringPtrInput
 	// Password to use with `binddn` when performing user search
@@ -503,6 +561,8 @@ type AuthBackendArgs struct {
 	ConnectionTimeout pulumi.IntPtrInput
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind pulumi.BoolPtrInput
+	// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+	DereferenceAliases pulumi.StringPtrInput
 	// Description for the LDAP auth backend mount
 	Description pulumi.StringPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -512,6 +572,8 @@ type AuthBackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Use anonymous bind to discover the bind DN of a user.
 	Discoverdn pulumi.BoolPtrInput
+	// Enables login using the sAMAccountName attribute.
+	EnableSamaccountnameLogin pulumi.BoolPtrInput
 	// LDAP attribute to follow on objects returned by groupfilter
 	Groupattr pulumi.StringPtrInput
 	// Base DN under which to perform group search
@@ -532,6 +594,8 @@ type AuthBackendArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Path to mount the LDAP auth backend under
 	Path pulumi.StringPtrInput
+	// The timeout(in sec) for requests to the LDAP server.
+	RequestTimeout pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	RotationPeriod pulumi.IntPtrInput
@@ -564,8 +628,13 @@ type AuthBackendArgs struct {
 	TokenPolicies pulumi.StringArrayInput
 	// The initial ttl of the token to generate in seconds
 	TokenTtl pulumi.IntPtrInput
-	// The type of token to generate, service or batch
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 	TokenType pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTunePtrInput
 	// The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
 	Upndomain pulumi.StringPtrInput
 	// The URL of the LDAP server
@@ -674,6 +743,11 @@ func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
 }
 
+// Allows anonymous group searches.
+func (o AuthBackendOutput) AnonymousGroupSearch() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.AnonymousGroupSearch }).(pulumi.BoolOutput)
+}
+
 // DN of object to bind when performing user search
 func (o AuthBackendOutput) Binddn() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Binddn }).(pulumi.StringOutput)
@@ -712,6 +786,11 @@ func (o AuthBackendOutput) DenyNullBind() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.DenyNullBind }).(pulumi.BoolOutput)
 }
 
+// Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+func (o AuthBackendOutput) DereferenceAliases() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.DereferenceAliases }).(pulumi.StringOutput)
+}
+
 // Description for the LDAP auth backend mount
 func (o AuthBackendOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
@@ -731,6 +810,11 @@ func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 // Use anonymous bind to discover the bind DN of a user.
 func (o AuthBackendOutput) Discoverdn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.Discoverdn }).(pulumi.BoolOutput)
+}
+
+// Enables login using the sAMAccountName attribute.
+func (o AuthBackendOutput) EnableSamaccountnameLogin() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.EnableSamaccountnameLogin }).(pulumi.BoolOutput)
 }
 
 // LDAP attribute to follow on objects returned by groupfilter
@@ -775,6 +859,11 @@ func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
 // Path to mount the LDAP auth backend under
 func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The timeout(in sec) for requests to the LDAP server.
+func (o AuthBackendOutput) RequestTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntOutput { return v.RequestTimeout }).(pulumi.IntOutput)
 }
 
 // The amount of time in seconds Vault should wait before rotating the root credential.
@@ -851,9 +940,17 @@ func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
 }
 
-// The type of token to generate, service or batch
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
 func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
+// Extra configuration block. Structure is documented below.
+//
+// The `tune` block is used to tune the auth backend:
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
 
 // The `userPrincipalDomain` used to construct the UPN string for the authenticating user.

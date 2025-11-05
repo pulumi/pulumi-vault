@@ -167,6 +167,21 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to true, persists the created service principal and application for the lifetime of the role
+     * 
+     */
+    @Import(name="persistApp")
+    private @Nullable Output<Boolean> persistApp;
+
+    /**
+     * @return If set to true, persists the created service principal and application for the lifetime of the role
+     * 
+     */
+    public Optional<Output<Boolean>> persistApp() {
+        return Optional.ofNullable(this.persistApp);
+    }
+
+    /**
      * Name of the Azure role
      * 
      */
@@ -242,6 +257,7 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
         this.maxTtl = $.maxTtl;
         this.namespace = $.namespace;
         this.permanentlyDelete = $.permanentlyDelete;
+        this.persistApp = $.persistApp;
         this.role = $.role;
         this.signInAudience = $.signInAudience;
         this.tags = $.tags;
@@ -485,6 +501,27 @@ public final class BackendRoleState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder permanentlyDelete(Boolean permanentlyDelete) {
             return permanentlyDelete(Output.of(permanentlyDelete));
+        }
+
+        /**
+         * @param persistApp If set to true, persists the created service principal and application for the lifetime of the role
+         * 
+         * @return builder
+         * 
+         */
+        public Builder persistApp(@Nullable Output<Boolean> persistApp) {
+            $.persistApp = persistApp;
+            return this;
+        }
+
+        /**
+         * @param persistApp If set to true, persists the created service principal and application for the lifetime of the role
+         * 
+         * @return builder
+         * 
+         */
+        public Builder persistApp(Boolean persistApp) {
+            return persistApp(Output.of(persistApp));
         }
 
         /**

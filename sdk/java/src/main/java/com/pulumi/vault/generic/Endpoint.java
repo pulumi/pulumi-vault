@@ -54,8 +54,8 @@ import javax.annotation.Nullable;
  *             .ignoreAbsentFields(true)
  *             .dataJson("""
  * {
- *   "policies": ["p1"],
- *   "password": "changeme"
+ *   \"policies\": [\"p1\"],
+ *   \"password\": \"changeme\"
  * }
  *             """)
  *             .build(), CustomResourceOptions.builder()
@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *             .disableDelete(true)
  *             .dataJson("""
  * {
- *   "password": "changeme"
+ *   \"password\": \"changeme\"
  * }
  *             """)
  *             .build(), CustomResourceOptions.builder()
@@ -83,8 +83,8 @@ import javax.annotation.Nullable;
  *             .writeFields("id")
  *             .dataJson("""
  * {
- *   "alias_name": "u1",
- *   "alias_mount_accessor": vault_auth_backend.userpass.accessor
+ *   \"alias_name\": \"u1\",
+ *   \"alias_mount_accessor\": vault_auth_backend.userpass.accessor
  * }
  *             """)
  *             .build(), CustomResourceOptions.builder()

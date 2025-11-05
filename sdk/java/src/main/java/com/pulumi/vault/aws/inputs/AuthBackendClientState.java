@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -32,6 +33,25 @@ public final class AuthBackendClientState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> accessKey() {
         return Optional.ofNullable(this.accessKey);
+    }
+
+    /**
+     * List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     * 
+     */
+    @Import(name="allowedStsHeaderValues")
+    private @Nullable Output<List<String>> allowedStsHeaderValues;
+
+    /**
+     * @return List of additional headers that are allowed to be in STS request headers.
+     * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+     * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedStsHeaderValues() {
+        return Optional.ofNullable(this.allowedStsHeaderValues);
     }
 
     /**
@@ -339,6 +359,7 @@ public final class AuthBackendClientState extends com.pulumi.resources.ResourceA
 
     private AuthBackendClientState(AuthBackendClientState $) {
         this.accessKey = $.accessKey;
+        this.allowedStsHeaderValues = $.allowedStsHeaderValues;
         this.backend = $.backend;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.ec2Endpoint = $.ec2Endpoint;
@@ -397,6 +418,43 @@ public final class AuthBackendClientState extends com.pulumi.resources.ResourceA
          */
         public Builder accessKey(String accessKey) {
             return accessKey(Output.of(accessKey));
+        }
+
+        /**
+         * @param allowedStsHeaderValues List of additional headers that are allowed to be in STS request headers.
+         * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+         * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedStsHeaderValues(@Nullable Output<List<String>> allowedStsHeaderValues) {
+            $.allowedStsHeaderValues = allowedStsHeaderValues;
+            return this;
+        }
+
+        /**
+         * @param allowedStsHeaderValues List of additional headers that are allowed to be in STS request headers.
+         * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+         * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedStsHeaderValues(List<String> allowedStsHeaderValues) {
+            return allowedStsHeaderValues(Output.of(allowedStsHeaderValues));
+        }
+
+        /**
+         * @param allowedStsHeaderValues List of additional headers that are allowed to be in STS request headers.
+         * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+         * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedStsHeaderValues(String... allowedStsHeaderValues) {
+            return allowedStsHeaderValues(List.of(allowedStsHeaderValues));
         }
 
         /**
