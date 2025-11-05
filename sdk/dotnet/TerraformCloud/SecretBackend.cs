@@ -177,6 +177,18 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
 
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("tokenWo")]
+        public Output<string?> TokenWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for write-only secret data.
+        /// </summary>
+        [Output("tokenWoVersion")]
+        public Output<int?> TokenWoVersion { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -203,6 +215,7 @@ namespace Pulumi.Vault.TerraformCloud
                 AdditionalSecretOutputs =
                 {
                     "token",
+                    "tokenWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -408,6 +421,28 @@ namespace Pulumi.Vault.TerraformCloud
             }
         }
 
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for write-only secret data.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
+
         public SecretBackendArgs()
         {
         }
@@ -602,6 +637,28 @@ namespace Pulumi.Vault.TerraformCloud
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for write-only secret data.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
 
         public SecretBackendState()
         {

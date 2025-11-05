@@ -124,6 +124,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly maxLeaseTtlSeconds: pulumi.Output<number>;
     /**
+     * Number of max retries the client should use for recoverable errors.
+     */
+    declare public readonly maxRetries: pulumi.Output<number | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -242,6 +246,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["listingVisibility"] = state?.listingVisibility;
             resourceInputs["local"] = state?.local;
             resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["maxRetries"] = state?.maxRetries;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["options"] = state?.options;
             resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
@@ -280,6 +285,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["listingVisibility"] = args?.listingVisibility;
             resourceInputs["local"] = args?.local;
             resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["maxRetries"] = args?.maxRetries;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["options"] = args?.options;
             resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
@@ -392,6 +398,10 @@ export interface SecretBackendState {
      * Maximum possible lease duration for secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * Number of max retries the client should use for recoverable errors.
+     */
+    maxRetries?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -561,6 +571,10 @@ export interface SecretBackendArgs {
      * Maximum possible lease duration for secrets in seconds
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * Number of max retries the client should use for recoverable errors.
+     */
+    maxRetries?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

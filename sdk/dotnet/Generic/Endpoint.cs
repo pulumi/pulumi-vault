@@ -30,8 +30,8 @@ namespace Pulumi.Vault.Generic
     ///         Path = "auth/userpass/users/u1",
     ///         IgnoreAbsentFields = true,
     ///         DataJson = @"{
-    ///   ""policies"": [""p1""],
-    ///   ""password"": ""changeme""
+    ///   \""policies\"": [\""p1\""],
+    ///   \""password\"": \""changeme\""
     /// }
     /// ",
     ///     }, new CustomResourceOptions
@@ -48,7 +48,7 @@ namespace Pulumi.Vault.Generic
     ///         DisableRead = true,
     ///         DisableDelete = true,
     ///         DataJson = @"{
-    ///   ""password"": ""changeme""
+    ///   \""password\"": \""changeme\""
     /// }
     /// ",
     ///     }, new CustomResourceOptions
@@ -70,8 +70,8 @@ namespace Pulumi.Vault.Generic
     ///             "id",
     ///         },
     ///         DataJson = @"{
-    ///   ""alias_name"": ""u1"",
-    ///   ""alias_mount_accessor"": vault_auth_backend.userpass.accessor
+    ///   \""alias_name\"": \""u1\"",
+    ///   \""alias_mount_accessor\"": vault_auth_backend.userpass.accessor
     /// }
     /// ",
     ///     }, new CustomResourceOptions

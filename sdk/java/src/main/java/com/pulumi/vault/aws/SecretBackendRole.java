@@ -55,12 +55,12 @@ import javax.annotation.Nullable;
  *             .credentialType("iam_user")
  *             .policyDocument("""
  * {
- *   "Version": "2012-10-17",
- *   "Statement": [
+ *   \"Version\": \"2012-10-17\",
+ *   \"Statement\": [
  *     {
- *       "Effect": "Allow",
- *       "Action": "iam:*",
- *       "Resource": "*"
+ *       \"Effect\": \"Allow\",
+ *       \"Action\": \"iam:*\",
+ *       \"Resource\": \"*\"
  *     }
  *   ]
  * }
@@ -212,6 +212,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> maxStsTtl() {
         return this.maxStsTtl;
+    }
+    /**
+     * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     * 
+     */
+    @Export(name="mfaSerialNumber", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> mfaSerialNumber;
+
+    /**
+     * @return The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     * 
+     */
+    public Output<Optional<String>> mfaSerialNumber() {
+        return Codegen.optional(this.mfaSerialNumber);
     }
     /**
      * The name to identify this role within the backend.

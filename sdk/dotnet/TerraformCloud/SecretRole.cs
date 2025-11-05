@@ -53,6 +53,15 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `Team`.
+        /// </summary>
+        [Output("credentialType")]
+        public Output<string?> CredentialType { get; private set; } = null!;
+
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
         /// Maximum TTL for leases associated with this role, in seconds.
         /// </summary>
         [Output("maxTtl")]
@@ -135,6 +144,15 @@ namespace Pulumi.Vault.TerraformCloud
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `Team`.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
+
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Maximum TTL for leases associated with this role, in seconds.
         /// </summary>
         [Input("maxTtl")]
@@ -177,6 +195,15 @@ namespace Pulumi.Vault.TerraformCloud
     {
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `Team`.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
+
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// Maximum TTL for leases associated with this role, in seconds.

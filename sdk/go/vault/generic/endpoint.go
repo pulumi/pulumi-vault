@@ -36,7 +36,7 @@ import (
 //			u1, err := generic.NewEndpoint(ctx, "u1", &generic.EndpointArgs{
 //				Path:               pulumi.String("auth/userpass/users/u1"),
 //				IgnoreAbsentFields: pulumi.Bool(true),
-//				DataJson:           pulumi.String("{\n  \"policies\": [\"p1\"],\n  \"password\": \"changeme\"\n}\n"),
+//				DataJson:           pulumi.String("{\n  \\\"policies\\\": [\\\"p1\\\"],\n  \\\"password\\\": \\\"changeme\\\"\n}\n"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				userpass,
 //			}))
@@ -47,7 +47,7 @@ import (
 //				Path:          pulumi.String("auth/userpass/login/u1"),
 //				DisableRead:   pulumi.Bool(true),
 //				DisableDelete: pulumi.Bool(true),
-//				DataJson:      pulumi.String("{\n  \"password\": \"changeme\"\n}\n"),
+//				DataJson:      pulumi.String("{\n  \\\"password\\\": \\\"changeme\\\"\n}\n"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				u1,
 //			}))
@@ -62,7 +62,7 @@ import (
 //				WriteFields: pulumi.StringArray{
 //					pulumi.String("id"),
 //				},
-//				DataJson: pulumi.String("{\n  \"alias_name\": \"u1\",\n  \"alias_mount_accessor\": vault_auth_backend.userpass.accessor\n}\n"),
+//				DataJson: pulumi.String("{\n  \\\"alias_name\\\": \\\"u1\\\",\n  \\\"alias_mount_accessor\\\": vault_auth_backend.userpass.accessor\n}\n"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				u1Token,
 //			}))

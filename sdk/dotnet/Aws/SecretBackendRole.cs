@@ -32,12 +32,12 @@ namespace Pulumi.Vault.Aws
     ///         Name = "deploy",
     ///         CredentialType = "iam_user",
     ///         PolicyDocument = @"{
-    ///   ""Version"": ""2012-10-17"",
-    ///   ""Statement"": [
+    ///   \""Version\"": \""2012-10-17\"",
+    ///   \""Statement\"": [
     ///     {
-    ///       ""Effect"": ""Allow"",
-    ///       ""Action"": ""iam:*"",
-    ///       ""Resource"": ""*""
+    ///       \""Effect\"": \""Allow\"",
+    ///       \""Action\"": \""iam:*\"",
+    ///       \""Resource\"": \""*\""
     ///     }
     ///   ]
     /// }
@@ -115,6 +115,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("maxStsTtl")]
         public Output<int> MaxStsTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+        /// </summary>
+        [Output("mfaSerialNumber")]
+        public Output<string?> MfaSerialNumber { get; private set; } = null!;
 
         /// <summary>
         /// The name to identify this role within the backend.
@@ -303,6 +309,12 @@ namespace Pulumi.Vault.Aws
         public Input<int>? MaxStsTtl { get; set; }
 
         /// <summary>
+        /// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+        /// </summary>
+        [Input("mfaSerialNumber")]
+        public Input<string>? MfaSerialNumber { get; set; }
+
+        /// <summary>
         /// The name to identify this role within the backend.
         /// Must be unique within the backend.
         /// </summary>
@@ -467,6 +479,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("maxStsTtl")]
         public Input<int>? MaxStsTtl { get; set; }
+
+        /// <summary>
+        /// The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+        /// </summary>
+        [Input("mfaSerialNumber")]
+        public Input<string>? MfaSerialNumber { get; set; }
 
         /// <summary>
         /// The name to identify this role within the backend.

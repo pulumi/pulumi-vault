@@ -28,6 +28,10 @@ class AuthBackendArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -57,6 +61,10 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.str] gce_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gce_metadatas: Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        :param pulumi.Input[_builtins.str] iam_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: Controls the metadata to include on the token returned by the login endpoint.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -98,6 +106,14 @@ class AuthBackendArgs:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if gce_alias is not None:
+            pulumi.set(__self__, "gce_alias", gce_alias)
+        if gce_metadatas is not None:
+            pulumi.set(__self__, "gce_metadatas", gce_metadatas)
+        if iam_alias is not None:
+            pulumi.set(__self__, "iam_alias", iam_alias)
+        if iam_metadatas is not None:
+            pulumi.set(__self__, "iam_metadatas", iam_metadatas)
         if identity_token_audience is not None:
             pulumi.set(__self__, "identity_token_audience", identity_token_audience)
         if identity_token_key is not None:
@@ -215,6 +231,54 @@ class AuthBackendArgs:
     @disable_remount.setter
     def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gceAlias")
+    def gce_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        """
+        return pulumi.get(self, "gce_alias")
+
+    @gce_alias.setter
+    def gce_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gce_alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gceMetadatas")
+    def gce_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        """
+        return pulumi.get(self, "gce_metadatas")
+
+    @gce_metadatas.setter
+    def gce_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "gce_metadatas", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamAlias")
+    def iam_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        """
+        return pulumi.get(self, "iam_alias")
+
+    @iam_alias.setter
+    def iam_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "iam_alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamMetadatas")
+    def iam_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Controls the metadata to include on the token returned by the login endpoint.
+        """
+        return pulumi.get(self, "iam_metadatas")
+
+    @iam_metadatas.setter
+    def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "iam_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
@@ -397,6 +461,10 @@ class _AuthBackendState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -427,6 +495,10 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.str] gce_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gce_metadatas: Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        :param pulumi.Input[_builtins.str] iam_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: Controls the metadata to include on the token returned by the login endpoint.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -470,6 +542,14 @@ class _AuthBackendState:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if gce_alias is not None:
+            pulumi.set(__self__, "gce_alias", gce_alias)
+        if gce_metadatas is not None:
+            pulumi.set(__self__, "gce_metadatas", gce_metadatas)
+        if iam_alias is not None:
+            pulumi.set(__self__, "iam_alias", iam_alias)
+        if iam_metadatas is not None:
+            pulumi.set(__self__, "iam_metadatas", iam_metadatas)
         if identity_token_audience is not None:
             pulumi.set(__self__, "identity_token_audience", identity_token_audience)
         if identity_token_key is not None:
@@ -599,6 +679,54 @@ class _AuthBackendState:
     @disable_remount.setter
     def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gceAlias")
+    def gce_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        """
+        return pulumi.get(self, "gce_alias")
+
+    @gce_alias.setter
+    def gce_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gce_alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gceMetadatas")
+    def gce_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        """
+        return pulumi.get(self, "gce_metadatas")
+
+    @gce_metadatas.setter
+    def gce_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "gce_metadatas", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamAlias")
+    def iam_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        """
+        return pulumi.get(self, "iam_alias")
+
+    @iam_alias.setter
+    def iam_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "iam_alias", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamMetadatas")
+    def iam_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Controls the metadata to include on the token returned by the login endpoint.
+        """
+        return pulumi.get(self, "iam_metadatas")
+
+    @iam_metadatas.setter
+    def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "iam_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
@@ -783,6 +911,10 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -840,6 +972,10 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.str] gce_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gce_metadatas: Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        :param pulumi.Input[_builtins.str] iam_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: Controls the metadata to include on the token returned by the login endpoint.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -922,6 +1058,10 @@ class AuthBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
+                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
+                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -951,6 +1091,10 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
+            __props__.__dict__["gce_alias"] = gce_alias
+            __props__.__dict__["gce_metadatas"] = gce_metadatas
+            __props__.__dict__["iam_alias"] = iam_alias
+            __props__.__dict__["iam_metadatas"] = iam_metadatas
             __props__.__dict__["identity_token_audience"] = identity_token_audience
             __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["identity_token_ttl"] = identity_token_ttl
@@ -985,6 +1129,10 @@ class AuthBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
+            gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
+            gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
+            iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1020,6 +1168,10 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.str] gce_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gce_metadatas: Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        :param pulumi.Input[_builtins.str] iam_alias: Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: Controls the metadata to include on the token returned by the login endpoint.
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -1059,6 +1211,10 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
+        __props__.__dict__["gce_alias"] = gce_alias
+        __props__.__dict__["gce_metadatas"] = gce_metadatas
+        __props__.__dict__["iam_alias"] = iam_alias
+        __props__.__dict__["iam_metadatas"] = iam_metadatas
         __props__.__dict__["identity_token_audience"] = identity_token_audience
         __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["identity_token_ttl"] = identity_token_ttl
@@ -1144,6 +1300,38 @@ class AuthBackend(pulumi.CustomResource):
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         """
         return pulumi.get(self, "disable_remount")
+
+    @_builtins.property
+    @pulumi.getter(name="gceAlias")
+    def gce_alias(self) -> pulumi.Output[_builtins.str]:
+        """
+        Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        """
+        return pulumi.get(self, "gce_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="gceMetadatas")
+    def gce_metadatas(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        """
+        return pulumi.get(self, "gce_metadatas")
+
+    @_builtins.property
+    @pulumi.getter(name="iamAlias")
+    def iam_alias(self) -> pulumi.Output[_builtins.str]:
+        """
+        Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        """
+        return pulumi.get(self, "iam_alias")
+
+    @_builtins.property
+    @pulumi.getter(name="iamMetadatas")
+    def iam_metadatas(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Controls the metadata to include on the token returned by the login endpoint.
+        """
+        return pulumi.get(self, "iam_metadatas")
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")

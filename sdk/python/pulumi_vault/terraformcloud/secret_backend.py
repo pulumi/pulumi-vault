@@ -41,7 +41,9 @@ class SecretBackendArgs:
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -67,6 +69,8 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -114,6 +118,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -383,6 +391,30 @@ class SecretBackendArgs:
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
 
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for write-only secret data.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
+
 
 @pulumi.input_type
 class _SecretBackendState:
@@ -410,7 +442,9 @@ class _SecretBackendState:
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
@@ -437,6 +471,8 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -486,6 +522,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -767,6 +807,30 @@ class _SecretBackendState:
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
 
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for write-only secret data.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
+
 
 @pulumi.type_token("vault:terraformcloud/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
@@ -797,6 +861,8 @@ class SecretBackend(pulumi.CustomResource):
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -844,6 +910,8 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
         """
         ...
     @overload
@@ -910,6 +978,8 @@ class SecretBackend(pulumi.CustomResource):
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -942,8 +1012,10 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["token_wo"] = None if token_wo is None else pulumi.Output.secret(token_wo)
+            __props__.__dict__["token_wo_version"] = token_wo_version
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token", "tokenWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:terraformcloud/secretBackend:SecretBackend',
@@ -978,7 +1050,9 @@ class SecretBackend(pulumi.CustomResource):
             passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackend':
+            token: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1010,6 +1084,8 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1039,6 +1115,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["token"] = token
+        __props__.__dict__["token_wo"] = token_wo
+        __props__.__dict__["token_wo_version"] = token_wo_version
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1224,4 +1302,20 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for write-only secret data.
+        """
+        return pulumi.get(self, "token_wo_version")
 

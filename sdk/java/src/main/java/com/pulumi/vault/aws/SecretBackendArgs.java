@@ -309,6 +309,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Number of max retries the client should use for recoverable errors.
+     * 
+     */
+    @Import(name="maxRetries")
+    private @Nullable Output<Integer> maxRetries;
+
+    /**
+     * @return Number of max retries the client should use for recoverable errors.
+     * 
+     */
+    public Optional<Output<Integer>> maxRetries() {
+        return Optional.ofNullable(this.maxRetries);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -601,6 +616,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.listingVisibility = $.listingVisibility;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
+        this.maxRetries = $.maxRetries;
         this.namespace = $.namespace;
         this.options = $.options;
         this.passthroughRequestHeaders = $.passthroughRequestHeaders;
@@ -1089,6 +1105,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder maxLeaseTtlSeconds(Integer maxLeaseTtlSeconds) {
             return maxLeaseTtlSeconds(Output.of(maxLeaseTtlSeconds));
+        }
+
+        /**
+         * @param maxRetries Number of max retries the client should use for recoverable errors.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(@Nullable Output<Integer> maxRetries) {
+            $.maxRetries = maxRetries;
+            return this;
+        }
+
+        /**
+         * @param maxRetries Number of max retries the client should use for recoverable errors.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(Integer maxRetries) {
+            return maxRetries(Output.of(maxRetries));
         }
 
         /**

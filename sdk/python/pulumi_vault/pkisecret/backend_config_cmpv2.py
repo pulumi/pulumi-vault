@@ -347,6 +347,66 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         """
         Allows setting the CMPv2 configuration on a PKI Secret Backend
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            path="pki-root",
+            type="pki",
+            description="PKI secret engine mount")
+        cmpv2_role = vault.pkisecret.SecretBackendRole("cmpv2_role",
+            backend=pki.path,
+            name="cmpv2-role",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        cmpv2_role2 = vault.pkisecret.SecretBackendRole("cmpv2_role_2",
+            backend=pki.path,
+            name="cmpv2-role-2",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        example = vault.pkisecret.BackendConfigCmpv2("example",
+            backend=pki.path,
+            enabled=True,
+            default_path_policy=std.format(input="role:%s",
+                args=[cmpv2_role.name]).result,
+            authenticators={
+                "cert": {
+                    "accessor": "test",
+                    "cert_role": "cert-auth-role",
+                },
+            },
+            enable_sentinel_parsing=True,
+            audit_fields=[
+                "csr",
+                "common_name",
+                "alt_names",
+                "ip_sans",
+                "uri_sans",
+                "other_sans",
+                "signature_bits",
+                "exclude_cn_from_sans",
+                "ou",
+                "organization",
+                "country",
+                "locality",
+                "province",
+                "street_address",
+                "postal_code",
+                "serial_number",
+                "use_pss",
+                "key_type",
+                "key_bits",
+                "add_basic_constraints",
+            ],
+            disabled_validations=["DisableMatchingKeyIdValidation"])
+        ```
+
         ## Import
 
         The PKI config cluster can be imported using the resource's `id`.
@@ -382,6 +442,66 @@ class BackendConfigCmpv2(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows setting the CMPv2 configuration on a PKI Secret Backend
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            path="pki-root",
+            type="pki",
+            description="PKI secret engine mount")
+        cmpv2_role = vault.pkisecret.SecretBackendRole("cmpv2_role",
+            backend=pki.path,
+            name="cmpv2-role",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        cmpv2_role2 = vault.pkisecret.SecretBackendRole("cmpv2_role_2",
+            backend=pki.path,
+            name="cmpv2-role-2",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        example = vault.pkisecret.BackendConfigCmpv2("example",
+            backend=pki.path,
+            enabled=True,
+            default_path_policy=std.format(input="role:%s",
+                args=[cmpv2_role.name]).result,
+            authenticators={
+                "cert": {
+                    "accessor": "test",
+                    "cert_role": "cert-auth-role",
+                },
+            },
+            enable_sentinel_parsing=True,
+            audit_fields=[
+                "csr",
+                "common_name",
+                "alt_names",
+                "ip_sans",
+                "uri_sans",
+                "other_sans",
+                "signature_bits",
+                "exclude_cn_from_sans",
+                "ou",
+                "organization",
+                "country",
+                "locality",
+                "province",
+                "street_address",
+                "postal_code",
+                "serial_number",
+                "use_pss",
+                "key_type",
+                "key_bits",
+                "add_basic_constraints",
+            ],
+            disabled_validations=["DisableMatchingKeyIdValidation"])
+        ```
 
         ## Import
 

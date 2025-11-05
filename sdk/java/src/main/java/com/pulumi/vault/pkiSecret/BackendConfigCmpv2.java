@@ -20,6 +20,102 @@ import javax.annotation.Nullable;
 /**
  * Allows setting the CMPv2 configuration on a PKI Secret Backend
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+ * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+ * import com.pulumi.vault.pkiSecret.BackendConfigCmpv2;
+ * import com.pulumi.vault.pkiSecret.BackendConfigCmpv2Args;
+ * import com.pulumi.vault.pkiSecret.inputs.BackendConfigCmpv2AuthenticatorsArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FormatArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var pki = new Mount("pki", MountArgs.builder()
+ *             .path("pki-root")
+ *             .type("pki")
+ *             .description("PKI secret engine mount")
+ *             .build());
+ * 
+ *         var cmpv2Role = new SecretBackendRole("cmpv2Role", SecretBackendRoleArgs.builder()
+ *             .backend(pki.path())
+ *             .name("cmpv2-role")
+ *             .ttl("3600")
+ *             .keyType("ec")
+ *             .keyBits(256)
+ *             .build());
+ * 
+ *         var cmpv2Role2 = new SecretBackendRole("cmpv2Role2", SecretBackendRoleArgs.builder()
+ *             .backend(pki.path())
+ *             .name("cmpv2-role-2")
+ *             .ttl("3600")
+ *             .keyType("ec")
+ *             .keyBits(256)
+ *             .build());
+ * 
+ *         var example = new BackendConfigCmpv2("example", BackendConfigCmpv2Args.builder()
+ *             .backend(pki.path())
+ *             .enabled(true)
+ *             .defaultPathPolicy(StdFunctions.format(FormatArgs.builder()
+ *                 .input("role:%s")
+ *                 .args(cmpv2Role.name())
+ *                 .build()).result())
+ *             .authenticators(BackendConfigCmpv2AuthenticatorsArgs.builder()
+ *                 .cert(Map.ofEntries(
+ *                     Map.entry("accessor", "test"),
+ *                     Map.entry("cert_role", "cert-auth-role")
+ *                 ))
+ *                 .build())
+ *             .enableSentinelParsing(true)
+ *             .auditFields(            
+ *                 "csr",
+ *                 "common_name",
+ *                 "alt_names",
+ *                 "ip_sans",
+ *                 "uri_sans",
+ *                 "other_sans",
+ *                 "signature_bits",
+ *                 "exclude_cn_from_sans",
+ *                 "ou",
+ *                 "organization",
+ *                 "country",
+ *                 "locality",
+ *                 "province",
+ *                 "street_address",
+ *                 "postal_code",
+ *                 "serial_number",
+ *                 "use_pss",
+ *                 "key_type",
+ *                 "key_bits",
+ *                 "add_basic_constraints")
+ *             .disabledValidations("DisableMatchingKeyIdValidation")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * The PKI config cluster can be imported using the resource&#39;s `id`.

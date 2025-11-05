@@ -12,6 +12,95 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// Allows setting the CMPv2 configuration on a PKI Secret Backend
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pki = new Vault.Mount("pki", new()
+    ///     {
+    ///         Path = "pki-root",
+    ///         Type = "pki",
+    ///         Description = "PKI secret engine mount",
+    ///     });
+    /// 
+    ///     var cmpv2Role = new Vault.PkiSecret.SecretBackendRole("cmpv2_role", new()
+    ///     {
+    ///         Backend = pki.Path,
+    ///         Name = "cmpv2-role",
+    ///         Ttl = "3600",
+    ///         KeyType = "ec",
+    ///         KeyBits = 256,
+    ///     });
+    /// 
+    ///     var cmpv2Role2 = new Vault.PkiSecret.SecretBackendRole("cmpv2_role_2", new()
+    ///     {
+    ///         Backend = pki.Path,
+    ///         Name = "cmpv2-role-2",
+    ///         Ttl = "3600",
+    ///         KeyType = "ec",
+    ///         KeyBits = 256,
+    ///     });
+    /// 
+    ///     var example = new Vault.PkiSecret.BackendConfigCmpv2("example", new()
+    ///     {
+    ///         Backend = pki.Path,
+    ///         Enabled = true,
+    ///         DefaultPathPolicy = Std.Format.Invoke(new()
+    ///         {
+    ///             Input = "role:%s",
+    ///             Args = new[]
+    ///             {
+    ///                 cmpv2Role.Name,
+    ///             },
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         Authenticators = new Vault.PkiSecret.Inputs.BackendConfigCmpv2AuthenticatorsArgs
+    ///         {
+    ///             Cert = 
+    ///             {
+    ///                 { "accessor", "test" },
+    ///                 { "cert_role", "cert-auth-role" },
+    ///             },
+    ///         },
+    ///         EnableSentinelParsing = true,
+    ///         AuditFields = new[]
+    ///         {
+    ///             "csr",
+    ///             "common_name",
+    ///             "alt_names",
+    ///             "ip_sans",
+    ///             "uri_sans",
+    ///             "other_sans",
+    ///             "signature_bits",
+    ///             "exclude_cn_from_sans",
+    ///             "ou",
+    ///             "organization",
+    ///             "country",
+    ///             "locality",
+    ///             "province",
+    ///             "street_address",
+    ///             "postal_code",
+    ///             "serial_number",
+    ///             "use_pss",
+    ///             "key_type",
+    ///             "key_bits",
+    ///             "add_basic_constraints",
+    ///         },
+    ///         DisabledValidations = new[]
+    ///         {
+    ///             "DisableMatchingKeyIdValidation",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// The PKI config cluster can be imported using the resource's `id`.

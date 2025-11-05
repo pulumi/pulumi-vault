@@ -44,49 +44,6 @@ import (
 //
 // ```
 //
-// ### AWS S3
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cfg := config.New(ctx, "")
-//			awsAccessKeyId := cfg.RequireObject("awsAccessKeyId")
-//			awsSecretAccessKey := cfg.RequireObject("awsSecretAccessKey")
-//			current, err := aws.GetRegion(ctx, &aws.GetRegionArgs{}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = vault.NewRaftSnapshotAgentConfig(ctx, "s3_backups", &vault.RaftSnapshotAgentConfigArgs{
-//				Name:               pulumi.String("s3"),
-//				IntervalSeconds:    pulumi.Int(86400),
-//				Retain:             pulumi.Int(7),
-//				PathPrefix:         pulumi.String("/path/in/bucket"),
-//				StorageType:        pulumi.String("aws-s3"),
-//				AwsS3Bucket:        pulumi.String("my-bucket"),
-//				AwsS3Region:        pulumi.String(current.Name),
-//				AwsAccessKeyId:     pulumi.Any(awsAccessKeyId),
-//				AwsSecretAccessKey: pulumi.Any(awsSecretAccessKey),
-//				AwsS3EnableKms:     pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ### Azure BLOB
 //
 // ```go

@@ -161,6 +161,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly maxLeaseTtlSeconds: pulumi.Output<number | undefined>;
     /**
+     * The maximum TTL for long-lived credentials (i.e. service account keys).
+     */
+    declare public readonly maxTtl: pulumi.Output<number | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -210,6 +214,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     declare public readonly serviceAccountEmail: pulumi.Output<string | undefined>;
+    /**
+     * The default TTL for long-lived credentials (i.e. service account keys).
+     */
+    declare public readonly ttl: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -245,6 +253,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["listingVisibility"] = state?.listingVisibility;
             resourceInputs["local"] = state?.local;
             resourceInputs["maxLeaseTtlSeconds"] = state?.maxLeaseTtlSeconds;
+            resourceInputs["maxTtl"] = state?.maxTtl;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["options"] = state?.options;
             resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
@@ -255,6 +264,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = state?.rotationWindow;
             resourceInputs["sealWrap"] = state?.sealWrap;
             resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
+            resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             resourceInputs["allowedManagedKeys"] = args?.allowedManagedKeys;
@@ -277,6 +287,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["listingVisibility"] = args?.listingVisibility;
             resourceInputs["local"] = args?.local;
             resourceInputs["maxLeaseTtlSeconds"] = args?.maxLeaseTtlSeconds;
+            resourceInputs["maxTtl"] = args?.maxTtl;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["options"] = args?.options;
             resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
@@ -287,6 +298,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["serviceAccountEmail"] = args?.serviceAccountEmail;
+            resourceInputs["ttl"] = args?.ttl;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -390,6 +402,10 @@ export interface SecretBackendState {
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
+     * The maximum TTL for long-lived credentials (i.e. service account keys).
+     */
+    maxTtl?: pulumi.Input<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -439,6 +455,10 @@ export interface SecretBackendState {
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     serviceAccountEmail?: pulumi.Input<string>;
+    /**
+     * The default TTL for long-lived credentials (i.e. service account keys).
+     */
+    ttl?: pulumi.Input<number>;
 }
 
 /**
@@ -531,6 +551,10 @@ export interface SecretBackendArgs {
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
+     * The maximum TTL for long-lived credentials (i.e. service account keys).
+     */
+    maxTtl?: pulumi.Input<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -580,4 +604,8 @@ export interface SecretBackendArgs {
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     serviceAccountEmail?: pulumi.Input<string>;
+    /**
+     * The default TTL for long-lived credentials (i.e. service account keys).
+     */
+    ttl?: pulumi.Input<number>;
 }

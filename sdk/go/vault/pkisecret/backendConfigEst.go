@@ -14,6 +14,119 @@ import (
 
 // Allows setting the EST configuration on a PKI Secret Backend
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/pkisecret"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pki, err := vault.NewMount(ctx, "pki", &vault.MountArgs{
+//				Path:        pulumi.String("pki-root"),
+//				Type:        pulumi.String("pki"),
+//				Description: pulumi.String("PKI secret engine mount"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			estRole, err := pkisecret.NewSecretBackendRole(ctx, "est_role", &pkisecret.SecretBackendRoleArgs{
+//				Backend: pki.Path,
+//				Name:    pulumi.String("est-role"),
+//				Ttl:     pulumi.String("3600"),
+//				KeyType: pulumi.String("ec"),
+//				KeyBits: pulumi.Int(256),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			estRole2, err := pkisecret.NewSecretBackendRole(ctx, "est_role_2", &pkisecret.SecretBackendRoleArgs{
+//				Backend: pki.Path,
+//				Name:    pulumi.String("est-role-2"),
+//				Ttl:     pulumi.String("3600"),
+//				KeyType: pulumi.String("ec"),
+//				KeyBits: pulumi.Int(256),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFormat, err := std.Format(ctx, &std.FormatArgs{
+//				Input: "role:%s",
+//				Args: pulumi.StringArray{
+//					estRole.Name,
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFormat1, err := std.Format(ctx, &std.FormatArgs{
+//				Input: "role:%s",
+//				Args: pulumi.StringArray{
+//					estRole2.Name,
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = pkisecret.NewBackendConfigEst(ctx, "example", &pkisecret.BackendConfigEstArgs{
+//				Backend:           pki.Path,
+//				Enabled:           pulumi.Bool(true),
+//				DefaultMount:      pulumi.Bool(true),
+//				DefaultPathPolicy: pulumi.String(invokeFormat.Result),
+//				LabelToPathPolicy: pulumi.StringMap{
+//					"test-label":   pulumi.String("sign-verbatim"),
+//					"test-label-2": pulumi.String(invokeFormat1.Result),
+//				},
+//				Authenticators: &pkisecret.BackendConfigEstAuthenticatorsArgs{
+//					Cert: pulumi.StringMap{
+//						"accessor":  pulumi.String("test"),
+//						"cert_role": pulumi.String("cert-auth-role"),
+//					},
+//					Userpass: pulumi.StringMap{
+//						"accessor": pulumi.String("test2"),
+//					},
+//				},
+//				EnableSentinelParsing: pulumi.Bool(true),
+//				AuditFields: pulumi.StringArray{
+//					pulumi.String("csr"),
+//					pulumi.String("common_name"),
+//					pulumi.String("alt_names"),
+//					pulumi.String("ip_sans"),
+//					pulumi.String("uri_sans"),
+//					pulumi.String("other_sans"),
+//					pulumi.String("signature_bits"),
+//					pulumi.String("exclude_cn_from_sans"),
+//					pulumi.String("ou"),
+//					pulumi.String("organization"),
+//					pulumi.String("country"),
+//					pulumi.String("locality"),
+//					pulumi.String("province"),
+//					pulumi.String("street_address"),
+//					pulumi.String("postal_code"),
+//					pulumi.String("serial_number"),
+//					pulumi.String("use_pss"),
+//					pulumi.String("key_type"),
+//					pulumi.String("key_bits"),
+//					pulumi.String("add_basic_constraints"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // The PKI config cluster can be imported using the resource's `id`.

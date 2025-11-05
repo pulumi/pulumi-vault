@@ -102,7 +102,12 @@
             },
             "vault_aws_auth_backend_client": {
                 "current": "vault:aws/authBackendClient:AuthBackendClient",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_sts_header_values": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_aws_auth_backend_config_identity": {
                 "current": "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity",
@@ -784,6 +789,12 @@
                     "custom_endpoint": {
                         "maxItemsOne": true
                     },
+                    "gce_metadata": {
+                        "maxItemsOne": false
+                    },
+                    "iam_metadata": {
+                        "maxItemsOne": false
+                    },
                     "tune": {
                         "maxItemsOne": true,
                         "elem": {
@@ -1319,6 +1330,25 @@
                     },
                     "token_policies": {
                         "maxItemsOne": false
+                    },
+                    "tune": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed_response_headers": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_request_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_response_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "passthrough_request_headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -1557,6 +1587,25 @@
                     },
                     "token_policies": {
                         "maxItemsOne": false
+                    },
+                    "tune": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed_response_headers": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_request_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_response_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "passthrough_request_headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "user": {
                         "maxItemsOne": false,
@@ -2026,6 +2075,25 @@
                 "fields": {
                     "acs_urls": {
                         "maxItemsOne": false
+                    },
+                    "tune": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed_response_headers": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_request_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_response_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "passthrough_request_headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },

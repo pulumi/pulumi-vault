@@ -144,6 +144,12 @@ namespace Pulumi.Vault.Aws
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
+        /// Number of max retries the client should use for recoverable errors.
+        /// </summary>
+        [Output("maxRetries")]
+        public Output<int?> MaxRetries { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -470,6 +476,12 @@ namespace Pulumi.Vault.Aws
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
+        /// Number of max retries the client should use for recoverable errors.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -791,6 +803,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("maxLeaseTtlSeconds")]
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
+
+        /// <summary>
+        /// Number of max retries the client should use for recoverable errors.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

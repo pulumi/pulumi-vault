@@ -34,38 +34,6 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
-    /// ### AWS S3
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var config = new Config();
-    ///     var awsAccessKeyId = config.RequireObject&lt;dynamic&gt;("awsAccessKeyId");
-    ///     var awsSecretAccessKey = config.RequireObject&lt;dynamic&gt;("awsSecretAccessKey");
-    ///     var current = Aws.GetRegion.Invoke();
-    /// 
-    ///     var s3Backups = new Vault.RaftSnapshotAgentConfig("s3_backups", new()
-    ///     {
-    ///         Name = "s3",
-    ///         IntervalSeconds = 86400,
-    ///         Retain = 7,
-    ///         PathPrefix = "/path/in/bucket",
-    ///         StorageType = "aws-s3",
-    ///         AwsS3Bucket = "my-bucket",
-    ///         AwsS3Region = current.Apply(getRegionResult =&gt; getRegionResult.Name),
-    ///         AwsAccessKeyId = awsAccessKeyId,
-    ///         AwsSecretAccessKey = awsSecretAccessKey,
-    ///         AwsS3EnableKms = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ### Azure BLOB
     /// 
     /// ```csharp

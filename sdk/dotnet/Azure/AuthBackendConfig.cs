@@ -129,6 +129,20 @@ namespace Pulumi.Vault.Azure
         public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of retries for Azure API requests. 
+        /// Defaults to `3`.
+        /// </summary>
+        [Output("maxRetries")]
+        public Output<int?> MaxRetries { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum delay in seconds between retries for Azure API requests.
+        /// Defaults to `60`.
+        /// </summary>
+        [Output("maxRetryDelay")]
+        public Output<int?> MaxRetryDelay { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -143,6 +157,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("resource")]
         public Output<string> Resource { get; private set; } = null!;
+
+        /// <summary>
+        /// The initial delay in seconds between retries for Azure API requests.
+        /// Defaults to `4`.
+        /// </summary>
+        [Output("retryDelay")]
+        public Output<int?> RetryDelay { get; private set; } = null!;
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -298,6 +319,20 @@ namespace Pulumi.Vault.Azure
         public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
+        /// Maximum number of retries for Azure API requests. 
+        /// Defaults to `3`.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
+        /// The maximum delay in seconds between retries for Azure API requests.
+        /// Defaults to `60`.
+        /// </summary>
+        [Input("maxRetryDelay")]
+        public Input<int>? MaxRetryDelay { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -312,6 +347,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("resource", required: true)]
         public Input<string> Resource { get; set; } = null!;
+
+        /// <summary>
+        /// The initial delay in seconds between retries for Azure API requests.
+        /// Defaults to `4`.
+        /// </summary>
+        [Input("retryDelay")]
+        public Input<int>? RetryDelay { get; set; }
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -433,6 +475,20 @@ namespace Pulumi.Vault.Azure
         public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
+        /// Maximum number of retries for Azure API requests. 
+        /// Defaults to `3`.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
+        /// The maximum delay in seconds between retries for Azure API requests.
+        /// Defaults to `60`.
+        /// </summary>
+        [Input("maxRetryDelay")]
+        public Input<int>? MaxRetryDelay { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -447,6 +503,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("resource")]
         public Input<string>? Resource { get; set; }
+
+        /// <summary>
+        /// The initial delay in seconds between retries for Azure API requests.
+        /// Defaults to `4`.
+        /// </summary>
+        [Input("retryDelay")]
+        public Input<int>? RetryDelay { get; set; }
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.

@@ -15,6 +15,74 @@ import (
 //
 // **Note** this feature is available only with Vault Enterprise.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/managed"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			keys, err := managed.NewKeys(ctx, "keys", &managed.KeysArgs{
+//				Aws: managed.KeysAwArray{
+//					&managed.KeysAwArgs{
+//						Name:      pulumi.String("aws-key-1"),
+//						AccessKey: pulumi.Any(awsAccessKey),
+//						SecretKey: pulumi.Any(awsSecretKey),
+//						KeyBits:   pulumi.String("2048"),
+//						KeyType:   pulumi.String("RSA"),
+//						KmsKey:    pulumi.String("alias/vault_aws_key_1"),
+//					},
+//					&managed.KeysAwArgs{
+//						Name:      pulumi.String("aws-key-2"),
+//						AccessKey: pulumi.Any(awsAccessKey),
+//						SecretKey: pulumi.Any(awsSecretKey),
+//						KeyBits:   pulumi.String("4096"),
+//						KeyType:   pulumi.String("RSA"),
+//						KmsKey:    pulumi.String("alias/vault_aws_key_2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewMount(ctx, "pki", &vault.MountArgs{
+//				Path:                   pulumi.String("pki"),
+//				Type:                   pulumi.String("pki"),
+//				Description:            pulumi.String("Example mount for managed keys"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(36000),
+//				AllowedManagedKeys: pulumi.StringArray{
+//					pulumi.String(keys.Aws.ApplyT(func(aws []managed.KeysAw) (*string, error) {
+//						return &aws[0].Name, nil
+//					}).(pulumi.StringPtrOutput)),
+//					pulumi.String(keys.Aws.ApplyT(func(aws []managed.KeysAw) (*string, error) {
+//						return &aws[1].Name, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Caveats
+//
+// This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
+// There can only be one such resource in the TF state, and if there are already provisioned managed
+// keys in Vault, we recommend using `pulumi import` instead.
+//
 // ## Import
 //
 // Mounts can be imported using the `id` of `default`, e.g.

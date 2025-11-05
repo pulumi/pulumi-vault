@@ -191,7 +191,7 @@ import (
 //				TokenMaxTtl:        pulumi.Int(43200),
 //				TokenDefaultTtl:    pulumi.Int(21600),
 //				KubernetesRoleType: pulumi.String("Role"),
-//				GeneratedRoleRules: pulumi.String("rules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n"),
+//				GeneratedRoleRules: pulumi.String("rules:\n- apiGroups: [\\\"\\\"]\n  resources: [\\\"pods\\\"]\n  verbs: [\\\"list\\\"]\n"),
 //				ExtraLabels: pulumi.StringMap{
 //					"id":   pulumi.String("abc123"),
 //					"name": pulumi.String("some_name"),

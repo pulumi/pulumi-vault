@@ -121,6 +121,12 @@ type AuthBackendConfig struct {
 	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
 	// The TTL of generated identity tokens in seconds.
 	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
+	// Maximum number of retries for Azure API requests.
+	// Defaults to `3`.
+	MaxRetries pulumi.IntPtrOutput `pulumi:"maxRetries"`
+	// The maximum delay in seconds between retries for Azure API requests.
+	// Defaults to `60`.
+	MaxRetryDelay pulumi.IntPtrOutput `pulumi:"maxRetryDelay"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -129,6 +135,9 @@ type AuthBackendConfig struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringOutput `pulumi:"resource"`
+	// The initial delay in seconds between retries for Azure API requests.
+	// Defaults to `4`.
+	RetryDelay pulumi.IntPtrOutput `pulumi:"retryDelay"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -219,6 +228,12 @@ type authBackendConfigState struct {
 	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
 	// The TTL of generated identity tokens in seconds.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Maximum number of retries for Azure API requests.
+	// Defaults to `3`.
+	MaxRetries *int `pulumi:"maxRetries"`
+	// The maximum delay in seconds between retries for Azure API requests.
+	// Defaults to `60`.
+	MaxRetryDelay *int `pulumi:"maxRetryDelay"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -227,6 +242,9 @@ type authBackendConfigState struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource *string `pulumi:"resource"`
+	// The initial delay in seconds between retries for Azure API requests.
+	// Defaults to `4`.
+	RetryDelay *int `pulumi:"retryDelay"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -267,6 +285,12 @@ type AuthBackendConfigState struct {
 	IdentityTokenAudience pulumi.StringPtrInput
 	// The TTL of generated identity tokens in seconds.
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Maximum number of retries for Azure API requests.
+	// Defaults to `3`.
+	MaxRetries pulumi.IntPtrInput
+	// The maximum delay in seconds between retries for Azure API requests.
+	// Defaults to `60`.
+	MaxRetryDelay pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -275,6 +299,9 @@ type AuthBackendConfigState struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringPtrInput
+	// The initial delay in seconds between retries for Azure API requests.
+	// Defaults to `4`.
+	RetryDelay pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -319,6 +346,12 @@ type authBackendConfigArgs struct {
 	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
 	// The TTL of generated identity tokens in seconds.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Maximum number of retries for Azure API requests.
+	// Defaults to `3`.
+	MaxRetries *int `pulumi:"maxRetries"`
+	// The maximum delay in seconds between retries for Azure API requests.
+	// Defaults to `60`.
+	MaxRetryDelay *int `pulumi:"maxRetryDelay"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -327,6 +360,9 @@ type authBackendConfigArgs struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource string `pulumi:"resource"`
+	// The initial delay in seconds between retries for Azure API requests.
+	// Defaults to `4`.
+	RetryDelay *int `pulumi:"retryDelay"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -368,6 +404,12 @@ type AuthBackendConfigArgs struct {
 	IdentityTokenAudience pulumi.StringPtrInput
 	// The TTL of generated identity tokens in seconds.
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Maximum number of retries for Azure API requests.
+	// Defaults to `3`.
+	MaxRetries pulumi.IntPtrInput
+	// The maximum delay in seconds between retries for Azure API requests.
+	// Defaults to `60`.
+	MaxRetryDelay pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -376,6 +418,9 @@ type AuthBackendConfigArgs struct {
 	// The configured URL for the application registered in
 	// Azure Active Directory.
 	Resource pulumi.StringInput
+	// The initial delay in seconds between retries for Azure API requests.
+	// Defaults to `4`.
+	RetryDelay pulumi.IntPtrInput
 	// The amount of time in seconds Vault should wait before rotating the root credential.
 	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
@@ -523,6 +568,18 @@ func (o AuthBackendConfigOutput) IdentityTokenTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
+// Maximum number of retries for Azure API requests.
+// Defaults to `3`.
+func (o AuthBackendConfigOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.MaxRetries }).(pulumi.IntPtrOutput)
+}
+
+// The maximum delay in seconds between retries for Azure API requests.
+// Defaults to `60`.
+func (o AuthBackendConfigOutput) MaxRetryDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.MaxRetryDelay }).(pulumi.IntPtrOutput)
+}
+
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -535,6 +592,12 @@ func (o AuthBackendConfigOutput) Namespace() pulumi.StringPtrOutput {
 // Azure Active Directory.
 func (o AuthBackendConfigOutput) Resource() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringOutput { return v.Resource }).(pulumi.StringOutput)
+}
+
+// The initial delay in seconds between retries for Azure API requests.
+// Defaults to `4`.
+func (o AuthBackendConfigOutput) RetryDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.RetryDelay }).(pulumi.IntPtrOutput)
 }
 
 // The amount of time in seconds Vault should wait before rotating the root credential.

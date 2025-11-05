@@ -38,6 +38,7 @@ class SecretBackendArgs:
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -78,6 +79,7 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Specifies if the secret backend is local only
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -151,6 +153,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
@@ -417,6 +421,18 @@ class SecretBackendArgs:
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of max retries the client should use for recoverable errors.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -661,6 +677,7 @@ class _SecretBackendState:
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -702,6 +719,7 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Specifies if the secret backend is local only
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -777,6 +795,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
             pulumi.set(__self__, "max_lease_ttl_seconds", max_lease_ttl_seconds)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
@@ -1055,6 +1075,18 @@ class _SecretBackendState:
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of max retries the client should use for recoverable errors.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @_builtins.property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1301,6 +1333,7 @@ class SecretBackend(pulumi.CustomResource):
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1351,6 +1384,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Specifies if the secret backend is local only
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1435,6 +1469,7 @@ class SecretBackend(pulumi.CustomResource):
                  listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
                  local: Optional[pulumi.Input[_builtins.bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1480,6 +1515,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["listing_visibility"] = listing_visibility
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+            __props__.__dict__["max_retries"] = max_retries
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
             __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
@@ -1530,6 +1566,7 @@ class SecretBackend(pulumi.CustomResource):
             listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
             local: Optional[pulumi.Input[_builtins.bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
+            max_retries: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1576,6 +1613,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Specifies if the secret backend is local only
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1635,6 +1673,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["listing_visibility"] = listing_visibility
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
+        __props__.__dict__["max_retries"] = max_retries
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
         __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
@@ -1815,6 +1854,14 @@ class SecretBackend(pulumi.CustomResource):
         Maximum possible lease duration for secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Number of max retries the client should use for recoverable errors.
+        """
+        return pulumi.get(self, "max_retries")
 
     @_builtins.property
     @pulumi.getter

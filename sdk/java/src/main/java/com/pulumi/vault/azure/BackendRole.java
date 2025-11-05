@@ -223,6 +223,20 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
         return this.permanentlyDelete;
     }
     /**
+     * If set to true, persists the created service principal and application for the lifetime of the role
+     * 
+     */
+    @Export(name="persistApp", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> persistApp;
+
+    /**
+     * @return If set to true, persists the created service principal and application for the lifetime of the role
+     * 
+     */
+    public Output<Optional<Boolean>> persistApp() {
+        return Codegen.optional(this.persistApp);
+    }
+    /**
      * Name of the Azure role
      * 
      */

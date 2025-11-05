@@ -380,6 +380,74 @@ class BackendConfigEst(pulumi.CustomResource):
         """
         Allows setting the EST configuration on a PKI Secret Backend
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            path="pki-root",
+            type="pki",
+            description="PKI secret engine mount")
+        est_role = vault.pkisecret.SecretBackendRole("est_role",
+            backend=pki.path,
+            name="est-role",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        est_role2 = vault.pkisecret.SecretBackendRole("est_role_2",
+            backend=pki.path,
+            name="est-role-2",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        example = vault.pkisecret.BackendConfigEst("example",
+            backend=pki.path,
+            enabled=True,
+            default_mount=True,
+            default_path_policy=std.format(input="role:%s",
+                args=[est_role.name]).result,
+            label_to_path_policy={
+                "test-label": "sign-verbatim",
+                "test-label-2": std.format(input="role:%s",
+                    args=[est_role2.name]).result,
+            },
+            authenticators={
+                "cert": {
+                    "accessor": "test",
+                    "cert_role": "cert-auth-role",
+                },
+                "userpass": {
+                    "accessor": "test2",
+                },
+            },
+            enable_sentinel_parsing=True,
+            audit_fields=[
+                "csr",
+                "common_name",
+                "alt_names",
+                "ip_sans",
+                "uri_sans",
+                "other_sans",
+                "signature_bits",
+                "exclude_cn_from_sans",
+                "ou",
+                "organization",
+                "country",
+                "locality",
+                "province",
+                "street_address",
+                "postal_code",
+                "serial_number",
+                "use_pss",
+                "key_type",
+                "key_bits",
+                "add_basic_constraints",
+            ])
+        ```
+
         ## Import
 
         The PKI config cluster can be imported using the resource's `id`.
@@ -416,6 +484,74 @@ class BackendConfigEst(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows setting the EST configuration on a PKI Secret Backend
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        pki = vault.Mount("pki",
+            path="pki-root",
+            type="pki",
+            description="PKI secret engine mount")
+        est_role = vault.pkisecret.SecretBackendRole("est_role",
+            backend=pki.path,
+            name="est-role",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        est_role2 = vault.pkisecret.SecretBackendRole("est_role_2",
+            backend=pki.path,
+            name="est-role-2",
+            ttl="3600",
+            key_type="ec",
+            key_bits=256)
+        example = vault.pkisecret.BackendConfigEst("example",
+            backend=pki.path,
+            enabled=True,
+            default_mount=True,
+            default_path_policy=std.format(input="role:%s",
+                args=[est_role.name]).result,
+            label_to_path_policy={
+                "test-label": "sign-verbatim",
+                "test-label-2": std.format(input="role:%s",
+                    args=[est_role2.name]).result,
+            },
+            authenticators={
+                "cert": {
+                    "accessor": "test",
+                    "cert_role": "cert-auth-role",
+                },
+                "userpass": {
+                    "accessor": "test2",
+                },
+            },
+            enable_sentinel_parsing=True,
+            audit_fields=[
+                "csr",
+                "common_name",
+                "alt_names",
+                "ip_sans",
+                "uri_sans",
+                "other_sans",
+                "signature_bits",
+                "exclude_cn_from_sans",
+                "ou",
+                "organization",
+                "country",
+                "locality",
+                "province",
+                "street_address",
+                "postal_code",
+                "serial_number",
+                "use_pss",
+                "key_type",
+                "key_bits",
+                "add_basic_constraints",
+            ])
+        ```
 
         ## Import
 

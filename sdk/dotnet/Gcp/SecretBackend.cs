@@ -198,6 +198,12 @@ namespace Pulumi.Vault.Gcp
         public Output<int?> MaxLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
+        /// The maximum TTL for long-lived credentials (i.e. service account keys).
+        /// </summary>
+        [Output("maxTtl")]
+        public Output<int?> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -266,6 +272,12 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Output("serviceAccountEmail")]
         public Output<string?> ServiceAccountEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// The default TTL for long-lived credentials (i.e. service account keys).
+        /// </summary>
+        [Output("ttl")]
+        public Output<int?> Ttl { get; private set; } = null!;
 
 
         /// <summary>
@@ -494,6 +506,12 @@ namespace Pulumi.Vault.Gcp
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
+        /// The maximum TTL for long-lived credentials (i.e. service account keys).
+        /// </summary>
+        [Input("maxTtl")]
+        public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -574,6 +592,12 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
+
+        /// <summary>
+        /// The default TTL for long-lived credentials (i.e. service account keys).
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
 
         public SecretBackendArgs()
         {
@@ -765,6 +789,12 @@ namespace Pulumi.Vault.Gcp
         public Input<int>? MaxLeaseTtlSeconds { get; set; }
 
         /// <summary>
+        /// The maximum TTL for long-lived credentials (i.e. service account keys).
+        /// </summary>
+        [Input("maxTtl")]
+        public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -845,6 +875,12 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
+
+        /// <summary>
+        /// The default TTL for long-lived credentials (i.e. service account keys).
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
 
         public SecretBackendState()
         {

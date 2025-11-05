@@ -20,12 +20,12 @@ import * as utilities from "../utilities";
  *     name: "deploy",
  *     credentialType: "iam_user",
  *     policyDocument: `{
- *   "Version": "2012-10-17",
- *   "Statement": [
+ *   \\"Version\\": \\"2012-10-17\\",
+ *   \\"Statement\\": [
  *     {
- *       "Effect": "Allow",
- *       "Action": "iam:*",
- *       "Resource": "*"
+ *       \\"Effect\\": \\"Allow\\",
+ *       \\"Action\\": \\"iam:*\\",
+ *       \\"Resource\\": \\"*\\"
  *     }
  *   ]
  * }
@@ -114,6 +114,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly maxStsTtl: pulumi.Output<number>;
     /**
+     * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     */
+    declare public readonly mfaSerialNumber: pulumi.Output<string | undefined>;
+    /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
@@ -188,6 +192,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["iamGroups"] = state?.iamGroups;
             resourceInputs["iamTags"] = state?.iamTags;
             resourceInputs["maxStsTtl"] = state?.maxStsTtl;
+            resourceInputs["mfaSerialNumber"] = state?.mfaSerialNumber;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["permissionsBoundaryArn"] = state?.permissionsBoundaryArn;
@@ -211,6 +216,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["iamGroups"] = args?.iamGroups;
             resourceInputs["iamTags"] = args?.iamTags;
             resourceInputs["maxStsTtl"] = args?.maxStsTtl;
+            resourceInputs["mfaSerialNumber"] = args?.mfaSerialNumber;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["permissionsBoundaryArn"] = args?.permissionsBoundaryArn;
@@ -273,6 +279,10 @@ export interface SecretBackendRoleState {
      * one of `assumedRole` or `federationToken`.
      */
     maxStsTtl?: pulumi.Input<number>;
+    /**
+     * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     */
+    mfaSerialNumber?: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
@@ -377,6 +387,10 @@ export interface SecretBackendRoleArgs {
      * one of `assumedRole` or `federationToken`.
      */
     maxStsTtl?: pulumi.Input<number>;
+    /**
+     * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+     */
+    mfaSerialNumber?: pulumi.Input<string>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.

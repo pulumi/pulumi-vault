@@ -1025,29 +1025,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             local_max_space=10000000)
         ```
 
-        ### AWS S3
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_vault as vault
-
-        config = pulumi.Config()
-        aws_access_key_id = config.require_object("awsAccessKeyId")
-        aws_secret_access_key = config.require_object("awsSecretAccessKey")
-        current = aws.get_region()
-        s3_backups = vault.RaftSnapshotAgentConfig("s3_backups",
-            name="s3",
-            interval_seconds=86400,
-            retain=7,
-            path_prefix="/path/in/bucket",
-            storage_type="aws-s3",
-            aws_s3_bucket="my-bucket",
-            aws_s3_region=current.name,
-            aws_access_key_id=aws_access_key_id,
-            aws_secret_access_key=aws_secret_access_key,
-            aws_s3_enable_kms=True)
-        ```
-
         ### Azure BLOB
 
         ```python
@@ -1140,29 +1117,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             path_prefix="/opt/vault/snapshots/",
             storage_type="local",
             local_max_space=10000000)
-        ```
-
-        ### AWS S3
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_vault as vault
-
-        config = pulumi.Config()
-        aws_access_key_id = config.require_object("awsAccessKeyId")
-        aws_secret_access_key = config.require_object("awsSecretAccessKey")
-        current = aws.get_region()
-        s3_backups = vault.RaftSnapshotAgentConfig("s3_backups",
-            name="s3",
-            interval_seconds=86400,
-            retain=7,
-            path_prefix="/path/in/bucket",
-            storage_type="aws-s3",
-            aws_s3_bucket="my-bucket",
-            aws_s3_region=current.name,
-            aws_access_key_id=aws_access_key_id,
-            aws_secret_access_key=aws_secret_access_key,
-            aws_s3_enable_kms=True)
         ```
 
         ### Azure BLOB

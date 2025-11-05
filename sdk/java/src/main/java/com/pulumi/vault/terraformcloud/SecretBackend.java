@@ -377,6 +377,34 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
     }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    @Export(name="tokenWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    public Output<Optional<String>> tokenWo() {
+        return Codegen.optional(this.tokenWo);
+    }
+    /**
+     * Version counter for write-only secret data.
+     * 
+     */
+    @Export(name="tokenWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenWoVersion;
+
+    /**
+     * @return Version counter for write-only secret data.
+     * 
+     */
+    public Output<Optional<Integer>> tokenWoVersion() {
+        return Codegen.optional(this.tokenWoVersion);
+    }
 
     /**
      *
@@ -418,7 +446,8 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "token"
+                "token",
+                "tokenWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

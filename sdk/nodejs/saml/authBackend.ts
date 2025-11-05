@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -110,6 +112,12 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly path: pulumi.Output<string | undefined>;
     /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    declare public readonly tune: pulumi.Output<outputs.saml.AuthBackendTune>;
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
@@ -139,6 +147,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["idpSsoUrl"] = state?.idpSsoUrl;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
+            resourceInputs["tune"] = state?.tune;
             resourceInputs["verboseLogging"] = state?.verboseLogging;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
@@ -158,6 +167,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["idpSsoUrl"] = args?.idpSsoUrl;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["path"] = args?.path;
+            resourceInputs["tune"] = args?.tune;
             resourceInputs["verboseLogging"] = args?.verboseLogging;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -219,6 +229,12 @@ export interface AuthBackendState {
      */
     path?: pulumi.Input<string>;
     /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    tune?: pulumi.Input<inputs.saml.AuthBackendTune>;
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
@@ -279,6 +295,12 @@ export interface AuthBackendArgs {
      * if not specified.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    tune?: pulumi.Input<inputs.saml.AuthBackendTune>;
     /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not

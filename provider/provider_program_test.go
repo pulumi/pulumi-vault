@@ -1,5 +1,4 @@
 //go:build !go && !nodejs && !python && !dotnet
-// +build !go,!nodejs,!python,!dotnet
 
 package provider
 

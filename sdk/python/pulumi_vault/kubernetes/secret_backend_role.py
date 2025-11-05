@@ -679,9 +679,9 @@ class SecretBackendRole(pulumi.CustomResource):
             token_default_ttl=21600,
             kubernetes_role_type="Role",
             generated_role_rules=\"\"\"rules:
-        - apiGroups: [""]
-          resources: ["pods"]
-          verbs: ["list"]
+        - apiGroups: [\\"\\"]
+          resources: [\\"pods\\"]
+          verbs: [\\"list\\"]
         \"\"\",
             extra_labels={
                 "id": "abc123",
@@ -836,9 +836,9 @@ class SecretBackendRole(pulumi.CustomResource):
             token_default_ttl=21600,
             kubernetes_role_type="Role",
             generated_role_rules=\"\"\"rules:
-        - apiGroups: [""]
-          resources: ["pods"]
-          verbs: ["list"]
+        - apiGroups: [\\"\\"]
+          resources: [\\"pods\\"]
+          verbs: [\\"list\\"]
         \"\"\",
             extra_labels={
                 "id": "abc123",

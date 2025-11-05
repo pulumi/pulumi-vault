@@ -226,7 +226,7 @@ namespace Pulumi.Vault.Azure
         public Output<string?> PluginVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        /// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         /// </summary>
         [Output("rootPasswordTtl")]
         public Output<int> RootPasswordTtl { get; private set; } = null!;
@@ -546,7 +546,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
-        /// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        /// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         /// </summary>
         [Input("rootPasswordTtl")]
         public Input<int>? RootPasswordTtl { get; set; }
@@ -847,7 +847,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
-        /// The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+        /// Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
         /// </summary>
         [Input("rootPasswordTtl")]
         public Input<int>? RootPasswordTtl { get; set; }

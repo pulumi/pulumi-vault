@@ -132,6 +132,8 @@ type SecretBackend struct {
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"maxLeaseTtlSeconds"`
+	// The maximum TTL for long-lived credentials (i.e. service account keys).
+	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -162,6 +164,8 @@ type SecretBackend struct {
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail pulumi.StringPtrOutput `pulumi:"serviceAccountEmail"`
+	// The default TTL for long-lived credentials (i.e. service account keys).
+	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -252,6 +256,8 @@ type secretBackendState struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The maximum TTL for long-lived credentials (i.e. service account keys).
+	MaxTtl *int `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -282,6 +288,8 @@ type secretBackendState struct {
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
+	// The default TTL for long-lived credentials (i.e. service account keys).
+	Ttl *int `pulumi:"ttl"`
 }
 
 type SecretBackendState struct {
@@ -332,6 +340,8 @@ type SecretBackendState struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The maximum TTL for long-lived credentials (i.e. service account keys).
+	MaxTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -362,6 +372,8 @@ type SecretBackendState struct {
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail pulumi.StringPtrInput
+	// The default TTL for long-lived credentials (i.e. service account keys).
+	Ttl pulumi.IntPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -414,6 +426,8 @@ type secretBackendArgs struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
+	// The maximum TTL for long-lived credentials (i.e. service account keys).
+	MaxTtl *int `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -444,6 +458,8 @@ type secretBackendArgs struct {
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
+	// The default TTL for long-lived credentials (i.e. service account keys).
+	Ttl *int `pulumi:"ttl"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
@@ -493,6 +509,8 @@ type SecretBackendArgs struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
+	// The maximum TTL for long-lived credentials (i.e. service account keys).
+	MaxTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -523,6 +541,8 @@ type SecretBackendArgs struct {
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail pulumi.StringPtrInput
+	// The default TTL for long-lived credentials (i.e. service account keys).
+	Ttl pulumi.IntPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {
@@ -722,6 +742,11 @@ func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntPtrOutput)
 }
 
+// The maximum TTL for long-lived credentials (i.e. service account keys).
+func (o SecretBackendOutput) MaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.MaxTtl }).(pulumi.IntPtrOutput)
+}
+
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -780,6 +805,11 @@ func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
 // Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 func (o SecretBackendOutput) ServiceAccountEmail() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ServiceAccountEmail }).(pulumi.StringPtrOutput)
+}
+
+// The default TTL for long-lived credentials (i.e. service account keys).
+func (o SecretBackendOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

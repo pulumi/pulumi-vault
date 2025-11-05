@@ -424,14 +424,14 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      * 
      */
     @Import(name="rootPasswordTtl")
     private @Nullable Output<Integer> rootPasswordTtl;
 
     /**
-     * @return The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+     * @return Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      * 
      */
     public Optional<Output<Integer>> rootPasswordTtl() {
@@ -1217,7 +1217,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rootPasswordTtl The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+         * @param rootPasswordTtl Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
          * 
          * @return builder
          * 
@@ -1228,7 +1228,7 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rootPasswordTtl The TTL in seconds of the root password in Azure when rotate-root generates a new client secret
+         * @param rootPasswordTtl Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
          * 
          * @return builder
          * 

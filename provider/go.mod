@@ -1,8 +1,6 @@
 module github.com/pulumi/pulumi-vault/provider/v7
 
-go 1.24.3
-
-toolchain go1.24.6
+go 1.25.0
 
 require (
 	github.com/hashicorp/terraform-provider-vault v0.0.0
@@ -89,6 +87,7 @@ require (
 	github.com/go-ldap/ldap/v3 v3.4.11 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.0 // indirect
 	github.com/golang/glog v1.2.5 // indirect
@@ -106,7 +105,7 @@ require (
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/cap v0.9.0 // indirect
-	github.com/hashicorp/cap/ldap v0.0.0-20250106213447-9047b8b3240f // indirect
+	github.com/hashicorp/cap/ldap v0.0.0-20250911140431-44d01434c285 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-checkpoint v0.5.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
@@ -130,7 +129,8 @@ require (
 	github.com/hashicorp/go-secure-stdlib/mlock v0.1.3 // indirect
 	github.com/hashicorp/go-secure-stdlib/parseutil v0.2.0 // indirect
 	github.com/hashicorp/go-secure-stdlib/permitpool v1.0.0 // indirect
-	github.com/hashicorp/go-secure-stdlib/plugincontainer v0.4.1 // indirect
+	github.com/hashicorp/go-secure-stdlib/plugincontainer v0.4.2 // indirect
+	github.com/hashicorp/go-secure-stdlib/regexp v1.0.0 // indirect
 	github.com/hashicorp/go-secure-stdlib/strutil v0.1.2 // indirect
 	github.com/hashicorp/go-secure-stdlib/tlsutil v0.1.3 // indirect
 	github.com/hashicorp/go-sockaddr v1.0.7 // indirect
@@ -156,8 +156,8 @@ require (
 	github.com/hashicorp/vault-plugin-auth-jwt v0.24.1 // indirect
 	github.com/hashicorp/vault-plugin-auth-kerberos v0.15.0 // indirect
 	github.com/hashicorp/vault-plugin-auth-oci v0.19.0 // indirect
-	github.com/hashicorp/vault/api v1.20.0 // indirect
-	github.com/hashicorp/vault/sdk v0.18.0 // indirect
+	github.com/hashicorp/vault/api v1.22.0 // indirect
+	github.com/hashicorp/vault/sdk v0.20.0 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
@@ -217,7 +217,7 @@ require (
 	github.com/opentracing/opentracing-go v1.2.1-0.20220228012449-10b1cf09e00b // indirect
 	github.com/oracle/oci-go-sdk/v59 v59.0.0 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
-	github.com/petermattis/goid v0.0.0-20240813172612-4fcff4a6cae7 // indirect
+	github.com/petermattis/goid v0.0.0-20250721140440-ea1c0173183e // indirect
 	github.com/pgavlin/fx v0.1.6 // indirect
 	github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect

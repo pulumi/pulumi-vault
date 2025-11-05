@@ -26,6 +26,7 @@ class SecretBackendRoleArgs:
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -59,6 +60,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[_builtins.int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
+        :param pulumi.Input[_builtins.str] mfa_serial_number: The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
         :param pulumi.Input[_builtins.str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -102,6 +104,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "iam_tags", iam_tags)
         if max_sts_ttl is not None:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
+        if mfa_serial_number is not None:
+            pulumi.set(__self__, "mfa_serial_number", mfa_serial_number)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -218,6 +222,18 @@ class SecretBackendRoleArgs:
     @max_sts_ttl.setter
     def max_sts_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "max_sts_ttl", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mfaSerialNumber")
+    def mfa_serial_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+        """
+        return pulumi.get(self, "mfa_serial_number")
+
+    @mfa_serial_number.setter
+    def mfa_serial_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mfa_serial_number", value)
 
     @_builtins.property
     @pulumi.getter
@@ -348,6 +364,7 @@ class _SecretBackendRoleState:
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -381,6 +398,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[_builtins.int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
+        :param pulumi.Input[_builtins.str] mfa_serial_number: The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
         :param pulumi.Input[_builtins.str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -426,6 +444,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "iam_tags", iam_tags)
         if max_sts_ttl is not None:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
+        if mfa_serial_number is not None:
+            pulumi.set(__self__, "mfa_serial_number", mfa_serial_number)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -542,6 +562,18 @@ class _SecretBackendRoleState:
     @max_sts_ttl.setter
     def max_sts_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "max_sts_ttl", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mfaSerialNumber")
+    def mfa_serial_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+        """
+        return pulumi.get(self, "mfa_serial_number")
+
+    @mfa_serial_number.setter
+    def mfa_serial_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mfa_serial_number", value)
 
     @_builtins.property
     @pulumi.getter
@@ -675,6 +707,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -699,12 +732,12 @@ class SecretBackendRole(pulumi.CustomResource):
             name="deploy",
             credential_type="iam_user",
             policy_document=\"\"\"{
-          "Version": "2012-10-17",
-          "Statement": [
+          \\"Version\\": \\"2012-10-17\\",
+          \\"Statement\\": [
             {
-              "Effect": "Allow",
-              "Action": "iam:*",
-              "Resource": "*"
+              \\"Effect\\": \\"Allow\\",
+              \\"Action\\": \\"iam:*\\",
+              \\"Resource\\": \\"*\\"
             }
           ]
         }
@@ -744,6 +777,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
+        :param pulumi.Input[_builtins.str] mfa_serial_number: The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
         :param pulumi.Input[_builtins.str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -796,12 +830,12 @@ class SecretBackendRole(pulumi.CustomResource):
             name="deploy",
             credential_type="iam_user",
             policy_document=\"\"\"{
-          "Version": "2012-10-17",
-          "Statement": [
+          \\"Version\\": \\"2012-10-17\\",
+          \\"Statement\\": [
             {
-              "Effect": "Allow",
-              "Action": "iam:*",
-              "Resource": "*"
+              \\"Effect\\": \\"Allow\\",
+              \\"Action\\": \\"iam:*\\",
+              \\"Resource\\": \\"*\\"
             }
           ]
         }
@@ -838,6 +872,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -866,6 +901,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["iam_groups"] = iam_groups
             __props__.__dict__["iam_tags"] = iam_tags
             __props__.__dict__["max_sts_ttl"] = max_sts_ttl
+            __props__.__dict__["mfa_serial_number"] = mfa_serial_number
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["permissions_boundary_arn"] = permissions_boundary_arn
@@ -891,6 +927,7 @@ class SecretBackendRole(pulumi.CustomResource):
             iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+            mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
@@ -929,6 +966,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
+        :param pulumi.Input[_builtins.str] mfa_serial_number: The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
         :param pulumi.Input[_builtins.str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -971,6 +1009,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["iam_groups"] = iam_groups
         __props__.__dict__["iam_tags"] = iam_tags
         __props__.__dict__["max_sts_ttl"] = max_sts_ttl
+        __props__.__dict__["mfa_serial_number"] = mfa_serial_number
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["permissions_boundary_arn"] = permissions_boundary_arn
@@ -1052,6 +1091,14 @@ class SecretBackendRole(pulumi.CustomResource):
         one of `assumed_role` or `federation_token`.
         """
         return pulumi.get(self, "max_sts_ttl")
+
+    @_builtins.property
+    @pulumi.getter(name="mfaSerialNumber")
+    def mfa_serial_number(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
+        """
+        return pulumi.get(self, "mfa_serial_number")
 
     @_builtins.property
     @pulumi.getter

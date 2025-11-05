@@ -14,6 +14,64 @@ namespace Pulumi.Vault.Managed
     /// 
     /// **Note** this feature is available only with Vault Enterprise.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var keys = new Vault.Managed.Keys("keys", new()
+    ///     {
+    ///         Aws = new[]
+    ///         {
+    ///             new Vault.Managed.Inputs.KeysAwArgs
+    ///             {
+    ///                 Name = "aws-key-1",
+    ///                 AccessKey = awsAccessKey,
+    ///                 SecretKey = awsSecretKey,
+    ///                 KeyBits = "2048",
+    ///                 KeyType = "RSA",
+    ///                 KmsKey = "alias/vault_aws_key_1",
+    ///             },
+    ///             new Vault.Managed.Inputs.KeysAwArgs
+    ///             {
+    ///                 Name = "aws-key-2",
+    ///                 AccessKey = awsAccessKey,
+    ///                 SecretKey = awsSecretKey,
+    ///                 KeyBits = "4096",
+    ///                 KeyType = "RSA",
+    ///                 KmsKey = "alias/vault_aws_key_2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var pki = new Vault.Mount("pki", new()
+    ///     {
+    ///         Path = "pki",
+    ///         Type = "pki",
+    ///         Description = "Example mount for managed keys",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 36000,
+    ///         AllowedManagedKeys = new[]
+    ///         {
+    ///             keys.Aws.Apply(aws =&gt; aws[0]?.Name),
+    ///             keys.Aws.Apply(aws =&gt; aws[1]?.Name),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Caveats
+    /// 
+    /// This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
+    /// There can only be one such resource in the TF state, and if there are already provisioned managed
+    /// keys in Vault, we recommend using `pulumi import` instead.
+    /// 
     /// ## Import
     /// 
     /// Mounts can be imported using the `id` of `default`, e.g.

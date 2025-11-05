@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.okta.inputs.AuthBackendGroupArgs;
+import com.pulumi.vault.okta.inputs.AuthBackendTuneArgs;
 import com.pulumi.vault.okta.inputs.AuthBackendUserArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -303,6 +304,13 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tokenType);
     }
 
+    @Import(name="tune")
+    private @Nullable Output<AuthBackendTuneArgs> tune;
+
+    public Optional<Output<AuthBackendTuneArgs>> tune() {
+        return Optional.ofNullable(this.tune);
+    }
+
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
@@ -341,6 +349,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.tokenPolicies = $.tokenPolicies;
         this.tokenTtl = $.tokenTtl;
         this.tokenType = $.tokenType;
+        this.tune = $.tune;
         this.users = $.users;
     }
 
@@ -781,6 +790,15 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tokenType(String tokenType) {
             return tokenType(Output.of(tokenType));
+        }
+
+        public Builder tune(@Nullable Output<AuthBackendTuneArgs> tune) {
+            $.tune = tune;
+            return this;
+        }
+
+        public Builder tune(AuthBackendTuneArgs tune) {
+            return tune(Output.of(tune));
         }
 
         /**

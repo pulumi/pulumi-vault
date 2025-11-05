@@ -6,6 +6,7 @@ package com.pulumi.vault.ldap;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.vault.ldap.inputs.AuthBackendTuneArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -18,6 +19,21 @@ import javax.annotation.Nullable;
 public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final AuthBackendArgs Empty = new AuthBackendArgs();
+
+    /**
+     * Allows anonymous group searches.
+     * 
+     */
+    @Import(name="anonymousGroupSearch")
+    private @Nullable Output<Boolean> anonymousGroupSearch;
+
+    /**
+     * @return Allows anonymous group searches.
+     * 
+     */
+    public Optional<Output<Boolean>> anonymousGroupSearch() {
+        return Optional.ofNullable(this.anonymousGroupSearch);
+    }
 
     /**
      * DN of object to bind when performing user search
@@ -124,6 +140,21 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Specifies how aliases are dereferenced during LDAP searches. Valid values are &#39;never&#39;,&#39;searching&#39;,&#39;finding&#39;, and &#39;always&#39;.
+     * 
+     */
+    @Import(name="dereferenceAliases")
+    private @Nullable Output<String> dereferenceAliases;
+
+    /**
+     * @return Specifies how aliases are dereferenced during LDAP searches. Valid values are &#39;never&#39;,&#39;searching&#39;,&#39;finding&#39;, and &#39;always&#39;.
+     * 
+     */
+    public Optional<Output<String>> dereferenceAliases() {
+        return Optional.ofNullable(this.dereferenceAliases);
+    }
+
+    /**
      * Description for the LDAP auth backend mount
      * 
      */
@@ -183,6 +214,21 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> discoverdn() {
         return Optional.ofNullable(this.discoverdn);
+    }
+
+    /**
+     * Enables login using the sAMAccountName attribute.
+     * 
+     */
+    @Import(name="enableSamaccountnameLogin")
+    private @Nullable Output<Boolean> enableSamaccountnameLogin;
+
+    /**
+     * @return Enables login using the sAMAccountName attribute.
+     * 
+     */
+    public Optional<Output<Boolean>> enableSamaccountnameLogin() {
+        return Optional.ofNullable(this.enableSamaccountnameLogin);
     }
 
     /**
@@ -311,6 +357,21 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> path() {
         return Optional.ofNullable(this.path);
+    }
+
+    /**
+     * The timeout(in sec) for requests to the LDAP server.
+     * 
+     */
+    @Import(name="requestTimeout")
+    private @Nullable Output<Integer> requestTimeout;
+
+    /**
+     * @return The timeout(in sec) for requests to the LDAP server.
+     * 
+     */
+    public Optional<Output<Integer>> requestTimeout() {
+        return Optional.ofNullable(this.requestTimeout);
     }
 
     /**
@@ -532,18 +593,39 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of token to generate, service or batch
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
      * 
      */
     @Import(name="tokenType")
     private @Nullable Output<String> tokenType;
 
     /**
-     * @return The type of token to generate, service or batch
+     * @return Specifies the type of tokens that should be returned by
+     * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
      * 
      */
     public Optional<Output<String>> tokenType() {
         return Optional.ofNullable(this.tokenType);
+    }
+
+    /**
+     * Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Import(name="tune")
+    private @Nullable Output<AuthBackendTuneArgs> tune;
+
+    /**
+     * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Optional<Output<AuthBackendTuneArgs>> tune() {
+        return Optional.ofNullable(this.tune);
     }
 
     /**
@@ -654,6 +736,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     private AuthBackendArgs() {}
 
     private AuthBackendArgs(AuthBackendArgs $) {
+        this.anonymousGroupSearch = $.anonymousGroupSearch;
         this.binddn = $.binddn;
         this.bindpass = $.bindpass;
         this.caseSensitiveNames = $.caseSensitiveNames;
@@ -662,10 +745,12 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.clientTlsKey = $.clientTlsKey;
         this.connectionTimeout = $.connectionTimeout;
         this.denyNullBind = $.denyNullBind;
+        this.dereferenceAliases = $.dereferenceAliases;
         this.description = $.description;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.disableRemount = $.disableRemount;
         this.discoverdn = $.discoverdn;
+        this.enableSamaccountnameLogin = $.enableSamaccountnameLogin;
         this.groupattr = $.groupattr;
         this.groupdn = $.groupdn;
         this.groupfilter = $.groupfilter;
@@ -674,6 +759,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.maxPageSize = $.maxPageSize;
         this.namespace = $.namespace;
         this.path = $.path;
+        this.requestTimeout = $.requestTimeout;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
@@ -689,6 +775,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.tokenPolicies = $.tokenPolicies;
         this.tokenTtl = $.tokenTtl;
         this.tokenType = $.tokenType;
+        this.tune = $.tune;
         this.upndomain = $.upndomain;
         this.url = $.url;
         this.useTokenGroups = $.useTokenGroups;
@@ -714,6 +801,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(AuthBackendArgs defaults) {
             $ = new AuthBackendArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param anonymousGroupSearch Allows anonymous group searches.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder anonymousGroupSearch(@Nullable Output<Boolean> anonymousGroupSearch) {
+            $.anonymousGroupSearch = anonymousGroupSearch;
+            return this;
+        }
+
+        /**
+         * @param anonymousGroupSearch Allows anonymous group searches.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder anonymousGroupSearch(Boolean anonymousGroupSearch) {
+            return anonymousGroupSearch(Output.of(anonymousGroupSearch));
         }
 
         /**
@@ -861,6 +969,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param dereferenceAliases Specifies how aliases are dereferenced during LDAP searches. Valid values are &#39;never&#39;,&#39;searching&#39;,&#39;finding&#39;, and &#39;always&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dereferenceAliases(@Nullable Output<String> dereferenceAliases) {
+            $.dereferenceAliases = dereferenceAliases;
+            return this;
+        }
+
+        /**
+         * @param dereferenceAliases Specifies how aliases are dereferenced during LDAP searches. Valid values are &#39;never&#39;,&#39;searching&#39;,&#39;finding&#39;, and &#39;always&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dereferenceAliases(String dereferenceAliases) {
+            return dereferenceAliases(Output.of(dereferenceAliases));
+        }
+
+        /**
          * @param description Description for the LDAP auth backend mount
          * 
          * @return builder
@@ -944,6 +1073,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder discoverdn(Boolean discoverdn) {
             return discoverdn(Output.of(discoverdn));
+        }
+
+        /**
+         * @param enableSamaccountnameLogin Enables login using the sAMAccountName attribute.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableSamaccountnameLogin(@Nullable Output<Boolean> enableSamaccountnameLogin) {
+            $.enableSamaccountnameLogin = enableSamaccountnameLogin;
+            return this;
+        }
+
+        /**
+         * @param enableSamaccountnameLogin Enables login using the sAMAccountName attribute.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableSamaccountnameLogin(Boolean enableSamaccountnameLogin) {
+            return enableSamaccountnameLogin(Output.of(enableSamaccountnameLogin));
         }
 
         /**
@@ -1120,6 +1270,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param requestTimeout The timeout(in sec) for requests to the LDAP server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requestTimeout(@Nullable Output<Integer> requestTimeout) {
+            $.requestTimeout = requestTimeout;
+            return this;
+        }
+
+        /**
+         * @param requestTimeout The timeout(in sec) for requests to the LDAP server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requestTimeout(Integer requestTimeout) {
+            return requestTimeout(Output.of(requestTimeout));
         }
 
         /**
@@ -1445,7 +1616,8 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenType The type of token to generate, service or batch
+         * @param tokenType Specifies the type of tokens that should be returned by
+         * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
          * 
          * @return builder
          * 
@@ -1456,13 +1628,39 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenType The type of token to generate, service or batch
+         * @param tokenType Specifies the type of tokens that should be returned by
+         * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
          * 
          * @return builder
          * 
          */
         public Builder tokenType(String tokenType) {
             return tokenType(Output.of(tokenType));
+        }
+
+        /**
+         * @param tune Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tune(@Nullable Output<AuthBackendTuneArgs> tune) {
+            $.tune = tune;
+            return this;
+        }
+
+        /**
+         * @param tune Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tune(AuthBackendTuneArgs tune) {
+            return tune(Output.of(tune));
         }
 
         /**

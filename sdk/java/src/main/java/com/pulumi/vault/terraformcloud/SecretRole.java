@@ -78,6 +78,26 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
+     * The type of credential to generate. Valid values are &#39;team&#39;, &#39;team_legacy&#39;, &#39;user&#39;, or &#39;organization&#39;. Can only create multiple-team tokens with `team`.
+     * 
+     */
+    @Export(name="credentialType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> credentialType;
+
+    /**
+     * @return The type of credential to generate. Valid values are &#39;team&#39;, &#39;team_legacy&#39;, &#39;user&#39;, or &#39;organization&#39;. Can only create multiple-team tokens with `team`.
+     * 
+     */
+    public Output<Optional<String>> credentialType() {
+        return Codegen.optional(this.credentialType);
+    }
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
+    }
+    /**
      * Maximum TTL for leases associated with this role, in seconds.
      * 
      */

@@ -330,6 +330,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The maximum TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    @Import(name="maxTtl")
+    private @Nullable Output<Integer> maxTtl;
+
+    /**
+     * @return The maximum TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    public Optional<Output<Integer>> maxTtl() {
+        return Optional.ofNullable(this.maxTtl);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -499,6 +514,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.serviceAccountEmail);
     }
 
+    /**
+     * The default TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    @Import(name="ttl")
+    private @Nullable Output<Integer> ttl;
+
+    /**
+     * @return The default TTL for long-lived credentials (i.e. service account keys).
+     * 
+     */
+    public Optional<Output<Integer>> ttl() {
+        return Optional.ofNullable(this.ttl);
+    }
+
     private SecretBackendArgs() {}
 
     private SecretBackendArgs(SecretBackendArgs $) {
@@ -522,6 +552,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.listingVisibility = $.listingVisibility;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
+        this.maxTtl = $.maxTtl;
         this.namespace = $.namespace;
         this.options = $.options;
         this.passthroughRequestHeaders = $.passthroughRequestHeaders;
@@ -532,6 +563,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.rotationWindow = $.rotationWindow;
         this.sealWrap = $.sealWrap;
         this.serviceAccountEmail = $.serviceAccountEmail;
+        this.ttl = $.ttl;
     }
 
     public static Builder builder() {
@@ -1033,6 +1065,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param maxTtl The maximum TTL for long-lived credentials (i.e. service account keys).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTtl(@Nullable Output<Integer> maxTtl) {
+            $.maxTtl = maxTtl;
+            return this;
+        }
+
+        /**
+         * @param maxTtl The maximum TTL for long-lived credentials (i.e. service account keys).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTtl(Integer maxTtl) {
+            return maxTtl(Output.of(maxTtl));
+        }
+
+        /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
          * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1270,6 +1323,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder serviceAccountEmail(String serviceAccountEmail) {
             return serviceAccountEmail(Output.of(serviceAccountEmail));
+        }
+
+        /**
+         * @param ttl The default TTL for long-lived credentials (i.e. service account keys).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ttl(@Nullable Output<Integer> ttl) {
+            $.ttl = ttl;
+            return this;
+        }
+
+        /**
+         * @param ttl The default TTL for long-lived credentials (i.e. service account keys).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ttl(Integer ttl) {
+            return ttl(Output.of(ttl));
         }
 
         public SecretBackendArgs build() {

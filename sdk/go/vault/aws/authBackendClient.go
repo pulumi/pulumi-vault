@@ -74,6 +74,10 @@ import (
 //				SecretKey:        pulumi.String("INSERT_AWS_SECRET_KEY"),
 //				RotationSchedule: pulumi.String("0 * * * SAT"),
 //				RotationWindow:   pulumi.Int(3600),
+//				AllowedStsHeaderValues: pulumi.StringArray{
+//					pulumi.String("X-Custom-Header"),
+//					pulumi.String("X-Another-Header"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -97,6 +101,10 @@ type AuthBackendClient struct {
 	// The AWS access key that Vault should use for the
 	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
+	// List of additional headers that are allowed to be in STS request headers.
+	// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+	// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+	AllowedStsHeaderValues pulumi.StringArrayOutput `pulumi:"allowedStsHeaderValues"`
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
@@ -200,6 +208,10 @@ type authBackendClientState struct {
 	// The AWS access key that Vault should use for the
 	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey *string `pulumi:"accessKey"`
+	// List of additional headers that are allowed to be in STS request headers.
+	// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+	// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+	AllowedStsHeaderValues []string `pulumi:"allowedStsHeaderValues"`
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
@@ -263,6 +275,10 @@ type AuthBackendClientState struct {
 	// The AWS access key that Vault should use for the
 	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey pulumi.StringPtrInput
+	// List of additional headers that are allowed to be in STS request headers.
+	// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+	// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+	AllowedStsHeaderValues pulumi.StringArrayInput
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
@@ -330,6 +346,10 @@ type authBackendClientArgs struct {
 	// The AWS access key that Vault should use for the
 	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey *string `pulumi:"accessKey"`
+	// List of additional headers that are allowed to be in STS request headers.
+	// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+	// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+	AllowedStsHeaderValues []string `pulumi:"allowedStsHeaderValues"`
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
@@ -394,6 +414,10 @@ type AuthBackendClientArgs struct {
 	// The AWS access key that Vault should use for the
 	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey pulumi.StringPtrInput
+	// List of additional headers that are allowed to be in STS request headers.
+	// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+	// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+	AllowedStsHeaderValues pulumi.StringArrayInput
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
@@ -544,6 +568,13 @@ func (o AuthBackendClientOutput) ToAuthBackendClientOutputWithContext(ctx contex
 // auth backend. Mutually exclusive with `identityTokenAudience`.
 func (o AuthBackendClientOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// List of additional headers that are allowed to be in STS request headers.
+// The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
+// removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
+func (o AuthBackendClientOutput) AllowedStsHeaderValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringArrayOutput { return v.AllowedStsHeaderValues }).(pulumi.StringArrayOutput)
 }
 
 // The path the AWS auth backend being configured was

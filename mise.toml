@@ -1,0 +1,5 @@
+[tools]
+golangci-lint = "latest"
+
+[settings]
+experimental = true

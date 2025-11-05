@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.ldap.AuthBackendArgs;
 import com.pulumi.vault.ldap.inputs.AuthBackendState;
+import com.pulumi.vault.ldap.outputs.AuthBackendTune;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -55,6 +56,10 @@ import javax.annotation.Nullable;
  *             .groupfilter("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))")
  *             .rotationSchedule("0 * * * SAT")
  *             .rotationWindow(3600)
+ *             .requestTimeout(30)
+ *             .dereferenceAliases("always")
+ *             .enableSamaccountnameLogin(false)
+ *             .anonymousGroupSearch(false)
  *             .build());
  * 
  *     }
@@ -86,6 +91,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> accessor() {
         return this.accessor;
+    }
+    /**
+     * Allows anonymous group searches.
+     * 
+     */
+    @Export(name="anonymousGroupSearch", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> anonymousGroupSearch;
+
+    /**
+     * @return Allows anonymous group searches.
+     * 
+     */
+    public Output<Boolean> anonymousGroupSearch() {
+        return this.anonymousGroupSearch;
     }
     /**
      * DN of object to bind when performing user search
@@ -184,6 +203,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.denyNullBind;
     }
     /**
+     * Specifies how aliases are dereferenced during LDAP searches. Valid values are &#39;never&#39;,&#39;searching&#39;,&#39;finding&#39;, and &#39;always&#39;.
+     * 
+     */
+    @Export(name="dereferenceAliases", refs={String.class}, tree="[0]")
+    private Output<String> dereferenceAliases;
+
+    /**
+     * @return Specifies how aliases are dereferenced during LDAP searches. Valid values are &#39;never&#39;,&#39;searching&#39;,&#39;finding&#39;, and &#39;always&#39;.
+     * 
+     */
+    public Output<String> dereferenceAliases() {
+        return this.dereferenceAliases;
+    }
+    /**
      * Description for the LDAP auth backend mount
      * 
      */
@@ -240,6 +273,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> discoverdn() {
         return this.discoverdn;
+    }
+    /**
+     * Enables login using the sAMAccountName attribute.
+     * 
+     */
+    @Export(name="enableSamaccountnameLogin", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> enableSamaccountnameLogin;
+
+    /**
+     * @return Enables login using the sAMAccountName attribute.
+     * 
+     */
+    public Output<Boolean> enableSamaccountnameLogin() {
+        return this.enableSamaccountnameLogin;
     }
     /**
      * LDAP attribute to follow on objects returned by groupfilter
@@ -360,6 +407,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> path() {
         return Codegen.optional(this.path);
+    }
+    /**
+     * The timeout(in sec) for requests to the LDAP server.
+     * 
+     */
+    @Export(name="requestTimeout", refs={Integer.class}, tree="[0]")
+    private Output<Integer> requestTimeout;
+
+    /**
+     * @return The timeout(in sec) for requests to the LDAP server.
+     * 
+     */
+    public Output<Integer> requestTimeout() {
+        return this.requestTimeout;
     }
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
@@ -566,18 +627,38 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tokenTtl);
     }
     /**
-     * The type of token to generate, service or batch
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
      * 
      */
     @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
-     * @return The type of token to generate, service or batch
+     * @return Specifies the type of tokens that should be returned by
+     * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
      * 
      */
     public Output<Optional<String>> tokenType() {
         return Codegen.optional(this.tokenType);
+    }
+    /**
+     * Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
+    private Output<AuthBackendTune> tune;
+
+    /**
+     * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Output<AuthBackendTune> tune() {
+        return this.tune;
     }
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.

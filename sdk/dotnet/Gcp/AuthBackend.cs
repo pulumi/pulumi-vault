@@ -103,6 +103,30 @@ namespace Pulumi.Vault.Gcp
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
+        /// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        /// </summary>
+        [Output("gceAlias")]
+        public Output<string> GceAlias { get; private set; } = null!;
+
+        /// <summary>
+        /// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        /// </summary>
+        [Output("gceMetadatas")]
+        public Output<ImmutableArray<string>> GceMetadatas { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        /// </summary>
+        [Output("iamAlias")]
+        public Output<string> IamAlias { get; private set; } = null!;
+
+        /// <summary>
+        /// Controls the metadata to include on the token returned by the login endpoint.
+        /// </summary>
+        [Output("iamMetadatas")]
+        public Output<ImmutableArray<string>> IamMetadatas { get; private set; } = null!;
+
+        /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
         /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -303,6 +327,42 @@ namespace Pulumi.Vault.Gcp
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
+        /// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        /// </summary>
+        [Input("gceAlias")]
+        public Input<string>? GceAlias { get; set; }
+
+        [Input("gceMetadatas")]
+        private InputList<string>? _gceMetadatas;
+
+        /// <summary>
+        /// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        /// </summary>
+        public InputList<string> GceMetadatas
+        {
+            get => _gceMetadatas ?? (_gceMetadatas = new InputList<string>());
+            set => _gceMetadatas = value;
+        }
+
+        /// <summary>
+        /// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        /// </summary>
+        [Input("iamAlias")]
+        public Input<string>? IamAlias { get; set; }
+
+        [Input("iamMetadatas")]
+        private InputList<string>? _iamMetadatas;
+
+        /// <summary>
+        /// Controls the metadata to include on the token returned by the login endpoint.
+        /// </summary>
+        public InputList<string> IamMetadatas
+        {
+            get => _iamMetadatas ?? (_iamMetadatas = new InputList<string>());
+            set => _iamMetadatas = value;
+        }
+
+        /// <summary>
         /// The audience claim value for plugin identity
         /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
         /// Mutually exclusive with `Credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -465,6 +525,42 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("disableRemount")]
         public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
+        /// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        /// </summary>
+        [Input("gceAlias")]
+        public Input<string>? GceAlias { get; set; }
+
+        [Input("gceMetadatas")]
+        private InputList<string>? _gceMetadatas;
+
+        /// <summary>
+        /// Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
+        /// </summary>
+        public InputList<string> GceMetadatas
+        {
+            get => _gceMetadatas ?? (_gceMetadatas = new InputList<string>());
+            set => _gceMetadatas = value;
+        }
+
+        /// <summary>
+        /// Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
+        /// </summary>
+        [Input("iamAlias")]
+        public Input<string>? IamAlias { get; set; }
+
+        [Input("iamMetadatas")]
+        private InputList<string>? _iamMetadatas;
+
+        /// <summary>
+        /// Controls the metadata to include on the token returned by the login endpoint.
+        /// </summary>
+        public InputList<string> IamMetadatas
+        {
+            get => _iamMetadatas ?? (_iamMetadatas = new InputList<string>());
+            set => _iamMetadatas = value;
+        }
 
         /// <summary>
         /// The audience claim value for plugin identity

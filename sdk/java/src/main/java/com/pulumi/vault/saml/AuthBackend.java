@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.saml.AuthBackendArgs;
 import com.pulumi.vault.saml.inputs.AuthBackendState;
+import com.pulumi.vault.saml.outputs.AuthBackendTune;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -226,6 +227,24 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> path() {
         return Codegen.optional(this.path);
+    }
+    /**
+     * Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
+    private Output<AuthBackendTune> tune;
+
+    /**
+     * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Output<AuthBackendTune> tune() {
+        return this.tune;
     }
     /**
      * If set to `true`, logs additional, potentially sensitive

@@ -138,6 +138,40 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Maximum number of retries for Azure API requests.
+     * Defaults to `3`.
+     * 
+     */
+    @Import(name="maxRetries")
+    private @Nullable Output<Integer> maxRetries;
+
+    /**
+     * @return Maximum number of retries for Azure API requests.
+     * Defaults to `3`.
+     * 
+     */
+    public Optional<Output<Integer>> maxRetries() {
+        return Optional.ofNullable(this.maxRetries);
+    }
+
+    /**
+     * The maximum delay in seconds between retries for Azure API requests.
+     * Defaults to `60`.
+     * 
+     */
+    @Import(name="maxRetryDelay")
+    private @Nullable Output<Integer> maxRetryDelay;
+
+    /**
+     * @return The maximum delay in seconds between retries for Azure API requests.
+     * Defaults to `60`.
+     * 
+     */
+    public Optional<Output<Integer>> maxRetryDelay() {
+        return Optional.ofNullable(this.maxRetryDelay);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -173,6 +207,23 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
      */
     public Output<String> resource() {
         return this.resource;
+    }
+
+    /**
+     * The initial delay in seconds between retries for Azure API requests.
+     * Defaults to `4`.
+     * 
+     */
+    @Import(name="retryDelay")
+    private @Nullable Output<Integer> retryDelay;
+
+    /**
+     * @return The initial delay in seconds between retries for Azure API requests.
+     * Defaults to `4`.
+     * 
+     */
+    public Optional<Output<Integer>> retryDelay() {
+        return Optional.ofNullable(this.retryDelay);
     }
 
     /**
@@ -261,8 +312,11 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         this.environment = $.environment;
         this.identityTokenAudience = $.identityTokenAudience;
         this.identityTokenTtl = $.identityTokenTtl;
+        this.maxRetries = $.maxRetries;
+        this.maxRetryDelay = $.maxRetryDelay;
         this.namespace = $.namespace;
         this.resource = $.resource;
+        this.retryDelay = $.retryDelay;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
@@ -449,6 +503,52 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param maxRetries Maximum number of retries for Azure API requests.
+         * Defaults to `3`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(@Nullable Output<Integer> maxRetries) {
+            $.maxRetries = maxRetries;
+            return this;
+        }
+
+        /**
+         * @param maxRetries Maximum number of retries for Azure API requests.
+         * Defaults to `3`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(Integer maxRetries) {
+            return maxRetries(Output.of(maxRetries));
+        }
+
+        /**
+         * @param maxRetryDelay The maximum delay in seconds between retries for Azure API requests.
+         * Defaults to `60`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetryDelay(@Nullable Output<Integer> maxRetryDelay) {
+            $.maxRetryDelay = maxRetryDelay;
+            return this;
+        }
+
+        /**
+         * @param maxRetryDelay The maximum delay in seconds between retries for Azure API requests.
+         * Defaults to `60`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetryDelay(Integer maxRetryDelay) {
+            return maxRetryDelay(Output.of(maxRetryDelay));
+        }
+
+        /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
          * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -496,6 +596,29 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder resource(String resource) {
             return resource(Output.of(resource));
+        }
+
+        /**
+         * @param retryDelay The initial delay in seconds between retries for Azure API requests.
+         * Defaults to `4`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryDelay(@Nullable Output<Integer> retryDelay) {
+            $.retryDelay = retryDelay;
+            return this;
+        }
+
+        /**
+         * @param retryDelay The initial delay in seconds between retries for Azure API requests.
+         * Defaults to `4`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder retryDelay(Integer retryDelay) {
+            return retryDelay(Output.of(retryDelay));
         }
 
         /**

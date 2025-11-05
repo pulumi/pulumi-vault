@@ -152,6 +152,7 @@ export class AuthBackend extends pulumi.CustomResource {
      * The type of token to generate, service or batch
      */
     declare public readonly tokenType: pulumi.Output<string | undefined>;
+    declare public readonly tune: pulumi.Output<outputs.okta.AuthBackendTune>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
@@ -190,6 +191,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = state?.tokenPolicies;
             resourceInputs["tokenTtl"] = state?.tokenTtl;
             resourceInputs["tokenType"] = state?.tokenType;
+            resourceInputs["tune"] = state?.tune;
             resourceInputs["users"] = state?.users;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
@@ -214,6 +216,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = args?.tokenPolicies;
             resourceInputs["tokenTtl"] = args?.tokenTtl;
             resourceInputs["tokenType"] = args?.tokenType;
+            resourceInputs["tune"] = args?.tune;
             resourceInputs["users"] = args?.users;
             resourceInputs["accessor"] = undefined /*out*/;
         }
@@ -310,6 +313,7 @@ export interface AuthBackendState {
      * The type of token to generate, service or batch
      */
     tokenType?: pulumi.Input<string>;
+    tune?: pulumi.Input<inputs.okta.AuthBackendTune>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
@@ -399,6 +403,7 @@ export interface AuthBackendArgs {
      * The type of token to generate, service or batch
      */
     tokenType?: pulumi.Input<string>;
+    tune?: pulumi.Input<inputs.okta.AuthBackendTune>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.

@@ -20,6 +20,8 @@ __all__ = ['SecretRoleArgs', 'SecretRole']
 class SecretRoleArgs:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -29,6 +31,7 @@ class SecretRoleArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -38,6 +41,10 @@ class SecretRoleArgs:
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
@@ -61,6 +68,27 @@ class SecretRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credential_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
@@ -142,6 +170,8 @@ class SecretRoleArgs:
 class _SecretRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -151,6 +181,7 @@ class _SecretRoleState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -160,6 +191,10 @@ class _SecretRoleState:
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if credential_type is not None:
+            pulumi.set(__self__, "credential_type", credential_type)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if name is not None:
@@ -183,6 +218,27 @@ class _SecretRoleState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @credential_type.setter
+    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credential_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
@@ -267,6 +323,8 @@ class SecretRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -303,6 +361,7 @@ class SecretRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -358,6 +417,8 @@ class SecretRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -375,6 +436,8 @@ class SecretRole(pulumi.CustomResource):
             __props__ = SecretRoleArgs.__new__(SecretRoleArgs)
 
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["credential_type"] = credential_type
+            __props__.__dict__["description"] = description
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -393,6 +456,8 @@ class SecretRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
+            credential_type: Optional[pulumi.Input[_builtins.str]] = None,
+            description: Optional[pulumi.Input[_builtins.str]] = None,
             max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -407,6 +472,7 @@ class SecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -419,6 +485,8 @@ class SecretRole(pulumi.CustomResource):
         __props__ = _SecretRoleState.__new__(_SecretRoleState)
 
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["credential_type"] = credential_type
+        __props__.__dict__["description"] = description
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -432,6 +500,19 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "backend")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialType")
+    def credential_type(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        """
+        return pulumi.get(self, "credential_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")

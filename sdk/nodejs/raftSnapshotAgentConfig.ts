@@ -22,30 +22,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### AWS S3
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as vault from "@pulumi/vault";
- *
- * const config = new pulumi.Config();
- * const awsAccessKeyId = config.requireObject<any>("awsAccessKeyId");
- * const awsSecretAccessKey = config.requireObject<any>("awsSecretAccessKey");
- * const current = aws.getRegion({});
- * const s3Backups = new vault.RaftSnapshotAgentConfig("s3_backups", {
- *     name: "s3",
- *     intervalSeconds: 86400,
- *     retain: 7,
- *     pathPrefix: "/path/in/bucket",
- *     storageType: "aws-s3",
- *     awsS3Bucket: "my-bucket",
- *     awsS3Region: current.then(current => current.name),
- *     awsAccessKeyId: awsAccessKeyId,
- *     awsSecretAccessKey: awsSecretAccessKey,
- *     awsS3EnableKms: true,
- * });
- * ```
- *
  * ### Azure BLOB
  *
  * ```typescript

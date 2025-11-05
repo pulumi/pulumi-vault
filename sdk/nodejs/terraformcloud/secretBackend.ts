@@ -142,6 +142,14 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly sealWrap: pulumi.Output<boolean>;
     declare public readonly token: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly tokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for write-only secret data.
+     */
+    declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -180,6 +188,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["pluginVersion"] = state?.pluginVersion;
             resourceInputs["sealWrap"] = state?.sealWrap;
             resourceInputs["token"] = state?.token;
+            resourceInputs["tokenWo"] = state?.tokenWo;
+            resourceInputs["tokenWoVersion"] = state?.tokenWoVersion;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             resourceInputs["address"] = args?.address;
@@ -205,10 +215,12 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["pluginVersion"] = args?.pluginVersion;
             resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["tokenWo"] = args?.tokenWo ? pulumi.secret(args.tokenWo) : undefined;
+            resourceInputs["tokenWoVersion"] = args?.tokenWoVersion;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["token", "tokenWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -306,6 +318,14 @@ export interface SecretBackendState {
      */
     sealWrap?: pulumi.Input<boolean>;
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for write-only secret data.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -396,4 +416,12 @@ export interface SecretBackendArgs {
      */
     sealWrap?: pulumi.Input<boolean>;
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for write-only secret data.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }

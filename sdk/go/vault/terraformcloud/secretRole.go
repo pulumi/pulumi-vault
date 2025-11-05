@@ -59,6 +59,9 @@ type SecretRole struct {
 	pulumi.CustomResourceState
 
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+	CredentialType pulumi.StringPtrOutput `pulumi:"credentialType"`
+	Description    pulumi.StringPtrOutput `pulumi:"description"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
 	Name   pulumi.StringOutput `pulumi:"name"`
@@ -105,6 +108,9 @@ func GetSecretRole(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SecretRole resources.
 type secretRoleState struct {
 	Backend *string `pulumi:"backend"`
+	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+	CredentialType *string `pulumi:"credentialType"`
+	Description    *string `pulumi:"description"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl *int    `pulumi:"maxTtl"`
 	Name   *string `pulumi:"name"`
@@ -122,6 +128,9 @@ type secretRoleState struct {
 
 type SecretRoleState struct {
 	Backend pulumi.StringPtrInput
+	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+	CredentialType pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
 	Name   pulumi.StringPtrInput
@@ -143,6 +152,9 @@ func (SecretRoleState) ElementType() reflect.Type {
 
 type secretRoleArgs struct {
 	Backend *string `pulumi:"backend"`
+	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+	CredentialType *string `pulumi:"credentialType"`
+	Description    *string `pulumi:"description"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl *int    `pulumi:"maxTtl"`
 	Name   *string `pulumi:"name"`
@@ -161,6 +173,9 @@ type secretRoleArgs struct {
 // The set of arguments for constructing a SecretRole resource.
 type SecretRoleArgs struct {
 	Backend pulumi.StringPtrInput
+	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+	CredentialType pulumi.StringPtrInput
+	Description    pulumi.StringPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
 	Name   pulumi.StringPtrInput
@@ -265,6 +280,15 @@ func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) Sec
 
 func (o SecretRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+func (o SecretRoleOutput) CredentialType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.CredentialType }).(pulumi.StringPtrOutput)
+}
+
+func (o SecretRoleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // Maximum TTL for leases associated with this role, in seconds.

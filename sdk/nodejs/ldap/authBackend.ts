@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -24,6 +26,10 @@ import * as utilities from "../utilities";
  *     groupfilter: "(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
+ *     requestTimeout: 30,
+ *     dereferenceAliases: "always",
+ *     enableSamaccountnameLogin: false,
+ *     anonymousGroupSearch: false,
  * });
  * ```
  *
@@ -68,6 +74,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
+     * Allows anonymous group searches.
+     */
+    declare public readonly anonymousGroupSearch: pulumi.Output<boolean>;
+    /**
      * DN of object to bind when performing user search
      */
     declare public readonly binddn: pulumi.Output<string>;
@@ -94,6 +104,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly denyNullBind: pulumi.Output<boolean>;
     /**
+     * Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+     */
+    declare public readonly dereferenceAliases: pulumi.Output<string>;
+    /**
      * Description for the LDAP auth backend mount
      */
     declare public readonly description: pulumi.Output<string>;
@@ -110,6 +124,10 @@ export class AuthBackend extends pulumi.CustomResource {
      * Use anonymous bind to discover the bind DN of a user.
      */
     declare public readonly discoverdn: pulumi.Output<boolean>;
+    /**
+     * Enables login using the sAMAccountName attribute.
+     */
+    declare public readonly enableSamaccountnameLogin: pulumi.Output<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
@@ -146,6 +164,10 @@ export class AuthBackend extends pulumi.CustomResource {
      * Path to mount the LDAP auth backend under
      */
     declare public readonly path: pulumi.Output<string | undefined>;
+    /**
+     * The timeout(in sec) for requests to the LDAP server.
+     */
+    declare public readonly requestTimeout: pulumi.Output<number>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -207,9 +229,16 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly tokenTtl: pulumi.Output<number | undefined>;
     /**
-     * The type of token to generate, service or batch
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
     declare public readonly tokenType: pulumi.Output<string | undefined>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    declare public readonly tune: pulumi.Output<outputs.ldap.AuthBackendTune>;
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
@@ -253,6 +282,7 @@ export class AuthBackend extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
             resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["anonymousGroupSearch"] = state?.anonymousGroupSearch;
             resourceInputs["binddn"] = state?.binddn;
             resourceInputs["bindpass"] = state?.bindpass;
             resourceInputs["caseSensitiveNames"] = state?.caseSensitiveNames;
@@ -261,10 +291,12 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsKey"] = state?.clientTlsKey;
             resourceInputs["connectionTimeout"] = state?.connectionTimeout;
             resourceInputs["denyNullBind"] = state?.denyNullBind;
+            resourceInputs["dereferenceAliases"] = state?.dereferenceAliases;
             resourceInputs["description"] = state?.description;
             resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
             resourceInputs["disableRemount"] = state?.disableRemount;
             resourceInputs["discoverdn"] = state?.discoverdn;
+            resourceInputs["enableSamaccountnameLogin"] = state?.enableSamaccountnameLogin;
             resourceInputs["groupattr"] = state?.groupattr;
             resourceInputs["groupdn"] = state?.groupdn;
             resourceInputs["groupfilter"] = state?.groupfilter;
@@ -273,6 +305,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["maxPageSize"] = state?.maxPageSize;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
+            resourceInputs["requestTimeout"] = state?.requestTimeout;
             resourceInputs["rotationPeriod"] = state?.rotationPeriod;
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
             resourceInputs["rotationWindow"] = state?.rotationWindow;
@@ -288,6 +321,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = state?.tokenPolicies;
             resourceInputs["tokenTtl"] = state?.tokenTtl;
             resourceInputs["tokenType"] = state?.tokenType;
+            resourceInputs["tune"] = state?.tune;
             resourceInputs["upndomain"] = state?.upndomain;
             resourceInputs["url"] = state?.url;
             resourceInputs["useTokenGroups"] = state?.useTokenGroups;
@@ -300,6 +334,7 @@ export class AuthBackend extends pulumi.CustomResource {
             if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
+            resourceInputs["anonymousGroupSearch"] = args?.anonymousGroupSearch;
             resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
             resourceInputs["caseSensitiveNames"] = args?.caseSensitiveNames;
@@ -308,10 +343,12 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
             resourceInputs["connectionTimeout"] = args?.connectionTimeout;
             resourceInputs["denyNullBind"] = args?.denyNullBind;
+            resourceInputs["dereferenceAliases"] = args?.dereferenceAliases;
             resourceInputs["description"] = args?.description;
             resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
             resourceInputs["disableRemount"] = args?.disableRemount;
             resourceInputs["discoverdn"] = args?.discoverdn;
+            resourceInputs["enableSamaccountnameLogin"] = args?.enableSamaccountnameLogin;
             resourceInputs["groupattr"] = args?.groupattr;
             resourceInputs["groupdn"] = args?.groupdn;
             resourceInputs["groupfilter"] = args?.groupfilter;
@@ -320,6 +357,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["maxPageSize"] = args?.maxPageSize;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["path"] = args?.path;
+            resourceInputs["requestTimeout"] = args?.requestTimeout;
             resourceInputs["rotationPeriod"] = args?.rotationPeriod;
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
             resourceInputs["rotationWindow"] = args?.rotationWindow;
@@ -335,6 +373,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["tokenPolicies"] = args?.tokenPolicies;
             resourceInputs["tokenTtl"] = args?.tokenTtl;
             resourceInputs["tokenType"] = args?.tokenType;
+            resourceInputs["tune"] = args?.tune;
             resourceInputs["upndomain"] = args?.upndomain;
             resourceInputs["url"] = args?.url;
             resourceInputs["useTokenGroups"] = args?.useTokenGroups;
@@ -359,6 +398,10 @@ export interface AuthBackendState {
      * The accessor for this auth mount.
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * Allows anonymous group searches.
+     */
+    anonymousGroupSearch?: pulumi.Input<boolean>;
     /**
      * DN of object to bind when performing user search
      */
@@ -386,6 +429,10 @@ export interface AuthBackendState {
      */
     denyNullBind?: pulumi.Input<boolean>;
     /**
+     * Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+     */
+    dereferenceAliases?: pulumi.Input<string>;
+    /**
      * Description for the LDAP auth backend mount
      */
     description?: pulumi.Input<string>;
@@ -402,6 +449,10 @@ export interface AuthBackendState {
      * Use anonymous bind to discover the bind DN of a user.
      */
     discoverdn?: pulumi.Input<boolean>;
+    /**
+     * Enables login using the sAMAccountName attribute.
+     */
+    enableSamaccountnameLogin?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
@@ -438,6 +489,10 @@ export interface AuthBackendState {
      * Path to mount the LDAP auth backend under
      */
     path?: pulumi.Input<string>;
+    /**
+     * The timeout(in sec) for requests to the LDAP server.
+     */
+    requestTimeout?: pulumi.Input<number>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -499,9 +554,16 @@ export interface AuthBackendState {
      */
     tokenTtl?: pulumi.Input<number>;
     /**
-     * The type of token to generate, service or batch
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
     tokenType?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    tune?: pulumi.Input<inputs.ldap.AuthBackendTune>;
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
@@ -537,6 +599,10 @@ export interface AuthBackendState {
  */
 export interface AuthBackendArgs {
     /**
+     * Allows anonymous group searches.
+     */
+    anonymousGroupSearch?: pulumi.Input<boolean>;
+    /**
      * DN of object to bind when performing user search
      */
     binddn?: pulumi.Input<string>;
@@ -563,6 +629,10 @@ export interface AuthBackendArgs {
      */
     denyNullBind?: pulumi.Input<boolean>;
     /**
+     * Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
+     */
+    dereferenceAliases?: pulumi.Input<string>;
+    /**
      * Description for the LDAP auth backend mount
      */
     description?: pulumi.Input<string>;
@@ -579,6 +649,10 @@ export interface AuthBackendArgs {
      * Use anonymous bind to discover the bind DN of a user.
      */
     discoverdn?: pulumi.Input<boolean>;
+    /**
+     * Enables login using the sAMAccountName attribute.
+     */
+    enableSamaccountnameLogin?: pulumi.Input<boolean>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
@@ -615,6 +689,10 @@ export interface AuthBackendArgs {
      * Path to mount the LDAP auth backend under
      */
     path?: pulumi.Input<string>;
+    /**
+     * The timeout(in sec) for requests to the LDAP server.
+     */
+    requestTimeout?: pulumi.Input<number>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -676,9 +754,16 @@ export interface AuthBackendArgs {
      */
     tokenTtl?: pulumi.Input<number>;
     /**
-     * The type of token to generate, service or batch
+     * Specifies the type of tokens that should be returned by
+     * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
     tokenType?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    tune?: pulumi.Input<inputs.ldap.AuthBackendTune>;
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
