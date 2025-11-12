@@ -26,6 +26,77 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.aws.AuthBackendClient;
+ * import com.pulumi.vault.aws.AuthBackendClientArgs;
+ * import com.pulumi.vault.aws.AuthBackendRole;
+ * import com.pulumi.vault.aws.AuthBackendRoleArgs;
+ * import com.pulumi.vault.aws.AuthBackendLogin;
+ * import com.pulumi.vault.aws.AuthBackendLoginArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()
+ *             .type("aws")
+ *             .path("aws")
+ *             .build());
+ * 
+ *         var example = new AuthBackendClient("example", AuthBackendClientArgs.builder()
+ *             .backend(aws.path())
+ *             .accessKey("123456789012")
+ *             .secretKey("AWSSECRETKEYGOESHERE")
+ *             .build());
+ * 
+ *         var exampleAuthBackendRole = new AuthBackendRole("exampleAuthBackendRole", AuthBackendRoleArgs.builder()
+ *             .backend(aws.path())
+ *             .role("test-role")
+ *             .authType("ec2")
+ *             .boundAmiId("ami-8c1be5f6")
+ *             .boundAccountId("123456789012")
+ *             .boundVpcId("vpc-b61106d4")
+ *             .boundSubnetId("vpc-133128f1")
+ *             .boundIamInstanceProfileArns("arn:aws:iam::123456789012:instance-profile/MyProfile")
+ *             .ttl(60)
+ *             .maxTtl(120)
+ *             .tokenPolicies(            
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(example)
+ *                 .build());
+ * 
+ *         var exampleAuthBackendLogin = new AuthBackendLogin("exampleAuthBackendLogin", AuthBackendLoginArgs.builder()
+ *             .backend(exampleVaultAuthBackend.path())
+ *             .role(exampleAuthBackendRole.role())
+ *             .identity("BASE64ENCODEDIDENTITYDOCUMENT")
+ *             .signature("BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="vault:aws/authBackendLogin:AuthBackendLogin")
 public class AuthBackendLogin extends com.pulumi.resources.CustomResource {

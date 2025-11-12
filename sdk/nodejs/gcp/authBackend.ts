@@ -26,6 +26,26 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcp = new vault.gcp.AuthBackend("gcp", {
+ *     credentials: std.file({
+ *         input: "vault-gcp-credentials.json",
+ *     }).then(invoke => invoke.result),
+ *     rotationSchedule: "0 * * * SAT",
+ *     rotationWindow: 3600,
+ *     customEndpoint: {
+ *         api: "www.googleapis.com",
+ *         iam: "iam.googleapis.com",
+ *         crm: "cloudresourcemanager.googleapis.com",
+ *         compute: "compute.googleapis.com",
+ *     }[0],
+ * });
+ * ```
+ *
  * ## Import
  *
  * GCP authentication backends can be imported using the backend name, e.g.

@@ -14,6 +14,34 @@ import (
 // Reads the Role of an Kubernetes from a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
 // information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/kubernetes"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			role, err := kubernetes.LookupAuthBackendRole(ctx, &kubernetes.LookupAuthBackendRoleArgs{
+//				Backend:  pulumi.StringRef("my-kubernetes-backend"),
+//				RoleName: "my-role",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("policies", role.Policies)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs, opts ...pulumi.InvokeOption) (*LookupAuthBackendRoleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAuthBackendRoleResult

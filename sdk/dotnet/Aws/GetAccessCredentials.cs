@@ -13,18 +13,141 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var aws = new Vault.Aws.SecretBackend("aws", new()
+        ///     {
+        ///         AccessKey = "AKIA.....",
+        ///         SecretKey = "SECRETKEYFROMAWS",
+        ///     });
+        /// 
+        ///     var role = new Vault.Aws.SecretBackendRole("role", new()
+        ///     {
+        ///         Backend = aws.Path,
+        ///         Name = "test",
+        ///         Policy = @"{
+        ///   \""Version\"": \""2012-10-17\"",
+        ///   \""Statement\"": [
+        ///     {
+        ///       \""Effect\"": \""Allow\"",
+        ///       \""Action\"": \""iam:*\"",
+        ///       \""Resource\"": \""*\""
+        ///     }
+        ///   ]
+        /// }
+        /// ",
+        ///     });
+        /// 
+        ///     // generally, these blocks would be in a different module
+        ///     var creds = Vault.Aws.GetAccessCredentials.Invoke(new()
+        ///     {
+        ///         Backend = aws.Path,
+        ///         Role = role.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var aws = new Vault.Aws.SecretBackend("aws", new()
+        ///     {
+        ///         AccessKey = "AKIA.....",
+        ///         SecretKey = "SECRETKEYFROMAWS",
+        ///     });
+        /// 
+        ///     var role = new Vault.Aws.SecretBackendRole("role", new()
+        ///     {
+        ///         Backend = aws.Path,
+        ///         Name = "test",
+        ///         Policy = @"{
+        ///   \""Version\"": \""2012-10-17\"",
+        ///   \""Statement\"": [
+        ///     {
+        ///       \""Effect\"": \""Allow\"",
+        ///       \""Action\"": \""iam:*\"",
+        ///       \""Resource\"": \""*\""
+        ///     }
+        ///   ]
+        /// }
+        /// ",
+        ///     });
+        /// 
+        ///     // generally, these blocks would be in a different module
+        ///     var creds = Vault.Aws.GetAccessCredentials.Invoke(new()
+        ///     {
+        ///         Backend = aws.Path,
+        ///         Role = role.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var aws = new Vault.Aws.SecretBackend("aws", new()
+        ///     {
+        ///         AccessKey = "AKIA.....",
+        ///         SecretKey = "SECRETKEYFROMAWS",
+        ///     });
+        /// 
+        ///     var role = new Vault.Aws.SecretBackendRole("role", new()
+        ///     {
+        ///         Backend = aws.Path,
+        ///         Name = "test",
+        ///         Policy = @"{
+        ///   \""Version\"": \""2012-10-17\"",
+        ///   \""Statement\"": [
+        ///     {
+        ///       \""Effect\"": \""Allow\"",
+        ///       \""Action\"": \""iam:*\"",
+        ///       \""Resource\"": \""*\""
+        ///     }
+        ///   ]
+        /// }
+        /// ",
+        ///     });
+        /// 
+        ///     // generally, these blocks would be in a different module
+        ///     var creds = Vault.Aws.GetAccessCredentials.Invoke(new()
+        ///     {
+        ///         Backend = aws.Path,
+        ///         Role = role.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:aws/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());

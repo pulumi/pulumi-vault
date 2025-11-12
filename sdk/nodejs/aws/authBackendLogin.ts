@@ -11,6 +11,46 @@ import * as utilities from "../utilities";
  * documentation](https://www.vaultproject.io/docs/auth/aws.html).
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const aws = new vault.AuthBackend("aws", {
+ *     type: "aws",
+ *     path: "aws",
+ * });
+ * const example = new vault.aws.AuthBackendClient("example", {
+ *     backend: aws.path,
+ *     accessKey: "123456789012",
+ *     secretKey: "AWSSECRETKEYGOESHERE",
+ * });
+ * const exampleAuthBackendRole = new vault.aws.AuthBackendRole("example", {
+ *     backend: aws.path,
+ *     role: "test-role",
+ *     authType: "ec2",
+ *     boundAmiId: "ami-8c1be5f6",
+ *     boundAccountId: "123456789012",
+ *     boundVpcId: "vpc-b61106d4",
+ *     boundSubnetId: "vpc-133128f1",
+ *     boundIamInstanceProfileArns: ["arn:aws:iam::123456789012:instance-profile/MyProfile"],
+ *     ttl: 60,
+ *     maxTtl: 120,
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ * }, {
+ *     dependsOn: [example],
+ * });
+ * const exampleAuthBackendLogin = new vault.aws.AuthBackendLogin("example", {
+ *     backend: exampleVaultAuthBackend.path,
+ *     role: exampleAuthBackendRole.role,
+ *     identity: "BASE64ENCODEDIDENTITYDOCUMENT",
+ *     signature: "BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE",
+ * });
+ * ```
  */
 export class AuthBackendLogin extends pulumi.CustomResource {
     /**

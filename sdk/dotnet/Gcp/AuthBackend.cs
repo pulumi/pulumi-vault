@@ -36,6 +36,35 @@ namespace Pulumi.Vault.Gcp
     /// });
     /// ```
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcp = new Vault.Gcp.AuthBackend("gcp", new()
+    ///     {
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "vault-gcp-credentials.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         RotationSchedule = "0 * * * SAT",
+    ///         RotationWindow = 3600,
+    ///         CustomEndpoint = 
+    ///         {
+    ///             { "api", "www.googleapis.com" },
+    ///             { "iam", "iam.googleapis.com" },
+    ///             { "crm", "cloudresourcemanager.googleapis.com" },
+    ///             { "compute", "compute.googleapis.com" },
+    ///         }[0],
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// GCP authentication backends can be imported using the backend name, e.g.

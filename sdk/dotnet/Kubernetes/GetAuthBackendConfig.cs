@@ -15,6 +15,28 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = Vault.Kubernetes.GetAuthBackendConfig.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["tokenReviewerJwt"] = config.Apply(getAuthBackendConfigResult =&gt; getAuthBackendConfigResult.TokenReviewerJwt),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAuthBackendConfigResult> InvokeAsync(GetAuthBackendConfigArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigArgs(), options.WithDefaults());
@@ -23,6 +45,28 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = Vault.Kubernetes.GetAuthBackendConfig.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["tokenReviewerJwt"] = config.Apply(getAuthBackendConfigResult =&gt; getAuthBackendConfigResult.TokenReviewerJwt),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAuthBackendConfigResult> Invoke(GetAuthBackendConfigInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
@@ -31,6 +75,28 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = Vault.Kubernetes.GetAuthBackendConfig.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["tokenReviewerJwt"] = config.Apply(getAuthBackendConfigResult =&gt; getAuthBackendConfigResult.TokenReviewerJwt),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAuthBackendConfigResult> Invoke(GetAuthBackendConfigInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
