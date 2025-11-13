@@ -8,6 +8,19 @@ import * as utilities from "../utilities";
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
  * information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const role = vault.kubernetes.getAuthBackendRole({
+ *     backend: "my-kubernetes-backend",
+ *     roleName: "my-role",
+ * });
+ * export const policies = role.then(role => role.policies);
+ * ```
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -194,6 +207,19 @@ export interface GetAuthBackendRoleResult {
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
  * information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const role = vault.kubernetes.getAuthBackendRole({
+ *     backend: "my-kubernetes-backend",
+ *     roleName: "my-role",
+ * });
+ * export const policies = role.then(role => role.policies);
+ * ```
  */
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -91,9 +91,9 @@ import (
 //				Mount: kvv2.Path,
 //			}, nil)
 //			_ = kvv2.Path.ApplyT(func(path string) (kv.GetSecretsListV2Result, error) {
-//				return kv.GetSecretsListV2Result(interface{}(kv.GetSecretsListV2Output(ctx, kv.GetSecretsListV2OutputArgs{
+//				return kv.GetSecretsListV2Result(interface{}(kv.GetSecretsListV2(ctx, &kv.GetSecretsListV2Args{
 //					Mount: path,
-//					Name:  test2.Name,
+//					Name:  pulumi.StringRef(pulumi.StringRef(pulumi.String(test2.Name))),
 //				}, nil))), nil
 //			}).(kv.GetSecretsListV2ResultOutput)
 //			return nil

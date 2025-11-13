@@ -166,6 +166,16 @@ def get_auth_backend_config(backend: Optional[_builtins.str] = None,
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
     information.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    config = vault.kubernetes.get_auth_backend_config(backend="my-kubernetes-backend")
+    pulumi.export("tokenReviewerJwt", config.token_reviewer_jwt)
+    ```
+
 
     :param _builtins.str backend: The unique name for the Kubernetes backend the config to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
@@ -219,6 +229,16 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[_buil
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
     information.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    config = vault.kubernetes.get_auth_backend_config(backend="my-kubernetes-backend")
+    pulumi.export("tokenReviewerJwt", config.token_reviewer_jwt)
+    ```
 
 
     :param _builtins.str backend: The unique name for the Kubernetes backend the config to

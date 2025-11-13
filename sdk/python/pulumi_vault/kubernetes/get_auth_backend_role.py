@@ -269,6 +269,17 @@ def get_auth_backend_role(audience: Optional[_builtins.str] = None,
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
     information.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    role = vault.kubernetes.get_auth_backend_role(backend="my-kubernetes-backend",
+        role_name="my-role")
+    pulumi.export("policies", role.policies)
+    ```
+
 
     :param _builtins.str audience: Audience claim to verify in the JWT.
     :param _builtins.str backend: The unique name for the Kubernetes backend the role to
@@ -359,6 +370,17 @@ def get_auth_backend_role_output(audience: Optional[pulumi.Input[Optional[_built
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
     information.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    role = vault.kubernetes.get_auth_backend_role(backend="my-kubernetes-backend",
+        role_name="my-role")
+    pulumi.export("policies", role.policies)
+    ```
 
 
     :param _builtins.str audience: Audience claim to verify in the JWT.

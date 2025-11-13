@@ -74,7 +74,7 @@ import (
 //				return err
 //			}
 //			_ = testSecretBackendCert.SerialNumber.ApplyT(func(serialNumber string) (pkisecret.GetBackendCertMetadataResult, error) {
-//				return pkisecret.GetBackendCertMetadataResult(interface{}(pkisecret.GetBackendCertMetadataOutput(ctx, pkisecret.GetBackendCertMetadataOutputArgs{
+//				return pkisecret.GetBackendCertMetadataResult(interface{}(pkisecret.GetBackendCertMetadata(ctx, &pkisecret.GetBackendCertMetadataArgs{
 //					Path:   test_root.Path,
 //					Serial: serialNumber,
 //				}, nil))), nil

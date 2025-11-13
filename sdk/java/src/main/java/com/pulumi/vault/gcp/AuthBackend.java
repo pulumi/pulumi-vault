@@ -61,6 +61,49 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.gcp.AuthBackend;
+ * import com.pulumi.vault.gcp.AuthBackendArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input("vault-gcp-credentials.json")
+ *                 .build()).result())
+ *             .rotationSchedule("0 * * * SAT")
+ *             .rotationWindow(3600)
+ *             .customEndpoint(AuthBackendCustomEndpointArgs.builder()
+ *                 .api("www.googleapis.com")
+ *                 .iam("iam.googleapis.com")
+ *                 .crm("cloudresourcemanager.googleapis.com")
+ *                 .compute("compute.googleapis.com")
+ *                 .build()[0])
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * GCP authentication backends can be imported using the backend name, e.g.

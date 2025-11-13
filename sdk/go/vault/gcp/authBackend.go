@@ -45,6 +45,45 @@ import (
 //
 // ```
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "vault-gcp-credentials.json",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
+//				Credentials:      pulumi.String(invokeFile.Result),
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
+//				CustomEndpoint: map[string]interface{}{
+//					"api":     "www.googleapis.com",
+//					"iam":     "iam.googleapis.com",
+//					"crm":     "cloudresourcemanager.googleapis.com",
+//					"compute": "compute.googleapis.com",
+//				}[0],
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // GCP authentication backends can be imported using the backend name, e.g.

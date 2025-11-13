@@ -948,6 +948,23 @@ class AuthBackend(pulumi.CustomResource):
             rotation_window=3600)
         ```
 
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.AuthBackend("gcp",
+            credentials=std.file(input="vault-gcp-credentials.json").result,
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600,
+            custom_endpoint={
+                "api": "www.googleapis.com",
+                "iam": "iam.googleapis.com",
+                "crm": "cloudresourcemanager.googleapis.com",
+                "compute": "compute.googleapis.com",
+            }[0])
+        ```
+
         ## Import
 
         GCP authentication backends can be imported using the backend name, e.g.
@@ -1026,6 +1043,23 @@ class AuthBackend(pulumi.CustomResource):
             service_account_email="<SERVICE_ACCOUNT_EMAIL>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.AuthBackend("gcp",
+            credentials=std.file(input="vault-gcp-credentials.json").result,
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600,
+            custom_endpoint={
+                "api": "www.googleapis.com",
+                "iam": "iam.googleapis.com",
+                "crm": "cloudresourcemanager.googleapis.com",
+                "compute": "compute.googleapis.com",
+            }[0])
         ```
 
         ## Import
