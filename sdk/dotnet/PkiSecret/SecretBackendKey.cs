@@ -14,6 +14,34 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pki = new Vault.Mount("pki", new()
+    ///     {
+    ///         Path = "pki",
+    ///         Type = "pki",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///     });
+    /// 
+    ///     var key = new Vault.PkiSecret.SecretBackendKey("key", new()
+    ///     {
+    ///         Mount = pki.Path,
+    ///         Type = "exported",
+    ///         KeyName = "example-key",
+    ///         KeyType = "rsa",
+    ///         KeyBits = 2048,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// PKI secret backend key can be imported using the `id`, e.g.

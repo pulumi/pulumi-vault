@@ -26,6 +26,40 @@ public final class KubernetesFunctions {
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetAuthBackendConfigResult> getAuthBackendConfig() {
         return getAuthBackendConfig(GetAuthBackendConfigArgs.Empty, InvokeOptions.Empty);
@@ -34,6 +68,40 @@ public final class KubernetesFunctions {
      * Reads the Role of an Kubernetes from a Vault server. See the [Vault
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAuthBackendConfigResult> getAuthBackendConfigPlain() {
@@ -44,6 +112,40 @@ public final class KubernetesFunctions {
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetAuthBackendConfigResult> getAuthBackendConfig(GetAuthBackendConfigArgs args) {
         return getAuthBackendConfig(args, InvokeOptions.Empty);
@@ -52,6 +154,40 @@ public final class KubernetesFunctions {
      * Reads the Role of an Kubernetes from a Vault server. See the [Vault
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAuthBackendConfigResult> getAuthBackendConfigPlain(GetAuthBackendConfigPlainArgs args) {
@@ -62,6 +198,40 @@ public final class KubernetesFunctions {
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetAuthBackendConfigResult> getAuthBackendConfig(GetAuthBackendConfigArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", TypeShape.of(GetAuthBackendConfigResult.class), args, Utilities.withVersion(options));
@@ -70,6 +240,40 @@ public final class KubernetesFunctions {
      * Reads the Role of an Kubernetes from a Vault server. See the [Vault
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAuthBackendConfigResult> getAuthBackendConfig(GetAuthBackendConfigArgs args, InvokeOutputOptions options) {
@@ -80,6 +284,40 @@ public final class KubernetesFunctions {
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
      * information.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var config = KubernetesFunctions.getAuthBackendConfig(GetAuthBackendConfigArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .build());
+     * 
+     *         ctx.export("tokenReviewerJwt", config.tokenReviewerJwt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetAuthBackendConfigResult> getAuthBackendConfigPlain(GetAuthBackendConfigPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", TypeShape.of(GetAuthBackendConfigResult.class), args, Utilities.withVersion(options));
@@ -88,6 +326,41 @@ public final class KubernetesFunctions {
      * Reads the Role of an Kubernetes from a Vault server. See the [Vault
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
      * information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var role = KubernetesFunctions.getAuthBackendRole(GetAuthBackendRoleArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .roleName("my-role")
+     *             .build());
+     * 
+     *         ctx.export("policies", role.policies());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAuthBackendRoleResult> getAuthBackendRole(GetAuthBackendRoleArgs args) {
@@ -98,6 +371,41 @@ public final class KubernetesFunctions {
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
      * information.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var role = KubernetesFunctions.getAuthBackendRole(GetAuthBackendRoleArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .roleName("my-role")
+     *             .build());
+     * 
+     *         ctx.export("policies", role.policies());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetAuthBackendRoleResult> getAuthBackendRolePlain(GetAuthBackendRolePlainArgs args) {
         return getAuthBackendRolePlain(args, InvokeOptions.Empty);
@@ -106,6 +414,41 @@ public final class KubernetesFunctions {
      * Reads the Role of an Kubernetes from a Vault server. See the [Vault
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
      * information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var role = KubernetesFunctions.getAuthBackendRole(GetAuthBackendRoleArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .roleName("my-role")
+     *             .build());
+     * 
+     *         ctx.export("policies", role.policies());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAuthBackendRoleResult> getAuthBackendRole(GetAuthBackendRoleArgs args, InvokeOptions options) {
@@ -116,6 +459,41 @@ public final class KubernetesFunctions {
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
      * information.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var role = KubernetesFunctions.getAuthBackendRole(GetAuthBackendRoleArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .roleName("my-role")
+     *             .build());
+     * 
+     *         ctx.export("policies", role.policies());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetAuthBackendRoleResult> getAuthBackendRole(GetAuthBackendRoleArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", TypeShape.of(GetAuthBackendRoleResult.class), args, Utilities.withVersion(options));
@@ -124,6 +502,41 @@ public final class KubernetesFunctions {
      * Reads the Role of an Kubernetes from a Vault server. See the [Vault
      * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
      * information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.kubernetes.KubernetesFunctions;
+     * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var role = KubernetesFunctions.getAuthBackendRole(GetAuthBackendRoleArgs.builder()
+     *             .backend("my-kubernetes-backend")
+     *             .roleName("my-role")
+     *             .build());
+     * 
+     *         ctx.export("policies", role.policies());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAuthBackendRoleResult> getAuthBackendRolePlain(GetAuthBackendRolePlainArgs args, InvokeOptions options) {

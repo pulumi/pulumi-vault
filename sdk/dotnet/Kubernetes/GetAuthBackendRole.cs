@@ -15,6 +15,29 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Kubernetes.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policies"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.Policies),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAuthBackendRoleResult> InvokeAsync(GetAuthBackendRoleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleArgs(), options.WithDefaults());
@@ -23,6 +46,29 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Kubernetes.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policies"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.Policies),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
@@ -31,6 +77,29 @@ namespace Pulumi.Vault.Kubernetes
         /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
         /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
         /// information.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Kubernetes.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-kubernetes-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["policies"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.Policies),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());

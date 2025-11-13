@@ -17,6 +17,73 @@ import (
 // documentation](https://www.vaultproject.io/docs/auth/aws.html).
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//				Type: pulumi.String("aws"),
+//				Path: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := aws.NewAuthBackendClient(ctx, "example", &aws.AuthBackendClientArgs{
+//				Backend:   aws.Path,
+//				AccessKey: pulumi.String("123456789012"),
+//				SecretKey: pulumi.String("AWSSECRETKEYGOESHERE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleAuthBackendRole, err := aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
+//				Backend:        aws.Path,
+//				Role:           pulumi.String("test-role"),
+//				AuthType:       pulumi.String("ec2"),
+//				BoundAmiId:     "ami-8c1be5f6",
+//				BoundAccountId: "123456789012",
+//				BoundVpcId:     "vpc-b61106d4",
+//				BoundSubnetId:  "vpc-133128f1",
+//				BoundIamInstanceProfileArns: pulumi.StringArray{
+//					pulumi.String("arn:aws:iam::123456789012:instance-profile/MyProfile"),
+//				},
+//				Ttl:    60,
+//				MaxTtl: 120,
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				example,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendLogin(ctx, "example", &aws.AuthBackendLoginArgs{
+//				Backend:   pulumi.Any(exampleVaultAuthBackend.Path),
+//				Role:      exampleAuthBackendRole.Role,
+//				Identity:  pulumi.String("BASE64ENCODEDIDENTITYDOCUMENT"),
+//				Signature: pulumi.String("BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AuthBackendLogin struct {
 	pulumi.CustomResourceState
 

@@ -8,6 +8,18 @@ import * as utilities from "../utilities";
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
  * information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = vault.kubernetes.getAuthBackendConfig({
+ *     backend: "my-kubernetes-backend",
+ * });
+ * export const tokenReviewerJwt = config.then(config => config.tokenReviewerJwt);
+ * ```
  */
 export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendConfigResult> {
     args = args || {};
@@ -114,6 +126,18 @@ export interface GetAuthBackendConfigResult {
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
  * information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = vault.kubernetes.getAuthBackendConfig({
+ *     backend: "my-kubernetes-backend",
+ * });
+ * export const tokenReviewerJwt = config.then(config => config.tokenReviewerJwt);
+ * ```
  */
 export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendConfigResult> {
     args = args || {};
