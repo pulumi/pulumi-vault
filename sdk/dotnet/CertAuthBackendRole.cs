@@ -57,6 +57,13 @@ namespace Pulumi.Vault
     public partial class CertAuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// Allowed the common names for authenticated client certificates
         /// </summary>
         [Output("allowedCommonNames")]
@@ -274,6 +281,19 @@ namespace Pulumi.Vault
 
     public sealed class CertAuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         [Input("allowedCommonNames")]
         private InputList<string>? _allowedCommonNames;
 
@@ -514,6 +534,19 @@ namespace Pulumi.Vault
 
     public sealed class CertAuthBackendRoleState : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         [Input("allowedCommonNames")]
         private InputList<string>? _allowedCommonNames;
 

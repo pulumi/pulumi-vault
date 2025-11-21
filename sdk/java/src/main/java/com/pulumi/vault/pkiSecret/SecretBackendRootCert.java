@@ -448,6 +448,20 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.notAfter);
     }
     /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     * 
+     */
+    @Export(name="notBeforeDuration", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> notBeforeDuration;
+
+    /**
+     * @return Specifies the duration by which to backdate the NotBefore property.
+     * 
+     */
+    public Output<Optional<String>> notBeforeDuration() {
+        return Codegen.optional(this.notBeforeDuration);
+    }
+    /**
      * The organization
      * 
      */

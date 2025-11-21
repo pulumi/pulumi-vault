@@ -42,6 +42,7 @@ class SecretBackendRootCertArgs:
                  max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
+                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: Optional[pulumi.Input[_builtins.str]] = None,
@@ -90,6 +91,7 @@ class SecretBackendRootCertArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -148,6 +150,8 @@ class SecretBackendRootCertArgs:
             pulumi.set(__self__, "namespace", namespace)
         if not_after is not None:
             pulumi.set(__self__, "not_after", not_after)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -463,6 +467,18 @@ class SecretBackendRootCertArgs:
         pulumi.set(self, "not_after", value)
 
     @_builtins.property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @_builtins.property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -660,6 +676,7 @@ class _SecretBackendRootCertState:
                  max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
+                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: Optional[pulumi.Input[_builtins.str]] = None,
@@ -712,6 +729,7 @@ class _SecretBackendRootCertState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -782,6 +800,8 @@ class _SecretBackendRootCertState:
             pulumi.set(__self__, "namespace", namespace)
         if not_after is not None:
             pulumi.set(__self__, "not_after", not_after)
+        if not_before_duration is not None:
+            pulumi.set(__self__, "not_before_duration", not_before_duration)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if other_sans is not None:
@@ -1136,6 +1156,18 @@ class _SecretBackendRootCertState:
         pulumi.set(self, "not_after", value)
 
     @_builtins.property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
+
+    @not_before_duration.setter
+    def not_before_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "not_before_duration", value)
+
+    @_builtins.property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1357,6 +1389,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
+                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1427,6 +1460,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -1509,6 +1543,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
+                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1559,6 +1594,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__.__dict__["max_path_length"] = max_path_length
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["not_after"] = not_after
+            __props__.__dict__["not_before_duration"] = not_before_duration
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
@@ -1617,6 +1653,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             not_after: Optional[pulumi.Input[_builtins.str]] = None,
+            not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
             organization: Optional[pulumi.Input[_builtins.str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             ou: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1674,6 +1711,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -1722,6 +1760,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["max_path_length"] = max_path_length
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["not_after"] = not_after
+        __props__.__dict__["not_before_duration"] = not_before_duration
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
@@ -1955,6 +1994,14 @@ class SecretBackendRootCert(pulumi.CustomResource):
         Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         """
         return pulumi.get(self, "not_after")
+
+    @_builtins.property
+    @pulumi.getter(name="notBeforeDuration")
+    def not_before_duration(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the duration by which to backdate the NotBefore property.
+        """
+        return pulumi.get(self, "not_before_duration")
 
     @_builtins.property
     @pulumi.getter

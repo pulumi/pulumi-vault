@@ -20,6 +20,7 @@ __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -39,6 +40,8 @@ class AuthBackendRoleArgs:
         """
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend is mounted.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[_builtins.str] bound_attributes_type: The type of matching assertion to perform on
@@ -63,6 +66,8 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
         pulumi.set(__self__, "path", path)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if bound_attributes is not None:
             pulumi.set(__self__, "bound_attributes", bound_attributes)
         if bound_attributes_type is not None:
@@ -107,6 +112,19 @@ class AuthBackendRoleArgs:
     @path.setter
     def path(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAttributes")
@@ -310,6 +328,7 @@ class AuthBackendRoleArgs:
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -329,6 +348,8 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[_builtins.str] bound_attributes_type: The type of matching assertion to perform on
@@ -353,6 +374,8 @@ class _AuthBackendRoleState:
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if bound_attributes is not None:
             pulumi.set(__self__, "bound_attributes", bound_attributes)
         if bound_attributes_type is not None:
@@ -387,6 +410,19 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAttributes")
@@ -605,6 +641,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -662,6 +699,8 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[_builtins.str] bound_attributes_type: The type of matching assertion to perform on
@@ -744,6 +783,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -770,6 +810,7 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
+            __props__.__dict__["alias_metadata"] = alias_metadata
             __props__.__dict__["bound_attributes"] = bound_attributes
             __props__.__dict__["bound_attributes_type"] = bound_attributes_type
             __props__.__dict__["bound_subjects"] = bound_subjects
@@ -799,6 +840,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             bound_attributes_type: Optional[pulumi.Input[_builtins.str]] = None,
             bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -823,6 +865,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[_builtins.str] bound_attributes_type: The type of matching assertion to perform on
@@ -851,6 +895,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
+        __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["bound_attributes"] = bound_attributes
         __props__.__dict__["bound_attributes_type"] = bound_attributes_type
         __props__.__dict__["bound_subjects"] = bound_subjects
@@ -869,6 +914,15 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter(name="boundAttributes")

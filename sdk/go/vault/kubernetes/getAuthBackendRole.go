@@ -54,6 +54,7 @@ func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs,
 
 // A collection of arguments for invoking getAuthBackendRole.
 type LookupAuthBackendRoleArgs struct {
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Audience claim to verify in the JWT.
 	Audience *string `pulumi:"audience"`
 	// The unique name for the Kubernetes backend the role to
@@ -106,6 +107,7 @@ type LookupAuthBackendRoleArgs struct {
 
 // A collection of values returned by getAuthBackendRole.
 type LookupAuthBackendRoleResult struct {
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Method used for generating identity aliases. (vault-1.9+)
 	AliasNameSource string `pulumi:"aliasNameSource"`
 	// Audience claim to verify in the JWT.
@@ -168,6 +170,7 @@ func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRole
 
 // A collection of arguments for invoking getAuthBackendRole.
 type LookupAuthBackendRoleOutputArgs struct {
+	AliasMetadata pulumi.StringMapInput `pulumi:"aliasMetadata"`
 	// Audience claim to verify in the JWT.
 	Audience pulumi.StringPtrInput `pulumi:"audience"`
 	// The unique name for the Kubernetes backend the role to
@@ -235,6 +238,10 @@ func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutput()
 
 func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutputWithContext(ctx context.Context) LookupAuthBackendRoleResultOutput {
 	return o
+}
+
+func (o LookupAuthBackendRoleResultOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) map[string]string { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // Method used for generating identity aliases. (vault-1.9+)

@@ -75,6 +75,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
     declare public readonly baseUrl: pulumi.Output<string | undefined>;
@@ -173,6 +178,7 @@ export class AuthBackend extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
             resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["baseUrl"] = state?.baseUrl;
             resourceInputs["bypassOktaMfa"] = state?.bypassOktaMfa;
             resourceInputs["description"] = state?.description;
@@ -198,6 +204,7 @@ export class AuthBackend extends pulumi.CustomResource {
             if (args?.organization === undefined && !opts.urn) {
                 throw new Error("Missing required property 'organization'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["baseUrl"] = args?.baseUrl;
             resourceInputs["bypassOktaMfa"] = args?.bypassOktaMfa;
             resourceInputs["description"] = args?.description;
@@ -235,6 +242,11 @@ export interface AuthBackendState {
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
@@ -325,6 +337,11 @@ export interface AuthBackendState {
  * The set of arguments for constructing a AuthBackend resource.
  */
 export interface AuthBackendArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */

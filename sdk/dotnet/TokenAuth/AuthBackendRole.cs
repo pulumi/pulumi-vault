@@ -62,6 +62,13 @@ namespace Pulumi.Vault.TokenAuth
     public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// List of allowed entity aliases.
         /// </summary>
         [Output("allowedEntityAliases")]
@@ -224,6 +231,19 @@ namespace Pulumi.Vault.TokenAuth
 
     public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         [Input("allowedEntityAliases")]
         private InputList<string>? _allowedEntityAliases;
 
@@ -391,6 +411,19 @@ namespace Pulumi.Vault.TokenAuth
 
     public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         [Input("allowedEntityAliases")]
         private InputList<string>? _allowedEntityAliases;
 

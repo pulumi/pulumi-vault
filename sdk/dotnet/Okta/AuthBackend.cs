@@ -74,6 +74,13 @@ namespace Pulumi.Vault.Okta
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com
         /// </summary>
         [Output("baseUrl")]
@@ -247,6 +254,19 @@ namespace Pulumi.Vault.Okta
 
     public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com
         /// </summary>
@@ -418,6 +438,19 @@ namespace Pulumi.Vault.Okta
         /// </summary>
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
+
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
 
         /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com

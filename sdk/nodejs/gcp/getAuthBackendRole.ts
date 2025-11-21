@@ -27,6 +27,7 @@ import * as utilities from "../utilities";
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
+        "aliasMetadata": args.aliasMetadata,
         "backend": args.backend,
         "namespace": args.namespace,
         "roleName": args.roleName,
@@ -46,6 +47,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
  * A collection of arguments for invoking getAuthBackendRole.
  */
 export interface GetAuthBackendRoleArgs {
+    aliasMetadata?: {[key: string]: string};
     /**
      * The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
      */
@@ -121,6 +123,7 @@ export interface GetAuthBackendRoleArgs {
  * A collection of values returned by getAuthBackendRole.
  */
 export interface GetAuthBackendRoleResult {
+    readonly aliasMetadata?: {[key: string]: string};
     readonly backend?: string;
     /**
      * GCP regions bound to the role. Returned when `type` is `gce`.
@@ -238,6 +241,7 @@ export interface GetAuthBackendRoleResult {
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
+        "aliasMetadata": args.aliasMetadata,
         "backend": args.backend,
         "namespace": args.namespace,
         "roleName": args.roleName,
@@ -257,6 +261,7 @@ export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opt
  * A collection of arguments for invoking getAuthBackendRole.
  */
 export interface GetAuthBackendRoleOutputArgs {
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
      */

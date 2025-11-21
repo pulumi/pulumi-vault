@@ -9,12 +9,14 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAuthBackendRoleResult {
+    private @Nullable Map<String,String> aliasMetadata;
     private @Nullable String backend;
     /**
      * @return GCP regions bound to the role. Returned when `type` is `gce`.
@@ -128,6 +130,9 @@ public final class GetAuthBackendRoleResult {
     private String type;
 
     private GetAuthBackendRoleResult() {}
+    public Map<String,String> aliasMetadata() {
+        return this.aliasMetadata == null ? Map.of() : this.aliasMetadata;
+    }
     public Optional<String> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -291,6 +296,7 @@ public final class GetAuthBackendRoleResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Map<String,String> aliasMetadata;
         private @Nullable String backend;
         private List<String> boundInstanceGroups;
         private List<String> boundLabels;
@@ -315,6 +321,7 @@ public final class GetAuthBackendRoleResult {
         public Builder() {}
         public Builder(GetAuthBackendRoleResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.aliasMetadata = defaults.aliasMetadata;
     	      this.backend = defaults.backend;
     	      this.boundInstanceGroups = defaults.boundInstanceGroups;
     	      this.boundLabels = defaults.boundLabels;
@@ -338,6 +345,12 @@ public final class GetAuthBackendRoleResult {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder aliasMetadata(@Nullable Map<String,String> aliasMetadata) {
+
+            this.aliasMetadata = aliasMetadata;
+            return this;
+        }
         @CustomType.Setter
         public Builder backend(@Nullable String backend) {
 
@@ -510,6 +523,7 @@ public final class GetAuthBackendRoleResult {
         }
         public GetAuthBackendRoleResult build() {
             final var _resultValue = new GetAuthBackendRoleResult();
+            _resultValue.aliasMetadata = aliasMetadata;
             _resultValue.backend = backend;
             _resultValue.boundInstanceGroups = boundInstanceGroups;
             _resultValue.boundLabels = boundLabels;

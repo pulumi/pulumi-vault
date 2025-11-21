@@ -74,6 +74,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Allows anonymous group searches.
      */
     declare public readonly anonymousGroupSearch: pulumi.Output<boolean>;
@@ -282,6 +287,7 @@ export class AuthBackend extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
             resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["anonymousGroupSearch"] = state?.anonymousGroupSearch;
             resourceInputs["binddn"] = state?.binddn;
             resourceInputs["bindpass"] = state?.bindpass;
@@ -334,6 +340,7 @@ export class AuthBackend extends pulumi.CustomResource {
             if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["anonymousGroupSearch"] = args?.anonymousGroupSearch;
             resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
@@ -398,6 +405,11 @@ export interface AuthBackendState {
      * The accessor for this auth mount.
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Allows anonymous group searches.
      */
@@ -598,6 +610,11 @@ export interface AuthBackendState {
  * The set of arguments for constructing a AuthBackend resource.
  */
 export interface AuthBackendArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Allows anonymous group searches.
      */

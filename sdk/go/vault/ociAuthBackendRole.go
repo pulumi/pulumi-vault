@@ -66,6 +66,9 @@ import (
 type OciAuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// The name of the role.
@@ -127,6 +130,9 @@ func GetOciAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OciAuthBackendRole resources.
 type ociAuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Unique name of the auth backend to configure.
 	Backend *string `pulumi:"backend"`
 	// The name of the role.
@@ -159,6 +165,9 @@ type ociAuthBackendRoleState struct {
 }
 
 type OciAuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrInput
 	// The name of the role.
@@ -195,6 +204,9 @@ func (OciAuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type ociAuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Unique name of the auth backend to configure.
 	Backend *string `pulumi:"backend"`
 	// The name of the role.
@@ -228,6 +240,9 @@ type ociAuthBackendRoleArgs struct {
 
 // The set of arguments for constructing a OciAuthBackendRole resource.
 type OciAuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Unique name of the auth backend to configure.
 	Backend pulumi.StringPtrInput
 	// The name of the role.
@@ -344,6 +359,13 @@ func (o OciAuthBackendRoleOutput) ToOciAuthBackendRoleOutput() OciAuthBackendRol
 
 func (o OciAuthBackendRoleOutput) ToOciAuthBackendRoleOutputWithContext(ctx context.Context) OciAuthBackendRoleOutput {
 	return o
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o OciAuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *OciAuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // Unique name of the auth backend to configure.

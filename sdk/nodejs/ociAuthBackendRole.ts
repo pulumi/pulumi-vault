@@ -69,6 +69,11 @@ export class OciAuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Unique name of the auth backend to configure.
      */
     declare public readonly backend: pulumi.Output<string | undefined>;
@@ -137,6 +142,7 @@ export class OciAuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OciAuthBackendRoleState | undefined;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -152,6 +158,7 @@ export class OciAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenType"] = state?.tokenType;
         } else {
             const args = argsOrState as OciAuthBackendRoleArgs | undefined;
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -175,6 +182,11 @@ export class OciAuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering OciAuthBackendRole resources.
  */
 export interface OciAuthBackendRoleState {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Unique name of the auth backend to configure.
      */
@@ -236,6 +248,11 @@ export interface OciAuthBackendRoleState {
  * The set of arguments for constructing a OciAuthBackendRole resource.
  */
 export interface OciAuthBackendRoleArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Unique name of the auth backend to configure.
      */

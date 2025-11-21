@@ -50,6 +50,13 @@ namespace Pulumi.Vault.GitHub
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
+        /// (Optional) The metadata to be tied to generated entity alias.
+        /// This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// The API endpoint to use. Useful if you
         /// are running GitHub Enterprise or an API-compatible authentication server.
         /// </summary>
@@ -221,6 +228,19 @@ namespace Pulumi.Vault.GitHub
 
     public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// (Optional) The metadata to be tied to generated entity alias.
+        /// This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// The API endpoint to use. Useful if you
         /// are running GitHub Enterprise or an API-compatible authentication server.
@@ -372,6 +392,19 @@ namespace Pulumi.Vault.GitHub
         /// </summary>
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
+
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// (Optional) The metadata to be tied to generated entity alias.
+        /// This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
 
         /// <summary>
         /// The API endpoint to use. Useful if you

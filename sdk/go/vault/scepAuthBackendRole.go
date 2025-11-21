@@ -56,6 +56,9 @@ import (
 type ScepAuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// The authentication type to use. This can be either "static-challenge" or "intune".
 	AuthType pulumi.StringOutput `pulumi:"authType"`
 	// Path to the mounted SCEP auth backend.
@@ -123,6 +126,9 @@ func GetScepAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ScepAuthBackendRole resources.
 type scepAuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The authentication type to use. This can be either "static-challenge" or "intune".
 	AuthType *string `pulumi:"authType"`
 	// Path to the mounted SCEP auth backend.
@@ -158,6 +164,9 @@ type scepAuthBackendRoleState struct {
 }
 
 type ScepAuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The authentication type to use. This can be either "static-challenge" or "intune".
 	AuthType pulumi.StringPtrInput
 	// Path to the mounted SCEP auth backend.
@@ -197,6 +206,9 @@ func (ScepAuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type scepAuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The authentication type to use. This can be either "static-challenge" or "intune".
 	AuthType string `pulumi:"authType"`
 	// Path to the mounted SCEP auth backend.
@@ -233,6 +245,9 @@ type scepAuthBackendRoleArgs struct {
 
 // The set of arguments for constructing a ScepAuthBackendRole resource.
 type ScepAuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The authentication type to use. This can be either "static-challenge" or "intune".
 	AuthType pulumi.StringInput
 	// Path to the mounted SCEP auth backend.
@@ -352,6 +367,13 @@ func (o ScepAuthBackendRoleOutput) ToScepAuthBackendRoleOutput() ScepAuthBackend
 
 func (o ScepAuthBackendRoleOutput) ToScepAuthBackendRoleOutputWithContext(ctx context.Context) ScepAuthBackendRoleOutput {
 	return o
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o ScepAuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ScepAuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // The authentication type to use. This can be either "static-challenge" or "intune".

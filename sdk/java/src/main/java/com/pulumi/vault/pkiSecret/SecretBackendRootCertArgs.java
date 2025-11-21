@@ -366,6 +366,21 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     * 
+     */
+    @Import(name="notBeforeDuration")
+    private @Nullable Output<String> notBeforeDuration;
+
+    /**
+     * @return Specifies the duration by which to backdate the NotBefore property.
+     * 
+     */
+    public Optional<Output<String>> notBeforeDuration() {
+        return Optional.ofNullable(this.notBeforeDuration);
+    }
+
+    /**
      * The organization
      * 
      */
@@ -617,6 +632,7 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
         this.maxPathLength = $.maxPathLength;
         this.namespace = $.namespace;
         this.notAfter = $.notAfter;
+        this.notBeforeDuration = $.notBeforeDuration;
         this.organization = $.organization;
         this.otherSans = $.otherSans;
         this.ou = $.ou;
@@ -1188,6 +1204,27 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
          */
         public Builder notAfter(String notAfter) {
             return notAfter(Output.of(notAfter));
+        }
+
+        /**
+         * @param notBeforeDuration Specifies the duration by which to backdate the NotBefore property.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notBeforeDuration(@Nullable Output<String> notBeforeDuration) {
+            $.notBeforeDuration = notBeforeDuration;
+            return this;
+        }
+
+        /**
+         * @param notBeforeDuration Specifies the duration by which to backdate the NotBefore property.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notBeforeDuration(String notBeforeDuration) {
+            return notBeforeDuration(Output.of(notBeforeDuration));
         }
 
         /**

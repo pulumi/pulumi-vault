@@ -26,7 +26,10 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, backend=None, bound_instance_groups=None, bound_labels=None, bound_projects=None, bound_regions=None, bound_service_accounts=None, bound_zones=None, id=None, namespace=None, role_id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, type=None):
+    def __init__(__self__, alias_metadata=None, backend=None, bound_instance_groups=None, bound_labels=None, bound_projects=None, bound_regions=None, bound_service_accounts=None, bound_zones=None, id=None, namespace=None, role_id=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None, type=None):
+        if alias_metadata and not isinstance(alias_metadata, dict):
+            raise TypeError("Expected argument 'alias_metadata' to be a dict")
+        pulumi.set(__self__, "alias_metadata", alias_metadata)
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -90,6 +93,11 @@ class GetAuthBackendRoleResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[Mapping[str, _builtins.str]]:
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter
@@ -275,6 +283,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
         if False:
             yield self
         return GetAuthBackendRoleResult(
+            alias_metadata=self.alias_metadata,
             backend=self.backend,
             bound_instance_groups=self.bound_instance_groups,
             bound_labels=self.bound_labels,
@@ -298,7 +307,8 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             type=self.type)
 
 
-def get_auth_backend_role(backend: Optional[_builtins.str] = None,
+def get_auth_backend_role(alias_metadata: Optional[Mapping[str, _builtins.str]] = None,
+                          backend: Optional[_builtins.str] = None,
                           namespace: Optional[_builtins.str] = None,
                           role_name: Optional[_builtins.str] = None,
                           token_bound_cidrs: Optional[Sequence[_builtins.str]] = None,
@@ -361,6 +371,7 @@ def get_auth_backend_role(backend: Optional[_builtins.str] = None,
            requests a different type at generation time.
     """
     __args__ = dict()
+    __args__['aliasMetadata'] = alias_metadata
     __args__['backend'] = backend
     __args__['namespace'] = namespace
     __args__['roleName'] = role_name
@@ -377,6 +388,7 @@ def get_auth_backend_role(backend: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('vault:gcp/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult).value
 
     return AwaitableGetAuthBackendRoleResult(
+        alias_metadata=pulumi.get(__ret__, 'alias_metadata'),
         backend=pulumi.get(__ret__, 'backend'),
         bound_instance_groups=pulumi.get(__ret__, 'bound_instance_groups'),
         bound_labels=pulumi.get(__ret__, 'bound_labels'),
@@ -398,7 +410,8 @@ def get_auth_backend_role(backend: Optional[_builtins.str] = None,
         token_ttl=pulumi.get(__ret__, 'token_ttl'),
         token_type=pulumi.get(__ret__, 'token_type'),
         type=pulumi.get(__ret__, 'type'))
-def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_auth_backend_role_output(alias_metadata: Optional[pulumi.Input[Optional[Mapping[str, _builtins.str]]]] = None,
+                                 backend: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
                                  token_bound_cidrs: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
@@ -461,6 +474,7 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[_builti
            requests a different type at generation time.
     """
     __args__ = dict()
+    __args__['aliasMetadata'] = alias_metadata
     __args__['backend'] = backend
     __args__['namespace'] = namespace
     __args__['roleName'] = role_name
@@ -476,6 +490,7 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[_builti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:gcp/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult)
     return __ret__.apply(lambda __response__: GetAuthBackendRoleResult(
+        alias_metadata=pulumi.get(__response__, 'alias_metadata'),
         backend=pulumi.get(__response__, 'backend'),
         bound_instance_groups=pulumi.get(__response__, 'bound_instance_groups'),
         bound_labels=pulumi.get(__response__, 'bound_labels'),

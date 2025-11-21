@@ -212,6 +212,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> NotAfter { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the duration by which to backdate the NotBefore property.
+        /// </summary>
+        [Output("notBeforeDuration")]
+        public Output<string?> NotBeforeDuration { get; private set; } = null!;
+
+        /// <summary>
         /// The organization
         /// </summary>
         [Output("organization")]
@@ -529,6 +535,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("notAfter")]
         public Input<string>? NotAfter { get; set; }
+
+        /// <summary>
+        /// Specifies the duration by which to backdate the NotBefore property.
+        /// </summary>
+        [Input("notBeforeDuration")]
+        public Input<string>? NotBeforeDuration { get; set; }
 
         /// <summary>
         /// The organization
@@ -864,6 +876,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("notAfter")]
         public Input<string>? NotAfter { get; set; }
+
+        /// <summary>
+        /// Specifies the duration by which to backdate the NotBefore property.
+        /// </summary>
+        [Input("notBeforeDuration")]
+        public Input<string>? NotBeforeDuration { get; set; }
 
         /// <summary>
         /// The organization

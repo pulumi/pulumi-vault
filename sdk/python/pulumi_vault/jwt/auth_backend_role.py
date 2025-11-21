@@ -21,6 +21,7 @@ class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  role_name: pulumi.Input[_builtins.str],
                  user_claim: pulumi.Input[_builtins.str],
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -54,6 +55,8 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[_builtins.str] user_claim: The claim to use to uniquely identify
                the user; this will be used as the name for the Identity entity alias created
                due to a successful login.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_redirect_uris: The list of allowed values for redirect_uri during OIDC logins.
                Required for OIDC roles
         :param pulumi.Input[_builtins.str] backend: The unique name of the auth backend to configure.
@@ -112,6 +115,8 @@ class AuthBackendRoleArgs:
         """
         pulumi.set(__self__, "role_name", role_name)
         pulumi.set(__self__, "user_claim", user_claim)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allowed_redirect_uris is not None:
             pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
         if backend is not None:
@@ -192,6 +197,19 @@ class AuthBackendRoleArgs:
     @user_claim.setter
     def user_claim(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "user_claim", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedRedirectUris")
@@ -549,6 +567,7 @@ class AuthBackendRoleArgs:
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -580,6 +599,8 @@ class _AuthBackendRoleState:
                  verbose_oidc_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_redirect_uris: The list of allowed values for redirect_uri during OIDC logins.
                Required for OIDC roles
         :param pulumi.Input[_builtins.str] backend: The unique name of the auth backend to configure.
@@ -640,6 +661,8 @@ class _AuthBackendRoleState:
                logging is active. Not recommended in production since sensitive information may be present
                in OIDC responses.
         """
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allowed_redirect_uris is not None:
             pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
         if backend is not None:
@@ -698,6 +721,19 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "user_claim_json_pointer", user_claim_json_pointer)
         if verbose_oidc_logging is not None:
             pulumi.set(__self__, "verbose_oidc_logging", verbose_oidc_logging)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedRedirectUris")
@@ -1084,6 +1120,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1176,6 +1213,8 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_redirect_uris: The list of allowed values for redirect_uri during OIDC logins.
                Required for OIDC roles
         :param pulumi.Input[_builtins.str] backend: The unique name of the auth backend to configure.
@@ -1317,6 +1356,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1355,6 +1395,7 @@ class AuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
+            __props__.__dict__["alias_metadata"] = alias_metadata
             __props__.__dict__["allowed_redirect_uris"] = allowed_redirect_uris
             __props__.__dict__["backend"] = backend
             __props__.__dict__["bound_audiences"] = bound_audiences
@@ -1398,6 +1439,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1434,6 +1476,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_redirect_uris: The list of allowed values for redirect_uri during OIDC logins.
                Required for OIDC roles
         :param pulumi.Input[_builtins.str] backend: The unique name of the auth backend to configure.
@@ -1498,6 +1542,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
+        __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["allowed_redirect_uris"] = allowed_redirect_uris
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bound_audiences"] = bound_audiences
@@ -1528,6 +1573,15 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["user_claim_json_pointer"] = user_claim_json_pointer
         __props__.__dict__["verbose_oidc_logging"] = verbose_oidc_logging
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter(name="allowedRedirectUris")

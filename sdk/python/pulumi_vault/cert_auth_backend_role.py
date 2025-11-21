@@ -20,6 +20,7 @@ __all__ = ['CertAuthBackendRoleArgs', 'CertAuthBackendRole']
 class CertAuthBackendRoleArgs:
     def __init__(__self__, *,
                  certificate: pulumi.Input[_builtins.str],
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -48,6 +49,8 @@ class CertAuthBackendRoleArgs:
         """
         The set of arguments for constructing a CertAuthBackendRole resource.
         :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_email_sans: Allowed emails for authenticated client certificates
@@ -91,6 +94,8 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
         pulumi.set(__self__, "certificate", certificate)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allowed_common_names is not None:
             pulumi.set(__self__, "allowed_common_names", allowed_common_names)
         if allowed_dns_sans is not None:
@@ -153,6 +158,19 @@ class CertAuthBackendRoleArgs:
     @certificate.setter
     def certificate(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedCommonNames")
@@ -474,6 +492,7 @@ class CertAuthBackendRoleArgs:
 @pulumi.input_type
 class _CertAuthBackendRoleState:
     def __init__(__self__, *,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -502,6 +521,8 @@ class _CertAuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CertAuthBackendRole resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_email_sans: Allowed emails for authenticated client certificates
@@ -545,6 +566,8 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allowed_common_names is not None:
             pulumi.set(__self__, "allowed_common_names", allowed_common_names)
         if allowed_dns_sans is not None:
@@ -597,6 +620,19 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedCommonNames")
@@ -933,6 +969,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -988,6 +1025,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_email_sans: Allowed emails for authenticated client certificates
@@ -1078,6 +1117,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1113,6 +1153,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CertAuthBackendRoleArgs.__new__(CertAuthBackendRoleArgs)
 
+            __props__.__dict__["alias_metadata"] = alias_metadata
             __props__.__dict__["allowed_common_names"] = allowed_common_names
             __props__.__dict__["allowed_dns_sans"] = allowed_dns_sans
             __props__.__dict__["allowed_email_sans"] = allowed_email_sans
@@ -1151,6 +1192,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1184,6 +1226,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_common_names: Allowed the common names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_dns_sans: Allowed alternative dns names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_email_sans: Allowed emails for authenticated client certificates
@@ -1231,6 +1275,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
 
         __props__ = _CertAuthBackendRoleState.__new__(_CertAuthBackendRoleState)
 
+        __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["allowed_common_names"] = allowed_common_names
         __props__.__dict__["allowed_dns_sans"] = allowed_dns_sans
         __props__.__dict__["allowed_email_sans"] = allowed_email_sans
@@ -1258,6 +1303,15 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
         return CertAuthBackendRole(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter(name="allowedCommonNames")

@@ -63,6 +63,11 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Allowed the common names for authenticated client certificates
      */
     declare public readonly allowedCommonNames: pulumi.Output<string[]>;
@@ -196,6 +201,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CertAuthBackendRoleState | undefined;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["allowedCommonNames"] = state?.allowedCommonNames;
             resourceInputs["allowedDnsSans"] = state?.allowedDnsSans;
             resourceInputs["allowedEmailSans"] = state?.allowedEmailSans;
@@ -227,6 +233,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             if (args?.certificate === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["allowedCommonNames"] = args?.allowedCommonNames;
             resourceInputs["allowedDnsSans"] = args?.allowedDnsSans;
             resourceInputs["allowedEmailSans"] = args?.allowedEmailSans;
@@ -263,6 +270,11 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CertAuthBackendRole resources.
  */
 export interface CertAuthBackendRoleState {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Allowed the common names for authenticated client certificates
      */
@@ -389,6 +401,11 @@ export interface CertAuthBackendRoleState {
  * The set of arguments for constructing a CertAuthBackendRole resource.
  */
 export interface CertAuthBackendRoleArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Allowed the common names for authenticated client certificates
      */

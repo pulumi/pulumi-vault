@@ -20,6 +20,7 @@ __all__ = ['ScepAuthBackendRoleArgs', 'ScepAuthBackendRole']
 class ScepAuthBackendRoleArgs:
     def __init__(__self__, *,
                  auth_type: pulumi.Input[_builtins.str],
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  challenge: Optional[pulumi.Input[_builtins.str]] = None,
                  display_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -37,6 +38,8 @@ class ScepAuthBackendRoleArgs:
         """
         The set of arguments for constructing a ScepAuthBackendRole resource.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type to use. This can be either "static-challenge" or "intune".
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] backend: Path to the mounted SCEP auth backend.
         :param pulumi.Input[_builtins.str] challenge: The static challenge to use if auth_type is "static-challenge", not used for other auth types.
         :param pulumi.Input[_builtins.str] name: Name of the role.
@@ -55,6 +58,8 @@ class ScepAuthBackendRoleArgs:
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
         pulumi.set(__self__, "auth_type", auth_type)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if challenge is not None:
@@ -95,6 +100,19 @@ class ScepAuthBackendRoleArgs:
     @auth_type.setter
     def auth_type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "auth_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter
@@ -268,6 +286,7 @@ class ScepAuthBackendRoleArgs:
 @pulumi.input_type
 class _ScepAuthBackendRoleState:
     def __init__(__self__, *,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  auth_type: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  challenge: Optional[pulumi.Input[_builtins.str]] = None,
@@ -285,6 +304,8 @@ class _ScepAuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScepAuthBackendRole resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type to use. This can be either "static-challenge" or "intune".
         :param pulumi.Input[_builtins.str] backend: Path to the mounted SCEP auth backend.
         :param pulumi.Input[_builtins.str] challenge: The static challenge to use if auth_type is "static-challenge", not used for other auth types.
@@ -303,6 +324,8 @@ class _ScepAuthBackendRoleState:
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
         if backend is not None:
@@ -333,6 +356,19 @@ class _ScepAuthBackendRoleState:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
@@ -521,6 +557,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  auth_type: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  challenge: Optional[pulumi.Input[_builtins.str]] = None,
@@ -560,6 +597,8 @@ class ScepAuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type to use. This can be either "static-challenge" or "intune".
         :param pulumi.Input[_builtins.str] backend: Path to the mounted SCEP auth backend.
         :param pulumi.Input[_builtins.str] challenge: The static challenge to use if auth_type is "static-challenge", not used for other auth types.
@@ -620,6 +659,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  auth_type: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  challenge: Optional[pulumi.Input[_builtins.str]] = None,
@@ -644,6 +684,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ScepAuthBackendRoleArgs.__new__(ScepAuthBackendRoleArgs)
 
+            __props__.__dict__["alias_metadata"] = alias_metadata
             if auth_type is None and not opts.urn:
                 raise TypeError("Missing required property 'auth_type'")
             __props__.__dict__["auth_type"] = auth_type
@@ -671,6 +712,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             auth_type: Optional[pulumi.Input[_builtins.str]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             challenge: Optional[pulumi.Input[_builtins.str]] = None,
@@ -693,6 +735,8 @@ class ScepAuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type to use. This can be either "static-challenge" or "intune".
         :param pulumi.Input[_builtins.str] backend: Path to the mounted SCEP auth backend.
         :param pulumi.Input[_builtins.str] challenge: The static challenge to use if auth_type is "static-challenge", not used for other auth types.
@@ -715,6 +759,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
 
         __props__ = _ScepAuthBackendRoleState.__new__(_ScepAuthBackendRoleState)
 
+        __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["auth_type"] = auth_type
         __props__.__dict__["backend"] = backend
         __props__.__dict__["challenge"] = challenge
@@ -731,6 +776,15 @@ class ScepAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_ttl"] = token_ttl
         __props__.__dict__["token_type"] = token_type
         return ScepAuthBackendRole(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter(name="authType")

@@ -67,6 +67,9 @@ import (
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// List of allowed entity aliases.
 	AllowedEntityAliases pulumi.StringArrayOutput `pulumi:"allowedEntityAliases"`
 	// List of allowed policies for given role.
@@ -143,6 +146,9 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type authBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// List of allowed entity aliases.
 	AllowedEntityAliases []string `pulumi:"allowedEntityAliases"`
 	// List of allowed policies for given role.
@@ -187,6 +193,9 @@ type authBackendRoleState struct {
 }
 
 type AuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// List of allowed entity aliases.
 	AllowedEntityAliases pulumi.StringArrayInput
 	// List of allowed policies for given role.
@@ -235,6 +244,9 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type authBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// List of allowed entity aliases.
 	AllowedEntityAliases []string `pulumi:"allowedEntityAliases"`
 	// List of allowed policies for given role.
@@ -280,6 +292,9 @@ type authBackendRoleArgs struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// List of allowed entity aliases.
 	AllowedEntityAliases pulumi.StringArrayInput
 	// List of allowed policies for given role.
@@ -408,6 +423,13 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // List of allowed entity aliases.

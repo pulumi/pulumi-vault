@@ -54,6 +54,9 @@ type AuthBackend struct {
 
 	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// (Optional) The metadata to be tied to generated entity alias.
+	// This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// The API endpoint to use. Useful if you
 	// are running GitHub Enterprise or an API-compatible authentication server.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
@@ -149,6 +152,9 @@ func GetAuthBackend(ctx *pulumi.Context,
 type authBackendState struct {
 	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 	Accessor *string `pulumi:"accessor"`
+	// (Optional) The metadata to be tied to generated entity alias.
+	// This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The API endpoint to use. Useful if you
 	// are running GitHub Enterprise or an API-compatible authentication server.
 	BaseUrl *string `pulumi:"baseUrl"`
@@ -212,6 +218,9 @@ type authBackendState struct {
 type AuthBackendState struct {
 	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 	Accessor pulumi.StringPtrInput
+	// (Optional) The metadata to be tied to generated entity alias.
+	// This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The API endpoint to use. Useful if you
 	// are running GitHub Enterprise or an API-compatible authentication server.
 	BaseUrl pulumi.StringPtrInput
@@ -277,6 +286,9 @@ func (AuthBackendState) ElementType() reflect.Type {
 }
 
 type authBackendArgs struct {
+	// (Optional) The metadata to be tied to generated entity alias.
+	// This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The API endpoint to use. Useful if you
 	// are running GitHub Enterprise or an API-compatible authentication server.
 	BaseUrl *string `pulumi:"baseUrl"`
@@ -339,6 +351,9 @@ type authBackendArgs struct {
 
 // The set of arguments for constructing a AuthBackend resource.
 type AuthBackendArgs struct {
+	// (Optional) The metadata to be tied to generated entity alias.
+	// This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The API endpoint to use. Useful if you
 	// are running GitHub Enterprise or an API-compatible authentication server.
 	BaseUrl pulumi.StringPtrInput
@@ -489,6 +504,12 @@ func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) A
 // The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// (Optional) The metadata to be tied to generated entity alias.
+// This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // The API endpoint to use. Useful if you

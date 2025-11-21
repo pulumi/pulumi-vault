@@ -52,6 +52,7 @@ func LookupAuthBackendRole(ctx *pulumi.Context, args *LookupAuthBackendRoleArgs,
 
 // A collection of arguments for invoking getAuthBackendRole.
 type LookupAuthBackendRoleArgs struct {
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
 	Backend *string `pulumi:"backend"`
 	// The namespace of the target resource.
@@ -101,7 +102,8 @@ type LookupAuthBackendRoleArgs struct {
 
 // A collection of values returned by getAuthBackendRole.
 type LookupAuthBackendRoleResult struct {
-	Backend *string `pulumi:"backend"`
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
+	Backend       *string           `pulumi:"backend"`
 	// GCP regions bound to the role. Returned when `type` is `gce`.
 	BoundInstanceGroups []string `pulumi:"boundInstanceGroups"`
 	// GCP labels bound to the role. Returned when `type` is `gce`.
@@ -171,6 +173,7 @@ func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRole
 
 // A collection of arguments for invoking getAuthBackendRole.
 type LookupAuthBackendRoleOutputArgs struct {
+	AliasMetadata pulumi.StringMapInput `pulumi:"aliasMetadata"`
 	// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
 	Backend pulumi.StringPtrInput `pulumi:"backend"`
 	// The namespace of the target resource.
@@ -235,6 +238,10 @@ func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutput()
 
 func (o LookupAuthBackendRoleResultOutput) ToLookupAuthBackendRoleResultOutputWithContext(ctx context.Context) LookupAuthBackendRoleResultOutput {
 	return o
+}
+
+func (o LookupAuthBackendRoleResultOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) map[string]string { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 func (o LookupAuthBackendRoleResultOutput) Backend() pulumi.StringPtrOutput {

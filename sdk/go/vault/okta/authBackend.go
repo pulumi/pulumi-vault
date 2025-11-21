@@ -72,6 +72,9 @@ type AuthBackend struct {
 
 	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -162,6 +165,9 @@ func GetAuthBackend(ctx *pulumi.Context,
 type authBackendState struct {
 	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 	Accessor *string `pulumi:"accessor"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl *string `pulumi:"baseUrl"`
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -213,6 +219,9 @@ type authBackendState struct {
 type AuthBackendState struct {
 	// The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 	Accessor pulumi.StringPtrInput
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl pulumi.StringPtrInput
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -266,6 +275,9 @@ func (AuthBackendState) ElementType() reflect.Type {
 }
 
 type authBackendArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl *string `pulumi:"baseUrl"`
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -316,6 +328,9 @@ type authBackendArgs struct {
 
 // The set of arguments for constructing a AuthBackend resource.
 type AuthBackendArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl pulumi.StringPtrInput
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -454,6 +469,13 @@ func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) A
 // The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
 func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // The Okta url. Examples: oktapreview.com, okta.com

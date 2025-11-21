@@ -61,6 +61,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly accessor: pulumi.Output<string>;
     /**
+     * (Optional) The metadata to be tied to generated entity alias.
+     * This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.
      */
@@ -167,6 +172,7 @@ export class AuthBackend extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendState | undefined;
             resourceInputs["accessor"] = state?.accessor;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["baseUrl"] = state?.baseUrl;
             resourceInputs["description"] = state?.description;
             resourceInputs["disableRemount"] = state?.disableRemount;
@@ -189,6 +195,7 @@ export class AuthBackend extends pulumi.CustomResource {
             if (args?.organization === undefined && !opts.urn) {
                 throw new Error("Missing required property 'organization'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["baseUrl"] = args?.baseUrl;
             resourceInputs["description"] = args?.description;
             resourceInputs["disableRemount"] = args?.disableRemount;
@@ -221,6 +228,11 @@ export interface AuthBackendState {
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
     accessor?: pulumi.Input<string>;
+    /**
+     * (Optional) The metadata to be tied to generated entity alias.
+     * This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.
@@ -319,6 +331,11 @@ export interface AuthBackendState {
  * The set of arguments for constructing a AuthBackend resource.
  */
 export interface AuthBackendArgs {
+    /**
+     * (Optional) The metadata to be tied to generated entity alias.
+     * This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The API endpoint to use. Useful if you
      * are running GitHub Enterprise or an API-compatible authentication server.

@@ -105,6 +105,13 @@ namespace Pulumi.Vault.Jwt
     public partial class AuthBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// The list of allowed values for RedirectUri during OIDC logins.
         /// Required for OIDC roles
         /// </summary>
@@ -354,6 +361,19 @@ namespace Pulumi.Vault.Jwt
 
     public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         [Input("allowedRedirectUris")]
         private InputList<string>? _allowedRedirectUris;
 
@@ -608,6 +628,19 @@ namespace Pulumi.Vault.Jwt
 
     public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         [Input("allowedRedirectUris")]
         private InputList<string>? _allowedRedirectUris;
 

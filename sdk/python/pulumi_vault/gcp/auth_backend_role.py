@@ -22,6 +22,7 @@ class AuthBackendRoleArgs:
                  role: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -46,6 +47,8 @@ class AuthBackendRoleArgs:
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[_builtins.str] role: Name of the GCP role
         :param pulumi.Input[_builtins.str] type: Type of GCP authentication role (either `gce` or `iam`)
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
@@ -68,6 +71,8 @@ class AuthBackendRoleArgs:
         pulumi.set(__self__, "type", type)
         if add_group_aliases is not None:
             pulumi.set(__self__, "add_group_aliases", add_group_aliases)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allow_gce_inference is not None:
             pulumi.set(__self__, "allow_gce_inference", allow_gce_inference)
         if backend is not None:
@@ -141,6 +146,19 @@ class AuthBackendRoleArgs:
     @add_group_aliases.setter
     def add_group_aliases(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "add_group_aliases", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowGceInference")
@@ -372,6 +390,7 @@ class AuthBackendRoleArgs:
 class _AuthBackendRoleState:
     def __init__(__self__, *,
                  add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -396,6 +415,8 @@ class _AuthBackendRoleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
@@ -418,6 +439,8 @@ class _AuthBackendRoleState:
         """
         if add_group_aliases is not None:
             pulumi.set(__self__, "add_group_aliases", add_group_aliases)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allow_gce_inference is not None:
             pulumi.set(__self__, "allow_gce_inference", allow_gce_inference)
         if backend is not None:
@@ -471,6 +494,19 @@ class _AuthBackendRoleState:
     @add_group_aliases.setter
     def add_group_aliases(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "add_group_aliases", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowGceInference")
@@ -729,6 +765,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -789,6 +826,8 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
@@ -866,6 +905,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -898,6 +938,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__ = AuthBackendRoleArgs.__new__(AuthBackendRoleArgs)
 
             __props__.__dict__["add_group_aliases"] = add_group_aliases
+            __props__.__dict__["alias_metadata"] = alias_metadata
             __props__.__dict__["allow_gce_inference"] = allow_gce_inference
             __props__.__dict__["backend"] = backend
             __props__.__dict__["bound_instance_groups"] = bound_instance_groups
@@ -935,6 +976,7 @@ class AuthBackendRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
+            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -964,6 +1006,8 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] backend: Path to the mounted GCP auth backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
@@ -989,6 +1033,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__ = _AuthBackendRoleState.__new__(_AuthBackendRoleState)
 
         __props__.__dict__["add_group_aliases"] = add_group_aliases
+        __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["allow_gce_inference"] = allow_gce_inference
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bound_instance_groups"] = bound_instance_groups
@@ -1017,6 +1062,15 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="addGroupAliases")
     def add_group_aliases(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "add_group_aliases")
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter(name="allowGceInference")

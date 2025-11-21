@@ -108,6 +108,14 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class GetAuthBackendRoleArgs : global::Pulumi.InvokeArgs
     {
+        [Input("aliasMetadata")]
+        private Dictionary<string, string>? _aliasMetadata;
+        public Dictionary<string, string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new Dictionary<string, string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// </summary>
@@ -228,6 +236,14 @@ namespace Pulumi.Vault.Kubernetes
 
     public sealed class GetAuthBackendRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// Audience claim to verify in the JWT.
         /// </summary>
@@ -350,6 +366,7 @@ namespace Pulumi.Vault.Kubernetes
     [OutputType]
     public sealed class GetAuthBackendRoleResult
     {
+        public readonly ImmutableDictionary<string, string>? AliasMetadata;
         /// <summary>
         /// Method used for generating identity aliases. (vault-1.9+)
         /// </summary>
@@ -430,6 +447,8 @@ namespace Pulumi.Vault.Kubernetes
 
         [OutputConstructor]
         private GetAuthBackendRoleResult(
+            ImmutableDictionary<string, string>? aliasMetadata,
+
             string aliasNameSource,
 
             string? audience,
@@ -464,6 +483,7 @@ namespace Pulumi.Vault.Kubernetes
 
             string? tokenType)
         {
+            AliasMetadata = aliasMetadata;
             AliasNameSource = aliasNameSource;
             Audience = audience;
             Backend = backend;
