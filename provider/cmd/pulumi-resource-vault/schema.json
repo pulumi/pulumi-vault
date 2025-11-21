@@ -6407,6 +6407,13 @@
         "vault:alicloud/authBackendRole:AuthBackendRole": {
             "description": "Provides a resource to create a role in an [AliCloud auth backend within Vault](https://www.vaultproject.io/docs/auth/alicloud.html).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst alicloud = new vault.AuthBackend(\"alicloud\", {\n    type: \"alicloud\",\n    path: \"alicloud\",\n});\nconst alicloudAuthBackendRole = new vault.alicloud.AuthBackendRole(\"alicloud\", {\n    backend: alicloud.path,\n    role: \"example\",\n    arn: \"acs:ram:123456:tf:role/foobar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nalicloud = vault.AuthBackend(\"alicloud\",\n    type=\"alicloud\",\n    path=\"alicloud\")\nalicloud_auth_backend_role = vault.alicloud.AuthBackendRole(\"alicloud\",\n    backend=alicloud.path,\n    role=\"example\",\n    arn=\"acs:ram:123456:tf:role/foobar\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var alicloud = new Vault.AuthBackend(\"alicloud\", new()\n    {\n        Type = \"alicloud\",\n        Path = \"alicloud\",\n    });\n\n    var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole(\"alicloud\", new()\n    {\n        Backend = alicloud.Path,\n        Role = \"example\",\n        Arn = \"acs:ram:123456:tf:role/foobar\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/alicloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\talicloud, err := vault.NewAuthBackend(ctx, \"alicloud\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"alicloud\"),\n\t\t\tPath: pulumi.String(\"alicloud\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = alicloud.NewAuthBackendRole(ctx, \"alicloud\", \u0026alicloud.AuthBackendRoleArgs{\n\t\t\tBackend: alicloud.Path,\n\t\t\tRole:    pulumi.String(\"example\"),\n\t\t\tArn:     pulumi.String(\"acs:ram:123456:tf:role/foobar\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.alicloud.AuthBackendRole;\nimport com.pulumi.vault.alicloud.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var alicloud = new AuthBackend(\"alicloud\", AuthBackendArgs.builder()\n            .type(\"alicloud\")\n            .path(\"alicloud\")\n            .build());\n\n        var alicloudAuthBackendRole = new AuthBackendRole(\"alicloudAuthBackendRole\", AuthBackendRoleArgs.builder()\n            .backend(alicloud.path())\n            .role(\"example\")\n            .arn(\"acs:ram:123456:tf:role/foobar\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  alicloud:\n    type: vault:AuthBackend\n    properties:\n      type: alicloud\n      path: alicloud\n  alicloudAuthBackendRole:\n    type: vault:alicloud:AuthBackendRole\n    name: alicloud\n    properties:\n      backend: ${alicloud.path}\n      role: example\n      arn: acs:ram:123456:tf:role/foobar\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAlicloud authentication roles can be imported using the `path`, e.g.\n\n```sh\n$ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "arn": {
                     "type": "string",
                     "description": "The role's arn.\n"
@@ -6471,6 +6478,13 @@
                 "role"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "arn": {
                     "type": "string",
                     "description": "The role's arn.\n"
@@ -6540,6 +6554,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "arn": {
                         "type": "string",
                         "description": "The role's arn.\n"
@@ -6763,6 +6784,13 @@
         "vault:appRole/authBackendRole:AuthBackendRole": {
             "description": "Manages an AppRole auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/approle) for more\ninformation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst approle = new vault.AuthBackend(\"approle\", {type: \"approle\"});\nconst example = new vault.approle.AuthBackendRole(\"example\", {\n    backend: approle.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\napprole = vault.AuthBackend(\"approle\", type=\"approle\")\nexample = vault.approle.AuthBackendRole(\"example\",\n    backend=approle.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var approle = new Vault.AuthBackend(\"approle\", new()\n    {\n        Type = \"approle\",\n    });\n\n    var example = new Vault.AppRole.AuthBackendRole(\"example\", new()\n    {\n        Backend = approle.Path,\n        RoleName = \"test-role\",\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/approle\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tapprole, err := vault.NewAuthBackend(ctx, \"approle\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"approle\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = approle.NewAuthBackendRole(ctx, \"example\", \u0026approle.AuthBackendRoleArgs{\n\t\t\tBackend:  approle.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.appRole.AuthBackendRole;\nimport com.pulumi.vault.appRole.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var approle = new AuthBackend(\"approle\", AuthBackendArgs.builder()\n            .type(\"approle\")\n            .build());\n\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .backend(approle.path())\n            .roleName(\"test-role\")\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  approle:\n    type: vault:AuthBackend\n    properties:\n      type: approle\n  example:\n    type: vault:appRole:AuthBackendRole\n    properties:\n      backend: ${approle.path}\n      roleName: test-role\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAppRole authentication backend roles can be imported using the `path`, e.g.\n\n```sh\n$ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "backend": {
                     "type": "string",
                     "description": "The unique name of the auth backend to configure.\nDefaults to \u003cspan pulumi-lang-nodejs=\"`approle`\" pulumi-lang-dotnet=\"`Approle`\" pulumi-lang-go=\"`approle`\" pulumi-lang-python=\"`approle`\" pulumi-lang-yaml=\"`approle`\" pulumi-lang-java=\"`approle`\"\u003e`approle`\u003c/span\u003e.\n"
@@ -6846,6 +6874,13 @@
                 "roleName"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "backend": {
                     "type": "string",
                     "description": "The unique name of the auth backend to configure.\nDefaults to \u003cspan pulumi-lang-nodejs=\"`approle`\" pulumi-lang-dotnet=\"`Approle`\" pulumi-lang-go=\"`approle`\" pulumi-lang-python=\"`approle`\" pulumi-lang-yaml=\"`approle`\" pulumi-lang-java=\"`approle`\"\u003e`approle`\u003c/span\u003e.\n",
@@ -6933,6 +6968,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "backend": {
                         "type": "string",
                         "description": "The unique name of the auth backend to configure.\nDefaults to \u003cspan pulumi-lang-nodejs=\"`approle`\" pulumi-lang-dotnet=\"`Approle`\" pulumi-lang-go=\"`approle`\" pulumi-lang-python=\"`approle`\" pulumi-lang-yaml=\"`approle`\" pulumi-lang-java=\"`approle`\"\u003e`approle`\u003c/span\u003e.\n",
@@ -8008,6 +8050,13 @@
         "vault:aws/authBackendRole:AuthBackendRole": {
             "description": "Manages an AWS auth backend role in a Vault server. Roles constrain the\ninstances or principals that can perform the login operation against the\nbackend. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/aws.html) for more\ninformation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst aws = new vault.AuthBackend(\"aws\", {type: \"aws\"});\nconst example = new vault.aws.AuthBackendRole(\"example\", {\n    backend: aws.path,\n    role: \"test-role\",\n    authType: \"iam\",\n    boundAmiIds: [\"ami-8c1be5f6\"],\n    boundAccountIds: [\"123456789012\"],\n    boundVpcIds: [\"vpc-b61106d4\"],\n    boundSubnetIds: [\"vpc-133128f1\"],\n    boundIamRoleArns: [\"arn:aws:iam::123456789012:role/MyRole\"],\n    boundIamInstanceProfileArns: [\"arn:aws:iam::123456789012:instance-profile/MyProfile\"],\n    inferredEntityType: \"ec2_instance\",\n    inferredAwsRegion: \"us-east-1\",\n    tokenTtl: 60,\n    tokenMaxTtl: 120,\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\naws = vault.AuthBackend(\"aws\", type=\"aws\")\nexample = vault.aws.AuthBackendRole(\"example\",\n    backend=aws.path,\n    role=\"test-role\",\n    auth_type=\"iam\",\n    bound_ami_ids=[\"ami-8c1be5f6\"],\n    bound_account_ids=[\"123456789012\"],\n    bound_vpc_ids=[\"vpc-b61106d4\"],\n    bound_subnet_ids=[\"vpc-133128f1\"],\n    bound_iam_role_arns=[\"arn:aws:iam::123456789012:role/MyRole\"],\n    bound_iam_instance_profile_arns=[\"arn:aws:iam::123456789012:instance-profile/MyProfile\"],\n    inferred_entity_type=\"ec2_instance\",\n    inferred_aws_region=\"us-east-1\",\n    token_ttl=60,\n    token_max_ttl=120,\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aws = new Vault.AuthBackend(\"aws\", new()\n    {\n        Type = \"aws\",\n    });\n\n    var example = new Vault.Aws.AuthBackendRole(\"example\", new()\n    {\n        Backend = aws.Path,\n        Role = \"test-role\",\n        AuthType = \"iam\",\n        BoundAmiIds = new[]\n        {\n            \"ami-8c1be5f6\",\n        },\n        BoundAccountIds = new[]\n        {\n            \"123456789012\",\n        },\n        BoundVpcIds = new[]\n        {\n            \"vpc-b61106d4\",\n        },\n        BoundSubnetIds = new[]\n        {\n            \"vpc-133128f1\",\n        },\n        BoundIamRoleArns = new[]\n        {\n            \"arn:aws:iam::123456789012:role/MyRole\",\n        },\n        BoundIamInstanceProfileArns = new[]\n        {\n            \"arn:aws:iam::123456789012:instance-profile/MyProfile\",\n        },\n        InferredEntityType = \"ec2_instance\",\n        InferredAwsRegion = \"us-east-1\",\n        TokenTtl = 60,\n        TokenMaxTtl = 120,\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/aws\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taws, err := vault.NewAuthBackend(ctx, \"aws\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"aws\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = aws.NewAuthBackendRole(ctx, \"example\", \u0026aws.AuthBackendRoleArgs{\n\t\t\tBackend:  aws.Path,\n\t\t\tRole:     pulumi.String(\"test-role\"),\n\t\t\tAuthType: pulumi.String(\"iam\"),\n\t\t\tBoundAmiIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ami-8c1be5f6\"),\n\t\t\t},\n\t\t\tBoundAccountIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"123456789012\"),\n\t\t\t},\n\t\t\tBoundVpcIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"vpc-b61106d4\"),\n\t\t\t},\n\t\t\tBoundSubnetIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"vpc-133128f1\"),\n\t\t\t},\n\t\t\tBoundIamRoleArns: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"arn:aws:iam::123456789012:role/MyRole\"),\n\t\t\t},\n\t\t\tBoundIamInstanceProfileArns: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"arn:aws:iam::123456789012:instance-profile/MyProfile\"),\n\t\t\t},\n\t\t\tInferredEntityType: pulumi.String(\"ec2_instance\"),\n\t\t\tInferredAwsRegion:  pulumi.String(\"us-east-1\"),\n\t\t\tTokenTtl:           pulumi.Int(60),\n\t\t\tTokenMaxTtl:        pulumi.Int(120),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.aws.AuthBackendRole;\nimport com.pulumi.vault.aws.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aws = new AuthBackend(\"aws\", AuthBackendArgs.builder()\n            .type(\"aws\")\n            .build());\n\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .backend(aws.path())\n            .role(\"test-role\")\n            .authType(\"iam\")\n            .boundAmiIds(\"ami-8c1be5f6\")\n            .boundAccountIds(\"123456789012\")\n            .boundVpcIds(\"vpc-b61106d4\")\n            .boundSubnetIds(\"vpc-133128f1\")\n            .boundIamRoleArns(\"arn:aws:iam::123456789012:role/MyRole\")\n            .boundIamInstanceProfileArns(\"arn:aws:iam::123456789012:instance-profile/MyProfile\")\n            .inferredEntityType(\"ec2_instance\")\n            .inferredAwsRegion(\"us-east-1\")\n            .tokenTtl(60)\n            .tokenMaxTtl(120)\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aws:\n    type: vault:AuthBackend\n    properties:\n      type: aws\n  example:\n    type: vault:aws:AuthBackendRole\n    properties:\n      backend: ${aws.path}\n      role: test-role\n      authType: iam\n      boundAmiIds:\n        - ami-8c1be5f6\n      boundAccountIds:\n        - '123456789012'\n      boundVpcIds:\n        - vpc-b61106d4\n      boundSubnetIds:\n        - vpc-133128f1\n      boundIamRoleArns:\n        - arn:aws:iam::123456789012:role/MyRole\n      boundIamInstanceProfileArns:\n        - arn:aws:iam::123456789012:instance-profile/MyProfile\n      inferredEntityType: ec2_instance\n      inferredAwsRegion: us-east-1\n      tokenTtl: 60\n      tokenMaxTtl: 120\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.\n\n```sh\n$ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowInstanceMigration": {
                     "type": "boolean",
                     "description": "If set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, allows migration of\nthe underlying instance where the client resides.\n"
@@ -8163,6 +8212,13 @@
                 "roleId"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowInstanceMigration": {
                     "type": "boolean",
                     "description": "If set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, allows migration of\nthe underlying instance where the client resides.\n"
@@ -8319,6 +8375,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "allowInstanceMigration": {
                         "type": "boolean",
                         "description": "If set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, allows migration of\nthe underlying instance where the client resides.\n"
@@ -9985,6 +10048,13 @@
         "vault:azure/authBackendRole:AuthBackendRole": {
             "description": "Manages an Azure auth backend role in a Vault server. Roles constrain the\ninstances or principals that can perform the login operation against the\nbackend. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/azure.html) for more\ninformation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst azure = new vault.AuthBackend(\"azure\", {type: \"azure\"});\nconst example = new vault.azure.AuthBackendRole(\"example\", {\n    backend: azure.path,\n    role: \"test-role\",\n    boundSubscriptionIds: [\"11111111-2222-3333-4444-555555555555\"],\n    boundResourceGroups: [\"123456789012\"],\n    tokenTtl: 60,\n    tokenMaxTtl: 120,\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nazure = vault.AuthBackend(\"azure\", type=\"azure\")\nexample = vault.azure.AuthBackendRole(\"example\",\n    backend=azure.path,\n    role=\"test-role\",\n    bound_subscription_ids=[\"11111111-2222-3333-4444-555555555555\"],\n    bound_resource_groups=[\"123456789012\"],\n    token_ttl=60,\n    token_max_ttl=120,\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var azure = new Vault.AuthBackend(\"azure\", new()\n    {\n        Type = \"azure\",\n    });\n\n    var example = new Vault.Azure.AuthBackendRole(\"example\", new()\n    {\n        Backend = azure.Path,\n        Role = \"test-role\",\n        BoundSubscriptionIds = new[]\n        {\n            \"11111111-2222-3333-4444-555555555555\",\n        },\n        BoundResourceGroups = new[]\n        {\n            \"123456789012\",\n        },\n        TokenTtl = 60,\n        TokenMaxTtl = 120,\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tazure, err := vault.NewAuthBackend(ctx, \"azure\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"azure\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = azure.NewAuthBackendRole(ctx, \"example\", \u0026azure.AuthBackendRoleArgs{\n\t\t\tBackend: azure.Path,\n\t\t\tRole:    pulumi.String(\"test-role\"),\n\t\t\tBoundSubscriptionIds: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"11111111-2222-3333-4444-555555555555\"),\n\t\t\t},\n\t\t\tBoundResourceGroups: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"123456789012\"),\n\t\t\t},\n\t\t\tTokenTtl:    pulumi.Int(60),\n\t\t\tTokenMaxTtl: pulumi.Int(120),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.azure.AuthBackendRole;\nimport com.pulumi.vault.azure.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var azure = new AuthBackend(\"azure\", AuthBackendArgs.builder()\n            .type(\"azure\")\n            .build());\n\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .backend(azure.path())\n            .role(\"test-role\")\n            .boundSubscriptionIds(\"11111111-2222-3333-4444-555555555555\")\n            .boundResourceGroups(\"123456789012\")\n            .tokenTtl(60)\n            .tokenMaxTtl(120)\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  azure:\n    type: vault:AuthBackend\n    properties:\n      type: azure\n  example:\n    type: vault:azure:AuthBackendRole\n    properties:\n      backend: ${azure.path}\n      role: test-role\n      boundSubscriptionIds:\n        - 11111111-2222-3333-4444-555555555555\n      boundResourceGroups:\n        - '123456789012'\n      tokenTtl: 60\n      tokenMaxTtl: 120\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAzure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.\n\n```sh\n$ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "backend": {
                     "type": "string",
                     "description": "Unique name of the auth backend to configure."
@@ -10086,6 +10156,13 @@
                 "role"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "backend": {
                     "type": "string",
                     "description": "Unique name of the auth backend to configure.",
@@ -10192,6 +10269,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "backend": {
                         "type": "string",
                         "description": "Unique name of the auth backend to configure.",
@@ -13740,6 +13824,13 @@
                 "addGroupAliases": {
                     "type": "boolean"
                 },
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowGceInference": {
                     "type": "boolean"
                 },
@@ -13864,6 +13955,13 @@
                 "addGroupAliases": {
                     "type": "boolean"
                 },
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowGceInference": {
                     "type": "boolean"
                 },
@@ -13985,6 +14083,13 @@
                 "properties": {
                     "addGroupAliases": {
                         "type": "boolean"
+                    },
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
                     },
                     "allowGceInference": {
                         "type": "boolean"
@@ -15261,6 +15366,13 @@
                     "type": "string",
                     "description": "The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).\n"
                 },
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "(Optional) The metadata to be tied to generated entity alias.\nThis should be a list or map containing the metadata in key value pairs.\n"
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "The API endpoint to use. Useful if you\nare running GitHub Enterprise or an API-compatible authentication server.\n"
@@ -15343,6 +15455,13 @@
                 "tune"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "(Optional) The metadata to be tied to generated entity alias.\nThis should be a list or map containing the metadata in key value pairs.\n"
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "The API endpoint to use. Useful if you\nare running GitHub Enterprise or an API-compatible authentication server.\n"
@@ -15428,6 +15547,13 @@
                     "accessor": {
                         "type": "string",
                         "description": "The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).\n"
+                    },
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "(Optional) The metadata to be tied to generated entity alias.\nThis should be a list or map containing the metadata in key value pairs.\n"
                     },
                     "baseUrl": {
                         "type": "string",
@@ -18418,6 +18544,13 @@
         "vault:index/certAuthBackendRole:CertAuthBackendRole": {
             "description": "Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as std from \"@pulumi/std\";\nimport * as vault from \"@pulumi/vault\";\n\nconst cert = new vault.AuthBackend(\"cert\", {\n    path: \"cert\",\n    type: \"cert\",\n});\nconst certCertAuthBackendRole = new vault.CertAuthBackendRole(\"cert\", {\n    name: \"foo\",\n    certificate: std.file({\n        input: \"/path/to/certs/ca-cert.pem\",\n    }).then(invoke =\u003e invoke.result),\n    backend: cert.path,\n    allowedNames: [\n        \"foo.example.org\",\n        \"baz.example.org\",\n    ],\n    tokenTtl: 300,\n    tokenMaxTtl: 600,\n    tokenPolicies: [\"foo\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_std as std\nimport pulumi_vault as vault\n\ncert = vault.AuthBackend(\"cert\",\n    path=\"cert\",\n    type=\"cert\")\ncert_cert_auth_backend_role = vault.CertAuthBackendRole(\"cert\",\n    name=\"foo\",\n    certificate=std.file(input=\"/path/to/certs/ca-cert.pem\").result,\n    backend=cert.path,\n    allowed_names=[\n        \"foo.example.org\",\n        \"baz.example.org\",\n    ],\n    token_ttl=300,\n    token_max_ttl=600,\n    token_policies=[\"foo\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Std = Pulumi.Std;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var cert = new Vault.AuthBackend(\"cert\", new()\n    {\n        Path = \"cert\",\n        Type = \"cert\",\n    });\n\n    var certCertAuthBackendRole = new Vault.CertAuthBackendRole(\"cert\", new()\n    {\n        Name = \"foo\",\n        Certificate = Std.File.Invoke(new()\n        {\n            Input = \"/path/to/certs/ca-cert.pem\",\n        }).Apply(invoke =\u003e invoke.Result),\n        Backend = cert.Path,\n        AllowedNames = new[]\n        {\n            \"foo.example.org\",\n            \"baz.example.org\",\n        },\n        TokenTtl = 300,\n        TokenMaxTtl = 600,\n        TokenPolicies = new[]\n        {\n            \"foo\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-std/sdk/go/std\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcert, err := vault.NewAuthBackend(ctx, \"cert\", \u0026vault.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"cert\"),\n\t\t\tType: pulumi.String(\"cert\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tinvokeFile, err := std.File(ctx, \u0026std.FileArgs{\n\t\t\tInput: \"/path/to/certs/ca-cert.pem\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewCertAuthBackendRole(ctx, \"cert\", \u0026vault.CertAuthBackendRoleArgs{\n\t\t\tName:        pulumi.String(\"foo\"),\n\t\t\tCertificate: pulumi.String(invokeFile.Result),\n\t\t\tBackend:     cert.Path,\n\t\t\tAllowedNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"foo.example.org\"),\n\t\t\t\tpulumi.String(\"baz.example.org\"),\n\t\t\t},\n\t\t\tTokenTtl:    pulumi.Int(300),\n\t\t\tTokenMaxTtl: pulumi.Int(600),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"foo\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.CertAuthBackendRole;\nimport com.pulumi.vault.CertAuthBackendRoleArgs;\nimport com.pulumi.std.StdFunctions;\nimport com.pulumi.std.inputs.FileArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var cert = new AuthBackend(\"cert\", AuthBackendArgs.builder()\n            .path(\"cert\")\n            .type(\"cert\")\n            .build());\n\n        var certCertAuthBackendRole = new CertAuthBackendRole(\"certCertAuthBackendRole\", CertAuthBackendRoleArgs.builder()\n            .name(\"foo\")\n            .certificate(StdFunctions.file(FileArgs.builder()\n                .input(\"/path/to/certs/ca-cert.pem\")\n                .build()).result())\n            .backend(cert.path())\n            .allowedNames(            \n                \"foo.example.org\",\n                \"baz.example.org\")\n            .tokenTtl(300)\n            .tokenMaxTtl(600)\n            .tokenPolicies(\"foo\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  cert:\n    type: vault:AuthBackend\n    properties:\n      path: cert\n      type: cert\n  certCertAuthBackendRole:\n    type: vault:CertAuthBackendRole\n    name: cert\n    properties:\n      name: foo\n      certificate:\n        fn::invoke:\n          function: std:file\n          arguments:\n            input: /path/to/certs/ca-cert.pem\n          return: result\n      backend: ${cert.path}\n      allowedNames:\n        - foo.example.org\n        - baz.example.org\n      tokenTtl: 300\n      tokenMaxTtl: 600\n      tokenPolicies:\n        - foo\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowedCommonNames": {
                     "type": "array",
                     "items": {
@@ -18568,6 +18701,13 @@
                 "requiredExtensions"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowedCommonNames": {
                     "type": "array",
                     "items": {
@@ -18713,6 +18853,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering CertAuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "allowedCommonNames": {
                         "type": "array",
                         "items": {
@@ -20692,6 +20839,13 @@
         "vault:index/ociAuthBackendRole:OciAuthBackendRole": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst oci = new vault.OciAuthBackend(\"oci\", {\n    path: \"oci\",\n    homeTenancyId: \"ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq\",\n});\nconst example = new vault.OciAuthBackendRole(\"example\", {\n    backend: oci.path,\n    name: \"test-role\",\n    ocidLists: [\n        \"ocid1.group.oc1..aaaaaaaabmyiinfq32y5aha3r2yo4exampleo4yg3fjk2sbne4567tropaa\",\n        \"ocid1.dynamicgroup.oc1..aaaaaaaabvfwct33xri5examplegov4zyjp3rd5d7sk9jjdggxijhco56hrq\",\n    ],\n    tokenTtl: 60,\n    tokenMaxTtl: 120,\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\noci = vault.OciAuthBackend(\"oci\",\n    path=\"oci\",\n    home_tenancy_id=\"ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq\")\nexample = vault.OciAuthBackendRole(\"example\",\n    backend=oci.path,\n    name=\"test-role\",\n    ocid_lists=[\n        \"ocid1.group.oc1..aaaaaaaabmyiinfq32y5aha3r2yo4exampleo4yg3fjk2sbne4567tropaa\",\n        \"ocid1.dynamicgroup.oc1..aaaaaaaabvfwct33xri5examplegov4zyjp3rd5d7sk9jjdggxijhco56hrq\",\n    ],\n    token_ttl=60,\n    token_max_ttl=120,\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var oci = new Vault.OciAuthBackend(\"oci\", new()\n    {\n        Path = \"oci\",\n        HomeTenancyId = \"ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq\",\n    });\n\n    var example = new Vault.OciAuthBackendRole(\"example\", new()\n    {\n        Backend = oci.Path,\n        Name = \"test-role\",\n        OcidLists = new[]\n        {\n            \"ocid1.group.oc1..aaaaaaaabmyiinfq32y5aha3r2yo4exampleo4yg3fjk2sbne4567tropaa\",\n            \"ocid1.dynamicgroup.oc1..aaaaaaaabvfwct33xri5examplegov4zyjp3rd5d7sk9jjdggxijhco56hrq\",\n        },\n        TokenTtl = 60,\n        TokenMaxTtl = 120,\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\toci, err := vault.NewOciAuthBackend(ctx, \"oci\", \u0026vault.OciAuthBackendArgs{\n\t\t\tPath:          pulumi.String(\"oci\"),\n\t\t\tHomeTenancyId: pulumi.String(\"ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewOciAuthBackendRole(ctx, \"example\", \u0026vault.OciAuthBackendRoleArgs{\n\t\t\tBackend: oci.Path,\n\t\t\tName:    pulumi.String(\"test-role\"),\n\t\t\tOcidLists: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ocid1.group.oc1..aaaaaaaabmyiinfq32y5aha3r2yo4exampleo4yg3fjk2sbne4567tropaa\"),\n\t\t\t\tpulumi.String(\"ocid1.dynamicgroup.oc1..aaaaaaaabvfwct33xri5examplegov4zyjp3rd5d7sk9jjdggxijhco56hrq\"),\n\t\t\t},\n\t\t\tTokenTtl:    pulumi.Int(60),\n\t\t\tTokenMaxTtl: pulumi.Int(120),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.OciAuthBackend;\nimport com.pulumi.vault.OciAuthBackendArgs;\nimport com.pulumi.vault.OciAuthBackendRole;\nimport com.pulumi.vault.OciAuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var oci = new OciAuthBackend(\"oci\", OciAuthBackendArgs.builder()\n            .path(\"oci\")\n            .homeTenancyId(\"ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq\")\n            .build());\n\n        var example = new OciAuthBackendRole(\"example\", OciAuthBackendRoleArgs.builder()\n            .backend(oci.path())\n            .name(\"test-role\")\n            .ocidLists(            \n                \"ocid1.group.oc1..aaaaaaaabmyiinfq32y5aha3r2yo4exampleo4yg3fjk2sbne4567tropaa\",\n                \"ocid1.dynamicgroup.oc1..aaaaaaaabvfwct33xri5examplegov4zyjp3rd5d7sk9jjdggxijhco56hrq\")\n            .tokenTtl(60)\n            .tokenMaxTtl(120)\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  oci:\n    type: vault:OciAuthBackend\n    properties:\n      path: oci\n      homeTenancyId: ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq\n  example:\n    type: vault:OciAuthBackendRole\n    properties:\n      backend: ${oci.path}\n      name: test-role\n      ocidLists:\n        - ocid1.group.oc1..aaaaaaaabmyiinfq32y5aha3r2yo4exampleo4yg3fjk2sbne4567tropaa\n        - ocid1.dynamicgroup.oc1..aaaaaaaabvfwct33xri5examplegov4zyjp3rd5d7sk9jjdggxijhco56hrq\n      tokenTtl: 60\n      tokenMaxTtl: 120\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nOCI auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.\n\n```sh\n$ pulumi import vault:index/ociAuthBackendRole:OciAuthBackendRole example auth/oci/role/test-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "backend": {
                     "type": "string",
                     "description": "Unique name of the auth backend to configure."
@@ -20758,6 +20912,13 @@
                 "name"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "backend": {
                     "type": "string",
                     "description": "Unique name of the auth backend to configure.",
@@ -20826,6 +20987,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering OciAuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "backend": {
                         "type": "string",
                         "description": "Unique name of the auth backend to configure.",
@@ -21989,6 +22157,13 @@
         "vault:index/scepAuthBackendRole:ScepAuthBackendRole": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst scep = new vault.AuthBackend(\"scep\", {\n    path: \"scep\",\n    type: \"scep\",\n});\nconst scepScepAuthBackendRole = new vault.ScepAuthBackendRole(\"scep\", {\n    backend: scep.path,\n    name: \"scep_challenge\",\n    authType: \"static-challenge\",\n    challenge: \"well known secret\",\n    tokenType: \"batch\",\n    tokenTtl: 300,\n    tokenMaxTtl: 600,\n    tokenPolicies: [\"scep-clients\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nscep = vault.AuthBackend(\"scep\",\n    path=\"scep\",\n    type=\"scep\")\nscep_scep_auth_backend_role = vault.ScepAuthBackendRole(\"scep\",\n    backend=scep.path,\n    name=\"scep_challenge\",\n    auth_type=\"static-challenge\",\n    challenge=\"well known secret\",\n    token_type=\"batch\",\n    token_ttl=300,\n    token_max_ttl=600,\n    token_policies=[\"scep-clients\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var scep = new Vault.AuthBackend(\"scep\", new()\n    {\n        Path = \"scep\",\n        Type = \"scep\",\n    });\n\n    var scepScepAuthBackendRole = new Vault.ScepAuthBackendRole(\"scep\", new()\n    {\n        Backend = scep.Path,\n        Name = \"scep_challenge\",\n        AuthType = \"static-challenge\",\n        Challenge = \"well known secret\",\n        TokenType = \"batch\",\n        TokenTtl = 300,\n        TokenMaxTtl = 600,\n        TokenPolicies = new[]\n        {\n            \"scep-clients\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tscep, err := vault.NewAuthBackend(ctx, \"scep\", \u0026vault.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"scep\"),\n\t\t\tType: pulumi.String(\"scep\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = vault.NewScepAuthBackendRole(ctx, \"scep\", \u0026vault.ScepAuthBackendRoleArgs{\n\t\t\tBackend:     scep.Path,\n\t\t\tName:        pulumi.String(\"scep_challenge\"),\n\t\t\tAuthType:    pulumi.String(\"static-challenge\"),\n\t\t\tChallenge:   pulumi.String(\"well known secret\"),\n\t\t\tTokenType:   pulumi.String(\"batch\"),\n\t\t\tTokenTtl:    pulumi.Int(300),\n\t\t\tTokenMaxTtl: pulumi.Int(600),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"scep-clients\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.ScepAuthBackendRole;\nimport com.pulumi.vault.ScepAuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var scep = new AuthBackend(\"scep\", AuthBackendArgs.builder()\n            .path(\"scep\")\n            .type(\"scep\")\n            .build());\n\n        var scepScepAuthBackendRole = new ScepAuthBackendRole(\"scepScepAuthBackendRole\", ScepAuthBackendRoleArgs.builder()\n            .backend(scep.path())\n            .name(\"scep_challenge\")\n            .authType(\"static-challenge\")\n            .challenge(\"well known secret\")\n            .tokenType(\"batch\")\n            .tokenTtl(300)\n            .tokenMaxTtl(600)\n            .tokenPolicies(\"scep-clients\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  scep:\n    type: vault:AuthBackend\n    properties:\n      path: scep\n      type: scep\n  scepScepAuthBackendRole:\n    type: vault:ScepAuthBackendRole\n    name: scep\n    properties:\n      backend: ${scep.path}\n      name: scep_challenge\n      authType: static-challenge\n      challenge: well known secret\n      tokenType: batch\n      tokenTtl: 300\n      tokenMaxTtl: 600\n      tokenPolicies:\n        - scep-clients\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "authType": {
                     "type": "string",
                     "description": "The authentication type to use. This can be either \"static-challenge\" or \"intune\".\n"
@@ -22061,6 +22236,13 @@
                 "name"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "authType": {
                     "type": "string",
                     "description": "The authentication type to use. This can be either \"static-challenge\" or \"intune\".\n",
@@ -22137,6 +22319,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering ScepAuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "authType": {
                         "type": "string",
                         "description": "The authentication type to use. This can be either \"static-challenge\" or \"intune\".\n",
@@ -22853,6 +23042,13 @@
         "vault:jwt/authBackendRole:AuthBackendRole": {
             "description": "Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/jwt.html) for more\ninformation.\n\n## Example Usage\n\nRole for JWT backend:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst jwt = new vault.jwt.AuthBackend(\"jwt\", {path: \"jwt\"});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: jwt.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    boundAudiences: [\"https://myco.test\"],\n    boundClaims: {\n        color: \"red,green,blue\",\n    },\n    userClaim: \"https://vault/user\",\n    roleType: \"jwt\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\njwt = vault.jwt.AuthBackend(\"jwt\", path=\"jwt\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=jwt.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    bound_audiences=[\"https://myco.test\"],\n    bound_claims={\n        \"color\": \"red,green,blue\",\n    },\n    user_claim=\"https://vault/user\",\n    role_type=\"jwt\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var jwt = new Vault.Jwt.AuthBackend(\"jwt\", new()\n    {\n        Path = \"jwt\",\n    });\n\n    var example = new Vault.Jwt.AuthBackendRole(\"example\", new()\n    {\n        Backend = jwt.Path,\n        RoleName = \"test-role\",\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n        BoundAudiences = new[]\n        {\n            \"https://myco.test\",\n        },\n        BoundClaims = \n        {\n            { \"color\", \"red,green,blue\" },\n        },\n        UserClaim = \"https://vault/user\",\n        RoleType = \"jwt\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tjwt, err := jwt.NewAuthBackend(ctx, \"jwt\", \u0026jwt.AuthBackendArgs{\n\t\t\tPath: pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = jwt.NewAuthBackendRole(ctx, \"example\", \u0026jwt.AuthBackendRoleArgs{\n\t\t\tBackend:  jwt.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tBoundAudiences: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://myco.test\"),\n\t\t\t},\n\t\t\tBoundClaims: pulumi.StringMap{\n\t\t\t\t\"color\": pulumi.String(\"red,green,blue\"),\n\t\t\t},\n\t\t\tUserClaim: pulumi.String(\"https://vault/user\"),\n\t\t\tRoleType:  pulumi.String(\"jwt\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport com.pulumi.vault.jwt.AuthBackendRole;\nimport com.pulumi.vault.jwt.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var jwt = new AuthBackend(\"jwt\", AuthBackendArgs.builder()\n            .path(\"jwt\")\n            .build());\n\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .backend(jwt.path())\n            .roleName(\"test-role\")\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .boundAudiences(\"https://myco.test\")\n            .boundClaims(Map.of(\"color\", \"red,green,blue\"))\n            .userClaim(\"https://vault/user\")\n            .roleType(\"jwt\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  jwt:\n    type: vault:jwt:AuthBackend\n    properties:\n      path: jwt\n  example:\n    type: vault:jwt:AuthBackendRole\n    properties:\n      backend: ${jwt.path}\n      roleName: test-role\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n      boundAudiences:\n        - https://myco.test\n      boundClaims:\n        color: red,green,blue\n      userClaim: https://vault/user\n      roleType: jwt\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nRole for OIDC backend:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst oidc = new vault.jwt.AuthBackend(\"oidc\", {\n    path: \"oidc\",\n    defaultRole: \"test-role\",\n});\nconst example = new vault.jwt.AuthBackendRole(\"example\", {\n    backend: oidc.path,\n    roleName: \"test-role\",\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    userClaim: \"https://vault/user\",\n    roleType: \"oidc\",\n    allowedRedirectUris: [\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\noidc = vault.jwt.AuthBackend(\"oidc\",\n    path=\"oidc\",\n    default_role=\"test-role\")\nexample = vault.jwt.AuthBackendRole(\"example\",\n    backend=oidc.path,\n    role_name=\"test-role\",\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    user_claim=\"https://vault/user\",\n    role_type=\"oidc\",\n    allowed_redirect_uris=[\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var oidc = new Vault.Jwt.AuthBackend(\"oidc\", new()\n    {\n        Path = \"oidc\",\n        DefaultRole = \"test-role\",\n    });\n\n    var example = new Vault.Jwt.AuthBackendRole(\"example\", new()\n    {\n        Backend = oidc.Path,\n        RoleName = \"test-role\",\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n        UserClaim = \"https://vault/user\",\n        RoleType = \"oidc\",\n        AllowedRedirectUris = new[]\n        {\n            \"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\toidc, err := jwt.NewAuthBackend(ctx, \"oidc\", \u0026jwt.AuthBackendArgs{\n\t\t\tPath:        pulumi.String(\"oidc\"),\n\t\t\tDefaultRole: pulumi.String(\"test-role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = jwt.NewAuthBackendRole(ctx, \"example\", \u0026jwt.AuthBackendRoleArgs{\n\t\t\tBackend:  oidc.Path,\n\t\t\tRoleName: pulumi.String(\"test-role\"),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tUserClaim: pulumi.String(\"https://vault/user\"),\n\t\t\tRoleType:  pulumi.String(\"oidc\"),\n\t\t\tAllowedRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.jwt.AuthBackend;\nimport com.pulumi.vault.jwt.AuthBackendArgs;\nimport com.pulumi.vault.jwt.AuthBackendRole;\nimport com.pulumi.vault.jwt.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var oidc = new AuthBackend(\"oidc\", AuthBackendArgs.builder()\n            .path(\"oidc\")\n            .defaultRole(\"test-role\")\n            .build());\n\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .backend(oidc.path())\n            .roleName(\"test-role\")\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .userClaim(\"https://vault/user\")\n            .roleType(\"oidc\")\n            .allowedRedirectUris(\"http://localhost:8200/ui/vault/auth/oidc/oidc/callback\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  oidc:\n    type: vault:jwt:AuthBackend\n    properties:\n      path: oidc\n      defaultRole: test-role\n  example:\n    type: vault:jwt:AuthBackendRole\n    properties:\n      backend: ${oidc.path}\n      roleName: test-role\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n      userClaim: https://vault/user\n      roleType: oidc\n      allowedRedirectUris:\n        - http://localhost:8200/ui/vault/auth/oidc/oidc/callback\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nJWT authentication backend roles can be imported using the `path`, e.g.\n\n```sh\n$ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowedRedirectUris": {
                     "type": "array",
                     "items": {
@@ -22998,6 +23194,13 @@
                 "userClaim"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowedRedirectUris": {
                     "type": "array",
                     "items": {
@@ -23147,6 +23350,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "allowedRedirectUris": {
                         "type": "array",
                         "items": {
@@ -24311,6 +24521,13 @@
         "vault:kubernetes/authBackendRole:AuthBackendRole": {
             "description": "Manages an Kubernetes auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/kubernetes.html) for more\ninformation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kubernetes = new vault.AuthBackend(\"kubernetes\", {type: \"kubernetes\"});\nconst example = new vault.kubernetes.AuthBackendRole(\"example\", {\n    backend: kubernetes.path,\n    roleName: \"example-role\",\n    boundServiceAccountNames: [\"example\"],\n    boundServiceAccountNamespaces: [\"example\"],\n    tokenTtl: 3600,\n    tokenPolicies: [\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    audience: \"vault\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nkubernetes = vault.AuthBackend(\"kubernetes\", type=\"kubernetes\")\nexample = vault.kubernetes.AuthBackendRole(\"example\",\n    backend=kubernetes.path,\n    role_name=\"example-role\",\n    bound_service_account_names=[\"example\"],\n    bound_service_account_namespaces=[\"example\"],\n    token_ttl=3600,\n    token_policies=[\n        \"default\",\n        \"dev\",\n        \"prod\",\n    ],\n    audience=\"vault\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kubernetes = new Vault.AuthBackend(\"kubernetes\", new()\n    {\n        Type = \"kubernetes\",\n    });\n\n    var example = new Vault.Kubernetes.AuthBackendRole(\"example\", new()\n    {\n        Backend = kubernetes.Path,\n        RoleName = \"example-role\",\n        BoundServiceAccountNames = new[]\n        {\n            \"example\",\n        },\n        BoundServiceAccountNamespaces = new[]\n        {\n            \"example\",\n        },\n        TokenTtl = 3600,\n        TokenPolicies = new[]\n        {\n            \"default\",\n            \"dev\",\n            \"prod\",\n        },\n        Audience = \"vault\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkubernetes, err := vault.NewAuthBackend(ctx, \"kubernetes\", \u0026vault.AuthBackendArgs{\n\t\t\tType: pulumi.String(\"kubernetes\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewAuthBackendRole(ctx, \"example\", \u0026kubernetes.AuthBackendRoleArgs{\n\t\t\tBackend:  kubernetes.Path,\n\t\t\tRoleName: pulumi.String(\"example-role\"),\n\t\t\tBoundServiceAccountNames: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t},\n\t\t\tBoundServiceAccountNamespaces: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t},\n\t\t\tTokenTtl: pulumi.Int(3600),\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"prod\"),\n\t\t\t},\n\t\t\tAudience: pulumi.String(\"vault\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.AuthBackend;\nimport com.pulumi.vault.AuthBackendArgs;\nimport com.pulumi.vault.kubernetes.AuthBackendRole;\nimport com.pulumi.vault.kubernetes.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kubernetes = new AuthBackend(\"kubernetes\", AuthBackendArgs.builder()\n            .type(\"kubernetes\")\n            .build());\n\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .backend(kubernetes.path())\n            .roleName(\"example-role\")\n            .boundServiceAccountNames(\"example\")\n            .boundServiceAccountNamespaces(\"example\")\n            .tokenTtl(3600)\n            .tokenPolicies(            \n                \"default\",\n                \"dev\",\n                \"prod\")\n            .audience(\"vault\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kubernetes:\n    type: vault:AuthBackend\n    properties:\n      type: kubernetes\n  example:\n    type: vault:kubernetes:AuthBackendRole\n    properties:\n      backend: ${kubernetes.path}\n      roleName: example-role\n      boundServiceAccountNames:\n        - example\n      boundServiceAccountNamespaces:\n        - example\n      tokenTtl: 3600\n      tokenPolicies:\n        - default\n        - dev\n        - prod\n      audience: vault\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nKubernetes auth backend role can be imported using the `path`, e.g.\n\n```sh\n$ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "aliasNameSource": {
                     "type": "string",
                     "description": "Configures how identity aliases are generated.\nValid choices are: \u003cspan pulumi-lang-nodejs=\"`serviceaccountUid`\" pulumi-lang-dotnet=\"`ServiceaccountUid`\" pulumi-lang-go=\"`serviceaccountUid`\" pulumi-lang-python=\"`serviceaccount_uid`\" pulumi-lang-yaml=\"`serviceaccountUid`\" pulumi-lang-java=\"`serviceaccountUid`\"\u003e`serviceaccount_uid`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`serviceaccountName`\" pulumi-lang-dotnet=\"`ServiceaccountName`\" pulumi-lang-go=\"`serviceaccountName`\" pulumi-lang-python=\"`serviceaccount_name`\" pulumi-lang-yaml=\"`serviceaccountName`\" pulumi-lang-java=\"`serviceaccountName`\"\u003e`serviceaccount_name`\u003c/span\u003e. (vault-1.9+)\n"
@@ -24395,6 +24612,13 @@
                 "roleName"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "aliasNameSource": {
                     "type": "string",
                     "description": "Configures how identity aliases are generated.\nValid choices are: \u003cspan pulumi-lang-nodejs=\"`serviceaccountUid`\" pulumi-lang-dotnet=\"`ServiceaccountUid`\" pulumi-lang-go=\"`serviceaccountUid`\" pulumi-lang-python=\"`serviceaccount_uid`\" pulumi-lang-yaml=\"`serviceaccountUid`\" pulumi-lang-java=\"`serviceaccountUid`\"\u003e`serviceaccount_uid`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`serviceaccountName`\" pulumi-lang-dotnet=\"`ServiceaccountName`\" pulumi-lang-go=\"`serviceaccountName`\" pulumi-lang-python=\"`serviceaccount_name`\" pulumi-lang-yaml=\"`serviceaccountName`\" pulumi-lang-java=\"`serviceaccountName`\"\u003e`serviceaccount_name`\u003c/span\u003e. (vault-1.9+)\n"
@@ -24483,6 +24707,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "aliasNameSource": {
                         "type": "string",
                         "description": "Configures how identity aliases are generated.\nValid choices are: \u003cspan pulumi-lang-nodejs=\"`serviceaccountUid`\" pulumi-lang-dotnet=\"`ServiceaccountUid`\" pulumi-lang-go=\"`serviceaccountUid`\" pulumi-lang-python=\"`serviceaccount_uid`\" pulumi-lang-yaml=\"`serviceaccountUid`\" pulumi-lang-java=\"`serviceaccountUid`\"\u003e`serviceaccount_uid`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`serviceaccountName`\" pulumi-lang-dotnet=\"`ServiceaccountName`\" pulumi-lang-go=\"`serviceaccountName`\" pulumi-lang-python=\"`serviceaccount_name`\" pulumi-lang-yaml=\"`serviceaccountName`\" pulumi-lang-java=\"`serviceaccountName`\"\u003e`serviceaccount_name`\u003c/span\u003e. (vault-1.9+)\n"
@@ -25561,6 +25792,13 @@
                     "type": "string",
                     "description": "The accessor for this auth mount.\n"
                 },
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "anonymousGroupSearch": {
                     "type": "boolean",
                     "description": "Allows anonymous group searches."
@@ -25789,6 +26027,13 @@
                 "usernameAsAlias"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "anonymousGroupSearch": {
                     "type": "boolean",
                     "description": "Allows anonymous group searches."
@@ -25995,6 +26240,13 @@
                     "accessor": {
                         "type": "string",
                         "description": "The accessor for this auth mount.\n"
+                    },
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
                     },
                     "anonymousGroupSearch": {
                         "type": "boolean",
@@ -27739,6 +27991,13 @@
                     "type": "string",
                     "description": "The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).\n"
                 },
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "The Okta url. Examples: oktapreview.com, okta.com\n"
@@ -27840,6 +28099,13 @@
                 "users"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "baseUrl": {
                     "type": "string",
                     "description": "The Okta url. Examples: oktapreview.com, okta.com\n"
@@ -27943,6 +28209,13 @@
                     "accessor": {
                         "type": "string",
                         "description": "The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).\n"
+                    },
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
                     },
                     "baseUrl": {
                         "type": "string",
@@ -32194,6 +32467,10 @@
                     "type": "string",
                     "description": "Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.\n"
                 },
+                "notBeforeDuration": {
+                    "type": "string",
+                    "description": "Specifies the duration by which to backdate the NotBefore property."
+                },
                 "organization": {
                     "type": "string",
                     "description": "The organization\n"
@@ -32420,6 +32697,11 @@
                 "notAfter": {
                     "type": "string",
                     "description": "Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.\n"
+                },
+                "notBeforeDuration": {
+                    "type": "string",
+                    "description": "Specifies the duration by which to backdate the NotBefore property.",
+                    "willReplaceOnChanges": true
                 },
                 "organization": {
                     "type": "string",
@@ -32665,6 +32947,11 @@
                     "notAfter": {
                         "type": "string",
                         "description": "Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.\n"
+                    },
+                    "notBeforeDuration": {
+                        "type": "string",
+                        "description": "Specifies the duration by which to backdate the NotBefore property.",
+                        "willReplaceOnChanges": true
                     },
                     "organization": {
                         "type": "string",
@@ -34524,6 +34811,13 @@
         "vault:saml/authBackendRole:AuthBackendRole": {
             "description": "Manages an SAML auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/saml.html) for more\ninformation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.saml.AuthBackend(\"example\", {\n    path: \"saml\",\n    idpMetadataUrl: \"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n    entityId: \"https://my.vault/v1/auth/saml\",\n    acsUrls: [\"https://my.vault.primary/v1/auth/saml/callback\"],\n    defaultRole: \"default-role\",\n});\nconst exampleAuthBackendRole = new vault.saml.AuthBackendRole(\"example\", {\n    path: example.path,\n    name: \"my-role\",\n    groupsAttribute: \"groups\",\n    boundAttributes: {\n        group: \"admin\",\n    },\n    boundSubjects: [\"*example.com\"],\n    tokenPolicies: [\"writer\"],\n    tokenTtl: 86400,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.saml.AuthBackend(\"example\",\n    path=\"saml\",\n    idp_metadata_url=\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n    entity_id=\"https://my.vault/v1/auth/saml\",\n    acs_urls=[\"https://my.vault.primary/v1/auth/saml/callback\"],\n    default_role=\"default-role\")\nexample_auth_backend_role = vault.saml.AuthBackendRole(\"example\",\n    path=example.path,\n    name=\"my-role\",\n    groups_attribute=\"groups\",\n    bound_attributes={\n        \"group\": \"admin\",\n    },\n    bound_subjects=[\"*example.com\"],\n    token_policies=[\"writer\"],\n    token_ttl=86400)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Saml.AuthBackend(\"example\", new()\n    {\n        Path = \"saml\",\n        IdpMetadataUrl = \"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\",\n        EntityId = \"https://my.vault/v1/auth/saml\",\n        AcsUrls = new[]\n        {\n            \"https://my.vault.primary/v1/auth/saml/callback\",\n        },\n        DefaultRole = \"default-role\",\n    });\n\n    var exampleAuthBackendRole = new Vault.Saml.AuthBackendRole(\"example\", new()\n    {\n        Path = example.Path,\n        Name = \"my-role\",\n        GroupsAttribute = \"groups\",\n        BoundAttributes = \n        {\n            { \"group\", \"admin\" },\n        },\n        BoundSubjects = new[]\n        {\n            \"*example.com\",\n        },\n        TokenPolicies = new[]\n        {\n            \"writer\",\n        },\n        TokenTtl = 86400,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := saml.NewAuthBackend(ctx, \"example\", \u0026saml.AuthBackendArgs{\n\t\t\tPath:           pulumi.String(\"saml\"),\n\t\t\tIdpMetadataUrl: pulumi.String(\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\"),\n\t\t\tEntityId:       pulumi.String(\"https://my.vault/v1/auth/saml\"),\n\t\t\tAcsUrls: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"https://my.vault.primary/v1/auth/saml/callback\"),\n\t\t\t},\n\t\t\tDefaultRole: pulumi.String(\"default-role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewAuthBackendRole(ctx, \"example\", \u0026saml.AuthBackendRoleArgs{\n\t\t\tPath:            example.Path,\n\t\t\tName:            pulumi.String(\"my-role\"),\n\t\t\tGroupsAttribute: pulumi.String(\"groups\"),\n\t\t\tBoundAttributes: pulumi.StringMap{\n\t\t\t\t\"group\": pulumi.String(\"admin\"),\n\t\t\t},\n\t\t\tBoundSubjects: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*example.com\"),\n\t\t\t},\n\t\t\tTokenPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"writer\"),\n\t\t\t},\n\t\t\tTokenTtl: pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.saml.AuthBackend;\nimport com.pulumi.vault.saml.AuthBackendArgs;\nimport com.pulumi.vault.saml.AuthBackendRole;\nimport com.pulumi.vault.saml.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthBackend(\"example\", AuthBackendArgs.builder()\n            .path(\"saml\")\n            .idpMetadataUrl(\"https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\")\n            .entityId(\"https://my.vault/v1/auth/saml\")\n            .acsUrls(\"https://my.vault.primary/v1/auth/saml/callback\")\n            .defaultRole(\"default-role\")\n            .build());\n\n        var exampleAuthBackendRole = new AuthBackendRole(\"exampleAuthBackendRole\", AuthBackendRoleArgs.builder()\n            .path(example.path())\n            .name(\"my-role\")\n            .groupsAttribute(\"groups\")\n            .boundAttributes(Map.of(\"group\", \"admin\"))\n            .boundSubjects(\"*example.com\")\n            .tokenPolicies(\"writer\")\n            .tokenTtl(86400)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:saml:AuthBackend\n    properties:\n      path: saml\n      idpMetadataUrl: https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata\n      entityId: https://my.vault/v1/auth/saml\n      acsUrls:\n        - https://my.vault.primary/v1/auth/saml/callback\n      defaultRole: default-role\n  exampleAuthBackendRole:\n    type: vault:saml:AuthBackendRole\n    name: example\n    properties:\n      path: ${example.path}\n      name: my-role\n      groupsAttribute: groups\n      boundAttributes:\n        group: admin\n      boundSubjects:\n        - '*example.com'\n      tokenPolicies:\n        - writer\n      tokenTtl: 86400\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nSAML authentication backend roles can be imported using the `path`, e.g.\n\n```sh\n$ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "boundAttributes": {
                     "type": "object",
                     "additionalProperties": {
@@ -34612,6 +34906,13 @@
                 "path"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "boundAttributes": {
                     "type": "object",
                     "additionalProperties": {
@@ -34702,6 +35003,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "boundAttributes": {
                         "type": "object",
                         "additionalProperties": {
@@ -36954,6 +37262,13 @@
         "vault:tokenauth/authBackendRole:AuthBackendRole": {
             "description": "Manages Token auth backend role in a Vault server. See the [Vault\ndocumentation](https://www.vaultproject.io/docs/auth/token.html) for more\ninformation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.tokenauth.AuthBackendRole(\"example\", {\n    roleName: \"my-role\",\n    allowedPolicies: [\n        \"dev\",\n        \"test\",\n    ],\n    disallowedPolicies: [\"default\"],\n    allowedEntityAliases: [\"test_entity\"],\n    orphan: true,\n    tokenPeriod: 86400,\n    renewable: true,\n    tokenExplicitMaxTtl: 115200,\n    pathSuffix: \"path-suffix\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.tokenauth.AuthBackendRole(\"example\",\n    role_name=\"my-role\",\n    allowed_policies=[\n        \"dev\",\n        \"test\",\n    ],\n    disallowed_policies=[\"default\"],\n    allowed_entity_aliases=[\"test_entity\"],\n    orphan=True,\n    token_period=86400,\n    renewable=True,\n    token_explicit_max_ttl=115200,\n    path_suffix=\"path-suffix\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.TokenAuth.AuthBackendRole(\"example\", new()\n    {\n        RoleName = \"my-role\",\n        AllowedPolicies = new[]\n        {\n            \"dev\",\n            \"test\",\n        },\n        DisallowedPolicies = new[]\n        {\n            \"default\",\n        },\n        AllowedEntityAliases = new[]\n        {\n            \"test_entity\",\n        },\n        Orphan = true,\n        TokenPeriod = 86400,\n        Renewable = true,\n        TokenExplicitMaxTtl = 115200,\n        PathSuffix = \"path-suffix\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/tokenauth\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tokenauth.NewAuthBackendRole(ctx, \"example\", \u0026tokenauth.AuthBackendRoleArgs{\n\t\t\tRoleName: pulumi.String(\"my-role\"),\n\t\t\tAllowedPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"test\"),\n\t\t\t},\n\t\t\tDisallowedPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"default\"),\n\t\t\t},\n\t\t\tAllowedEntityAliases: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"test_entity\"),\n\t\t\t},\n\t\t\tOrphan:              pulumi.Bool(true),\n\t\t\tTokenPeriod:         pulumi.Int(86400),\n\t\t\tRenewable:           pulumi.Bool(true),\n\t\t\tTokenExplicitMaxTtl: pulumi.Int(115200),\n\t\t\tPathSuffix:          pulumi.String(\"path-suffix\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.tokenauth.AuthBackendRole;\nimport com.pulumi.vault.tokenauth.AuthBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthBackendRole(\"example\", AuthBackendRoleArgs.builder()\n            .roleName(\"my-role\")\n            .allowedPolicies(            \n                \"dev\",\n                \"test\")\n            .disallowedPolicies(\"default\")\n            .allowedEntityAliases(\"test_entity\")\n            .orphan(true)\n            .tokenPeriod(86400)\n            .renewable(true)\n            .tokenExplicitMaxTtl(115200)\n            .pathSuffix(\"path-suffix\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:tokenauth:AuthBackendRole\n    properties:\n      roleName: my-role\n      allowedPolicies:\n        - dev\n        - test\n      disallowedPolicies:\n        - default\n      allowedEntityAliases:\n        - test_entity\n      orphan: true\n      tokenPeriod: '86400'\n      renewable: true\n      tokenExplicitMaxTtl: '115200'\n      pathSuffix: path-suffix\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nToken auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.\n\n```sh\n$ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role\n```\n",
             "properties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowedEntityAliases": {
                     "type": "array",
                     "items": {
@@ -37056,6 +37371,13 @@
                 "roleName"
             ],
             "inputProperties": {
+                "aliasMetadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                },
                 "allowedEntityAliases": {
                     "type": "array",
                     "items": {
@@ -37162,6 +37484,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AuthBackendRole resources.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The metadata to be tied to generated entity alias.\n  This should be a list or map containing the metadata in key value pairs."
+                    },
                     "allowedEntityAliases": {
                         "type": "array",
                         "items": {
@@ -38551,6 +38880,12 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getAuthBackendRole.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "backend": {
                         "type": "string",
                         "description": "The unique name for the GCP backend from which to fetch the role. Defaults to \"gcp\".\n",
@@ -38617,6 +38952,12 @@
             "outputs": {
                 "description": "A collection of values returned by getAuthBackendRole.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object"
+                    },
                     "backend": {
                         "type": "string"
                     },
@@ -39937,6 +40278,12 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getAuthBackendRole.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "audience": {
                         "type": "string",
                         "description": "Audience claim to verify in the JWT.\n"
@@ -40007,6 +40354,12 @@
             "outputs": {
                 "description": "A collection of values returned by getAuthBackendRole.\n",
                 "properties": {
+                    "aliasMetadata": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object"
+                    },
                     "aliasNameSource": {
                         "description": "Method used for generating identity aliases. (vault-1.9+)\n",
                         "type": "string"
