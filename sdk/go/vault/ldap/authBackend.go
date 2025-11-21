@@ -65,6 +65,9 @@ type AuthBackend struct {
 
 	// The accessor for this auth mount.
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// Allows anonymous group searches.
 	AnonymousGroupSearch pulumi.BoolOutput `pulumi:"anonymousGroupSearch"`
 	// DN of object to bind when performing user search
@@ -217,6 +220,9 @@ func GetAuthBackend(ctx *pulumi.Context,
 type authBackendState struct {
 	// The accessor for this auth mount.
 	Accessor *string `pulumi:"accessor"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Allows anonymous group searches.
 	AnonymousGroupSearch *bool `pulumi:"anonymousGroupSearch"`
 	// DN of object to bind when performing user search
@@ -326,6 +332,9 @@ type authBackendState struct {
 type AuthBackendState struct {
 	// The accessor for this auth mount.
 	Accessor pulumi.StringPtrInput
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Allows anonymous group searches.
 	AnonymousGroupSearch pulumi.BoolPtrInput
 	// DN of object to bind when performing user search
@@ -437,6 +446,9 @@ func (AuthBackendState) ElementType() reflect.Type {
 }
 
 type authBackendArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Allows anonymous group searches.
 	AnonymousGroupSearch *bool `pulumi:"anonymousGroupSearch"`
 	// DN of object to bind when performing user search
@@ -545,6 +557,9 @@ type authBackendArgs struct {
 
 // The set of arguments for constructing a AuthBackend resource.
 type AuthBackendArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Allows anonymous group searches.
 	AnonymousGroupSearch pulumi.BoolPtrInput
 	// DN of object to bind when performing user search
@@ -741,6 +756,13 @@ func (o AuthBackendOutput) ToAuthBackendOutputWithContext(ctx context.Context) A
 // The accessor for this auth mount.
 func (o AuthBackendOutput) Accessor() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // Allows anonymous group searches.

@@ -9,6 +9,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,6 +18,23 @@ import javax.annotation.Nullable;
 public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArgs {
 
     public static final AuthBackendRoleState Empty = new AuthBackendRoleState();
+
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    @Import(name="aliasMetadata")
+    private @Nullable Output<Map<String,String>> aliasMetadata;
+
+    /**
+     * @return The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> aliasMetadata() {
+        return Optional.ofNullable(this.aliasMetadata);
+    }
 
     /**
      * Unique name of the auth backend to configure.
@@ -321,6 +339,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     private AuthBackendRoleState() {}
 
     private AuthBackendRoleState(AuthBackendRoleState $) {
+        this.aliasMetadata = $.aliasMetadata;
         this.backend = $.backend;
         this.boundGroupIds = $.boundGroupIds;
         this.boundLocations = $.boundLocations;
@@ -357,6 +376,29 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         public Builder(AuthBackendRoleState defaults) {
             $ = new AuthBackendRoleState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param aliasMetadata The metadata to be tied to generated entity alias.
+         *   This should be a list or map containing the metadata in key value pairs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aliasMetadata(@Nullable Output<Map<String,String>> aliasMetadata) {
+            $.aliasMetadata = aliasMetadata;
+            return this;
+        }
+
+        /**
+         * @param aliasMetadata The metadata to be tied to generated entity alias.
+         *   This should be a list or map containing the metadata in key value pairs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aliasMetadata(Map<String,String> aliasMetadata) {
+            return aliasMetadata(Output.of(aliasMetadata));
         }
 
         /**

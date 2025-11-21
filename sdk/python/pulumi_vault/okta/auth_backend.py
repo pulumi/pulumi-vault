@@ -22,6 +22,7 @@ __all__ = ['AuthBackendArgs', 'AuthBackend']
 class AuthBackendArgs:
     def __init__(__self__, *,
                  organization: pulumi.Input[_builtins.str],
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -44,6 +45,8 @@ class AuthBackendArgs:
         """
         The set of arguments for constructing a AuthBackend resource.
         :param pulumi.Input[_builtins.str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -71,6 +74,8 @@ class AuthBackendArgs:
                See below for more details.
         """
         pulumi.set(__self__, "organization", organization)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
         if bypass_okta_mfa is not None:
@@ -121,6 +126,19 @@ class AuthBackendArgs:
     @organization.setter
     def organization(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "organization", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
@@ -359,6 +377,7 @@ class AuthBackendArgs:
 class _AuthBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -382,6 +401,8 @@ class _AuthBackendState:
         """
         Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -411,6 +432,8 @@ class _AuthBackendState:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
+        if alias_metadata is not None:
+            pulumi.set(__self__, "alias_metadata", alias_metadata)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
         if bypass_okta_mfa is not None:
@@ -463,6 +486,19 @@ class _AuthBackendState:
     @accessor.setter
     def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "accessor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
+
+    @alias_metadata.setter
+    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
@@ -715,6 +751,7 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -773,6 +810,8 @@ class AuthBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -856,6 +895,7 @@ class AuthBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -885,6 +925,7 @@ class AuthBackend(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
+            __props__.__dict__["alias_metadata"] = alias_metadata
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["bypass_okta_mfa"] = bypass_okta_mfa
             __props__.__dict__["description"] = description
@@ -921,6 +962,7 @@ class AuthBackend(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[_builtins.str]] = None,
+            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             base_url: Optional[pulumi.Input[_builtins.str]] = None,
             bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -949,6 +991,8 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
+                 This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -981,6 +1025,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__ = _AuthBackendState.__new__(_AuthBackendState)
 
         __props__.__dict__["accessor"] = accessor
+        __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["bypass_okta_mfa"] = bypass_okta_mfa
         __props__.__dict__["description"] = description
@@ -1010,6 +1055,15 @@ class AuthBackend(pulumi.CustomResource):
         The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         """
         return pulumi.get(self, "accessor")
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMetadata")
+    def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The metadata to be tied to generated entity alias.
+          This should be a list or map containing the metadata in key value pairs.
+        """
+        return pulumi.get(self, "alias_metadata")
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")

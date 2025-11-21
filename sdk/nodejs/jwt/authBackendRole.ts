@@ -96,6 +96,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      */
@@ -255,6 +260,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["allowedRedirectUris"] = state?.allowedRedirectUris;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["boundAudiences"] = state?.boundAudiences;
@@ -292,6 +298,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if (args?.userClaim === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userClaim'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["allowedRedirectUris"] = args?.allowedRedirectUris;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["boundAudiences"] = args?.boundAudiences;
@@ -331,6 +338,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthBackendRole resources.
  */
 export interface AuthBackendRoleState {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
@@ -483,6 +495,11 @@ export interface AuthBackendRoleState {
  * The set of arguments for constructing a AuthBackendRole resource.
  */
 export interface AuthBackendRoleArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles

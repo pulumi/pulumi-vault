@@ -133,6 +133,22 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:jwt/authBackendRole:AuthBackendRole")
 public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    @Export(name="aliasMetadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> aliasMetadata;
+
+    /**
+     * @return The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> aliasMetadata() {
+        return Codegen.optional(this.aliasMetadata);
+    }
+    /**
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      * 

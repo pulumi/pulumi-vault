@@ -20,6 +20,23 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     public static final AuthBackendRoleState Empty = new AuthBackendRoleState();
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    @Import(name="aliasMetadata")
+    private @Nullable Output<Map<String,String>> aliasMetadata;
+
+    /**
+     * @return The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> aliasMetadata() {
+        return Optional.ofNullable(this.aliasMetadata);
+    }
+
+    /**
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      * 
@@ -289,6 +306,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     private AuthBackendRoleState() {}
 
     private AuthBackendRoleState(AuthBackendRoleState $) {
+        this.aliasMetadata = $.aliasMetadata;
         this.boundAttributes = $.boundAttributes;
         this.boundAttributesType = $.boundAttributesType;
         this.boundSubjects = $.boundSubjects;
@@ -324,6 +342,29 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         public Builder(AuthBackendRoleState defaults) {
             $ = new AuthBackendRoleState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param aliasMetadata The metadata to be tied to generated entity alias.
+         *   This should be a list or map containing the metadata in key value pairs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aliasMetadata(@Nullable Output<Map<String,String>> aliasMetadata) {
+            $.aliasMetadata = aliasMetadata;
+            return this;
+        }
+
+        /**
+         * @param aliasMetadata The metadata to be tied to generated entity alias.
+         *   This should be a list or map containing the metadata in key value pairs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aliasMetadata(Map<String,String> aliasMetadata) {
+            return aliasMetadata(Output.of(aliasMetadata));
         }
 
         /**

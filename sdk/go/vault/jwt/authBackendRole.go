@@ -118,6 +118,9 @@ import (
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// The list of allowed values for redirectUri during OIDC logins.
 	// Required for OIDC roles
 	AllowedRedirectUris pulumi.StringArrayOutput `pulumi:"allowedRedirectUris"`
@@ -244,6 +247,9 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type authBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The list of allowed values for redirectUri during OIDC logins.
 	// Required for OIDC roles
 	AllowedRedirectUris []string `pulumi:"allowedRedirectUris"`
@@ -335,6 +341,9 @@ type authBackendRoleState struct {
 }
 
 type AuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The list of allowed values for redirectUri during OIDC logins.
 	// Required for OIDC roles
 	AllowedRedirectUris pulumi.StringArrayInput
@@ -430,6 +439,9 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type authBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// The list of allowed values for redirectUri during OIDC logins.
 	// Required for OIDC roles
 	AllowedRedirectUris []string `pulumi:"allowedRedirectUris"`
@@ -522,6 +534,9 @@ type authBackendRoleArgs struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// The list of allowed values for redirectUri during OIDC logins.
 	// Required for OIDC roles
 	AllowedRedirectUris pulumi.StringArrayInput
@@ -697,6 +712,13 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // The list of allowed values for redirectUri during OIDC logins.

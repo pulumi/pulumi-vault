@@ -15,6 +15,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -80,6 +81,22 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> accessor() {
         return this.accessor;
+    }
+    /**
+     * (Optional) The metadata to be tied to generated entity alias.
+     * This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    @Export(name="aliasMetadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> aliasMetadata;
+
+    /**
+     * @return (Optional) The metadata to be tied to generated entity alias.
+     * This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> aliasMetadata() {
+        return Codegen.optional(this.aliasMetadata);
     }
     /**
      * The API endpoint to use. Useful if you

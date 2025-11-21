@@ -67,6 +67,9 @@ import (
 type CertAuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// Allowed the common names for authenticated client certificates
 	AllowedCommonNames pulumi.StringArrayOutput `pulumi:"allowedCommonNames"`
 	// Allowed alternative dns names for authenticated client certificates
@@ -170,6 +173,9 @@ func GetCertAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CertAuthBackendRole resources.
 type certAuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Allowed the common names for authenticated client certificates
 	AllowedCommonNames []string `pulumi:"allowedCommonNames"`
 	// Allowed alternative dns names for authenticated client certificates
@@ -241,6 +247,9 @@ type certAuthBackendRoleState struct {
 }
 
 type CertAuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Allowed the common names for authenticated client certificates
 	AllowedCommonNames pulumi.StringArrayInput
 	// Allowed alternative dns names for authenticated client certificates
@@ -316,6 +325,9 @@ func (CertAuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type certAuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Allowed the common names for authenticated client certificates
 	AllowedCommonNames []string `pulumi:"allowedCommonNames"`
 	// Allowed alternative dns names for authenticated client certificates
@@ -388,6 +400,9 @@ type certAuthBackendRoleArgs struct {
 
 // The set of arguments for constructing a CertAuthBackendRole resource.
 type CertAuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Allowed the common names for authenticated client certificates
 	AllowedCommonNames pulumi.StringArrayInput
 	// Allowed alternative dns names for authenticated client certificates
@@ -543,6 +558,13 @@ func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutput() CertAuthBackend
 
 func (o CertAuthBackendRoleOutput) ToCertAuthBackendRoleOutputWithContext(ctx context.Context) CertAuthBackendRoleOutput {
 	return o
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o CertAuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // Allowed the common names for authenticated client certificates

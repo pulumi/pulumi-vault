@@ -68,6 +68,13 @@ namespace Pulumi.Vault.Gcp
         [Output("addGroupAliases")]
         public Output<bool> AddGroupAliases { get; private set; } = null!;
 
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
         [Output("allowGceInference")]
         public Output<bool> AllowGceInference { get; private set; } = null!;
 
@@ -233,6 +240,19 @@ namespace Pulumi.Vault.Gcp
     {
         [Input("addGroupAliases")]
         public Input<bool>? AddGroupAliases { get; set; }
+
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
 
         [Input("allowGceInference")]
         public Input<bool>? AllowGceInference { get; set; }
@@ -405,6 +425,19 @@ namespace Pulumi.Vault.Gcp
     {
         [Input("addGroupAliases")]
         public Input<bool>? AddGroupAliases { get; set; }
+
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
 
         [Input("allowGceInference")]
         public Input<bool>? AllowGceInference { get; set; }

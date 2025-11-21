@@ -56,6 +56,11 @@ export class ScepAuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The authentication type to use. This can be either "static-challenge" or "intune".
      */
     declare public readonly authType: pulumi.Output<string>;
@@ -129,6 +134,7 @@ export class ScepAuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScepAuthBackendRoleState | undefined;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["authType"] = state?.authType;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["challenge"] = state?.challenge;
@@ -149,6 +155,7 @@ export class ScepAuthBackendRole extends pulumi.CustomResource {
             if (args?.authType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authType'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["authType"] = args?.authType;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["challenge"] = args?.challenge;
@@ -174,6 +181,11 @@ export class ScepAuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ScepAuthBackendRole resources.
  */
 export interface ScepAuthBackendRoleState {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication type to use. This can be either "static-challenge" or "intune".
      */
@@ -240,6 +252,11 @@ export interface ScepAuthBackendRoleState {
  * The set of arguments for constructing a ScepAuthBackendRole resource.
  */
 export interface ScepAuthBackendRoleArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication type to use. This can be either "static-challenge" or "intune".
      */

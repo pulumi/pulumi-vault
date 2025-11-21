@@ -102,6 +102,14 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class GetAuthBackendRoleArgs : global::Pulumi.InvokeArgs
     {
+        [Input("aliasMetadata")]
+        private Dictionary<string, string>? _aliasMetadata;
+        public Dictionary<string, string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new Dictionary<string, string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
         /// </summary>
@@ -215,6 +223,14 @@ namespace Pulumi.Vault.Gcp
 
     public sealed class GetAuthBackendRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
         /// </summary>
@@ -330,6 +346,7 @@ namespace Pulumi.Vault.Gcp
     [OutputType]
     public sealed class GetAuthBackendRoleResult
     {
+        public readonly ImmutableDictionary<string, string>? AliasMetadata;
         public readonly string? Backend;
         /// <summary>
         /// GCP regions bound to the role. Returned when `Type` is `Gce`.
@@ -426,6 +443,8 @@ namespace Pulumi.Vault.Gcp
 
         [OutputConstructor]
         private GetAuthBackendRoleResult(
+            ImmutableDictionary<string, string>? aliasMetadata,
+
             string? backend,
 
             ImmutableArray<string> boundInstanceGroups,
@@ -468,6 +487,7 @@ namespace Pulumi.Vault.Gcp
 
             string type)
         {
+            AliasMetadata = aliasMetadata;
             Backend = backend;
             BoundInstanceGroups = boundInstanceGroups;
             BoundLabels = boundLabels;

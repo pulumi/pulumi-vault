@@ -73,6 +73,9 @@ import (
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
 	// Configures how identity aliases are generated.
 	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
 	AliasNameSource pulumi.StringOutput `pulumi:"aliasNameSource"`
@@ -154,6 +157,9 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type authBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Configures how identity aliases are generated.
 	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
 	AliasNameSource *string `pulumi:"aliasNameSource"`
@@ -197,6 +203,9 @@ type authBackendRoleState struct {
 }
 
 type AuthBackendRoleState struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Configures how identity aliases are generated.
 	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
 	AliasNameSource pulumi.StringPtrInput
@@ -244,6 +253,9 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type authBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
 	// Configures how identity aliases are generated.
 	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
 	AliasNameSource *string `pulumi:"aliasNameSource"`
@@ -288,6 +300,9 @@ type authBackendRoleArgs struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata pulumi.StringMapInput
 	// Configures how identity aliases are generated.
 	// Valid choices are: `serviceaccountUid`, `serviceaccountName`. (vault-1.9+)
 	AliasNameSource pulumi.StringPtrInput
@@ -415,6 +430,13 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutput() AuthBackendRoleOutput {
 
 func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Context) AuthBackendRoleOutput {
 	return o
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 // Configures how identity aliases are generated.

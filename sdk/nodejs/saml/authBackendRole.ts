@@ -72,6 +72,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      */
@@ -159,6 +164,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["boundAttributes"] = state?.boundAttributes;
             resourceInputs["boundAttributesType"] = state?.boundAttributesType;
             resourceInputs["boundSubjects"] = state?.boundSubjects;
@@ -181,6 +187,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["boundAttributes"] = args?.boundAttributes;
             resourceInputs["boundAttributesType"] = args?.boundAttributesType;
             resourceInputs["boundSubjects"] = args?.boundSubjects;
@@ -208,6 +215,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthBackendRole resources.
  */
 export interface AuthBackendRoleState {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
@@ -288,6 +300,11 @@ export interface AuthBackendRoleState {
  * The set of arguments for constructing a AuthBackendRole resource.
  */
 export interface AuthBackendRoleArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.

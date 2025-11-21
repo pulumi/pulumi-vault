@@ -14,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -75,6 +76,22 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:index/certAuthBackendRole:CertAuthBackendRole")
 public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    @Export(name="aliasMetadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> aliasMetadata;
+
+    /**
+     * @return The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> aliasMetadata() {
+        return Codegen.optional(this.aliasMetadata);
+    }
     /**
      * Allowed the common names for authenticated client certificates
      * 

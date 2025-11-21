@@ -9,12 +9,14 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAuthBackendRoleResult {
+    private @Nullable Map<String,String> aliasMetadata;
     /**
      * @return Method used for generating identity aliases. (vault-1.9+)
      * 
@@ -108,6 +110,9 @@ public final class GetAuthBackendRoleResult {
     private @Nullable String tokenType;
 
     private GetAuthBackendRoleResult() {}
+    public Map<String,String> aliasMetadata() {
+        return this.aliasMetadata == null ? Map.of() : this.aliasMetadata;
+    }
     /**
      * @return Method used for generating identity aliases. (vault-1.9+)
      * 
@@ -243,6 +248,7 @@ public final class GetAuthBackendRoleResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Map<String,String> aliasMetadata;
         private String aliasNameSource;
         private @Nullable String audience;
         private @Nullable String backend;
@@ -263,6 +269,7 @@ public final class GetAuthBackendRoleResult {
         public Builder() {}
         public Builder(GetAuthBackendRoleResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.aliasMetadata = defaults.aliasMetadata;
     	      this.aliasNameSource = defaults.aliasNameSource;
     	      this.audience = defaults.audience;
     	      this.backend = defaults.backend;
@@ -282,6 +289,12 @@ public final class GetAuthBackendRoleResult {
     	      this.tokenType = defaults.tokenType;
         }
 
+        @CustomType.Setter
+        public Builder aliasMetadata(@Nullable Map<String,String> aliasMetadata) {
+
+            this.aliasMetadata = aliasMetadata;
+            return this;
+        }
         @CustomType.Setter
         public Builder aliasNameSource(String aliasNameSource) {
             if (aliasNameSource == null) {
@@ -408,6 +421,7 @@ public final class GetAuthBackendRoleResult {
         }
         public GetAuthBackendRoleResult build() {
             final var _resultValue = new GetAuthBackendRoleResult();
+            _resultValue.aliasMetadata = aliasMetadata;
             _resultValue.aliasNameSource = aliasNameSource;
             _resultValue.audience = audience;
             _resultValue.backend = backend;

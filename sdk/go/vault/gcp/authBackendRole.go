@@ -73,8 +73,11 @@ import (
 type AuthBackendRole struct {
 	pulumi.CustomResourceState
 
-	AddGroupAliases   pulumi.BoolOutput `pulumi:"addGroupAliases"`
-	AllowGceInference pulumi.BoolOutput `pulumi:"allowGceInference"`
+	AddGroupAliases pulumi.BoolOutput `pulumi:"addGroupAliases"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata     pulumi.StringMapOutput `pulumi:"aliasMetadata"`
+	AllowGceInference pulumi.BoolOutput      `pulumi:"allowGceInference"`
 	// Path to the mounted GCP auth backend
 	Backend             pulumi.StringPtrOutput   `pulumi:"backend"`
 	BoundInstanceGroups pulumi.StringArrayOutput `pulumi:"boundInstanceGroups"`
@@ -153,8 +156,11 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendRole resources.
 type authBackendRoleState struct {
-	AddGroupAliases   *bool `pulumi:"addGroupAliases"`
-	AllowGceInference *bool `pulumi:"allowGceInference"`
+	AddGroupAliases *bool `pulumi:"addGroupAliases"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata     map[string]string `pulumi:"aliasMetadata"`
+	AllowGceInference *bool             `pulumi:"allowGceInference"`
 	// Path to the mounted GCP auth backend
 	Backend             *string  `pulumi:"backend"`
 	BoundInstanceGroups []string `pulumi:"boundInstanceGroups"`
@@ -198,7 +204,10 @@ type authBackendRoleState struct {
 }
 
 type AuthBackendRoleState struct {
-	AddGroupAliases   pulumi.BoolPtrInput
+	AddGroupAliases pulumi.BoolPtrInput
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata     pulumi.StringMapInput
 	AllowGceInference pulumi.BoolPtrInput
 	// Path to the mounted GCP auth backend
 	Backend             pulumi.StringPtrInput
@@ -247,8 +256,11 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 }
 
 type authBackendRoleArgs struct {
-	AddGroupAliases   *bool `pulumi:"addGroupAliases"`
-	AllowGceInference *bool `pulumi:"allowGceInference"`
+	AddGroupAliases *bool `pulumi:"addGroupAliases"`
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata     map[string]string `pulumi:"aliasMetadata"`
+	AllowGceInference *bool             `pulumi:"allowGceInference"`
 	// Path to the mounted GCP auth backend
 	Backend             *string  `pulumi:"backend"`
 	BoundInstanceGroups []string `pulumi:"boundInstanceGroups"`
@@ -293,7 +305,10 @@ type authBackendRoleArgs struct {
 
 // The set of arguments for constructing a AuthBackendRole resource.
 type AuthBackendRoleArgs struct {
-	AddGroupAliases   pulumi.BoolPtrInput
+	AddGroupAliases pulumi.BoolPtrInput
+	// The metadata to be tied to generated entity alias.
+	//   This should be a list or map containing the metadata in key value pairs.
+	AliasMetadata     pulumi.StringMapInput
 	AllowGceInference pulumi.BoolPtrInput
 	// Path to the mounted GCP auth backend
 	Backend             pulumi.StringPtrInput
@@ -426,6 +441,13 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Co
 
 func (o AuthBackendRoleOutput) AddGroupAliases() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolOutput { return v.AddGroupAliases }).(pulumi.BoolOutput)
+}
+
+// The metadata to be tied to generated entity alias.
+//
+//	This should be a list or map containing the metadata in key value pairs.
+func (o AuthBackendRoleOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 func (o AuthBackendRoleOutput) AllowGceInference() pulumi.BoolOutput {

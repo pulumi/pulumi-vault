@@ -70,6 +70,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     declare public readonly addGroupAliases: pulumi.Output<boolean>;
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
     declare public readonly allowGceInference: pulumi.Output<boolean>;
     /**
      * Path to the mounted GCP auth backend
@@ -158,6 +163,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
             resourceInputs["addGroupAliases"] = state?.addGroupAliases;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["allowGceInference"] = state?.allowGceInference;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["boundInstanceGroups"] = state?.boundInstanceGroups;
@@ -189,6 +195,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["addGroupAliases"] = args?.addGroupAliases;
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["allowGceInference"] = args?.allowGceInference;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["boundInstanceGroups"] = args?.boundInstanceGroups;
@@ -222,6 +229,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
  */
 export interface AuthBackendRoleState {
     addGroupAliases?: pulumi.Input<boolean>;
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     allowGceInference?: pulumi.Input<boolean>;
     /**
      * Path to the mounted GCP auth backend
@@ -302,6 +314,11 @@ export interface AuthBackendRoleState {
  */
 export interface AuthBackendRoleArgs {
     addGroupAliases?: pulumi.Input<boolean>;
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     allowGceInference?: pulumi.Input<boolean>;
     /**
      * Path to the mounted GCP auth backend

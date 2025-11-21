@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
+        "aliasMetadata": args.aliasMetadata,
         "audience": args.audience,
         "backend": args.backend,
         "namespace": args.namespace,
@@ -45,6 +46,7 @@ export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.I
  * A collection of arguments for invoking getAuthBackendRole.
  */
 export interface GetAuthBackendRoleArgs {
+    aliasMetadata?: {[key: string]: string};
     /**
      * Audience claim to verify in the JWT.
      */
@@ -125,6 +127,7 @@ export interface GetAuthBackendRoleArgs {
  * A collection of values returned by getAuthBackendRole.
  */
 export interface GetAuthBackendRoleResult {
+    readonly aliasMetadata?: {[key: string]: string};
     /**
      * Method used for generating identity aliases. (vault-1.9+)
      */
@@ -224,6 +227,7 @@ export interface GetAuthBackendRoleResult {
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
+        "aliasMetadata": args.aliasMetadata,
         "audience": args.audience,
         "backend": args.backend,
         "namespace": args.namespace,
@@ -244,6 +248,7 @@ export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opt
  * A collection of arguments for invoking getAuthBackendRole.
  */
 export interface GetAuthBackendRoleOutputArgs {
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Audience claim to verify in the JWT.
      */

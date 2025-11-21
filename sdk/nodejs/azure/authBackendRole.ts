@@ -70,6 +70,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
     }
 
     /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Unique name of the auth backend to configure.
      */
     declare public readonly backend: pulumi.Output<string | undefined>;
@@ -170,6 +175,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthBackendRoleState | undefined;
+            resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["boundGroupIds"] = state?.boundGroupIds;
             resourceInputs["boundLocations"] = state?.boundLocations;
@@ -193,6 +199,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
+            resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["boundGroupIds"] = args?.boundGroupIds;
             resourceInputs["boundLocations"] = args?.boundLocations;
@@ -221,6 +228,11 @@ export class AuthBackendRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AuthBackendRole resources.
  */
 export interface AuthBackendRoleState {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Unique name of the auth backend to configure.
      */
@@ -314,6 +326,11 @@ export interface AuthBackendRoleState {
  * The set of arguments for constructing a AuthBackendRole resource.
  */
 export interface AuthBackendRoleArgs {
+    /**
+     * The metadata to be tied to generated entity alias.
+     *   This should be a list or map containing the metadata in key value pairs.
+     */
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Unique name of the auth backend to configure.
      */

@@ -112,6 +112,8 @@ type SecretBackendRootCert struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrOutput `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// List of other SANs
@@ -246,6 +248,8 @@ type secretBackendRootCertState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter *string `pulumi:"notAfter"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -342,6 +346,8 @@ type SecretBackendRootCertState struct {
 	Namespace pulumi.StringPtrInput
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrInput
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -434,6 +440,8 @@ type secretBackendRootCertArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter *string `pulumi:"notAfter"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -521,6 +529,8 @@ type SecretBackendRootCertArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrInput
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -777,6 +787,11 @@ func (o SecretBackendRootCertOutput) Namespace() pulumi.StringPtrOutput {
 // Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 func (o SecretBackendRootCertOutput) NotAfter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the duration by which to backdate the NotBefore property.
+func (o SecretBackendRootCertOutput) NotBeforeDuration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.NotBeforeDuration }).(pulumi.StringPtrOutput)
 }
 
 // The organization

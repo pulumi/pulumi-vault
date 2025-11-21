@@ -61,6 +61,13 @@ namespace Pulumi.Vault.Ldap
         public Output<string> Accessor { get; private set; } = null!;
 
         /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        [Output("aliasMetadata")]
+        public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// Allows anonymous group searches.
         /// </summary>
         [Output("anonymousGroupSearch")]
@@ -399,6 +406,19 @@ namespace Pulumi.Vault.Ldap
 
     public sealed class AuthBackendArgs : global::Pulumi.ResourceArgs
     {
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
+
         /// <summary>
         /// Allows anonymous group searches.
         /// </summary>
@@ -731,6 +751,19 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("accessor")]
         public Input<string>? Accessor { get; set; }
+
+        [Input("aliasMetadata")]
+        private InputMap<string>? _aliasMetadata;
+
+        /// <summary>
+        /// The metadata to be tied to generated entity alias.
+        ///   This should be a list or map containing the metadata in key value pairs.
+        /// </summary>
+        public InputMap<string> AliasMetadata
+        {
+            get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
+            set => _aliasMetadata = value;
+        }
 
         /// <summary>
         /// Allows anonymous group searches.

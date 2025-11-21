@@ -169,6 +169,10 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     declare public readonly notAfter: pulumi.Output<string | undefined>;
     /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    declare public readonly notBeforeDuration: pulumi.Output<string | undefined>;
+    /**
      * The organization
      */
     declare public readonly organization: pulumi.Output<string | undefined>;
@@ -273,6 +277,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["maxPathLength"] = state?.maxPathLength;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["notAfter"] = state?.notAfter;
+            resourceInputs["notBeforeDuration"] = state?.notBeforeDuration;
             resourceInputs["organization"] = state?.organization;
             resourceInputs["otherSans"] = state?.otherSans;
             resourceInputs["ou"] = state?.ou;
@@ -322,6 +327,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["maxPathLength"] = args?.maxPathLength;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["notAfter"] = args?.notAfter;
+            resourceInputs["notBeforeDuration"] = args?.notBeforeDuration;
             resourceInputs["organization"] = args?.organization;
             resourceInputs["otherSans"] = args?.otherSans;
             resourceInputs["ou"] = args?.ou;
@@ -464,6 +470,10 @@ export interface SecretBackendRootCertState {
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
     notAfter?: pulumi.Input<string>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    notBeforeDuration?: pulumi.Input<string>;
     /**
      * The organization
      */
@@ -631,6 +641,10 @@ export interface SecretBackendRootCertArgs {
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
     notAfter?: pulumi.Input<string>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    notBeforeDuration?: pulumi.Input<string>;
     /**
      * The organization
      */

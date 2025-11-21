@@ -10,6 +10,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -18,6 +19,13 @@ import javax.annotation.Nullable;
 public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetAuthBackendRoleArgs Empty = new GetAuthBackendRoleArgs();
+
+    @Import(name="aliasMetadata")
+    private @Nullable Output<Map<String,String>> aliasMetadata;
+
+    public Optional<Output<Map<String,String>>> aliasMetadata() {
+        return Optional.ofNullable(this.aliasMetadata);
+    }
 
     /**
      * Audience claim to verify in the JWT.
@@ -261,6 +269,7 @@ public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArg
     private GetAuthBackendRoleArgs() {}
 
     private GetAuthBackendRoleArgs(GetAuthBackendRoleArgs $) {
+        this.aliasMetadata = $.aliasMetadata;
         this.audience = $.audience;
         this.backend = $.backend;
         this.namespace = $.namespace;
@@ -292,6 +301,15 @@ public final class GetAuthBackendRoleArgs extends com.pulumi.resources.InvokeArg
 
         public Builder(GetAuthBackendRoleArgs defaults) {
             $ = new GetAuthBackendRoleArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder aliasMetadata(@Nullable Output<Map<String,String>> aliasMetadata) {
+            $.aliasMetadata = aliasMetadata;
+            return this;
+        }
+
+        public Builder aliasMetadata(Map<String,String> aliasMetadata) {
+            return aliasMetadata(Output.of(aliasMetadata));
         }
 
         /**
