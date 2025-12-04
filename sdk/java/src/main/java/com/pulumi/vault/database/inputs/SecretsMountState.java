@@ -20,7 +20,7 @@ import com.pulumi.vault.database.inputs.SecretsMountMysqlRdArgs;
 import com.pulumi.vault.database.inputs.SecretsMountOracleArgs;
 import com.pulumi.vault.database.inputs.SecretsMountPostgresqlArgs;
 import com.pulumi.vault.database.inputs.SecretsMountRediArgs;
-import com.pulumi.vault.database.inputs.SecretsMountRedisElasticachArgs;
+import com.pulumi.vault.database.inputs.SecretsMountRedisElasticacheArgs;
 import com.pulumi.vault.database.inputs.SecretsMountRedshiftArgs;
 import com.pulumi.vault.database.inputs.SecretsMountSnowflakeArgs;
 import java.lang.Boolean;
@@ -602,14 +602,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="redisElasticaches")
-    private @Nullable Output<List<SecretsMountRedisElasticachArgs>> redisElasticaches;
+    private @Nullable Output<List<SecretsMountRedisElasticacheArgs>> redisElasticaches;
 
     /**
      * @return A nested block containing configuration options for Redis ElastiCache connections.\
      * *See Configuration Options for more info*
      * 
      */
-    public Optional<Output<List<SecretsMountRedisElasticachArgs>>> redisElasticaches() {
+    public Optional<Output<List<SecretsMountRedisElasticacheArgs>>> redisElasticaches() {
         return Optional.ofNullable(this.redisElasticaches);
     }
 
@@ -1727,7 +1727,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder redisElasticaches(@Nullable Output<List<SecretsMountRedisElasticachArgs>> redisElasticaches) {
+        public Builder redisElasticaches(@Nullable Output<List<SecretsMountRedisElasticacheArgs>> redisElasticaches) {
             $.redisElasticaches = redisElasticaches;
             return this;
         }
@@ -1739,7 +1739,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder redisElasticaches(List<SecretsMountRedisElasticachArgs> redisElasticaches) {
+        public Builder redisElasticaches(List<SecretsMountRedisElasticacheArgs> redisElasticaches) {
             return redisElasticaches(Output.of(redisElasticaches));
         }
 
@@ -1750,7 +1750,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder redisElasticaches(SecretsMountRedisElasticachArgs... redisElasticaches) {
+        public Builder redisElasticaches(SecretsMountRedisElasticacheArgs... redisElasticaches) {
             return redisElasticaches(List.of(redisElasticaches));
         }
 

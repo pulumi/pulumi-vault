@@ -2845,7 +2845,7 @@ export namespace database {
         verifyConnection?: pulumi.Input<boolean>;
     }
 
-    export interface SecretsMountRedisElasticach {
+    export interface SecretsMountRedisElasticache {
         /**
          * A list of roles that are allowed to use this
          * connection.

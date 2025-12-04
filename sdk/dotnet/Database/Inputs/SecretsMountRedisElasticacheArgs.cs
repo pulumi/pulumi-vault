@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Database.Inputs
 {
 
-    public sealed class SecretsMountRedisElasticachArgs : global::Pulumi.ResourceArgs
+    public sealed class SecretsMountRedisElasticacheArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowedRoles")]
         private InputList<string>? _allowedRoles;
@@ -142,9 +142,9 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("verifyConnection")]
         public Input<bool>? VerifyConnection { get; set; }
 
-        public SecretsMountRedisElasticachArgs()
+        public SecretsMountRedisElasticacheArgs()
         {
         }
-        public static new SecretsMountRedisElasticachArgs Empty => new SecretsMountRedisElasticachArgs();
+        public static new SecretsMountRedisElasticacheArgs Empty => new SecretsMountRedisElasticacheArgs();
     }
 }

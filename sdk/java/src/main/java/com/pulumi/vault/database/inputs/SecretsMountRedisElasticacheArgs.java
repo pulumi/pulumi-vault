@@ -16,9 +16,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.ResourceArgs {
+public final class SecretsMountRedisElasticacheArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final SecretsMountRedisElasticachArgs Empty = new SecretsMountRedisElasticachArgs();
+    public static final SecretsMountRedisElasticacheArgs Empty = new SecretsMountRedisElasticacheArgs();
 
     /**
      * A list of roles that are allowed to use this
@@ -246,9 +246,9 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         return Optional.ofNullable(this.verifyConnection);
     }
 
-    private SecretsMountRedisElasticachArgs() {}
+    private SecretsMountRedisElasticacheArgs() {}
 
-    private SecretsMountRedisElasticachArgs(SecretsMountRedisElasticachArgs $) {
+    private SecretsMountRedisElasticacheArgs(SecretsMountRedisElasticacheArgs $) {
         this.allowedRoles = $.allowedRoles;
         this.data = $.data;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
@@ -268,19 +268,19 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(SecretsMountRedisElasticachArgs defaults) {
+    public static Builder builder(SecretsMountRedisElasticacheArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private SecretsMountRedisElasticachArgs $;
+        private SecretsMountRedisElasticacheArgs $;
 
         public Builder() {
-            $ = new SecretsMountRedisElasticachArgs();
+            $ = new SecretsMountRedisElasticacheArgs();
         }
 
-        public Builder(SecretsMountRedisElasticachArgs defaults) {
-            $ = new SecretsMountRedisElasticachArgs(Objects.requireNonNull(defaults));
+        public Builder(SecretsMountRedisElasticacheArgs defaults) {
+            $ = new SecretsMountRedisElasticacheArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -614,12 +614,12 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
             return verifyConnection(Output.of(verifyConnection));
         }
 
-        public SecretsMountRedisElasticachArgs build() {
+        public SecretsMountRedisElasticacheArgs build() {
             if ($.name == null) {
-                throw new MissingRequiredPropertyException("SecretsMountRedisElasticachArgs", "name");
+                throw new MissingRequiredPropertyException("SecretsMountRedisElasticacheArgs", "name");
             }
             if ($.url == null) {
-                throw new MissingRequiredPropertyException("SecretsMountRedisElasticachArgs", "url");
+                throw new MissingRequiredPropertyException("SecretsMountRedisElasticacheArgs", "url");
             }
             return $;
         }

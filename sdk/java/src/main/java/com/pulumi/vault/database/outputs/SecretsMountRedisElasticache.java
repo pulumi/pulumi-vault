@@ -15,7 +15,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class SecretsMountRedisElasticach {
+public final class SecretsMountRedisElasticache {
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -95,7 +95,7 @@ public final class SecretsMountRedisElasticach {
      */
     private @Nullable Boolean verifyConnection;
 
-    private SecretsMountRedisElasticach() {}
+    private SecretsMountRedisElasticache() {}
     /**
      * @return A list of roles that are allowed to use this
      * connection.
@@ -207,7 +207,7 @@ public final class SecretsMountRedisElasticach {
         return new Builder();
     }
 
-    public static Builder builder(SecretsMountRedisElasticach defaults) {
+    public static Builder builder(SecretsMountRedisElasticache defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -227,7 +227,7 @@ public final class SecretsMountRedisElasticach {
         private @Nullable String username;
         private @Nullable Boolean verifyConnection;
         public Builder() {}
-        public Builder(SecretsMountRedisElasticach defaults) {
+        public Builder(SecretsMountRedisElasticache defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.data = defaults.data;
@@ -269,7 +269,7 @@ public final class SecretsMountRedisElasticach {
         @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
-              throw new MissingRequiredPropertyException("SecretsMountRedisElasticach", "name");
+              throw new MissingRequiredPropertyException("SecretsMountRedisElasticache", "name");
             }
             this.name = name;
             return this;
@@ -322,7 +322,7 @@ public final class SecretsMountRedisElasticach {
         @CustomType.Setter
         public Builder url(String url) {
             if (url == null) {
-              throw new MissingRequiredPropertyException("SecretsMountRedisElasticach", "url");
+              throw new MissingRequiredPropertyException("SecretsMountRedisElasticache", "url");
             }
             this.url = url;
             return this;
@@ -339,8 +339,8 @@ public final class SecretsMountRedisElasticach {
             this.verifyConnection = verifyConnection;
             return this;
         }
-        public SecretsMountRedisElasticach build() {
-            final var _resultValue = new SecretsMountRedisElasticach();
+        public SecretsMountRedisElasticache build() {
+            final var _resultValue = new SecretsMountRedisElasticache();
             _resultValue.allowedRoles = allowedRoles;
             _resultValue.data = data;
             _resultValue.disableAutomatedRotation = disableAutomatedRotation;

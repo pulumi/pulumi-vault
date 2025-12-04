@@ -25,7 +25,7 @@ import com.pulumi.vault.database.outputs.SecretsMountMysqlRd;
 import com.pulumi.vault.database.outputs.SecretsMountOracle;
 import com.pulumi.vault.database.outputs.SecretsMountPostgresql;
 import com.pulumi.vault.database.outputs.SecretsMountRedi;
-import com.pulumi.vault.database.outputs.SecretsMountRedisElasticach;
+import com.pulumi.vault.database.outputs.SecretsMountRedisElasticache;
 import com.pulumi.vault.database.outputs.SecretsMountRedshift;
 import com.pulumi.vault.database.outputs.SecretsMountSnowflake;
 import java.lang.Boolean;
@@ -659,15 +659,15 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      * *See Configuration Options for more info*
      * 
      */
-    @Export(name="redisElasticaches", refs={List.class,SecretsMountRedisElasticach.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<SecretsMountRedisElasticach>> redisElasticaches;
+    @Export(name="redisElasticaches", refs={List.class,SecretsMountRedisElasticache.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<SecretsMountRedisElasticache>> redisElasticaches;
 
     /**
      * @return A nested block containing configuration options for Redis ElastiCache connections.\
      * *See Configuration Options for more info*
      * 
      */
-    public Output<Optional<List<SecretsMountRedisElasticach>>> redisElasticaches() {
+    public Output<Optional<List<SecretsMountRedisElasticache>>> redisElasticaches() {
         return Codegen.optional(this.redisElasticaches);
     }
     /**
