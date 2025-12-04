@@ -336,7 +336,7 @@ namespace Pulumi.Vault.Database
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("redisElasticaches")]
-        public Output<ImmutableArray<Outputs.SecretsMountRedisElasticach>> RedisElasticaches { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.SecretsMountRedisElasticache>> RedisElasticaches { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for AWS Redshift connections.  
@@ -752,15 +752,15 @@ namespace Pulumi.Vault.Database
         }
 
         [Input("redisElasticaches")]
-        private InputList<Inputs.SecretsMountRedisElasticachArgs>? _redisElasticaches;
+        private InputList<Inputs.SecretsMountRedisElasticacheArgs>? _redisElasticaches;
 
         /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.  
         /// *See Configuration Options for more info*
         /// </summary>
-        public InputList<Inputs.SecretsMountRedisElasticachArgs> RedisElasticaches
+        public InputList<Inputs.SecretsMountRedisElasticacheArgs> RedisElasticaches
         {
-            get => _redisElasticaches ?? (_redisElasticaches = new InputList<Inputs.SecretsMountRedisElasticachArgs>());
+            get => _redisElasticaches ?? (_redisElasticaches = new InputList<Inputs.SecretsMountRedisElasticacheArgs>());
             set => _redisElasticaches = value;
         }
 
@@ -1164,15 +1164,15 @@ namespace Pulumi.Vault.Database
         }
 
         [Input("redisElasticaches")]
-        private InputList<Inputs.SecretsMountRedisElasticachGetArgs>? _redisElasticaches;
+        private InputList<Inputs.SecretsMountRedisElasticacheGetArgs>? _redisElasticaches;
 
         /// <summary>
         /// A nested block containing configuration options for Redis ElastiCache connections.  
         /// *See Configuration Options for more info*
         /// </summary>
-        public InputList<Inputs.SecretsMountRedisElasticachGetArgs> RedisElasticaches
+        public InputList<Inputs.SecretsMountRedisElasticacheGetArgs> RedisElasticaches
         {
-            get => _redisElasticaches ?? (_redisElasticaches = new InputList<Inputs.SecretsMountRedisElasticachGetArgs>());
+            get => _redisElasticaches ?? (_redisElasticaches = new InputList<Inputs.SecretsMountRedisElasticacheGetArgs>());
             set => _redisElasticaches = value;
         }
 
