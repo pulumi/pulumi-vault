@@ -10149,7 +10149,7 @@ func (o SecretsMountRediArrayOutput) Index(i pulumi.IntInput) SecretsMountRediOu
 	}).(SecretsMountRediOutput)
 }
 
-type SecretsMountRedisElasticach struct {
+type SecretsMountRedisElasticache struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
@@ -10188,18 +10188,18 @@ type SecretsMountRedisElasticach struct {
 	VerifyConnection *bool `pulumi:"verifyConnection"`
 }
 
-// SecretsMountRedisElasticachInput is an input type that accepts SecretsMountRedisElasticachArgs and SecretsMountRedisElasticachOutput values.
-// You can construct a concrete instance of `SecretsMountRedisElasticachInput` via:
+// SecretsMountRedisElasticacheInput is an input type that accepts SecretsMountRedisElasticacheArgs and SecretsMountRedisElasticacheOutput values.
+// You can construct a concrete instance of `SecretsMountRedisElasticacheInput` via:
 //
-//	SecretsMountRedisElasticachArgs{...}
-type SecretsMountRedisElasticachInput interface {
+//	SecretsMountRedisElasticacheArgs{...}
+type SecretsMountRedisElasticacheInput interface {
 	pulumi.Input
 
-	ToSecretsMountRedisElasticachOutput() SecretsMountRedisElasticachOutput
-	ToSecretsMountRedisElasticachOutputWithContext(context.Context) SecretsMountRedisElasticachOutput
+	ToSecretsMountRedisElasticacheOutput() SecretsMountRedisElasticacheOutput
+	ToSecretsMountRedisElasticacheOutputWithContext(context.Context) SecretsMountRedisElasticacheOutput
 }
 
-type SecretsMountRedisElasticachArgs struct {
+type SecretsMountRedisElasticacheArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
@@ -10238,153 +10238,153 @@ type SecretsMountRedisElasticachArgs struct {
 	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
 }
 
-func (SecretsMountRedisElasticachArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretsMountRedisElasticach)(nil)).Elem()
+func (SecretsMountRedisElasticacheArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedisElasticache)(nil)).Elem()
 }
 
-func (i SecretsMountRedisElasticachArgs) ToSecretsMountRedisElasticachOutput() SecretsMountRedisElasticachOutput {
-	return i.ToSecretsMountRedisElasticachOutputWithContext(context.Background())
+func (i SecretsMountRedisElasticacheArgs) ToSecretsMountRedisElasticacheOutput() SecretsMountRedisElasticacheOutput {
+	return i.ToSecretsMountRedisElasticacheOutputWithContext(context.Background())
 }
 
-func (i SecretsMountRedisElasticachArgs) ToSecretsMountRedisElasticachOutputWithContext(ctx context.Context) SecretsMountRedisElasticachOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticachOutput)
+func (i SecretsMountRedisElasticacheArgs) ToSecretsMountRedisElasticacheOutputWithContext(ctx context.Context) SecretsMountRedisElasticacheOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticacheOutput)
 }
 
-// SecretsMountRedisElasticachArrayInput is an input type that accepts SecretsMountRedisElasticachArray and SecretsMountRedisElasticachArrayOutput values.
-// You can construct a concrete instance of `SecretsMountRedisElasticachArrayInput` via:
+// SecretsMountRedisElasticacheArrayInput is an input type that accepts SecretsMountRedisElasticacheArray and SecretsMountRedisElasticacheArrayOutput values.
+// You can construct a concrete instance of `SecretsMountRedisElasticacheArrayInput` via:
 //
-//	SecretsMountRedisElasticachArray{ SecretsMountRedisElasticachArgs{...} }
-type SecretsMountRedisElasticachArrayInput interface {
+//	SecretsMountRedisElasticacheArray{ SecretsMountRedisElasticacheArgs{...} }
+type SecretsMountRedisElasticacheArrayInput interface {
 	pulumi.Input
 
-	ToSecretsMountRedisElasticachArrayOutput() SecretsMountRedisElasticachArrayOutput
-	ToSecretsMountRedisElasticachArrayOutputWithContext(context.Context) SecretsMountRedisElasticachArrayOutput
+	ToSecretsMountRedisElasticacheArrayOutput() SecretsMountRedisElasticacheArrayOutput
+	ToSecretsMountRedisElasticacheArrayOutputWithContext(context.Context) SecretsMountRedisElasticacheArrayOutput
 }
 
-type SecretsMountRedisElasticachArray []SecretsMountRedisElasticachInput
+type SecretsMountRedisElasticacheArray []SecretsMountRedisElasticacheInput
 
-func (SecretsMountRedisElasticachArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretsMountRedisElasticach)(nil)).Elem()
+func (SecretsMountRedisElasticacheArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedisElasticache)(nil)).Elem()
 }
 
-func (i SecretsMountRedisElasticachArray) ToSecretsMountRedisElasticachArrayOutput() SecretsMountRedisElasticachArrayOutput {
-	return i.ToSecretsMountRedisElasticachArrayOutputWithContext(context.Background())
+func (i SecretsMountRedisElasticacheArray) ToSecretsMountRedisElasticacheArrayOutput() SecretsMountRedisElasticacheArrayOutput {
+	return i.ToSecretsMountRedisElasticacheArrayOutputWithContext(context.Background())
 }
 
-func (i SecretsMountRedisElasticachArray) ToSecretsMountRedisElasticachArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticachArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticachArrayOutput)
+func (i SecretsMountRedisElasticacheArray) ToSecretsMountRedisElasticacheArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticacheArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretsMountRedisElasticacheArrayOutput)
 }
 
-type SecretsMountRedisElasticachOutput struct{ *pulumi.OutputState }
+type SecretsMountRedisElasticacheOutput struct{ *pulumi.OutputState }
 
-func (SecretsMountRedisElasticachOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SecretsMountRedisElasticach)(nil)).Elem()
+func (SecretsMountRedisElasticacheOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretsMountRedisElasticache)(nil)).Elem()
 }
 
-func (o SecretsMountRedisElasticachOutput) ToSecretsMountRedisElasticachOutput() SecretsMountRedisElasticachOutput {
+func (o SecretsMountRedisElasticacheOutput) ToSecretsMountRedisElasticacheOutput() SecretsMountRedisElasticacheOutput {
 	return o
 }
 
-func (o SecretsMountRedisElasticachOutput) ToSecretsMountRedisElasticachOutputWithContext(ctx context.Context) SecretsMountRedisElasticachOutput {
+func (o SecretsMountRedisElasticacheOutput) ToSecretsMountRedisElasticacheOutputWithContext(ctx context.Context) SecretsMountRedisElasticacheOutput {
 	return o
 }
 
 // A list of roles that are allowed to use this
 // connection.
-func (o SecretsMountRedisElasticachOutput) AllowedRoles() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
+func (o SecretsMountRedisElasticacheOutput) AllowedRoles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-func (o SecretsMountRedisElasticachOutput) Data() pulumi.StringMapOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) map[string]string { return v.Data }).(pulumi.StringMapOutput)
+func (o SecretsMountRedisElasticacheOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountRedisElasticachOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *bool { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *bool { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Name of the database connection.
-func (o SecretsMountRedisElasticachOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Name }).(pulumi.StringOutput)
+func (o SecretsMountRedisElasticacheOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
-func (o SecretsMountRedisElasticachOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Password }).(pulumi.StringPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the name of the plugin to use.
-func (o SecretsMountRedisElasticachOutput) PluginName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) PluginName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.PluginName }).(pulumi.StringPtrOutput)
 }
 
 // The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
-func (o SecretsMountRedisElasticachOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
-func (o SecretsMountRedisElasticachOutput) RootRotationStatements() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+func (o SecretsMountRedisElasticacheOutput) RootRotationStatements() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
 // The amount of time in seconds Vault should wait before rotating the root credential.
 // A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-func (o SecretsMountRedisElasticachOutput) RotationPeriod() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *int { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *int { return v.RotationPeriod }).(pulumi.IntPtrOutput)
 }
 
 // The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
 // defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-func (o SecretsMountRedisElasticachOutput) RotationSchedule() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.RotationSchedule }).(pulumi.StringPtrOutput)
 }
 
 // The maximum amount of time in seconds allowed to complete
 // a rotation when a scheduled token rotation occurs. The default rotation window is
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-func (o SecretsMountRedisElasticachOutput) RotationWindow() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // The configuration endpoint for the ElastiCache cluster to connect to.
-func (o SecretsMountRedisElasticachOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Url }).(pulumi.StringOutput)
+func (o SecretsMountRedisElasticacheOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) string { return v.Url }).(pulumi.StringOutput)
 }
 
 // The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
-func (o SecretsMountRedisElasticachOutput) Username() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Username }).(pulumi.StringPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 // Whether the connection should be verified on
 // initial configuration or not.
-func (o SecretsMountRedisElasticachOutput) VerifyConnection() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+func (o SecretsMountRedisElasticacheOutput) VerifyConnection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
 }
 
-type SecretsMountRedisElasticachArrayOutput struct{ *pulumi.OutputState }
+type SecretsMountRedisElasticacheArrayOutput struct{ *pulumi.OutputState }
 
-func (SecretsMountRedisElasticachArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SecretsMountRedisElasticach)(nil)).Elem()
+func (SecretsMountRedisElasticacheArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretsMountRedisElasticache)(nil)).Elem()
 }
 
-func (o SecretsMountRedisElasticachArrayOutput) ToSecretsMountRedisElasticachArrayOutput() SecretsMountRedisElasticachArrayOutput {
+func (o SecretsMountRedisElasticacheArrayOutput) ToSecretsMountRedisElasticacheArrayOutput() SecretsMountRedisElasticacheArrayOutput {
 	return o
 }
 
-func (o SecretsMountRedisElasticachArrayOutput) ToSecretsMountRedisElasticachArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticachArrayOutput {
+func (o SecretsMountRedisElasticacheArrayOutput) ToSecretsMountRedisElasticacheArrayOutputWithContext(ctx context.Context) SecretsMountRedisElasticacheArrayOutput {
 	return o
 }
 
-func (o SecretsMountRedisElasticachArrayOutput) Index(i pulumi.IntInput) SecretsMountRedisElasticachOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountRedisElasticach {
-		return vs[0].([]SecretsMountRedisElasticach)[vs[1].(int)]
-	}).(SecretsMountRedisElasticachOutput)
+func (o SecretsMountRedisElasticacheArrayOutput) Index(i pulumi.IntInput) SecretsMountRedisElasticacheOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretsMountRedisElasticache {
+		return vs[0].([]SecretsMountRedisElasticache)[vs[1].(int)]
+	}).(SecretsMountRedisElasticacheOutput)
 }
 
 type SecretsMountRedshift struct {
@@ -11062,8 +11062,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountPostgresqlArrayInput)(nil)).Elem(), SecretsMountPostgresqlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRediInput)(nil)).Elem(), SecretsMountRediArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRediArrayInput)(nil)).Elem(), SecretsMountRediArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticachInput)(nil)).Elem(), SecretsMountRedisElasticachArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticachArrayInput)(nil)).Elem(), SecretsMountRedisElasticachArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticacheInput)(nil)).Elem(), SecretsMountRedisElasticacheArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedisElasticacheArrayInput)(nil)).Elem(), SecretsMountRedisElasticacheArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftInput)(nil)).Elem(), SecretsMountRedshiftArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountRedshiftArrayInput)(nil)).Elem(), SecretsMountRedshiftArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretsMountSnowflakeInput)(nil)).Elem(), SecretsMountSnowflakeArgs{})
@@ -11134,8 +11134,8 @@ func init() {
 	pulumi.RegisterOutputType(SecretsMountPostgresqlArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountRediOutput{})
 	pulumi.RegisterOutputType(SecretsMountRediArrayOutput{})
-	pulumi.RegisterOutputType(SecretsMountRedisElasticachOutput{})
-	pulumi.RegisterOutputType(SecretsMountRedisElasticachArrayOutput{})
+	pulumi.RegisterOutputType(SecretsMountRedisElasticacheOutput{})
+	pulumi.RegisterOutputType(SecretsMountRedisElasticacheArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedshiftOutput{})
 	pulumi.RegisterOutputType(SecretsMountRedshiftArrayOutput{})
 	pulumi.RegisterOutputType(SecretsMountSnowflakeOutput{})
