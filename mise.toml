@@ -1,5 +1,9 @@
 [tools]
 golangci-lint = "latest"
+"vfox-pulumi:pulumi/pulumi-std" = "latest"
+"vfox-pulumi:pulumi/pulumi-converter-terraform" = "latest"
+"vfox-pulumi:pulumi/pulumi-gcp" = "latest"
+"vfox-pulumi:pulumi/pulumi-aws" = "latest"
 
 [settings]
 experimental = true
