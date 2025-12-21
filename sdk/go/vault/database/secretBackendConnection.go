@@ -14,6 +14,8 @@ import (
 
 // ## Example Usage
 //
+// ### PostgreSQL Connection
+//
 // ```go
 // package main
 //
@@ -46,6 +48,64 @@ import (
 //				Postgresql: &database.SecretBackendConnectionPostgresqlArgs{
 //					ConnectionUrl: pulumi.String("postgres://username:password@host:port/database"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Oracle Connection with Self-Managed Mode (Rootless)
+//
+// For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
+// which allows a static role to manage its own database credentials without requiring root access:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/database"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
+//				Path: pulumi.String("database"),
+//				Type: pulumi.String("database"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			oracle, err := database.NewSecretBackendConnection(ctx, "oracle", &database.SecretBackendConnectionArgs{
+//				Backend: db.Path,
+//				Name:    pulumi.String("oracle"),
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("my-role"),
+//				},
+//				Oracle: &database.SecretBackendConnectionOracleArgs{
+//					ConnectionUrl: pulumi.String("{{username}}/{{password}}@//host:port/service"),
+//					SelfManaged:   pulumi.Bool(true),
+//					PluginName:    "vault-plugin-database-oracle",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = database.NewSecretBackendStaticRole(ctx, "oracle_role", &database.SecretBackendStaticRoleArgs{
+//				Backend:           db.Path,
+//				Name:              pulumi.String("my-role"),
+//				DbName:            oracle.Name,
+//				Username:          pulumi.String("vault_user"),
+//				PasswordWo:        pulumi.String("initial-password"),
+//				PasswordWoVersion: pulumi.Int(1),
+//				RotationPeriod:    pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err

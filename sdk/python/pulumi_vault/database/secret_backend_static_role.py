@@ -26,6 +26,8 @@ class SecretBackendStaticRoleArgs:
                  credential_type: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -43,6 +45,13 @@ class SecretBackendStaticRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password corresponding to the username in the database.
+               This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+               Cannot be used with `self_managed_password`.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+               Used for tracking changes to the write-only password field. For more info see
+               updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[_builtins.str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
@@ -56,6 +65,7 @@ class SecretBackendStaticRoleArgs:
         :param pulumi.Input[_builtins.str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+               **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If set to true, Vault will skip the
                initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         """
@@ -70,6 +80,10 @@ class SecretBackendStaticRoleArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -168,6 +182,35 @@ class SecretBackendStaticRoleArgs:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password corresponding to the username in the database.
+        This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+        Cannot be used with `self_managed_password`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the `password_wo` field. 
+        Used for tracking changes to the write-only password field. For more info see
+        updating write-only attributes.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -228,6 +271,7 @@ class SecretBackendStaticRoleArgs:
         The password corresponding to the username in the database.
         Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
         select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         """
         return pulumi.get(self, "self_managed_password")
 
@@ -258,6 +302,8 @@ class _SecretBackendStaticRoleState:
                  db_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -275,6 +321,13 @@ class _SecretBackendStaticRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password corresponding to the username in the database.
+               This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+               Cannot be used with `self_managed_password`.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+               Used for tracking changes to the write-only password field. For more info see
+               updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[_builtins.str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
@@ -288,6 +341,7 @@ class _SecretBackendStaticRoleState:
         :param pulumi.Input[_builtins.str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+               **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If set to true, Vault will skip the
                initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[_builtins.str] username: The database username that this static role corresponds to.
@@ -304,6 +358,10 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -392,6 +450,35 @@ class _SecretBackendStaticRoleState:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password corresponding to the username in the database.
+        This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+        Cannot be used with `self_managed_password`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the `password_wo` field. 
+        Used for tracking changes to the write-only password field. For more info see
+        updating write-only attributes.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -452,6 +539,7 @@ class _SecretBackendStaticRoleState:
         The password corresponding to the username in the database.
         Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
         select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         """
         return pulumi.get(self, "self_managed_password")
 
@@ -497,6 +585,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  db_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -543,6 +633,16 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_schedule="0 0 * * SAT",
             rotation_window=172800,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
+        # configure a static role with a password (Vault 1.19+)
+        password_role = vault.database.SecretBackendStaticRole("password_role",
+            backend=db.path,
+            name="my-password-role",
+            db_name=postgres.name,
+            username="example",
+            password_wo="my-password",
+            password_wo_version=1,
+            rotation_period=3600,
+            rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         ```
 
         ## Import
@@ -563,6 +663,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password corresponding to the username in the database.
+               This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+               Cannot be used with `self_managed_password`.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+               Used for tracking changes to the write-only password field. For more info see
+               updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[_builtins.str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
@@ -576,6 +683,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+               **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If set to true, Vault will skip the
                initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[_builtins.str] username: The database username that this static role corresponds to.
@@ -624,6 +732,16 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_schedule="0 0 * * SAT",
             rotation_window=172800,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
+        # configure a static role with a password (Vault 1.19+)
+        password_role = vault.database.SecretBackendStaticRole("password_role",
+            backend=db.path,
+            name="my-password-role",
+            db_name=postgres.name,
+            username="example",
+            password_wo="my-password",
+            password_wo_version=1,
+            rotation_period=3600,
+            rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         ```
 
         ## Import
@@ -655,6 +773,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  db_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -681,6 +801,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             __props__.__dict__["db_name"] = db_name
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_statements"] = rotation_statements
@@ -690,7 +812,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["selfManagedPassword"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["passwordWo", "selfManagedPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackendStaticRole, __self__).__init__(
             'vault:database/secretBackendStaticRole:SecretBackendStaticRole',
@@ -708,6 +830,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             db_name: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -730,6 +854,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The password corresponding to the username in the database.
+               This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+               Cannot be used with `self_managed_password`.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+               Used for tracking changes to the write-only password field. For more info see
+               updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
                Mutually exclusive with `rotation_schedule`.
         :param pulumi.Input[_builtins.str] rotation_schedule: A cron-style string that will define the schedule on which rotations should occur.
@@ -743,6 +874,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] self_managed_password: The password corresponding to the username in the database.
                Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
                select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+               **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If set to true, Vault will skip the
                initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[_builtins.str] username: The database username that this static role corresponds to.
@@ -757,6 +889,8 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["db_name"] = db_name
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_statements"] = rotation_statements
@@ -815,6 +949,27 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The password corresponding to the username in the database.
+        This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
+        Cannot be used with `self_managed_password`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the `password_wo` field. 
+        Used for tracking changes to the write-only password field. For more info see
+        updating write-only attributes.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @_builtins.property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
@@ -859,6 +1014,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         The password corresponding to the username in the database.
         Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
         select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        **Deprecated**: Use `password_wo` instead. This field will be removed in a future version.
         """
         return pulumi.get(self, "self_managed_password")
 

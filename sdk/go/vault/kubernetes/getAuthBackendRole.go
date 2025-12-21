@@ -115,6 +115,8 @@ type LookupAuthBackendRoleResult struct {
 	Backend  *string `pulumi:"backend"`
 	// List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 	BoundServiceAccountNames []string `pulumi:"boundServiceAccountNames"`
+	// A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+	BoundServiceAccountNamespaceSelector string `pulumi:"boundServiceAccountNamespaceSelector"`
 	// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
 	BoundServiceAccountNamespaces []string `pulumi:"boundServiceAccountNamespaces"`
 	// The provider-assigned unique ID for this managed resource.
@@ -261,6 +263,11 @@ func (o LookupAuthBackendRoleResultOutput) Backend() pulumi.StringPtrOutput {
 // List of service account names able to access this role. If set to "*" all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
 func (o LookupAuthBackendRoleResultOutput) BoundServiceAccountNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAuthBackendRoleResult) []string { return v.BoundServiceAccountNames }).(pulumi.StringArrayOutput)
+}
+
+// A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+func (o LookupAuthBackendRoleResultOutput) BoundServiceAccountNamespaceSelector() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAuthBackendRoleResult) string { return v.BoundServiceAccountNamespaceSelector }).(pulumi.StringOutput)
 }
 
 // List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".

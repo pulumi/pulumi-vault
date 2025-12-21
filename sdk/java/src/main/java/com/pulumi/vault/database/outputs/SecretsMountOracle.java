@@ -110,6 +110,11 @@ public final class SecretsMountOracle {
      */
     private @Nullable Integer rotationWindow;
     /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    private @Nullable Boolean selfManaged;
+    /**
      * @return Set to true in order to split statements after semi-colons.
      * 
      */
@@ -260,6 +265,13 @@ public final class SecretsMountOracle {
         return Optional.ofNullable(this.rotationWindow);
     }
     /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    public Optional<Boolean> selfManaged() {
+        return Optional.ofNullable(this.selfManaged);
+    }
+    /**
      * @return Set to true in order to split statements after semi-colons.
      * 
      */
@@ -315,6 +327,7 @@ public final class SecretsMountOracle {
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable Boolean selfManaged;
         private @Nullable Boolean splitStatements;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
@@ -339,6 +352,7 @@ public final class SecretsMountOracle {
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.selfManaged = defaults.selfManaged;
     	      this.splitStatements = defaults.splitStatements;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
@@ -456,6 +470,12 @@ public final class SecretsMountOracle {
             return this;
         }
         @CustomType.Setter
+        public Builder selfManaged(@Nullable Boolean selfManaged) {
+
+            this.selfManaged = selfManaged;
+            return this;
+        }
+        @CustomType.Setter
         public Builder splitStatements(@Nullable Boolean splitStatements) {
 
             this.splitStatements = splitStatements;
@@ -498,6 +518,7 @@ public final class SecretsMountOracle {
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.selfManaged = selfManaged;
             _resultValue.splitStatements = splitStatements;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;

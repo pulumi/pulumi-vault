@@ -82,6 +82,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
+        /// If set, allows onboarding static roles with a rootless connection configuration.
+        /// </summary>
+        [Input("selfManaged")]
+        public Input<bool>? SelfManaged { get; set; }
+
+        /// <summary>
         /// Set to true in order to split statements after semi-colons.
         /// </summary>
         [Input("splitStatements")]

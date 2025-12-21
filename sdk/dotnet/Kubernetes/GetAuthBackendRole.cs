@@ -381,6 +381,10 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccountNames;
         /// <summary>
+        /// A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        /// </summary>
+        public readonly string BoundServiceAccountNamespaceSelector;
+        /// <summary>
         /// List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and BoundServiceAccountNames can not be set to "*".
         /// </summary>
         public readonly ImmutableArray<string> BoundServiceAccountNamespaces;
@@ -457,6 +461,8 @@ namespace Pulumi.Vault.Kubernetes
 
             ImmutableArray<string> boundServiceAccountNames,
 
+            string boundServiceAccountNamespaceSelector,
+
             ImmutableArray<string> boundServiceAccountNamespaces,
 
             string id,
@@ -488,6 +494,7 @@ namespace Pulumi.Vault.Kubernetes
             Audience = audience;
             Backend = backend;
             BoundServiceAccountNames = boundServiceAccountNames;
+            BoundServiceAccountNamespaceSelector = boundServiceAccountNamespaceSelector;
             BoundServiceAccountNamespaces = boundServiceAccountNamespaces;
             Id = id;
             Namespace = @namespace;

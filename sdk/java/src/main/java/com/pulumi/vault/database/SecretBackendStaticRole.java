@@ -87,6 +87,18 @@ import javax.annotation.Nullable;
  *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
  *             .build());
  * 
+ *         // configure a static role with a password (Vault 1.19+)
+ *         var passwordRole = new SecretBackendStaticRole("passwordRole", SecretBackendStaticRoleArgs.builder()
+ *             .backend(db.path())
+ *             .name("my-password-role")
+ *             .dbName(postgres.name())
+ *             .username("example")
+ *             .passwordWo("my-password")
+ *             .passwordWoVersion(1)
+ *             .rotationPeriod(3600)
+ *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
+ *             .build());
+ * 
  *     }}{@code
  * }}{@code
  * }
@@ -186,6 +198,44 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.namespace);
     }
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password corresponding to the username in the database.
+     * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+     * Cannot be used with `selfManagedPassword`.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password corresponding to the username in the database.
+     * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+     * Cannot be used with `selfManagedPassword`.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * The version of the `passwordWo` field.
+     * Used for tracking changes to the write-only password field. For more info see
+     * updating write-only attributes.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return The version of the `passwordWo` field.
+     * Used for tracking changes to the write-only password field. For more info see
+     * updating write-only attributes.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
+    }
+    /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      * Mutually exclusive with `rotationSchedule`.
      * 
@@ -257,6 +307,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
      * 
      */
     @Export(name="selfManagedPassword", refs={String.class}, tree="[0]")
@@ -266,6 +317,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * @return The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
      * 
      */
     public Output<Optional<String>> selfManagedPassword() {
@@ -342,6 +394,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
+                "passwordWo",
                 "selfManagedPassword"
             ))
             .build();

@@ -3812,6 +3812,8 @@ type SecretBackendConnectionOracle struct {
 	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged *bool `pulumi:"selfManaged"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements *bool `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -3849,6 +3851,8 @@ type SecretBackendConnectionOracleArgs struct {
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged pulumi.BoolPtrInput `pulumi:"selfManaged"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -3975,6 +3979,11 @@ func (o SecretBackendConnectionOracleOutput) PasswordWoVersion() pulumi.IntPtrOu
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
+// If set, allows onboarding static roles with a rootless connection configuration.
+func (o SecretBackendConnectionOracleOutput) SelfManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.SelfManaged }).(pulumi.BoolPtrOutput)
+}
+
 // Set to true in order to split statements after semi-colons.
 func (o SecretBackendConnectionOracleOutput) SplitStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.SplitStatements }).(pulumi.BoolPtrOutput)
@@ -4093,6 +4102,16 @@ func (o SecretBackendConnectionOraclePtrOutput) PasswordWoVersion() pulumi.IntPt
 		}
 		return v.PasswordWoVersion
 	}).(pulumi.IntPtrOutput)
+}
+
+// If set, allows onboarding static roles with a rootless connection configuration.
+func (o SecretBackendConnectionOraclePtrOutput) SelfManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SelfManaged
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Set to true in order to split statements after semi-colons.
@@ -9265,6 +9284,8 @@ type SecretsMountOracle struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged *bool `pulumi:"selfManaged"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements *bool `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -9330,6 +9351,8 @@ type SecretsMountOracleArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged pulumi.BoolPtrInput `pulumi:"selfManaged"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -9483,6 +9506,11 @@ func (o SecretsMountOracleOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountOracleOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// If set, allows onboarding static roles with a rootless connection configuration.
+func (o SecretsMountOracleOutput) SelfManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.SelfManaged }).(pulumi.BoolPtrOutput)
 }
 
 // Set to true in order to split statements after semi-colons.

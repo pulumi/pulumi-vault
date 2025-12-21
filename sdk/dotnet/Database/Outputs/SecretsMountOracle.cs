@@ -90,6 +90,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? RotationWindow;
         /// <summary>
+        /// If set, allows onboarding static roles with a rootless connection configuration.
+        /// </summary>
+        public readonly bool? SelfManaged;
+        /// <summary>
         /// Set to true in order to split statements after semi-colons.
         /// </summary>
         public readonly bool? SplitStatements;
@@ -143,6 +147,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? rotationWindow,
 
+            bool? selfManaged,
+
             bool? splitStatements,
 
             string? username,
@@ -168,6 +174,7 @@ namespace Pulumi.Vault.Database.Outputs
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
+            SelfManaged = selfManaged;
             SplitStatements = splitStatements;
             Username = username;
             UsernameTemplate = usernameTemplate;

@@ -12,6 +12,8 @@ namespace Pulumi.Vault.Database
     /// <summary>
     /// ## Example Usage
     /// 
+    /// ### PostgreSQL Connection
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,6 +43,55 @@ namespace Pulumi.Vault.Database
     ///         {
     ///             ConnectionUrl = "postgres://username:password@host:port/database",
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Oracle Connection with Self-Managed Mode (Rootless)
+    /// 
+    /// For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
+    /// which allows a static role to manage its own database credentials without requiring root access:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var db = new Vault.Mount("db", new()
+    ///     {
+    ///         Path = "database",
+    ///         Type = "database",
+    ///     });
+    /// 
+    ///     var oracle = new Vault.Database.SecretBackendConnection("oracle", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         Name = "oracle",
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "my-role",
+    ///         },
+    ///         Oracle = new Vault.Database.Inputs.SecretBackendConnectionOracleArgs
+    ///         {
+    ///             ConnectionUrl = "{{username}}/{{password}}@//host:port/service",
+    ///             SelfManaged = true,
+    ///             PluginName = "vault-plugin-database-oracle",
+    ///         },
+    ///     });
+    /// 
+    ///     var oracleRole = new Vault.Database.SecretBackendStaticRole("oracle_role", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         Name = "my-role",
+    ///         DbName = oracle.Name,
+    ///         Username = "vault_user",
+    ///         PasswordWo = "initial-password",
+    ///         PasswordWoVersion = 1,
+    ///         RotationPeriod = 3600,
     ///     });
     /// 
     /// });

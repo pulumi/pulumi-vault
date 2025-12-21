@@ -26,7 +26,7 @@ class GetAuthBackendRoleResult:
     """
     A collection of values returned by getAuthBackendRole.
     """
-    def __init__(__self__, alias_metadata=None, alias_name_source=None, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespaces=None, id=None, namespace=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
+    def __init__(__self__, alias_metadata=None, alias_name_source=None, audience=None, backend=None, bound_service_account_names=None, bound_service_account_namespace_selector=None, bound_service_account_namespaces=None, id=None, namespace=None, role_name=None, token_bound_cidrs=None, token_explicit_max_ttl=None, token_max_ttl=None, token_no_default_policy=None, token_num_uses=None, token_period=None, token_policies=None, token_ttl=None, token_type=None):
         if alias_metadata and not isinstance(alias_metadata, dict):
             raise TypeError("Expected argument 'alias_metadata' to be a dict")
         pulumi.set(__self__, "alias_metadata", alias_metadata)
@@ -42,6 +42,9 @@ class GetAuthBackendRoleResult:
         if bound_service_account_names and not isinstance(bound_service_account_names, list):
             raise TypeError("Expected argument 'bound_service_account_names' to be a list")
         pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
+        if bound_service_account_namespace_selector and not isinstance(bound_service_account_namespace_selector, str):
+            raise TypeError("Expected argument 'bound_service_account_namespace_selector' to be a str")
+        pulumi.set(__self__, "bound_service_account_namespace_selector", bound_service_account_namespace_selector)
         if bound_service_account_namespaces and not isinstance(bound_service_account_namespaces, list):
             raise TypeError("Expected argument 'bound_service_account_namespaces' to be a list")
         pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
@@ -115,6 +118,14 @@ class GetAuthBackendRoleResult:
         List of service account names able to access this role. If set to "*" all names are allowed, both this and bound_service_account_namespaces can not be "*".
         """
         return pulumi.get(self, "bound_service_account_names")
+
+    @_builtins.property
+    @pulumi.getter(name="boundServiceAccountNamespaceSelector")
+    def bound_service_account_namespace_selector(self) -> _builtins.str:
+        """
+        A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        """
+        return pulumi.get(self, "bound_service_account_namespace_selector")
 
     @_builtins.property
     @pulumi.getter(name="boundServiceAccountNamespaces")
@@ -244,6 +255,7 @@ class AwaitableGetAuthBackendRoleResult(GetAuthBackendRoleResult):
             audience=self.audience,
             backend=self.backend,
             bound_service_account_names=self.bound_service_account_names,
+            bound_service_account_namespace_selector=self.bound_service_account_namespace_selector,
             bound_service_account_namespaces=self.bound_service_account_namespaces,
             id=self.id,
             namespace=self.namespace,
@@ -351,6 +363,7 @@ def get_auth_backend_role(alias_metadata: Optional[Mapping[str, _builtins.str]] 
         audience=pulumi.get(__ret__, 'audience'),
         backend=pulumi.get(__ret__, 'backend'),
         bound_service_account_names=pulumi.get(__ret__, 'bound_service_account_names'),
+        bound_service_account_namespace_selector=pulumi.get(__ret__, 'bound_service_account_namespace_selector'),
         bound_service_account_namespaces=pulumi.get(__ret__, 'bound_service_account_namespaces'),
         id=pulumi.get(__ret__, 'id'),
         namespace=pulumi.get(__ret__, 'namespace'),
@@ -455,6 +468,7 @@ def get_auth_backend_role_output(alias_metadata: Optional[pulumi.Input[Optional[
         audience=pulumi.get(__response__, 'audience'),
         backend=pulumi.get(__response__, 'backend'),
         bound_service_account_names=pulumi.get(__response__, 'bound_service_account_names'),
+        bound_service_account_namespace_selector=pulumi.get(__response__, 'bound_service_account_namespace_selector'),
         bound_service_account_namespaces=pulumi.get(__response__, 'bound_service_account_namespaces'),
         id=pulumi.get(__response__, 'id'),
         namespace=pulumi.get(__response__, 'namespace'),
