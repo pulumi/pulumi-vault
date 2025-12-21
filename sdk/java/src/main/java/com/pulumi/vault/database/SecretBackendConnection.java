@@ -39,6 +39,8 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * ### PostgreSQL Connection
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -80,6 +82,69 @@ import javax.annotation.Nullable;
  *             .postgresql(SecretBackendConnectionPostgresqlArgs.builder()
  *                 .connectionUrl("postgres://username:password}{@literal @}{@code host:port/database")
  *                 .build())
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ * ### Oracle Connection with Self-Managed Mode (Rootless)
+ * 
+ * For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
+ * which allows a static role to manage its own database credentials without requiring root access:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.database.SecretBackendConnection;
+ * import com.pulumi.vault.database.SecretBackendConnectionArgs;
+ * import com.pulumi.vault.database.inputs.SecretBackendConnectionOracleArgs;
+ * import com.pulumi.vault.database.SecretBackendStaticRole;
+ * import com.pulumi.vault.database.SecretBackendStaticRoleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         var db = new Mount("db", MountArgs.builder()
+ *             .path("database")
+ *             .type("database")
+ *             .build());
+ * 
+ *         var oracle = new SecretBackendConnection("oracle", SecretBackendConnectionArgs.builder()
+ *             .backend(db.path())
+ *             .name("oracle")
+ *             .allowedRoles("my-role")
+ *             .oracle(SecretBackendConnectionOracleArgs.builder()
+ *                 .connectionUrl("}{{{@code username}}}{@code /}{{{@code password}}}{@literal @}{@code //host:port/service")
+ *                 .selfManaged(true)
+ *                 .pluginName("vault-plugin-database-oracle")
+ *                 .build())
+ *             .build());
+ * 
+ *         var oracleRole = new SecretBackendStaticRole("oracleRole", SecretBackendStaticRoleArgs.builder()
+ *             .backend(db.path())
+ *             .name("my-role")
+ *             .dbName(oracle.name())
+ *             .username("vault_user")
+ *             .passwordWo("initial-password")
+ *             .passwordWoVersion(1)
+ *             .rotationPeriod(3600)
  *             .build());
  * 
  *     }}{@code

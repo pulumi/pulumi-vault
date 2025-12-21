@@ -1077,6 +1077,8 @@ class SecretBackendConnection(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### PostgreSQL Connection
+
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1096,6 +1098,37 @@ class SecretBackendConnection(pulumi.CustomResource):
             postgresql={
                 "connection_url": "postgres://username:password@host:port/database",
             })
+        ```
+
+        ### Oracle Connection with Self-Managed Mode (Rootless)
+
+        For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
+        which allows a static role to manage its own database credentials without requiring root access:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="database",
+            type="database")
+        oracle = vault.database.SecretBackendConnection("oracle",
+            backend=db.path,
+            name="oracle",
+            allowed_roles=["my-role"],
+            oracle={
+                "connection_url": "{{username}}/{{password}}@//host:port/service",
+                "self_managed": True,
+                "plugin_name": "vault-plugin-database-oracle",
+            })
+        oracle_role = vault.database.SecretBackendStaticRole("oracle_role",
+            backend=db.path,
+            name="my-role",
+            db_name=oracle.name,
+            username="vault_user",
+            password_wo="initial-password",
+            password_wo_version=1,
+            rotation_period=3600)
         ```
 
         ## Ephemeral Attributes Reference
@@ -1171,6 +1204,8 @@ class SecretBackendConnection(pulumi.CustomResource):
         """
         ## Example Usage
 
+        ### PostgreSQL Connection
+
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1190,6 +1225,37 @@ class SecretBackendConnection(pulumi.CustomResource):
             postgresql={
                 "connection_url": "postgres://username:password@host:port/database",
             })
+        ```
+
+        ### Oracle Connection with Self-Managed Mode (Rootless)
+
+        For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
+        which allows a static role to manage its own database credentials without requiring root access:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        db = vault.Mount("db",
+            path="database",
+            type="database")
+        oracle = vault.database.SecretBackendConnection("oracle",
+            backend=db.path,
+            name="oracle",
+            allowed_roles=["my-role"],
+            oracle={
+                "connection_url": "{{username}}/{{password}}@//host:port/service",
+                "self_managed": True,
+                "plugin_name": "vault-plugin-database-oracle",
+            })
+        oracle_role = vault.database.SecretBackendStaticRole("oracle_role",
+            backend=db.path,
+            name="my-role",
+            db_name=oracle.name,
+            username="vault_user",
+            password_wo="initial-password",
+            password_wo_version=1,
+            rotation_period=3600)
         ```
 
         ## Ephemeral Attributes Reference

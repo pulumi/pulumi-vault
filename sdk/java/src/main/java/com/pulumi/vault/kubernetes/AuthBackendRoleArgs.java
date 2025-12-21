@@ -108,18 +108,33 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     * 
+     */
+    @Import(name="boundServiceAccountNamespaceSelector")
+    private @Nullable Output<String> boundServiceAccountNamespaceSelector;
+
+    /**
+     * @return A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     * 
+     */
+    public Optional<Output<String>> boundServiceAccountNamespaceSelector() {
+        return Optional.ofNullable(this.boundServiceAccountNamespaceSelector);
+    }
+
+    /**
      * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
-    @Import(name="boundServiceAccountNamespaces", required=true)
-    private Output<List<String>> boundServiceAccountNamespaces;
+    @Import(name="boundServiceAccountNamespaces")
+    private @Nullable Output<List<String>> boundServiceAccountNamespaces;
 
     /**
      * @return List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
-    public Output<List<String>> boundServiceAccountNamespaces() {
-        return this.boundServiceAccountNamespaces;
+    public Optional<Output<List<String>>> boundServiceAccountNamespaces() {
+        return Optional.ofNullable(this.boundServiceAccountNamespaces);
     }
 
     /**
@@ -301,6 +316,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         this.audience = $.audience;
         this.backend = $.backend;
         this.boundServiceAccountNames = $.boundServiceAccountNames;
+        this.boundServiceAccountNamespaceSelector = $.boundServiceAccountNamespaceSelector;
         this.boundServiceAccountNamespaces = $.boundServiceAccountNamespaces;
         this.namespace = $.namespace;
         this.roleName = $.roleName;
@@ -461,12 +477,33 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param boundServiceAccountNamespaceSelector A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder boundServiceAccountNamespaceSelector(@Nullable Output<String> boundServiceAccountNamespaceSelector) {
+            $.boundServiceAccountNamespaceSelector = boundServiceAccountNamespaceSelector;
+            return this;
+        }
+
+        /**
+         * @param boundServiceAccountNamespaceSelector A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder boundServiceAccountNamespaceSelector(String boundServiceAccountNamespaceSelector) {
+            return boundServiceAccountNamespaceSelector(Output.of(boundServiceAccountNamespaceSelector));
+        }
+
+        /**
          * @param boundServiceAccountNamespaces List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
          * 
          * @return builder
          * 
          */
-        public Builder boundServiceAccountNamespaces(Output<List<String>> boundServiceAccountNamespaces) {
+        public Builder boundServiceAccountNamespaces(@Nullable Output<List<String>> boundServiceAccountNamespaces) {
             $.boundServiceAccountNamespaces = boundServiceAccountNamespaces;
             return this;
         }
@@ -751,9 +788,6 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         public AuthBackendRoleArgs build() {
             if ($.boundServiceAccountNames == null) {
                 throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "boundServiceAccountNames");
-            }
-            if ($.boundServiceAccountNamespaces == null) {
-                throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "boundServiceAccountNamespaces");
             }
             if ($.roleName == null) {
                 throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "roleName");

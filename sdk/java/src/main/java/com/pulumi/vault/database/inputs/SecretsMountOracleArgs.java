@@ -292,6 +292,21 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    @Import(name="selfManaged")
+    private @Nullable Output<Boolean> selfManaged;
+
+    /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    public Optional<Output<Boolean>> selfManaged() {
+        return Optional.ofNullable(this.selfManaged);
+    }
+
+    /**
      * Set to true in order to split statements after semi-colons.
      * 
      */
@@ -373,6 +388,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
+        this.selfManaged = $.selfManaged;
         this.splitStatements = $.splitStatements;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
@@ -789,6 +805,27 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
          */
         public Builder rotationWindow(Integer rotationWindow) {
             return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
+         * @param selfManaged If set, allows onboarding static roles with a rootless connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManaged(@Nullable Output<Boolean> selfManaged) {
+            $.selfManaged = selfManaged;
+            return this;
+        }
+
+        /**
+         * @param selfManaged If set, allows onboarding static roles with a rootless connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManaged(Boolean selfManaged) {
+            return selfManaged(Output.of(selfManaged));
         }
 
         /**

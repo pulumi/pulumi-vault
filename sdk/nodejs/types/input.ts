@@ -1209,6 +1209,10 @@ export namespace database {
          */
         passwordWoVersion?: pulumi.Input<number>;
         /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: pulumi.Input<boolean>;
+        /**
          * Set to true in order to split statements after semi-colons.
          */
         splitStatements?: pulumi.Input<boolean>;
@@ -2627,6 +2631,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: pulumi.Input<boolean>;
         /**
          * Set to true in order to split statements after semi-colons.
          */

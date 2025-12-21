@@ -80,6 +80,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// configure a static role with a password (Vault 1.19+)
+//			_, err = database.NewSecretBackendStaticRole(ctx, "password_role", &database.SecretBackendStaticRoleArgs{
+//				Backend:           db.Path,
+//				Name:              pulumi.String("my-password-role"),
+//				DbName:            postgres.Name,
+//				Username:          pulumi.String("example"),
+//				PasswordWo:        pulumi.String("my-password"),
+//				PasswordWoVersion: pulumi.Int(1),
+//				RotationPeriod:    pulumi.Int(3600),
+//				RotationStatements: pulumi.StringArray{
+//					pulumi.String("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -110,6 +126,15 @@ type SecretBackendStaticRole struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password corresponding to the username in the database.
+	// This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+	// Cannot be used with `selfManagedPassword`.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the `passwordWo` field.
+	// Used for tracking changes to the write-only password field. For more info see
+	// updating write-only attributes.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
@@ -127,6 +152,7 @@ type SecretBackendStaticRole struct {
 	// The password corresponding to the username in the database.
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	// **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
 	SelfManagedPassword pulumi.StringPtrOutput `pulumi:"selfManagedPassword"`
 	// If set to true, Vault will skip the
 	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
@@ -151,10 +177,14 @@ func NewSecretBackendStaticRole(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	if args.SelfManagedPassword != nil {
 		args.SelfManagedPassword = pulumi.ToSecret(args.SelfManagedPassword).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"passwordWo",
 		"selfManagedPassword",
 	})
 	opts = append(opts, secrets)
@@ -195,6 +225,15 @@ type secretBackendStaticRoleState struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password corresponding to the username in the database.
+	// This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+	// Cannot be used with `selfManagedPassword`.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the `passwordWo` field.
+	// Used for tracking changes to the write-only password field. For more info see
+	// updating write-only attributes.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
@@ -212,6 +251,7 @@ type secretBackendStaticRoleState struct {
 	// The password corresponding to the username in the database.
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	// **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
 	SelfManagedPassword *string `pulumi:"selfManagedPassword"`
 	// If set to true, Vault will skip the
 	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
@@ -235,6 +275,15 @@ type SecretBackendStaticRoleState struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password corresponding to the username in the database.
+	// This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+	// Cannot be used with `selfManagedPassword`.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the `passwordWo` field.
+	// Used for tracking changes to the write-only password field. For more info see
+	// updating write-only attributes.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod pulumi.IntPtrInput
@@ -252,6 +301,7 @@ type SecretBackendStaticRoleState struct {
 	// The password corresponding to the username in the database.
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	// **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
 	SelfManagedPassword pulumi.StringPtrInput
 	// If set to true, Vault will skip the
 	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
@@ -279,6 +329,15 @@ type secretBackendStaticRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password corresponding to the username in the database.
+	// This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+	// Cannot be used with `selfManagedPassword`.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the `passwordWo` field.
+	// Used for tracking changes to the write-only password field. For more info see
+	// updating write-only attributes.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod *int `pulumi:"rotationPeriod"`
@@ -296,6 +355,7 @@ type secretBackendStaticRoleArgs struct {
 	// The password corresponding to the username in the database.
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	// **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
 	SelfManagedPassword *string `pulumi:"selfManagedPassword"`
 	// If set to true, Vault will skip the
 	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
@@ -320,6 +380,15 @@ type SecretBackendStaticRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The password corresponding to the username in the database.
+	// This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+	// Cannot be used with `selfManagedPassword`.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the `passwordWo` field.
+	// Used for tracking changes to the write-only password field. For more info see
+	// updating write-only attributes.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The amount of time Vault should wait before rotating the password, in seconds.
 	// Mutually exclusive with `rotationSchedule`.
 	RotationPeriod pulumi.IntPtrInput
@@ -337,6 +406,7 @@ type SecretBackendStaticRoleArgs struct {
 	// The password corresponding to the username in the database.
 	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	// **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
 	SelfManagedPassword pulumi.StringPtrInput
 	// If set to true, Vault will skip the
 	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
@@ -464,6 +534,21 @@ func (o SecretBackendStaticRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The password corresponding to the username in the database.
+// This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+// Cannot be used with `selfManagedPassword`.
+func (o SecretBackendStaticRoleOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the `passwordWo` field.
+// Used for tracking changes to the write-only password field. For more info see
+// updating write-only attributes.
+func (o SecretBackendStaticRoleOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The amount of time Vault should wait before rotating the password, in seconds.
 // Mutually exclusive with `rotationSchedule`.
 func (o SecretBackendStaticRoleOutput) RotationPeriod() pulumi.IntPtrOutput {
@@ -493,6 +578,7 @@ func (o SecretBackendStaticRoleOutput) RotationWindow() pulumi.IntPtrOutput {
 // The password corresponding to the username in the database.
 // Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
 // select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+// **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
 func (o SecretBackendStaticRoleOutput) SelfManagedPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.SelfManagedPassword }).(pulumi.StringPtrOutput)
 }

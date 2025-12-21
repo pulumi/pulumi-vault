@@ -1151,6 +1151,10 @@ export namespace database {
          */
         passwordWoVersion?: number;
         /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: boolean;
+        /**
          * Set to true in order to split statements after semi-colons.
          */
         splitStatements?: boolean;
@@ -2569,6 +2573,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: number;
+        /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: boolean;
         /**
          * Set to true in order to split statements after semi-colons.
          */

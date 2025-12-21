@@ -165,18 +165,32 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.boundServiceAccountNames;
     }
     /**
+     * A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     * 
+     */
+    @Export(name="boundServiceAccountNamespaceSelector", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> boundServiceAccountNamespaceSelector;
+
+    /**
+     * @return A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     * 
+     */
+    public Output<Optional<String>> boundServiceAccountNamespaceSelector() {
+        return Codegen.optional(this.boundServiceAccountNamespaceSelector);
+    }
+    /**
      * List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
     @Export(name="boundServiceAccountNamespaces", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> boundServiceAccountNamespaces;
+    private Output</* @Nullable */ List<String>> boundServiceAccountNamespaces;
 
     /**
      * @return List of namespaces allowed to access this role. If set to `[&#34;*&#34;]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
-    public Output<List<String>> boundServiceAccountNamespaces() {
-        return this.boundServiceAccountNamespaces;
+    public Output<Optional<List<String>>> boundServiceAccountNamespaces() {
+        return Codegen.optional(this.boundServiceAccountNamespaces);
     }
     /**
      * The namespace to provision the resource in.

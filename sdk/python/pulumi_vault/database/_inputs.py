@@ -2739,6 +2739,10 @@ if not MYPY:
         """
         Version counter for root credential password write-only field
         """
+        self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
         split_statements: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Set to true in order to split statements after semi-colons.
@@ -2765,6 +2769,7 @@ class SecretBackendConnectionOracleArgs:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
                  split_statements: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None):
@@ -2778,6 +2783,7 @@ class SecretBackendConnectionOracleArgs:
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
+        :param pulumi.Input[_builtins.bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[_builtins.bool] split_statements: Set to true in order to split statements after semi-colons.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
@@ -2798,6 +2804,8 @@ class SecretBackendConnectionOracleArgs:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -2901,6 +2909,18 @@ class SecretBackendConnectionOracleArgs:
     @password_wo_version.setter
     def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @self_managed.setter
+    def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "self_managed", value)
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")
@@ -9358,6 +9378,10 @@ if not MYPY:
         a rotation when a scheduled token rotation occurs. The default rotation window is
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
+        self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
         split_statements: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Set to true in order to split statements after semi-colons.
@@ -9398,6 +9422,7 @@ class SecretsMountOracleArgs:
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
                  split_statements: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
@@ -9428,6 +9453,7 @@ class SecretsMountOracleArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[_builtins.bool] split_statements: Set to true in order to split statements after semi-colons.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
@@ -9467,6 +9493,8 @@ class SecretsMountOracleArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -9687,6 +9715,18 @@ class SecretsMountOracleArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @self_managed.setter
+    def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "self_managed", value)
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")

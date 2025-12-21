@@ -34,6 +34,11 @@ public final class GetAuthBackendRoleResult {
      */
     private List<String> boundServiceAccountNames;
     /**
+     * @return A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     * 
+     */
+    private String boundServiceAccountNamespaceSelector;
+    /**
      * @return List of namespaces allowed to access this role. If set to &#34;*&#34; all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
      * 
      */
@@ -136,6 +141,13 @@ public final class GetAuthBackendRoleResult {
      */
     public List<String> boundServiceAccountNames() {
         return this.boundServiceAccountNames;
+    }
+    /**
+     * @return A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     * 
+     */
+    public String boundServiceAccountNamespaceSelector() {
+        return this.boundServiceAccountNamespaceSelector;
     }
     /**
      * @return List of namespaces allowed to access this role. If set to &#34;*&#34; all namespaces are allowed, both this and boundServiceAccountNames can not be set to &#34;*&#34;.
@@ -253,6 +265,7 @@ public final class GetAuthBackendRoleResult {
         private @Nullable String audience;
         private @Nullable String backend;
         private List<String> boundServiceAccountNames;
+        private String boundServiceAccountNamespaceSelector;
         private List<String> boundServiceAccountNamespaces;
         private String id;
         private @Nullable String namespace;
@@ -274,6 +287,7 @@ public final class GetAuthBackendRoleResult {
     	      this.audience = defaults.audience;
     	      this.backend = defaults.backend;
     	      this.boundServiceAccountNames = defaults.boundServiceAccountNames;
+    	      this.boundServiceAccountNamespaceSelector = defaults.boundServiceAccountNamespaceSelector;
     	      this.boundServiceAccountNamespaces = defaults.boundServiceAccountNamespaces;
     	      this.id = defaults.id;
     	      this.namespace = defaults.namespace;
@@ -325,6 +339,14 @@ public final class GetAuthBackendRoleResult {
         }
         public Builder boundServiceAccountNames(String... boundServiceAccountNames) {
             return boundServiceAccountNames(List.of(boundServiceAccountNames));
+        }
+        @CustomType.Setter
+        public Builder boundServiceAccountNamespaceSelector(String boundServiceAccountNamespaceSelector) {
+            if (boundServiceAccountNamespaceSelector == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundServiceAccountNamespaceSelector");
+            }
+            this.boundServiceAccountNamespaceSelector = boundServiceAccountNamespaceSelector;
+            return this;
         }
         @CustomType.Setter
         public Builder boundServiceAccountNamespaces(List<String> boundServiceAccountNamespaces) {
@@ -426,6 +448,7 @@ public final class GetAuthBackendRoleResult {
             _resultValue.audience = audience;
             _resultValue.backend = backend;
             _resultValue.boundServiceAccountNames = boundServiceAccountNames;
+            _resultValue.boundServiceAccountNamespaceSelector = boundServiceAccountNamespaceSelector;
             _resultValue.boundServiceAccountNamespaces = boundServiceAccountNamespaces;
             _resultValue.id = id;
             _resultValue.namespace = namespace;

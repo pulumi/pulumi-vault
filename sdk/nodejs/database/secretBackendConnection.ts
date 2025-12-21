@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * ### PostgreSQL Connection
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -29,6 +31,40 @@ import * as utilities from "../utilities";
  *     postgresql: {
  *         connectionUrl: "postgres://username:password@host:port/database",
  *     },
+ * });
+ * ```
+ *
+ * ### Oracle Connection with Self-Managed Mode (Rootless)
+ *
+ * For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
+ * which allows a static role to manage its own database credentials without requiring root access:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const db = new vault.Mount("db", {
+ *     path: "database",
+ *     type: "database",
+ * });
+ * const oracle = new vault.database.SecretBackendConnection("oracle", {
+ *     backend: db.path,
+ *     name: "oracle",
+ *     allowedRoles: ["my-role"],
+ *     oracle: {
+ *         connectionUrl: "{{username}}/{{password}}@//host:port/service",
+ *         selfManaged: true,
+ *         pluginName: "vault-plugin-database-oracle",
+ *     },
+ * });
+ * const oracleRole = new vault.database.SecretBackendStaticRole("oracle_role", {
+ *     backend: db.path,
+ *     name: "my-role",
+ *     dbName: oracle.name,
+ *     username: "vault_user",
+ *     passwordWo: "initial-password",
+ *     passwordWoVersion: 1,
+ *     rotationPeriod: 3600,
  * });
  * ```
  *

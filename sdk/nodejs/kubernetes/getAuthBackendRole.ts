@@ -142,6 +142,10 @@ export interface GetAuthBackendRoleResult {
      */
     readonly boundServiceAccountNames: string[];
     /**
+     * A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     */
+    readonly boundServiceAccountNamespaceSelector: string;
+    /**
      * List of namespaces allowed to access this role. If set to "*" all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
     readonly boundServiceAccountNamespaces: string[];

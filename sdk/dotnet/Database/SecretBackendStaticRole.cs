@@ -73,6 +73,22 @@ namespace Pulumi.Vault.Database
     ///         },
     ///     });
     /// 
+    ///     // configure a static role with a password (Vault 1.19+)
+    ///     var passwordRole = new Vault.Database.SecretBackendStaticRole("password_role", new()
+    ///     {
+    ///         Backend = db.Path,
+    ///         Name = "my-password-role",
+    ///         DbName = postgres.Name,
+    ///         Username = "example",
+    ///         PasswordWo = "my-password",
+    ///         PasswordWoVersion = 1,
+    ///         RotationPeriod = 3600,
+    ///         RotationStatements = new[]
+    ///         {
+    ///             "ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';",
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -124,6 +140,23 @@ namespace Pulumi.Vault.Database
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The password corresponding to the username in the database.
+        /// This is a write-only field. Requires Vault 1.19+. Deprecates `SelfManagedPassword` which was introduced in Vault 1.18.
+        /// Cannot be used with `SelfManagedPassword`.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the `PasswordWo` field. 
+        /// Used for tracking changes to the write-only password field. For more info see
+        /// updating write-only attributes.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
+
+        /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
         /// Mutually exclusive with `RotationSchedule`.
         /// </summary>
@@ -157,6 +190,7 @@ namespace Pulumi.Vault.Database
         /// The password corresponding to the username in the database.
         /// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
         /// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        /// **Deprecated**: Use `PasswordWo` instead. This field will be removed in a future version.
         /// </summary>
         [Output("selfManagedPassword")]
         public Output<string?> SelfManagedPassword { get; private set; } = null!;
@@ -199,6 +233,7 @@ namespace Pulumi.Vault.Database
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
+                    "passwordWo",
                     "selfManagedPassword",
                 },
             };
@@ -265,6 +300,33 @@ namespace Pulumi.Vault.Database
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The password corresponding to the username in the database.
+        /// This is a write-only field. Requires Vault 1.19+. Deprecates `SelfManagedPassword` which was introduced in Vault 1.18.
+        /// Cannot be used with `SelfManagedPassword`.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the `PasswordWo` field. 
+        /// Used for tracking changes to the write-only password field. For more info see
+        /// updating write-only attributes.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
         /// Mutually exclusive with `RotationSchedule`.
@@ -308,6 +370,7 @@ namespace Pulumi.Vault.Database
         /// The password corresponding to the username in the database.
         /// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
         /// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        /// **Deprecated**: Use `PasswordWo` instead. This field will be removed in a future version.
         /// </summary>
         public Input<string>? SelfManagedPassword
         {
@@ -381,6 +444,33 @@ namespace Pulumi.Vault.Database
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The password corresponding to the username in the database.
+        /// This is a write-only field. Requires Vault 1.19+. Deprecates `SelfManagedPassword` which was introduced in Vault 1.18.
+        /// Cannot be used with `SelfManagedPassword`.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the `PasswordWo` field. 
+        /// Used for tracking changes to the write-only password field. For more info see
+        /// updating write-only attributes.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         /// <summary>
         /// The amount of time Vault should wait before rotating the password, in seconds.
         /// Mutually exclusive with `RotationSchedule`.
@@ -424,6 +514,7 @@ namespace Pulumi.Vault.Database
         /// The password corresponding to the username in the database.
         /// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
         /// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        /// **Deprecated**: Use `PasswordWo` instead. This field will be removed in a future version.
         /// </summary>
         public Input<string>? SelfManagedPassword
         {

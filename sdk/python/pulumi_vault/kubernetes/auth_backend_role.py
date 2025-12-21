@@ -20,12 +20,13 @@ __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  bound_service_account_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 bound_service_account_namespaces: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  role_name: pulumi.Input[_builtins.str],
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  alias_name_source: Optional[pulumi.Input[_builtins.str]] = None,
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 bound_service_account_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
+                 bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -39,7 +40,6 @@ class AuthBackendRoleArgs:
         """
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -51,6 +51,8 @@ class AuthBackendRoleArgs:
                before setting this to something other its default value. There are **important** security
                implications to be aware of.
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
+        :param pulumi.Input[_builtins.str] bound_service_account_namespace_selector: A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -66,7 +68,6 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
         pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
-        pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
         pulumi.set(__self__, "role_name", role_name)
         if alias_metadata is not None:
             pulumi.set(__self__, "alias_metadata", alias_metadata)
@@ -76,6 +77,10 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "audience", audience)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if bound_service_account_namespace_selector is not None:
+            pulumi.set(__self__, "bound_service_account_namespace_selector", bound_service_account_namespace_selector)
+        if bound_service_account_namespaces is not None:
+            pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if token_bound_cidrs is not None:
@@ -108,18 +113,6 @@ class AuthBackendRoleArgs:
     @bound_service_account_names.setter
     def bound_service_account_names(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "bound_service_account_names", value)
-
-    @_builtins.property
-    @pulumi.getter(name="boundServiceAccountNamespaces")
-    def bound_service_account_namespaces(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
-        """
-        List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
-        """
-        return pulumi.get(self, "bound_service_account_namespaces")
-
-    @bound_service_account_namespaces.setter
-    def bound_service_account_namespaces(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
-        pulumi.set(self, "bound_service_account_namespaces", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
@@ -186,6 +179,30 @@ class AuthBackendRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter(name="boundServiceAccountNamespaceSelector")
+    def bound_service_account_namespace_selector(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        """
+        return pulumi.get(self, "bound_service_account_namespace_selector")
+
+    @bound_service_account_namespace_selector.setter
+    def bound_service_account_namespace_selector(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bound_service_account_namespace_selector", value)
+
+    @_builtins.property
+    @pulumi.getter(name="boundServiceAccountNamespaces")
+    def bound_service_account_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
+        """
+        return pulumi.get(self, "bound_service_account_namespaces")
+
+    @bound_service_account_namespaces.setter
+    def bound_service_account_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "bound_service_account_namespaces", value)
 
     @_builtins.property
     @pulumi.getter
@@ -319,6 +336,7 @@ class _AuthBackendRoleState:
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_account_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -344,6 +362,7 @@ class _AuthBackendRoleState:
                implications to be aware of.
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        :param pulumi.Input[_builtins.str] bound_service_account_namespace_selector: A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -370,6 +389,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if bound_service_account_names is not None:
             pulumi.set(__self__, "bound_service_account_names", bound_service_account_names)
+        if bound_service_account_namespace_selector is not None:
+            pulumi.set(__self__, "bound_service_account_namespace_selector", bound_service_account_namespace_selector)
         if bound_service_account_namespaces is not None:
             pulumi.set(__self__, "bound_service_account_namespaces", bound_service_account_namespaces)
         if namespace is not None:
@@ -460,6 +481,18 @@ class _AuthBackendRoleState:
     @bound_service_account_names.setter
     def bound_service_account_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_service_account_names", value)
+
+    @_builtins.property
+    @pulumi.getter(name="boundServiceAccountNamespaceSelector")
+    def bound_service_account_namespace_selector(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        """
+        return pulumi.get(self, "bound_service_account_namespace_selector")
+
+    @bound_service_account_namespace_selector.setter
+    def bound_service_account_namespace_selector(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bound_service_account_namespace_selector", value)
 
     @_builtins.property
     @pulumi.getter(name="boundServiceAccountNamespaces")
@@ -620,6 +653,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_account_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -680,6 +714,7 @@ class AuthBackendRole(pulumi.CustomResource):
                implications to be aware of.
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        :param pulumi.Input[_builtins.str] bound_service_account_namespace_selector: A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -756,6 +791,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  audience: Optional[pulumi.Input[_builtins.str]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_account_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
                  bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -784,8 +820,7 @@ class AuthBackendRole(pulumi.CustomResource):
             if bound_service_account_names is None and not opts.urn:
                 raise TypeError("Missing required property 'bound_service_account_names'")
             __props__.__dict__["bound_service_account_names"] = bound_service_account_names
-            if bound_service_account_namespaces is None and not opts.urn:
-                raise TypeError("Missing required property 'bound_service_account_namespaces'")
+            __props__.__dict__["bound_service_account_namespace_selector"] = bound_service_account_namespace_selector
             __props__.__dict__["bound_service_account_namespaces"] = bound_service_account_namespaces
             __props__.__dict__["namespace"] = namespace
             if role_name is None and not opts.urn:
@@ -815,6 +850,7 @@ class AuthBackendRole(pulumi.CustomResource):
             audience: Optional[pulumi.Input[_builtins.str]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             bound_service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_service_account_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
             bound_service_account_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -845,6 +881,7 @@ class AuthBackendRole(pulumi.CustomResource):
                implications to be aware of.
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
+        :param pulumi.Input[_builtins.str] bound_service_account_namespace_selector: A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_namespaces: List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -870,6 +907,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["audience"] = audience
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bound_service_account_names"] = bound_service_account_names
+        __props__.__dict__["bound_service_account_namespace_selector"] = bound_service_account_namespace_selector
         __props__.__dict__["bound_service_account_namespaces"] = bound_service_account_namespaces
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_name"] = role_name
@@ -931,8 +969,16 @@ class AuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "bound_service_account_names")
 
     @_builtins.property
+    @pulumi.getter(name="boundServiceAccountNamespaceSelector")
+    def bound_service_account_namespace_selector(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        """
+        return pulumi.get(self, "bound_service_account_namespace_selector")
+
+    @_builtins.property
     @pulumi.getter(name="boundServiceAccountNamespaces")
-    def bound_service_account_namespaces(self) -> pulumi.Output[Sequence[_builtins.str]]:
+    def bound_service_account_namespaces(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and bound_service_account_names can not be set to "*".
         """

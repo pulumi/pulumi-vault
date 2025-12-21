@@ -55,6 +55,11 @@ public final class SecretBackendConnectionOracle {
      */
     private @Nullable Integer passwordWoVersion;
     /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    private @Nullable Boolean selfManaged;
+    /**
      * @return Set to true in order to split statements after semi-colons.
      * 
      */
@@ -129,6 +134,13 @@ public final class SecretBackendConnectionOracle {
         return Optional.ofNullable(this.passwordWoVersion);
     }
     /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    public Optional<Boolean> selfManaged() {
+        return Optional.ofNullable(this.selfManaged);
+    }
+    /**
      * @return Set to true in order to split statements after semi-colons.
      * 
      */
@@ -167,6 +179,7 @@ public final class SecretBackendConnectionOracle {
         private @Nullable String password;
         private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
+        private @Nullable Boolean selfManaged;
         private @Nullable Boolean splitStatements;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
@@ -181,6 +194,7 @@ public final class SecretBackendConnectionOracle {
     	      this.password = defaults.password;
     	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
+    	      this.selfManaged = defaults.selfManaged;
     	      this.splitStatements = defaults.splitStatements;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
@@ -235,6 +249,12 @@ public final class SecretBackendConnectionOracle {
             return this;
         }
         @CustomType.Setter
+        public Builder selfManaged(@Nullable Boolean selfManaged) {
+
+            this.selfManaged = selfManaged;
+            return this;
+        }
+        @CustomType.Setter
         public Builder splitStatements(@Nullable Boolean splitStatements) {
 
             this.splitStatements = splitStatements;
@@ -262,6 +282,7 @@ public final class SecretBackendConnectionOracle {
             _resultValue.password = password;
             _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
+            _resultValue.selfManaged = selfManaged;
             _resultValue.splitStatements = splitStatements;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;

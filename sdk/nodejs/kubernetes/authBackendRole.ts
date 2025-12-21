@@ -94,9 +94,13 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     declare public readonly boundServiceAccountNames: pulumi.Output<string[]>;
     /**
+     * A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     */
+    declare public readonly boundServiceAccountNamespaceSelector: pulumi.Output<string | undefined>;
+    /**
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
-    declare public readonly boundServiceAccountNamespaces: pulumi.Output<string[]>;
+    declare public readonly boundServiceAccountNamespaces: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -163,6 +167,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["audience"] = state?.audience;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["boundServiceAccountNames"] = state?.boundServiceAccountNames;
+            resourceInputs["boundServiceAccountNamespaceSelector"] = state?.boundServiceAccountNamespaceSelector;
             resourceInputs["boundServiceAccountNamespaces"] = state?.boundServiceAccountNamespaces;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["roleName"] = state?.roleName;
@@ -180,9 +185,6 @@ export class AuthBackendRole extends pulumi.CustomResource {
             if (args?.boundServiceAccountNames === undefined && !opts.urn) {
                 throw new Error("Missing required property 'boundServiceAccountNames'");
             }
-            if (args?.boundServiceAccountNamespaces === undefined && !opts.urn) {
-                throw new Error("Missing required property 'boundServiceAccountNamespaces'");
-            }
             if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
@@ -191,6 +193,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["audience"] = args?.audience;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["boundServiceAccountNames"] = args?.boundServiceAccountNames;
+            resourceInputs["boundServiceAccountNamespaceSelector"] = args?.boundServiceAccountNamespaceSelector;
             resourceInputs["boundServiceAccountNamespaces"] = args?.boundServiceAccountNamespaces;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["roleName"] = args?.roleName;
@@ -239,6 +242,10 @@ export interface AuthBackendRoleState {
      * List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and boundServiceAccountNamespaces can not be "*".
      */
     boundServiceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     */
+    boundServiceAccountNamespaceSelector?: pulumi.Input<string>;
     /**
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
@@ -323,9 +330,13 @@ export interface AuthBackendRoleArgs {
      */
     boundServiceAccountNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+     */
+    boundServiceAccountNamespaceSelector?: pulumi.Input<string>;
+    /**
      * List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and boundServiceAccountNames can not be set to "*".
      */
-    boundServiceAccountNamespaces: pulumi.Input<pulumi.Input<string>[]>;
+    boundServiceAccountNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

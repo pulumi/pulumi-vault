@@ -109,6 +109,46 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password corresponding to the username in the database.
+     * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+     * Cannot be used with `selfManagedPassword`.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The password corresponding to the username in the database.
+     * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+     * Cannot be used with `selfManagedPassword`.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * The version of the `passwordWo` field.
+     * Used for tracking changes to the write-only password field. For more info see
+     * updating write-only attributes.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return The version of the `passwordWo` field.
+     * Used for tracking changes to the write-only password field. For more info see
+     * updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      * Mutually exclusive with `rotationSchedule`.
      * 
@@ -184,6 +224,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      * The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
      * 
      */
     @Import(name="selfManagedPassword")
@@ -193,6 +234,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      * @return The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
      * 
      */
     public Optional<Output<String>> selfManagedPassword() {
@@ -240,6 +282,8 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         this.dbName = $.dbName;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationStatements = $.rotationStatements;
@@ -388,6 +432,58 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The password corresponding to the username in the database.
+         * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+         * Cannot be used with `selfManagedPassword`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The password corresponding to the username in the database.
+         * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
+         * Cannot be used with `selfManagedPassword`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion The version of the `passwordWo` field.
+         * Used for tracking changes to the write-only password field. For more info see
+         * updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion The version of the `passwordWo` field.
+         * Used for tracking changes to the write-only password field. For more info see
+         * updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
+        }
+
+        /**
          * @param rotationPeriod The amount of time Vault should wait before rotating the password, in seconds.
          * Mutually exclusive with `rotationSchedule`.
          * 
@@ -497,6 +593,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          * @param selfManagedPassword The password corresponding to the username in the database.
          * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
          * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+         * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
          * 
          * @return builder
          * 
@@ -510,6 +607,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          * @param selfManagedPassword The password corresponding to the username in the database.
          * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
          * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+         * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
          * 
          * @return builder
          * 

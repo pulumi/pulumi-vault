@@ -102,6 +102,12 @@ namespace Pulumi.Vault.Kubernetes
         public Output<ImmutableArray<string>> BoundServiceAccountNames { get; private set; } = null!;
 
         /// <summary>
+        /// A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        /// </summary>
+        [Output("boundServiceAccountNamespaceSelector")]
+        public Output<string?> BoundServiceAccountNamespaceSelector { get; private set; } = null!;
+
+        /// <summary>
         /// List of namespaces allowed to access this role. If set to `["*"]` all namespaces are allowed, both this and BoundServiceAccountNames can not be set to "*".
         /// </summary>
         [Output("boundServiceAccountNamespaces")]
@@ -270,7 +276,13 @@ namespace Pulumi.Vault.Kubernetes
             set => _boundServiceAccountNames = value;
         }
 
-        [Input("boundServiceAccountNamespaces", required: true)]
+        /// <summary>
+        /// A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        /// </summary>
+        [Input("boundServiceAccountNamespaceSelector")]
+        public Input<string>? BoundServiceAccountNamespaceSelector { get; set; }
+
+        [Input("boundServiceAccountNamespaces")]
         private InputList<string>? _boundServiceAccountNamespaces;
 
         /// <summary>
@@ -418,6 +430,12 @@ namespace Pulumi.Vault.Kubernetes
             get => _boundServiceAccountNames ?? (_boundServiceAccountNames = new InputList<string>());
             set => _boundServiceAccountNames = value;
         }
+
+        /// <summary>
+        /// A label selector for Kubernetes namespaces allowed to access this role. Accepts either a JSON or YAML object. The value should be of type LabelSelector. Currently, label selectors with matchExpressions are not supported. To use label selectors, Vault must have permission to read namespaces on the Kubernetes cluster. If set with bound_service_account_namespaces, the conditions are ORed. Requires Vault v1.16+.
+        /// </summary>
+        [Input("boundServiceAccountNamespaceSelector")]
+        public Input<string>? BoundServiceAccountNamespaceSelector { get; set; }
 
         [Input("boundServiceAccountNamespaces")]
         private InputList<string>? _boundServiceAccountNamespaces;

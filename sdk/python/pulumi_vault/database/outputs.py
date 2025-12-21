@@ -1996,6 +1996,8 @@ class SecretBackendConnectionOracle(dict):
             suggest = "password_wo"
         elif key == "passwordWoVersion":
             suggest = "password_wo_version"
+        elif key == "selfManaged":
+            suggest = "self_managed"
         elif key == "splitStatements":
             suggest = "split_statements"
         elif key == "usernameTemplate":
@@ -2021,6 +2023,7 @@ class SecretBackendConnectionOracle(dict):
                  password: Optional[_builtins.str] = None,
                  password_wo: Optional[_builtins.str] = None,
                  password_wo_version: Optional[_builtins.int] = None,
+                 self_managed: Optional[_builtins.bool] = None,
                  split_statements: Optional[_builtins.bool] = None,
                  username: Optional[_builtins.str] = None,
                  username_template: Optional[_builtins.str] = None):
@@ -2034,6 +2037,7 @@ class SecretBackendConnectionOracle(dict):
         :param _builtins.str password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param _builtins.int password_wo_version: Version counter for root credential password write-only field
+        :param _builtins.bool self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param _builtins.bool split_statements: Set to true in order to split statements after semi-colons.
         :param _builtins.str username: The root credential username used in the connection URL
         :param _builtins.str username_template: Username generation template.
@@ -2054,6 +2058,8 @@ class SecretBackendConnectionOracle(dict):
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -2125,6 +2131,14 @@ class SecretBackendConnectionOracle(dict):
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[_builtins.bool]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")
@@ -6676,6 +6690,8 @@ class SecretsMountOracle(dict):
             suggest = "rotation_schedule"
         elif key == "rotationWindow":
             suggest = "rotation_window"
+        elif key == "selfManaged":
+            suggest = "self_managed"
         elif key == "splitStatements":
             suggest = "split_statements"
         elif key == "usernameTemplate":
@@ -6712,6 +6728,7 @@ class SecretsMountOracle(dict):
                  rotation_period: Optional[_builtins.int] = None,
                  rotation_schedule: Optional[_builtins.str] = None,
                  rotation_window: Optional[_builtins.int] = None,
+                 self_managed: Optional[_builtins.bool] = None,
                  split_statements: Optional[_builtins.bool] = None,
                  username: Optional[_builtins.str] = None,
                  username_template: Optional[_builtins.str] = None,
@@ -6742,6 +6759,7 @@ class SecretsMountOracle(dict):
         :param _builtins.int rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param _builtins.bool self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param _builtins.bool split_statements: Set to true in order to split statements after semi-colons.
         :param _builtins.str username: The root credential username used in the connection URL
         :param _builtins.str username_template: Username generation template.
@@ -6781,6 +6799,8 @@ class SecretsMountOracle(dict):
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -6933,6 +6953,14 @@ class SecretsMountOracle(dict):
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "rotation_window")
+
+    @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[_builtins.bool]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")
