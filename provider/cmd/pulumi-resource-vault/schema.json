@@ -3405,7 +3405,7 @@
                 }
             }
         },
-        "vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach": {
+        "vault:database/SecretsMountRedisElasticache:SecretsMountRedisElasticache": {
             "properties": {
                 "allowedRoles": {
                     "type": "array",
@@ -12999,7 +12999,7 @@
                 "redisElasticaches": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach"
+                        "$ref": "#/types/vault:database/SecretsMountRedisElasticache:SecretsMountRedisElasticache"
                     },
                     "description": "A nested block containing configuration options for Redis ElastiCache connections.  \n*See Configuration Options for more info*\n"
                 },
@@ -13238,7 +13238,7 @@
                 "redisElasticaches": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach"
+                        "$ref": "#/types/vault:database/SecretsMountRedisElasticache:SecretsMountRedisElasticache"
                     },
                     "description": "A nested block containing configuration options for Redis ElastiCache connections.  \n*See Configuration Options for more info*\n"
                 },
@@ -13480,7 +13480,7 @@
                     "redisElasticaches": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/vault:database/SecretsMountRedisElasticach:SecretsMountRedisElasticach"
+                            "$ref": "#/types/vault:database/SecretsMountRedisElasticache:SecretsMountRedisElasticache"
                         },
                         "description": "A nested block containing configuration options for Redis ElastiCache connections.  \n*See Configuration Options for more info*\n"
                     },

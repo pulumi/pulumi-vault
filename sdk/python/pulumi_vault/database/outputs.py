@@ -48,7 +48,7 @@ __all__ = [
     'SecretsMountOracle',
     'SecretsMountPostgresql',
     'SecretsMountRedi',
-    'SecretsMountRedisElasticach',
+    'SecretsMountRedisElasticache',
     'SecretsMountRedshift',
     'SecretsMountSnowflake',
 ]
@@ -7664,7 +7664,7 @@ class SecretsMountRedi(dict):
 
 
 @pulumi.output_type
-class SecretsMountRedisElasticach(dict):
+class SecretsMountRedisElasticache(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -7686,14 +7686,14 @@ class SecretsMountRedisElasticach(dict):
             suggest = "verify_connection"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in SecretsMountRedisElasticach. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in SecretsMountRedisElasticache. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        SecretsMountRedisElasticach.__key_warning(key)
+        SecretsMountRedisElasticache.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        SecretsMountRedisElasticach.__key_warning(key)
+        SecretsMountRedisElasticache.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,

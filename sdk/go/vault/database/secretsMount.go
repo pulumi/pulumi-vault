@@ -200,7 +200,7 @@ type SecretsMount struct {
 	Redis SecretsMountRediArrayOutput `pulumi:"redis"`
 	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
-	RedisElasticaches SecretsMountRedisElasticachArrayOutput `pulumi:"redisElasticaches"`
+	RedisElasticaches SecretsMountRedisElasticacheArrayOutput `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayOutput `pulumi:"redshifts"`
@@ -333,7 +333,7 @@ type secretsMountState struct {
 	Redis []SecretsMountRedi `pulumi:"redis"`
 	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
-	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
+	RedisElasticaches []SecretsMountRedisElasticache `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts []SecretsMountRedshift `pulumi:"redshifts"`
@@ -434,7 +434,7 @@ type SecretsMountState struct {
 	Redis SecretsMountRediArrayInput
 	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
-	RedisElasticaches SecretsMountRedisElasticachArrayInput
+	RedisElasticaches SecretsMountRedisElasticacheArrayInput
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayInput
@@ -535,7 +535,7 @@ type secretsMountArgs struct {
 	Redis []SecretsMountRedi `pulumi:"redis"`
 	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
-	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
+	RedisElasticaches []SecretsMountRedisElasticache `pulumi:"redisElasticaches"`
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts []SecretsMountRedshift `pulumi:"redshifts"`
@@ -633,7 +633,7 @@ type SecretsMountArgs struct {
 	Redis SecretsMountRediArrayInput
 	// A nested block containing configuration options for Redis ElastiCache connections.\
 	// *See Configuration Options for more info*
-	RedisElasticaches SecretsMountRedisElasticachArrayInput
+	RedisElasticaches SecretsMountRedisElasticacheArrayInput
 	// A nested block containing configuration options for AWS Redshift connections.\
 	// *See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayInput
@@ -925,8 +925,8 @@ func (o SecretsMountOutput) Redis() SecretsMountRediArrayOutput {
 
 // A nested block containing configuration options for Redis ElastiCache connections.\
 // *See Configuration Options for more info*
-func (o SecretsMountOutput) RedisElasticaches() SecretsMountRedisElasticachArrayOutput {
-	return o.ApplyT(func(v *SecretsMount) SecretsMountRedisElasticachArrayOutput { return v.RedisElasticaches }).(SecretsMountRedisElasticachArrayOutput)
+func (o SecretsMountOutput) RedisElasticaches() SecretsMountRedisElasticacheArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) SecretsMountRedisElasticacheArrayOutput { return v.RedisElasticaches }).(SecretsMountRedisElasticacheArrayOutput)
 }
 
 // A nested block containing configuration options for AWS Redshift connections.\
