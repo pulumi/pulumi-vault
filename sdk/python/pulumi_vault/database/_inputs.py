@@ -81,8 +81,8 @@ __all__ = [
     'SecretsMountPostgresqlArgsDict',
     'SecretsMountRediArgs',
     'SecretsMountRediArgsDict',
-    'SecretsMountRedisElasticachArgs',
-    'SecretsMountRedisElasticachArgsDict',
+    'SecretsMountRedisElasticacheArgs',
+    'SecretsMountRedisElasticacheArgsDict',
     'SecretsMountRedshiftArgs',
     'SecretsMountRedshiftArgsDict',
     'SecretsMountSnowflakeArgs',
@@ -10729,7 +10729,7 @@ class SecretsMountRediArgs:
 
 
 if not MYPY:
-    class SecretsMountRedisElasticachArgsDict(TypedDict):
+    class SecretsMountRedisElasticacheArgsDict(TypedDict):
         name: pulumi.Input[_builtins.str]
         """
         Name of the database connection.
@@ -10795,10 +10795,10 @@ if not MYPY:
         initial configuration or not.
         """
 elif False:
-    SecretsMountRedisElasticachArgsDict: TypeAlias = Mapping[str, Any]
+    SecretsMountRedisElasticacheArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class SecretsMountRedisElasticachArgs:
+class SecretsMountRedisElasticacheArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],

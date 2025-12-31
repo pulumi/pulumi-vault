@@ -260,7 +260,7 @@ export class SecretsMount extends pulumi.CustomResource {
      * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
-    declare public readonly redisElasticaches: pulumi.Output<outputs.database.SecretsMountRedisElasticach[] | undefined>;
+    declare public readonly redisElasticaches: pulumi.Output<outputs.database.SecretsMountRedisElasticache[] | undefined>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
@@ -543,7 +543,7 @@ export interface SecretsMountState {
      * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
-    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
+    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticache>[]>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
@@ -717,7 +717,7 @@ export interface SecretsMountArgs {
      * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
-    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
+    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticache>[]>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
