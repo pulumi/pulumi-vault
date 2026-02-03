@@ -64,12 +64,12 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     var secrets = Vault.Kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///     });
         /// 
-        ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     var nestedSecrets = Vault.Kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = test2.Name,
@@ -138,12 +138,12 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     var secrets = Vault.Kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///     });
         /// 
-        ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     var nestedSecrets = Vault.Kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = test2.Name,
@@ -212,12 +212,12 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     var secrets = Vault.Kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///     });
         /// 
-        ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     var nestedSecrets = Vault.Kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = test2.Name,
