@@ -45,7 +45,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var test = Vault.kv.GetSecretSubkeysV2.Invoke(new()
+        ///     var test = Vault.Kv.GetSecretSubkeysV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = awsSecret.Name,
@@ -95,7 +95,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var test = Vault.kv.GetSecretSubkeysV2.Invoke(new()
+        ///     var test = Vault.Kv.GetSecretSubkeysV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = awsSecret.Name,
@@ -145,7 +145,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var test = Vault.kv.GetSecretSubkeysV2.Invoke(new()
+        ///     var test = Vault.Kv.GetSecretSubkeysV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = awsSecret.Name,
