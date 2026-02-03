@@ -46,7 +46,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var example = Vault.kv.GetSecretV2.Invoke(new()
+        ///     var example = Vault.Kv.GetSecretV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = exampleSecretV2.Name,
@@ -97,7 +97,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var example = Vault.kv.GetSecretV2.Invoke(new()
+        ///     var example = Vault.Kv.GetSecretV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = exampleSecretV2.Name,
@@ -148,7 +148,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var example = Vault.kv.GetSecretV2.Invoke(new()
+        ///     var example = Vault.Kv.GetSecretV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = exampleSecretV2.Name,

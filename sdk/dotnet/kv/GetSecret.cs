@@ -44,7 +44,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secretData = Vault.kv.GetSecret.Invoke(new()
+        ///     var secretData = Vault.Kv.GetSecret.Invoke(new()
         ///     {
         ///         Path = secret.Path,
         ///     });
@@ -92,7 +92,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secretData = Vault.kv.GetSecret.Invoke(new()
+        ///     var secretData = Vault.Kv.GetSecret.Invoke(new()
         ///     {
         ///         Path = secret.Path,
         ///     });
@@ -140,7 +140,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var secretData = Vault.kv.GetSecret.Invoke(new()
+        ///     var secretData = Vault.Kv.GetSecret.Invoke(new()
         ///     {
         ///         Path = secret.Path,
         ///     });
