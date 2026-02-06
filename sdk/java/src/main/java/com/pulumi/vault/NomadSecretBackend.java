@@ -59,6 +59,18 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `clientKeyWo` - (Optional) Write-only client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+ * Use this for enhanced security when you don&#39;t want the client key to appear in state files. Requires `clientKeyWoVersion`. Conflicts with `clientKey`.
+ * **Note**: This property is write-only and will not be read from the API.
+ * 
+ * * `tokenWo` - (Optional) Write-only Nomad Management token to use.
+ * Use this for enhanced security when you don&#39;t want the token to appear in state files. Requires `tokenWoVersion`. Conflicts with `token`.
+ * **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * Nomad secret backend can be imported using the `backend`, e.g.
@@ -204,6 +216,7 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      * 
      */
     @Export(name="clientKey", refs={String.class}, tree="[0]")
@@ -211,10 +224,43 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      * 
      */
     public Output<Optional<String>> clientKey() {
         return Codegen.optional(this.clientKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * 
+     */
+    @Export(name="clientKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * 
+     */
+    public Output<Optional<String>> clientKeyWo() {
+        return Codegen.optional(this.clientKeyWo);
+    }
+    /**
+     * Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     * 
+     */
+    @Export(name="clientKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientKeyWoVersion;
+
+    /**
+     * @return Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> clientKeyWoVersion() {
+        return Codegen.optional(this.clientKeyWoVersion);
     }
     /**
      * Default lease duration for secrets in seconds.
@@ -467,18 +513,50 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
         return this.sealWrap;
     }
     /**
-     * Specifies the Nomad Management token to use.
+     * Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
-     * @return Specifies the Nomad Management token to use.
+     * @return Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      * 
      */
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     * 
+     */
+    @Export(name="tokenWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     * 
+     */
+    public Output<Optional<String>> tokenWo() {
+        return Codegen.optional(this.tokenWo);
+    }
+    /**
+     * Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     * 
+     */
+    @Export(name="tokenWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenWoVersion;
+
+    /**
+     * @return Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     * 
+     */
+    public Output<Optional<Integer>> tokenWoVersion() {
+        return Codegen.optional(this.tokenWoVersion);
     }
     /**
      * Specifies the ttl of the lease for the generated token.
@@ -537,7 +615,9 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
             .additionalSecretOutputs(List.of(
                 "clientCert",
                 "clientKey",
-                "token"
+                "clientKeyWo",
+                "token",
+                "tokenWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

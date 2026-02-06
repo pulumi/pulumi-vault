@@ -43,6 +43,13 @@ namespace Pulumi.Vault.Ldap
     /// });
     /// ```
     /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `BindpassWo` - (Optional) Write-only bind password to use for LDAP authentication. Can be updated. Conflicts with `Bindpass`.
+    ///   **Note**: This property is write-only and will not be read from the API.
+    /// 
     /// ## Import
     /// 
     /// LDAP authentication backends can be imported using the `path`, e.g.
@@ -80,10 +87,25 @@ namespace Pulumi.Vault.Ldap
         public Output<string> Binddn { get; private set; } = null!;
 
         /// <summary>
-        /// Password to use with `Binddn` when performing user search
+        /// Password to use with `Binddn` when performing user search. Conflicts with `BindpassWo`.
         /// </summary>
         [Output("bindpass")]
         public Output<string> Bindpass { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only bind password to use for LDAP authentication.
+        /// </summary>
+        [Output("bindpassWo")]
+        public Output<string?> BindpassWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for write-only bind password.
+        /// Required when using `BindpassWo`. For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Output("bindpassWoVersion")]
+        public Output<int?> BindpassWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
@@ -381,6 +403,7 @@ namespace Pulumi.Vault.Ldap
                 AdditionalSecretOutputs =
                 {
                     "bindpass",
+                    "bindpassWo",
                     "clientTlsKey",
                 },
             };
@@ -435,7 +458,7 @@ namespace Pulumi.Vault.Ldap
         private Input<string>? _bindpass;
 
         /// <summary>
-        /// Password to use with `Binddn` when performing user search
+        /// Password to use with `Binddn` when performing user search. Conflicts with `BindpassWo`.
         /// </summary>
         public Input<string>? Bindpass
         {
@@ -446,6 +469,31 @@ namespace Pulumi.Vault.Ldap
                 _bindpass = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("bindpassWo")]
+        private Input<string>? _bindpassWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only bind password to use for LDAP authentication.
+        /// </summary>
+        public Input<string>? BindpassWo
+        {
+            get => _bindpassWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindpassWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for write-only bind password.
+        /// Required when using `BindpassWo`. For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Input("bindpassWoVersion")]
+        public Input<int>? BindpassWoVersion { get; set; }
 
         /// <summary>
         /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
@@ -781,7 +829,7 @@ namespace Pulumi.Vault.Ldap
         private Input<string>? _bindpass;
 
         /// <summary>
-        /// Password to use with `Binddn` when performing user search
+        /// Password to use with `Binddn` when performing user search. Conflicts with `BindpassWo`.
         /// </summary>
         public Input<string>? Bindpass
         {
@@ -792,6 +840,31 @@ namespace Pulumi.Vault.Ldap
                 _bindpass = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("bindpassWo")]
+        private Input<string>? _bindpassWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only bind password to use for LDAP authentication.
+        /// </summary>
+        public Input<string>? BindpassWo
+        {
+            get => _bindpassWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindpassWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for write-only bind password.
+        /// Required when using `BindpassWo`. For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Input("bindpassWoVersion")]
+        public Input<int>? BindpassWoVersion { get; set; }
 
         /// <summary>
         /// Control case senstivity of objects fetched from LDAP, this is used for object matching in vault

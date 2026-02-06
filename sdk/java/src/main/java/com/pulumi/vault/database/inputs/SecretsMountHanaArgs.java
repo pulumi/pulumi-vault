@@ -307,6 +307,21 @@ public final class SecretsMountHanaArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Username generation template.
+     * 
+     */
+    @Import(name="usernameTemplate")
+    private @Nullable Output<String> usernameTemplate;
+
+    /**
+     * @return Username generation template.
+     * 
+     */
+    public Optional<Output<String>> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
+
+    /**
      * Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -344,6 +359,7 @@ public final class SecretsMountHanaArgs extends com.pulumi.resources.ResourceArg
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
         this.username = $.username;
+        this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
     }
 
@@ -778,6 +794,27 @@ public final class SecretsMountHanaArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder username(String username) {
             return username(Output.of(username));
+        }
+
+        /**
+         * @param usernameTemplate Username generation template.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(@Nullable Output<String> usernameTemplate) {
+            $.usernameTemplate = usernameTemplate;
+            return this;
+        }
+
+        /**
+         * @param usernameTemplate Username generation template.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(String usernameTemplate) {
+            return usernameTemplate(Output.of(usernameTemplate));
         }
 
         /**

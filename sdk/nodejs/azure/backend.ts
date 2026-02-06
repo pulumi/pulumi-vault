@@ -4,42 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## Example Usage
- *
- * ### 
- *
- * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const azure = new vault.azure.Backend("azure", {
- *     subscriptionId: "11111111-2222-3333-4444-111111111111",
- *     tenantId: "11111111-2222-3333-4444-222222222222",
- *     clientId: "11111111-2222-3333-4444-333333333333",
- *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
- *     rotationSchedule: "0 * * * SAT",
- *     rotationWindow: 3600,
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const azure = new vault.azure.Backend("azure", {
- *     subscriptionId: "11111111-2222-3333-4444-111111111111",
- *     tenantId: "11111111-2222-3333-4444-222222222222",
- *     clientId: "11111111-2222-3333-4444-333333333333",
- *     clientSecret: "12345678901234567890",
- *     environment: "AzurePublicCloud",
- *     rotationSchedule: "0 * * * SAT",
- *     rotationWindow: 3600,
- * });
- * ```
- */
 export class Backend extends pulumi.CustomResource {
     /**
      * Get an existing Backend resource's state with the given name, ID, and optional extra
@@ -94,8 +58,18 @@ export class Backend extends pulumi.CustomResource {
     declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      */
     declare public readonly clientSecret: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     */
+    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
@@ -234,6 +208,8 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientSecretWo"] = state?.clientSecretWo;
+            resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
             resourceInputs["description"] = state?.description;
@@ -274,6 +250,8 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
             resourceInputs["clientId"] = args?.clientId ? pulumi.secret(args.clientId) : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["clientSecretWo"] = args?.clientSecretWo ? pulumi.secret(args.clientSecretWo) : undefined;
+            resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
             resourceInputs["description"] = args?.description;
@@ -303,7 +281,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientId", "clientSecret", "subscriptionId", "tenantId"] };
+        const secretOpts = { additionalSecretOutputs: ["clientId", "clientSecret", "clientSecretWo", "subscriptionId", "tenantId"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Backend.__pulumiType, name, resourceInputs, opts);
     }
@@ -339,8 +317,18 @@ export interface BackendState {
     clientId?: pulumi.Input<string>;
     /**
      * The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     */
+    clientSecretWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
@@ -486,8 +474,18 @@ export interface BackendArgs {
     clientId?: pulumi.Input<string>;
     /**
      * The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     */
+    clientSecretWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */

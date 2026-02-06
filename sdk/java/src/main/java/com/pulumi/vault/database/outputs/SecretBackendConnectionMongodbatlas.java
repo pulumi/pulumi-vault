@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class SecretBackendConnectionMongodbatlas {
@@ -25,6 +27,11 @@ public final class SecretBackendConnectionMongodbatlas {
      * 
      */
     private String publicKey;
+    /**
+     * @return Template describing how dynamic usernames are generated.
+     * 
+     */
+    private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionMongodbatlas() {}
     /**
@@ -48,6 +55,13 @@ public final class SecretBackendConnectionMongodbatlas {
     public String publicKey() {
         return this.publicKey;
     }
+    /**
+     * @return Template describing how dynamic usernames are generated.
+     * 
+     */
+    public Optional<String> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -61,12 +75,14 @@ public final class SecretBackendConnectionMongodbatlas {
         private String privateKey;
         private String projectId;
         private String publicKey;
+        private @Nullable String usernameTemplate;
         public Builder() {}
         public Builder(SecretBackendConnectionMongodbatlas defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.privateKey = defaults.privateKey;
     	      this.projectId = defaults.projectId;
     	      this.publicKey = defaults.publicKey;
+    	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
         @CustomType.Setter
@@ -93,11 +109,18 @@ public final class SecretBackendConnectionMongodbatlas {
             this.publicKey = publicKey;
             return this;
         }
+        @CustomType.Setter
+        public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
+            this.usernameTemplate = usernameTemplate;
+            return this;
+        }
         public SecretBackendConnectionMongodbatlas build() {
             final var _resultValue = new SecretBackendConnectionMongodbatlas();
             _resultValue.privateKey = privateKey;
             _resultValue.projectId = projectId;
             _resultValue.publicKey = publicKey;
+            _resultValue.usernameTemplate = usernameTemplate;
             return _resultValue;
         }
     }

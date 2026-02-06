@@ -43,6 +43,14 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? PasswordWoVersion;
         /// <summary>
+        /// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCa;
+        /// <summary>
+        /// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCertificateKey;
+        /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
@@ -50,6 +58,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// Username generation template.
         /// </summary>
         public readonly string? UsernameTemplate;
+        /// <summary>
+        /// Specifies the MongoDB write concern for Vault management operations.
+        /// </summary>
+        public readonly string? WriteConcern;
 
         [OutputConstructor]
         private SecretBackendConnectionMongodb(
@@ -67,9 +79,15 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? passwordWoVersion,
 
+            string? tlsCa,
+
+            string? tlsCertificateKey,
+
             string? username,
 
-            string? usernameTemplate)
+            string? usernameTemplate,
+
+            string? writeConcern)
         {
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
@@ -78,8 +96,11 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PasswordWo = passwordWo;
             PasswordWoVersion = passwordWoVersion;
+            TlsCa = tlsCa;
+            TlsCertificateKey = tlsCertificateKey;
             Username = username;
             UsernameTemplate = usernameTemplate;
+            WriteConcern = writeConcern;
         }
     }
 }

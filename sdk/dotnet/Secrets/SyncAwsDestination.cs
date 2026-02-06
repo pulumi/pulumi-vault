@@ -38,6 +38,42 @@ namespace Pulumi.Vault.Secrets
     /// });
     /// ```
     /// 
+    /// ### Example with Networking Restrictions
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var awsRestricted = new Vault.Secrets.SyncAwsDestination("aws_restricted", new()
+    ///     {
+    ///         Name = "aws-dest-restricted",
+    ///         AccessKeyId = accessKeyId,
+    ///         SecretAccessKey = secretAccessKey,
+    ///         Region = "us-east-1",
+    ///         AllowedIpv4Addresses = new[]
+    ///         {
+    ///             "192.168.1.0/24",
+    ///             "10.0.0.0/8",
+    ///         },
+    ///         AllowedIpv6Addresses = new[]
+    ///         {
+    ///             "2001:db8::/32",
+    ///         },
+    ///         AllowedPorts = new[]
+    ///         {
+    ///             443,
+    ///             8200,
+    ///         },
+    ///         DisableStrictNetworking = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -58,10 +94,42 @@ namespace Pulumi.Vault.Secrets
         public Output<string?> AccessKeyId { get; private set; } = null!;
 
         /// <summary>
+        /// Allowed IPv4 addresses for outbound connections from Vault to AWS Secrets Manager.
+        /// Can also be set via an IP address range using CIDR notation. For example: `["192.168.1.0/24", "10.0.0.0/8"]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        [Output("allowedIpv4Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv4Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowed IPv6 addresses for outbound connections from Vault to AWS Secrets Manager.
+        /// Can also be set via an IP address range using CIDR notation. For example: `["2001:db8::/32"]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        [Output("allowedIpv6Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv6Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowed ports for outbound connections from Vault to AWS Secrets Manager.
+        /// For example: `[443, 8200]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        [Output("allowedPorts")]
+        public Output<ImmutableArray<int>> AllowedPorts { get; private set; } = null!;
+
+        /// <summary>
         /// Custom tags to set on the secret managed at the destination.
         /// </summary>
         [Output("customTags")]
         public Output<ImmutableDictionary<string, string>?> CustomTags { get; private set; } = null!;
+
+        /// <summary>
+        /// Disable strict networking mode. When set to `True`, Vault will not enforce
+        /// allowed IP addresses and ports. Defaults to `False`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        [Output("disableStrictNetworking")]
+        public Output<bool?> DisableStrictNetworking { get; private set; } = null!;
 
         /// <summary>
         /// Optional extra protection that must match the trust policy granting access to the
@@ -191,6 +259,48 @@ namespace Pulumi.Vault.Secrets
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
 
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// Allowed IPv4 addresses for outbound connections from Vault to AWS Secrets Manager.
+        /// Can also be set via an IP address range using CIDR notation. For example: `["192.168.1.0/24", "10.0.0.0/8"]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// Allowed IPv6 addresses for outbound connections from Vault to AWS Secrets Manager.
+        /// Can also be set via an IP address range using CIDR notation. For example: `["2001:db8::/32"]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// Allowed ports for outbound connections from Vault to AWS Secrets Manager.
+        /// For example: `[443, 8200]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         [Input("customTags")]
         private InputMap<string>? _customTags;
 
@@ -202,6 +312,14 @@ namespace Pulumi.Vault.Secrets
             get => _customTags ?? (_customTags = new InputMap<string>());
             set => _customTags = value;
         }
+
+        /// <summary>
+        /// Disable strict networking mode. When set to `True`, Vault will not enforce
+        /// allowed IP addresses and ports. Defaults to `False`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
 
         /// <summary>
         /// Optional extra protection that must match the trust policy granting access to the
@@ -293,6 +411,48 @@ namespace Pulumi.Vault.Secrets
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
 
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// Allowed IPv4 addresses for outbound connections from Vault to AWS Secrets Manager.
+        /// Can also be set via an IP address range using CIDR notation. For example: `["192.168.1.0/24", "10.0.0.0/8"]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// Allowed IPv6 addresses for outbound connections from Vault to AWS Secrets Manager.
+        /// Can also be set via an IP address range using CIDR notation. For example: `["2001:db8::/32"]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// Allowed ports for outbound connections from Vault to AWS Secrets Manager.
+        /// For example: `[443, 8200]`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         [Input("customTags")]
         private InputMap<string>? _customTags;
 
@@ -304,6 +464,14 @@ namespace Pulumi.Vault.Secrets
             get => _customTags ?? (_customTags = new InputMap<string>());
             set => _customTags = value;
         }
+
+        /// <summary>
+        /// Disable strict networking mode. When set to `True`, Vault will not enforce
+        /// allowed IP addresses and ports. Defaults to `False`.
+        /// **Requires Vault 1.19.0+**.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
 
         /// <summary>
         /// Optional extra protection that must match the trust policy granting access to the

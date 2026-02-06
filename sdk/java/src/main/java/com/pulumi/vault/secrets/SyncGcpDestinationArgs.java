@@ -5,7 +5,10 @@ package com.pulumi.vault.secrets;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +18,51 @@ import javax.annotation.Nullable;
 public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SyncGcpDestinationArgs Empty = new SyncGcpDestinationArgs();
+
+    /**
+     * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     * 
+     */
+    @Import(name="allowedIpv4Addresses")
+    private @Nullable Output<List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedIpv4Addresses() {
+        return Optional.ofNullable(this.allowedIpv4Addresses);
+    }
+
+    /**
+     * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     * 
+     */
+    @Import(name="allowedIpv6Addresses")
+    private @Nullable Output<List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedIpv6Addresses() {
+        return Optional.ofNullable(this.allowedIpv6Addresses);
+    }
+
+    /**
+     * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     * 
+     */
+    @Import(name="allowedPorts")
+    private @Nullable Output<List<Integer>> allowedPorts;
+
+    /**
+     * @return Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     * 
+     */
+    public Optional<Output<List<Integer>>> allowedPorts() {
+        return Optional.ofNullable(this.allowedPorts);
+    }
 
     /**
      * JSON-encoded credentials to use to connect to GCP.
@@ -51,6 +99,36 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Disable strict networking requirements.
+     * 
+     */
+    @Import(name="disableStrictNetworking")
+    private @Nullable Output<Boolean> disableStrictNetworking;
+
+    /**
+     * @return Disable strict networking requirements.
+     * 
+     */
+    public Optional<Output<Boolean>> disableStrictNetworking() {
+        return Optional.ofNullable(this.disableStrictNetworking);
+    }
+
+    /**
+     * Global KMS key for encryption.
+     * 
+     */
+    @Import(name="globalKmsKey")
+    private @Nullable Output<String> globalKmsKey;
+
+    /**
+     * @return Global KMS key for encryption.
+     * 
+     */
+    public Optional<Output<String>> globalKmsKey() {
+        return Optional.ofNullable(this.globalKmsKey);
+    }
+
+    /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      * 
@@ -65,6 +143,21 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> granularity() {
         return Optional.ofNullable(this.granularity);
+    }
+
+    /**
+     * Locational KMS keys for encryption.
+     * 
+     */
+    @Import(name="locationalKmsKeys")
+    private @Nullable Output<Map<String,String>> locationalKmsKeys;
+
+    /**
+     * @return Locational KMS keys for encryption.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> locationalKmsKeys() {
+        return Optional.ofNullable(this.locationalKmsKeys);
     }
 
     /**
@@ -123,6 +216,21 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Replication locations for secrets.
+     * 
+     */
+    @Import(name="replicationLocations")
+    private @Nullable Output<List<String>> replicationLocations;
+
+    /**
+     * @return Replication locations for secrets.
+     * 
+     */
+    public Optional<Output<List<String>>> replicationLocations() {
+        return Optional.ofNullable(this.replicationLocations);
+    }
+
+    /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      * 
@@ -142,12 +250,19 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
     private SyncGcpDestinationArgs() {}
 
     private SyncGcpDestinationArgs(SyncGcpDestinationArgs $) {
+        this.allowedIpv4Addresses = $.allowedIpv4Addresses;
+        this.allowedIpv6Addresses = $.allowedIpv6Addresses;
+        this.allowedPorts = $.allowedPorts;
         this.credentials = $.credentials;
         this.customTags = $.customTags;
+        this.disableStrictNetworking = $.disableStrictNetworking;
+        this.globalKmsKey = $.globalKmsKey;
         this.granularity = $.granularity;
+        this.locationalKmsKeys = $.locationalKmsKeys;
         this.name = $.name;
         this.namespace = $.namespace;
         this.projectId = $.projectId;
+        this.replicationLocations = $.replicationLocations;
         this.secretNameTemplate = $.secretNameTemplate;
     }
 
@@ -167,6 +282,99 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
 
         public Builder(SyncGcpDestinationArgs defaults) {
             $ = new SyncGcpDestinationArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowedIpv4Addresses Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv4Addresses(@Nullable Output<List<String>> allowedIpv4Addresses) {
+            $.allowedIpv4Addresses = allowedIpv4Addresses;
+            return this;
+        }
+
+        /**
+         * @param allowedIpv4Addresses Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv4Addresses(List<String> allowedIpv4Addresses) {
+            return allowedIpv4Addresses(Output.of(allowedIpv4Addresses));
+        }
+
+        /**
+         * @param allowedIpv4Addresses Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv4Addresses(String... allowedIpv4Addresses) {
+            return allowedIpv4Addresses(List.of(allowedIpv4Addresses));
+        }
+
+        /**
+         * @param allowedIpv6Addresses Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv6Addresses(@Nullable Output<List<String>> allowedIpv6Addresses) {
+            $.allowedIpv6Addresses = allowedIpv6Addresses;
+            return this;
+        }
+
+        /**
+         * @param allowedIpv6Addresses Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv6Addresses(List<String> allowedIpv6Addresses) {
+            return allowedIpv6Addresses(Output.of(allowedIpv6Addresses));
+        }
+
+        /**
+         * @param allowedIpv6Addresses Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv6Addresses(String... allowedIpv6Addresses) {
+            return allowedIpv6Addresses(List.of(allowedIpv6Addresses));
+        }
+
+        /**
+         * @param allowedPorts Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPorts(@Nullable Output<List<Integer>> allowedPorts) {
+            $.allowedPorts = allowedPorts;
+            return this;
+        }
+
+        /**
+         * @param allowedPorts Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPorts(List<Integer> allowedPorts) {
+            return allowedPorts(Output.of(allowedPorts));
+        }
+
+        /**
+         * @param allowedPorts Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPorts(Integer... allowedPorts) {
+            return allowedPorts(List.of(allowedPorts));
         }
 
         /**
@@ -216,6 +424,48 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param disableStrictNetworking Disable strict networking requirements.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableStrictNetworking(@Nullable Output<Boolean> disableStrictNetworking) {
+            $.disableStrictNetworking = disableStrictNetworking;
+            return this;
+        }
+
+        /**
+         * @param disableStrictNetworking Disable strict networking requirements.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableStrictNetworking(Boolean disableStrictNetworking) {
+            return disableStrictNetworking(Output.of(disableStrictNetworking));
+        }
+
+        /**
+         * @param globalKmsKey Global KMS key for encryption.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder globalKmsKey(@Nullable Output<String> globalKmsKey) {
+            $.globalKmsKey = globalKmsKey;
+            return this;
+        }
+
+        /**
+         * @param globalKmsKey Global KMS key for encryption.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder globalKmsKey(String globalKmsKey) {
+            return globalKmsKey(Output.of(globalKmsKey));
+        }
+
+        /**
          * @param granularity Determines what level of information is synced as a distinct resource
          * at the destination. Supports `secret-path` and `secret-key`.
          * 
@@ -236,6 +486,27 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          */
         public Builder granularity(String granularity) {
             return granularity(Output.of(granularity));
+        }
+
+        /**
+         * @param locationalKmsKeys Locational KMS keys for encryption.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder locationalKmsKeys(@Nullable Output<Map<String,String>> locationalKmsKeys) {
+            $.locationalKmsKeys = locationalKmsKeys;
+            return this;
+        }
+
+        /**
+         * @param locationalKmsKeys Locational KMS keys for encryption.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder locationalKmsKeys(Map<String,String> locationalKmsKeys) {
+            return locationalKmsKeys(Output.of(locationalKmsKeys));
         }
 
         /**
@@ -309,6 +580,37 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param replicationLocations Replication locations for secrets.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicationLocations(@Nullable Output<List<String>> replicationLocations) {
+            $.replicationLocations = replicationLocations;
+            return this;
+        }
+
+        /**
+         * @param replicationLocations Replication locations for secrets.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicationLocations(List<String> replicationLocations) {
+            return replicationLocations(Output.of(replicationLocations));
+        }
+
+        /**
+         * @param replicationLocations Replication locations for secrets.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicationLocations(String... replicationLocations) {
+            return replicationLocations(List.of(replicationLocations));
         }
 
         /**

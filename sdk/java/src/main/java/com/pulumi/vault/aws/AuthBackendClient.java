@@ -18,94 +18,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * 
- * You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.aws.AuthBackendClient;
- * import com.pulumi.vault.aws.AuthBackendClientArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()
- *             .type("aws")
- *             .build());
- * 
- *         var exampleAuthBackendClient = new AuthBackendClient("exampleAuthBackendClient", AuthBackendClientArgs.builder()
- *             .identityTokenAudience("<TOKEN_AUDIENCE>")
- *             .identityTokenTtl("<TOKEN_TTL>")
- *             .roleArn("<AWS_ROLE_ARN>")
- *             .rotationSchedule("0 * * * SAT")
- *             .rotationWindow(3600)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.aws.AuthBackendClient;
- * import com.pulumi.vault.aws.AuthBackendClientArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()
- *             .type("aws")
- *             .build());
- * 
- *         var exampleAuthBackendClient = new AuthBackendClient("exampleAuthBackendClient", AuthBackendClientArgs.builder()
- *             .backend(example.path())
- *             .accessKey("INSERT_AWS_ACCESS_KEY")
- *             .secretKey("INSERT_AWS_SECRET_KEY")
- *             .rotationSchedule("0 * * * SAT")
- *             .rotationWindow(3600)
- *             .allowedStsHeaderValues(            
- *                 "X-Custom-Header",
- *                 "X-Another-Header")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
@@ -366,20 +278,50 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.rotationWindow);
     }
     /**
-     * The AWS secret key that Vault should use for the
-     * auth backend.
+     * AWS Secret key with permissions to query AWS APIs.
      * 
      */
     @Export(name="secretKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretKey;
 
     /**
-     * @return The AWS secret key that Vault should use for the
-     * auth backend.
+     * @return AWS Secret key with permissions to query AWS APIs.
      * 
      */
     public Output<Optional<String>> secretKey() {
         return Codegen.optional(this.secretKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     * 
+     */
+    @Export(name="secretKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> secretKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     * 
+     */
+    public Output<Optional<String>> secretKeyWo() {
+        return Codegen.optional(this.secretKeyWo);
+    }
+    /**
+     * Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     * 
+     */
+    @Export(name="secretKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> secretKeyWoVersion;
+
+    /**
+     * @return Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     * 
+     */
+    public Output<Optional<Integer>> secretKeyWoVersion() {
+        return Codegen.optional(this.secretKeyWoVersion);
     }
     /**
      * Override the URL Vault uses when making STS API
@@ -477,7 +419,8 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "accessKey",
-                "secretKey"
+                "secretKey",
+                "secretKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

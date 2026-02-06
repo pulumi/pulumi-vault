@@ -444,11 +444,7 @@ class KeysPkc(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "keyId":
-            suggest = "key_id"
-        elif key == "keyLabel":
-            suggest = "key_label"
-        elif key == "allowGenerateKey":
+        if key == "allowGenerateKey":
             suggest = "allow_generate_key"
         elif key == "allowReplaceKey":
             suggest = "allow_replace_key"
@@ -460,6 +456,10 @@ class KeysPkc(dict):
             suggest = "force_rw_session"
         elif key == "keyBits":
             suggest = "key_bits"
+        elif key == "keyId":
+            suggest = "key_id"
+        elif key == "keyLabel":
+            suggest = "key_label"
         elif key == "tokenLabel":
             suggest = "token_label"
 
@@ -475,8 +475,6 @@ class KeysPkc(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 key_id: _builtins.str,
-                 key_label: _builtins.str,
                  library: _builtins.str,
                  mechanism: _builtins.str,
                  name: _builtins.str,
@@ -488,12 +486,12 @@ class KeysPkc(dict):
                  curve: Optional[_builtins.str] = None,
                  force_rw_session: Optional[_builtins.str] = None,
                  key_bits: Optional[_builtins.str] = None,
+                 key_id: Optional[_builtins.str] = None,
+                 key_label: Optional[_builtins.str] = None,
                  slot: Optional[_builtins.str] = None,
                  token_label: Optional[_builtins.str] = None,
                  uuid: Optional[_builtins.str] = None):
         """
-        :param _builtins.str key_id: The id of a PKCS#11 key to use
-        :param _builtins.str key_label: The label of the key to use
         :param _builtins.str library: The name of the kms_library stanza to use from Vault's config to lookup the local library path
         :param _builtins.str mechanism: The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
         :param _builtins.str name: A unique lowercase name that serves as identifying the key
@@ -505,12 +503,12 @@ class KeysPkc(dict):
         :param _builtins.str curve: Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
         :param _builtins.str force_rw_session: Force all operations to open up a read-write session to the HSM
         :param _builtins.str key_bits: Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
+        :param _builtins.str key_id: The id of a PKCS#11 key to use
+        :param _builtins.str key_label: The label of the key to use
         :param _builtins.str slot: The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         :param _builtins.str token_label: The slot token label to use
         :param _builtins.str uuid: ID of the managed key read from Vault
         """
-        pulumi.set(__self__, "key_id", key_id)
-        pulumi.set(__self__, "key_label", key_label)
         pulumi.set(__self__, "library", library)
         pulumi.set(__self__, "mechanism", mechanism)
         pulumi.set(__self__, "name", name)
@@ -529,28 +527,16 @@ class KeysPkc(dict):
             pulumi.set(__self__, "force_rw_session", force_rw_session)
         if key_bits is not None:
             pulumi.set(__self__, "key_bits", key_bits)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
+        if key_label is not None:
+            pulumi.set(__self__, "key_label", key_label)
         if slot is not None:
             pulumi.set(__self__, "slot", slot)
         if token_label is not None:
             pulumi.set(__self__, "token_label", token_label)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
-
-    @_builtins.property
-    @pulumi.getter(name="keyId")
-    def key_id(self) -> _builtins.str:
-        """
-        The id of a PKCS#11 key to use
-        """
-        return pulumi.get(self, "key_id")
-
-    @_builtins.property
-    @pulumi.getter(name="keyLabel")
-    def key_label(self) -> _builtins.str:
-        """
-        The label of the key to use
-        """
-        return pulumi.get(self, "key_label")
 
     @_builtins.property
     @pulumi.getter
@@ -639,6 +625,22 @@ class KeysPkc(dict):
         Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "key_bits")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[_builtins.str]:
+        """
+        The id of a PKCS#11 key to use
+        """
+        return pulumi.get(self, "key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="keyLabel")
+    def key_label(self) -> Optional[_builtins.str]:
+        """
+        The label of the key to use
+        """
+        return pulumi.get(self, "key_label")
 
     @_builtins.property
     @pulumi.getter

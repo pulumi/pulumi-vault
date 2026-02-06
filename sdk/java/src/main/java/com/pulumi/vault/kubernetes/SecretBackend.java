@@ -54,9 +54,10 @@ import javax.annotation.Nullable;
  *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
  *                 .input("/path/to/cert")
  *                 .build()).result())
- *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+ *             .serviceAccountJwtWo(StdFunctions.file(FileArgs.builder()
  *                 .input("/path/to/token")
  *                 .build()).result())
+ *             .serviceAccountJwtWoVersion(1)
  *             .disableLocalCaJwt(false)
  *             .build());
  * 
@@ -64,6 +65,13 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `serviceAccountJwtWo` - (Optional) Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value is not stored in state.
+ *   **Note**: This property is write-only and will not be read from the API.
  * 
  * ## Import
  * 
@@ -434,6 +442,40 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> serviceAccountJwt() {
         return Codegen.optional(this.serviceAccountJwt);
     }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     * 
+     */
+    @Export(name="serviceAccountJwtWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serviceAccountJwtWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     * 
+     */
+    public Output<Optional<String>> serviceAccountJwtWo() {
+        return Codegen.optional(this.serviceAccountJwtWo);
+    }
+    /**
+     * Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Export(name="serviceAccountJwtWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> serviceAccountJwtWoVersion;
+
+    /**
+     * @return Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Output<Optional<Integer>> serviceAccountJwtWoVersion() {
+        return Codegen.optional(this.serviceAccountJwtWoVersion);
+    }
 
     /**
      *
@@ -475,7 +517,8 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "serviceAccountJwt"
+                "serviceAccountJwt",
+                "serviceAccountJwtWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

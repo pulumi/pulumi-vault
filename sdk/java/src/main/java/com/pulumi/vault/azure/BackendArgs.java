@@ -97,6 +97,7 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      * 
      */
     @Import(name="clientSecret")
@@ -104,10 +105,43 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      * 
      */
     public Optional<Output<String>> clientSecret() {
         return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="clientSecretWo")
+    private @Nullable Output<String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> clientSecretWo() {
+        return Optional.ofNullable(this.clientSecretWo);
+    }
+
+    /**
+     * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     * 
+     */
+    @Import(name="clientSecretWoVersion")
+    private @Nullable Output<Integer> clientSecretWoVersion;
+
+    /**
+     * @return A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     * 
+     */
+    public Optional<Output<Integer>> clientSecretWoVersion() {
+        return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
     /**
@@ -535,6 +569,8 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
         this.auditNonHmacResponseKeys = $.auditNonHmacResponseKeys;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.clientSecretWo = $.clientSecretWo;
+        this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
@@ -728,6 +764,7 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientSecret The OAuth2 client secret to connect to Azure.
+         * Conflicts with `clientSecretWo`.
          * 
          * @return builder
          * 
@@ -739,12 +776,57 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientSecret The OAuth2 client secret to connect to Azure.
+         * Conflicts with `clientSecretWo`.
          * 
          * @return builder
          * 
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(@Nullable Output<String> clientSecretWo) {
+            $.clientSecretWo = clientSecretWo;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(String clientSecretWo) {
+            return clientSecretWo(Output.of(clientSecretWo));
+        }
+
+        /**
+         * @param clientSecretWoVersion A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+            $.clientSecretWoVersion = clientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWoVersion A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+            return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 
         /**

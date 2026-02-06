@@ -19,10 +19,14 @@ __all__ = ['SyncAzureDestinationArgs', 'SyncAzureDestination']
 @pulumi.input_type
 class SyncAzureDestinationArgs:
     def __init__(__self__, *,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  cloud: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -31,6 +35,12 @@ class SyncAzureDestinationArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncAzureDestination resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
+               destination. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -39,6 +49,8 @@ class SyncAzureDestinationArgs:
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
+               restrictions. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
@@ -54,6 +66,12 @@ class SyncAzureDestinationArgs:
                Can be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment
                variable.
         """
+        if allowed_ipv4_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
+        if allowed_ipv6_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv6_addresses", allowed_ipv6_addresses)
+        if allowed_ports is not None:
+            pulumi.set(__self__, "allowed_ports", allowed_ports)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -62,6 +80,8 @@ class SyncAzureDestinationArgs:
             pulumi.set(__self__, "cloud", cloud)
         if custom_tags is not None:
             pulumi.set(__self__, "custom_tags", custom_tags)
+        if disable_strict_networking is not None:
+            pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
         if key_vault_uri is not None:
@@ -74,6 +94,45 @@ class SyncAzureDestinationArgs:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of IPv4 addresses or CIDR blocks allowed to make outbound
+        connections from Vault to the destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @allowed_ipv4_addresses.setter
+    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of IPv6 addresses or CIDR blocks allowed to make outbound
+        connections from Vault to the destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @allowed_ipv6_addresses.setter
+    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+        """
+        List of port numbers allowed for outbound connections from Vault to the
+        destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @allowed_ports.setter
+    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+        pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -126,6 +185,19 @@ class SyncAzureDestinationArgs:
     @custom_tags.setter
     def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to `true`, disables strict enforcement of networking
+        restrictions. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @disable_strict_networking.setter
+    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter
@@ -211,10 +283,14 @@ class SyncAzureDestinationArgs:
 @pulumi.input_type
 class _SyncAzureDestinationState:
     def __init__(__self__, *,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  cloud: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -224,6 +300,12 @@ class _SyncAzureDestinationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncAzureDestination resources.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
+               destination. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -232,6 +314,8 @@ class _SyncAzureDestinationState:
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
+               restrictions. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
@@ -248,6 +332,12 @@ class _SyncAzureDestinationState:
                variable.
         :param pulumi.Input[_builtins.str] type: The type of the secrets destination (`azure-kv`).
         """
+        if allowed_ipv4_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
+        if allowed_ipv6_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv6_addresses", allowed_ipv6_addresses)
+        if allowed_ports is not None:
+            pulumi.set(__self__, "allowed_ports", allowed_ports)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -256,6 +346,8 @@ class _SyncAzureDestinationState:
             pulumi.set(__self__, "cloud", cloud)
         if custom_tags is not None:
             pulumi.set(__self__, "custom_tags", custom_tags)
+        if disable_strict_networking is not None:
+            pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
         if key_vault_uri is not None:
@@ -270,6 +362,45 @@ class _SyncAzureDestinationState:
             pulumi.set(__self__, "tenant_id", tenant_id)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of IPv4 addresses or CIDR blocks allowed to make outbound
+        connections from Vault to the destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @allowed_ipv4_addresses.setter
+    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of IPv6 addresses or CIDR blocks allowed to make outbound
+        connections from Vault to the destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @allowed_ipv6_addresses.setter
+    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+        """
+        List of port numbers allowed for outbound connections from Vault to the
+        destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @allowed_ports.setter
+    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+        pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -322,6 +453,19 @@ class _SyncAzureDestinationState:
     @custom_tags.setter
     def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_tags", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to `true`, disables strict enforcement of networking
+        restrictions. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @disable_strict_networking.setter
+    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter
@@ -422,10 +566,14 @@ class SyncAzureDestination(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  cloud: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -447,6 +595,16 @@ class SyncAzureDestination(pulumi.CustomResource):
             client_secret=client_secret,
             tenant_id=tenant_id,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            allowed_ipv4_addresses=[
+                "192.168.1.1/24",
+                "10.0.0.1/8",
+            ],
+            allowed_ipv6_addresses=["2001:db9::/32"],
+            allowed_ports=[
+                443,
+                9443,
+            ],
+            disable_strict_networking=False,
             custom_tags={
                 "foo": "bar",
             })
@@ -462,6 +620,12 @@ class SyncAzureDestination(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
+               destination. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -470,6 +634,8 @@ class SyncAzureDestination(pulumi.CustomResource):
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
+               restrictions. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
@@ -505,6 +671,16 @@ class SyncAzureDestination(pulumi.CustomResource):
             client_secret=client_secret,
             tenant_id=tenant_id,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            allowed_ipv4_addresses=[
+                "192.168.1.1/24",
+                "10.0.0.1/8",
+            ],
+            allowed_ipv6_addresses=["2001:db9::/32"],
+            allowed_ports=[
+                443,
+                9443,
+            ],
+            disable_strict_networking=False,
             custom_tags={
                 "foo": "bar",
             })
@@ -533,10 +709,14 @@ class SyncAzureDestination(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  cloud: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -552,10 +732,14 @@ class SyncAzureDestination(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SyncAzureDestinationArgs.__new__(SyncAzureDestinationArgs)
 
+            __props__.__dict__["allowed_ipv4_addresses"] = allowed_ipv4_addresses
+            __props__.__dict__["allowed_ipv6_addresses"] = allowed_ipv6_addresses
+            __props__.__dict__["allowed_ports"] = allowed_ports
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["cloud"] = cloud
             __props__.__dict__["custom_tags"] = custom_tags
+            __props__.__dict__["disable_strict_networking"] = disable_strict_networking
             __props__.__dict__["granularity"] = granularity
             __props__.__dict__["key_vault_uri"] = key_vault_uri
             __props__.__dict__["name"] = name
@@ -575,10 +759,14 @@ class SyncAzureDestination(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
             cloud: Optional[pulumi.Input[_builtins.str]] = None,
             custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
             granularity: Optional[pulumi.Input[_builtins.str]] = None,
             key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -593,6 +781,12 @@ class SyncAzureDestination(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
+               connections from Vault to the destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
+               destination. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -601,6 +795,8 @@ class SyncAzureDestination(pulumi.CustomResource):
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
+               restrictions. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
@@ -621,10 +817,14 @@ class SyncAzureDestination(pulumi.CustomResource):
 
         __props__ = _SyncAzureDestinationState.__new__(_SyncAzureDestinationState)
 
+        __props__.__dict__["allowed_ipv4_addresses"] = allowed_ipv4_addresses
+        __props__.__dict__["allowed_ipv6_addresses"] = allowed_ipv6_addresses
+        __props__.__dict__["allowed_ports"] = allowed_ports
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["cloud"] = cloud
         __props__.__dict__["custom_tags"] = custom_tags
+        __props__.__dict__["disable_strict_networking"] = disable_strict_networking
         __props__.__dict__["granularity"] = granularity
         __props__.__dict__["key_vault_uri"] = key_vault_uri
         __props__.__dict__["name"] = name
@@ -633,6 +833,33 @@ class SyncAzureDestination(pulumi.CustomResource):
         __props__.__dict__["tenant_id"] = tenant_id
         __props__.__dict__["type"] = type
         return SyncAzureDestination(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of IPv4 addresses or CIDR blocks allowed to make outbound
+        connections from Vault to the destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of IPv6 addresses or CIDR blocks allowed to make outbound
+        connections from Vault to the destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> pulumi.Output[Optional[Sequence[_builtins.int]]]:
+        """
+        List of port numbers allowed for outbound connections from Vault to the
+        destination. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ports")
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -669,6 +896,15 @@ class SyncAzureDestination(pulumi.CustomResource):
         Custom tags to set on the secret managed at the destination.
         """
         return pulumi.get(self, "custom_tags")
+
+    @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When set to `true`, disables strict enforcement of networking
+        restrictions. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "disable_strict_networking")
 
     @_builtins.property
     @pulumi.getter

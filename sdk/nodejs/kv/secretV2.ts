@@ -31,10 +31,11 @@ import * as utilities from "../utilities";
  *     name: "secret",
  *     cas: 1,
  *     deleteAllVersions: true,
- *     dataJson: JSON.stringify({
+ *     dataJsonWo: JSON.stringify({
  *         zip: "zap",
  *         foo: "bar",
  *     }),
+ *     dataJsonWoVersion: 1,
  *     customMetadata: {
  *         maxVersions: 5,
  *         data: {
@@ -63,13 +64,6 @@ import * as utilities from "../utilities";
  * a version is deleted. Accepts duration in integer seconds.
  *
  * * `data` - (Optional) A string to string map describing the secret.
- *
- * ## Ephemeral Attributes Reference
- *
- * The following write-only attributes are supported:
- *
- * * `dataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
- *   **Note**: This property is write-only and will not be read from the API.
  *
  * ## Import
  *
@@ -131,12 +125,13 @@ export class SecretV2 extends pulumi.CustomResource {
     declare public /*out*/ readonly data: pulumi.Output<{[key: string]: string}>;
     /**
      * JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      */
     declare public readonly dataJson: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      */
     declare public readonly dataJsonWo: pulumi.Output<string | undefined>;
     /**
@@ -266,12 +261,13 @@ export interface SecretV2State {
     data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      */
     dataJson?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      */
     dataJsonWo?: pulumi.Input<string>;
     /**
@@ -339,12 +335,13 @@ export interface SecretV2Args {
     customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata>;
     /**
      * JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      */
     dataJson?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      */
     dataJsonWo?: pulumi.Input<string>;
     /**

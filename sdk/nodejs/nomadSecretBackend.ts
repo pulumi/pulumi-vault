@@ -23,6 +23,18 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `clientKeyWo` - (Optional) Write-only client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+ * Use this for enhanced security when you don't want the client key to appear in state files. Requires `clientKeyWoVersion`. Conflicts with `clientKey`.
+ * **Note**: This property is write-only and will not be read from the API.
+ *
+ * * `tokenWo` - (Optional) Write-only Nomad Management token to use.
+ * Use this for enhanced security when you don't want the token to appear in state files. Requires `tokenWoVersion`. Conflicts with `token`.
+ * **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * Nomad secret backend can be imported using the `backend`, e.g.
@@ -100,8 +112,19 @@ export class NomadSecretBackend extends pulumi.CustomResource {
     declare public readonly clientCert: pulumi.Output<string | undefined>;
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      */
     declare public readonly clientKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     */
+    declare public readonly clientKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     */
+    declare public readonly clientKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * Default lease duration for secrets in seconds.
      */
@@ -177,9 +200,19 @@ export class NomadSecretBackend extends pulumi.CustomResource {
      */
     declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
-     * Specifies the Nomad Management token to use.
+     * Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      */
     declare public readonly token: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     */
+    declare public readonly tokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     */
+    declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
     /**
      * Specifies the ttl of the lease for the generated token.
      */
@@ -208,6 +241,8 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             resourceInputs["caCert"] = state?.caCert;
             resourceInputs["clientCert"] = state?.clientCert;
             resourceInputs["clientKey"] = state?.clientKey;
+            resourceInputs["clientKeyWo"] = state?.clientKeyWo;
+            resourceInputs["clientKeyWoVersion"] = state?.clientKeyWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
             resourceInputs["description"] = state?.description;
@@ -226,6 +261,8 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             resourceInputs["pluginVersion"] = state?.pluginVersion;
             resourceInputs["sealWrap"] = state?.sealWrap;
             resourceInputs["token"] = state?.token;
+            resourceInputs["tokenWo"] = state?.tokenWo;
+            resourceInputs["tokenWoVersion"] = state?.tokenWoVersion;
             resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as NomadSecretBackendArgs | undefined;
@@ -238,6 +275,8 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             resourceInputs["caCert"] = args?.caCert;
             resourceInputs["clientCert"] = args?.clientCert ? pulumi.secret(args.clientCert) : undefined;
             resourceInputs["clientKey"] = args?.clientKey ? pulumi.secret(args.clientKey) : undefined;
+            resourceInputs["clientKeyWo"] = args?.clientKeyWo ? pulumi.secret(args.clientKeyWo) : undefined;
+            resourceInputs["clientKeyWoVersion"] = args?.clientKeyWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
             resourceInputs["description"] = args?.description;
@@ -256,11 +295,13 @@ export class NomadSecretBackend extends pulumi.CustomResource {
             resourceInputs["pluginVersion"] = args?.pluginVersion;
             resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["tokenWo"] = args?.tokenWo ? pulumi.secret(args.tokenWo) : undefined;
+            resourceInputs["tokenWoVersion"] = args?.tokenWoVersion;
             resourceInputs["ttl"] = args?.ttl;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientCert", "clientKey", "token"] };
+        const secretOpts = { additionalSecretOutputs: ["clientCert", "clientKey", "clientKeyWo", "token", "tokenWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(NomadSecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -311,8 +352,19 @@ export interface NomadSecretBackendState {
     clientCert?: pulumi.Input<string>;
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      */
     clientKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     */
+    clientKeyWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     */
+    clientKeyWoVersion?: pulumi.Input<number>;
     /**
      * Default lease duration for secrets in seconds.
      */
@@ -388,9 +440,19 @@ export interface NomadSecretBackendState {
      */
     sealWrap?: pulumi.Input<boolean>;
     /**
-     * Specifies the Nomad Management token to use.
+     * Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      */
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
     /**
      * Specifies the ttl of the lease for the generated token.
      */
@@ -438,8 +500,19 @@ export interface NomadSecretBackendArgs {
     clientCert?: pulumi.Input<string>;
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      */
     clientKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     */
+    clientKeyWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     */
+    clientKeyWoVersion?: pulumi.Input<number>;
     /**
      * Default lease duration for secrets in seconds.
      */
@@ -515,9 +588,19 @@ export interface NomadSecretBackendArgs {
      */
     sealWrap?: pulumi.Input<boolean>;
     /**
-     * Specifies the Nomad Management token to use.
+     * Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      */
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
     /**
      * Specifies the ttl of the lease for the generated token.
      */

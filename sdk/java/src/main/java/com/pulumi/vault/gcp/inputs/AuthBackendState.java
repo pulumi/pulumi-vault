@@ -66,18 +66,54 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      * 
      */
     @Import(name="credentials")
     private @Nullable Output<String> credentials;
 
     /**
-     * @return A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * @return A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      * 
      */
     public Optional<Output<String>> credentials() {
         return Optional.ofNullable(this.credentials);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     * 
+     */
+    @Import(name="credentialsWo")
+    private @Nullable Output<String> credentialsWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     * 
+     */
+    public Optional<Output<String>> credentialsWo() {
+        return Optional.ofNullable(this.credentialsWo);
+    }
+
+    /**
+     * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Import(name="credentialsWoVersion")
+    private @Nullable Output<Integer> credentialsWoVersion;
+
+    /**
+     * @return A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Optional<Output<Integer>> credentialsWoVersion() {
+        return Optional.ofNullable(this.credentialsWoVersion);
     }
 
     /**
@@ -442,6 +478,8 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.clientEmail = $.clientEmail;
         this.clientId = $.clientId;
         this.credentials = $.credentials;
+        this.credentialsWo = $.credentialsWo;
+        this.credentialsWoVersion = $.credentialsWoVersion;
         this.customEndpoint = $.customEndpoint;
         this.description = $.description;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
@@ -547,7 +585,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentials A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+         * @param credentials A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
          * 
          * @return builder
          * 
@@ -558,13 +596,61 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param credentials A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+         * @param credentials A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
          * 
          * @return builder
          * 
          */
         public Builder credentials(String credentials) {
             return credentials(Output.of(credentials));
+        }
+
+        /**
+         * @param credentialsWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWo(@Nullable Output<String> credentialsWo) {
+            $.credentialsWo = credentialsWo;
+            return this;
+        }
+
+        /**
+         * @param credentialsWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWo(String credentialsWo) {
+            return credentialsWo(Output.of(credentialsWo));
+        }
+
+        /**
+         * @param credentialsWoVersion A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+         * For more information about write-only attributes, see
+         * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWoVersion(@Nullable Output<Integer> credentialsWoVersion) {
+            $.credentialsWoVersion = credentialsWoVersion;
+            return this;
+        }
+
+        /**
+         * @param credentialsWoVersion A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+         * For more information about write-only attributes, see
+         * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsWoVersion(Integer credentialsWoVersion) {
+            return credentialsWoVersion(Output.of(credentialsWoVersion));
         }
 
         /**

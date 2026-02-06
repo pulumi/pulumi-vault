@@ -50,6 +50,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
+        /// <summary>
+        /// Username generation template.
+        /// </summary>
+        public readonly string? UsernameTemplate;
 
         [OutputConstructor]
         private SecretBackendConnectionHana(
@@ -69,7 +73,9 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? passwordWoVersion,
 
-            string? username)
+            string? username,
+
+            string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
             DisableEscaping = disableEscaping;
@@ -80,6 +86,7 @@ namespace Pulumi.Vault.Database.Outputs
             PasswordWo = passwordWo;
             PasswordWoVersion = passwordWoVersion;
             Username = username;
+            UsernameTemplate = usernameTemplate;
         }
     }
 }

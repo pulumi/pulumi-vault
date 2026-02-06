@@ -28,6 +28,11 @@ public final class SecretsMountCassandra {
      */
     private @Nullable Integer connectTimeout;
     /**
+     * @return Cassandra consistency level.
+     * 
+     */
+    private @Nullable String consistency;
+    /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
@@ -49,6 +54,11 @@ public final class SecretsMountCassandra {
      * 
      */
     private @Nullable Boolean insecureTls;
+    /**
+     * @return Cassandra local datacenter name.
+     * 
+     */
+    private @Nullable String localDatacenter;
     /**
      * @return Name of the database connection.
      * 
@@ -114,15 +124,30 @@ public final class SecretsMountCassandra {
      */
     private @Nullable Boolean skipVerification;
     /**
+     * @return Enable TCP keepalive for Cassandra connections.
+     * 
+     */
+    private @Nullable String socketKeepAlive;
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     private @Nullable Boolean tls;
     /**
+     * @return SNI host for TLS connections.
+     * 
+     */
+    private @Nullable String tlsServerName;
+    /**
      * @return The username to use when authenticating with Cassandra.
      * 
      */
     private @Nullable String username;
+    /**
+     * @return Template for dynamic Cassandra usernames.
+     * 
+     */
+    private @Nullable String usernameTemplate;
     /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
@@ -145,6 +170,13 @@ public final class SecretsMountCassandra {
      */
     public Optional<Integer> connectTimeout() {
         return Optional.ofNullable(this.connectTimeout);
+    }
+    /**
+     * @return Cassandra consistency level.
+     * 
+     */
+    public Optional<String> consistency() {
+        return Optional.ofNullable(this.consistency);
     }
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -175,6 +207,13 @@ public final class SecretsMountCassandra {
      */
     public Optional<Boolean> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
+    }
+    /**
+     * @return Cassandra local datacenter name.
+     * 
+     */
+    public Optional<String> localDatacenter() {
+        return Optional.ofNullable(this.localDatacenter);
     }
     /**
      * @return Name of the database connection.
@@ -265,6 +304,13 @@ public final class SecretsMountCassandra {
         return Optional.ofNullable(this.skipVerification);
     }
     /**
+     * @return Enable TCP keepalive for Cassandra connections.
+     * 
+     */
+    public Optional<String> socketKeepAlive() {
+        return Optional.ofNullable(this.socketKeepAlive);
+    }
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -272,11 +318,25 @@ public final class SecretsMountCassandra {
         return Optional.ofNullable(this.tls);
     }
     /**
+     * @return SNI host for TLS connections.
+     * 
+     */
+    public Optional<String> tlsServerName() {
+        return Optional.ofNullable(this.tlsServerName);
+    }
+    /**
      * @return The username to use when authenticating with Cassandra.
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
+    }
+    /**
+     * @return Template for dynamic Cassandra usernames.
+     * 
+     */
+    public Optional<String> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
     }
     /**
      * @return Whether the connection should be verified on
@@ -298,10 +358,12 @@ public final class SecretsMountCassandra {
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable Integer connectTimeout;
+        private @Nullable String consistency;
         private @Nullable Map<String,String> data;
         private @Nullable Boolean disableAutomatedRotation;
         private @Nullable List<String> hosts;
         private @Nullable Boolean insecureTls;
+        private @Nullable String localDatacenter;
         private String name;
         private @Nullable String password;
         private @Nullable String pemBundle;
@@ -314,18 +376,23 @@ public final class SecretsMountCassandra {
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
         private @Nullable Boolean skipVerification;
+        private @Nullable String socketKeepAlive;
         private @Nullable Boolean tls;
+        private @Nullable String tlsServerName;
         private @Nullable String username;
+        private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
         public Builder() {}
         public Builder(SecretsMountCassandra defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.connectTimeout = defaults.connectTimeout;
+    	      this.consistency = defaults.consistency;
     	      this.data = defaults.data;
     	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
     	      this.hosts = defaults.hosts;
     	      this.insecureTls = defaults.insecureTls;
+    	      this.localDatacenter = defaults.localDatacenter;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
     	      this.pemBundle = defaults.pemBundle;
@@ -338,8 +405,11 @@ public final class SecretsMountCassandra {
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
     	      this.skipVerification = defaults.skipVerification;
+    	      this.socketKeepAlive = defaults.socketKeepAlive;
     	      this.tls = defaults.tls;
+    	      this.tlsServerName = defaults.tlsServerName;
     	      this.username = defaults.username;
+    	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
@@ -356,6 +426,12 @@ public final class SecretsMountCassandra {
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
 
             this.connectTimeout = connectTimeout;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder consistency(@Nullable String consistency) {
+
+            this.consistency = consistency;
             return this;
         }
         @CustomType.Setter
@@ -383,6 +459,12 @@ public final class SecretsMountCassandra {
         public Builder insecureTls(@Nullable Boolean insecureTls) {
 
             this.insecureTls = insecureTls;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder localDatacenter(@Nullable String localDatacenter) {
+
+            this.localDatacenter = localDatacenter;
             return this;
         }
         @CustomType.Setter
@@ -463,15 +545,33 @@ public final class SecretsMountCassandra {
             return this;
         }
         @CustomType.Setter
+        public Builder socketKeepAlive(@Nullable String socketKeepAlive) {
+
+            this.socketKeepAlive = socketKeepAlive;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
 
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
+        public Builder tlsServerName(@Nullable String tlsServerName) {
+
+            this.tlsServerName = tlsServerName;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
+            this.usernameTemplate = usernameTemplate;
             return this;
         }
         @CustomType.Setter
@@ -484,10 +584,12 @@ public final class SecretsMountCassandra {
             final var _resultValue = new SecretsMountCassandra();
             _resultValue.allowedRoles = allowedRoles;
             _resultValue.connectTimeout = connectTimeout;
+            _resultValue.consistency = consistency;
             _resultValue.data = data;
             _resultValue.disableAutomatedRotation = disableAutomatedRotation;
             _resultValue.hosts = hosts;
             _resultValue.insecureTls = insecureTls;
+            _resultValue.localDatacenter = localDatacenter;
             _resultValue.name = name;
             _resultValue.password = password;
             _resultValue.pemBundle = pemBundle;
@@ -500,8 +602,11 @@ public final class SecretsMountCassandra {
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
             _resultValue.skipVerification = skipVerification;
+            _resultValue.socketKeepAlive = socketKeepAlive;
             _resultValue.tls = tls;
+            _resultValue.tlsServerName = tlsServerName;
             _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;
             return _resultValue;
         }

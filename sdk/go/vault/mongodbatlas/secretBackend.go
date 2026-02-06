@@ -12,43 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mongo, err := vault.NewMount(ctx, "mongo", &vault.MountArgs{
-//				Path:        pulumi.String("mongodbatlas"),
-//				Type:        pulumi.String("mongodbatlas"),
-//				Description: pulumi.String("MongoDB Atlas secret engine mount"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = mongodbatlas.NewSecretBackend(ctx, "config", &mongodbatlas.SecretBackendArgs{
-//				Mount:      mongo.Path,
-//				PrivateKey: pulumi.String("privateKey"),
-//				PublicKey:  pulumi.String("publicKey"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
@@ -68,8 +31,14 @@ type SecretBackend struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path where MongoDB Atlas configuration is located
 	Path pulumi.StringOutput `pulumi:"path"`
-	// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API
+	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+	PrivateKeyWo pulumi.StringPtrOutput `pulumi:"privateKeyWo"`
+	// An incrementing version counter. Increment this value to force an update
+	// to the private key. Required when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrOutput `pulumi:"privateKeyWoVersion"`
 	// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
@@ -84,12 +53,20 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Mount == nil {
 		return nil, errors.New("invalid value for required argument 'Mount'")
 	}
-	if args.PrivateKey == nil {
-		return nil, errors.New("invalid value for required argument 'PrivateKey'")
-	}
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
+	if args.PrivateKey != nil {
+		args.PrivateKey = pulumi.ToSecret(args.PrivateKey).(pulumi.StringPtrInput)
+	}
+	if args.PrivateKeyWo != nil {
+		args.PrivateKeyWo = pulumi.ToSecret(args.PrivateKeyWo).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"privateKey",
+		"privateKeyWo",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackend
 	err := ctx.RegisterResource("vault:mongodbatlas/secretBackend:SecretBackend", name, args, &resource, opts...)
@@ -122,8 +99,14 @@ type secretBackendState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path where MongoDB Atlas configuration is located
 	Path *string `pulumi:"path"`
-	// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API
 	PrivateKey *string `pulumi:"privateKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// An incrementing version counter. Increment this value to force an update
+	// to the private key. Required when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey *string `pulumi:"publicKey"`
 }
@@ -138,8 +121,14 @@ type SecretBackendState struct {
 	Namespace pulumi.StringPtrInput
 	// Path where MongoDB Atlas configuration is located
 	Path pulumi.StringPtrInput
-	// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API
 	PrivateKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+	PrivateKeyWo pulumi.StringPtrInput
+	// An incrementing version counter. Increment this value to force an update
+	// to the private key. Required when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey pulumi.StringPtrInput
 }
@@ -156,8 +145,14 @@ type secretBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
-	PrivateKey string `pulumi:"privateKey"`
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API
+	PrivateKey *string `pulumi:"privateKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+	PrivateKeyWo *string `pulumi:"privateKeyWo"`
+	// An incrementing version counter. Increment this value to force an update
+	// to the private key. Required when using `privateKeyWo`.
+	PrivateKeyWoVersion *int `pulumi:"privateKeyWoVersion"`
 	// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey string `pulumi:"publicKey"`
 }
@@ -171,8 +166,14 @@ type SecretBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
-	PrivateKey pulumi.StringInput
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API
+	PrivateKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+	PrivateKeyWo pulumi.StringPtrInput
+	// An incrementing version counter. Increment this value to force an update
+	// to the private key. Required when using `privateKeyWo`.
+	PrivateKeyWoVersion pulumi.IntPtrInput
 	// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey pulumi.StringInput
 }
@@ -282,9 +283,21 @@ func (o SecretBackendOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
 
-// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
-func (o SecretBackendOutput) PrivateKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+// The Private Programmatic API Key used to connect with MongoDB Atlas API
+func (o SecretBackendOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+func (o SecretBackendOutput) PrivateKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PrivateKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// An incrementing version counter. Increment this value to force an update
+// to the private key. Required when using `privateKeyWo`.
+func (o SecretBackendOutput) PrivateKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.PrivateKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the Public API Key used to authenticate with the MongoDB Atlas API.

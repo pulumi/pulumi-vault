@@ -83,18 +83,54 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Password to use with `binddn` when performing user search
+     * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      * 
      */
     @Import(name="bindpass")
     private @Nullable Output<String> bindpass;
 
     /**
-     * @return Password to use with `binddn` when performing user search
+     * @return Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      * 
      */
     public Optional<Output<String>> bindpass() {
         return Optional.ofNullable(this.bindpass);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     * 
+     */
+    @Import(name="bindpassWo")
+    private @Nullable Output<String> bindpassWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     * 
+     */
+    public Optional<Output<String>> bindpassWo() {
+        return Optional.ofNullable(this.bindpassWo);
+    }
+
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Import(name="bindpassWoVersion")
+    private @Nullable Output<Integer> bindpassWoVersion;
+
+    /**
+     * @return Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Optional<Output<Integer>> bindpassWoVersion() {
+        return Optional.ofNullable(this.bindpassWoVersion);
     }
 
     /**
@@ -773,6 +809,8 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.anonymousGroupSearch = $.anonymousGroupSearch;
         this.binddn = $.binddn;
         this.bindpass = $.bindpass;
+        this.bindpassWo = $.bindpassWo;
+        this.bindpassWoVersion = $.bindpassWoVersion;
         this.caseSensitiveNames = $.caseSensitiveNames;
         this.certificate = $.certificate;
         this.clientTlsCert = $.clientTlsCert;
@@ -924,7 +962,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bindpass Password to use with `binddn` when performing user search
+         * @param bindpass Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
          * 
          * @return builder
          * 
@@ -935,13 +973,61 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bindpass Password to use with `binddn` when performing user search
+         * @param bindpass Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
          * 
          * @return builder
          * 
          */
         public Builder bindpass(String bindpass) {
             return bindpass(Output.of(bindpass));
+        }
+
+        /**
+         * @param bindpassWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only bind password to use for LDAP authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindpassWo(@Nullable Output<String> bindpassWo) {
+            $.bindpassWo = bindpassWo;
+            return this;
+        }
+
+        /**
+         * @param bindpassWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only bind password to use for LDAP authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindpassWo(String bindpassWo) {
+            return bindpassWo(Output.of(bindpassWo));
+        }
+
+        /**
+         * @param bindpassWoVersion Version counter for write-only bind password.
+         * Required when using `bindpassWo`. For more information about write-only attributes, see
+         * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindpassWoVersion(@Nullable Output<Integer> bindpassWoVersion) {
+            $.bindpassWoVersion = bindpassWoVersion;
+            return this;
+        }
+
+        /**
+         * @param bindpassWoVersion Version counter for write-only bind password.
+         * Required when using `bindpassWo`. For more information about write-only attributes, see
+         * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bindpassWoVersion(Integer bindpassWoVersion) {
+            return bindpassWoVersion(Output.of(bindpassWoVersion));
         }
 
         /**

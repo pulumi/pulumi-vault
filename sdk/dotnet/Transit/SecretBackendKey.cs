@@ -14,6 +14,8 @@ namespace Pulumi.Vault.Transit
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic Example
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,6 +37,72 @@ namespace Pulumi.Vault.Transit
     ///     {
     ///         Backend = transit.Path,
     ///         Name = "my_key",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with Key Derivation and Context
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var transit = new Vault.Mount("transit", new()
+    ///     {
+    ///         Path = "transit",
+    ///         Type = "transit",
+    ///     });
+    /// 
+    ///     var derivedKey = new Vault.Transit.SecretBackendKey("derived_key", new()
+    ///     {
+    ///         Backend = transit.Path,
+    ///         Name = "derived_key",
+    ///         Derived = true,
+    ///         ConvergentEncryption = true,
+    ///         Context = "dGVzdGNvbnRleHQ=",
+    ///         DeletionAllowed = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with Managed Key
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var transit = new Vault.Mount("transit", new()
+    ///     {
+    ///         Path = "transit",
+    ///         Type = "transit",
+    ///     });
+    /// 
+    ///     var managedKeyByName = new Vault.Transit.SecretBackendKey("managed_key_by_name", new()
+    ///     {
+    ///         Backend = transit.Path,
+    ///         Name = "my_managed_key",
+    ///         Type = "managed_key",
+    ///         ManagedKeyName = "my_aws_kms_key",
+    ///         DeletionAllowed = true,
+    ///     });
+    /// 
+    ///     var managedKeyById = new Vault.Transit.SecretBackendKey("managed_key_by_id", new()
+    ///     {
+    ///         Backend = transit.Path,
+    ///         Name = "my_managed_key_by_id",
+    ///         Type = "managed_key",
+    ///         ManagedKeyId = "12345678-1234-1234-1234-123456789012",
+    ///         DeletionAllowed = true,
     ///     });
     /// 
     /// });
@@ -70,6 +138,12 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
+
+        /// <summary>
+        /// Base64 encoded context for key derivation. Required if `Derived` is set to `True`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+        /// </summary>
+        [Output("context")]
+        public Output<string?> Context { get; private set; } = null!;
 
         /// <summary>
         /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `Derived` to be set to `True`.
@@ -128,6 +202,18 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Output("latestVersion")]
         public Output<int> LatestVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The UUID of the managed key to use when the key `Type` is `ManagedKey`. This is the unique identifier of a previously configured managed key. When `Type` is `ManagedKey`, either `ManagedKeyName` or `ManagedKeyId` must be specified.
+        /// </summary>
+        [Output("managedKeyId")]
+        public Output<string?> ManagedKeyId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the managed key to use when the key `Type` is `ManagedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `Type` is `ManagedKey`, either `ManagedKeyName` or `ManagedKeyId` must be specified.
+        /// </summary>
+        [Output("managedKeyName")]
+        public Output<string?> ManagedKeyName { get; private set; } = null!;
 
         /// <summary>
         /// Minimum key version available for use. If keys have been archived by increasing `MinDecryptionVersion`, this attribute will reflect that change.
@@ -271,6 +357,12 @@ namespace Pulumi.Vault.Transit
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// Base64 encoded context for key derivation. Required if `Derived` is set to `True`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+        /// </summary>
+        [Input("context")]
+        public Input<string>? Context { get; set; }
+
+        /// <summary>
         /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `Derived` to be set to `True`.
         /// </summary>
         [Input("convergentEncryption")]
@@ -313,6 +405,18 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("keySize")]
         public Input<int>? KeySize { get; set; }
+
+        /// <summary>
+        /// The UUID of the managed key to use when the key `Type` is `ManagedKey`. This is the unique identifier of a previously configured managed key. When `Type` is `ManagedKey`, either `ManagedKeyName` or `ManagedKeyId` must be specified.
+        /// </summary>
+        [Input("managedKeyId")]
+        public Input<string>? ManagedKeyId { get; set; }
+
+        /// <summary>
+        /// The name of the managed key to use when the key `Type` is `ManagedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `Type` is `ManagedKey`, either `ManagedKeyName` or `ManagedKeyId` must be specified.
+        /// </summary>
+        [Input("managedKeyName")]
+        public Input<string>? ManagedKeyName { get; set; }
 
         /// <summary>
         /// Minimum key version to use for decryption.
@@ -388,6 +492,12 @@ namespace Pulumi.Vault.Transit
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Base64 encoded context for key derivation. Required if `Derived` is set to `True`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+        /// </summary>
+        [Input("context")]
+        public Input<string>? Context { get; set; }
+
+        /// <summary>
         /// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `Derived` to be set to `True`.
         /// </summary>
         [Input("convergentEncryption")]
@@ -450,6 +560,18 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("latestVersion")]
         public Input<int>? LatestVersion { get; set; }
+
+        /// <summary>
+        /// The UUID of the managed key to use when the key `Type` is `ManagedKey`. This is the unique identifier of a previously configured managed key. When `Type` is `ManagedKey`, either `ManagedKeyName` or `ManagedKeyId` must be specified.
+        /// </summary>
+        [Input("managedKeyId")]
+        public Input<string>? ManagedKeyId { get; set; }
+
+        /// <summary>
+        /// The name of the managed key to use when the key `Type` is `ManagedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `Type` is `ManagedKey`, either `ManagedKeyName` or `ManagedKeyId` must be specified.
+        /// </summary>
+        [Input("managedKeyName")]
+        public Input<string>? ManagedKeyName { get; set; }
 
         /// <summary>
         /// Minimum key version available for use. If keys have been archived by increasing `MinDecryptionVersion`, this attribute will reflect that change.

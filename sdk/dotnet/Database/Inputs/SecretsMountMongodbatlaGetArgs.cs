@@ -120,6 +120,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
+        /// Template describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
+
+        /// <summary>
         /// Whether the connection should be verified on
         /// initial configuration or not.
         /// </summary>

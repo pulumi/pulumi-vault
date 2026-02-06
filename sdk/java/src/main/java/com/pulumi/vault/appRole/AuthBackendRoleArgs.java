@@ -72,6 +72,21 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * If true, SecretIDs generated against this role will be &#39;local&#39; to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     * 
+     */
+    @Import(name="localSecretIds")
+    private @Nullable Output<Boolean> localSecretIds;
+
+    /**
+     * @return If true, SecretIDs generated against this role will be &#39;local&#39; to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     * 
+     */
+    public Optional<Output<Boolean>> localSecretIds() {
+        return Optional.ofNullable(this.localSecretIds);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -318,6 +333,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         this.aliasMetadata = $.aliasMetadata;
         this.backend = $.backend;
         this.bindSecretId = $.bindSecretId;
+        this.localSecretIds = $.localSecretIds;
         this.namespace = $.namespace;
         this.roleId = $.roleId;
         this.roleName = $.roleName;
@@ -420,6 +436,27 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder bindSecretId(Boolean bindSecretId) {
             return bindSecretId(Output.of(bindSecretId));
+        }
+
+        /**
+         * @param localSecretIds If true, SecretIDs generated against this role will be &#39;local&#39; to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder localSecretIds(@Nullable Output<Boolean> localSecretIds) {
+            $.localSecretIds = localSecretIds;
+            return this;
+        }
+
+        /**
+         * @param localSecretIds If true, SecretIDs generated against this role will be &#39;local&#39; to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder localSecretIds(Boolean localSecretIds) {
+            return localSecretIds(Output.of(localSecretIds));
         }
 
         /**

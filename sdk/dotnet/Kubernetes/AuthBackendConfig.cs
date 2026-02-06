@@ -44,6 +44,46 @@ namespace Pulumi.Vault.Kubernetes
     /// });
     /// ```
     /// 
+    /// ### Example Usage with Write-Only JWT
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var kubernetes = new Vault.AuthBackend("kubernetes", new()
+    ///     {
+    ///         Type = "kubernetes",
+    ///     });
+    /// 
+    ///     var example = new Vault.Kubernetes.AuthBackendConfig("example", new()
+    ///     {
+    ///         Backend = kubernetes.Path,
+    ///         KubernetesHost = "http://example.com:443",
+    ///         KubernetesCaCert = @"-----BEGIN CERTIFICATE-----
+    /// example
+    /// -----END CERTIFICATE-----",
+    ///         TokenReviewerJwtWo = k8sTokenReviewerJwt,
+    ///         TokenReviewerJwtWoVersion = 1,
+    ///         Issuer = "api",
+    ///         DisableIssValidation = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `TokenReviewerJwtWo` - (Optional) A write-only service account JWT (or other token) used as a bearer token to access the
+    ///   TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+    ///   Conflicts with `TokenReviewerJwt`.
+    ///   **Note**: This property is write-only and will not be read from the API.
+    /// 
     /// ## Import
     /// 
     /// Kubernetes authentication backend can be imported using the `path`, e.g.
@@ -107,10 +147,23 @@ namespace Pulumi.Vault.Kubernetes
         public Output<ImmutableArray<string>> PemKeys { get; private set; } = null!;
 
         /// <summary>
-        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `TokenReviewerJwtWo`.
         /// </summary>
         [Output("tokenReviewerJwt")]
         public Output<string?> TokenReviewerJwt { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// </summary>
+        [Output("tokenReviewerJwtWo")]
+        public Output<string?> TokenReviewerJwtWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of `TokenReviewerJwtWo` to use during write operations. Required with `TokenReviewerJwtWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Output("tokenReviewerJwtWoVersion")]
+        public Output<int?> TokenReviewerJwtWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
@@ -144,6 +197,7 @@ namespace Pulumi.Vault.Kubernetes
                 AdditionalSecretOutputs =
                 {
                     "tokenReviewerJwt",
+                    "tokenReviewerJwtWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -229,7 +283,7 @@ namespace Pulumi.Vault.Kubernetes
         private Input<string>? _tokenReviewerJwt;
 
         /// <summary>
-        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `TokenReviewerJwtWo`.
         /// </summary>
         public Input<string>? TokenReviewerJwt
         {
@@ -240,6 +294,29 @@ namespace Pulumi.Vault.Kubernetes
                 _tokenReviewerJwt = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenReviewerJwtWo")]
+        private Input<string>? _tokenReviewerJwtWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// </summary>
+        public Input<string>? TokenReviewerJwtWo
+        {
+            get => _tokenReviewerJwtWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenReviewerJwtWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of `TokenReviewerJwtWo` to use during write operations. Required with `TokenReviewerJwtWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("tokenReviewerJwtWoVersion")]
+        public Input<int>? TokenReviewerJwtWoVersion { get; set; }
 
         /// <summary>
         /// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
@@ -316,7 +393,7 @@ namespace Pulumi.Vault.Kubernetes
         private Input<string>? _tokenReviewerJwt;
 
         /// <summary>
-        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `TokenReviewerJwtWo`.
         /// </summary>
         public Input<string>? TokenReviewerJwt
         {
@@ -327,6 +404,29 @@ namespace Pulumi.Vault.Kubernetes
                 _tokenReviewerJwt = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenReviewerJwtWo")]
+        private Input<string>? _tokenReviewerJwtWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// </summary>
+        public Input<string>? TokenReviewerJwtWo
+        {
+            get => _tokenReviewerJwtWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenReviewerJwtWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of `TokenReviewerJwtWo` to use during write operations. Required with `TokenReviewerJwtWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("tokenReviewerJwtWoVersion")]
+        public Input<int>? TokenReviewerJwtWoVersion { get; set; }
 
         /// <summary>
         /// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`

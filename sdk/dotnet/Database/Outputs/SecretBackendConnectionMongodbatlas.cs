@@ -25,6 +25,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
         /// </summary>
         public readonly string PublicKey;
+        /// <summary>
+        /// Template describing how dynamic usernames are generated.
+        /// </summary>
+        public readonly string? UsernameTemplate;
 
         [OutputConstructor]
         private SecretBackendConnectionMongodbatlas(
@@ -32,11 +36,14 @@ namespace Pulumi.Vault.Database.Outputs
 
             string projectId,
 
-            string publicKey)
+            string publicKey,
+
+            string? usernameTemplate)
         {
             PrivateKey = privateKey;
             ProjectId = projectId;
             PublicKey = publicKey;
+            UsernameTemplate = usernameTemplate;
         }
     }
 }

@@ -247,6 +247,38 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.tune;
     }
     /**
+     * If set to `true`, validates the signature of
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="validateAssertionSignature", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> validateAssertionSignature;
+
+    /**
+     * @return If set to `true`, validates the signature of
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Boolean> validateAssertionSignature() {
+        return this.validateAssertionSignature;
+    }
+    /**
+     * If set to `true`, validates the signature of
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="validateResponseSignature", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> validateResponseSignature;
+
+    /**
+     * @return If set to `true`, validates the signature of
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Boolean> validateResponseSignature() {
+        return this.validateResponseSignature;
+    }
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.

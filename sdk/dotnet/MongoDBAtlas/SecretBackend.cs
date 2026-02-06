@@ -10,33 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.MongoDBAtlas
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var mongo = new Vault.Mount("mongo", new()
-    ///     {
-    ///         Path = "mongodbatlas",
-    ///         Type = "mongodbatlas",
-    ///         Description = "MongoDB Atlas secret engine mount",
-    ///     });
-    /// 
-    ///     var config = new Vault.MongoDBAtlas.SecretBackend("config", new()
-    ///     {
-    ///         Mount = mongo.Path,
-    ///         PrivateKey = "privateKey",
-    ///         PublicKey = "publicKey",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
@@ -70,10 +43,24 @@ namespace Pulumi.Vault.MongoDBAtlas
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API
         /// </summary>
         [Output("privateKey")]
-        public Output<string> PrivateKey { get; private set; } = null!;
+        public Output<string?> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        /// </summary>
+        [Output("privateKeyWo")]
+        public Output<string?> PrivateKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// An incrementing version counter. Increment this value to force an update 
+        /// to the private key. Required when using `PrivateKeyWo`.
+        /// </summary>
+        [Output("privateKeyWoVersion")]
+        public Output<int?> PrivateKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
@@ -104,6 +91,11 @@ namespace Pulumi.Vault.MongoDBAtlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "privateKey",
+                    "privateKeyWo",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -142,11 +134,45 @@ namespace Pulumi.Vault.MongoDBAtlas
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
         /// <summary>
-        /// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API
         /// </summary>
-        [Input("privateKey", required: true)]
-        public Input<string> PrivateKey { get; set; } = null!;
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// An incrementing version counter. Increment this value to force an update 
+        /// to the private key. Required when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
@@ -183,11 +209,45 @@ namespace Pulumi.Vault.MongoDBAtlas
         [Input("path")]
         public Input<string>? Path { get; set; }
 
-        /// <summary>
-        /// Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
-        /// </summary>
         [Input("privateKey")]
-        public Input<string>? PrivateKey { get; set; }
+        private Input<string>? _privateKey;
+
+        /// <summary>
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API
+        /// </summary>
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("privateKeyWo")]
+        private Input<string>? _privateKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        /// </summary>
+        public Input<string>? PrivateKeyWo
+        {
+            get => _privateKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// An incrementing version counter. Increment this value to force an update 
+        /// to the private key. Required when using `PrivateKeyWo`.
+        /// </summary>
+        [Input("privateKeyWoVersion")]
+        public Input<int>? PrivateKeyWoVersion { get; set; }
 
         /// <summary>
         /// Specifies the Public API Key used to authenticate with the MongoDB Atlas API.

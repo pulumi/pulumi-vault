@@ -12,84 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
-//				Type:             pulumi.String("azure"),
-//				IdentityTokenKey: pulumi.String("example-key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
-//				Backend:               example.Path,
-//				TenantId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
-//				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
-//				RotationSchedule:      pulumi.String("0 * * * SAT"),
-//				RotationWindow:        pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
-//				Type: pulumi.String("azure"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
-//				Backend:          example.Path,
-//				TenantId:         pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientId:         pulumi.String("11111111-2222-3333-4444-555555555555"),
-//				ClientSecret:     pulumi.String("01234567890123456789"),
-//				Resource:         pulumi.String("https://vault.hashicorp.com"),
-//				RotationSchedule: pulumi.String("0 * * * SAT"),
-//				RotationWindow:   pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -106,9 +28,15 @@ type AuthBackendConfig struct {
 	// The client id for credentials to query the Azure APIs.
 	// Currently read permissions to query compute resources are required.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// The client secret for credentials to query the
-	// Azure APIs.
+	// The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
+	// Version counter for the write-only client secret.
+	// Increment this value to trigger an update of the client secret in Vault.
+	// Required when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
 	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
@@ -175,12 +103,16 @@ func NewAuthBackendConfig(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.ClientSecretWo != nil {
+		args.ClientSecretWo = pulumi.ToSecret(args.ClientSecretWo).(pulumi.StringPtrInput)
+	}
 	if args.TenantId != nil {
 		args.TenantId = pulumi.ToSecret(args.TenantId).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientId",
 		"clientSecret",
+		"clientSecretWo",
 		"tenantId",
 	})
 	opts = append(opts, secrets)
@@ -213,9 +145,15 @@ type authBackendConfigState struct {
 	// The client id for credentials to query the Azure APIs.
 	// Currently read permissions to query compute resources are required.
 	ClientId *string `pulumi:"clientId"`
-	// The client secret for credentials to query the
-	// Azure APIs.
+	// The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// Version counter for the write-only client secret.
+	// Increment this value to trigger an update of the client secret in Vault.
+	// Required when using `clientSecretWo`.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
@@ -270,9 +208,15 @@ type AuthBackendConfigState struct {
 	// The client id for credentials to query the Azure APIs.
 	// Currently read permissions to query compute resources are required.
 	ClientId pulumi.StringPtrInput
-	// The client secret for credentials to query the
-	// Azure APIs.
+	// The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+	ClientSecretWo pulumi.StringPtrInput
+	// Version counter for the write-only client secret.
+	// Increment this value to trigger an update of the client secret in Vault.
+	// Required when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
 	DisableAutomatedRotation pulumi.BoolPtrInput
@@ -331,9 +275,15 @@ type authBackendConfigArgs struct {
 	// The client id for credentials to query the Azure APIs.
 	// Currently read permissions to query compute resources are required.
 	ClientId *string `pulumi:"clientId"`
-	// The client secret for credentials to query the
-	// Azure APIs.
+	// The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// Version counter for the write-only client secret.
+	// Increment this value to trigger an update of the client secret in Vault.
+	// Required when using `clientSecretWo`.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
@@ -389,9 +339,15 @@ type AuthBackendConfigArgs struct {
 	// The client id for credentials to query the Azure APIs.
 	// Currently read permissions to query compute resources are required.
 	ClientId pulumi.StringPtrInput
-	// The client secret for credentials to query the
-	// Azure APIs.
+	// The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+	ClientSecretWo pulumi.StringPtrInput
+	// Version counter for the write-only client secret.
+	// Increment this value to trigger an update of the client secret in Vault.
+	// Required when using `clientSecretWo`.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 	// *Available only for Vault Enterprise*
 	DisableAutomatedRotation pulumi.BoolPtrInput
@@ -538,10 +494,22 @@ func (o AuthBackendConfigOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-// The client secret for credentials to query the
-// Azure APIs.
+// The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
 func (o AuthBackendConfigOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+func (o AuthBackendConfigOutput) ClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only client secret.
+// Increment this value to trigger an update of the client secret in Vault.
+// Required when using `clientSecretWo`.
+func (o AuthBackendConfigOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.

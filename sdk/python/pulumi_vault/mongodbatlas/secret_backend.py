@@ -20,24 +20,35 @@ __all__ = ['SecretBackendArgs', 'SecretBackend']
 class SecretBackendArgs:
     def __init__(__self__, *,
                  mount: pulumi.Input[_builtins.str],
-                 private_key: pulumi.Input[_builtins.str],
                  public_key: pulumi.Input[_builtins.str],
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[_builtins.str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
-        :param pulumi.Input[_builtins.str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+               to the private key. Required when using `private_key_wo`.
         """
         pulumi.set(__self__, "mount", mount)
-        pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "public_key", public_key)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -50,18 +61,6 @@ class SecretBackendArgs:
     @mount.setter
     def mount(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "mount", value)
-
-    @_builtins.property
-    @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Input[_builtins.str]:
-        """
-        Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
-        """
-        return pulumi.get(self, "private_key")
-
-    @private_key.setter
-    def private_key(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
@@ -90,6 +89,44 @@ class SecretBackendArgs:
     def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
+    @_builtins.property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Private Programmatic API Key used to connect with MongoDB Atlas API
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        An incrementing version counter. Increment this value to force an update 
+        to the private key. Required when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
+
 
 @pulumi.input_type
 class _SecretBackendState:
@@ -98,6 +135,8 @@ class _SecretBackendState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
@@ -107,7 +146,11 @@ class _SecretBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where MongoDB Atlas configuration is located
-        :param pulumi.Input[_builtins.str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+               to the private key. Required when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         """
         if mount is not None:
@@ -118,6 +161,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "path", path)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if private_key_wo is not None:
+            pulumi.set(__self__, "private_key_wo", private_key_wo)
+        if private_key_wo_version is not None:
+            pulumi.set(__self__, "private_key_wo_version", private_key_wo_version)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
 
@@ -164,13 +211,39 @@ class _SecretBackendState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        The Private Programmatic API Key used to connect with MongoDB Atlas API
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "private_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @private_key_wo.setter
+    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        An incrementing version counter. Increment this value to force an update 
+        to the private key. Required when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
+
+    @private_key_wo_version.setter
+    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
@@ -194,25 +267,11 @@ class SecretBackend(pulumi.CustomResource):
                  mount: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        mongo = vault.Mount("mongo",
-            path="mongodbatlas",
-            type="mongodbatlas",
-            description="MongoDB Atlas secret engine mount")
-        config = vault.mongodbatlas.SecretBackend("config",
-            mount=mongo.path,
-            private_key="privateKey",
-            public_key="publicKey")
-        ```
-
         ## Import
 
         MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
@@ -228,7 +287,11 @@ class SecretBackend(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+               to the private key. Required when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         """
         ...
@@ -238,22 +301,6 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        mongo = vault.Mount("mongo",
-            path="mongodbatlas",
-            type="mongodbatlas",
-            description="MongoDB Atlas secret engine mount")
-        config = vault.mongodbatlas.SecretBackend("config",
-            mount=mongo.path,
-            private_key="privateKey",
-            public_key="publicKey")
-        ```
-
         ## Import
 
         MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
@@ -280,6 +327,8 @@ class SecretBackend(pulumi.CustomResource):
                  mount: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -294,13 +343,15 @@ class SecretBackend(pulumi.CustomResource):
                 raise TypeError("Missing required property 'mount'")
             __props__.__dict__["mount"] = mount
             __props__.__dict__["namespace"] = namespace
-            if private_key is None and not opts.urn:
-                raise TypeError("Missing required property 'private_key'")
-            __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["private_key_wo"] = None if private_key_wo is None else pulumi.Output.secret(private_key_wo)
+            __props__.__dict__["private_key_wo_version"] = private_key_wo_version
             if public_key is None and not opts.urn:
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
             __props__.__dict__["path"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey", "privateKeyWo"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:mongodbatlas/secretBackend:SecretBackend',
             resource_name,
@@ -315,6 +366,8 @@ class SecretBackend(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             public_key: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
@@ -329,7 +382,11 @@ class SecretBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where MongoDB Atlas configuration is located
-        :param pulumi.Input[_builtins.str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API
+        :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+               to the private key. Required when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -340,6 +397,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["private_key_wo"] = private_key_wo
+        __props__.__dict__["private_key_wo_version"] = private_key_wo_version
         __props__.__dict__["public_key"] = public_key
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -372,11 +431,29 @@ class SecretBackend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> pulumi.Output[_builtins.str]:
+    def private_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+        The Private Programmatic API Key used to connect with MongoDB Atlas API
         """
         return pulumi.get(self, "private_key")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWo")
+    def private_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+        """
+        return pulumi.get(self, "private_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="privateKeyWoVersion")
+    def private_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        An incrementing version counter. Increment this value to force an update 
+        to the private key. Required when using `private_key_wo`.
+        """
+        return pulumi.get(self, "private_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="publicKey")

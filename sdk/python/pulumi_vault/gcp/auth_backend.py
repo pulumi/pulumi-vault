@@ -24,6 +24,8 @@ class AuthBackendArgs:
                  client_email: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_endpoint: Optional[pulumi.Input['AuthBackendCustomEndpointArgs']] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -49,7 +51,12 @@ class AuthBackendArgs:
         The set of arguments for constructing a AuthBackend resource.
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the credentials
-        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        :param pulumi.Input[_builtins.int] credentials_wo_version: A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input['AuthBackendCustomEndpointArgs'] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
@@ -98,6 +105,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "client_id", client_id)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if credentials_wo is not None:
+            pulumi.set(__self__, "credentials_wo", credentials_wo)
+        if credentials_wo_version is not None:
+            pulumi.set(__self__, "credentials_wo_version", credentials_wo_version)
         if custom_endpoint is not None:
             pulumi.set(__self__, "custom_endpoint", custom_endpoint)
         if description is not None:
@@ -169,13 +180,40 @@ class AuthBackendArgs:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWo")
+    def credentials_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        """
+        return pulumi.get(self, "credentials_wo")
+
+    @credentials_wo.setter
+    def credentials_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credentials_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWoVersion")
+    def credentials_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+        For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "credentials_wo_version")
+
+    @credentials_wo_version.setter
+    def credentials_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "credentials_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="customEndpoint")
@@ -457,6 +495,8 @@ class _AuthBackendState:
                  client_email: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_endpoint: Optional[pulumi.Input['AuthBackendCustomEndpointArgs']] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -483,7 +523,12 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the credentials
-        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        :param pulumi.Input[_builtins.int] credentials_wo_version: A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input['AuthBackendCustomEndpointArgs'] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
@@ -534,6 +579,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "client_id", client_id)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
+        if credentials_wo is not None:
+            pulumi.set(__self__, "credentials_wo", credentials_wo)
+        if credentials_wo_version is not None:
+            pulumi.set(__self__, "credentials_wo_version", credentials_wo_version)
         if custom_endpoint is not None:
             pulumi.set(__self__, "custom_endpoint", custom_endpoint)
         if description is not None:
@@ -617,13 +666,40 @@ class _AuthBackendState:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
     def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWo")
+    def credentials_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        """
+        return pulumi.get(self, "credentials_wo")
+
+    @credentials_wo.setter
+    def credentials_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "credentials_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWoVersion")
+    def credentials_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+        For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "credentials_wo_version")
+
+    @credentials_wo_version.setter
+    def credentials_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "credentials_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="customEndpoint")
@@ -907,6 +983,8 @@ class AuthBackend(pulumi.CustomResource):
                  client_email: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -965,6 +1043,14 @@ class AuthBackend(pulumi.CustomResource):
             }[0])
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `credentials_wo` - (Optional) A JSON string containing the contents of a GCP credentials file. Can be updated. Mutually exclusive with `credentials`.
+          If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         GCP authentication backends can be imported using the backend name, e.g.
@@ -977,7 +1063,12 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the credentials
-        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        :param pulumi.Input[_builtins.int] credentials_wo_version: A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
@@ -1062,6 +1153,14 @@ class AuthBackend(pulumi.CustomResource):
             }[0])
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `credentials_wo` - (Optional) A JSON string containing the contents of a GCP credentials file. Can be updated. Mutually exclusive with `credentials`.
+          If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         GCP authentication backends can be imported using the backend name, e.g.
@@ -1088,6 +1187,8 @@ class AuthBackend(pulumi.CustomResource):
                  client_email: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1121,6 +1222,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["client_email"] = client_email
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
+            __props__.__dict__["credentials_wo"] = None if credentials_wo is None else pulumi.Output.secret(credentials_wo)
+            __props__.__dict__["credentials_wo_version"] = credentials_wo_version
             __props__.__dict__["custom_endpoint"] = custom_endpoint
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
@@ -1143,7 +1246,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["service_account_email"] = service_account_email
             __props__.__dict__["tune"] = tune
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials", "credentialsWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:gcp/authBackend:AuthBackend',
@@ -1159,6 +1262,8 @@ class AuthBackend(pulumi.CustomResource):
             client_email: Optional[pulumi.Input[_builtins.str]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             credentials: Optional[pulumi.Input[_builtins.str]] = None,
+            credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1190,7 +1295,12 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the credentials
-        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
+        :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        :param pulumi.Input[_builtins.int] credentials_wo_version: A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
@@ -1241,6 +1351,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["client_email"] = client_email
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["credentials"] = credentials
+        __props__.__dict__["credentials_wo"] = credentials_wo
+        __props__.__dict__["credentials_wo_version"] = credentials_wo_version
         __props__.__dict__["custom_endpoint"] = custom_endpoint
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
@@ -1292,9 +1404,28 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def credentials(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
         """
         return pulumi.get(self, "credentials")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWo")
+    def credentials_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        """
+        return pulumi.get(self, "credentials_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="credentialsWoVersion")
+    def credentials_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
+        For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "credentials_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="customEndpoint")

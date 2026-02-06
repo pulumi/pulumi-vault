@@ -215,6 +215,21 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * Template describing how dynamic usernames are generated.
+     * 
+     */
+    @Import(name="usernameTemplate")
+    private @Nullable Output<String> usernameTemplate;
+
+    /**
+     * @return Template describing how dynamic usernames are generated.
+     * 
+     */
+    public Optional<Output<String>> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
+
+    /**
      * Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -246,6 +261,7 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
+        this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
     }
 
@@ -552,6 +568,27 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
          */
         public Builder rotationWindow(Integer rotationWindow) {
             return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(@Nullable Output<String> usernameTemplate) {
+            $.usernameTemplate = usernameTemplate;
+            return this;
+        }
+
+        /**
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(String usernameTemplate) {
+            return usernameTemplate(Output.of(usernameTemplate));
         }
 
         /**

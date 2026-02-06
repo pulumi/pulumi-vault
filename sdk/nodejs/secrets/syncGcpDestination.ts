@@ -25,6 +25,77 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With Networking Configuration (Vault 1.19+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpNetworking = new vault.secrets.SyncGcpDestination("gcp_networking", {
+ *     name: "gcp-dest-networking",
+ *     projectId: "gcp-project-id",
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
+ *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+ *     allowedIpv4Addresses: [
+ *         "10.0.0.0/8",
+ *         "192.168.0.0/16",
+ *     ],
+ *     allowedIpv6Addresses: ["2001:db8::/32"],
+ *     allowedPorts: [
+ *         443,
+ *         8443,
+ *     ],
+ *     disableStrictNetworking: false,
+ * });
+ * ```
+ *
+ * ### With Global Encryption (Vault 1.19+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpEncryption = new vault.secrets.SyncGcpDestination("gcp_encryption", {
+ *     name: "gcp-dest-encryption",
+ *     projectId: "gcp-project-id",
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
+ *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+ *     globalKmsKey: "projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key",
+ * });
+ * ```
+ *
+ * ### With Multi-Region Replication and Regional Encryption (Vault 1.19+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpReplicationEncryption = new vault.secrets.SyncGcpDestination("gcp_replication_encryption", {
+ *     name: "gcp-dest-replication-encryption",
+ *     projectId: "gcp-project-id",
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
+ *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}_{{ .SecretKey | lowercase }}",
+ *     granularity: "secret-key",
+ *     locationalKmsKeys: {
+ *         "us-central1": "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key",
+ *         "us-east1": "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key",
+ *     },
+ *     replicationLocations: [
+ *         "us-central1",
+ *         "us-east1",
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -62,6 +133,18 @@ export class SyncGcpDestination extends pulumi.CustomResource {
     }
 
     /**
+     * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     */
+    declare public readonly allowedIpv4Addresses: pulumi.Output<string[] | undefined>;
+    /**
+     * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     */
+    declare public readonly allowedIpv6Addresses: pulumi.Output<string[] | undefined>;
+    /**
+     * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     */
+    declare public readonly allowedPorts: pulumi.Output<number[] | undefined>;
+    /**
      * JSON-encoded credentials to use to connect to GCP.
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
      * variable.
@@ -72,10 +155,22 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      */
     declare public readonly customTags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * Disable strict networking requirements.
+     */
+    declare public readonly disableStrictNetworking: pulumi.Output<boolean | undefined>;
+    /**
+     * Global KMS key for encryption.
+     */
+    declare public readonly globalKmsKey: pulumi.Output<string | undefined>;
+    /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     declare public readonly granularity: pulumi.Output<string | undefined>;
+    /**
+     * Locational KMS keys for encryption.
+     */
+    declare public readonly locationalKmsKeys: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Unique name of the GCP destination.
      */
@@ -93,6 +188,10 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      * to perform Secret Manager actions in the target project.
      */
     declare public readonly projectId: pulumi.Output<string | undefined>;
+    /**
+     * Replication locations for secrets.
+     */
+    declare public readonly replicationLocations: pulumi.Output<string[] | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
@@ -116,22 +215,36 @@ export class SyncGcpDestination extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncGcpDestinationState | undefined;
+            resourceInputs["allowedIpv4Addresses"] = state?.allowedIpv4Addresses;
+            resourceInputs["allowedIpv6Addresses"] = state?.allowedIpv6Addresses;
+            resourceInputs["allowedPorts"] = state?.allowedPorts;
             resourceInputs["credentials"] = state?.credentials;
             resourceInputs["customTags"] = state?.customTags;
+            resourceInputs["disableStrictNetworking"] = state?.disableStrictNetworking;
+            resourceInputs["globalKmsKey"] = state?.globalKmsKey;
             resourceInputs["granularity"] = state?.granularity;
+            resourceInputs["locationalKmsKeys"] = state?.locationalKmsKeys;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["replicationLocations"] = state?.replicationLocations;
             resourceInputs["secretNameTemplate"] = state?.secretNameTemplate;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SyncGcpDestinationArgs | undefined;
+            resourceInputs["allowedIpv4Addresses"] = args?.allowedIpv4Addresses;
+            resourceInputs["allowedIpv6Addresses"] = args?.allowedIpv6Addresses;
+            resourceInputs["allowedPorts"] = args?.allowedPorts;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["customTags"] = args?.customTags;
+            resourceInputs["disableStrictNetworking"] = args?.disableStrictNetworking;
+            resourceInputs["globalKmsKey"] = args?.globalKmsKey;
             resourceInputs["granularity"] = args?.granularity;
+            resourceInputs["locationalKmsKeys"] = args?.locationalKmsKeys;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["replicationLocations"] = args?.replicationLocations;
             resourceInputs["secretNameTemplate"] = args?.secretNameTemplate;
             resourceInputs["type"] = undefined /*out*/;
         }
@@ -147,6 +260,18 @@ export class SyncGcpDestination extends pulumi.CustomResource {
  */
 export interface SyncGcpDestinationState {
     /**
+     * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     */
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     */
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     */
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
      * JSON-encoded credentials to use to connect to GCP.
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
      * variable.
@@ -157,10 +282,22 @@ export interface SyncGcpDestinationState {
      */
     customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * Disable strict networking requirements.
+     */
+    disableStrictNetworking?: pulumi.Input<boolean>;
+    /**
+     * Global KMS key for encryption.
+     */
+    globalKmsKey?: pulumi.Input<string>;
+    /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     granularity?: pulumi.Input<string>;
+    /**
+     * Locational KMS keys for encryption.
+     */
+    locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Unique name of the GCP destination.
      */
@@ -178,6 +315,10 @@ export interface SyncGcpDestinationState {
      * to perform Secret Manager actions in the target project.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Replication locations for secrets.
+     */
+    replicationLocations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
@@ -194,6 +335,18 @@ export interface SyncGcpDestinationState {
  */
 export interface SyncGcpDestinationArgs {
     /**
+     * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     */
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     */
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     */
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
      * JSON-encoded credentials to use to connect to GCP.
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
      * variable.
@@ -204,10 +357,22 @@ export interface SyncGcpDestinationArgs {
      */
     customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * Disable strict networking requirements.
+     */
+    disableStrictNetworking?: pulumi.Input<boolean>;
+    /**
+     * Global KMS key for encryption.
+     */
+    globalKmsKey?: pulumi.Input<string>;
+    /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     granularity?: pulumi.Input<string>;
+    /**
+     * Locational KMS keys for encryption.
+     */
+    locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Unique name of the GCP destination.
      */
@@ -225,6 +390,10 @@ export interface SyncGcpDestinationArgs {
      * to perform Secret Manager actions in the target project.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Replication locations for secrets.
+     */
+    replicationLocations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.

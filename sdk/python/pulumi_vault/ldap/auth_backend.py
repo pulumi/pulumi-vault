@@ -26,6 +26,8 @@ class AuthBackendArgs:
                  anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -76,7 +78,12 @@ class AuthBackendArgs:
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
-        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only bind password to use for LDAP authentication.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
@@ -140,6 +147,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
             pulumi.set(__self__, "bindpass", bindpass)
+        if bindpass_wo is not None:
+            pulumi.set(__self__, "bindpass_wo", bindpass_wo)
+        if bindpass_wo_version is not None:
+            pulumi.set(__self__, "bindpass_wo_version", bindpass_wo_version)
         if case_sensitive_names is not None:
             pulumi.set(__self__, "case_sensitive_names", case_sensitive_names)
         if certificate is not None:
@@ -280,13 +291,40 @@ class AuthBackendArgs:
     @pulumi.getter
     def bindpass(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password to use with `binddn` when performing user search
+        Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
         """
         return pulumi.get(self, "bindpass")
 
     @bindpass.setter
     def bindpass(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "bindpass", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWo")
+    def bindpass_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only bind password to use for LDAP authentication.
+        """
+        return pulumi.get(self, "bindpass_wo")
+
+    @bindpass_wo.setter
+    def bindpass_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bindpass_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWoVersion")
+    def bindpass_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for write-only bind password.
+        Required when using `bindpass_wo`. For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "bindpass_wo_version")
+
+    @bindpass_wo_version.setter
+    def bindpass_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "bindpass_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="caseSensitiveNames")
@@ -819,6 +857,8 @@ class _AuthBackendState:
                  anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -870,7 +910,12 @@ class _AuthBackendState:
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
-        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only bind password to use for LDAP authentication.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
@@ -936,6 +981,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
             pulumi.set(__self__, "bindpass", bindpass)
+        if bindpass_wo is not None:
+            pulumi.set(__self__, "bindpass_wo", bindpass_wo)
+        if bindpass_wo_version is not None:
+            pulumi.set(__self__, "bindpass_wo_version", bindpass_wo_version)
         if case_sensitive_names is not None:
             pulumi.set(__self__, "case_sensitive_names", case_sensitive_names)
         if certificate is not None:
@@ -1078,13 +1127,40 @@ class _AuthBackendState:
     @pulumi.getter
     def bindpass(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password to use with `binddn` when performing user search
+        Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
         """
         return pulumi.get(self, "bindpass")
 
     @bindpass.setter
     def bindpass(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "bindpass", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWo")
+    def bindpass_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only bind password to use for LDAP authentication.
+        """
+        return pulumi.get(self, "bindpass_wo")
+
+    @bindpass_wo.setter
+    def bindpass_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bindpass_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWoVersion")
+    def bindpass_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for write-only bind password.
+        Required when using `bindpass_wo`. For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "bindpass_wo_version")
+
+    @bindpass_wo_version.setter
+    def bindpass_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "bindpass_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="caseSensitiveNames")
@@ -1631,6 +1707,8 @@ class AuthBackend(pulumi.CustomResource):
                  anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1702,6 +1780,13 @@ class AuthBackend(pulumi.CustomResource):
             anonymous_group_search=False)
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `bindpass_wo` - (Optional) Write-only bind password to use for LDAP authentication. Can be updated. Conflicts with `bindpass`.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         LDAP authentication backends can be imported using the `path`, e.g.
@@ -1716,7 +1801,12 @@ class AuthBackend(pulumi.CustomResource):
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
-        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only bind password to use for LDAP authentication.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
@@ -1804,6 +1894,13 @@ class AuthBackend(pulumi.CustomResource):
             anonymous_group_search=False)
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `bindpass_wo` - (Optional) Write-only bind password to use for LDAP authentication. Can be updated. Conflicts with `bindpass`.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         LDAP authentication backends can be imported using the `path`, e.g.
@@ -1831,6 +1928,8 @@ class AuthBackend(pulumi.CustomResource):
                  anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1888,6 +1987,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["anonymous_group_search"] = anonymous_group_search
             __props__.__dict__["binddn"] = binddn
             __props__.__dict__["bindpass"] = None if bindpass is None else pulumi.Output.secret(bindpass)
+            __props__.__dict__["bindpass_wo"] = None if bindpass_wo is None else pulumi.Output.secret(bindpass_wo)
+            __props__.__dict__["bindpass_wo_version"] = bindpass_wo_version
             __props__.__dict__["case_sensitive_names"] = case_sensitive_names
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["client_tls_cert"] = client_tls_cert
@@ -1935,7 +2036,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["userfilter"] = userfilter
             __props__.__dict__["username_as_alias"] = username_as_alias
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindpass", "clientTlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindpass", "bindpassWo", "clientTlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:ldap/authBackend:AuthBackend',
@@ -1952,6 +2053,8 @@ class AuthBackend(pulumi.CustomResource):
             anonymous_group_search: Optional[pulumi.Input[_builtins.bool]] = None,
             binddn: Optional[pulumi.Input[_builtins.str]] = None,
             bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+            bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             case_sensitive_names: Optional[pulumi.Input[_builtins.bool]] = None,
             certificate: Optional[pulumi.Input[_builtins.str]] = None,
             client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2008,7 +2111,12 @@ class AuthBackend(pulumi.CustomResource):
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Allows anonymous group searches.
         :param pulumi.Input[_builtins.str] binddn: DN of object to bind when performing user search
-        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search
+        :param pulumi.Input[_builtins.str] bindpass: Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only bind password to use for LDAP authentication.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[_builtins.str] certificate: Trusted CA to validate TLS certificate
         :param pulumi.Input[_builtins.int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
@@ -2073,6 +2181,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["anonymous_group_search"] = anonymous_group_search
         __props__.__dict__["binddn"] = binddn
         __props__.__dict__["bindpass"] = bindpass
+        __props__.__dict__["bindpass_wo"] = bindpass_wo
+        __props__.__dict__["bindpass_wo_version"] = bindpass_wo_version
         __props__.__dict__["case_sensitive_names"] = case_sensitive_names
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["client_tls_cert"] = client_tls_cert
@@ -2156,9 +2266,28 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter
     def bindpass(self) -> pulumi.Output[_builtins.str]:
         """
-        Password to use with `binddn` when performing user search
+        Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
         """
         return pulumi.get(self, "bindpass")
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWo")
+    def bindpass_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only bind password to use for LDAP authentication.
+        """
+        return pulumi.get(self, "bindpass_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWoVersion")
+    def bindpass_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for write-only bind password.
+        Required when using `bindpass_wo`. For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "bindpass_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="caseSensitiveNames")

@@ -18,87 +18,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * ## Example Usage
- * 
- * ### 
- * 
- * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.azure.Backend;
- * import com.pulumi.vault.azure.BackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var azure = new Backend("azure", BackendArgs.builder()
- *             .subscriptionId("11111111-2222-3333-4444-111111111111")
- *             .tenantId("11111111-2222-3333-4444-222222222222")
- *             .clientId("11111111-2222-3333-4444-333333333333")
- *             .identityTokenAudience("<TOKEN_AUDIENCE>")
- *             .identityTokenTtl("<TOKEN_TTL>")
- *             .rotationSchedule("0 * * * SAT")
- *             .rotationWindow(3600)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.azure.Backend;
- * import com.pulumi.vault.azure.BackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var azure = new Backend("azure", BackendArgs.builder()
- *             .subscriptionId("11111111-2222-3333-4444-111111111111")
- *             .tenantId("11111111-2222-3333-4444-222222222222")
- *             .clientId("11111111-2222-3333-4444-333333333333")
- *             .clientSecret("12345678901234567890")
- *             .environment("AzurePublicCloud")
- *             .rotationSchedule("0 * * * SAT")
- *             .rotationWindow(3600)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- */
 @ResourceType(type="vault:azure/backend:Backend")
 public class Backend extends com.pulumi.resources.CustomResource {
     /**
@@ -187,6 +106,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
     }
     /**
      * The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
@@ -194,10 +114,41 @@ public class Backend extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The OAuth2 client secret to connect to Azure.
+     * Conflicts with `clientSecretWo`.
      * 
      */
     public Output<Optional<String>> clientSecret() {
         return Codegen.optional(this.clientSecret);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> clientSecretWo() {
+        return Codegen.optional(this.clientSecretWo);
+    }
+    /**
+     * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     * 
+     */
+    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+
+    /**
+     * @return A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+     * 
+     */
+    public Output<Optional<Integer>> clientSecretWoVersion() {
+        return Codegen.optional(this.clientSecretWoVersion);
     }
     /**
      * Default lease duration for tokens and secrets in seconds
@@ -632,6 +583,7 @@ public class Backend extends com.pulumi.resources.CustomResource {
             .additionalSecretOutputs(List.of(
                 "clientId",
                 "clientSecret",
+                "clientSecretWo",
                 "subscriptionId",
                 "tenantId"
             ))

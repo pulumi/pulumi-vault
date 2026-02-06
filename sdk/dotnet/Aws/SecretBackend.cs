@@ -230,6 +230,19 @@ namespace Pulumi.Vault.Aws
         public Output<string?> SecretKey { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("secretKeyWo")]
+        public Output<string?> SecretKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only SecretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+        /// </summary>
+        [Output("secretKeyWoVersion")]
+        public Output<int?> SecretKeyWoVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies a custom HTTP STS endpoint to use.
         /// </summary>
         [Output("stsEndpoint")]
@@ -295,6 +308,7 @@ namespace Pulumi.Vault.Aws
                 {
                     "accessKey",
                     "secretKey",
+                    "secretKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -582,6 +596,29 @@ namespace Pulumi.Vault.Aws
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretKeyWo")]
+        private Input<string>? _secretKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? SecretKeyWo
+        {
+            get => _secretKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only SecretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+        /// </summary>
+        [Input("secretKeyWoVersion")]
+        public Input<int>? SecretKeyWoVersion { get; set; }
 
         /// <summary>
         /// Specifies a custom HTTP STS endpoint to use.
@@ -911,6 +948,29 @@ namespace Pulumi.Vault.Aws
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretKeyWo")]
+        private Input<string>? _secretKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? SecretKeyWo
+        {
+            get => _secretKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only SecretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+        /// </summary>
+        [Input("secretKeyWoVersion")]
+        public Input<int>? SecretKeyWoVersion { get; set; }
 
         /// <summary>
         /// Specifies a custom HTTP STS endpoint to use.

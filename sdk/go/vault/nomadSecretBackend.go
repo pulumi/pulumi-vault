@@ -44,6 +44,18 @@ import (
 //
 // ```
 //
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+// * `clientKeyWo` - (Optional) Write-only client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+// Use this for enhanced security when you don't want the client key to appear in state files. Requires `clientKeyWoVersion`. Conflicts with `clientKey`.
+// **Note**: This property is write-only and will not be read from the API.
+//
+// * `tokenWo` - (Optional) Write-only Nomad Management token to use.
+// Use this for enhanced security when you don't want the token to appear in state files. Requires `tokenWoVersion`. Conflicts with `token`.
+// **Note**: This property is write-only and will not be read from the API.
+//
 // ## Import
 //
 // Nomad secret backend can be imported using the `backend`, e.g.
@@ -76,7 +88,14 @@ type NomadSecretBackend struct {
 	// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
 	ClientCert pulumi.StringPtrOutput `pulumi:"clientCert"`
 	// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+	// Conflicts with `clientKeyWo`.
 	ClientKey pulumi.StringPtrOutput `pulumi:"clientKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKeyWo pulumi.StringPtrOutput `pulumi:"clientKeyWo"`
+	// Version counter for the write-only client key. This must be incremented
+	// each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+	ClientKeyWoVersion pulumi.IntPtrOutput `pulumi:"clientKeyWoVersion"`
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -117,8 +136,14 @@ type NomadSecretBackend struct {
 	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
-	// Specifies the Nomad Management token to use.
+	// Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Nomad Management token to use.
+	TokenWo pulumi.StringPtrOutput `pulumi:"tokenWo"`
+	// Version counter for the write-only token. This must be incremented each time
+	// the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrOutput `pulumi:"tokenWoVersion"`
 	// Specifies the ttl of the lease for the generated token.
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
 }
@@ -136,13 +161,21 @@ func NewNomadSecretBackend(ctx *pulumi.Context,
 	if args.ClientKey != nil {
 		args.ClientKey = pulumi.ToSecret(args.ClientKey).(pulumi.StringPtrInput)
 	}
+	if args.ClientKeyWo != nil {
+		args.ClientKeyWo = pulumi.ToSecret(args.ClientKeyWo).(pulumi.StringPtrInput)
+	}
 	if args.Token != nil {
 		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	if args.TokenWo != nil {
+		args.TokenWo = pulumi.ToSecret(args.TokenWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientCert",
 		"clientKey",
+		"clientKeyWo",
 		"token",
+		"tokenWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -190,7 +223,14 @@ type nomadSecretBackendState struct {
 	// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
 	ClientCert *string `pulumi:"clientCert"`
 	// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+	// Conflicts with `clientKeyWo`.
 	ClientKey *string `pulumi:"clientKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKeyWo *string `pulumi:"clientKeyWo"`
+	// Version counter for the write-only client key. This must be incremented
+	// each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+	ClientKeyWoVersion *int `pulumi:"clientKeyWoVersion"`
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -231,8 +271,14 @@ type nomadSecretBackendState struct {
 	PluginVersion *string `pulumi:"pluginVersion"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
-	// Specifies the Nomad Management token to use.
+	// Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
 	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Nomad Management token to use.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version counter for the write-only token. This must be incremented each time
+	// the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 	// Specifies the ttl of the lease for the generated token.
 	Ttl *int `pulumi:"ttl"`
 }
@@ -260,7 +306,14 @@ type NomadSecretBackendState struct {
 	// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
 	ClientCert pulumi.StringPtrInput
 	// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+	// Conflicts with `clientKeyWo`.
 	ClientKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKeyWo pulumi.StringPtrInput
+	// Version counter for the write-only client key. This must be incremented
+	// each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+	ClientKeyWoVersion pulumi.IntPtrInput
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
@@ -301,8 +354,14 @@ type NomadSecretBackendState struct {
 	PluginVersion pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
-	// Specifies the Nomad Management token to use.
+	// Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
 	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Nomad Management token to use.
+	TokenWo pulumi.StringPtrInput
+	// Version counter for the write-only token. This must be incremented each time
+	// the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 	// Specifies the ttl of the lease for the generated token.
 	Ttl pulumi.IntPtrInput
 }
@@ -332,7 +391,14 @@ type nomadSecretBackendArgs struct {
 	// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
 	ClientCert *string `pulumi:"clientCert"`
 	// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+	// Conflicts with `clientKeyWo`.
 	ClientKey *string `pulumi:"clientKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKeyWo *string `pulumi:"clientKeyWo"`
+	// Version counter for the write-only client key. This must be incremented
+	// each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+	ClientKeyWoVersion *int `pulumi:"clientKeyWoVersion"`
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -373,8 +439,14 @@ type nomadSecretBackendArgs struct {
 	PluginVersion *string `pulumi:"pluginVersion"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
-	// Specifies the Nomad Management token to use.
+	// Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
 	Token *string `pulumi:"token"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Nomad Management token to use.
+	TokenWo *string `pulumi:"tokenWo"`
+	// Version counter for the write-only token. This must be incremented each time
+	// the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+	TokenWoVersion *int `pulumi:"tokenWoVersion"`
 	// Specifies the ttl of the lease for the generated token.
 	Ttl *int `pulumi:"ttl"`
 }
@@ -401,7 +473,14 @@ type NomadSecretBackendArgs struct {
 	// Client certificate to provide to the Nomad server, must be x509 PEM encoded.
 	ClientCert pulumi.StringPtrInput
 	// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+	// Conflicts with `clientKeyWo`.
 	ClientKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+	ClientKeyWo pulumi.StringPtrInput
+	// Version counter for the write-only client key. This must be incremented
+	// each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+	ClientKeyWoVersion pulumi.IntPtrInput
 	// Default lease duration for secrets in seconds.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
@@ -442,8 +521,14 @@ type NomadSecretBackendArgs struct {
 	PluginVersion pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
-	// Specifies the Nomad Management token to use.
+	// Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
 	Token pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Nomad Management token to use.
+	TokenWo pulumi.StringPtrInput
+	// Version counter for the write-only token. This must be incremented each time
+	// the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+	TokenWoVersion pulumi.IntPtrInput
 	// Specifies the ttl of the lease for the generated token.
 	Ttl pulumi.IntPtrInput
 }
@@ -584,8 +669,21 @@ func (o NomadSecretBackendOutput) ClientCert() pulumi.StringPtrOutput {
 }
 
 // Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+// Conflicts with `clientKeyWo`.
 func (o NomadSecretBackendOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+func (o NomadSecretBackendOutput) ClientKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.ClientKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only client key. This must be incremented
+// each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+func (o NomadSecretBackendOutput) ClientKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntPtrOutput { return v.ClientKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Default lease duration for secrets in seconds.
@@ -679,9 +777,21 @@ func (o NomadSecretBackendOutput) SealWrap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
 }
 
-// Specifies the Nomad Management token to use.
+// Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
 func (o NomadSecretBackendOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only Nomad Management token to use.
+func (o NomadSecretBackendOutput) TokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.StringPtrOutput { return v.TokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only token. This must be incremented each time
+// the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+func (o NomadSecretBackendOutput) TokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NomadSecretBackend) pulumi.IntPtrOutput { return v.TokenWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies the ttl of the lease for the generated token.

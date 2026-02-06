@@ -59,6 +59,14 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `bindpassWo` - (Optional) Write-only password to use along with binddn when performing user search. Can be updated. Conflicts with `bindpass`.
+ *   Exactly one of `bindpass` or `bindpassWo` must be provided.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * LDAP secret backend can be imported using the `${mount}/config`, e.g.
@@ -155,18 +163,54 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.binddn;
     }
     /**
-     * Password to use along with binddn when performing user search.
+     * Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+     * Exactly one of `bindpass` or `bindpassWo` must be provided.
      * 
      */
     @Export(name="bindpass", refs={String.class}, tree="[0]")
-    private Output<String> bindpass;
+    private Output</* @Nullable */ String> bindpass;
 
     /**
-     * @return Password to use along with binddn when performing user search.
+     * @return Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+     * Exactly one of `bindpass` or `bindpassWo` must be provided.
      * 
      */
-    public Output<String> bindpass() {
-        return this.bindpass;
+    public Output<Optional<String>> bindpass() {
+        return Codegen.optional(this.bindpass);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only LDAP password for searching for the user DN.
+     * 
+     */
+    @Export(name="bindpassWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> bindpassWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only LDAP password for searching for the user DN.
+     * 
+     */
+    public Output<Optional<String>> bindpassWo() {
+        return Codegen.optional(this.bindpassWo);
+    }
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Export(name="bindpassWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> bindpassWoVersion;
+
+    /**
+     * @return Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Output<Optional<Integer>> bindpassWoVersion() {
+        return Codegen.optional(this.bindpassWoVersion);
     }
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
@@ -728,6 +772,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "bindpass",
+                "bindpassWo",
                 "clientTlsCert",
                 "clientTlsKey"
             ))

@@ -4,38 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * Logs into Vault using the AppRole auth backend. See the [Vault
- * documentation](https://www.vaultproject.io/docs/auth/approle) for more
- * information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const approle = new vault.AuthBackend("approle", {type: "approle"});
- * const example = new vault.approle.AuthBackendRole("example", {
- *     backend: approle.path,
- *     roleName: "test-role",
- *     tokenPolicies: [
- *         "default",
- *         "dev",
- *         "prod",
- *     ],
- * });
- * const id = new vault.approle.AuthBackendRoleSecretId("id", {
- *     backend: approle.path,
- *     roleName: example.roleName,
- * });
- * const login = new vault.approle.AuthBackendLogin("login", {
- *     backend: approle.path,
- *     roleId: example.roleId,
- *     secretId: id.secretId,
- * });
- * ```
- */
 export class AuthBackendLogin extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendLogin resource's state with the given name, ID, and optional extra
@@ -112,6 +80,15 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      * unless `bindSecretId` is set to false on the role.
      */
     declare public readonly secretId: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     */
+    declare public readonly secretIdWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the `secretIdWo`. For more info see updating write-only attributes.
+     */
+    declare public readonly secretIdWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a AuthBackendLogin resource with the given unique name, arguments, and options.
@@ -137,6 +114,8 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["renewable"] = state?.renewable;
             resourceInputs["roleId"] = state?.roleId;
             resourceInputs["secretId"] = state?.secretId;
+            resourceInputs["secretIdWo"] = state?.secretIdWo;
+            resourceInputs["secretIdWoVersion"] = state?.secretIdWoVersion;
         } else {
             const args = argsOrState as AuthBackendLoginArgs | undefined;
             if (args?.roleId === undefined && !opts.urn) {
@@ -146,6 +125,8 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["roleId"] = args?.roleId;
             resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
+            resourceInputs["secretIdWo"] = args?.secretIdWo ? pulumi.secret(args.secretIdWo) : undefined;
+            resourceInputs["secretIdWoVersion"] = args?.secretIdWoVersion;
             resourceInputs["accessor"] = undefined /*out*/;
             resourceInputs["clientToken"] = undefined /*out*/;
             resourceInputs["leaseDuration"] = undefined /*out*/;
@@ -155,7 +136,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
             resourceInputs["renewable"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientToken", "secretId"] };
+        const secretOpts = { additionalSecretOutputs: ["clientToken", "secretId", "secretIdWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendLogin.__pulumiType, name, resourceInputs, opts);
     }
@@ -213,6 +194,15 @@ export interface AuthBackendLoginState {
      * unless `bindSecretId` is set to false on the role.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     */
+    secretIdWo?: pulumi.Input<string>;
+    /**
+     * The version of the `secretIdWo`. For more info see updating write-only attributes.
+     */
+    secretIdWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -239,4 +229,13 @@ export interface AuthBackendLoginArgs {
      * unless `bindSecretId` is set to false on the role.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     */
+    secretIdWo?: pulumi.Input<string>;
+    /**
+     * The version of the `secretIdWo`. For more info see updating write-only attributes.
+     */
+    secretIdWoVersion?: pulumi.Input<number>;
 }

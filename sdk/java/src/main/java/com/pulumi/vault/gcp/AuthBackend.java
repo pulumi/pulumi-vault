@@ -104,6 +104,14 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `credentialsWo` - (Optional) A JSON string containing the contents of a GCP credentials file. Can be updated. Mutually exclusive with `credentials`.
+ *   If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * GCP authentication backends can be imported using the backend name, e.g.
@@ -158,18 +166,52 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      * 
      */
     @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
-     * @return A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * @return A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      * 
      */
     public Output<Optional<String>> credentials() {
         return Codegen.optional(this.credentials);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     * 
+     */
+    @Export(name="credentialsWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> credentialsWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     * 
+     */
+    public Output<Optional<String>> credentialsWo() {
+        return Codegen.optional(this.credentialsWo);
+    }
+    /**
+     * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Export(name="credentialsWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> credentialsWoVersion;
+
+    /**
+     * @return A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Output<Optional<Integer>> credentialsWoVersion() {
+        return Codegen.optional(this.credentialsWoVersion);
     }
     /**
      * Specifies overrides to
@@ -546,7 +588,8 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "credentials"
+                "credentials",
+                "credentialsWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

@@ -24,6 +24,8 @@ class AuthBackendConfigArgs:
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
@@ -45,8 +47,12 @@ class AuthBackendConfigArgs:
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
-               Azure APIs.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
+               Increment this value to trigger an update of the client secret in Vault.
+               Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.str] environment: The Azure cloud environment. Valid values:
@@ -84,6 +90,10 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if environment is not None:
@@ -163,14 +173,40 @@ class AuthBackendConfigArgs:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The client secret for credentials to query the
-        Azure APIs.
+        The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only client secret.
+        Increment this value to trigger an update of the client secret in Vault.
+        Required when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
@@ -328,6 +364,8 @@ class _AuthBackendConfigState:
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
@@ -347,8 +385,12 @@ class _AuthBackendConfigState:
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
-               Azure APIs.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
+               Increment this value to trigger an update of the client secret in Vault.
+               Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.str] environment: The Azure cloud environment. Valid values:
@@ -388,6 +430,10 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if environment is not None:
@@ -445,14 +491,40 @@ class _AuthBackendConfigState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The client secret for credentials to query the
-        Azure APIs.
+        The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only client secret.
+        Increment this value to trigger an update of the client secret in Vault.
+        Required when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
@@ -639,6 +711,8 @@ class AuthBackendConfig(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
@@ -654,41 +728,6 @@ class AuthBackendConfig(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example",
-            type="azure",
-            identity_token_key="example-key")
-        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
-            backend=example.path,
-            tenant_id="11111111-2222-3333-4444-555555555555",
-            client_id="11111111-2222-3333-4444-555555555555",
-            identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example", type="azure")
-        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
-            backend=example.path,
-            tenant_id="11111111-2222-3333-4444-555555555555",
-            client_id="11111111-2222-3333-4444-555555555555",
-            client_secret="01234567890123456789",
-            resource="https://vault.hashicorp.com",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -703,8 +742,12 @@ class AuthBackendConfig(pulumi.CustomResource):
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
-               Azure APIs.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
+               Increment this value to trigger an update of the client secret in Vault.
+               Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.str] environment: The Azure cloud environment. Valid values:
@@ -745,41 +788,6 @@ class AuthBackendConfig(pulumi.CustomResource):
                  args: AuthBackendConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example",
-            type="azure",
-            identity_token_key="example-key")
-        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
-            backend=example.path,
-            tenant_id="11111111-2222-3333-4444-555555555555",
-            client_id="11111111-2222-3333-4444-555555555555",
-            identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example", type="azure")
-        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
-            backend=example.path,
-            tenant_id="11111111-2222-3333-4444-555555555555",
-            client_id="11111111-2222-3333-4444-555555555555",
-            client_secret="01234567890123456789",
-            resource="https://vault.hashicorp.com",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -806,6 +814,8 @@ class AuthBackendConfig(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  environment: Optional[pulumi.Input[_builtins.str]] = None,
                  identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
@@ -831,6 +841,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["client_secret_wo"] = None if client_secret_wo is None else pulumi.Output.secret(client_secret_wo)
+            __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["environment"] = environment
             __props__.__dict__["identity_token_audience"] = identity_token_audience
@@ -848,7 +860,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             if tenant_id is None and not opts.urn:
                 raise TypeError("Missing required property 'tenant_id'")
             __props__.__dict__["tenant_id"] = None if tenant_id is None else pulumi.Output.secret(tenant_id)
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "tenantId"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "clientSecretWo", "tenantId"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendConfig, __self__).__init__(
             'vault:azure/authBackendConfig:AuthBackendConfig',
@@ -863,6 +875,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             environment: Optional[pulumi.Input[_builtins.str]] = None,
             identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
@@ -887,8 +901,12 @@ class AuthBackendConfig(pulumi.CustomResource):
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
-               Azure APIs.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
+               Increment this value to trigger an update of the client secret in Vault.
+               Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.str] environment: The Azure cloud environment. Valid values:
@@ -929,6 +947,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["client_secret_wo"] = client_secret_wo
+        __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["environment"] = environment
         __props__.__dict__["identity_token_audience"] = identity_token_audience
@@ -966,10 +986,28 @@ class AuthBackendConfig(pulumi.CustomResource):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The client secret for credentials to query the
-        Azure APIs.
+        The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only client secret.
+        Increment this value to trigger an update of the client secret in Vault.
+        Required when using `client_secret_wo`.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")

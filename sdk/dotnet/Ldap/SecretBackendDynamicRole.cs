@@ -37,14 +37,14 @@ namespace Pulumi.Vault.Ldap
     /// objectClass: person
     /// objectClass: top
     /// cn: learn
-    /// sn: {{.Password | utf16le | base64}}
+    /// sn: {{ random 20 }}
     /// memberOf: cn=dev,ou=groups,dc=learn,dc=example
     /// userPassword: {{.Password}}
     /// ",
     ///         DeletionLdif = @"dn: cn={{.Username}},ou=users,dc=learn,dc=example
     /// changetype: delete
-    ///   rollback_ldif = &lt;&lt;EOT
-    /// dn: cn={{.Username}},ou=users,dc=learn,dc=example
+    /// ",
+    ///         RollbackLdif = @"dn: cn={{.Username}},ou=users,dc=learn,dc=example
     /// changetype: delete
     /// ",
     ///     });

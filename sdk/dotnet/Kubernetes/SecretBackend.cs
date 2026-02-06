@@ -32,15 +32,23 @@ namespace Pulumi.Vault.Kubernetes
     ///         {
     ///             Input = "/path/to/cert",
     ///         }).Apply(invoke =&gt; invoke.Result),
-    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         ServiceAccountJwtWo = Std.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/token",
     ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         ServiceAccountJwtWoVersion = 1,
     ///         DisableLocalCaJwt = false,
     ///     });
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `ServiceAccountJwtWo` - (Optional) Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value is not stored in state.
+    ///   **Note**: This property is write-only and will not be read from the API.
     /// 
     /// ## Import
     /// 
@@ -208,6 +216,21 @@ namespace Pulumi.Vault.Kubernetes
         [Output("serviceAccountJwt")]
         public Output<string?> ServiceAccountJwt { get; private set; } = null!;
 
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        /// </summary>
+        [Output("serviceAccountJwtWo")]
+        public Output<string?> ServiceAccountJwtWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for `ServiceAccountJwtWo`. Increment to force an update.
+        /// For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Output("serviceAccountJwtWoVersion")]
+        public Output<int?> ServiceAccountJwtWoVersion { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -234,6 +257,7 @@ namespace Pulumi.Vault.Kubernetes
                 AdditionalSecretOutputs =
                 {
                     "serviceAccountJwt",
+                    "serviceAccountJwtWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -459,6 +483,31 @@ namespace Pulumi.Vault.Kubernetes
             }
         }
 
+        [Input("serviceAccountJwtWo")]
+        private Input<string>? _serviceAccountJwtWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        /// </summary>
+        public Input<string>? ServiceAccountJwtWo
+        {
+            get => _serviceAccountJwtWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountJwtWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for `ServiceAccountJwtWo`. Increment to force an update.
+        /// For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Input("serviceAccountJwtWoVersion")]
+        public Input<int>? ServiceAccountJwtWoVersion { get; set; }
+
         public SecretBackendArgs()
         {
         }
@@ -673,6 +722,31 @@ namespace Pulumi.Vault.Kubernetes
                 _serviceAccountJwt = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("serviceAccountJwtWo")]
+        private Input<string>? _serviceAccountJwtWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        /// </summary>
+        public Input<string>? ServiceAccountJwtWo
+        {
+            get => _serviceAccountJwtWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountJwtWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for `ServiceAccountJwtWo`. Increment to force an update.
+        /// For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Input("serviceAccountJwtWoVersion")]
+        public Input<int>? ServiceAccountJwtWoVersion { get; set; }
 
         public SecretBackendState()
         {

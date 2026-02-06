@@ -23,6 +23,14 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `bindpassWo` - (Optional) Write-only password to use along with binddn when performing user search. Can be updated. Conflicts with `bindpass`.
+ *   Exactly one of `bindpass` or `bindpassWo` must be provided.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * LDAP secret backend can be imported using the `${mount}/config`, e.g.
@@ -84,9 +92,21 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly binddn: pulumi.Output<string>;
     /**
-     * Password to use along with binddn when performing user search.
+     * Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+     * Exactly one of `bindpass` or `bindpassWo` must be provided.
      */
-    declare public readonly bindpass: pulumi.Output<string>;
+    declare public readonly bindpass: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only LDAP password for searching for the user DN.
+     */
+    declare public readonly bindpassWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    declare public readonly bindpassWoVersion: pulumi.Output<number | undefined>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.
@@ -262,6 +282,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
             resourceInputs["binddn"] = state?.binddn;
             resourceInputs["bindpass"] = state?.bindpass;
+            resourceInputs["bindpassWo"] = state?.bindpassWo;
+            resourceInputs["bindpassWoVersion"] = state?.bindpassWoVersion;
             resourceInputs["certificate"] = state?.certificate;
             resourceInputs["clientTlsCert"] = state?.clientTlsCert;
             resourceInputs["clientTlsKey"] = state?.clientTlsKey;
@@ -302,15 +324,14 @@ export class SecretBackend extends pulumi.CustomResource {
             if (args?.binddn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'binddn'");
             }
-            if (args?.bindpass === undefined && !opts.urn) {
-                throw new Error("Missing required property 'bindpass'");
-            }
             resourceInputs["allowedManagedKeys"] = args?.allowedManagedKeys;
             resourceInputs["allowedResponseHeaders"] = args?.allowedResponseHeaders;
             resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
             resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
             resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
+            resourceInputs["bindpassWo"] = args?.bindpassWo ? pulumi.secret(args.bindpassWo) : undefined;
+            resourceInputs["bindpassWoVersion"] = args?.bindpassWoVersion;
             resourceInputs["certificate"] = args?.certificate;
             resourceInputs["clientTlsCert"] = args?.clientTlsCert ? pulumi.secret(args.clientTlsCert) : undefined;
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
@@ -349,7 +370,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["bindpass", "clientTlsCert", "clientTlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["bindpass", "bindpassWo", "clientTlsCert", "clientTlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -384,9 +405,21 @@ export interface SecretBackendState {
      */
     binddn?: pulumi.Input<string>;
     /**
-     * Password to use along with binddn when performing user search.
+     * Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+     * Exactly one of `bindpass` or `bindpassWo` must be provided.
      */
     bindpass?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only LDAP password for searching for the user DN.
+     */
+    bindpassWo?: pulumi.Input<string>;
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    bindpassWoVersion?: pulumi.Input<number>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.
@@ -568,9 +601,21 @@ export interface SecretBackendArgs {
      */
     binddn: pulumi.Input<string>;
     /**
-     * Password to use along with binddn when performing user search.
+     * Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+     * Exactly one of `bindpass` or `bindpassWo` must be provided.
      */
-    bindpass: pulumi.Input<string>;
+    bindpass?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only LDAP password for searching for the user DN.
+     */
+    bindpassWo?: pulumi.Input<string>;
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    bindpassWoVersion?: pulumi.Input<number>;
     /**
      * CA certificate to use when verifying LDAP server certificate, must be
      * x509 PEM encoded.

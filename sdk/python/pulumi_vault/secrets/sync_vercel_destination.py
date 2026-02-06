@@ -22,6 +22,10 @@ class SyncVercelDestinationArgs:
                  access_token: pulumi.Input[_builtins.str],
                  deployment_environments: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  project_id: pulumi.Input[_builtins.str],
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -34,6 +38,17 @@ class SyncVercelDestinationArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
         :param pulumi.Input[_builtins.str] project_id: Project ID where to manage environment variables.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+               for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+               for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the
+               destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to `true`, disables strict networking enforcement
+               for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+               Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] name: Unique name of the GitHub destination.
@@ -47,6 +62,14 @@ class SyncVercelDestinationArgs:
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "deployment_environments", deployment_environments)
         pulumi.set(__self__, "project_id", project_id)
+        if allowed_ipv4_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
+        if allowed_ipv6_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv6_addresses", allowed_ipv6_addresses)
+        if allowed_ports is not None:
+            pulumi.set(__self__, "allowed_ports", allowed_ports)
+        if disable_strict_networking is not None:
+            pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
         if name is not None:
@@ -95,6 +118,61 @@ class SyncVercelDestinationArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+        for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+        Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @allowed_ipv4_addresses.setter
+    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+        for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+        Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @allowed_ipv6_addresses.setter
+    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+        """
+        Set of allowed ports for outbound connections from Vault to the
+        destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @allowed_ports.setter
+    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+        pulumi.set(self, "allowed_ports", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, disables strict networking enforcement
+        for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+        Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @disable_strict_networking.setter
+    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter
@@ -165,7 +243,11 @@ class SyncVercelDestinationArgs:
 class _SyncVercelDestinationState:
     def __init__(__self__, *,
                  access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -177,8 +259,19 @@ class _SyncVercelDestinationState:
         Input properties used for looking up and filtering SyncVercelDestination resources.
         :param pulumi.Input[_builtins.str] access_token: Vercel API access token with the permissions to manage environment
                variables.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+               for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+               for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the
+               destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to `true`, disables strict networking enforcement
+               for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+               Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] name: Unique name of the GitHub destination.
@@ -193,8 +286,16 @@ class _SyncVercelDestinationState:
         """
         if access_token is not None:
             pulumi.set(__self__, "access_token", access_token)
+        if allowed_ipv4_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
+        if allowed_ipv6_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv6_addresses", allowed_ipv6_addresses)
+        if allowed_ports is not None:
+            pulumi.set(__self__, "allowed_ports", allowed_ports)
         if deployment_environments is not None:
             pulumi.set(__self__, "deployment_environments", deployment_environments)
+        if disable_strict_networking is not None:
+            pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
         if name is not None:
@@ -224,6 +325,47 @@ class _SyncVercelDestinationState:
         pulumi.set(self, "access_token", value)
 
     @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+        for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+        Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @allowed_ipv4_addresses.setter
+    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+        for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+        Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @allowed_ipv6_addresses.setter
+    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+        """
+        Set of allowed ports for outbound connections from Vault to the
+        destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @allowed_ports.setter
+    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+        pulumi.set(self, "allowed_ports", value)
+
+    @_builtins.property
     @pulumi.getter(name="deploymentEnvironments")
     def deployment_environments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -235,6 +377,20 @@ class _SyncVercelDestinationState:
     @deployment_environments.setter
     def deployment_environments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "deployment_environments", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, disables strict networking enforcement
+        for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+        Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @disable_strict_networking.setter
+    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter
@@ -332,7 +488,11 @@ class SyncVercelDestination(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -356,12 +516,22 @@ class SyncVercelDestination(pulumi.CustomResource):
                 "preview",
                 "production",
             ],
-            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            allowed_ipv4_addresses=[
+                "192.168.1.1/32",
+                "10.0.0.1/32",
+            ],
+            allowed_ipv6_addresses=["2001:db8:85a3::8a2e:370:7334/128"],
+            allowed_ports=[
+                443,
+                8443,
+            ],
+            disable_strict_networking=False)
         ```
 
         ## Import
 
-        GitHub Secrets sync destinations can be imported using the `name`, e.g.
+        Vercel Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
         $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
@@ -371,8 +541,19 @@ class SyncVercelDestination(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_token: Vercel API access token with the permissions to manage environment
                variables.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+               for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+               for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the
+               destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to `true`, disables strict networking enforcement
+               for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+               Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] name: Unique name of the GitHub destination.
@@ -406,12 +587,22 @@ class SyncVercelDestination(pulumi.CustomResource):
                 "preview",
                 "production",
             ],
-            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            allowed_ipv4_addresses=[
+                "192.168.1.1/32",
+                "10.0.0.1/32",
+            ],
+            allowed_ipv6_addresses=["2001:db8:85a3::8a2e:370:7334/128"],
+            allowed_ports=[
+                443,
+                8443,
+            ],
+            disable_strict_networking=False)
         ```
 
         ## Import
 
-        GitHub Secrets sync destinations can be imported using the `name`, e.g.
+        Vercel Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
         $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
@@ -433,7 +624,11 @@ class SyncVercelDestination(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -452,9 +647,13 @@ class SyncVercelDestination(pulumi.CustomResource):
             if access_token is None and not opts.urn:
                 raise TypeError("Missing required property 'access_token'")
             __props__.__dict__["access_token"] = None if access_token is None else pulumi.Output.secret(access_token)
+            __props__.__dict__["allowed_ipv4_addresses"] = allowed_ipv4_addresses
+            __props__.__dict__["allowed_ipv6_addresses"] = allowed_ipv6_addresses
+            __props__.__dict__["allowed_ports"] = allowed_ports
             if deployment_environments is None and not opts.urn:
                 raise TypeError("Missing required property 'deployment_environments'")
             __props__.__dict__["deployment_environments"] = deployment_environments
+            __props__.__dict__["disable_strict_networking"] = disable_strict_networking
             __props__.__dict__["granularity"] = granularity
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -477,7 +676,11 @@ class SyncVercelDestination(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_token: Optional[pulumi.Input[_builtins.str]] = None,
+            allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
             deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
             granularity: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -494,8 +697,19 @@ class SyncVercelDestination(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_token: Vercel API access token with the permissions to manage environment
                variables.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+               for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+               for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+               Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the
+               destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to `true`, disables strict networking enforcement
+               for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+               Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] name: Unique name of the GitHub destination.
@@ -513,7 +727,11 @@ class SyncVercelDestination(pulumi.CustomResource):
         __props__ = _SyncVercelDestinationState.__new__(_SyncVercelDestinationState)
 
         __props__.__dict__["access_token"] = access_token
+        __props__.__dict__["allowed_ipv4_addresses"] = allowed_ipv4_addresses
+        __props__.__dict__["allowed_ipv6_addresses"] = allowed_ipv6_addresses
+        __props__.__dict__["allowed_ports"] = allowed_ports
         __props__.__dict__["deployment_environments"] = deployment_environments
+        __props__.__dict__["disable_strict_networking"] = disable_strict_networking
         __props__.__dict__["granularity"] = granularity
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -533,6 +751,35 @@ class SyncVercelDestination(pulumi.CustomResource):
         return pulumi.get(self, "access_token")
 
     @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+        for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+        Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+        for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+        Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> pulumi.Output[Optional[Sequence[_builtins.int]]]:
+        """
+        Set of allowed ports for outbound connections from Vault to the
+        destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @_builtins.property
     @pulumi.getter(name="deploymentEnvironments")
     def deployment_environments(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
@@ -540,6 +787,16 @@ class SyncVercelDestination(pulumi.CustomResource):
         are available. Accepts `development`, `preview` and `production`.
         """
         return pulumi.get(self, "deployment_environments")
+
+    @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If set to `true`, disables strict networking enforcement
+        for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+        Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "disable_strict_networking")
 
     @_builtins.property
     @pulumi.getter

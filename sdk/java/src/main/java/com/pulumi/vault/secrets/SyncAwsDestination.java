@@ -10,6 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncAwsDestinationArgs;
 import com.pulumi.vault.secrets.inputs.SyncAwsDestinationState;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +59,50 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example with Networking Restrictions
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncAwsDestination;
+ * import com.pulumi.vault.secrets.SyncAwsDestinationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var awsRestricted = new SyncAwsDestination("awsRestricted", SyncAwsDestinationArgs.builder()
+ *             .name("aws-dest-restricted")
+ *             .accessKeyId(accessKeyId)
+ *             .secretAccessKey(secretAccessKey)
+ *             .region("us-east-1")
+ *             .allowedIpv4Addresses(            
+ *                 "192.168.1.0/24",
+ *                 "10.0.0.0/8")
+ *             .allowedIpv6Addresses("2001:db8::/32")
+ *             .allowedPorts(            
+ *                 443,
+ *                 8200)
+ *             .disableStrictNetworking(false)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -87,6 +133,60 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessKeyId);
     }
     /**
+     * Allowed IPv4 addresses for outbound connections from Vault to AWS Secrets Manager.
+     * Can also be set via an IP address range using CIDR notation. For example: `[&#34;192.168.1.0/24&#34;, &#34;10.0.0.0/8&#34;]`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    @Export(name="allowedIpv4Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return Allowed IPv4 addresses for outbound connections from Vault to AWS Secrets Manager.
+     * Can also be set via an IP address range using CIDR notation. For example: `[&#34;192.168.1.0/24&#34;, &#34;10.0.0.0/8&#34;]`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv4Addresses() {
+        return Codegen.optional(this.allowedIpv4Addresses);
+    }
+    /**
+     * Allowed IPv6 addresses for outbound connections from Vault to AWS Secrets Manager.
+     * Can also be set via an IP address range using CIDR notation. For example: `[&#34;2001:db8::/32&#34;]`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    @Export(name="allowedIpv6Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return Allowed IPv6 addresses for outbound connections from Vault to AWS Secrets Manager.
+     * Can also be set via an IP address range using CIDR notation. For example: `[&#34;2001:db8::/32&#34;]`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv6Addresses() {
+        return Codegen.optional(this.allowedIpv6Addresses);
+    }
+    /**
+     * Allowed ports for outbound connections from Vault to AWS Secrets Manager.
+     * For example: `[443, 8200]`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    @Export(name="allowedPorts", refs={List.class,Integer.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<Integer>> allowedPorts;
+
+    /**
+     * @return Allowed ports for outbound connections from Vault to AWS Secrets Manager.
+     * For example: `[443, 8200]`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    public Output<Optional<List<Integer>>> allowedPorts() {
+        return Codegen.optional(this.allowedPorts);
+    }
+    /**
      * Custom tags to set on the secret managed at the destination.
      * 
      */
@@ -99,6 +199,24 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Map<String,String>>> customTags() {
         return Codegen.optional(this.customTags);
+    }
+    /**
+     * Disable strict networking mode. When set to `true`, Vault will not enforce
+     * allowed IP addresses and ports. Defaults to `false`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    @Export(name="disableStrictNetworking", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableStrictNetworking;
+
+    /**
+     * @return Disable strict networking mode. When set to `true`, Vault will not enforce
+     * allowed IP addresses and ports. Defaults to `false`.
+     * **Requires Vault 1.19.0+**.
+     * 
+     */
+    public Output<Optional<Boolean>> disableStrictNetworking() {
+        return Codegen.optional(this.disableStrictNetworking);
     }
     /**
      * Optional extra protection that must match the trust policy granting access to the

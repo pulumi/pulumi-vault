@@ -10,6 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
 import com.pulumi.vault.secrets.inputs.SyncGcpDestinationState;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +60,143 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### With Networking Configuration (Vault 1.19+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGcpDestination;
+ * import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpNetworking = new SyncGcpDestination("gcpNetworking", SyncGcpDestinationArgs.builder()
+ *             .name("gcp-dest-networking")
+ *             .projectId("gcp-project-id")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .allowedIpv4Addresses(            
+ *                 "10.0.0.0/8",
+ *                 "192.168.0.0/16")
+ *             .allowedIpv6Addresses("2001:db8::/32")
+ *             .allowedPorts(            
+ *                 443,
+ *                 8443)
+ *             .disableStrictNetworking(false)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Global Encryption (Vault 1.19+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGcpDestination;
+ * import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpEncryption = new SyncGcpDestination("gcpEncryption", SyncGcpDestinationArgs.builder()
+ *             .name("gcp-dest-encryption")
+ *             .projectId("gcp-project-id")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .globalKmsKey("projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Multi-Region Replication and Regional Encryption (Vault 1.19+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGcpDestination;
+ * import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpReplicationEncryption = new SyncGcpDestination("gcpReplicationEncryption", SyncGcpDestinationArgs.builder()
+ *             .name("gcp-dest-replication-encryption")
+ *             .projectId("gcp-project-id")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}_{{ .SecretKey | lowercase }}")
+ *             .granularity("secret-key")
+ *             .locationalKmsKeys(Map.ofEntries(
+ *                 Map.entry("us-central1", "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key"),
+ *                 Map.entry("us-east1", "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key")
+ *             ))
+ *             .replicationLocations(            
+ *                 "us-central1",
+ *                 "us-east1")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -69,6 +208,48 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:secrets/syncGcpDestination:SyncGcpDestination")
 public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
+    /**
+     * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     * 
+     */
+    @Export(name="allowedIpv4Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv4Addresses() {
+        return Codegen.optional(this.allowedIpv4Addresses);
+    }
+    /**
+     * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     * 
+     */
+    @Export(name="allowedIpv6Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv6Addresses() {
+        return Codegen.optional(this.allowedIpv6Addresses);
+    }
+    /**
+     * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     * 
+     */
+    @Export(name="allowedPorts", refs={List.class,Integer.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<Integer>> allowedPorts;
+
+    /**
+     * @return Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+     * 
+     */
+    public Output<Optional<List<Integer>>> allowedPorts() {
+        return Codegen.optional(this.allowedPorts);
+    }
     /**
      * JSON-encoded credentials to use to connect to GCP.
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
@@ -102,6 +283,34 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customTags);
     }
     /**
+     * Disable strict networking requirements.
+     * 
+     */
+    @Export(name="disableStrictNetworking", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableStrictNetworking;
+
+    /**
+     * @return Disable strict networking requirements.
+     * 
+     */
+    public Output<Optional<Boolean>> disableStrictNetworking() {
+        return Codegen.optional(this.disableStrictNetworking);
+    }
+    /**
+     * Global KMS key for encryption.
+     * 
+     */
+    @Export(name="globalKmsKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> globalKmsKey;
+
+    /**
+     * @return Global KMS key for encryption.
+     * 
+     */
+    public Output<Optional<String>> globalKmsKey() {
+        return Codegen.optional(this.globalKmsKey);
+    }
+    /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      * 
@@ -116,6 +325,20 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> granularity() {
         return Codegen.optional(this.granularity);
+    }
+    /**
+     * Locational KMS keys for encryption.
+     * 
+     */
+    @Export(name="locationalKmsKeys", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> locationalKmsKeys;
+
+    /**
+     * @return Locational KMS keys for encryption.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> locationalKmsKeys() {
+        return Codegen.optional(this.locationalKmsKeys);
     }
     /**
      * Unique name of the GCP destination.
@@ -168,6 +391,20 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> projectId() {
         return Codegen.optional(this.projectId);
+    }
+    /**
+     * Replication locations for secrets.
+     * 
+     */
+    @Export(name="replicationLocations", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> replicationLocations;
+
+    /**
+     * @return Replication locations for secrets.
+     * 
+     */
+    public Output<Optional<List<String>>> replicationLocations() {
+        return Codegen.optional(this.replicationLocations);
     }
     /**
      * Template describing how to generate external secret names.

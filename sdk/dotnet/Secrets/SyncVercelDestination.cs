@@ -32,6 +32,21 @@ namespace Pulumi.Vault.Secrets
     ///             "production",
     ///         },
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         AllowedIpv4Addresses = new[]
+    ///         {
+    ///             "192.168.1.1/32",
+    ///             "10.0.0.1/32",
+    ///         },
+    ///         AllowedIpv6Addresses = new[]
+    ///         {
+    ///             "2001:db8:85a3::8a2e:370:7334/128",
+    ///         },
+    ///         AllowedPorts = new[]
+    ///         {
+    ///             443,
+    ///             8443,
+    ///         },
+    ///         DisableStrictNetworking = false,
     ///     });
     /// 
     /// });
@@ -39,7 +54,7 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// ## Import
     /// 
-    /// GitHub Secrets sync destinations can be imported using the `name`, e.g.
+    /// Vercel Secrets sync destinations can be imported using the `name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
@@ -56,11 +71,42 @@ namespace Pulumi.Vault.Secrets
         public Output<string> AccessToken { get; private set; } = null!;
 
         /// <summary>
+        /// Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+        /// for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+        /// Requires Vault 1.19+.
+        /// </summary>
+        [Output("allowedIpv4Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv4Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+        /// for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+        /// Requires Vault 1.19+.
+        /// </summary>
+        [Output("allowedIpv6Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv6Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of allowed ports for outbound connections from Vault to the
+        /// destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        /// </summary>
+        [Output("allowedPorts")]
+        public Output<ImmutableArray<int>> AllowedPorts { get; private set; } = null!;
+
+        /// <summary>
         /// Deployment environments where the environment variables
         /// are available. Accepts `Development`, `Preview` and `Production`.
         /// </summary>
         [Output("deploymentEnvironments")]
         public Output<ImmutableArray<string>> DeploymentEnvironments { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to `True`, disables strict networking enforcement
+        /// for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+        /// Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Output("disableStrictNetworking")]
+        public Output<bool?> DisableStrictNetworking { get; private set; } = null!;
 
         /// <summary>
         /// Determines what level of information is synced as a distinct resource
@@ -175,6 +221,47 @@ namespace Pulumi.Vault.Secrets
             }
         }
 
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+        /// for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+        /// Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+        /// for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+        /// Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// Set of allowed ports for outbound connections from Vault to the
+        /// destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         [Input("deploymentEnvironments", required: true)]
         private InputList<string>? _deploymentEnvironments;
 
@@ -187,6 +274,14 @@ namespace Pulumi.Vault.Secrets
             get => _deploymentEnvironments ?? (_deploymentEnvironments = new InputList<string>());
             set => _deploymentEnvironments = value;
         }
+
+        /// <summary>
+        /// If set to `True`, disables strict networking enforcement
+        /// for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+        /// Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
 
         /// <summary>
         /// Determines what level of information is synced as a distinct resource
@@ -253,6 +348,47 @@ namespace Pulumi.Vault.Secrets
             }
         }
 
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+        /// for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+        /// Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+        /// for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+        /// Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// Set of allowed ports for outbound connections from Vault to the
+        /// destination. If not set, all ports are allowed. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         [Input("deploymentEnvironments")]
         private InputList<string>? _deploymentEnvironments;
 
@@ -265,6 +401,14 @@ namespace Pulumi.Vault.Secrets
             get => _deploymentEnvironments ?? (_deploymentEnvironments = new InputList<string>());
             set => _deploymentEnvironments = value;
         }
+
+        /// <summary>
+        /// If set to `True`, disables strict networking enforcement
+        /// for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+        /// Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
 
         /// <summary>
         /// Determines what level of information is synced as a distinct resource

@@ -157,20 +157,52 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
      * 
      */
     @Import(name="clientKey")
     private @Nullable Output<String> clientKey;
 
     /**
-     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
      * 
      */
     public Optional<Output<String>> clientKey() {
         return Optional.ofNullable(this.clientKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_key&#39;. Requires &#39;client_key_wo_version&#39; to trigger updates.
+     * 
+     */
+    @Import(name="clientKeyWo")
+    private @Nullable Output<String> clientKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_key&#39;. Requires &#39;client_key_wo_version&#39; to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> clientKeyWo() {
+        return Optional.ofNullable(this.clientKeyWo);
+    }
+
+    /**
+     * Version counter for the write-only client key. Increment this value to trigger
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     * 
+     */
+    @Import(name="clientKeyWoVersion")
+    private @Nullable Output<Integer> clientKeyWoVersion;
+
+    /**
+     * @return Version counter for the write-only client key. Increment this value to trigger
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> clientKeyWoVersion() {
+        return Optional.ofNullable(this.clientKeyWoVersion);
     }
 
     /**
@@ -439,18 +471,52 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Specifies the Consul token to use when managing or issuing new tokens.
+     * Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return Specifies the Consul token to use when managing or issuing new tokens.
+     * @return Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
      * 
      */
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with &#39;token&#39;. Requires &#39;token_wo_version&#39; to trigger updates.
+     * 
+     */
+    @Import(name="tokenWo")
+    private @Nullable Output<String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with &#39;token&#39;. Requires &#39;token_wo_version&#39; to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> tokenWo() {
+        return Optional.ofNullable(this.tokenWo);
+    }
+
+    /**
+     * Version counter for the write-only token. Increment this value to trigger an update
+     * of the token in Vault. Required when using `tokenWo`.
+     * 
+     */
+    @Import(name="tokenWoVersion")
+    private @Nullable Output<Integer> tokenWoVersion;
+
+    /**
+     * @return Version counter for the write-only token. Increment this value to trigger an update
+     * of the token in Vault. Required when using `tokenWo`.
+     * 
+     */
+    public Optional<Output<Integer>> tokenWoVersion() {
+        return Optional.ofNullable(this.tokenWoVersion);
     }
 
     private SecretBackendState() {}
@@ -466,6 +532,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.caCert = $.caCert;
         this.clientCert = $.clientCert;
         this.clientKey = $.clientKey;
+        this.clientKeyWo = $.clientKeyWo;
+        this.clientKeyWoVersion = $.clientKeyWoVersion;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
@@ -484,6 +552,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.scheme = $.scheme;
         this.sealWrap = $.sealWrap;
         this.token = $.token;
+        this.tokenWo = $.tokenWo;
+        this.tokenWoVersion = $.tokenWoVersion;
     }
 
     public static Builder builder() {
@@ -736,8 +806,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
-         * you need to also set client_cert.
+         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
          * 
          * @return builder
          * 
@@ -748,14 +817,59 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
-         * you need to also set client_cert.
+         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
          * 
          * @return builder
          * 
          */
         public Builder clientKey(String clientKey) {
             return clientKey(Output.of(clientKey));
+        }
+
+        /**
+         * @param clientKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_key&#39;. Requires &#39;client_key_wo_version&#39; to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWo(@Nullable Output<String> clientKeyWo) {
+            $.clientKeyWo = clientKeyWo;
+            return this;
+        }
+
+        /**
+         * @param clientKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_key&#39;. Requires &#39;client_key_wo_version&#39; to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWo(String clientKeyWo) {
+            return clientKeyWo(Output.of(clientKeyWo));
+        }
+
+        /**
+         * @param clientKeyWoVersion Version counter for the write-only client key. Increment this value to trigger
+         * an update of the client key in Vault. Required when using `clientKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWoVersion(@Nullable Output<Integer> clientKeyWoVersion) {
+            $.clientKeyWoVersion = clientKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientKeyWoVersion Version counter for the write-only client key. Increment this value to trigger
+         * an update of the client key in Vault. Required when using `clientKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWoVersion(Integer clientKeyWoVersion) {
+            return clientKeyWoVersion(Output.of(clientKeyWoVersion));
         }
 
         /**
@@ -1146,7 +1260,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param token Specifies the Consul token to use when managing or issuing new tokens.
+         * @param token Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
          * 
          * @return builder
          * 
@@ -1157,13 +1271,59 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param token Specifies the Consul token to use when managing or issuing new tokens.
+         * @param token Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
          * 
          * @return builder
          * 
          */
         public Builder token(String token) {
             return token(Output.of(token));
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with &#39;token&#39;. Requires &#39;token_wo_version&#39; to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(@Nullable Output<String> tokenWo) {
+            $.tokenWo = tokenWo;
+            return this;
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with &#39;token&#39;. Requires &#39;token_wo_version&#39; to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(String tokenWo) {
+            return tokenWo(Output.of(tokenWo));
+        }
+
+        /**
+         * @param tokenWoVersion Version counter for the write-only token. Increment this value to trigger an update
+         * of the token in Vault. Required when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(@Nullable Output<Integer> tokenWoVersion) {
+            $.tokenWoVersion = tokenWoVersion;
+            return this;
+        }
+
+        /**
+         * @param tokenWoVersion Version counter for the write-only token. Increment this value to trigger an update
+         * of the token in Vault. Required when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(Integer tokenWoVersion) {
+            return tokenWoVersion(Output.of(tokenWoVersion));
         }
 
         public SecretBackendState build() {

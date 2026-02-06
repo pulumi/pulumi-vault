@@ -20,7 +20,6 @@ __all__ = ['SecretBackendArgs', 'SecretBackend']
 class SecretBackendArgs:
     def __init__(__self__, *,
                  connection_uri: pulumi.Input[_builtins.str],
-                 password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -39,7 +38,10 @@ class SecretBackendArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -48,7 +50,6 @@ class SecretBackendArgs:
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[_builtins.str] connection_uri: Specifies the RabbitMQ connection URI.
-        :param pulumi.Input[_builtins.str] password: Specifies the RabbitMQ management administrator password.
         :param pulumi.Input[_builtins.str] username: Specifies the RabbitMQ management administrator username.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
@@ -71,7 +72,12 @@ class SecretBackendArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[_builtins.str] password: Specifies the RabbitMQ management administrator password.
+               Conflicts with `password_wo`.
         :param pulumi.Input[_builtins.str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] password_wo_version: A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
@@ -81,7 +87,6 @@ class SecretBackendArgs:
                Defaults to `true`.
         """
         pulumi.set(__self__, "connection_uri", connection_uri)
-        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
@@ -117,8 +122,14 @@ class SecretBackendArgs:
             pulumi.set(__self__, "options", options)
         if passthrough_request_headers is not None:
             pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if plugin_version is not None:
@@ -141,18 +152,6 @@ class SecretBackendArgs:
     @connection_uri.setter
     def connection_uri(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "connection_uri", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        Specifies the RabbitMQ management administrator password.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
@@ -375,6 +374,19 @@ class SecretBackendArgs:
         pulumi.set(self, "passthrough_request_headers", value)
 
     @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the RabbitMQ management administrator password.
+        Conflicts with `password_wo`.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -385,6 +397,31 @@ class SecretBackendArgs:
     @password_policy.setter
     def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -473,6 +510,8 @@ class _SecretBackendState:
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -505,7 +544,11 @@ class _SecretBackendState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] password: Specifies the RabbitMQ management administrator password.
+               Conflicts with `password_wo`.
         :param pulumi.Input[_builtins.str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] password_wo_version: A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
@@ -557,6 +600,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "password", password)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if path is not None:
             pulumi.set(__self__, "path", path)
         if plugin_version is not None:
@@ -807,6 +854,7 @@ class _SecretBackendState:
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the RabbitMQ management administrator password.
+        Conflicts with `password_wo`.
         """
         return pulumi.get(self, "password")
 
@@ -825,6 +873,31 @@ class _SecretBackendState:
     @password_policy.setter
     def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -927,6 +1000,8 @@ class SecretBackend(pulumi.CustomResource):
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -935,18 +1010,6 @@ class SecretBackend(pulumi.CustomResource):
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        rabbitmq = vault.rabbitmq.SecretBackend("rabbitmq",
-            connection_uri="https://.....",
-            username="user",
-            password="password")
-        ```
-
         ## Import
 
         RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -980,7 +1043,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] password: Specifies the RabbitMQ management administrator password.
+               Conflicts with `password_wo`.
         :param pulumi.Input[_builtins.str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] password_wo_version: A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
@@ -997,18 +1064,6 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        rabbitmq = vault.rabbitmq.SecretBackend("rabbitmq",
-            connection_uri="https://.....",
-            username="user",
-            password="password")
-        ```
-
         ## Import
 
         RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -1052,6 +1107,8 @@ class SecretBackend(pulumi.CustomResource):
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_policy: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1087,10 +1144,10 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
             __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["password_policy"] = password_policy
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["path"] = path
             __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["seal_wrap"] = seal_wrap
@@ -1100,7 +1157,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["username_template"] = username_template
             __props__.__dict__["verify_connection"] = verify_connection
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "username"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo", "username"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:rabbitMq/secretBackend:SecretBackend',
@@ -1133,6 +1190,8 @@ class SecretBackend(pulumi.CustomResource):
             passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
             password_policy: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
             plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1170,7 +1229,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] password: Specifies the RabbitMQ management administrator password.
+               Conflicts with `password_wo`.
         :param pulumi.Input[_builtins.str] password_policy: Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] password_wo_version: A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `rabbitmq`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
@@ -1205,6 +1268,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
         __props__.__dict__["password"] = password
         __props__.__dict__["password_policy"] = password_policy
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["path"] = path
         __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["seal_wrap"] = seal_wrap
@@ -1371,9 +1436,10 @@ class SecretBackend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Output[_builtins.str]:
+    def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Specifies the RabbitMQ management administrator password.
+        Conflicts with `password_wo`.
         """
         return pulumi.get(self, "password")
 
@@ -1384,6 +1450,23 @@ class SecretBackend(pulumi.CustomResource):
         Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
         """
         return pulumi.get(self, "password_policy")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only password_wo field. Incrementing this value will trigger an update to the password.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter

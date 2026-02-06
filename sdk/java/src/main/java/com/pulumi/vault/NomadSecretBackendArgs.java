@@ -147,6 +147,7 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
 
     /**
      * Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      * 
      */
     @Import(name="clientKey")
@@ -154,10 +155,45 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
 
     /**
      * @return Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+     * Conflicts with `clientKeyWo`.
      * 
      */
     public Optional<Output<String>> clientKey() {
         return Optional.ofNullable(this.clientKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * 
+     */
+    @Import(name="clientKeyWo")
+    private @Nullable Output<String> clientKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only client key used for Nomad&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+     * 
+     */
+    public Optional<Output<String>> clientKeyWo() {
+        return Optional.ofNullable(this.clientKeyWo);
+    }
+
+    /**
+     * Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     * 
+     */
+    @Import(name="clientKeyWoVersion")
+    private @Nullable Output<Integer> clientKeyWoVersion;
+
+    /**
+     * @return Version counter for the write-only client key. This must be incremented
+     * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> clientKeyWoVersion() {
+        return Optional.ofNullable(this.clientKeyWoVersion);
     }
 
     /**
@@ -428,18 +464,52 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies the Nomad Management token to use.
+     * Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return Specifies the Nomad Management token to use.
+     * @return Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
      * 
      */
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     * 
+     */
+    @Import(name="tokenWo")
+    private @Nullable Output<String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Nomad Management token to use.
+     * 
+     */
+    public Optional<Output<String>> tokenWo() {
+        return Optional.ofNullable(this.tokenWo);
+    }
+
+    /**
+     * Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     * 
+     */
+    @Import(name="tokenWoVersion")
+    private @Nullable Output<Integer> tokenWoVersion;
+
+    /**
+     * @return Version counter for the write-only token. This must be incremented each time
+     * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+     * 
+     */
+    public Optional<Output<Integer>> tokenWoVersion() {
+        return Optional.ofNullable(this.tokenWoVersion);
     }
 
     /**
@@ -469,6 +539,8 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
         this.caCert = $.caCert;
         this.clientCert = $.clientCert;
         this.clientKey = $.clientKey;
+        this.clientKeyWo = $.clientKeyWo;
+        this.clientKeyWoVersion = $.clientKeyWoVersion;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
@@ -487,6 +559,8 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
         this.pluginVersion = $.pluginVersion;
         this.sealWrap = $.sealWrap;
         this.token = $.token;
+        this.tokenWo = $.tokenWo;
+        this.tokenWoVersion = $.tokenWoVersion;
         this.ttl = $.ttl;
     }
 
@@ -724,6 +798,7 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
 
         /**
          * @param clientKey Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+         * Conflicts with `clientKeyWo`.
          * 
          * @return builder
          * 
@@ -735,12 +810,59 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
 
         /**
          * @param clientKey Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+         * Conflicts with `clientKeyWo`.
          * 
          * @return builder
          * 
          */
         public Builder clientKey(String clientKey) {
             return clientKey(Output.of(clientKey));
+        }
+
+        /**
+         * @param clientKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only client key used for Nomad&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWo(@Nullable Output<String> clientKeyWo) {
+            $.clientKeyWo = clientKeyWo;
+            return this;
+        }
+
+        /**
+         * @param clientKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only client key used for Nomad&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWo(String clientKeyWo) {
+            return clientKeyWo(Output.of(clientKeyWo));
+        }
+
+        /**
+         * @param clientKeyWoVersion Version counter for the write-only client key. This must be incremented
+         * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWoVersion(@Nullable Output<Integer> clientKeyWoVersion) {
+            $.clientKeyWoVersion = clientKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientKeyWoVersion Version counter for the write-only client key. This must be incremented
+         * each time the `clientKeyWo` value is changed to trigger an update. Required when using `clientKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientKeyWoVersion(Integer clientKeyWoVersion) {
+            return clientKeyWoVersion(Output.of(clientKeyWoVersion));
         }
 
         /**
@@ -1133,7 +1255,7 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param token Specifies the Nomad Management token to use.
+         * @param token Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
          * 
          * @return builder
          * 
@@ -1144,13 +1266,59 @@ public final class NomadSecretBackendArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param token Specifies the Nomad Management token to use.
+         * @param token Specifies the Nomad Management token to use. Conflicts with `tokenWo`.
          * 
          * @return builder
          * 
          */
         public Builder token(String token) {
             return token(Output.of(token));
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only Nomad Management token to use.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(@Nullable Output<String> tokenWo) {
+            $.tokenWo = tokenWo;
+            return this;
+        }
+
+        /**
+         * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only Nomad Management token to use.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWo(String tokenWo) {
+            return tokenWo(Output.of(tokenWo));
+        }
+
+        /**
+         * @param tokenWoVersion Version counter for the write-only token. This must be incremented each time
+         * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(@Nullable Output<Integer> tokenWoVersion) {
+            $.tokenWoVersion = tokenWoVersion;
+            return this;
+        }
+
+        /**
+         * @param tokenWoVersion Version counter for the write-only token. This must be incremented each time
+         * the `tokenWo` value is changed to trigger an update. Required when using `tokenWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenWoVersion(Integer tokenWoVersion) {
+            return tokenWoVersion(Output.of(tokenWoVersion));
         }
 
         /**

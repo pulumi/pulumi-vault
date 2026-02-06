@@ -10,48 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Consul
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ### Creating a standard backend resource:
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Vault.Consul.SecretBackend("test", new()
-    ///     {
-    ///         Path = "consul",
-    ///         Description = "Manages the Consul backend",
-    ///         Address = "127.0.0.1:8500",
-    ///         Token = "4240861b-ce3d-8530-115a-521ff070dd29",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Creating a backend resource to bootstrap a new Consul instance:
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var test = new Vault.Consul.SecretBackend("test", new()
-    ///     {
-    ///         Path = "consul",
-    ///         Description = "Bootstrap the Consul backend",
-    ///         Address = "127.0.0.1:8500",
-    ///         Bootstrap = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Consul secret backends can be imported using the `path`, e.g.
@@ -119,11 +77,24 @@ namespace Pulumi.Vault.Consul
         public Output<string?> ClientCert { get; private set; } = null!;
 
         /// <summary>
-        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-        /// you need to also set client_cert.
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
         /// </summary>
         [Output("clientKey")]
         public Output<string?> ClientKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        /// </summary>
+        [Output("clientKeyWo")]
+        public Output<string?> ClientKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only client key. Increment this value to trigger 
+        /// an update of the client key in Vault. Required when using `ClientKeyWo`.
+        /// </summary>
+        [Output("clientKeyWoVersion")]
+        public Output<int?> ClientKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Default lease duration for secrets in seconds
@@ -233,10 +204,24 @@ namespace Pulumi.Vault.Consul
         public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Consul token to use when managing or issuing new tokens.
+        /// Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        /// </summary>
+        [Output("tokenWo")]
+        public Output<string?> TokenWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only token. Increment this value to trigger an update 
+        /// of the token in Vault. Required when using `TokenWo`.
+        /// </summary>
+        [Output("tokenWoVersion")]
+        public Output<int?> TokenWoVersion { get; private set; } = null!;
 
 
         /// <summary>
@@ -265,7 +250,9 @@ namespace Pulumi.Vault.Consul
                 {
                     "clientCert",
                     "clientKey",
+                    "clientKeyWo",
                     "token",
+                    "tokenWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -377,8 +364,7 @@ namespace Pulumi.Vault.Consul
         private Input<string>? _clientKey;
 
         /// <summary>
-        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-        /// you need to also set client_cert.
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
         /// </summary>
         public Input<string>? ClientKey
         {
@@ -389,6 +375,30 @@ namespace Pulumi.Vault.Consul
                 _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientKeyWo")]
+        private Input<string>? _clientKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        /// </summary>
+        public Input<string>? ClientKeyWo
+        {
+            get => _clientKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only client key. Increment this value to trigger 
+        /// an update of the client key in Vault. Required when using `ClientKeyWo`.
+        /// </summary>
+        [Input("clientKeyWoVersion")]
+        public Input<int>? ClientKeyWoVersion { get; set; }
 
         /// <summary>
         /// Default lease duration for secrets in seconds
@@ -519,7 +529,7 @@ namespace Pulumi.Vault.Consul
         private Input<string>? _token;
 
         /// <summary>
-        /// Specifies the Consul token to use when managing or issuing new tokens.
+        /// Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
         /// </summary>
         public Input<string>? Token
         {
@@ -530,6 +540,30 @@ namespace Pulumi.Vault.Consul
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only token. Increment this value to trigger an update 
+        /// of the token in Vault. Required when using `TokenWo`.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
 
         public SecretBackendArgs()
         {
@@ -632,8 +666,7 @@ namespace Pulumi.Vault.Consul
         private Input<string>? _clientKey;
 
         /// <summary>
-        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-        /// you need to also set client_cert.
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
         /// </summary>
         public Input<string>? ClientKey
         {
@@ -644,6 +677,30 @@ namespace Pulumi.Vault.Consul
                 _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientKeyWo")]
+        private Input<string>? _clientKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        /// </summary>
+        public Input<string>? ClientKeyWo
+        {
+            get => _clientKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only client key. Increment this value to trigger 
+        /// an update of the client key in Vault. Required when using `ClientKeyWo`.
+        /// </summary>
+        [Input("clientKeyWoVersion")]
+        public Input<int>? ClientKeyWoVersion { get; set; }
 
         /// <summary>
         /// Default lease duration for secrets in seconds
@@ -774,7 +831,7 @@ namespace Pulumi.Vault.Consul
         private Input<string>? _token;
 
         /// <summary>
-        /// Specifies the Consul token to use when managing or issuing new tokens.
+        /// Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
         /// </summary>
         public Input<string>? Token
         {
@@ -785,6 +842,30 @@ namespace Pulumi.Vault.Consul
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only token. Increment this value to trigger an update 
+        /// of the token in Vault. Required when using `TokenWo`.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
 
         public SecretBackendState()
         {

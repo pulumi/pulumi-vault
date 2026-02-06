@@ -52,12 +52,12 @@ public final class KeysPkc {
      * @return The id of a PKCS#11 key to use
      * 
      */
-    private String keyId;
+    private @Nullable String keyId;
     /**
      * @return The label of the key to use
      * 
      */
-    private String keyLabel;
+    private @Nullable String keyLabel;
     /**
      * @return The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
      * 
@@ -148,15 +148,15 @@ public final class KeysPkc {
      * @return The id of a PKCS#11 key to use
      * 
      */
-    public String keyId() {
-        return this.keyId;
+    public Optional<String> keyId() {
+        return Optional.ofNullable(this.keyId);
     }
     /**
      * @return The label of the key to use
      * 
      */
-    public String keyLabel() {
-        return this.keyLabel;
+    public Optional<String> keyLabel() {
+        return Optional.ofNullable(this.keyLabel);
     }
     /**
      * @return The name of the kmsLibrary stanza to use from Vault&#39;s config to lookup the local library path
@@ -224,8 +224,8 @@ public final class KeysPkc {
         private @Nullable String curve;
         private @Nullable String forceRwSession;
         private @Nullable String keyBits;
-        private String keyId;
-        private String keyLabel;
+        private @Nullable String keyId;
+        private @Nullable String keyLabel;
         private String library;
         private String mechanism;
         private String name;
@@ -297,18 +297,14 @@ public final class KeysPkc {
             return this;
         }
         @CustomType.Setter
-        public Builder keyId(String keyId) {
-            if (keyId == null) {
-              throw new MissingRequiredPropertyException("KeysPkc", "keyId");
-            }
+        public Builder keyId(@Nullable String keyId) {
+
             this.keyId = keyId;
             return this;
         }
         @CustomType.Setter
-        public Builder keyLabel(String keyLabel) {
-            if (keyLabel == null) {
-              throw new MissingRequiredPropertyException("KeysPkc", "keyLabel");
-            }
+        public Builder keyLabel(@Nullable String keyLabel) {
+
             this.keyLabel = keyLabel;
             return this;
         }

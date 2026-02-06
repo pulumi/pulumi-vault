@@ -65,11 +65,12 @@ import javax.annotation.Nullable;
  *             .name("secret")
  *             .cas(1)
  *             .deleteAllVersions(true)
- *             .dataJson(serializeJson(
+ *             .dataJsonWo(serializeJson(
  *                 jsonObject(
  *                     jsonProperty("zip", "zap"),
  *                     jsonProperty("foo", "bar")
  *                 )))
+ *             .dataJsonWoVersion(1)
  *             .customMetadata(SecretV2CustomMetadataArgs.builder()
  *                 .maxVersions(5)
  *                 .data(Map.ofEntries(
@@ -102,13 +103,6 @@ import javax.annotation.Nullable;
  * a version is deleted. Accepts duration in integer seconds.
  * 
  * * `data` - (Optional) A string to string map describing the secret.
- * 
- * ## Ephemeral Attributes Reference
- * 
- * The following write-only attributes are supported:
- * 
- * * `dataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
- *   **Note**: This property is write-only and will not be read from the API.
  * 
  * ## Import
  * 
@@ -185,7 +179,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
     }
     /**
      * JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      * 
      */
     @Export(name="dataJson", refs={String.class}, tree="[0]")
@@ -193,7 +187,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
 
     /**
      * @return JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      * 
      */
     public Output<Optional<String>> dataJson() {
@@ -201,7 +195,8 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      * 
      */
     @Export(name="dataJsonWo", refs={String.class}, tree="[0]")
@@ -209,7 +204,8 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      * 
      */
     public Output<Optional<String>> dataJsonWo() {

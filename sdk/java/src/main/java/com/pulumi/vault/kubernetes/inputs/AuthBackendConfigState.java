@@ -6,6 +6,7 @@ package com.pulumi.vault.kubernetes.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -144,18 +145,50 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
      * 
      */
     @Import(name="tokenReviewerJwt")
     private @Nullable Output<String> tokenReviewerJwt;
 
     /**
-     * @return A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * @return A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
      * 
      */
     public Optional<Output<String>> tokenReviewerJwt() {
         return Optional.ofNullable(this.tokenReviewerJwt);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * 
+     */
+    @Import(name="tokenReviewerJwtWo")
+    private @Nullable Output<String> tokenReviewerJwtWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * 
+     */
+    public Optional<Output<String>> tokenReviewerJwtWo() {
+        return Optional.ofNullable(this.tokenReviewerJwtWo);
+    }
+
+    /**
+     * The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Import(name="tokenReviewerJwtWoVersion")
+    private @Nullable Output<Integer> tokenReviewerJwtWoVersion;
+
+    /**
+     * @return The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> tokenReviewerJwtWoVersion() {
+        return Optional.ofNullable(this.tokenReviewerJwtWoVersion);
     }
 
     /**
@@ -185,6 +218,8 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         this.namespace = $.namespace;
         this.pemKeys = $.pemKeys;
         this.tokenReviewerJwt = $.tokenReviewerJwt;
+        this.tokenReviewerJwtWo = $.tokenReviewerJwtWo;
+        this.tokenReviewerJwtWoVersion = $.tokenReviewerJwtWoVersion;
         this.useAnnotationsAsAliasMetadata = $.useAnnotationsAsAliasMetadata;
     }
 
@@ -391,7 +426,7 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tokenReviewerJwt A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+         * @param tokenReviewerJwt A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
          * 
          * @return builder
          * 
@@ -402,13 +437,57 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tokenReviewerJwt A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+         * @param tokenReviewerJwt A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
          * 
          * @return builder
          * 
          */
         public Builder tokenReviewerJwt(String tokenReviewerJwt) {
             return tokenReviewerJwt(Output.of(tokenReviewerJwt));
+        }
+
+        /**
+         * @param tokenReviewerJwtWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenReviewerJwtWo(@Nullable Output<String> tokenReviewerJwtWo) {
+            $.tokenReviewerJwtWo = tokenReviewerJwtWo;
+            return this;
+        }
+
+        /**
+         * @param tokenReviewerJwtWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenReviewerJwtWo(String tokenReviewerJwtWo) {
+            return tokenReviewerJwtWo(Output.of(tokenReviewerJwtWo));
+        }
+
+        /**
+         * @param tokenReviewerJwtWoVersion The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenReviewerJwtWoVersion(@Nullable Output<Integer> tokenReviewerJwtWoVersion) {
+            $.tokenReviewerJwtWoVersion = tokenReviewerJwtWoVersion;
+            return this;
+        }
+
+        /**
+         * @param tokenReviewerJwtWoVersion The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenReviewerJwtWoVersion(Integer tokenReviewerJwtWoVersion) {
+            return tokenReviewerJwtWoVersion(Output.of(tokenReviewerJwtWoVersion));
         }
 
         /**

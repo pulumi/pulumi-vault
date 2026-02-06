@@ -99,6 +99,24 @@ namespace Pulumi.Vault.Kmip
         public Output<bool> OperationCreate { get; private set; } = null!;
 
         /// <summary>
+        /// Grant permission to use the KMIP Create Key Pair operation.
+        /// </summary>
+        [Output("operationCreateKeyPair")]
+        public Output<bool> OperationCreateKeyPair { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Decrypt operation.
+        /// </summary>
+        [Output("operationDecrypt")]
+        public Output<bool> OperationDecrypt { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Delete Attribute operation.
+        /// </summary>
+        [Output("operationDeleteAttribute")]
+        public Output<bool> OperationDeleteAttribute { get; private set; } = null!;
+
+        /// <summary>
         /// Grant permission to use the KMIP Destroy operation.
         /// </summary>
         [Output("operationDestroy")]
@@ -109,6 +127,12 @@ namespace Pulumi.Vault.Kmip
         /// </summary>
         [Output("operationDiscoverVersions")]
         public Output<bool> OperationDiscoverVersions { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Encrypt operation.
+        /// </summary>
+        [Output("operationEncrypt")]
+        public Output<bool> OperationEncrypt { get; private set; } = null!;
 
         /// <summary>
         /// Grant permission to use the KMIP Get operation.
@@ -129,16 +153,46 @@ namespace Pulumi.Vault.Kmip
         public Output<bool> OperationGetAttributes { get; private set; } = null!;
 
         /// <summary>
+        /// Grant permission to use the KMIP Import operation.
+        /// </summary>
+        [Output("operationImport")]
+        public Output<bool> OperationImport { get; private set; } = null!;
+
+        /// <summary>
         /// Grant permission to use the KMIP Get Locate operation.
         /// </summary>
         [Output("operationLocate")]
         public Output<bool> OperationLocate { get; private set; } = null!;
 
         /// <summary>
+        /// Grant permission to use the KMIP MAC operation.
+        /// </summary>
+        [Output("operationMac")]
+        public Output<bool> OperationMac { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP MAC Verify operation.
+        /// </summary>
+        [Output("operationMacVerify")]
+        public Output<bool> OperationMacVerify { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Modify Attribute operation.
+        /// </summary>
+        [Output("operationModifyAttribute")]
+        public Output<bool> OperationModifyAttribute { get; private set; } = null!;
+
+        /// <summary>
         /// Remove all permissions from this role. May not be specified with any other `operation_*` params.
         /// </summary>
         [Output("operationNone")]
         public Output<bool> OperationNone { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Query operation.
+        /// </summary>
+        [Output("operationQuery")]
+        public Output<bool> OperationQuery { get; private set; } = null!;
 
         /// <summary>
         /// Grant permission to use the KMIP Register operation.
@@ -153,10 +207,40 @@ namespace Pulumi.Vault.Kmip
         public Output<bool> OperationRekey { get; private set; } = null!;
 
         /// <summary>
+        /// Grant permission to use the KMIP Rekey Key Pair operation.
+        /// </summary>
+        [Output("operationRekeyKeyPair")]
+        public Output<bool> OperationRekeyKeyPair { get; private set; } = null!;
+
+        /// <summary>
         /// Grant permission to use the KMIP Revoke operation.
         /// </summary>
         [Output("operationRevoke")]
         public Output<bool> OperationRevoke { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP RNG Retrieve operation.
+        /// </summary>
+        [Output("operationRngRetrieve")]
+        public Output<bool> OperationRngRetrieve { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP RNG Seed operation.
+        /// </summary>
+        [Output("operationRngSeed")]
+        public Output<bool> OperationRngSeed { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Sign operation.
+        /// </summary>
+        [Output("operationSign")]
+        public Output<bool> OperationSign { get; private set; } = null!;
+
+        /// <summary>
+        /// Grant permission to use the KMIP Signature Verify operation.
+        /// </summary>
+        [Output("operationSignatureVerify")]
+        public Output<bool> OperationSignatureVerify { get; private set; } = null!;
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -275,6 +359,24 @@ namespace Pulumi.Vault.Kmip
         public Input<bool>? OperationCreate { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP Create Key Pair operation.
+        /// </summary>
+        [Input("operationCreateKeyPair")]
+        public Input<bool>? OperationCreateKeyPair { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Decrypt operation.
+        /// </summary>
+        [Input("operationDecrypt")]
+        public Input<bool>? OperationDecrypt { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Delete Attribute operation.
+        /// </summary>
+        [Input("operationDeleteAttribute")]
+        public Input<bool>? OperationDeleteAttribute { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Destroy operation.
         /// </summary>
         [Input("operationDestroy")]
@@ -285,6 +387,12 @@ namespace Pulumi.Vault.Kmip
         /// </summary>
         [Input("operationDiscoverVersions")]
         public Input<bool>? OperationDiscoverVersions { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Encrypt operation.
+        /// </summary>
+        [Input("operationEncrypt")]
+        public Input<bool>? OperationEncrypt { get; set; }
 
         /// <summary>
         /// Grant permission to use the KMIP Get operation.
@@ -305,16 +413,46 @@ namespace Pulumi.Vault.Kmip
         public Input<bool>? OperationGetAttributes { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP Import operation.
+        /// </summary>
+        [Input("operationImport")]
+        public Input<bool>? OperationImport { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Get Locate operation.
         /// </summary>
         [Input("operationLocate")]
         public Input<bool>? OperationLocate { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP MAC operation.
+        /// </summary>
+        [Input("operationMac")]
+        public Input<bool>? OperationMac { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP MAC Verify operation.
+        /// </summary>
+        [Input("operationMacVerify")]
+        public Input<bool>? OperationMacVerify { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Modify Attribute operation.
+        /// </summary>
+        [Input("operationModifyAttribute")]
+        public Input<bool>? OperationModifyAttribute { get; set; }
+
+        /// <summary>
         /// Remove all permissions from this role. May not be specified with any other `operation_*` params.
         /// </summary>
         [Input("operationNone")]
         public Input<bool>? OperationNone { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Query operation.
+        /// </summary>
+        [Input("operationQuery")]
+        public Input<bool>? OperationQuery { get; set; }
 
         /// <summary>
         /// Grant permission to use the KMIP Register operation.
@@ -329,10 +467,40 @@ namespace Pulumi.Vault.Kmip
         public Input<bool>? OperationRekey { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP Rekey Key Pair operation.
+        /// </summary>
+        [Input("operationRekeyKeyPair")]
+        public Input<bool>? OperationRekeyKeyPair { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Revoke operation.
         /// </summary>
         [Input("operationRevoke")]
         public Input<bool>? OperationRevoke { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP RNG Retrieve operation.
+        /// </summary>
+        [Input("operationRngRetrieve")]
+        public Input<bool>? OperationRngRetrieve { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP RNG Seed operation.
+        /// </summary>
+        [Input("operationRngSeed")]
+        public Input<bool>? OperationRngSeed { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Sign operation.
+        /// </summary>
+        [Input("operationSign")]
+        public Input<bool>? OperationSign { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Signature Verify operation.
+        /// </summary>
+        [Input("operationSignatureVerify")]
+        public Input<bool>? OperationSignatureVerify { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -413,6 +581,24 @@ namespace Pulumi.Vault.Kmip
         public Input<bool>? OperationCreate { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP Create Key Pair operation.
+        /// </summary>
+        [Input("operationCreateKeyPair")]
+        public Input<bool>? OperationCreateKeyPair { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Decrypt operation.
+        /// </summary>
+        [Input("operationDecrypt")]
+        public Input<bool>? OperationDecrypt { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Delete Attribute operation.
+        /// </summary>
+        [Input("operationDeleteAttribute")]
+        public Input<bool>? OperationDeleteAttribute { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Destroy operation.
         /// </summary>
         [Input("operationDestroy")]
@@ -423,6 +609,12 @@ namespace Pulumi.Vault.Kmip
         /// </summary>
         [Input("operationDiscoverVersions")]
         public Input<bool>? OperationDiscoverVersions { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Encrypt operation.
+        /// </summary>
+        [Input("operationEncrypt")]
+        public Input<bool>? OperationEncrypt { get; set; }
 
         /// <summary>
         /// Grant permission to use the KMIP Get operation.
@@ -443,16 +635,46 @@ namespace Pulumi.Vault.Kmip
         public Input<bool>? OperationGetAttributes { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP Import operation.
+        /// </summary>
+        [Input("operationImport")]
+        public Input<bool>? OperationImport { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Get Locate operation.
         /// </summary>
         [Input("operationLocate")]
         public Input<bool>? OperationLocate { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP MAC operation.
+        /// </summary>
+        [Input("operationMac")]
+        public Input<bool>? OperationMac { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP MAC Verify operation.
+        /// </summary>
+        [Input("operationMacVerify")]
+        public Input<bool>? OperationMacVerify { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Modify Attribute operation.
+        /// </summary>
+        [Input("operationModifyAttribute")]
+        public Input<bool>? OperationModifyAttribute { get; set; }
+
+        /// <summary>
         /// Remove all permissions from this role. May not be specified with any other `operation_*` params.
         /// </summary>
         [Input("operationNone")]
         public Input<bool>? OperationNone { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Query operation.
+        /// </summary>
+        [Input("operationQuery")]
+        public Input<bool>? OperationQuery { get; set; }
 
         /// <summary>
         /// Grant permission to use the KMIP Register operation.
@@ -467,10 +689,40 @@ namespace Pulumi.Vault.Kmip
         public Input<bool>? OperationRekey { get; set; }
 
         /// <summary>
+        /// Grant permission to use the KMIP Rekey Key Pair operation.
+        /// </summary>
+        [Input("operationRekeyKeyPair")]
+        public Input<bool>? OperationRekeyKeyPair { get; set; }
+
+        /// <summary>
         /// Grant permission to use the KMIP Revoke operation.
         /// </summary>
         [Input("operationRevoke")]
         public Input<bool>? OperationRevoke { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP RNG Retrieve operation.
+        /// </summary>
+        [Input("operationRngRetrieve")]
+        public Input<bool>? OperationRngRetrieve { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP RNG Seed operation.
+        /// </summary>
+        [Input("operationRngSeed")]
+        public Input<bool>? OperationRngSeed { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Sign operation.
+        /// </summary>
+        [Input("operationSign")]
+        public Input<bool>? OperationSign { get; set; }
+
+        /// <summary>
+        /// Grant permission to use the KMIP Signature Verify operation.
+        /// </summary>
+        [Input("operationSignatureVerify")]
+        public Input<bool>? OperationSignatureVerify { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must

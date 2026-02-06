@@ -28,6 +28,8 @@ class NomadSecretBackendArgs:
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -46,6 +48,8 @@ class NomadSecretBackendArgs:
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a NomadSecretBackend resource.
@@ -61,6 +65,11 @@ class NomadSecretBackendArgs:
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+               Conflicts with `client_key_wo`.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. This must be incremented
+               each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -84,7 +93,11 @@ class NomadSecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use.
+        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use. Conflicts with `token_wo`.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Nomad Management token to use.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. This must be incremented each time
+               the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
         :param pulumi.Input[_builtins.int] ttl: Specifies the ttl of the lease for the generated token.
         """
         if address is not None:
@@ -105,6 +118,10 @@ class NomadSecretBackendArgs:
             pulumi.set(__self__, "client_cert", client_cert)
         if client_key is not None:
             pulumi.set(__self__, "client_key", client_key)
+        if client_key_wo is not None:
+            pulumi.set(__self__, "client_key_wo", client_key_wo)
+        if client_key_wo_version is not None:
+            pulumi.set(__self__, "client_key_wo_version", client_key_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -141,6 +158,10 @@ class NomadSecretBackendArgs:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -248,12 +269,39 @@ class NomadSecretBackendArgs:
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        Conflicts with `client_key_wo`.
         """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
     def client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWo")
+    def client_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        """
+        return pulumi.get(self, "client_key_wo")
+
+    @client_key_wo.setter
+    def client_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWoVersion")
+    def client_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only client key. This must be incremented
+        each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
+        """
+        return pulumi.get(self, "client_key_wo_version")
+
+    @client_key_wo_version.setter
+    def client_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -469,13 +517,39 @@ class NomadSecretBackendArgs:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Nomad Management token to use.
+        Specifies the Nomad Management token to use. Conflicts with `token_wo`.
         """
         return pulumi.get(self, "token")
 
     @token.setter
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Nomad Management token to use.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only token. This must be incremented each time
+        the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -503,6 +577,8 @@ class _NomadSecretBackendState:
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -521,6 +597,8 @@ class _NomadSecretBackendState:
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering NomadSecretBackend resources.
@@ -537,6 +615,11 @@ class _NomadSecretBackendState:
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+               Conflicts with `client_key_wo`.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. This must be incremented
+               each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -560,7 +643,11 @@ class _NomadSecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use.
+        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use. Conflicts with `token_wo`.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Nomad Management token to use.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. This must be incremented each time
+               the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
         :param pulumi.Input[_builtins.int] ttl: Specifies the ttl of the lease for the generated token.
         """
         if accessor is not None:
@@ -583,6 +670,10 @@ class _NomadSecretBackendState:
             pulumi.set(__self__, "client_cert", client_cert)
         if client_key is not None:
             pulumi.set(__self__, "client_key", client_key)
+        if client_key_wo is not None:
+            pulumi.set(__self__, "client_key_wo", client_key_wo)
+        if client_key_wo_version is not None:
+            pulumi.set(__self__, "client_key_wo_version", client_key_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -619,6 +710,10 @@ class _NomadSecretBackendState:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -738,12 +833,39 @@ class _NomadSecretBackendState:
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        Conflicts with `client_key_wo`.
         """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
     def client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWo")
+    def client_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        """
+        return pulumi.get(self, "client_key_wo")
+
+    @client_key_wo.setter
+    def client_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWoVersion")
+    def client_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only client key. This must be incremented
+        each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
+        """
+        return pulumi.get(self, "client_key_wo_version")
+
+    @client_key_wo_version.setter
+    def client_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -959,13 +1081,39 @@ class _NomadSecretBackendState:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Nomad Management token to use.
+        Specifies the Nomad Management token to use. Conflicts with `token_wo`.
         """
         return pulumi.get(self, "token")
 
     @token.setter
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Nomad Management token to use.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only token. This must be incremented each time
+        the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -995,6 +1143,8 @@ class NomadSecretBackend(pulumi.CustomResource):
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1013,6 +1163,8 @@ class NomadSecretBackend(pulumi.CustomResource):
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
@@ -1032,6 +1184,18 @@ class NomadSecretBackend(pulumi.CustomResource):
             token="ae20ceaa-...",
             ttl=120)
         ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `client_key_wo` - (Optional) Write-only client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        Use this for enhanced security when you don't want the client key to appear in state files. Requires `client_key_wo_version`. Conflicts with `client_key`.
+        **Note**: This property is write-only and will not be read from the API.
+
+        * `token_wo` - (Optional) Write-only Nomad Management token to use.
+        Use this for enhanced security when you don't want the token to appear in state files. Requires `token_wo_version`. Conflicts with `token`.
+        **Note**: This property is write-only and will not be read from the API.
 
         ## Import
 
@@ -1055,6 +1219,11 @@ class NomadSecretBackend(pulumi.CustomResource):
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+               Conflicts with `client_key_wo`.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. This must be incremented
+               each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -1078,7 +1247,11 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use.
+        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use. Conflicts with `token_wo`.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Nomad Management token to use.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. This must be incremented each time
+               the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
         :param pulumi.Input[_builtins.int] ttl: Specifies the ttl of the lease for the generated token.
         """
         ...
@@ -1104,6 +1277,18 @@ class NomadSecretBackend(pulumi.CustomResource):
             token="ae20ceaa-...",
             ttl=120)
         ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `client_key_wo` - (Optional) Write-only client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        Use this for enhanced security when you don't want the client key to appear in state files. Requires `client_key_wo_version`. Conflicts with `client_key`.
+        **Note**: This property is write-only and will not be read from the API.
+
+        * `token_wo` - (Optional) Write-only Nomad Management token to use.
+        Use this for enhanced security when you don't want the token to appear in state files. Requires `token_wo_version`. Conflicts with `token`.
+        **Note**: This property is write-only and will not be read from the API.
 
         ## Import
 
@@ -1137,6 +1322,8 @@ class NomadSecretBackend(pulumi.CustomResource):
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1155,6 +1342,8 @@ class NomadSecretBackend(pulumi.CustomResource):
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1174,6 +1363,8 @@ class NomadSecretBackend(pulumi.CustomResource):
             __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["client_cert"] = None if client_cert is None else pulumi.Output.secret(client_cert)
             __props__.__dict__["client_key"] = None if client_key is None else pulumi.Output.secret(client_key)
+            __props__.__dict__["client_key_wo"] = None if client_key_wo is None else pulumi.Output.secret(client_key_wo)
+            __props__.__dict__["client_key_wo_version"] = client_key_wo_version
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
@@ -1192,9 +1383,11 @@ class NomadSecretBackend(pulumi.CustomResource):
             __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["token_wo"] = None if token_wo is None else pulumi.Output.secret(token_wo)
+            __props__.__dict__["token_wo_version"] = token_wo_version
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientCert", "clientKey", "token"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientCert", "clientKey", "clientKeyWo", "token", "tokenWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(NomadSecretBackend, __self__).__init__(
             'vault:index/nomadSecretBackend:NomadSecretBackend',
@@ -1216,6 +1409,8 @@ class NomadSecretBackend(pulumi.CustomResource):
             ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
             client_cert: Optional[pulumi.Input[_builtins.str]] = None,
             client_key: Optional[pulumi.Input[_builtins.str]] = None,
+            client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1234,6 +1429,8 @@ class NomadSecretBackend(pulumi.CustomResource):
             plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
             token: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'NomadSecretBackend':
         """
         Get an existing NomadSecretBackend resource's state with the given name, id, and optional extra
@@ -1255,6 +1452,11 @@ class NomadSecretBackend(pulumi.CustomResource):
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate to provide to the Nomad server, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_key: Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+               Conflicts with `client_key_wo`.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. This must be incremented
+               each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -1278,7 +1480,11 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use.
+        :param pulumi.Input[_builtins.str] token: Specifies the Nomad Management token to use. Conflicts with `token_wo`.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Nomad Management token to use.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. This must be incremented each time
+               the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
         :param pulumi.Input[_builtins.int] ttl: Specifies the ttl of the lease for the generated token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1295,6 +1501,8 @@ class NomadSecretBackend(pulumi.CustomResource):
         __props__.__dict__["ca_cert"] = ca_cert
         __props__.__dict__["client_cert"] = client_cert
         __props__.__dict__["client_key"] = client_key
+        __props__.__dict__["client_key_wo"] = client_key_wo
+        __props__.__dict__["client_key_wo_version"] = client_key_wo_version
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
@@ -1313,6 +1521,8 @@ class NomadSecretBackend(pulumi.CustomResource):
         __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["token"] = token
+        __props__.__dict__["token_wo"] = token_wo
+        __props__.__dict__["token_wo_version"] = token_wo_version
         __props__.__dict__["ttl"] = ttl
         return NomadSecretBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -1396,8 +1606,27 @@ class NomadSecretBackend(pulumi.CustomResource):
     def client_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        Conflicts with `client_key_wo`.
         """
         return pulumi.get(self, "client_key")
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWo")
+    def client_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        """
+        return pulumi.get(self, "client_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWoVersion")
+    def client_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only client key. This must be incremented
+        each time the `client_key_wo` value is changed to trigger an update. Required when using `client_key_wo`.
+        """
+        return pulumi.get(self, "client_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -1545,9 +1774,27 @@ class NomadSecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the Nomad Management token to use.
+        Specifies the Nomad Management token to use. Conflicts with `token_wo`.
         """
         return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Nomad Management token to use.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only token. This must be incremented each time
+        the `token_wo` value is changed to trigger an update. Required when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
 
     @_builtins.property
     @pulumi.getter

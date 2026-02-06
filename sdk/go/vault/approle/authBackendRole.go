@@ -74,6 +74,8 @@ type AuthBackendRole struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId pulumi.BoolPtrOutput `pulumi:"bindSecretId"`
+	// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+	LocalSecretIds pulumi.BoolPtrOutput `pulumi:"localSecretIds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -156,6 +158,8 @@ type authBackendRoleState struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId *bool `pulumi:"bindSecretId"`
+	// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+	LocalSecretIds *bool `pulumi:"localSecretIds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -206,6 +210,8 @@ type AuthBackendRoleState struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId pulumi.BoolPtrInput
+	// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+	LocalSecretIds pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -260,6 +266,8 @@ type authBackendRoleArgs struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId *bool `pulumi:"bindSecretId"`
+	// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+	LocalSecretIds *bool `pulumi:"localSecretIds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -311,6 +319,8 @@ type AuthBackendRoleArgs struct {
 	// Whether or not to require `secretId` to be
 	// presented when logging in using this AppRole. Defaults to `true`.
 	BindSecretId pulumi.BoolPtrInput
+	// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+	LocalSecretIds pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -455,6 +465,11 @@ func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 // presented when logging in using this AppRole. Defaults to `true`.
 func (o AuthBackendRoleOutput) BindSecretId() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.BindSecretId }).(pulumi.BoolPtrOutput)
+}
+
+// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+func (o AuthBackendRoleOutput) LocalSecretIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.LocalSecretIds }).(pulumi.BoolPtrOutput)
 }
 
 // The namespace to provision the resource in.

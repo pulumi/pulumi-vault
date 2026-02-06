@@ -97,6 +97,11 @@ type SecretBackend struct {
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+	SecretKeyWo pulumi.StringPtrOutput `pulumi:"secretKeyWo"`
+	// A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+	SecretKeyWoVersion pulumi.IntPtrOutput `pulumi:"secretKeyWoVersion"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
 	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
@@ -122,9 +127,13 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.SecretKey != nil {
 		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrInput)
 	}
+	if args.SecretKeyWo != nil {
+		args.SecretKeyWo = pulumi.ToSecret(args.SecretKeyWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"accessKey",
 		"secretKey",
+		"secretKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -226,6 +235,11 @@ type secretBackendState struct {
 	SealWrap *bool `pulumi:"sealWrap"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+	SecretKeyWo *string `pulumi:"secretKeyWo"`
+	// A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+	SecretKeyWoVersion *int `pulumi:"secretKeyWoVersion"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
 	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
@@ -315,6 +329,11 @@ type SecretBackendState struct {
 	SealWrap pulumi.BoolPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+	SecretKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+	SecretKeyWoVersion pulumi.IntPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
 	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
@@ -406,6 +425,11 @@ type secretBackendArgs struct {
 	SealWrap *bool `pulumi:"sealWrap"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+	SecretKeyWo *string `pulumi:"secretKeyWo"`
+	// A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+	SecretKeyWoVersion *int `pulumi:"secretKeyWoVersion"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
 	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
@@ -494,6 +518,11 @@ type SecretBackendArgs struct {
 	SealWrap pulumi.BoolPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+	SecretKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+	SecretKeyWoVersion pulumi.IntPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
 	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
@@ -766,6 +795,17 @@ func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
 // The AWS Secret Access Key to use when generating new credentials.
 func (o SecretBackendOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+func (o SecretBackendOutput) SecretKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.SecretKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+func (o SecretBackendOutput) SecretKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.SecretKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Specifies a custom HTTP STS endpoint to use.

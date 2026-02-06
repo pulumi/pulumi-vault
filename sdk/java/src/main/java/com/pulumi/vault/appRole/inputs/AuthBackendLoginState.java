@@ -192,6 +192,38 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.secretId);
     }
 
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     * 
+     */
+    @Import(name="secretIdWo")
+    private @Nullable Output<String> secretIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     * 
+     */
+    public Optional<Output<String>> secretIdWo() {
+        return Optional.ofNullable(this.secretIdWo);
+    }
+
+    /**
+     * The version of the `secretIdWo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Import(name="secretIdWoVersion")
+    private @Nullable Output<Integer> secretIdWoVersion;
+
+    /**
+     * @return The version of the `secretIdWo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> secretIdWoVersion() {
+        return Optional.ofNullable(this.secretIdWoVersion);
+    }
+
     private AuthBackendLoginState() {}
 
     private AuthBackendLoginState(AuthBackendLoginState $) {
@@ -206,6 +238,8 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
         this.renewable = $.renewable;
         this.roleId = $.roleId;
         this.secretId = $.secretId;
+        this.secretIdWo = $.secretIdWo;
+        this.secretIdWoVersion = $.secretIdWoVersion;
     }
 
     public static Builder builder() {
@@ -473,6 +507,50 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
          */
         public Builder secretId(String secretId) {
             return secretId(Output.of(secretId));
+        }
+
+        /**
+         * @param secretIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretIdWo(@Nullable Output<String> secretIdWo) {
+            $.secretIdWo = secretIdWo;
+            return this;
+        }
+
+        /**
+         * @param secretIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretIdWo(String secretIdWo) {
+            return secretIdWo(Output.of(secretIdWo));
+        }
+
+        /**
+         * @param secretIdWoVersion The version of the `secretIdWo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretIdWoVersion(@Nullable Output<Integer> secretIdWoVersion) {
+            $.secretIdWoVersion = secretIdWoVersion;
+            return this;
+        }
+
+        /**
+         * @param secretIdWoVersion The version of the `secretIdWo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretIdWoVersion(Integer secretIdWoVersion) {
+            return secretIdWoVersion(Output.of(secretIdWoVersion));
         }
 
         public AuthBackendLoginState build() {

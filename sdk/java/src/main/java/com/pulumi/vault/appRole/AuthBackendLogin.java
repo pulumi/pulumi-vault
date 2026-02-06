@@ -18,71 +18,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * Logs into Vault using the AppRole auth backend. See the [Vault
- * documentation](https://www.vaultproject.io/docs/auth/approle) for more
- * information.
- * 
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.appRole.AuthBackendRole;
- * import com.pulumi.vault.appRole.AuthBackendRoleArgs;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretId;
- * import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
- * import com.pulumi.vault.appRole.AuthBackendLogin;
- * import com.pulumi.vault.appRole.AuthBackendLoginArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var approle = new AuthBackend("approle", AuthBackendArgs.builder()
- *             .type("approle")
- *             .build());
- * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
- *             .backend(approle.path())
- *             .roleName("test-role")
- *             .tokenPolicies(            
- *                 "default",
- *                 "dev",
- *                 "prod")
- *             .build());
- * 
- *         var id = new AuthBackendRoleSecretId("id", AuthBackendRoleSecretIdArgs.builder()
- *             .backend(approle.path())
- *             .roleName(example.roleName())
- *             .build());
- * 
- *         var login = new AuthBackendLogin("login", AuthBackendLoginArgs.builder()
- *             .backend(approle.path())
- *             .roleId(example.roleId())
- *             .secretId(id.secretId())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- */
 @ResourceType(type="vault:appRole/authBackendLogin:AuthBackendLogin")
 public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     /**
@@ -247,6 +182,36 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> secretId() {
         return Codegen.optional(this.secretId);
     }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     * 
+     */
+    @Export(name="secretIdWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> secretIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+     * 
+     */
+    public Output<Optional<String>> secretIdWo() {
+        return Codegen.optional(this.secretIdWo);
+    }
+    /**
+     * The version of the `secretIdWo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Export(name="secretIdWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> secretIdWoVersion;
+
+    /**
+     * @return The version of the `secretIdWo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Output<Optional<Integer>> secretIdWoVersion() {
+        return Codegen.optional(this.secretIdWoVersion);
+    }
 
     /**
      *
@@ -289,7 +254,8 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "clientToken",
-                "secretId"
+                "secretId",
+                "secretIdWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

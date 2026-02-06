@@ -98,6 +98,18 @@ export class SecretRole extends pulumi.CustomResource {
      */
     declare public readonly operationCreate: pulumi.Output<boolean>;
     /**
+     * Grant permission to use the KMIP Create Key Pair operation.
+     */
+    declare public readonly operationCreateKeyPair: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Decrypt operation.
+     */
+    declare public readonly operationDecrypt: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Delete Attribute operation.
+     */
+    declare public readonly operationDeleteAttribute: pulumi.Output<boolean>;
+    /**
      * Grant permission to use the KMIP Destroy operation.
      */
     declare public readonly operationDestroy: pulumi.Output<boolean>;
@@ -105,6 +117,10 @@ export class SecretRole extends pulumi.CustomResource {
      * Grant permission to use the KMIP Discover Version operation.
      */
     declare public readonly operationDiscoverVersions: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Encrypt operation.
+     */
+    declare public readonly operationEncrypt: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Get operation.
      */
@@ -118,13 +134,33 @@ export class SecretRole extends pulumi.CustomResource {
      */
     declare public readonly operationGetAttributes: pulumi.Output<boolean>;
     /**
+     * Grant permission to use the KMIP Import operation.
+     */
+    declare public readonly operationImport: pulumi.Output<boolean>;
+    /**
      * Grant permission to use the KMIP Get Locate operation.
      */
     declare public readonly operationLocate: pulumi.Output<boolean>;
     /**
+     * Grant permission to use the KMIP MAC operation.
+     */
+    declare public readonly operationMac: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP MAC Verify operation.
+     */
+    declare public readonly operationMacVerify: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Modify Attribute operation.
+     */
+    declare public readonly operationModifyAttribute: pulumi.Output<boolean>;
+    /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      */
     declare public readonly operationNone: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Query operation.
+     */
+    declare public readonly operationQuery: pulumi.Output<boolean>;
     /**
      * Grant permission to use the KMIP Register operation.
      */
@@ -134,9 +170,29 @@ export class SecretRole extends pulumi.CustomResource {
      */
     declare public readonly operationRekey: pulumi.Output<boolean>;
     /**
+     * Grant permission to use the KMIP Rekey Key Pair operation.
+     */
+    declare public readonly operationRekeyKeyPair: pulumi.Output<boolean>;
+    /**
      * Grant permission to use the KMIP Revoke operation.
      */
     declare public readonly operationRevoke: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP RNG Retrieve operation.
+     */
+    declare public readonly operationRngRetrieve: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP RNG Seed operation.
+     */
+    declare public readonly operationRngSeed: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Sign operation.
+     */
+    declare public readonly operationSign: pulumi.Output<boolean>;
+    /**
+     * Grant permission to use the KMIP Signature Verify operation.
+     */
+    declare public readonly operationSignatureVerify: pulumi.Output<boolean>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
@@ -181,16 +237,30 @@ export class SecretRole extends pulumi.CustomResource {
             resourceInputs["operationAddAttribute"] = state?.operationAddAttribute;
             resourceInputs["operationAll"] = state?.operationAll;
             resourceInputs["operationCreate"] = state?.operationCreate;
+            resourceInputs["operationCreateKeyPair"] = state?.operationCreateKeyPair;
+            resourceInputs["operationDecrypt"] = state?.operationDecrypt;
+            resourceInputs["operationDeleteAttribute"] = state?.operationDeleteAttribute;
             resourceInputs["operationDestroy"] = state?.operationDestroy;
             resourceInputs["operationDiscoverVersions"] = state?.operationDiscoverVersions;
+            resourceInputs["operationEncrypt"] = state?.operationEncrypt;
             resourceInputs["operationGet"] = state?.operationGet;
             resourceInputs["operationGetAttributeList"] = state?.operationGetAttributeList;
             resourceInputs["operationGetAttributes"] = state?.operationGetAttributes;
+            resourceInputs["operationImport"] = state?.operationImport;
             resourceInputs["operationLocate"] = state?.operationLocate;
+            resourceInputs["operationMac"] = state?.operationMac;
+            resourceInputs["operationMacVerify"] = state?.operationMacVerify;
+            resourceInputs["operationModifyAttribute"] = state?.operationModifyAttribute;
             resourceInputs["operationNone"] = state?.operationNone;
+            resourceInputs["operationQuery"] = state?.operationQuery;
             resourceInputs["operationRegister"] = state?.operationRegister;
             resourceInputs["operationRekey"] = state?.operationRekey;
+            resourceInputs["operationRekeyKeyPair"] = state?.operationRekeyKeyPair;
             resourceInputs["operationRevoke"] = state?.operationRevoke;
+            resourceInputs["operationRngRetrieve"] = state?.operationRngRetrieve;
+            resourceInputs["operationRngSeed"] = state?.operationRngSeed;
+            resourceInputs["operationSign"] = state?.operationSign;
+            resourceInputs["operationSignatureVerify"] = state?.operationSignatureVerify;
             resourceInputs["path"] = state?.path;
             resourceInputs["role"] = state?.role;
             resourceInputs["scope"] = state?.scope;
@@ -213,16 +283,30 @@ export class SecretRole extends pulumi.CustomResource {
             resourceInputs["operationAddAttribute"] = args?.operationAddAttribute;
             resourceInputs["operationAll"] = args?.operationAll;
             resourceInputs["operationCreate"] = args?.operationCreate;
+            resourceInputs["operationCreateKeyPair"] = args?.operationCreateKeyPair;
+            resourceInputs["operationDecrypt"] = args?.operationDecrypt;
+            resourceInputs["operationDeleteAttribute"] = args?.operationDeleteAttribute;
             resourceInputs["operationDestroy"] = args?.operationDestroy;
             resourceInputs["operationDiscoverVersions"] = args?.operationDiscoverVersions;
+            resourceInputs["operationEncrypt"] = args?.operationEncrypt;
             resourceInputs["operationGet"] = args?.operationGet;
             resourceInputs["operationGetAttributeList"] = args?.operationGetAttributeList;
             resourceInputs["operationGetAttributes"] = args?.operationGetAttributes;
+            resourceInputs["operationImport"] = args?.operationImport;
             resourceInputs["operationLocate"] = args?.operationLocate;
+            resourceInputs["operationMac"] = args?.operationMac;
+            resourceInputs["operationMacVerify"] = args?.operationMacVerify;
+            resourceInputs["operationModifyAttribute"] = args?.operationModifyAttribute;
             resourceInputs["operationNone"] = args?.operationNone;
+            resourceInputs["operationQuery"] = args?.operationQuery;
             resourceInputs["operationRegister"] = args?.operationRegister;
             resourceInputs["operationRekey"] = args?.operationRekey;
+            resourceInputs["operationRekeyKeyPair"] = args?.operationRekeyKeyPair;
             resourceInputs["operationRevoke"] = args?.operationRevoke;
+            resourceInputs["operationRngRetrieve"] = args?.operationRngRetrieve;
+            resourceInputs["operationRngSeed"] = args?.operationRngSeed;
+            resourceInputs["operationSign"] = args?.operationSign;
+            resourceInputs["operationSignatureVerify"] = args?.operationSignatureVerify;
             resourceInputs["path"] = args?.path;
             resourceInputs["role"] = args?.role;
             resourceInputs["scope"] = args?.scope;
@@ -263,6 +347,18 @@ export interface SecretRoleState {
      */
     operationCreate?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP Create Key Pair operation.
+     */
+    operationCreateKeyPair?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Decrypt operation.
+     */
+    operationDecrypt?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Delete Attribute operation.
+     */
+    operationDeleteAttribute?: pulumi.Input<boolean>;
+    /**
      * Grant permission to use the KMIP Destroy operation.
      */
     operationDestroy?: pulumi.Input<boolean>;
@@ -270,6 +366,10 @@ export interface SecretRoleState {
      * Grant permission to use the KMIP Discover Version operation.
      */
     operationDiscoverVersions?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Encrypt operation.
+     */
+    operationEncrypt?: pulumi.Input<boolean>;
     /**
      * Grant permission to use the KMIP Get operation.
      */
@@ -283,13 +383,33 @@ export interface SecretRoleState {
      */
     operationGetAttributes?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP Import operation.
+     */
+    operationImport?: pulumi.Input<boolean>;
+    /**
      * Grant permission to use the KMIP Get Locate operation.
      */
     operationLocate?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP MAC operation.
+     */
+    operationMac?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP MAC Verify operation.
+     */
+    operationMacVerify?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Modify Attribute operation.
+     */
+    operationModifyAttribute?: pulumi.Input<boolean>;
+    /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      */
     operationNone?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Query operation.
+     */
+    operationQuery?: pulumi.Input<boolean>;
     /**
      * Grant permission to use the KMIP Register operation.
      */
@@ -299,9 +419,29 @@ export interface SecretRoleState {
      */
     operationRekey?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP Rekey Key Pair operation.
+     */
+    operationRekeyKeyPair?: pulumi.Input<boolean>;
+    /**
      * Grant permission to use the KMIP Revoke operation.
      */
     operationRevoke?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP RNG Retrieve operation.
+     */
+    operationRngRetrieve?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP RNG Seed operation.
+     */
+    operationRngSeed?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Sign operation.
+     */
+    operationSign?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Signature Verify operation.
+     */
+    operationSignatureVerify?: pulumi.Input<boolean>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
@@ -357,6 +497,18 @@ export interface SecretRoleArgs {
      */
     operationCreate?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP Create Key Pair operation.
+     */
+    operationCreateKeyPair?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Decrypt operation.
+     */
+    operationDecrypt?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Delete Attribute operation.
+     */
+    operationDeleteAttribute?: pulumi.Input<boolean>;
+    /**
      * Grant permission to use the KMIP Destroy operation.
      */
     operationDestroy?: pulumi.Input<boolean>;
@@ -364,6 +516,10 @@ export interface SecretRoleArgs {
      * Grant permission to use the KMIP Discover Version operation.
      */
     operationDiscoverVersions?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Encrypt operation.
+     */
+    operationEncrypt?: pulumi.Input<boolean>;
     /**
      * Grant permission to use the KMIP Get operation.
      */
@@ -377,13 +533,33 @@ export interface SecretRoleArgs {
      */
     operationGetAttributes?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP Import operation.
+     */
+    operationImport?: pulumi.Input<boolean>;
+    /**
      * Grant permission to use the KMIP Get Locate operation.
      */
     operationLocate?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP MAC operation.
+     */
+    operationMac?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP MAC Verify operation.
+     */
+    operationMacVerify?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Modify Attribute operation.
+     */
+    operationModifyAttribute?: pulumi.Input<boolean>;
+    /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      */
     operationNone?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Query operation.
+     */
+    operationQuery?: pulumi.Input<boolean>;
     /**
      * Grant permission to use the KMIP Register operation.
      */
@@ -393,9 +569,29 @@ export interface SecretRoleArgs {
      */
     operationRekey?: pulumi.Input<boolean>;
     /**
+     * Grant permission to use the KMIP Rekey Key Pair operation.
+     */
+    operationRekeyKeyPair?: pulumi.Input<boolean>;
+    /**
      * Grant permission to use the KMIP Revoke operation.
      */
     operationRevoke?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP RNG Retrieve operation.
+     */
+    operationRngRetrieve?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP RNG Seed operation.
+     */
+    operationRngSeed?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Sign operation.
+     */
+    operationSign?: pulumi.Input<boolean>;
+    /**
+     * Grant permission to use the KMIP Signature Verify operation.
+     */
+    operationSignatureVerify?: pulumi.Input<boolean>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.

@@ -282,20 +282,52 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The AWS secret key that Vault should use for the
-     * auth backend.
+     * AWS Secret key with permissions to query AWS APIs.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return The AWS secret key that Vault should use for the
-     * auth backend.
+     * @return AWS Secret key with permissions to query AWS APIs.
      * 
      */
     public Optional<Output<String>> secretKey() {
         return Optional.ofNullable(this.secretKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     * 
+     */
+    @Import(name="secretKeyWo")
+    private @Nullable Output<String> secretKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     * 
+     */
+    public Optional<Output<String>> secretKeyWo() {
+        return Optional.ofNullable(this.secretKeyWo);
+    }
+
+    /**
+     * Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     * 
+     */
+    @Import(name="secretKeyWoVersion")
+    private @Nullable Output<Integer> secretKeyWoVersion;
+
+    /**
+     * @return Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     * 
+     */
+    public Optional<Output<Integer>> secretKeyWoVersion() {
+        return Optional.ofNullable(this.secretKeyWoVersion);
     }
 
     /**
@@ -374,6 +406,8 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
         this.secretKey = $.secretKey;
+        this.secretKeyWo = $.secretKeyWo;
+        this.secretKeyWoVersion = $.secretKeyWoVersion;
         this.stsEndpoint = $.stsEndpoint;
         this.stsRegion = $.stsRegion;
         this.useStsRegionFromClient = $.useStsRegionFromClient;
@@ -763,8 +797,7 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param secretKey The AWS secret key that Vault should use for the
-         * auth backend.
+         * @param secretKey AWS Secret key with permissions to query AWS APIs.
          * 
          * @return builder
          * 
@@ -775,14 +808,59 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param secretKey The AWS secret key that Vault should use for the
-         * auth backend.
+         * @param secretKey AWS Secret key with permissions to query AWS APIs.
          * 
          * @return builder
          * 
          */
         public Builder secretKey(String secretKey) {
             return secretKey(Output.of(secretKey));
+        }
+
+        /**
+         * @param secretKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWo(@Nullable Output<String> secretKeyWo) {
+            $.secretKeyWo = secretKeyWo;
+            return this;
+        }
+
+        /**
+         * @param secretKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWo(String secretKeyWo) {
+            return secretKeyWo(Output.of(secretKeyWo));
+        }
+
+        /**
+         * @param secretKeyWoVersion Version counter for the write-only `secretKeyWo` field.
+         * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWoVersion(@Nullable Output<Integer> secretKeyWoVersion) {
+            $.secretKeyWoVersion = secretKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param secretKeyWoVersion Version counter for the write-only `secretKeyWo` field.
+         * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWoVersion(Integer secretKeyWoVersion) {
+            return secretKeyWoVersion(Output.of(secretKeyWoVersion));
         }
 
         /**

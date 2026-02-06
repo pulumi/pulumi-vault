@@ -65,6 +65,14 @@ namespace Pulumi.Vault.Gcp
     /// });
     /// ```
     /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `CredentialsWo` - (Optional) A JSON string containing the contents of a GCP credentials file. Can be updated. Mutually exclusive with `Credentials`.
+    ///   If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+    ///   **Note**: This property is write-only and will not be read from the API.
+    /// 
     /// ## Import
     /// 
     /// GCP authentication backends can be imported using the backend name, e.g.
@@ -95,10 +103,25 @@ namespace Pulumi.Vault.Gcp
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `CredentialsWo`.
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        /// </summary>
+        [Output("credentialsWo")]
+        public Output<string?> CredentialsWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `CredentialsWo`.
+        /// For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Output("credentialsWoVersion")]
+        public Output<int?> CredentialsWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Specifies overrides to
@@ -272,6 +295,7 @@ namespace Pulumi.Vault.Gcp
                 AdditionalSecretOutputs =
                 {
                     "credentials",
+                    "credentialsWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -312,7 +336,7 @@ namespace Pulumi.Vault.Gcp
         private Input<string>? _credentials;
 
         /// <summary>
-        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `CredentialsWo`.
         /// </summary>
         public Input<string>? Credentials
         {
@@ -323,6 +347,31 @@ namespace Pulumi.Vault.Gcp
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("credentialsWo")]
+        private Input<string>? _credentialsWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        /// </summary>
+        public Input<string>? CredentialsWo
+        {
+            get => _credentialsWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentialsWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `CredentialsWo`.
+        /// For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Input("credentialsWoVersion")]
+        public Input<int>? CredentialsWoVersion { get; set; }
 
         /// <summary>
         /// Specifies overrides to
@@ -512,7 +561,7 @@ namespace Pulumi.Vault.Gcp
         private Input<string>? _credentials;
 
         /// <summary>
-        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+        /// A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `CredentialsWo`.
         /// </summary>
         public Input<string>? Credentials
         {
@@ -523,6 +572,31 @@ namespace Pulumi.Vault.Gcp
                 _credentials = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("credentialsWo")]
+        private Input<string>? _credentialsWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+        /// </summary>
+        public Input<string>? CredentialsWo
+        {
+            get => _credentialsWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _credentialsWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `CredentialsWo`.
+        /// For more information about write-only attributes, see
+        /// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        /// </summary>
+        [Input("credentialsWoVersion")]
+        public Input<int>? CredentialsWoVersion { get; set; }
 
         /// <summary>
         /// Specifies overrides to

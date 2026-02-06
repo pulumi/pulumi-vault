@@ -97,6 +97,10 @@ if not MYPY:
         """
         The number of seconds to use as a connection timeout.
         """
+        consistency: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Cassandra consistency level.
+        """
         hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
         Cassandra hosts to connect to.
@@ -104,6 +108,10 @@ if not MYPY:
         insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether to skip verification of the server certificate when using TLS.
+        """
+        local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Cassandra local datacenter name.
         """
         password: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -129,13 +137,25 @@ if not MYPY:
         """
         Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         """
+        socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Enable TCP keepalive for Cassandra connections.
+        """
         tls: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether to use TLS when connecting to Cassandra.
         """
+        tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        SNI host for TLS connections.
+        """
         username: NotRequired[pulumi.Input[_builtins.str]]
         """
         The username to use when authenticating with Cassandra.
+        """
+        username_template: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Template for dynamic Cassandra usernames.
         """
 elif False:
     SecretBackendConnectionCassandraArgsDict: TypeAlias = Mapping[str, Any]
@@ -144,35 +164,49 @@ elif False:
 class SecretBackendConnectionCassandraArgs:
     def __init__(__self__, *,
                  connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 consistency: Optional[pulumi.Input[_builtins.str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 local_datacenter: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_json: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  protocol_version: Optional[pulumi.Input[_builtins.int]] = None,
                  skip_verification: Optional[pulumi.Input[_builtins.bool]] = None,
+                 socket_keep_alive: Optional[pulumi.Input[_builtins.str]] = None,
                  tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] connect_timeout: The number of seconds to use as a connection timeout.
+        :param pulumi.Input[_builtins.str] consistency: Cassandra consistency level.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hosts: Cassandra hosts to connect to.
         :param pulumi.Input[_builtins.bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[_builtins.str] local_datacenter: Cassandra local datacenter name.
         :param pulumi.Input[_builtins.str] password: The password to use when authenticating with Cassandra.
         :param pulumi.Input[_builtins.str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[_builtins.int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[_builtins.bool] skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        :param pulumi.Input[_builtins.str] socket_keep_alive: Enable TCP keepalive for Cassandra connections.
         :param pulumi.Input[_builtins.bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[_builtins.str] tls_server_name: SNI host for TLS connections.
         :param pulumi.Input[_builtins.str] username: The username to use when authenticating with Cassandra.
+        :param pulumi.Input[_builtins.str] username_template: Template for dynamic Cassandra usernames.
         """
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if consistency is not None:
+            pulumi.set(__self__, "consistency", consistency)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if local_datacenter is not None:
+            pulumi.set(__self__, "local_datacenter", local_datacenter)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if pem_bundle is not None:
@@ -185,10 +219,16 @@ class SecretBackendConnectionCassandraArgs:
             pulumi.set(__self__, "protocol_version", protocol_version)
         if skip_verification is not None:
             pulumi.set(__self__, "skip_verification", skip_verification)
+        if socket_keep_alive is not None:
+            pulumi.set(__self__, "socket_keep_alive", socket_keep_alive)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
+        if tls_server_name is not None:
+            pulumi.set(__self__, "tls_server_name", tls_server_name)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
@@ -201,6 +241,18 @@ class SecretBackendConnectionCassandraArgs:
     @connect_timeout.setter
     def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def consistency(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Cassandra consistency level.
+        """
+        return pulumi.get(self, "consistency")
+
+    @consistency.setter
+    def consistency(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "consistency", value)
 
     @_builtins.property
     @pulumi.getter
@@ -225,6 +277,18 @@ class SecretBackendConnectionCassandraArgs:
     @insecure_tls.setter
     def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localDatacenter")
+    def local_datacenter(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Cassandra local datacenter name.
+        """
+        return pulumi.get(self, "local_datacenter")
+
+    @local_datacenter.setter
+    def local_datacenter(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "local_datacenter", value)
 
     @_builtins.property
     @pulumi.getter
@@ -299,6 +363,18 @@ class SecretBackendConnectionCassandraArgs:
         pulumi.set(self, "skip_verification", value)
 
     @_builtins.property
+    @pulumi.getter(name="socketKeepAlive")
+    def socket_keep_alive(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Enable TCP keepalive for Cassandra connections.
+        """
+        return pulumi.get(self, "socket_keep_alive")
+
+    @socket_keep_alive.setter
+    def socket_keep_alive(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "socket_keep_alive", value)
+
+    @_builtins.property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -311,6 +387,18 @@ class SecretBackendConnectionCassandraArgs:
         pulumi.set(self, "tls", value)
 
     @_builtins.property
+    @pulumi.getter(name="tlsServerName")
+    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        SNI host for TLS connections.
+        """
+        return pulumi.get(self, "tls_server_name")
+
+    @tls_server_name.setter
+    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_server_name", value)
+
+    @_builtins.property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -321,6 +409,18 @@ class SecretBackendConnectionCassandraArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template for dynamic Cassandra usernames.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username_template", value)
 
 
 if not MYPY:
@@ -740,6 +840,10 @@ if not MYPY:
         """
         The root credential username used in the connection URL
         """
+        username_template: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Username generation template.
+        """
 elif False:
     SecretBackendConnectionHanaArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -754,7 +858,8 @@ class SecretBackendConnectionHanaArgs:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.bool] disable_escaping: Disable special character escaping in username and password
@@ -766,6 +871,7 @@ class SecretBackendConnectionHanaArgs:
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
+        :param pulumi.Input[_builtins.str] username_template: Username generation template.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -785,6 +891,8 @@ class SecretBackendConnectionHanaArgs:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
@@ -894,6 +1002,18 @@ class SecretBackendConnectionHanaArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Username generation template.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username_template", value)
 
 
 if not MYPY:
@@ -1136,6 +1256,14 @@ if not MYPY:
         """
         Version counter for root credential password write-only field
         """
+        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        """
         username: NotRequired[pulumi.Input[_builtins.str]]
         """
         The root credential username used in the connection URL
@@ -1143,6 +1271,10 @@ if not MYPY:
         username_template: NotRequired[pulumi.Input[_builtins.str]]
         """
         Username generation template.
+        """
+        write_concern: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Specifies the MongoDB write concern for Vault management operations.
         """
 elif False:
     SecretBackendConnectionMongodbArgsDict: TypeAlias = Mapping[str, Any]
@@ -1157,8 +1289,11 @@ class SecretBackendConnectionMongodbArgs:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 write_concern: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -1168,8 +1303,11 @@ class SecretBackendConnectionMongodbArgs:
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
+        :param pulumi.Input[_builtins.str] tls_ca: The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        :param pulumi.Input[_builtins.str] tls_certificate_key: The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
+        :param pulumi.Input[_builtins.str] write_concern: Specifies the MongoDB write concern for Vault management operations.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -1185,10 +1323,16 @@ class SecretBackendConnectionMongodbArgs:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
+        if write_concern is not None:
+            pulumi.set(__self__, "write_concern", write_concern)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
@@ -1276,6 +1420,30 @@ class SecretBackendConnectionMongodbArgs:
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @tls_ca.setter
+    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_ca", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_certificate_key")
+
+    @tls_certificate_key.setter
+    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_certificate_key", value)
+
+    @_builtins.property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1299,6 +1467,18 @@ class SecretBackendConnectionMongodbArgs:
     def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
+    @_builtins.property
+    @pulumi.getter(name="writeConcern")
+    def write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the MongoDB write concern for Vault management operations.
+        """
+        return pulumi.get(self, "write_concern")
+
+    @write_concern.setter
+    def write_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "write_concern", value)
+
 
 if not MYPY:
     class SecretBackendConnectionMongodbatlasArgsDict(TypedDict):
@@ -1314,6 +1494,10 @@ if not MYPY:
         """
         The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
         """
+        username_template: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
 elif False:
     SecretBackendConnectionMongodbatlasArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -1322,15 +1506,19 @@ class SecretBackendConnectionMongodbatlasArgs:
     def __init__(__self__, *,
                  private_key: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 public_key: pulumi.Input[_builtins.str]):
+                 public_key: pulumi.Input[_builtins.str],
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API.
         :param pulumi.Input[_builtins.str] project_id: The Project ID the Database User should be created within.
         :param pulumi.Input[_builtins.str] public_key: The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "public_key", public_key)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
@@ -1367,6 +1555,18 @@ class SecretBackendConnectionMongodbatlasArgs:
     @public_key.setter
     def public_key(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "public_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username_template", value)
 
 
 if not MYPY:
@@ -4026,6 +4226,10 @@ if not MYPY:
         """
         The number of seconds to use as a connection timeout.
         """
+        consistency: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Cassandra consistency level.
+        """
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -4043,6 +4247,10 @@ if not MYPY:
         insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether to skip verification of the server certificate when using TLS.
+        """
+        local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Cassandra local datacenter name.
         """
         password: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -4092,13 +4300,25 @@ if not MYPY:
         """
         Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         """
+        socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Enable TCP keepalive for Cassandra connections.
+        """
         tls: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether to use TLS when connecting to Cassandra.
         """
+        tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        SNI host for TLS connections.
+        """
         username: NotRequired[pulumi.Input[_builtins.str]]
         """
         The username to use when authenticating with Cassandra.
+        """
+        username_template: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Template for dynamic Cassandra usernames.
         """
         verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
         """
@@ -4114,10 +4334,12 @@ class SecretsMountCassandraArgs:
                  name: pulumi.Input[_builtins.str],
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
+                 consistency: Optional[pulumi.Input[_builtins.str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 local_datacenter: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_json: Optional[pulumi.Input[_builtins.str]] = None,
@@ -4129,20 +4351,25 @@ class SecretsMountCassandraArgs:
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  skip_verification: Optional[pulumi.Input[_builtins.bool]] = None,
+                 socket_keep_alive: Optional[pulumi.Input[_builtins.str]] = None,
                  tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[_builtins.int] connect_timeout: The number of seconds to use as a connection timeout.
+        :param pulumi.Input[_builtins.str] consistency: Cassandra consistency level.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hosts: Cassandra hosts to connect to.
         :param pulumi.Input[_builtins.bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[_builtins.str] local_datacenter: Cassandra local datacenter name.
         :param pulumi.Input[_builtins.str] password: The password to use when authenticating with Cassandra.
         :param pulumi.Input[_builtins.str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
@@ -4158,8 +4385,11 @@ class SecretsMountCassandraArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        :param pulumi.Input[_builtins.str] socket_keep_alive: Enable TCP keepalive for Cassandra connections.
         :param pulumi.Input[_builtins.bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[_builtins.str] tls_server_name: SNI host for TLS connections.
         :param pulumi.Input[_builtins.str] username: The username to use when authenticating with Cassandra.
+        :param pulumi.Input[_builtins.str] username_template: Template for dynamic Cassandra usernames.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -4168,6 +4398,8 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if consistency is not None:
+            pulumi.set(__self__, "consistency", consistency)
         if data is not None:
             pulumi.set(__self__, "data", data)
         if disable_automated_rotation is not None:
@@ -4176,6 +4408,8 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "hosts", hosts)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if local_datacenter is not None:
+            pulumi.set(__self__, "local_datacenter", local_datacenter)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if pem_bundle is not None:
@@ -4198,10 +4432,16 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if skip_verification is not None:
             pulumi.set(__self__, "skip_verification", skip_verification)
+        if socket_keep_alive is not None:
+            pulumi.set(__self__, "socket_keep_alive", socket_keep_alive)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
+        if tls_server_name is not None:
+            pulumi.set(__self__, "tls_server_name", tls_server_name)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -4241,6 +4481,18 @@ class SecretsMountCassandraArgs:
     @connect_timeout.setter
     def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def consistency(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Cassandra consistency level.
+        """
+        return pulumi.get(self, "consistency")
+
+    @consistency.setter
+    def consistency(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "consistency", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4291,6 +4543,18 @@ class SecretsMountCassandraArgs:
     @insecure_tls.setter
     def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localDatacenter")
+    def local_datacenter(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Cassandra local datacenter name.
+        """
+        return pulumi.get(self, "local_datacenter")
+
+    @local_datacenter.setter
+    def local_datacenter(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "local_datacenter", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4429,6 +4693,18 @@ class SecretsMountCassandraArgs:
         pulumi.set(self, "skip_verification", value)
 
     @_builtins.property
+    @pulumi.getter(name="socketKeepAlive")
+    def socket_keep_alive(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Enable TCP keepalive for Cassandra connections.
+        """
+        return pulumi.get(self, "socket_keep_alive")
+
+    @socket_keep_alive.setter
+    def socket_keep_alive(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "socket_keep_alive", value)
+
+    @_builtins.property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -4441,6 +4717,18 @@ class SecretsMountCassandraArgs:
         pulumi.set(self, "tls", value)
 
     @_builtins.property
+    @pulumi.getter(name="tlsServerName")
+    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        SNI host for TLS connections.
+        """
+        return pulumi.get(self, "tls_server_name")
+
+    @tls_server_name.setter
+    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_server_name", value)
+
+    @_builtins.property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -4451,6 +4739,18 @@ class SecretsMountCassandraArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template for dynamic Cassandra usernames.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
@@ -5372,6 +5672,10 @@ if not MYPY:
         """
         The root credential username used in the connection URL
         """
+        username_template: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Username generation template.
+        """
         verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether the connection should be verified on
@@ -5401,6 +5705,7 @@ class SecretsMountHanaArgs:
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
@@ -5429,6 +5734,7 @@ class SecretsMountHanaArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
+        :param pulumi.Input[_builtins.str] username_template: Username generation template.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -5467,6 +5773,8 @@ class SecretsMountHanaArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -5693,6 +6001,18 @@ class SecretsMountHanaArgs:
     @username.setter
     def username(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Username generation template.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
@@ -6214,6 +6534,14 @@ if not MYPY:
         a rotation when a scheduled token rotation occurs. The default rotation window is
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
+        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        """
         username: NotRequired[pulumi.Input[_builtins.str]]
         """
         The root credential username used in the connection URL
@@ -6226,6 +6554,10 @@ if not MYPY:
         """
         Whether the connection should be verified on
         initial configuration or not.
+        """
+        write_concern: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Specifies the MongoDB write concern for Vault management operations.
         """
 elif False:
     SecretsMountMongodbArgsDict: TypeAlias = Mapping[str, Any]
@@ -6249,9 +6581,12 @@ class SecretsMountMongodbArgs:
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None,
+                 write_concern: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -6277,10 +6612,13 @@ class SecretsMountMongodbArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.str] tls_ca: The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        :param pulumi.Input[_builtins.str] tls_certificate_key: The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
+        :param pulumi.Input[_builtins.str] write_concern: Specifies the MongoDB write concern for Vault management operations.
         """
         pulumi.set(__self__, "name", name)
         if allowed_roles is not None:
@@ -6313,12 +6651,18 @@ class SecretsMountMongodbArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
+        if write_concern is not None:
+            pulumi.set(__self__, "write_concern", write_concern)
 
     @_builtins.property
     @pulumi.getter
@@ -6521,6 +6865,30 @@ class SecretsMountMongodbArgs:
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @tls_ca.setter
+    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_ca", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_certificate_key")
+
+    @tls_certificate_key.setter
+    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_certificate_key", value)
+
+    @_builtins.property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -6556,6 +6924,18 @@ class SecretsMountMongodbArgs:
     @verify_connection.setter
     def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
+
+    @_builtins.property
+    @pulumi.getter(name="writeConcern")
+    def write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the MongoDB write concern for Vault management operations.
+        """
+        return pulumi.get(self, "write_concern")
+
+    @write_concern.setter
+    def write_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "write_concern", value)
 
 
 if not MYPY:
@@ -6615,6 +6995,10 @@ if not MYPY:
         a rotation when a scheduled token rotation occurs. The default rotation window is
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
+        username_template: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
         verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Whether the connection should be verified on
@@ -6638,6 +7022,7 @@ class SecretsMountMongodbatlaArgs:
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
@@ -6659,6 +7044,7 @@ class SecretsMountMongodbatlaArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -6682,6 +7068,8 @@ class SecretsMountMongodbatlaArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if username_template is not None:
+            pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -6835,6 +7223,18 @@ class SecretsMountMongodbatlaArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="usernameTemplate")
+    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        return pulumi.get(self, "username_template")
+
+    @username_template.setter
+    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")

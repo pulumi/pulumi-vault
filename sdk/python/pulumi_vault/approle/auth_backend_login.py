@@ -22,7 +22,9 @@ class AuthBackendLoginArgs:
                  role_id: pulumi.Input[_builtins.str],
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendLogin resource.
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to log in with.
@@ -33,6 +35,9 @@ class AuthBackendLoginArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.str] secret_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.int] secret_id_wo_version: The version of the `secret_id_wo`. For more info see updating write-only attributes.
         """
         pulumi.set(__self__, "role_id", role_id)
         if backend is not None:
@@ -41,6 +46,10 @@ class AuthBackendLoginArgs:
             pulumi.set(__self__, "namespace", namespace)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
+        if secret_id_wo is not None:
+            pulumi.set(__self__, "secret_id_wo", secret_id_wo)
+        if secret_id_wo_version is not None:
+            pulumi.set(__self__, "secret_id_wo_version", secret_id_wo_version)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
@@ -94,6 +103,31 @@ class AuthBackendLoginArgs:
     def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="secretIdWo")
+    def secret_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        """
+        return pulumi.get(self, "secret_id_wo")
+
+    @secret_id_wo.setter
+    def secret_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_id_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretIdWoVersion")
+    def secret_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the `secret_id_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "secret_id_wo_version")
+
+    @secret_id_wo_version.setter
+    def secret_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_id_wo_version", value)
+
 
 @pulumi.input_type
 class _AuthBackendLoginState:
@@ -108,7 +142,9 @@ class _AuthBackendLoginState:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  renewable: Optional[pulumi.Input[_builtins.bool]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendLogin resources.
         :param pulumi.Input[_builtins.str] accessor: The accessor for the token.
@@ -126,6 +162,9 @@ class _AuthBackendLoginState:
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to log in with.
         :param pulumi.Input[_builtins.str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.str] secret_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.int] secret_id_wo_version: The version of the `secret_id_wo`. For more info see updating write-only attributes.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -149,6 +188,10 @@ class _AuthBackendLoginState:
             pulumi.set(__self__, "role_id", role_id)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
+        if secret_id_wo is not None:
+            pulumi.set(__self__, "secret_id_wo", secret_id_wo)
+        if secret_id_wo_version is not None:
+            pulumi.set(__self__, "secret_id_wo_version", secret_id_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -286,6 +329,31 @@ class _AuthBackendLoginState:
     def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="secretIdWo")
+    def secret_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        """
+        return pulumi.get(self, "secret_id_wo")
+
+    @secret_id_wo.setter
+    def secret_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_id_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretIdWoVersion")
+    def secret_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the `secret_id_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "secret_id_wo_version")
+
+    @secret_id_wo_version.setter
+    def secret_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_id_wo_version", value)
+
 
 @pulumi.type_token("vault:appRole/authBackendLogin:AuthBackendLogin")
 class AuthBackendLogin(pulumi.CustomResource):
@@ -297,36 +365,11 @@ class AuthBackendLogin(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        Logs into Vault using the AppRole auth backend. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle) for more
-        information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        approle = vault.AuthBackend("approle", type="approle")
-        example = vault.approle.AuthBackendRole("example",
-            backend=approle.path,
-            role_name="test-role",
-            token_policies=[
-                "default",
-                "dev",
-                "prod",
-            ])
-        id = vault.approle.AuthBackendRoleSecretId("id",
-            backend=approle.path,
-            role_name=example.role_name)
-        login = vault.approle.AuthBackendLogin("login",
-            backend=approle.path,
-            role_id=example.role_id,
-            secret_id=id.secret_id)
-        ```
-
+        Create a AuthBackendLogin resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique path of the Vault backend to log in with.
@@ -337,6 +380,9 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to log in with.
         :param pulumi.Input[_builtins.str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.str] secret_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.int] secret_id_wo_version: The version of the `secret_id_wo`. For more info see updating write-only attributes.
         """
         ...
     @overload
@@ -345,34 +391,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                  args: AuthBackendLoginArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Logs into Vault using the AppRole auth backend. See the [Vault
-        documentation](https://www.vaultproject.io/docs/auth/approle) for more
-        information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        approle = vault.AuthBackend("approle", type="approle")
-        example = vault.approle.AuthBackendRole("example",
-            backend=approle.path,
-            role_name="test-role",
-            token_policies=[
-                "default",
-                "dev",
-                "prod",
-            ])
-        id = vault.approle.AuthBackendRoleSecretId("id",
-            backend=approle.path,
-            role_name=example.role_name)
-        login = vault.approle.AuthBackendLogin("login",
-            backend=approle.path,
-            role_id=example.role_id,
-            secret_id=id.secret_id)
-        ```
-
+        Create a AuthBackendLogin resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -392,6 +411,8 @@ class AuthBackendLogin(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -407,6 +428,8 @@ class AuthBackendLogin(pulumi.CustomResource):
                 raise TypeError("Missing required property 'role_id'")
             __props__.__dict__["role_id"] = role_id
             __props__.__dict__["secret_id"] = None if secret_id is None else pulumi.Output.secret(secret_id)
+            __props__.__dict__["secret_id_wo"] = None if secret_id_wo is None else pulumi.Output.secret(secret_id_wo)
+            __props__.__dict__["secret_id_wo_version"] = secret_id_wo_version
             __props__.__dict__["accessor"] = None
             __props__.__dict__["client_token"] = None
             __props__.__dict__["lease_duration"] = None
@@ -414,7 +437,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             __props__.__dict__["metadata"] = None
             __props__.__dict__["policies"] = None
             __props__.__dict__["renewable"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientToken", "secretId"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientToken", "secretId", "secretIdWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendLogin, __self__).__init__(
             'vault:appRole/authBackendLogin:AuthBackendLogin',
@@ -436,7 +459,9 @@ class AuthBackendLogin(pulumi.CustomResource):
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             renewable: Optional[pulumi.Input[_builtins.bool]] = None,
             role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendLogin':
+            secret_id: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'AuthBackendLogin':
         """
         Get an existing AuthBackendLogin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -459,6 +484,9 @@ class AuthBackendLogin(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to log in with.
         :param pulumi.Input[_builtins.str] secret_id: The secret ID of the role to log in with. Required
                unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.str] secret_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        :param pulumi.Input[_builtins.int] secret_id_wo_version: The version of the `secret_id_wo`. For more info see updating write-only attributes.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -475,6 +503,8 @@ class AuthBackendLogin(pulumi.CustomResource):
         __props__.__dict__["renewable"] = renewable
         __props__.__dict__["role_id"] = role_id
         __props__.__dict__["secret_id"] = secret_id
+        __props__.__dict__["secret_id_wo"] = secret_id_wo
+        __props__.__dict__["secret_id_wo_version"] = secret_id_wo_version
         return AuthBackendLogin(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -568,4 +598,21 @@ class AuthBackendLogin(pulumi.CustomResource):
         unless `bind_secret_id` is set to false on the role.
         """
         return pulumi.get(self, "secret_id")
+
+    @_builtins.property
+    @pulumi.getter(name="secretIdWo")
+    def secret_id_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
+        """
+        return pulumi.get(self, "secret_id_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="secretIdWoVersion")
+    def secret_id_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the `secret_id_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "secret_id_wo_version")
 

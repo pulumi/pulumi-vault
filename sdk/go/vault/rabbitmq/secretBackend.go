@@ -12,34 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/rabbitmq"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rabbitmq.NewSecretBackend(ctx, "rabbitmq", &rabbitmq.SecretBackendArgs{
-//				ConnectionUri: pulumi.String("https://....."),
-//				Username:      pulumi.String("user"),
-//				Password:      pulumi.String("password"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -93,9 +65,15 @@ type SecretBackend struct {
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Specifies the RabbitMQ management administrator password.
-	Password pulumi.StringOutput `pulumi:"password"`
+	// Conflicts with `passwordWo`.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
 	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
@@ -122,20 +100,21 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.ConnectionUri == nil {
 		return nil, errors.New("invalid value for required argument 'ConnectionUri'")
 	}
-	if args.Password == nil {
-		return nil, errors.New("invalid value for required argument 'Password'")
-	}
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
 	}
 	if args.Username != nil {
 		args.Username = pulumi.ToSecret(args.Username).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 		"username",
 	})
 	opts = append(opts, secrets)
@@ -205,9 +184,15 @@ type secretBackendState struct {
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Specifies the RabbitMQ management administrator password.
+	// Conflicts with `passwordWo`.
 	Password *string `pulumi:"password"`
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path *string `pulumi:"path"`
@@ -268,9 +253,15 @@ type SecretBackendState struct {
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Specifies the RabbitMQ management administrator password.
+	// Conflicts with `passwordWo`.
 	Password pulumi.StringPtrInput
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
 	PasswordPolicy pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+	PasswordWo pulumi.StringPtrInput
+	// A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrInput
@@ -333,9 +324,15 @@ type secretBackendArgs struct {
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Specifies the RabbitMQ management administrator password.
-	Password string `pulumi:"password"`
+	// Conflicts with `passwordWo`.
+	Password *string `pulumi:"password"`
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path *string `pulumi:"path"`
@@ -395,9 +392,15 @@ type SecretBackendArgs struct {
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Specifies the RabbitMQ management administrator password.
-	Password pulumi.StringInput
+	// Conflicts with `passwordWo`.
+	Password pulumi.StringPtrInput
 	// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
 	PasswordPolicy pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+	PasswordWo pulumi.StringPtrInput
+	// A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `rabbitmq`.
 	Path pulumi.StringPtrInput
@@ -601,13 +604,25 @@ func (o SecretBackendOutput) PassthroughRequestHeaders() pulumi.StringArrayOutpu
 }
 
 // Specifies the RabbitMQ management administrator password.
-func (o SecretBackendOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+// Conflicts with `passwordWo`.
+func (o SecretBackendOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
 func (o SecretBackendOutput) PasswordPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+func (o SecretBackendOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+func (o SecretBackendOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The unique path this backend should be mounted at. Must

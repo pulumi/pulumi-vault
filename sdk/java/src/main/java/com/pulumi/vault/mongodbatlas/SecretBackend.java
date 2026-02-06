@@ -10,54 +10,13 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.mongodbatlas.SecretBackendArgs;
 import com.pulumi.vault.mongodbatlas.inputs.SecretBackendState;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.Mount;
- * import com.pulumi.vault.MountArgs;
- * import com.pulumi.vault.mongodbatlas.SecretBackend;
- * import com.pulumi.vault.mongodbatlas.SecretBackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var mongo = new Mount("mongo", MountArgs.builder()
- *             .path("mongodbatlas")
- *             .type("mongodbatlas")
- *             .description("MongoDB Atlas secret engine mount")
- *             .build());
- * 
- *         var config = new SecretBackend("config", SecretBackendArgs.builder()
- *             .mount(mongo.path())
- *             .privateKey("privateKey")
- *             .publicKey("publicKey")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
@@ -118,18 +77,50 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.path;
     }
     /**
-     * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
-    private Output<String> privateKey;
+    private Output</* @Nullable */ String> privateKey;
 
     /**
-     * @return Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * @return The Private Programmatic API Key used to connect with MongoDB Atlas API
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Output<Optional<String>> privateKey() {
+        return Codegen.optional(this.privateKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     * 
+     */
+    @Export(name="privateKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     * 
+     */
+    public Output<Optional<String>> privateKeyWo() {
+        return Codegen.optional(this.privateKeyWo);
+    }
+    /**
+     * An incrementing version counter. Increment this value to force an update
+     * to the private key. Required when using `privateKeyWo`.
+     * 
+     */
+    @Export(name="privateKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> privateKeyWoVersion;
+
+    /**
+     * @return An incrementing version counter. Increment this value to force an update
+     * to the private key. Required when using `privateKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> privateKeyWoVersion() {
+        return Codegen.optional(this.privateKeyWoVersion);
     }
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
@@ -185,6 +176,10 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "privateKey",
+                "privateKeyWo"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -10,6 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncAzureDestinationArgs;
 import com.pulumi.vault.secrets.inputs.SyncAzureDestinationState;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +50,14 @@ import javax.annotation.Nullable;
  *             .clientSecret(clientSecret)
  *             .tenantId(tenantId)
  *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .allowedIpv4Addresses(            
+ *                 "192.168.1.1/24",
+ *                 "10.0.0.1/8")
+ *             .allowedIpv6Addresses("2001:db9::/32")
+ *             .allowedPorts(            
+ *                 443,
+ *                 9443)
+ *             .disableStrictNetworking(false)
  *             .customTags(Map.of("foo", "bar"))
  *             .build());
  * 
@@ -67,6 +77,54 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:secrets/syncAzureDestination:SyncAzureDestination")
 public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
+    /**
+     * List of IPv4 addresses or CIDR blocks allowed to make outbound
+     * connections from Vault to the destination. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedIpv4Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return List of IPv4 addresses or CIDR blocks allowed to make outbound
+     * connections from Vault to the destination. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv4Addresses() {
+        return Codegen.optional(this.allowedIpv4Addresses);
+    }
+    /**
+     * List of IPv6 addresses or CIDR blocks allowed to make outbound
+     * connections from Vault to the destination. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedIpv6Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return List of IPv6 addresses or CIDR blocks allowed to make outbound
+     * connections from Vault to the destination. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv6Addresses() {
+        return Codegen.optional(this.allowedIpv6Addresses);
+    }
+    /**
+     * List of port numbers allowed for outbound connections from Vault to the
+     * destination. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedPorts", refs={List.class,Integer.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<Integer>> allowedPorts;
+
+    /**
+     * @return List of port numbers allowed for outbound connections from Vault to the
+     * destination. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<Integer>>> allowedPorts() {
+        return Codegen.optional(this.allowedPorts);
+    }
     /**
      * Client ID of an Azure app registration.
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -130,6 +188,22 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Map<String,String>>> customTags() {
         return Codegen.optional(this.customTags);
+    }
+    /**
+     * When set to `true`, disables strict enforcement of networking
+     * restrictions. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="disableStrictNetworking", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableStrictNetworking;
+
+    /**
+     * @return When set to `true`, disables strict enforcement of networking
+     * restrictions. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<Boolean>> disableStrictNetworking() {
+        return Codegen.optional(this.disableStrictNetworking);
     }
     /**
      * Determines what level of information is synced as a distinct resource

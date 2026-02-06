@@ -5,34 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- *
- * ### Creating a standard backend resource:
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const test = new vault.consul.SecretBackend("test", {
- *     path: "consul",
- *     description: "Manages the Consul backend",
- *     address: "127.0.0.1:8500",
- *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
- * });
- * ```
- *
- * ### Creating a backend resource to bootstrap a new Consul instance:
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const test = new vault.consul.SecretBackend("test", {
- *     path: "consul",
- *     description: "Bootstrap the Consul backend",
- *     address: "127.0.0.1:8500",
- *     bootstrap: true,
- * });
- * ```
- *
  * ## Import
  *
  * Consul secret backends can be imported using the `path`, e.g.
@@ -107,10 +79,19 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly clientCert: pulumi.Output<string | undefined>;
     /**
-     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
      */
     declare public readonly clientKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+     */
+    declare public readonly clientKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only client key. Increment this value to trigger 
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     */
+    declare public readonly clientKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * Default lease duration for secrets in seconds
      */
@@ -185,9 +166,19 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
-     * Specifies the Consul token to use when managing or issuing new tokens.
+     * Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
      */
     declare public readonly token: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+     */
+    declare public readonly tokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only token. Increment this value to trigger an update 
+     * of the token in Vault. Required when using `tokenWo`.
+     */
+    declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -212,6 +203,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["caCert"] = state?.caCert;
             resourceInputs["clientCert"] = state?.clientCert;
             resourceInputs["clientKey"] = state?.clientKey;
+            resourceInputs["clientKeyWo"] = state?.clientKeyWo;
+            resourceInputs["clientKeyWoVersion"] = state?.clientKeyWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = state?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = state?.delegatedAuthAccessors;
             resourceInputs["description"] = state?.description;
@@ -230,6 +223,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["scheme"] = state?.scheme;
             resourceInputs["sealWrap"] = state?.sealWrap;
             resourceInputs["token"] = state?.token;
+            resourceInputs["tokenWo"] = state?.tokenWo;
+            resourceInputs["tokenWoVersion"] = state?.tokenWoVersion;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             if (args?.address === undefined && !opts.urn) {
@@ -244,6 +239,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["caCert"] = args?.caCert;
             resourceInputs["clientCert"] = args?.clientCert ? pulumi.secret(args.clientCert) : undefined;
             resourceInputs["clientKey"] = args?.clientKey ? pulumi.secret(args.clientKey) : undefined;
+            resourceInputs["clientKeyWo"] = args?.clientKeyWo ? pulumi.secret(args.clientKeyWo) : undefined;
+            resourceInputs["clientKeyWoVersion"] = args?.clientKeyWoVersion;
             resourceInputs["defaultLeaseTtlSeconds"] = args?.defaultLeaseTtlSeconds;
             resourceInputs["delegatedAuthAccessors"] = args?.delegatedAuthAccessors;
             resourceInputs["description"] = args?.description;
@@ -262,10 +259,12 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["scheme"] = args?.scheme;
             resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["tokenWo"] = args?.tokenWo ? pulumi.secret(args.tokenWo) : undefined;
+            resourceInputs["tokenWoVersion"] = args?.tokenWoVersion;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientCert", "clientKey", "token"] };
+        const secretOpts = { additionalSecretOutputs: ["clientCert", "clientKey", "clientKeyWo", "token", "tokenWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -313,10 +312,19 @@ export interface SecretBackendState {
      */
     clientCert?: pulumi.Input<string>;
     /**
-     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
      */
     clientKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+     */
+    clientKeyWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only client key. Increment this value to trigger 
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     */
+    clientKeyWoVersion?: pulumi.Input<number>;
     /**
      * Default lease duration for secrets in seconds
      */
@@ -391,9 +399,19 @@ export interface SecretBackendState {
      */
     sealWrap?: pulumi.Input<boolean>;
     /**
-     * Specifies the Consul token to use when managing or issuing new tokens.
+     * Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
      */
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only token. Increment this value to trigger an update 
+     * of the token in Vault. Required when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -434,10 +452,19 @@ export interface SecretBackendArgs {
      */
     clientCert?: pulumi.Input<string>;
     /**
-     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
      */
     clientKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+     */
+    clientKeyWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only client key. Increment this value to trigger 
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     */
+    clientKeyWoVersion?: pulumi.Input<number>;
     /**
      * Default lease duration for secrets in seconds
      */
@@ -512,7 +539,17 @@ export interface SecretBackendArgs {
      */
     sealWrap?: pulumi.Input<boolean>;
     /**
-     * Specifies the Consul token to use when managing or issuing new tokens.
+     * Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
      */
     token?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+     */
+    tokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only token. Increment this value to trigger an update 
+     * of the token in Vault. Required when using `tokenWo`.
+     */
+    tokenWoVersion?: pulumi.Input<number>;
 }

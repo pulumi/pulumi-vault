@@ -513,6 +513,36 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.secretKey);
     }
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="secretKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> secretKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> secretKeyWo() {
+        return Codegen.optional(this.secretKeyWo);
+    }
+    /**
+     * A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     * 
+     */
+    @Export(name="secretKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> secretKeyWoVersion;
+
+    /**
+     * @return A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     * 
+     */
+    public Output<Optional<Integer>> secretKeyWoVersion() {
+        return Codegen.optional(this.secretKeyWoVersion);
+    }
+    /**
      * Specifies a custom HTTP STS endpoint to use.
      * 
      */
@@ -624,7 +654,8 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "accessKey",
-                "secretKey"
+                "secretKey",
+                "secretKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

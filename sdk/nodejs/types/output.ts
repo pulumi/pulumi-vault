@@ -587,6 +587,10 @@ export namespace database {
          */
         connectTimeout?: number;
         /**
+         * Cassandra consistency level.
+         */
+        consistency?: string;
+        /**
          * Cassandra hosts to connect to.
          */
         hosts?: string[];
@@ -594,6 +598,10 @@ export namespace database {
          * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: boolean;
+        /**
+         * Cassandra local datacenter name.
+         */
+        localDatacenter?: string;
         /**
          * The password to use when authenticating with Cassandra.
          */
@@ -619,13 +627,25 @@ export namespace database {
          */
         skipVerification?: boolean;
         /**
+         * Enable TCP keepalive for Cassandra connections.
+         */
+        socketKeepAlive?: string;
+        /**
          * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
+         * SNI host for TLS connections.
+         */
+        tlsServerName?: string;
+        /**
          * The username to use when authenticating with Cassandra.
          */
         username?: string;
+        /**
+         * Template for dynamic Cassandra usernames.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionCouchbase {
@@ -744,6 +764,10 @@ export namespace database {
          * The root credential username used in the connection URL
          */
         username?: string;
+        /**
+         * Username generation template.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionInfluxdb {
@@ -820,6 +844,14 @@ export namespace database {
          */
         passwordWoVersion?: number;
         /**
+         * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificateKey?: string;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -827,6 +859,10 @@ export namespace database {
          * Username generation template.
          */
         usernameTemplate?: string;
+        /**
+         * Specifies the MongoDB write concern for Vault management operations.
+         */
+        writeConcern?: string;
     }
 
     export interface SecretBackendConnectionMongodbatlas {
@@ -842,6 +878,10 @@ export namespace database {
          * The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
          */
         publicKey: string;
+        /**
+         * Template describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
     }
 
     export interface SecretBackendConnectionMssql {
@@ -1396,6 +1436,10 @@ export namespace database {
          */
         connectTimeout?: number;
         /**
+         * Cassandra consistency level.
+         */
+        consistency?: string;
+        /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
         data?: {[key: string]: string};
@@ -1413,6 +1457,10 @@ export namespace database {
          * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: boolean;
+        /**
+         * Cassandra local datacenter name.
+         */
+        localDatacenter?: string;
         /**
          * Name of the database connection.
          */
@@ -1466,13 +1514,25 @@ export namespace database {
          */
         skipVerification?: boolean;
         /**
+         * Enable TCP keepalive for Cassandra connections.
+         */
+        socketKeepAlive?: string;
+        /**
          * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
         /**
+         * SNI host for TLS connections.
+         */
+        tlsServerName?: string;
+        /**
          * The username to use when authenticating with Cassandra.
          */
         username?: string;
+        /**
+         * Template for dynamic Cassandra usernames.
+         */
+        usernameTemplate?: string;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
@@ -1736,6 +1796,10 @@ export namespace database {
          */
         username?: string;
         /**
+         * Username generation template.
+         */
+        usernameTemplate?: string;
+        /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
@@ -1907,6 +1971,14 @@ export namespace database {
          */
         rotationWindow?: number;
         /**
+         * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificateKey?: string;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -1919,6 +1991,10 @@ export namespace database {
          * initial configuration or not.
          */
         verifyConnection?: boolean;
+        /**
+         * Specifies the MongoDB write concern for Vault management operations.
+         */
+        writeConcern?: string;
     }
 
     export interface SecretsMountMongodbatla {
@@ -1977,6 +2053,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: number;
+        /**
+         * Template describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: string;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
@@ -3520,11 +3600,11 @@ export namespace managed {
         /**
          * The id of a PKCS#11 key to use
          */
-        keyId: string;
+        keyId?: string;
         /**
          * The label of the key to use
          */
-        keyLabel: string;
+        keyLabel?: string;
         /**
          * The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
          */

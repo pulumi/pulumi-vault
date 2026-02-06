@@ -60,6 +60,9 @@
                 "fields": {
                     "cidr_list": {
                         "maxItemsOne": false
+                    },
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2135,11 +2138,33 @@
             },
             "vault_secrets_sync_aws_destination": {
                 "current": "vault:secrets/syncAwsDestination:SyncAwsDestination",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_ipv4_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ipv6_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ports": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_secrets_sync_azure_destination": {
                 "current": "vault:secrets/syncAzureDestination:SyncAzureDestination",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_ipv4_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ipv6_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ports": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_secrets_sync_config": {
                 "current": "vault:secrets/syncConfig:SyncConfig",
@@ -2147,11 +2172,36 @@
             },
             "vault_secrets_sync_gcp_destination": {
                 "current": "vault:secrets/syncGcpDestination:SyncGcpDestination",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_ipv4_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ipv6_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ports": {
+                        "maxItemsOne": false
+                    },
+                    "replication_locations": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_secrets_sync_gh_destination": {
                 "current": "vault:secrets/syncGhDestination:SyncGhDestination",
-                "majorVersion": 7
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_ipv4_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ipv6_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ports": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_secrets_sync_github_apps": {
                 "current": "vault:secrets/syncGithubApps:SyncGithubApps",
@@ -2161,6 +2211,15 @@
                 "current": "vault:secrets/syncVercelDestination:SyncVercelDestination",
                 "majorVersion": 7,
                 "fields": {
+                    "allowed_ipv4_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ipv6_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_ports": {
+                        "maxItemsOne": false
+                    },
                     "deployment_environments": {
                         "maxItemsOne": false
                     }

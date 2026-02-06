@@ -32,6 +32,8 @@ class AuthBackendArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
+                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
@@ -57,6 +59,10 @@ class AuthBackendArgs:
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+               the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+               the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -81,6 +87,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "path", path)
         if tune is not None:
             pulumi.set(__self__, "tune", tune)
+        if validate_assertion_signature is not None:
+            pulumi.set(__self__, "validate_assertion_signature", validate_assertion_signature)
+        if validate_response_signature is not None:
+            pulumi.set(__self__, "validate_response_signature", validate_response_signature)
         if verbose_logging is not None:
             pulumi.set(__self__, "verbose_logging", verbose_logging)
 
@@ -228,6 +238,32 @@ class AuthBackendArgs:
         pulumi.set(self, "tune", value)
 
     @_builtins.property
+    @pulumi.getter(name="validateAssertionSignature")
+    def validate_assertion_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, validates the signature of 
+        the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "validate_assertion_signature")
+
+    @validate_assertion_signature.setter
+    def validate_assertion_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "validate_assertion_signature", value)
+
+    @_builtins.property
+    @pulumi.getter(name="validateResponseSignature")
+    def validate_response_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, validates the signature of 
+        the SAML response. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "validate_response_signature")
+
+    @validate_response_signature.setter
+    def validate_response_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "validate_response_signature", value)
+
+    @_builtins.property
     @pulumi.getter(name="verboseLogging")
     def verbose_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -256,6 +292,8 @@ class _AuthBackendState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
+                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
@@ -281,6 +319,10 @@ class _AuthBackendState:
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+               the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+               the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -307,6 +349,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "path", path)
         if tune is not None:
             pulumi.set(__self__, "tune", tune)
+        if validate_assertion_signature is not None:
+            pulumi.set(__self__, "validate_assertion_signature", validate_assertion_signature)
+        if validate_response_signature is not None:
+            pulumi.set(__self__, "validate_response_signature", validate_response_signature)
         if verbose_logging is not None:
             pulumi.set(__self__, "verbose_logging", verbose_logging)
 
@@ -454,6 +500,32 @@ class _AuthBackendState:
         pulumi.set(self, "tune", value)
 
     @_builtins.property
+    @pulumi.getter(name="validateAssertionSignature")
+    def validate_assertion_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, validates the signature of 
+        the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "validate_assertion_signature")
+
+    @validate_assertion_signature.setter
+    def validate_assertion_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "validate_assertion_signature", value)
+
+    @_builtins.property
+    @pulumi.getter(name="validateResponseSignature")
+    def validate_response_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, validates the signature of 
+        the SAML response. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "validate_response_signature")
+
+    @validate_response_signature.setter
+    def validate_response_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "validate_response_signature", value)
+
+    @_builtins.property
     @pulumi.getter(name="verboseLogging")
     def verbose_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -485,6 +557,8 @@ class AuthBackend(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -538,6 +612,10 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+               the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+               the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -601,6 +679,8 @@ class AuthBackend(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -626,6 +706,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
             __props__.__dict__["tune"] = tune
+            __props__.__dict__["validate_assertion_signature"] = validate_assertion_signature
+            __props__.__dict__["validate_response_signature"] = validate_response_signature
             __props__.__dict__["verbose_logging"] = verbose_logging
         super(AuthBackend, __self__).__init__(
             'vault:saml/authBackend:AuthBackend',
@@ -648,6 +730,8 @@ class AuthBackend(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
             tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
+            validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
             verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
@@ -678,6 +762,10 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+               the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+               the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
                recommended for production.
@@ -697,6 +785,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["tune"] = tune
+        __props__.__dict__["validate_assertion_signature"] = validate_assertion_signature
+        __props__.__dict__["validate_response_signature"] = validate_response_signature
         __props__.__dict__["verbose_logging"] = verbose_logging
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
@@ -798,6 +888,24 @@ class AuthBackend(pulumi.CustomResource):
         The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "tune")
+
+    @_builtins.property
+    @pulumi.getter(name="validateAssertionSignature")
+    def validate_assertion_signature(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to `true`, validates the signature of 
+        the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "validate_assertion_signature")
+
+    @_builtins.property
+    @pulumi.getter(name="validateResponseSignature")
+    def validate_response_signature(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If set to `true`, validates the signature of 
+        the SAML response. Defaults to `false`. Requires Vault 1.19+.
+        """
+        return pulumi.get(self, "validate_response_signature")
 
     @_builtins.property
     @pulumi.getter(name="verboseLogging")

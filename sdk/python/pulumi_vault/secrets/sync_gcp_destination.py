@@ -19,21 +19,34 @@ __all__ = ['SyncGcpDestinationArgs', 'SyncGcpDestination']
 @pulumi.input_type
 class SyncGcpDestinationArgs:
     def __init__(__self__, *,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
+                 global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncGcpDestination resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Allowed ports for outbound network connectivity. If not set, all ports are allowed.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: Disable strict networking requirements.
+        :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -42,23 +55,74 @@ class SyncGcpDestinationArgs:
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         """
+        if allowed_ipv4_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
+        if allowed_ipv6_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv6_addresses", allowed_ipv6_addresses)
+        if allowed_ports is not None:
+            pulumi.set(__self__, "allowed_ports", allowed_ports)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if custom_tags is not None:
             pulumi.set(__self__, "custom_tags", custom_tags)
+        if disable_strict_networking is not None:
+            pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
+        if global_kms_key is not None:
+            pulumi.set(__self__, "global_kms_key", global_kms_key)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if locational_kms_keys is not None:
+            pulumi.set(__self__, "locational_kms_keys", locational_kms_keys)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if replication_locations is not None:
+            pulumi.set(__self__, "replication_locations", replication_locations)
         if secret_name_template is not None:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @allowed_ipv4_addresses.setter
+    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @allowed_ipv6_addresses.setter
+    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+        """
+        Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @allowed_ports.setter
+    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+        pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter
@@ -87,6 +151,30 @@ class SyncGcpDestinationArgs:
         pulumi.set(self, "custom_tags", value)
 
     @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Disable strict networking requirements.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @disable_strict_networking.setter
+    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_strict_networking", value)
+
+    @_builtins.property
+    @pulumi.getter(name="globalKmsKey")
+    def global_kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Global KMS key for encryption.
+        """
+        return pulumi.get(self, "global_kms_key")
+
+    @global_kms_key.setter
+    def global_kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "global_kms_key", value)
+
+    @_builtins.property
     @pulumi.getter
     def granularity(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -98,6 +186,18 @@ class SyncGcpDestinationArgs:
     @granularity.setter
     def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "granularity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="locationalKmsKeys")
+    def locational_kms_keys(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Locational KMS keys for encryption.
+        """
+        return pulumi.get(self, "locational_kms_keys")
+
+    @locational_kms_keys.setter
+    def locational_kms_keys(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "locational_kms_keys", value)
 
     @_builtins.property
     @pulumi.getter
@@ -139,6 +239,18 @@ class SyncGcpDestinationArgs:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="replicationLocations")
+    def replication_locations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Replication locations for secrets.
+        """
+        return pulumi.get(self, "replication_locations")
+
+    @replication_locations.setter
+    def replication_locations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "replication_locations", value)
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")
@@ -157,22 +269,35 @@ class SyncGcpDestinationArgs:
 @pulumi.input_type
 class _SyncGcpDestinationState:
     def __init__(__self__, *,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
+                 global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncGcpDestination resources.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Allowed ports for outbound network connectivity. If not set, all ports are allowed.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: Disable strict networking requirements.
+        :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -181,26 +306,77 @@ class _SyncGcpDestinationState:
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[_builtins.str] type: The type of the secrets destination (`gcp-sm`).
         """
+        if allowed_ipv4_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
+        if allowed_ipv6_addresses is not None:
+            pulumi.set(__self__, "allowed_ipv6_addresses", allowed_ipv6_addresses)
+        if allowed_ports is not None:
+            pulumi.set(__self__, "allowed_ports", allowed_ports)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if custom_tags is not None:
             pulumi.set(__self__, "custom_tags", custom_tags)
+        if disable_strict_networking is not None:
+            pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
+        if global_kms_key is not None:
+            pulumi.set(__self__, "global_kms_key", global_kms_key)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if locational_kms_keys is not None:
+            pulumi.set(__self__, "locational_kms_keys", locational_kms_keys)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if replication_locations is not None:
+            pulumi.set(__self__, "replication_locations", replication_locations)
         if secret_name_template is not None:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
         if type is not None:
             pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @allowed_ipv4_addresses.setter
+    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @allowed_ipv6_addresses.setter
+    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+        """
+        Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+        """
+        return pulumi.get(self, "allowed_ports")
+
+    @allowed_ports.setter
+    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+        pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter
@@ -229,6 +405,30 @@ class _SyncGcpDestinationState:
         pulumi.set(self, "custom_tags", value)
 
     @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Disable strict networking requirements.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @disable_strict_networking.setter
+    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_strict_networking", value)
+
+    @_builtins.property
+    @pulumi.getter(name="globalKmsKey")
+    def global_kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Global KMS key for encryption.
+        """
+        return pulumi.get(self, "global_kms_key")
+
+    @global_kms_key.setter
+    def global_kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "global_kms_key", value)
+
+    @_builtins.property
     @pulumi.getter
     def granularity(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -240,6 +440,18 @@ class _SyncGcpDestinationState:
     @granularity.setter
     def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "granularity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="locationalKmsKeys")
+    def locational_kms_keys(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Locational KMS keys for encryption.
+        """
+        return pulumi.get(self, "locational_kms_keys")
+
+    @locational_kms_keys.setter
+    def locational_kms_keys(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "locational_kms_keys", value)
 
     @_builtins.property
     @pulumi.getter
@@ -281,6 +493,18 @@ class _SyncGcpDestinationState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="replicationLocations")
+    def replication_locations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Replication locations for secrets.
+        """
+        return pulumi.get(self, "replication_locations")
+
+    @replication_locations.setter
+    def replication_locations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "replication_locations", value)
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")
@@ -314,12 +538,19 @@ class SyncGcpDestination(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
+                 global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -340,6 +571,68 @@ class SyncGcpDestination(pulumi.CustomResource):
             })
         ```
 
+        ### With Networking Configuration (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_networking = vault.secrets.SyncGcpDestination("gcp_networking",
+            name="gcp-dest-networking",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            allowed_ipv4_addresses=[
+                "10.0.0.0/8",
+                "192.168.0.0/16",
+            ],
+            allowed_ipv6_addresses=["2001:db8::/32"],
+            allowed_ports=[
+                443,
+                8443,
+            ],
+            disable_strict_networking=False)
+        ```
+
+        ### With Global Encryption (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_encryption = vault.secrets.SyncGcpDestination("gcp_encryption",
+            name="gcp-dest-encryption",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            global_kms_key="projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key")
+        ```
+
+        ### With Multi-Region Replication and Regional Encryption (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_replication_encryption = vault.secrets.SyncGcpDestination("gcp_replication_encryption",
+            name="gcp-dest-replication-encryption",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}_{{ .SecretKey | lowercase }}",
+            granularity="secret-key",
+            locational_kms_keys={
+                "us-central1": "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key",
+                "us-east1": "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key",
+            },
+            replication_locations=[
+                "us-central1",
+                "us-east1",
+            ])
+        ```
+
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -350,12 +643,18 @@ class SyncGcpDestination(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Allowed ports for outbound network connectivity. If not set, all ports are allowed.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: Disable strict networking requirements.
+        :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -364,6 +663,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         """
@@ -391,6 +691,68 @@ class SyncGcpDestination(pulumi.CustomResource):
             })
         ```
 
+        ### With Networking Configuration (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_networking = vault.secrets.SyncGcpDestination("gcp_networking",
+            name="gcp-dest-networking",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            allowed_ipv4_addresses=[
+                "10.0.0.0/8",
+                "192.168.0.0/16",
+            ],
+            allowed_ipv6_addresses=["2001:db8::/32"],
+            allowed_ports=[
+                443,
+                8443,
+            ],
+            disable_strict_networking=False)
+        ```
+
+        ### With Global Encryption (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_encryption = vault.secrets.SyncGcpDestination("gcp_encryption",
+            name="gcp-dest-encryption",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            global_kms_key="projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key")
+        ```
+
+        ### With Multi-Region Replication and Regional Encryption (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_replication_encryption = vault.secrets.SyncGcpDestination("gcp_replication_encryption",
+            name="gcp-dest-replication-encryption",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}_{{ .SecretKey | lowercase }}",
+            granularity="secret-key",
+            locational_kms_keys={
+                "us-central1": "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key",
+                "us-east1": "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key",
+            },
+            replication_locations=[
+                "us-central1",
+                "us-east1",
+            ])
+        ```
+
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -414,12 +776,19 @@ class SyncGcpDestination(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
                  credentials: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
+                 global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -430,12 +799,19 @@ class SyncGcpDestination(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SyncGcpDestinationArgs.__new__(SyncGcpDestinationArgs)
 
+            __props__.__dict__["allowed_ipv4_addresses"] = allowed_ipv4_addresses
+            __props__.__dict__["allowed_ipv6_addresses"] = allowed_ipv6_addresses
+            __props__.__dict__["allowed_ports"] = allowed_ports
             __props__.__dict__["credentials"] = None if credentials is None else pulumi.Output.secret(credentials)
             __props__.__dict__["custom_tags"] = custom_tags
+            __props__.__dict__["disable_strict_networking"] = disable_strict_networking
+            __props__.__dict__["global_kms_key"] = global_kms_key
             __props__.__dict__["granularity"] = granularity
+            __props__.__dict__["locational_kms_keys"] = locational_kms_keys
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["replication_locations"] = replication_locations
             __props__.__dict__["secret_name_template"] = secret_name_template
             __props__.__dict__["type"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
@@ -450,12 +826,19 @@ class SyncGcpDestination(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
             credentials: Optional[pulumi.Input[_builtins.str]] = None,
             custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
+            global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
             granularity: Optional[pulumi.Input[_builtins.str]] = None,
+            locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
+            replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SyncGcpDestination':
         """
@@ -465,12 +848,18 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Allowed ports for outbound network connectivity. If not set, all ports are allowed.
         :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: Disable strict networking requirements.
+        :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -479,6 +868,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[_builtins.str] type: The type of the secrets destination (`gcp-sm`).
@@ -487,15 +877,46 @@ class SyncGcpDestination(pulumi.CustomResource):
 
         __props__ = _SyncGcpDestinationState.__new__(_SyncGcpDestinationState)
 
+        __props__.__dict__["allowed_ipv4_addresses"] = allowed_ipv4_addresses
+        __props__.__dict__["allowed_ipv6_addresses"] = allowed_ipv6_addresses
+        __props__.__dict__["allowed_ports"] = allowed_ports
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["custom_tags"] = custom_tags
+        __props__.__dict__["disable_strict_networking"] = disable_strict_networking
+        __props__.__dict__["global_kms_key"] = global_kms_key
         __props__.__dict__["granularity"] = granularity
+        __props__.__dict__["locational_kms_keys"] = locational_kms_keys
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["replication_locations"] = replication_locations
         __props__.__dict__["secret_name_template"] = secret_name_template
         __props__.__dict__["type"] = type
         return SyncGcpDestination(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv4Addresses")
+    def allowed_ipv4_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        """
+        return pulumi.get(self, "allowed_ipv4_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedIpv6Addresses")
+    def allowed_ipv6_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        """
+        return pulumi.get(self, "allowed_ipv6_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="allowedPorts")
+    def allowed_ports(self) -> pulumi.Output[Optional[Sequence[_builtins.int]]]:
+        """
+        Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+        """
+        return pulumi.get(self, "allowed_ports")
 
     @_builtins.property
     @pulumi.getter
@@ -516,6 +937,22 @@ class SyncGcpDestination(pulumi.CustomResource):
         return pulumi.get(self, "custom_tags")
 
     @_builtins.property
+    @pulumi.getter(name="disableStrictNetworking")
+    def disable_strict_networking(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Disable strict networking requirements.
+        """
+        return pulumi.get(self, "disable_strict_networking")
+
+    @_builtins.property
+    @pulumi.getter(name="globalKmsKey")
+    def global_kms_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Global KMS key for encryption.
+        """
+        return pulumi.get(self, "global_kms_key")
+
+    @_builtins.property
     @pulumi.getter
     def granularity(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -523,6 +960,14 @@ class SyncGcpDestination(pulumi.CustomResource):
         at the destination. Supports `secret-path` and `secret-key`.
         """
         return pulumi.get(self, "granularity")
+
+    @_builtins.property
+    @pulumi.getter(name="locationalKmsKeys")
+    def locational_kms_keys(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        Locational KMS keys for encryption.
+        """
+        return pulumi.get(self, "locational_kms_keys")
 
     @_builtins.property
     @pulumi.getter
@@ -552,6 +997,14 @@ class SyncGcpDestination(pulumi.CustomResource):
         to perform Secret Manager actions in the target project.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="replicationLocations")
+    def replication_locations(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Replication locations for secrets.
+        """
+        return pulumi.get(self, "replication_locations")
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")

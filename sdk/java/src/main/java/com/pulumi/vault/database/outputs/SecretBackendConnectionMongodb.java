@@ -49,6 +49,16 @@ public final class SecretBackendConnectionMongodb {
      */
     private @Nullable Integer passwordWoVersion;
     /**
+     * @return The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCa;
+    /**
+     * @return The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCertificateKey;
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -58,6 +68,11 @@ public final class SecretBackendConnectionMongodb {
      * 
      */
     private @Nullable String usernameTemplate;
+    /**
+     * @return Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    private @Nullable String writeConcern;
 
     private SecretBackendConnectionMongodb() {}
     /**
@@ -111,6 +126,20 @@ public final class SecretBackendConnectionMongodb {
         return Optional.ofNullable(this.passwordWoVersion);
     }
     /**
+     * @return The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+    /**
+     * @return The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -123,6 +152,13 @@ public final class SecretBackendConnectionMongodb {
      */
     public Optional<String> usernameTemplate() {
         return Optional.ofNullable(this.usernameTemplate);
+    }
+    /**
+     * @return Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    public Optional<String> writeConcern() {
+        return Optional.ofNullable(this.writeConcern);
     }
 
     public static Builder builder() {
@@ -141,8 +177,11 @@ public final class SecretBackendConnectionMongodb {
         private @Nullable String password;
         private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
+        private @Nullable String tlsCa;
+        private @Nullable String tlsCertificateKey;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
+        private @Nullable String writeConcern;
         public Builder() {}
         public Builder(SecretBackendConnectionMongodb defaults) {
     	      Objects.requireNonNull(defaults);
@@ -153,8 +192,11 @@ public final class SecretBackendConnectionMongodb {
     	      this.password = defaults.password;
     	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
+    	      this.tlsCa = defaults.tlsCa;
+    	      this.tlsCertificateKey = defaults.tlsCertificateKey;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
+    	      this.writeConcern = defaults.writeConcern;
         }
 
         @CustomType.Setter
@@ -200,6 +242,18 @@ public final class SecretBackendConnectionMongodb {
             return this;
         }
         @CustomType.Setter
+        public Builder tlsCa(@Nullable String tlsCa) {
+
+            this.tlsCa = tlsCa;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCertificateKey(@Nullable String tlsCertificateKey) {
+
+            this.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -211,6 +265,12 @@ public final class SecretBackendConnectionMongodb {
             this.usernameTemplate = usernameTemplate;
             return this;
         }
+        @CustomType.Setter
+        public Builder writeConcern(@Nullable String writeConcern) {
+
+            this.writeConcern = writeConcern;
+            return this;
+        }
         public SecretBackendConnectionMongodb build() {
             final var _resultValue = new SecretBackendConnectionMongodb();
             _resultValue.connectionUrl = connectionUrl;
@@ -220,8 +280,11 @@ public final class SecretBackendConnectionMongodb {
             _resultValue.password = password;
             _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificateKey = tlsCertificateKey;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
+            _resultValue.writeConcern = writeConcern;
             return _resultValue;
         }
     }

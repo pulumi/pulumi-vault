@@ -35,6 +35,8 @@ class AuthBackendClientArgs:
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_region: Optional[pulumi.Input[_builtins.str]] = None,
                  use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -74,8 +76,11 @@ class AuthBackendClientArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        :param pulumi.Input[_builtins.str] secret_key: The AWS secret key that Vault should use for the
-               auth backend.
+        :param pulumi.Input[_builtins.str] secret_key: AWS Secret key with permissions to query AWS APIs.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: Version counter for the write-only `secret_key_wo` field.
+               Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
         :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
@@ -118,6 +123,10 @@ class AuthBackendClientArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
+        if secret_key_wo is not None:
+            pulumi.set(__self__, "secret_key_wo", secret_key_wo)
+        if secret_key_wo_version is not None:
+            pulumi.set(__self__, "secret_key_wo_version", secret_key_wo_version)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
         if sts_region is not None:
@@ -328,14 +337,39 @@ class AuthBackendClientArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AWS secret key that Vault should use for the
-        auth backend.
+        AWS Secret key with permissions to query AWS APIs.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
     def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWo")
+    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        """
+        return pulumi.get(self, "secret_key_wo")
+
+    @secret_key_wo.setter
+    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWoVersion")
+    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only `secret_key_wo` field.
+        Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
+        """
+        return pulumi.get(self, "secret_key_wo_version")
+
+    @secret_key_wo_version.setter
+    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")
@@ -399,6 +433,8 @@ class _AuthBackendClientState:
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_region: Optional[pulumi.Input[_builtins.str]] = None,
                  use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -438,8 +474,11 @@ class _AuthBackendClientState:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        :param pulumi.Input[_builtins.str] secret_key: The AWS secret key that Vault should use for the
-               auth backend.
+        :param pulumi.Input[_builtins.str] secret_key: AWS Secret key with permissions to query AWS APIs.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: Version counter for the write-only `secret_key_wo` field.
+               Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
         :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
@@ -482,6 +521,10 @@ class _AuthBackendClientState:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
+        if secret_key_wo is not None:
+            pulumi.set(__self__, "secret_key_wo", secret_key_wo)
+        if secret_key_wo_version is not None:
+            pulumi.set(__self__, "secret_key_wo_version", secret_key_wo_version)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
         if sts_region is not None:
@@ -692,14 +735,39 @@ class _AuthBackendClientState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AWS secret key that Vault should use for the
-        auth backend.
+        AWS Secret key with permissions to query AWS APIs.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
     def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWo")
+    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        """
+        return pulumi.get(self, "secret_key_wo")
+
+    @secret_key_wo.setter
+    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWoVersion")
+    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only `secret_key_wo` field.
+        Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
+        """
+        return pulumi.get(self, "secret_key_wo_version")
+
+    @secret_key_wo_version.setter
+    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")
@@ -766,44 +834,13 @@ class AuthBackendClient(pulumi.CustomResource):
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_region: Optional[pulumi.Input[_builtins.str]] = None,
                  use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("example",
-            identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
-            role_arn="<AWS_ROLE_ARN>",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("example",
-            backend=example.path,
-            access_key="INSERT_AWS_ACCESS_KEY",
-            secret_key="INSERT_AWS_SECRET_KEY",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600,
-            allowed_sts_header_values=[
-                "X-Custom-Header",
-                "X-Another-Header",
-            ])
-        ```
-
         ## Import
 
         AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
@@ -848,8 +885,11 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        :param pulumi.Input[_builtins.str] secret_key: The AWS secret key that Vault should use for the
-               auth backend.
+        :param pulumi.Input[_builtins.str] secret_key: AWS Secret key with permissions to query AWS APIs.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: Version counter for the write-only `secret_key_wo` field.
+               Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
         :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
@@ -867,39 +907,6 @@ class AuthBackendClient(pulumi.CustomResource):
                  args: Optional[AuthBackendClientArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("example",
-            identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
-            role_arn="<AWS_ROLE_ARN>",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.AuthBackend("example", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("example",
-            backend=example.path,
-            access_key="INSERT_AWS_ACCESS_KEY",
-            secret_key="INSERT_AWS_SECRET_KEY",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600,
-            allowed_sts_header_values=[
-                "X-Custom-Header",
-                "X-Another-Header",
-            ])
-        ```
-
         ## Import
 
         AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
@@ -939,6 +946,8 @@ class AuthBackendClient(pulumi.CustomResource):
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_region: Optional[pulumi.Input[_builtins.str]] = None,
                  use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -967,10 +976,12 @@ class AuthBackendClient(pulumi.CustomResource):
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
+            __props__.__dict__["secret_key_wo"] = None if secret_key_wo is None else pulumi.Output.secret(secret_key_wo)
+            __props__.__dict__["secret_key_wo_version"] = secret_key_wo_version
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_region"] = sts_region
             __props__.__dict__["use_sts_region_from_client"] = use_sts_region_from_client
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey", "secretKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendClient, __self__).__init__(
             'vault:aws/authBackendClient:AuthBackendClient',
@@ -998,6 +1009,8 @@ class AuthBackendClient(pulumi.CustomResource):
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
             secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
             sts_region: Optional[pulumi.Input[_builtins.str]] = None,
             use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackendClient':
@@ -1042,8 +1055,11 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        :param pulumi.Input[_builtins.str] secret_key: The AWS secret key that Vault should use for the
-               auth backend.
+        :param pulumi.Input[_builtins.str] secret_key: AWS Secret key with permissions to query AWS APIs.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: Version counter for the write-only `secret_key_wo` field.
+               Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
         :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
@@ -1074,6 +1090,8 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["secret_key"] = secret_key
+        __props__.__dict__["secret_key_wo"] = secret_key_wo
+        __props__.__dict__["secret_key_wo_version"] = secret_key_wo_version
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_region"] = sts_region
         __props__.__dict__["use_sts_region_from_client"] = use_sts_region_from_client
@@ -1222,10 +1240,27 @@ class AuthBackendClient(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The AWS secret key that Vault should use for the
-        auth backend.
+        AWS Secret key with permissions to query AWS APIs.
         """
         return pulumi.get(self, "secret_key")
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWo")
+    def secret_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
+        """
+        return pulumi.get(self, "secret_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWoVersion")
+    def secret_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only `secret_key_wo` field.
+        Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
+        """
+        return pulumi.get(self, "secret_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")

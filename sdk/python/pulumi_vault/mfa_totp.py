@@ -23,6 +23,7 @@ class MfaTotpArgs:
                  algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  digits: Optional[pulumi.Input[_builtins.int]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -36,6 +37,7 @@ class MfaTotpArgs:
         :param pulumi.Input[_builtins.int] digits: `(int)` - The number of digits in the generated TOTP token.
                This value can either be 6 or 8.
         :param pulumi.Input[_builtins.int] key_size: `(int)` - Specifies the size in bytes of the generated key.
+        :param pulumi.Input[_builtins.int] max_validation_attempts: `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -53,6 +55,8 @@ class MfaTotpArgs:
             pulumi.set(__self__, "digits", digits)
         if key_size is not None:
             pulumi.set(__self__, "key_size", key_size)
+        if max_validation_attempts is not None:
+            pulumi.set(__self__, "max_validation_attempts", max_validation_attempts)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -113,6 +117,18 @@ class MfaTotpArgs:
     @key_size.setter
     def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "key_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxValidationAttempts")
+    def max_validation_attempts(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+        """
+        return pulumi.get(self, "max_validation_attempts")
+
+    @max_validation_attempts.setter
+    def max_validation_attempts(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_validation_attempts", value)
 
     @_builtins.property
     @pulumi.getter
@@ -186,6 +202,7 @@ class _MfaTotpState:
                  digits: Optional[pulumi.Input[_builtins.int]] = None,
                  issuer: Optional[pulumi.Input[_builtins.str]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -199,6 +216,7 @@ class _MfaTotpState:
                This value can either be 6 or 8.
         :param pulumi.Input[_builtins.str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[_builtins.int] key_size: `(int)` - Specifies the size in bytes of the generated key.
+        :param pulumi.Input[_builtins.int] max_validation_attempts: `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -217,6 +235,8 @@ class _MfaTotpState:
             pulumi.set(__self__, "issuer", issuer)
         if key_size is not None:
             pulumi.set(__self__, "key_size", key_size)
+        if max_validation_attempts is not None:
+            pulumi.set(__self__, "max_validation_attempts", max_validation_attempts)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -277,6 +297,18 @@ class _MfaTotpState:
     @key_size.setter
     def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "key_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxValidationAttempts")
+    def max_validation_attempts(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+        """
+        return pulumi.get(self, "max_validation_attempts")
+
+    @max_validation_attempts.setter
+    def max_validation_attempts(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_validation_attempts", value)
 
     @_builtins.property
     @pulumi.getter
@@ -353,6 +385,7 @@ class MfaTotp(pulumi.CustomResource):
                  digits: Optional[pulumi.Input[_builtins.int]] = None,
                  issuer: Optional[pulumi.Input[_builtins.str]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -395,6 +428,7 @@ class MfaTotp(pulumi.CustomResource):
                This value can either be 6 or 8.
         :param pulumi.Input[_builtins.str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[_builtins.int] key_size: `(int)` - Specifies the size in bytes of the generated key.
+        :param pulumi.Input[_builtins.int] max_validation_attempts: `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -458,6 +492,7 @@ class MfaTotp(pulumi.CustomResource):
                  digits: Optional[pulumi.Input[_builtins.int]] = None,
                  issuer: Optional[pulumi.Input[_builtins.str]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -478,6 +513,7 @@ class MfaTotp(pulumi.CustomResource):
                 raise TypeError("Missing required property 'issuer'")
             __props__.__dict__["issuer"] = issuer
             __props__.__dict__["key_size"] = key_size
+            __props__.__dict__["max_validation_attempts"] = max_validation_attempts
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["period"] = period
@@ -497,6 +533,7 @@ class MfaTotp(pulumi.CustomResource):
             digits: Optional[pulumi.Input[_builtins.int]] = None,
             issuer: Optional[pulumi.Input[_builtins.str]] = None,
             key_size: Optional[pulumi.Input[_builtins.int]] = None,
+            max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -515,6 +552,7 @@ class MfaTotp(pulumi.CustomResource):
                This value can either be 6 or 8.
         :param pulumi.Input[_builtins.str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[_builtins.int] key_size: `(int)` - Specifies the size in bytes of the generated key.
+        :param pulumi.Input[_builtins.int] max_validation_attempts: `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -533,6 +571,7 @@ class MfaTotp(pulumi.CustomResource):
         __props__.__dict__["digits"] = digits
         __props__.__dict__["issuer"] = issuer
         __props__.__dict__["key_size"] = key_size
+        __props__.__dict__["max_validation_attempts"] = max_validation_attempts
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["period"] = period
@@ -573,6 +612,14 @@ class MfaTotp(pulumi.CustomResource):
         `(int)` - Specifies the size in bytes of the generated key.
         """
         return pulumi.get(self, "key_size")
+
+    @_builtins.property
+    @pulumi.getter(name="maxValidationAttempts")
+    def max_validation_attempts(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+        """
+        return pulumi.get(self, "max_validation_attempts")
 
     @_builtins.property
     @pulumi.getter

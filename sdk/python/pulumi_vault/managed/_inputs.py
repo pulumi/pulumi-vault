@@ -618,14 +618,6 @@ class KeysAzureArgs:
 
 if not MYPY:
     class KeysPkcArgsDict(TypedDict):
-        key_id: pulumi.Input[_builtins.str]
-        """
-        The id of a PKCS#11 key to use
-        """
-        key_label: pulumi.Input[_builtins.str]
-        """
-        The label of the key to use
-        """
         library: pulumi.Input[_builtins.str]
         """
         The name of the kms_library stanza to use from Vault's config to lookup the local library path
@@ -670,6 +662,14 @@ if not MYPY:
         """
         Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
         """
+        key_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The id of a PKCS#11 key to use
+        """
+        key_label: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The label of the key to use
+        """
         slot: NotRequired[pulumi.Input[_builtins.str]]
         """
         The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
@@ -688,8 +688,6 @@ elif False:
 @pulumi.input_type
 class KeysPkcArgs:
     def __init__(__self__, *,
-                 key_id: pulumi.Input[_builtins.str],
-                 key_label: pulumi.Input[_builtins.str],
                  library: pulumi.Input[_builtins.str],
                  mechanism: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
@@ -701,12 +699,12 @@ class KeysPkcArgs:
                  curve: Optional[pulumi.Input[_builtins.str]] = None,
                  force_rw_session: Optional[pulumi.Input[_builtins.str]] = None,
                  key_bits: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_label: Optional[pulumi.Input[_builtins.str]] = None,
                  slot: Optional[pulumi.Input[_builtins.str]] = None,
                  token_label: Optional[pulumi.Input[_builtins.str]] = None,
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] key_id: The id of a PKCS#11 key to use
-        :param pulumi.Input[_builtins.str] key_label: The label of the key to use
         :param pulumi.Input[_builtins.str] library: The name of the kms_library stanza to use from Vault's config to lookup the local library path
         :param pulumi.Input[_builtins.str] mechanism: The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
         :param pulumi.Input[_builtins.str] name: A unique lowercase name that serves as identifying the key
@@ -718,12 +716,12 @@ class KeysPkcArgs:
         :param pulumi.Input[_builtins.str] curve: Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
         :param pulumi.Input[_builtins.str] force_rw_session: Force all operations to open up a read-write session to the HSM
         :param pulumi.Input[_builtins.str] key_bits: Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
+        :param pulumi.Input[_builtins.str] key_id: The id of a PKCS#11 key to use
+        :param pulumi.Input[_builtins.str] key_label: The label of the key to use
         :param pulumi.Input[_builtins.str] slot: The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         :param pulumi.Input[_builtins.str] token_label: The slot token label to use
         :param pulumi.Input[_builtins.str] uuid: ID of the managed key read from Vault
         """
-        pulumi.set(__self__, "key_id", key_id)
-        pulumi.set(__self__, "key_label", key_label)
         pulumi.set(__self__, "library", library)
         pulumi.set(__self__, "mechanism", mechanism)
         pulumi.set(__self__, "name", name)
@@ -742,36 +740,16 @@ class KeysPkcArgs:
             pulumi.set(__self__, "force_rw_session", force_rw_session)
         if key_bits is not None:
             pulumi.set(__self__, "key_bits", key_bits)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
+        if key_label is not None:
+            pulumi.set(__self__, "key_label", key_label)
         if slot is not None:
             pulumi.set(__self__, "slot", slot)
         if token_label is not None:
             pulumi.set(__self__, "token_label", token_label)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
-
-    @_builtins.property
-    @pulumi.getter(name="keyId")
-    def key_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The id of a PKCS#11 key to use
-        """
-        return pulumi.get(self, "key_id")
-
-    @key_id.setter
-    def key_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "key_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="keyLabel")
-    def key_label(self) -> pulumi.Input[_builtins.str]:
-        """
-        The label of the key to use
-        """
-        return pulumi.get(self, "key_label")
-
-    @key_label.setter
-    def key_label(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "key_label", value)
 
     @_builtins.property
     @pulumi.getter
@@ -904,6 +882,30 @@ class KeysPkcArgs:
     @key_bits.setter
     def key_bits(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "key_bits", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The id of a PKCS#11 key to use
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyLabel")
+    def key_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The label of the key to use
+        """
+        return pulumi.get(self, "key_label")
+
+    @key_label.setter
+    def key_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "key_label", value)
 
     @_builtins.property
     @pulumi.getter

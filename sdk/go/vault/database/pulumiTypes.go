@@ -16,10 +16,14 @@ var _ = internal.GetEnvOrDefault
 type SecretBackendConnectionCassandra struct {
 	// The number of seconds to use as a connection timeout.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Cassandra consistency level.
+	Consistency *string `pulumi:"consistency"`
 	// Cassandra hosts to connect to.
 	Hosts []string `pulumi:"hosts"`
 	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
+	// Cassandra local datacenter name.
+	LocalDatacenter *string `pulumi:"localDatacenter"`
 	// The password to use when authenticating with Cassandra.
 	Password *string `pulumi:"password"`
 	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
@@ -32,10 +36,16 @@ type SecretBackendConnectionCassandra struct {
 	ProtocolVersion *int `pulumi:"protocolVersion"`
 	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
 	SkipVerification *bool `pulumi:"skipVerification"`
+	// Enable TCP keepalive for Cassandra connections.
+	SocketKeepAlive *string `pulumi:"socketKeepAlive"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
+	// SNI host for TLS connections.
+	TlsServerName *string `pulumi:"tlsServerName"`
 	// The username to use when authenticating with Cassandra.
 	Username *string `pulumi:"username"`
+	// Template for dynamic Cassandra usernames.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionCassandraInput is an input type that accepts SecretBackendConnectionCassandraArgs and SecretBackendConnectionCassandraOutput values.
@@ -52,10 +62,14 @@ type SecretBackendConnectionCassandraInput interface {
 type SecretBackendConnectionCassandraArgs struct {
 	// The number of seconds to use as a connection timeout.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Cassandra consistency level.
+	Consistency pulumi.StringPtrInput `pulumi:"consistency"`
 	// Cassandra hosts to connect to.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	// Cassandra local datacenter name.
+	LocalDatacenter pulumi.StringPtrInput `pulumi:"localDatacenter"`
 	// The password to use when authenticating with Cassandra.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
@@ -68,10 +82,16 @@ type SecretBackendConnectionCassandraArgs struct {
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
 	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
 	SkipVerification pulumi.BoolPtrInput `pulumi:"skipVerification"`
+	// Enable TCP keepalive for Cassandra connections.
+	SocketKeepAlive pulumi.StringPtrInput `pulumi:"socketKeepAlive"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// SNI host for TLS connections.
+	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
 	// The username to use when authenticating with Cassandra.
 	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Template for dynamic Cassandra usernames.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionCassandraArgs) ElementType() reflect.Type {
@@ -156,6 +176,11 @@ func (o SecretBackendConnectionCassandraOutput) ConnectTimeout() pulumi.IntPtrOu
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
+// Cassandra consistency level.
+func (o SecretBackendConnectionCassandraOutput) Consistency() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Consistency }).(pulumi.StringPtrOutput)
+}
+
 // Cassandra hosts to connect to.
 func (o SecretBackendConnectionCassandraOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
@@ -164,6 +189,11 @@ func (o SecretBackendConnectionCassandraOutput) Hosts() pulumi.StringArrayOutput
 // Whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+// Cassandra local datacenter name.
+func (o SecretBackendConnectionCassandraOutput) LocalDatacenter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.LocalDatacenter }).(pulumi.StringPtrOutput)
 }
 
 // The password to use when authenticating with Cassandra.
@@ -196,14 +226,29 @@ func (o SecretBackendConnectionCassandraOutput) SkipVerification() pulumi.BoolPt
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.SkipVerification }).(pulumi.BoolPtrOutput)
 }
 
+// Enable TCP keepalive for Cassandra connections.
+func (o SecretBackendConnectionCassandraOutput) SocketKeepAlive() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.SocketKeepAlive }).(pulumi.StringPtrOutput)
+}
+
 // Whether to use TLS when connecting to Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
+// SNI host for TLS connections.
+func (o SecretBackendConnectionCassandraOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
+}
+
 // The username to use when authenticating with Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Template for dynamic Cassandra usernames.
+func (o SecretBackendConnectionCassandraOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionCassandraPtrOutput struct{ *pulumi.OutputState }
@@ -240,6 +285,16 @@ func (o SecretBackendConnectionCassandraPtrOutput) ConnectTimeout() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
+// Cassandra consistency level.
+func (o SecretBackendConnectionCassandraPtrOutput) Consistency() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Consistency
+	}).(pulumi.StringPtrOutput)
+}
+
 // Cassandra hosts to connect to.
 func (o SecretBackendConnectionCassandraPtrOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) []string {
@@ -258,6 +313,16 @@ func (o SecretBackendConnectionCassandraPtrOutput) InsecureTls() pulumi.BoolPtrO
 		}
 		return v.InsecureTls
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Cassandra local datacenter name.
+func (o SecretBackendConnectionCassandraPtrOutput) LocalDatacenter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LocalDatacenter
+	}).(pulumi.StringPtrOutput)
 }
 
 // The password to use when authenticating with Cassandra.
@@ -320,6 +385,16 @@ func (o SecretBackendConnectionCassandraPtrOutput) SkipVerification() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Enable TCP keepalive for Cassandra connections.
+func (o SecretBackendConnectionCassandraPtrOutput) SocketKeepAlive() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SocketKeepAlive
+	}).(pulumi.StringPtrOutput)
+}
+
 // Whether to use TLS when connecting to Cassandra.
 func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *bool {
@@ -330,6 +405,16 @@ func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// SNI host for TLS connections.
+func (o SecretBackendConnectionCassandraPtrOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsServerName
+	}).(pulumi.StringPtrOutput)
+}
+
 // The username to use when authenticating with Cassandra.
 func (o SecretBackendConnectionCassandraPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
@@ -337,6 +422,16 @@ func (o SecretBackendConnectionCassandraPtrOutput) Username() pulumi.StringPtrOu
 			return nil
 		}
 		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+// Template for dynamic Cassandra usernames.
+func (o SecretBackendConnectionCassandraPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -938,6 +1033,8 @@ type SecretBackendConnectionHana struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
+	// Username generation template.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionHanaInput is an input type that accepts SecretBackendConnectionHanaArgs and SecretBackendConnectionHanaOutput values.
@@ -971,6 +1068,8 @@ type SecretBackendConnectionHanaArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Username generation template.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionHanaArgs) ElementType() reflect.Type {
@@ -1096,6 +1195,11 @@ func (o SecretBackendConnectionHanaOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
+// Username generation template.
+func (o SecretBackendConnectionHanaOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionHanaPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionHanaPtrOutput) ElementType() reflect.Type {
@@ -1208,6 +1312,16 @@ func (o SecretBackendConnectionHanaPtrOutput) Username() pulumi.StringPtrOutput 
 			return nil
 		}
 		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username generation template.
+func (o SecretBackendConnectionHanaPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -1535,10 +1649,16 @@ type SecretBackendConnectionMongodb struct {
 	PasswordWo *string `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
+	// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
+	// Specifies the MongoDB write concern for Vault management operations.
+	WriteConcern *string `pulumi:"writeConcern"`
 }
 
 // SecretBackendConnectionMongodbInput is an input type that accepts SecretBackendConnectionMongodbArgs and SecretBackendConnectionMongodbOutput values.
@@ -1568,10 +1688,16 @@ type SecretBackendConnectionMongodbArgs struct {
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
 	// Version counter for root credential password write-only field
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
+	// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
+	// Specifies the MongoDB write concern for Vault management operations.
+	WriteConcern pulumi.StringPtrInput `pulumi:"writeConcern"`
 }
 
 func (SecretBackendConnectionMongodbArgs) ElementType() reflect.Type {
@@ -1687,6 +1813,16 @@ func (o SecretBackendConnectionMongodbOutput) PasswordWoVersion() pulumi.IntPtrO
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
+// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+func (o SecretBackendConnectionMongodbOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+func (o SecretBackendConnectionMongodbOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionMongodbOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -1695,6 +1831,11 @@ func (o SecretBackendConnectionMongodbOutput) Username() pulumi.StringPtrOutput 
 // Username generation template.
 func (o SecretBackendConnectionMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the MongoDB write concern for Vault management operations.
+func (o SecretBackendConnectionMongodbOutput) WriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.WriteConcern }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendConnectionMongodbPtrOutput struct{ *pulumi.OutputState }
@@ -1792,6 +1933,26 @@ func (o SecretBackendConnectionMongodbPtrOutput) PasswordWoVersion() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
+// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+func (o SecretBackendConnectionMongodbPtrOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+func (o SecretBackendConnectionMongodbPtrOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCertificateKey
+	}).(pulumi.StringPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretBackendConnectionMongodbPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
@@ -1812,6 +1973,16 @@ func (o SecretBackendConnectionMongodbPtrOutput) UsernameTemplate() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
+// Specifies the MongoDB write concern for Vault management operations.
+func (o SecretBackendConnectionMongodbPtrOutput) WriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
+		if v == nil {
+			return nil
+		}
+		return v.WriteConcern
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMongodbatlas struct {
 	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 	PrivateKey string `pulumi:"privateKey"`
@@ -1819,6 +1990,8 @@ type SecretBackendConnectionMongodbatlas struct {
 	ProjectId string `pulumi:"projectId"`
 	// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey string `pulumi:"publicKey"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
 // SecretBackendConnectionMongodbatlasInput is an input type that accepts SecretBackendConnectionMongodbatlasArgs and SecretBackendConnectionMongodbatlasOutput values.
@@ -1839,6 +2012,8 @@ type SecretBackendConnectionMongodbatlasArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
 	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
 func (SecretBackendConnectionMongodbatlasArgs) ElementType() reflect.Type {
@@ -1933,6 +2108,11 @@ func (o SecretBackendConnectionMongodbatlasOutput) PublicKey() pulumi.StringOutp
 	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// Template describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMongodbatlasOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMongodbatlas) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
+}
+
 type SecretBackendConnectionMongodbatlasPtrOutput struct{ *pulumi.OutputState }
 
 func (SecretBackendConnectionMongodbatlasPtrOutput) ElementType() reflect.Type {
@@ -1984,6 +2164,16 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) PublicKey() pulumi.StringP
 			return nil
 		}
 		return &v.PublicKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Template describing how dynamic usernames are generated.
+func (o SecretBackendConnectionMongodbatlasPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMongodbatlas) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UsernameTemplate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5695,6 +5885,8 @@ type SecretsMountCassandra struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// The number of seconds to use as a connection timeout.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
+	// Cassandra consistency level.
+	Consistency *string `pulumi:"consistency"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data map[string]string `pulumi:"data"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -5705,6 +5897,8 @@ type SecretsMountCassandra struct {
 	Hosts []string `pulumi:"hosts"`
 	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
+	// Cassandra local datacenter name.
+	LocalDatacenter *string `pulumi:"localDatacenter"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
 	// The password to use when authenticating with Cassandra.
@@ -5733,10 +5927,16 @@ type SecretsMountCassandra struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
 	SkipVerification *bool `pulumi:"skipVerification"`
+	// Enable TCP keepalive for Cassandra connections.
+	SocketKeepAlive *string `pulumi:"socketKeepAlive"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
+	// SNI host for TLS connections.
+	TlsServerName *string `pulumi:"tlsServerName"`
 	// The username to use when authenticating with Cassandra.
 	Username *string `pulumi:"username"`
+	// Template for dynamic Cassandra usernames.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -5759,6 +5959,8 @@ type SecretsMountCassandraArgs struct {
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
 	// The number of seconds to use as a connection timeout.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
+	// Cassandra consistency level.
+	Consistency pulumi.StringPtrInput `pulumi:"consistency"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	Data pulumi.StringMapInput `pulumi:"data"`
 	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -5769,6 +5971,8 @@ type SecretsMountCassandraArgs struct {
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	// Cassandra local datacenter name.
+	LocalDatacenter pulumi.StringPtrInput `pulumi:"localDatacenter"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password to use when authenticating with Cassandra.
@@ -5797,10 +6001,16 @@ type SecretsMountCassandraArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
 	SkipVerification pulumi.BoolPtrInput `pulumi:"skipVerification"`
+	// Enable TCP keepalive for Cassandra connections.
+	SocketKeepAlive pulumi.StringPtrInput `pulumi:"socketKeepAlive"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
+	// SNI host for TLS connections.
+	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
 	// The username to use when authenticating with Cassandra.
 	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Template for dynamic Cassandra usernames.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
@@ -5868,6 +6078,11 @@ func (o SecretsMountCassandraOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
+// Cassandra consistency level.
+func (o SecretsMountCassandraOutput) Consistency() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Consistency }).(pulumi.StringPtrOutput)
+}
+
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 func (o SecretsMountCassandraOutput) Data() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) map[string]string { return v.Data }).(pulumi.StringMapOutput)
@@ -5888,6 +6103,11 @@ func (o SecretsMountCassandraOutput) Hosts() pulumi.StringArrayOutput {
 // Whether to skip verification of the server certificate when using TLS.
 func (o SecretsMountCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+}
+
+// Cassandra local datacenter name.
+func (o SecretsMountCassandraOutput) LocalDatacenter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.LocalDatacenter }).(pulumi.StringPtrOutput)
 }
 
 // Name of the database connection.
@@ -5954,14 +6174,29 @@ func (o SecretsMountCassandraOutput) SkipVerification() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.SkipVerification }).(pulumi.BoolPtrOutput)
 }
 
+// Enable TCP keepalive for Cassandra connections.
+func (o SecretsMountCassandraOutput) SocketKeepAlive() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.SocketKeepAlive }).(pulumi.StringPtrOutput)
+}
+
 // Whether to use TLS when connecting to Cassandra.
 func (o SecretsMountCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
+// SNI host for TLS connections.
+func (o SecretsMountCassandraOutput) TlsServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
+}
+
 // The username to use when authenticating with Cassandra.
 func (o SecretsMountCassandraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Template for dynamic Cassandra usernames.
+func (o SecretsMountCassandraOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
 
 // Whether the connection should be verified on
@@ -6601,6 +6836,8 @@ type SecretsMountHana struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
+	// Username generation template.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -6662,6 +6899,8 @@ type SecretsMountHanaArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
+	// Username generation template.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
@@ -6814,6 +7053,11 @@ func (o SecretsMountHanaOutput) RotationWindow() pulumi.IntPtrOutput {
 // The root credential username used in the connection URL
 func (o SecretsMountHanaOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+// Username generation template.
+func (o SecretsMountHanaOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
 
 // Whether the connection should be verified on
@@ -7175,6 +7419,10 @@ type SecretsMountMongodb struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -7182,6 +7430,8 @@ type SecretsMountMongodb struct {
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
+	// Specifies the MongoDB write concern for Vault management operations.
+	WriteConcern *string `pulumi:"writeConcern"`
 }
 
 // SecretsMountMongodbInput is an input type that accepts SecretsMountMongodbArgs and SecretsMountMongodbOutput values.
@@ -7236,6 +7486,10 @@ type SecretsMountMongodbArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -7243,6 +7497,8 @@ type SecretsMountMongodbArgs struct {
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
+	// Specifies the MongoDB write concern for Vault management operations.
+	WriteConcern pulumi.StringPtrInput `pulumi:"writeConcern"`
 }
 
 func (SecretsMountMongodbArgs) ElementType() reflect.Type {
@@ -7384,6 +7640,16 @@ func (o SecretsMountMongodbOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
+// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+func (o SecretsMountMongodbOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+func (o SecretsMountMongodbOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
 // The root credential username used in the connection URL
 func (o SecretsMountMongodbOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -7398,6 +7664,11 @@ func (o SecretsMountMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
 // initial configuration or not.
 func (o SecretsMountMongodbOutput) VerifyConnection() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *bool { return v.VerifyConnection }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the MongoDB write concern for Vault management operations.
+func (o SecretsMountMongodbOutput) WriteConcern() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.WriteConcern }).(pulumi.StringPtrOutput)
 }
 
 type SecretsMountMongodbArrayOutput struct{ *pulumi.OutputState }
@@ -7452,6 +7723,8 @@ type SecretsMountMongodbatla struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection *bool `pulumi:"verifyConnection"`
@@ -7500,6 +7773,8 @@ type SecretsMountMongodbatlaArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Template describing how dynamic usernames are generated.
+	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
 	VerifyConnection pulumi.BoolPtrInput `pulumi:"verifyConnection"`
@@ -7621,6 +7896,11 @@ func (o SecretsMountMongodbatlaOutput) RotationSchedule() pulumi.StringPtrOutput
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountMongodbatlaOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodbatla) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Template describing how dynamic usernames are generated.
+func (o SecretsMountMongodbatlaOutput) UsernameTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
 
 // Whether the connection should be verified on

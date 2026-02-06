@@ -20,11 +20,13 @@ __all__ = ['SecretBackendArgs', 'SecretBackend']
 class SecretBackendArgs:
     def __init__(__self__, *,
                  binddn: pulumi.Input[_builtins.str],
-                 bindpass: pulumi.Input[_builtins.str],
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -63,11 +65,17 @@ class SecretBackendArgs:
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
-        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+               Exactly one of `bindpass` or `bindpass_wo` must be provided.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only LDAP password for searching for the user DN.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.str] certificate: CA certificate to use when verifying LDAP server certificate, must be
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_tls_cert: Client certificate to provide to the LDAP server, must be x509 PEM encoded.
@@ -119,7 +127,6 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] userdn: LDAP domain to use for users (eg: ou=People,dc=example,dc=org)`.
         """
         pulumi.set(__self__, "binddn", binddn)
-        pulumi.set(__self__, "bindpass", bindpass)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
         if allowed_response_headers is not None:
@@ -128,6 +135,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
+        if bindpass is not None:
+            pulumi.set(__self__, "bindpass", bindpass)
+        if bindpass_wo is not None:
+            pulumi.set(__self__, "bindpass_wo", bindpass_wo)
+        if bindpass_wo_version is not None:
+            pulumi.set(__self__, "bindpass_wo_version", bindpass_wo_version)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if client_tls_cert is not None:
@@ -212,18 +225,6 @@ class SecretBackendArgs:
         pulumi.set(self, "binddn", value)
 
     @_builtins.property
-    @pulumi.getter
-    def bindpass(self) -> pulumi.Input[_builtins.str]:
-        """
-        Password to use along with binddn when performing user search.
-        """
-        return pulumi.get(self, "bindpass")
-
-    @bindpass.setter
-    def bindpass(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "bindpass", value)
-
-    @_builtins.property
     @pulumi.getter(name="allowedManagedKeys")
     def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -270,6 +271,46 @@ class SecretBackendArgs:
     @audit_non_hmac_response_keys.setter
     def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def bindpass(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+        Exactly one of `bindpass` or `bindpass_wo` must be provided.
+        """
+        return pulumi.get(self, "bindpass")
+
+    @bindpass.setter
+    def bindpass(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bindpass", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWo")
+    def bindpass_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only LDAP password for searching for the user DN.
+        """
+        return pulumi.get(self, "bindpass_wo")
+
+    @bindpass_wo.setter
+    def bindpass_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bindpass_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWoVersion")
+    def bindpass_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for write-only bind password.
+        Required when using `bindpass_wo`. For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "bindpass_wo_version")
+
+    @bindpass_wo_version.setter
+    def bindpass_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "bindpass_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -716,6 +757,8 @@ class _SecretBackendState:
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -759,7 +802,13 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
-        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search.
+        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+               Exactly one of `bindpass` or `bindpass_wo` must be provided.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only LDAP password for searching for the user DN.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.str] certificate: CA certificate to use when verifying LDAP server certificate, must be
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_tls_cert: Client certificate to provide to the LDAP server, must be x509 PEM encoded.
@@ -824,6 +873,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
             pulumi.set(__self__, "bindpass", bindpass)
+        if bindpass_wo is not None:
+            pulumi.set(__self__, "bindpass_wo", bindpass_wo)
+        if bindpass_wo_version is not None:
+            pulumi.set(__self__, "bindpass_wo_version", bindpass_wo_version)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if client_tls_cert is not None:
@@ -971,13 +1024,41 @@ class _SecretBackendState:
     @pulumi.getter
     def bindpass(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password to use along with binddn when performing user search.
+        Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+        Exactly one of `bindpass` or `bindpass_wo` must be provided.
         """
         return pulumi.get(self, "bindpass")
 
     @bindpass.setter
     def bindpass(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "bindpass", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWo")
+    def bindpass_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only LDAP password for searching for the user DN.
+        """
+        return pulumi.get(self, "bindpass_wo")
+
+    @bindpass_wo.setter
+    def bindpass_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bindpass_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWoVersion")
+    def bindpass_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for write-only bind password.
+        Required when using `bindpass_wo`. For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "bindpass_wo_version")
+
+    @bindpass_wo_version.setter
+    def bindpass_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "bindpass_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1426,6 +1507,8 @@ class SecretBackend(pulumi.CustomResource):
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1480,6 +1563,14 @@ class SecretBackend(pulumi.CustomResource):
             rotation_window=3600)
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `bindpass_wo` - (Optional) Write-only password to use along with binddn when performing user search. Can be updated. Conflicts with `bindpass`.
+          Exactly one of `bindpass` or `bindpass_wo` must be provided.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         LDAP secret backend can be imported using the `${mount}/config`, e.g.
@@ -1495,7 +1586,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
-        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search.
+        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+               Exactly one of `bindpass` or `bindpass_wo` must be provided.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only LDAP password for searching for the user DN.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.str] certificate: CA certificate to use when verifying LDAP server certificate, must be
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_tls_cert: Client certificate to provide to the LDAP server, must be x509 PEM encoded.
@@ -1570,6 +1667,14 @@ class SecretBackend(pulumi.CustomResource):
             rotation_window=3600)
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `bindpass_wo` - (Optional) Write-only password to use along with binddn when performing user search. Can be updated. Conflicts with `bindpass`.
+          Exactly one of `bindpass` or `bindpass_wo` must be provided.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         LDAP secret backend can be imported using the `${mount}/config`, e.g.
@@ -1599,6 +1704,8 @@ class SecretBackend(pulumi.CustomResource):
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  binddn: Optional[pulumi.Input[_builtins.str]] = None,
                  bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1650,9 +1757,9 @@ class SecretBackend(pulumi.CustomResource):
             if binddn is None and not opts.urn:
                 raise TypeError("Missing required property 'binddn'")
             __props__.__dict__["binddn"] = binddn
-            if bindpass is None and not opts.urn:
-                raise TypeError("Missing required property 'bindpass'")
             __props__.__dict__["bindpass"] = None if bindpass is None else pulumi.Output.secret(bindpass)
+            __props__.__dict__["bindpass_wo"] = None if bindpass_wo is None else pulumi.Output.secret(bindpass_wo)
+            __props__.__dict__["bindpass_wo_version"] = bindpass_wo_version
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["client_tls_cert"] = None if client_tls_cert is None else pulumi.Output.secret(client_tls_cert)
             __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
@@ -1689,7 +1796,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["userattr"] = userattr
             __props__.__dict__["userdn"] = userdn
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindpass", "clientTlsCert", "clientTlsKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindpass", "bindpassWo", "clientTlsCert", "clientTlsKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:ldap/secretBackend:SecretBackend',
@@ -1708,6 +1815,8 @@ class SecretBackend(pulumi.CustomResource):
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             binddn: Optional[pulumi.Input[_builtins.str]] = None,
             bindpass: Optional[pulumi.Input[_builtins.str]] = None,
+            bindpass_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            bindpass_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             certificate: Optional[pulumi.Input[_builtins.str]] = None,
             client_tls_cert: Optional[pulumi.Input[_builtins.str]] = None,
             client_tls_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1756,7 +1865,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
-        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search.
+        :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+               Exactly one of `bindpass` or `bindpass_wo` must be provided.
+        :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only LDAP password for searching for the user DN.
+        :param pulumi.Input[_builtins.int] bindpass_wo_version: Version counter for write-only bind password.
+               Required when using `bindpass_wo`. For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         :param pulumi.Input[_builtins.str] certificate: CA certificate to use when verifying LDAP server certificate, must be
                x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_tls_cert: Client certificate to provide to the LDAP server, must be x509 PEM encoded.
@@ -1818,6 +1933,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["binddn"] = binddn
         __props__.__dict__["bindpass"] = bindpass
+        __props__.__dict__["bindpass_wo"] = bindpass_wo
+        __props__.__dict__["bindpass_wo_version"] = bindpass_wo_version
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["client_tls_cert"] = client_tls_cert
         __props__.__dict__["client_tls_key"] = client_tls_key
@@ -1905,11 +2022,31 @@ class SecretBackend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def bindpass(self) -> pulumi.Output[_builtins.str]:
+    def bindpass(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password to use along with binddn when performing user search.
+        Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
+        Exactly one of `bindpass` or `bindpass_wo` must be provided.
         """
         return pulumi.get(self, "bindpass")
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWo")
+    def bindpass_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only LDAP password for searching for the user DN.
+        """
+        return pulumi.get(self, "bindpass_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="bindpassWoVersion")
+    def bindpass_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for write-only bind password.
+        Required when using `bindpass_wo`. For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "bindpass_wo_version")
 
     @_builtins.property
     @pulumi.getter

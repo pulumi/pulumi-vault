@@ -445,14 +445,14 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         objectClass: person
         objectClass: top
         cn: learn
-        sn: {{.Password | utf16le | base64}}
+        sn: {{ random 20 }}
         memberOf: cn=dev,ou=groups,dc=learn,dc=example
         userPassword: {{.Password}}
         \"\"\",
             deletion_ldif=\"\"\"dn: cn={{.Username}},ou=users,dc=learn,dc=example
         changetype: delete
-          rollback_ldif = <<EOT
-        dn: cn={{.Username}},ou=users,dc=learn,dc=example
+        \"\"\",
+            rollback_ldif=\"\"\"dn: cn={{.Username}},ou=users,dc=learn,dc=example
         changetype: delete
         \"\"\")
         ```
@@ -527,14 +527,14 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         objectClass: person
         objectClass: top
         cn: learn
-        sn: {{.Password | utf16le | base64}}
+        sn: {{ random 20 }}
         memberOf: cn=dev,ou=groups,dc=learn,dc=example
         userPassword: {{.Password}}
         \"\"\",
             deletion_ldif=\"\"\"dn: cn={{.Username}},ou=users,dc=learn,dc=example
         changetype: delete
-          rollback_ldif = <<EOT
-        dn: cn={{.Username}},ou=users,dc=learn,dc=example
+        \"\"\",
+            rollback_ldif=\"\"\"dn: cn={{.Username}},ou=users,dc=learn,dc=example
         changetype: delete
         \"\"\")
         ```

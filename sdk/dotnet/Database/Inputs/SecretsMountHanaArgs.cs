@@ -167,6 +167,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? Username { get; set; }
 
         /// <summary>
+        /// Username generation template.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
+
+        /// <summary>
         /// Whether the connection should be verified on
         /// initial configuration or not.
         /// </summary>

@@ -68,6 +68,21 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     * 
+     */
+    @Import(name="context")
+    private @Nullable Output<String> context;
+
+    /**
+     * @return Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     * 
+     */
+    public Optional<Output<String>> context() {
+        return Optional.ofNullable(this.context);
+    }
+
+    /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      * 
      */
@@ -174,6 +189,36 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<Integer>> keySize() {
         return Optional.ofNullable(this.keySize);
+    }
+
+    /**
+     * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    @Import(name="managedKeyId")
+    private @Nullable Output<String> managedKeyId;
+
+    /**
+     * @return The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    public Optional<Output<String>> managedKeyId() {
+        return Optional.ofNullable(this.managedKeyId);
+    }
+
+    /**
+     * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    @Import(name="managedKeyName")
+    private @Nullable Output<String> managedKeyName;
+
+    /**
+     * @return The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    public Optional<Output<String>> managedKeyName() {
+        return Optional.ofNullable(this.managedKeyName);
     }
 
     /**
@@ -290,6 +335,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         this.allowPlaintextBackup = $.allowPlaintextBackup;
         this.autoRotatePeriod = $.autoRotatePeriod;
         this.backend = $.backend;
+        this.context = $.context;
         this.convergentEncryption = $.convergentEncryption;
         this.deletionAllowed = $.deletionAllowed;
         this.derived = $.derived;
@@ -297,6 +343,8 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         this.hybridKeyTypeEc = $.hybridKeyTypeEc;
         this.hybridKeyTypePqc = $.hybridKeyTypePqc;
         this.keySize = $.keySize;
+        this.managedKeyId = $.managedKeyId;
+        this.managedKeyName = $.managedKeyName;
         this.minDecryptionVersion = $.minDecryptionVersion;
         this.minEncryptionVersion = $.minEncryptionVersion;
         this.name = $.name;
@@ -388,6 +436,27 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param context Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder context(@Nullable Output<String> context) {
+            $.context = context;
+            return this;
+        }
+
+        /**
+         * @param context Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder context(String context) {
+            return context(Output.of(context));
         }
 
         /**
@@ -539,6 +608,48 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder keySize(Integer keySize) {
             return keySize(Output.of(keySize));
+        }
+
+        /**
+         * @param managedKeyId The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyId(@Nullable Output<String> managedKeyId) {
+            $.managedKeyId = managedKeyId;
+            return this;
+        }
+
+        /**
+         * @param managedKeyId The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyId(String managedKeyId) {
+            return managedKeyId(Output.of(managedKeyId));
+        }
+
+        /**
+         * @param managedKeyName The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyName(@Nullable Output<String> managedKeyName) {
+            $.managedKeyName = managedKeyName;
+            return this;
+        }
+
+        /**
+         * @param managedKeyName The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder managedKeyName(String managedKeyName) {
+            return managedKeyName(Output.of(managedKeyName));
         }
 
         /**

@@ -206,6 +206,40 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If set to `true`, validates the signature of
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Import(name="validateAssertionSignature")
+    private @Nullable Output<Boolean> validateAssertionSignature;
+
+    /**
+     * @return If set to `true`, validates the signature of
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Optional<Output<Boolean>> validateAssertionSignature() {
+        return Optional.ofNullable(this.validateAssertionSignature);
+    }
+
+    /**
+     * If set to `true`, validates the signature of
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Import(name="validateResponseSignature")
+    private @Nullable Output<Boolean> validateResponseSignature;
+
+    /**
+     * @return If set to `true`, validates the signature of
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Optional<Output<Boolean>> validateResponseSignature() {
+        return Optional.ofNullable(this.validateResponseSignature);
+    }
+
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
@@ -238,6 +272,8 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.namespace = $.namespace;
         this.path = $.path;
         this.tune = $.tune;
+        this.validateAssertionSignature = $.validateAssertionSignature;
+        this.validateResponseSignature = $.validateResponseSignature;
         this.verboseLogging = $.verboseLogging;
     }
 
@@ -521,6 +557,52 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tune(AuthBackendTuneArgs tune) {
             return tune(Output.of(tune));
+        }
+
+        /**
+         * @param validateAssertionSignature If set to `true`, validates the signature of
+         * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validateAssertionSignature(@Nullable Output<Boolean> validateAssertionSignature) {
+            $.validateAssertionSignature = validateAssertionSignature;
+            return this;
+        }
+
+        /**
+         * @param validateAssertionSignature If set to `true`, validates the signature of
+         * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validateAssertionSignature(Boolean validateAssertionSignature) {
+            return validateAssertionSignature(Output.of(validateAssertionSignature));
+        }
+
+        /**
+         * @param validateResponseSignature If set to `true`, validates the signature of
+         * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validateResponseSignature(@Nullable Output<Boolean> validateResponseSignature) {
+            $.validateResponseSignature = validateResponseSignature;
+            return this;
+        }
+
+        /**
+         * @param validateResponseSignature If set to `true`, validates the signature of
+         * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder validateResponseSignature(Boolean validateResponseSignature) {
+            return validateResponseSignature(Output.of(validateResponseSignature));
         }
 
         /**

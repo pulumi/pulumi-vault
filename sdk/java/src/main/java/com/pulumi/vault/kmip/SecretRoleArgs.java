@@ -100,6 +100,51 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Grant permission to use the KMIP Create Key Pair operation.
+     * 
+     */
+    @Import(name="operationCreateKeyPair")
+    private @Nullable Output<Boolean> operationCreateKeyPair;
+
+    /**
+     * @return Grant permission to use the KMIP Create Key Pair operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationCreateKeyPair() {
+        return Optional.ofNullable(this.operationCreateKeyPair);
+    }
+
+    /**
+     * Grant permission to use the KMIP Decrypt operation.
+     * 
+     */
+    @Import(name="operationDecrypt")
+    private @Nullable Output<Boolean> operationDecrypt;
+
+    /**
+     * @return Grant permission to use the KMIP Decrypt operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationDecrypt() {
+        return Optional.ofNullable(this.operationDecrypt);
+    }
+
+    /**
+     * Grant permission to use the KMIP Delete Attribute operation.
+     * 
+     */
+    @Import(name="operationDeleteAttribute")
+    private @Nullable Output<Boolean> operationDeleteAttribute;
+
+    /**
+     * @return Grant permission to use the KMIP Delete Attribute operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationDeleteAttribute() {
+        return Optional.ofNullable(this.operationDeleteAttribute);
+    }
+
+    /**
      * Grant permission to use the KMIP Destroy operation.
      * 
      */
@@ -127,6 +172,21 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> operationDiscoverVersions() {
         return Optional.ofNullable(this.operationDiscoverVersions);
+    }
+
+    /**
+     * Grant permission to use the KMIP Encrypt operation.
+     * 
+     */
+    @Import(name="operationEncrypt")
+    private @Nullable Output<Boolean> operationEncrypt;
+
+    /**
+     * @return Grant permission to use the KMIP Encrypt operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationEncrypt() {
+        return Optional.ofNullable(this.operationEncrypt);
     }
 
     /**
@@ -175,6 +235,21 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Grant permission to use the KMIP Import operation.
+     * 
+     */
+    @Import(name="operationImport")
+    private @Nullable Output<Boolean> operationImport;
+
+    /**
+     * @return Grant permission to use the KMIP Import operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationImport() {
+        return Optional.ofNullable(this.operationImport);
+    }
+
+    /**
      * Grant permission to use the KMIP Get Locate operation.
      * 
      */
@@ -190,6 +265,51 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Grant permission to use the KMIP MAC operation.
+     * 
+     */
+    @Import(name="operationMac")
+    private @Nullable Output<Boolean> operationMac;
+
+    /**
+     * @return Grant permission to use the KMIP MAC operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationMac() {
+        return Optional.ofNullable(this.operationMac);
+    }
+
+    /**
+     * Grant permission to use the KMIP MAC Verify operation.
+     * 
+     */
+    @Import(name="operationMacVerify")
+    private @Nullable Output<Boolean> operationMacVerify;
+
+    /**
+     * @return Grant permission to use the KMIP MAC Verify operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationMacVerify() {
+        return Optional.ofNullable(this.operationMacVerify);
+    }
+
+    /**
+     * Grant permission to use the KMIP Modify Attribute operation.
+     * 
+     */
+    @Import(name="operationModifyAttribute")
+    private @Nullable Output<Boolean> operationModifyAttribute;
+
+    /**
+     * @return Grant permission to use the KMIP Modify Attribute operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationModifyAttribute() {
+        return Optional.ofNullable(this.operationModifyAttribute);
+    }
+
+    /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      * 
      */
@@ -202,6 +322,21 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> operationNone() {
         return Optional.ofNullable(this.operationNone);
+    }
+
+    /**
+     * Grant permission to use the KMIP Query operation.
+     * 
+     */
+    @Import(name="operationQuery")
+    private @Nullable Output<Boolean> operationQuery;
+
+    /**
+     * @return Grant permission to use the KMIP Query operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationQuery() {
+        return Optional.ofNullable(this.operationQuery);
     }
 
     /**
@@ -235,6 +370,21 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Grant permission to use the KMIP Rekey Key Pair operation.
+     * 
+     */
+    @Import(name="operationRekeyKeyPair")
+    private @Nullable Output<Boolean> operationRekeyKeyPair;
+
+    /**
+     * @return Grant permission to use the KMIP Rekey Key Pair operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationRekeyKeyPair() {
+        return Optional.ofNullable(this.operationRekeyKeyPair);
+    }
+
+    /**
      * Grant permission to use the KMIP Revoke operation.
      * 
      */
@@ -247,6 +397,66 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> operationRevoke() {
         return Optional.ofNullable(this.operationRevoke);
+    }
+
+    /**
+     * Grant permission to use the KMIP RNG Retrieve operation.
+     * 
+     */
+    @Import(name="operationRngRetrieve")
+    private @Nullable Output<Boolean> operationRngRetrieve;
+
+    /**
+     * @return Grant permission to use the KMIP RNG Retrieve operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationRngRetrieve() {
+        return Optional.ofNullable(this.operationRngRetrieve);
+    }
+
+    /**
+     * Grant permission to use the KMIP RNG Seed operation.
+     * 
+     */
+    @Import(name="operationRngSeed")
+    private @Nullable Output<Boolean> operationRngSeed;
+
+    /**
+     * @return Grant permission to use the KMIP RNG Seed operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationRngSeed() {
+        return Optional.ofNullable(this.operationRngSeed);
+    }
+
+    /**
+     * Grant permission to use the KMIP Sign operation.
+     * 
+     */
+    @Import(name="operationSign")
+    private @Nullable Output<Boolean> operationSign;
+
+    /**
+     * @return Grant permission to use the KMIP Sign operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationSign() {
+        return Optional.ofNullable(this.operationSign);
+    }
+
+    /**
+     * Grant permission to use the KMIP Signature Verify operation.
+     * 
+     */
+    @Import(name="operationSignatureVerify")
+    private @Nullable Output<Boolean> operationSignatureVerify;
+
+    /**
+     * @return Grant permission to use the KMIP Signature Verify operation.
+     * 
+     */
+    public Optional<Output<Boolean>> operationSignatureVerify() {
+        return Optional.ofNullable(this.operationSignatureVerify);
     }
 
     /**
@@ -349,16 +559,30 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         this.operationAddAttribute = $.operationAddAttribute;
         this.operationAll = $.operationAll;
         this.operationCreate = $.operationCreate;
+        this.operationCreateKeyPair = $.operationCreateKeyPair;
+        this.operationDecrypt = $.operationDecrypt;
+        this.operationDeleteAttribute = $.operationDeleteAttribute;
         this.operationDestroy = $.operationDestroy;
         this.operationDiscoverVersions = $.operationDiscoverVersions;
+        this.operationEncrypt = $.operationEncrypt;
         this.operationGet = $.operationGet;
         this.operationGetAttributeList = $.operationGetAttributeList;
         this.operationGetAttributes = $.operationGetAttributes;
+        this.operationImport = $.operationImport;
         this.operationLocate = $.operationLocate;
+        this.operationMac = $.operationMac;
+        this.operationMacVerify = $.operationMacVerify;
+        this.operationModifyAttribute = $.operationModifyAttribute;
         this.operationNone = $.operationNone;
+        this.operationQuery = $.operationQuery;
         this.operationRegister = $.operationRegister;
         this.operationRekey = $.operationRekey;
+        this.operationRekeyKeyPair = $.operationRekeyKeyPair;
         this.operationRevoke = $.operationRevoke;
+        this.operationRngRetrieve = $.operationRngRetrieve;
+        this.operationRngSeed = $.operationRngSeed;
+        this.operationSign = $.operationSign;
+        this.operationSignatureVerify = $.operationSignatureVerify;
         this.path = $.path;
         this.role = $.role;
         this.scope = $.scope;
@@ -497,6 +721,69 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param operationCreateKeyPair Grant permission to use the KMIP Create Key Pair operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationCreateKeyPair(@Nullable Output<Boolean> operationCreateKeyPair) {
+            $.operationCreateKeyPair = operationCreateKeyPair;
+            return this;
+        }
+
+        /**
+         * @param operationCreateKeyPair Grant permission to use the KMIP Create Key Pair operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationCreateKeyPair(Boolean operationCreateKeyPair) {
+            return operationCreateKeyPair(Output.of(operationCreateKeyPair));
+        }
+
+        /**
+         * @param operationDecrypt Grant permission to use the KMIP Decrypt operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationDecrypt(@Nullable Output<Boolean> operationDecrypt) {
+            $.operationDecrypt = operationDecrypt;
+            return this;
+        }
+
+        /**
+         * @param operationDecrypt Grant permission to use the KMIP Decrypt operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationDecrypt(Boolean operationDecrypt) {
+            return operationDecrypt(Output.of(operationDecrypt));
+        }
+
+        /**
+         * @param operationDeleteAttribute Grant permission to use the KMIP Delete Attribute operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationDeleteAttribute(@Nullable Output<Boolean> operationDeleteAttribute) {
+            $.operationDeleteAttribute = operationDeleteAttribute;
+            return this;
+        }
+
+        /**
+         * @param operationDeleteAttribute Grant permission to use the KMIP Delete Attribute operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationDeleteAttribute(Boolean operationDeleteAttribute) {
+            return operationDeleteAttribute(Output.of(operationDeleteAttribute));
+        }
+
+        /**
          * @param operationDestroy Grant permission to use the KMIP Destroy operation.
          * 
          * @return builder
@@ -536,6 +823,27 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder operationDiscoverVersions(Boolean operationDiscoverVersions) {
             return operationDiscoverVersions(Output.of(operationDiscoverVersions));
+        }
+
+        /**
+         * @param operationEncrypt Grant permission to use the KMIP Encrypt operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationEncrypt(@Nullable Output<Boolean> operationEncrypt) {
+            $.operationEncrypt = operationEncrypt;
+            return this;
+        }
+
+        /**
+         * @param operationEncrypt Grant permission to use the KMIP Encrypt operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationEncrypt(Boolean operationEncrypt) {
+            return operationEncrypt(Output.of(operationEncrypt));
         }
 
         /**
@@ -602,6 +910,27 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param operationImport Grant permission to use the KMIP Import operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationImport(@Nullable Output<Boolean> operationImport) {
+            $.operationImport = operationImport;
+            return this;
+        }
+
+        /**
+         * @param operationImport Grant permission to use the KMIP Import operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationImport(Boolean operationImport) {
+            return operationImport(Output.of(operationImport));
+        }
+
+        /**
          * @param operationLocate Grant permission to use the KMIP Get Locate operation.
          * 
          * @return builder
@@ -623,6 +952,69 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param operationMac Grant permission to use the KMIP MAC operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationMac(@Nullable Output<Boolean> operationMac) {
+            $.operationMac = operationMac;
+            return this;
+        }
+
+        /**
+         * @param operationMac Grant permission to use the KMIP MAC operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationMac(Boolean operationMac) {
+            return operationMac(Output.of(operationMac));
+        }
+
+        /**
+         * @param operationMacVerify Grant permission to use the KMIP MAC Verify operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationMacVerify(@Nullable Output<Boolean> operationMacVerify) {
+            $.operationMacVerify = operationMacVerify;
+            return this;
+        }
+
+        /**
+         * @param operationMacVerify Grant permission to use the KMIP MAC Verify operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationMacVerify(Boolean operationMacVerify) {
+            return operationMacVerify(Output.of(operationMacVerify));
+        }
+
+        /**
+         * @param operationModifyAttribute Grant permission to use the KMIP Modify Attribute operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationModifyAttribute(@Nullable Output<Boolean> operationModifyAttribute) {
+            $.operationModifyAttribute = operationModifyAttribute;
+            return this;
+        }
+
+        /**
+         * @param operationModifyAttribute Grant permission to use the KMIP Modify Attribute operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationModifyAttribute(Boolean operationModifyAttribute) {
+            return operationModifyAttribute(Output.of(operationModifyAttribute));
+        }
+
+        /**
          * @param operationNone Remove all permissions from this role. May not be specified with any other `operation_*` params.
          * 
          * @return builder
@@ -641,6 +1033,27 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder operationNone(Boolean operationNone) {
             return operationNone(Output.of(operationNone));
+        }
+
+        /**
+         * @param operationQuery Grant permission to use the KMIP Query operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationQuery(@Nullable Output<Boolean> operationQuery) {
+            $.operationQuery = operationQuery;
+            return this;
+        }
+
+        /**
+         * @param operationQuery Grant permission to use the KMIP Query operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationQuery(Boolean operationQuery) {
+            return operationQuery(Output.of(operationQuery));
         }
 
         /**
@@ -686,6 +1099,27 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param operationRekeyKeyPair Grant permission to use the KMIP Rekey Key Pair operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationRekeyKeyPair(@Nullable Output<Boolean> operationRekeyKeyPair) {
+            $.operationRekeyKeyPair = operationRekeyKeyPair;
+            return this;
+        }
+
+        /**
+         * @param operationRekeyKeyPair Grant permission to use the KMIP Rekey Key Pair operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationRekeyKeyPair(Boolean operationRekeyKeyPair) {
+            return operationRekeyKeyPair(Output.of(operationRekeyKeyPair));
+        }
+
+        /**
          * @param operationRevoke Grant permission to use the KMIP Revoke operation.
          * 
          * @return builder
@@ -704,6 +1138,90 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder operationRevoke(Boolean operationRevoke) {
             return operationRevoke(Output.of(operationRevoke));
+        }
+
+        /**
+         * @param operationRngRetrieve Grant permission to use the KMIP RNG Retrieve operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationRngRetrieve(@Nullable Output<Boolean> operationRngRetrieve) {
+            $.operationRngRetrieve = operationRngRetrieve;
+            return this;
+        }
+
+        /**
+         * @param operationRngRetrieve Grant permission to use the KMIP RNG Retrieve operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationRngRetrieve(Boolean operationRngRetrieve) {
+            return operationRngRetrieve(Output.of(operationRngRetrieve));
+        }
+
+        /**
+         * @param operationRngSeed Grant permission to use the KMIP RNG Seed operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationRngSeed(@Nullable Output<Boolean> operationRngSeed) {
+            $.operationRngSeed = operationRngSeed;
+            return this;
+        }
+
+        /**
+         * @param operationRngSeed Grant permission to use the KMIP RNG Seed operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationRngSeed(Boolean operationRngSeed) {
+            return operationRngSeed(Output.of(operationRngSeed));
+        }
+
+        /**
+         * @param operationSign Grant permission to use the KMIP Sign operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationSign(@Nullable Output<Boolean> operationSign) {
+            $.operationSign = operationSign;
+            return this;
+        }
+
+        /**
+         * @param operationSign Grant permission to use the KMIP Sign operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationSign(Boolean operationSign) {
+            return operationSign(Output.of(operationSign));
+        }
+
+        /**
+         * @param operationSignatureVerify Grant permission to use the KMIP Signature Verify operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationSignatureVerify(@Nullable Output<Boolean> operationSignatureVerify) {
+            $.operationSignatureVerify = operationSignatureVerify;
+            return this;
+        }
+
+        /**
+         * @param operationSignatureVerify Grant permission to use the KMIP Signature Verify operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationSignatureVerify(Boolean operationSignatureVerify) {
+            return operationSignatureVerify(Output.of(operationSignatureVerify));
         }
 
         /**

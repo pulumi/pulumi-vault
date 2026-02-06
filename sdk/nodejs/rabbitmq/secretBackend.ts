@@ -5,19 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const rabbitmq = new vault.rabbitmq.SecretBackend("rabbitmq", {
- *     connectionUri: "https://.....",
- *     username: "user",
- *     password: "password",
- * });
- * ```
- *
  * ## Import
  *
  * RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -136,12 +123,22 @@ export class SecretBackend extends pulumi.CustomResource {
     declare public readonly passthroughRequestHeaders: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
      */
     declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
@@ -203,6 +200,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["passthroughRequestHeaders"] = state?.passthroughRequestHeaders;
             resourceInputs["password"] = state?.password;
             resourceInputs["passwordPolicy"] = state?.passwordPolicy;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["path"] = state?.path;
             resourceInputs["pluginVersion"] = state?.pluginVersion;
             resourceInputs["sealWrap"] = state?.sealWrap;
@@ -213,9 +212,6 @@ export class SecretBackend extends pulumi.CustomResource {
             const args = argsOrState as SecretBackendArgs | undefined;
             if (args?.connectionUri === undefined && !opts.urn) {
                 throw new Error("Missing required property 'connectionUri'");
-            }
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
             }
             if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
@@ -240,6 +236,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["passthroughRequestHeaders"] = args?.passthroughRequestHeaders;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordPolicy"] = args?.passwordPolicy;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["path"] = args?.path;
             resourceInputs["pluginVersion"] = args?.pluginVersion;
             resourceInputs["sealWrap"] = args?.sealWrap;
@@ -249,7 +247,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password", "username"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo", "username"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -341,12 +339,22 @@ export interface SecretBackendState {
     passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      */
     password?: pulumi.Input<string>;
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
      */
     passwordPolicy?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
@@ -457,12 +465,22 @@ export interface SecretBackendArgs {
     passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
      */
     passwordPolicy?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.

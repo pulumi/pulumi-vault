@@ -21,12 +21,22 @@ import * as utilities from "../utilities";
  *         "production",
  *     ],
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+ *     allowedIpv4Addresses: [
+ *         "192.168.1.1/32",
+ *         "10.0.0.1/32",
+ *     ],
+ *     allowedIpv6Addresses: ["2001:db8:85a3::8a2e:370:7334/128"],
+ *     allowedPorts: [
+ *         443,
+ *         8443,
+ *     ],
+ *     disableStrictNetworking: false,
  * });
  * ```
  *
  * ## Import
  *
- * GitHub Secrets sync destinations can be imported using the `name`, e.g.
+ * Vercel Secrets sync destinations can be imported using the `name`, e.g.
  *
  * ```sh
  * $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
@@ -66,10 +76,33 @@ export class SyncVercelDestination extends pulumi.CustomResource {
      */
     declare public readonly accessToken: pulumi.Output<string>;
     /**
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     */
+    declare public readonly allowedIpv4Addresses: pulumi.Output<string[] | undefined>;
+    /**
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     */
+    declare public readonly allowedIpv6Addresses: pulumi.Output<string[] | undefined>;
+    /**
+     * Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     */
+    declare public readonly allowedPorts: pulumi.Output<number[] | undefined>;
+    /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      */
     declare public readonly deploymentEnvironments: pulumi.Output<string[]>;
+    /**
+     * If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     */
+    declare public readonly disableStrictNetworking: pulumi.Output<boolean | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
@@ -117,7 +150,11 @@ export class SyncVercelDestination extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SyncVercelDestinationState | undefined;
             resourceInputs["accessToken"] = state?.accessToken;
+            resourceInputs["allowedIpv4Addresses"] = state?.allowedIpv4Addresses;
+            resourceInputs["allowedIpv6Addresses"] = state?.allowedIpv6Addresses;
+            resourceInputs["allowedPorts"] = state?.allowedPorts;
             resourceInputs["deploymentEnvironments"] = state?.deploymentEnvironments;
+            resourceInputs["disableStrictNetworking"] = state?.disableStrictNetworking;
             resourceInputs["granularity"] = state?.granularity;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -137,7 +174,11 @@ export class SyncVercelDestination extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["accessToken"] = args?.accessToken ? pulumi.secret(args.accessToken) : undefined;
+            resourceInputs["allowedIpv4Addresses"] = args?.allowedIpv4Addresses;
+            resourceInputs["allowedIpv6Addresses"] = args?.allowedIpv6Addresses;
+            resourceInputs["allowedPorts"] = args?.allowedPorts;
             resourceInputs["deploymentEnvironments"] = args?.deploymentEnvironments;
+            resourceInputs["disableStrictNetworking"] = args?.disableStrictNetworking;
             resourceInputs["granularity"] = args?.granularity;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -163,10 +204,33 @@ export interface SyncVercelDestinationState {
      */
     accessToken?: pulumi.Input<string>;
     /**
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     */
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     */
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     */
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      */
     deploymentEnvironments?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     */
+    disableStrictNetworking?: pulumi.Input<boolean>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
@@ -211,10 +275,33 @@ export interface SyncVercelDestinationArgs {
      */
     accessToken: pulumi.Input<string>;
     /**
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     */
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     */
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     */
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      */
     deploymentEnvironments: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     */
+    disableStrictNetworking?: pulumi.Input<boolean>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
