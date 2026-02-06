@@ -127,6 +127,20 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.bindSecretId);
     }
     /**
+     * If true, SecretIDs generated against this role will be &#39;local&#39; to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     * 
+     */
+    @Export(name="localSecretIds", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> localSecretIds;
+
+    /**
+     * @return If true, SecretIDs generated against this role will be &#39;local&#39; to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     * 
+     */
+    public Output<Optional<Boolean>> localSecretIds() {
+        return Codegen.optional(this.localSecretIds);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).

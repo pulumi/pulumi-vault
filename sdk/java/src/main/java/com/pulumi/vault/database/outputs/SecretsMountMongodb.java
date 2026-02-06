@@ -105,6 +105,16 @@ public final class SecretsMountMongodb {
      */
     private @Nullable Integer rotationWindow;
     /**
+     * @return The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCa;
+    /**
+     * @return The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCertificateKey;
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -120,6 +130,11 @@ public final class SecretsMountMongodb {
      * 
      */
     private @Nullable Boolean verifyConnection;
+    /**
+     * @return Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    private @Nullable String writeConcern;
 
     private SecretsMountMongodb() {}
     /**
@@ -243,6 +258,20 @@ public final class SecretsMountMongodb {
         return Optional.ofNullable(this.rotationWindow);
     }
     /**
+     * @return The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+    /**
+     * @return The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -263,6 +292,13 @@ public final class SecretsMountMongodb {
      */
     public Optional<Boolean> verifyConnection() {
         return Optional.ofNullable(this.verifyConnection);
+    }
+    /**
+     * @return Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    public Optional<String> writeConcern() {
+        return Optional.ofNullable(this.writeConcern);
     }
 
     public static Builder builder() {
@@ -290,9 +326,12 @@ public final class SecretsMountMongodb {
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable String tlsCa;
+        private @Nullable String tlsCertificateKey;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
+        private @Nullable String writeConcern;
         public Builder() {}
         public Builder(SecretsMountMongodb defaults) {
     	      Objects.requireNonNull(defaults);
@@ -312,9 +351,12 @@ public final class SecretsMountMongodb {
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.tlsCa = defaults.tlsCa;
+    	      this.tlsCertificateKey = defaults.tlsCertificateKey;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
+    	      this.writeConcern = defaults.writeConcern;
         }
 
         @CustomType.Setter
@@ -422,6 +464,18 @@ public final class SecretsMountMongodb {
             return this;
         }
         @CustomType.Setter
+        public Builder tlsCa(@Nullable String tlsCa) {
+
+            this.tlsCa = tlsCa;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCertificateKey(@Nullable String tlsCertificateKey) {
+
+            this.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -437,6 +491,12 @@ public final class SecretsMountMongodb {
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
 
             this.verifyConnection = verifyConnection;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder writeConcern(@Nullable String writeConcern) {
+
+            this.writeConcern = writeConcern;
             return this;
         }
         public SecretsMountMongodb build() {
@@ -457,9 +517,12 @@ public final class SecretsMountMongodb {
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificateKey = tlsCertificateKey;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;
+            _resultValue.writeConcern = writeConcern;
             return _resultValue;
         }
     }

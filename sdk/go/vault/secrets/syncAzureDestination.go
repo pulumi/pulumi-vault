@@ -32,6 +32,18 @@ import (
 //				ClientSecret:       pulumi.Any(clientSecret),
 //				TenantId:           pulumi.Any(tenantId),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
+//				AllowedIpv4Addresses: pulumi.StringArray{
+//					pulumi.String("192.168.1.1/24"),
+//					pulumi.String("10.0.0.1/8"),
+//				},
+//				AllowedIpv6Addresses: pulumi.StringArray{
+//					pulumi.String("2001:db9::/32"),
+//				},
+//				AllowedPorts: pulumi.IntArray{
+//					pulumi.Int(443),
+//					pulumi.Int(9443),
+//				},
+//				DisableStrictNetworking: pulumi.Bool(false),
 //				CustomTags: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
@@ -55,6 +67,15 @@ import (
 type SyncAzureDestination struct {
 	pulumi.CustomResourceState
 
+	// List of IPv4 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv4Addresses pulumi.StringArrayOutput `pulumi:"allowedIpv4Addresses"`
+	// List of IPv6 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv6Addresses pulumi.StringArrayOutput `pulumi:"allowedIpv6Addresses"`
+	// List of port numbers allowed for outbound connections from Vault to the
+	// destination. Requires Vault 1.19+.
+	AllowedPorts pulumi.IntArrayOutput `pulumi:"allowedPorts"`
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
 	// variable.
@@ -67,6 +88,9 @@ type SyncAzureDestination struct {
 	Cloud pulumi.StringPtrOutput `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.StringMapOutput `pulumi:"customTags"`
+	// When set to `true`, disables strict enforcement of networking
+	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	DisableStrictNetworking pulumi.BoolPtrOutput `pulumi:"disableStrictNetworking"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
@@ -128,6 +152,15 @@ func GetSyncAzureDestination(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyncAzureDestination resources.
 type syncAzureDestinationState struct {
+	// List of IPv4 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv4Addresses []string `pulumi:"allowedIpv4Addresses"`
+	// List of IPv6 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv6Addresses []string `pulumi:"allowedIpv6Addresses"`
+	// List of port numbers allowed for outbound connections from Vault to the
+	// destination. Requires Vault 1.19+.
+	AllowedPorts []int `pulumi:"allowedPorts"`
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
 	// variable.
@@ -140,6 +173,9 @@ type syncAzureDestinationState struct {
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags map[string]string `pulumi:"customTags"`
+	// When set to `true`, disables strict enforcement of networking
+	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	DisableStrictNetworking *bool `pulumi:"disableStrictNetworking"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
@@ -165,6 +201,15 @@ type syncAzureDestinationState struct {
 }
 
 type SyncAzureDestinationState struct {
+	// List of IPv4 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv4Addresses pulumi.StringArrayInput
+	// List of IPv6 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv6Addresses pulumi.StringArrayInput
+	// List of port numbers allowed for outbound connections from Vault to the
+	// destination. Requires Vault 1.19+.
+	AllowedPorts pulumi.IntArrayInput
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
 	// variable.
@@ -177,6 +222,9 @@ type SyncAzureDestinationState struct {
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.StringMapInput
+	// When set to `true`, disables strict enforcement of networking
+	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	DisableStrictNetworking pulumi.BoolPtrInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
@@ -206,6 +254,15 @@ func (SyncAzureDestinationState) ElementType() reflect.Type {
 }
 
 type syncAzureDestinationArgs struct {
+	// List of IPv4 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv4Addresses []string `pulumi:"allowedIpv4Addresses"`
+	// List of IPv6 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv6Addresses []string `pulumi:"allowedIpv6Addresses"`
+	// List of port numbers allowed for outbound connections from Vault to the
+	// destination. Requires Vault 1.19+.
+	AllowedPorts []int `pulumi:"allowedPorts"`
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
 	// variable.
@@ -218,6 +275,9 @@ type syncAzureDestinationArgs struct {
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags map[string]string `pulumi:"customTags"`
+	// When set to `true`, disables strict enforcement of networking
+	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	DisableStrictNetworking *bool `pulumi:"disableStrictNetworking"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
@@ -242,6 +302,15 @@ type syncAzureDestinationArgs struct {
 
 // The set of arguments for constructing a SyncAzureDestination resource.
 type SyncAzureDestinationArgs struct {
+	// List of IPv4 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv4Addresses pulumi.StringArrayInput
+	// List of IPv6 addresses or CIDR blocks allowed to make outbound
+	// connections from Vault to the destination. Requires Vault 1.19+.
+	AllowedIpv6Addresses pulumi.StringArrayInput
+	// List of port numbers allowed for outbound connections from Vault to the
+	// destination. Requires Vault 1.19+.
+	AllowedPorts pulumi.IntArrayInput
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
 	// variable.
@@ -254,6 +323,9 @@ type SyncAzureDestinationArgs struct {
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.StringMapInput
+	// When set to `true`, disables strict enforcement of networking
+	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	DisableStrictNetworking pulumi.BoolPtrInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
@@ -363,6 +435,24 @@ func (o SyncAzureDestinationOutput) ToSyncAzureDestinationOutputWithContext(ctx 
 	return o
 }
 
+// List of IPv4 addresses or CIDR blocks allowed to make outbound
+// connections from Vault to the destination. Requires Vault 1.19+.
+func (o SyncAzureDestinationOutput) AllowedIpv4Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringArrayOutput { return v.AllowedIpv4Addresses }).(pulumi.StringArrayOutput)
+}
+
+// List of IPv6 addresses or CIDR blocks allowed to make outbound
+// connections from Vault to the destination. Requires Vault 1.19+.
+func (o SyncAzureDestinationOutput) AllowedIpv6Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringArrayOutput { return v.AllowedIpv6Addresses }).(pulumi.StringArrayOutput)
+}
+
+// List of port numbers allowed for outbound connections from Vault to the
+// destination. Requires Vault 1.19+.
+func (o SyncAzureDestinationOutput) AllowedPorts() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.IntArrayOutput { return v.AllowedPorts }).(pulumi.IntArrayOutput)
+}
+
 // Client ID of an Azure app registration.
 // Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
 // variable.
@@ -385,6 +475,12 @@ func (o SyncAzureDestinationOutput) Cloud() pulumi.StringPtrOutput {
 // Custom tags to set on the secret managed at the destination.
 func (o SyncAzureDestinationOutput) CustomTags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringMapOutput { return v.CustomTags }).(pulumi.StringMapOutput)
+}
+
+// When set to `true`, disables strict enforcement of networking
+// restrictions. Defaults to `false`. Requires Vault 1.19+.
+func (o SyncAzureDestinationOutput) DisableStrictNetworking() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.BoolPtrOutput { return v.DisableStrictNetworking }).(pulumi.BoolPtrOutput)
 }
 
 // Determines what level of information is synced as a distinct resource

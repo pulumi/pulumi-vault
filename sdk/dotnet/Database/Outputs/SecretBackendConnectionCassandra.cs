@@ -18,6 +18,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? ConnectTimeout;
         /// <summary>
+        /// Cassandra consistency level.
+        /// </summary>
+        public readonly string? Consistency;
+        /// <summary>
         /// Cassandra hosts to connect to.
         /// </summary>
         public readonly ImmutableArray<string> Hosts;
@@ -25,6 +29,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// Whether to skip verification of the server certificate when using TLS.
         /// </summary>
         public readonly bool? InsecureTls;
+        /// <summary>
+        /// Cassandra local datacenter name.
+        /// </summary>
+        public readonly string? LocalDatacenter;
         /// <summary>
         /// The password to use when authenticating with Cassandra.
         /// </summary>
@@ -50,21 +58,37 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? SkipVerification;
         /// <summary>
+        /// Enable TCP keepalive for Cassandra connections.
+        /// </summary>
+        public readonly string? SocketKeepAlive;
+        /// <summary>
         /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
+        /// SNI host for TLS connections.
+        /// </summary>
+        public readonly string? TlsServerName;
+        /// <summary>
         /// The username to use when authenticating with Cassandra.
         /// </summary>
         public readonly string? Username;
+        /// <summary>
+        /// Template for dynamic Cassandra usernames.
+        /// </summary>
+        public readonly string? UsernameTemplate;
 
         [OutputConstructor]
         private SecretBackendConnectionCassandra(
             int? connectTimeout,
 
+            string? consistency,
+
             ImmutableArray<string> hosts,
 
             bool? insecureTls,
+
+            string? localDatacenter,
 
             string? password,
 
@@ -78,21 +102,32 @@ namespace Pulumi.Vault.Database.Outputs
 
             bool? skipVerification,
 
+            string? socketKeepAlive,
+
             bool? tls,
 
-            string? username)
+            string? tlsServerName,
+
+            string? username,
+
+            string? usernameTemplate)
         {
             ConnectTimeout = connectTimeout;
+            Consistency = consistency;
             Hosts = hosts;
             InsecureTls = insecureTls;
+            LocalDatacenter = localDatacenter;
             Password = password;
             PemBundle = pemBundle;
             PemJson = pemJson;
             Port = port;
             ProtocolVersion = protocolVersion;
             SkipVerification = skipVerification;
+            SocketKeepAlive = socketKeepAlive;
             Tls = tls;
+            TlsServerName = tlsServerName;
             Username = username;
+            UsernameTemplate = usernameTemplate;
         }
     }
 }

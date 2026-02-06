@@ -75,6 +75,12 @@ namespace Pulumi.Vault
         public Output<int?> KeySize { get; private set; } = null!;
 
         /// <summary>
+        /// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+        /// </summary>
+        [Output("maxValidationAttempts")]
+        public Output<int?> MaxValidationAttempts { get; private set; } = null!;
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` – Name of the MFA method.
         /// </summary>
         [Output("name")]
@@ -181,6 +187,12 @@ namespace Pulumi.Vault
         public Input<int>? KeySize { get; set; }
 
         /// <summary>
+        /// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+        /// </summary>
+        [Input("maxValidationAttempts")]
+        public Input<int>? MaxValidationAttempts { get; set; }
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` – Name of the MFA method.
         /// </summary>
         [Input("name")]
@@ -247,6 +259,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("keySize")]
         public Input<int>? KeySize { get; set; }
+
+        /// <summary>
+        /// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+        /// </summary>
+        [Input("maxValidationAttempts")]
+        public Input<int>? MaxValidationAttempts { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` – Name of the MFA method.

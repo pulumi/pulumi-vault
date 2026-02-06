@@ -76,6 +76,28 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
+        /// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        /// </summary>
+        [Input("tlsCa")]
+        public Input<string>? TlsCa { get; set; }
+
+        [Input("tlsCertificateKey")]
+        private Input<string>? _tlsCertificateKey;
+
+        /// <summary>
+        /// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        /// </summary>
+        public Input<string>? TlsCertificateKey
+        {
+            get => _tlsCertificateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsCertificateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
         [Input("username")]
@@ -86,6 +108,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }
+
+        /// <summary>
+        /// Specifies the MongoDB write concern for Vault management operations.
+        /// </summary>
+        [Input("writeConcern")]
+        public Input<string>? WriteConcern { get; set; }
 
         public SecretBackendConnectionMongodbGetArgs()
         {

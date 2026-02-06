@@ -46,6 +46,14 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `credentialsWo` - (Optional) A JSON string containing the contents of a GCP credentials file. Can be updated. Mutually exclusive with `credentials`.
+ *   If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * GCP authentication backends can be imported using the backend name, e.g.
@@ -95,9 +103,20 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly clientId: pulumi.Output<string>;
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      */
     declare public readonly credentials: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     */
+    declare public readonly credentialsWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    declare public readonly credentialsWoVersion: pulumi.Output<number | undefined>;
     /**
      * Specifies overrides to
      * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -220,6 +239,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["clientEmail"] = state?.clientEmail;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["credentials"] = state?.credentials;
+            resourceInputs["credentialsWo"] = state?.credentialsWo;
+            resourceInputs["credentialsWoVersion"] = state?.credentialsWoVersion;
             resourceInputs["customEndpoint"] = state?.customEndpoint;
             resourceInputs["description"] = state?.description;
             resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
@@ -246,6 +267,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["clientEmail"] = args?.clientEmail;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
+            resourceInputs["credentialsWo"] = args?.credentialsWo ? pulumi.secret(args.credentialsWo) : undefined;
+            resourceInputs["credentialsWoVersion"] = args?.credentialsWoVersion;
             resourceInputs["customEndpoint"] = args?.customEndpoint;
             resourceInputs["description"] = args?.description;
             resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
@@ -270,7 +293,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["credentials"] };
+        const secretOpts = { additionalSecretOutputs: ["credentials", "credentialsWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -293,9 +316,20 @@ export interface AuthBackendState {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     */
+    credentialsWo?: pulumi.Input<string>;
+    /**
+     * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    credentialsWoVersion?: pulumi.Input<number>;
     /**
      * Specifies overrides to
      * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -415,9 +449,20 @@ export interface AuthBackendArgs {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
+     * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      */
     credentials?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
+     */
+    credentialsWo?: pulumi.Input<string>;
+    /**
+     * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    credentialsWoVersion?: pulumi.Input<number>;
     /**
      * Specifies overrides to
      * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)

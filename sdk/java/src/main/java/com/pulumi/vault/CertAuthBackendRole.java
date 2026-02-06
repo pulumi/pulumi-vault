@@ -307,6 +307,24 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.ocspFailOpen;
     }
     /**
+     * The number of retries to attempt when
+     * connecting to an OCSP server. Defaults to 4 retries.
+     * Must be a non-negative value. Requires Vault version 1.16+.
+     * 
+     */
+    @Export(name="ocspMaxRetries", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> ocspMaxRetries;
+
+    /**
+     * @return The number of retries to attempt when
+     * connecting to an OCSP server. Defaults to 4 retries.
+     * Must be a non-negative value. Requires Vault version 1.16+.
+     * 
+     */
+    public Output<Optional<Integer>> ocspMaxRetries() {
+        return Codegen.optional(this.ocspMaxRetries);
+    }
+    /**
      * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
@@ -345,6 +363,26 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> ocspServersOverrides() {
         return Codegen.optional(this.ocspServersOverrides);
+    }
+    /**
+     * The maximum age in seconds of the
+     * &#39;thisUpdate&#39; field in an OCSP response before it is considered too old.
+     * Defaults to 0 (disabled). Must be a non-negative value.
+     * Requires Vault version 1.16+.
+     * 
+     */
+    @Export(name="ocspThisUpdateMaxAge", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> ocspThisUpdateMaxAge;
+
+    /**
+     * @return The maximum age in seconds of the
+     * &#39;thisUpdate&#39; field in an OCSP response before it is considered too old.
+     * Defaults to 0 (disabled). Must be a non-negative value.
+     * Requires Vault version 1.16+.
+     * 
+     */
+    public Output<Optional<Integer>> ocspThisUpdateMaxAge() {
+        return Codegen.optional(this.ocspThisUpdateMaxAge);
     }
     /**
      * TLS extensions required on

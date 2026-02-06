@@ -58,14 +58,15 @@ import javax.annotation.Nullable;
  * objectClass: person
  * objectClass: top
  * cn: learn
- * sn: {{.Password | utf16le | base64}}
+ * sn: {{ random 20 }}
  * memberOf: cn=dev,ou=groups,dc=learn,dc=example
  * userPassword: {{.Password}}
  *             """)
  *             .deletionLdif("""
  * dn: cn={{.Username}},ou=users,dc=learn,dc=example
  * changetype: delete
- *   rollback_ldif = <<EOT
+ *             """)
+ *             .rollbackLdif("""
  * dn: cn={{.Username}},ou=users,dc=learn,dc=example
  * changetype: delete
  *             """)

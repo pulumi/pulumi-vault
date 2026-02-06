@@ -118,6 +118,16 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly tune: pulumi.Output<outputs.saml.AuthBackendTune>;
     /**
+     * If set to `true`, validates the signature of 
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     */
+    declare public readonly validateAssertionSignature: pulumi.Output<boolean>;
+    /**
+     * If set to `true`, validates the signature of 
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     */
+    declare public readonly validateResponseSignature: pulumi.Output<boolean>;
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
@@ -148,6 +158,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
             resourceInputs["tune"] = state?.tune;
+            resourceInputs["validateAssertionSignature"] = state?.validateAssertionSignature;
+            resourceInputs["validateResponseSignature"] = state?.validateResponseSignature;
             resourceInputs["verboseLogging"] = state?.verboseLogging;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
@@ -168,6 +180,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["path"] = args?.path;
             resourceInputs["tune"] = args?.tune;
+            resourceInputs["validateAssertionSignature"] = args?.validateAssertionSignature;
+            resourceInputs["validateResponseSignature"] = args?.validateResponseSignature;
             resourceInputs["verboseLogging"] = args?.verboseLogging;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -235,6 +249,16 @@ export interface AuthBackendState {
      */
     tune?: pulumi.Input<inputs.saml.AuthBackendTune>;
     /**
+     * If set to `true`, validates the signature of 
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     */
+    validateAssertionSignature?: pulumi.Input<boolean>;
+    /**
+     * If set to `true`, validates the signature of 
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     */
+    validateResponseSignature?: pulumi.Input<boolean>;
+    /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
@@ -301,6 +325,16 @@ export interface AuthBackendArgs {
      * The `tune` block is used to tune the auth backend:
      */
     tune?: pulumi.Input<inputs.saml.AuthBackendTune>;
+    /**
+     * If set to `true`, validates the signature of 
+     * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+     */
+    validateAssertionSignature?: pulumi.Input<boolean>;
+    /**
+     * If set to `true`, validates the signature of 
+     * the SAML response. Defaults to `false`. Requires Vault 1.19+.
+     */
+    validateResponseSignature?: pulumi.Input<boolean>;
     /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not

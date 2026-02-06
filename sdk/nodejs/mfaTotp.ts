@@ -80,6 +80,10 @@ export class MfaTotp extends pulumi.CustomResource {
      */
     declare public readonly keySize: pulumi.Output<number | undefined>;
     /**
+     * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     */
+    declare public readonly maxValidationAttempts: pulumi.Output<number | undefined>;
+    /**
      * `(string: <required>)` – Name of the MFA method.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -121,6 +125,7 @@ export class MfaTotp extends pulumi.CustomResource {
             resourceInputs["digits"] = state?.digits;
             resourceInputs["issuer"] = state?.issuer;
             resourceInputs["keySize"] = state?.keySize;
+            resourceInputs["maxValidationAttempts"] = state?.maxValidationAttempts;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["period"] = state?.period;
@@ -135,6 +140,7 @@ export class MfaTotp extends pulumi.CustomResource {
             resourceInputs["digits"] = args?.digits;
             resourceInputs["issuer"] = args?.issuer;
             resourceInputs["keySize"] = args?.keySize;
+            resourceInputs["maxValidationAttempts"] = args?.maxValidationAttempts;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["period"] = args?.period;
@@ -168,6 +174,10 @@ export interface MfaTotpState {
      * `(int)` - Specifies the size in bytes of the generated key.
      */
     keySize?: pulumi.Input<number>;
+    /**
+     * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     */
+    maxValidationAttempts?: pulumi.Input<number>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
@@ -216,6 +226,10 @@ export interface MfaTotpArgs {
      * `(int)` - Specifies the size in bytes of the generated key.
      */
     keySize?: pulumi.Input<number>;
+    /**
+     * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     */
+    maxValidationAttempts?: pulumi.Input<number>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */

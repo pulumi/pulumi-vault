@@ -18,6 +18,12 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("connectTimeout")]
         public Input<int>? ConnectTimeout { get; set; }
 
+        /// <summary>
+        /// Cassandra consistency level.
+        /// </summary>
+        [Input("consistency")]
+        public Input<string>? Consistency { get; set; }
+
         [Input("hosts")]
         private InputList<string>? _hosts;
 
@@ -35,6 +41,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
+
+        /// <summary>
+        /// Cassandra local datacenter name.
+        /// </summary>
+        [Input("localDatacenter")]
+        public Input<string>? LocalDatacenter { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -103,16 +115,34 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<bool>? SkipVerification { get; set; }
 
         /// <summary>
+        /// Enable TCP keepalive for Cassandra connections.
+        /// </summary>
+        [Input("socketKeepAlive")]
+        public Input<string>? SocketKeepAlive { get; set; }
+
+        /// <summary>
         /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
+        /// SNI host for TLS connections.
+        /// </summary>
+        [Input("tlsServerName")]
+        public Input<string>? TlsServerName { get; set; }
+
+        /// <summary>
         /// The username to use when authenticating with Cassandra.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
+
+        /// <summary>
+        /// Template for dynamic Cassandra usernames.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
 
         public SecretBackendConnectionCassandraArgs()
         {

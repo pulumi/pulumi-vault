@@ -19,41 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.rabbitMq.SecretBackend;
- * import com.pulumi.vault.rabbitMq.SecretBackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()
- *             .connectionUri("https://.....")
- *             .username("user")
- *             .password("password")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -341,17 +306,19 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
-    private Output<String> password;
+    private Output</* @Nullable */ String> password;
 
     /**
      * @return Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      * 
      */
-    public Output<String> password() {
-        return this.password;
+    public Output<Optional<String>> password() {
+        return Codegen.optional(this.password);
     }
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
@@ -366,6 +333,36 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> passwordPolicy() {
         return Codegen.optional(this.passwordPolicy);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
     }
     /**
      * The unique path this backend should be mounted at. Must
@@ -497,6 +494,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "password",
+                "passwordWo",
                 "username"
             ))
             .build();

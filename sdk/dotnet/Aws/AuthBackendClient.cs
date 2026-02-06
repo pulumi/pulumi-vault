@@ -10,64 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Aws
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Vault.AuthBackend("example", new()
-    ///     {
-    ///         Type = "aws",
-    ///     });
-    /// 
-    ///     var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("example", new()
-    ///     {
-    ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
-    ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
-    ///         RoleArn = "&lt;AWS_ROLE_ARN&gt;",
-    ///         RotationSchedule = "0 * * * SAT",
-    ///         RotationWindow = 3600,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Vault.AuthBackend("example", new()
-    ///     {
-    ///         Type = "aws",
-    ///     });
-    /// 
-    ///     var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("example", new()
-    ///     {
-    ///         Backend = example.Path,
-    ///         AccessKey = "INSERT_AWS_ACCESS_KEY",
-    ///         SecretKey = "INSERT_AWS_SECRET_KEY",
-    ///         RotationSchedule = "0 * * * SAT",
-    ///         RotationWindow = 3600,
-    ///         AllowedStsHeaderValues = new[]
-    ///         {
-    ///             "X-Custom-Header",
-    ///             "X-Another-Header",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
@@ -189,11 +131,24 @@ namespace Pulumi.Vault.Aws
         public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
-        /// The AWS secret key that Vault should use for the
-        /// auth backend.
+        /// AWS Secret key with permissions to query AWS APIs.
         /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over SecretKey for enhanced security.
+        /// </summary>
+        [Output("secretKeyWo")]
+        public Output<string?> SecretKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only `SecretKeyWo` field.
+        /// Increment this value to rotate the secret key. Required when `SecretKeyWo` is set.
+        /// </summary>
+        [Output("secretKeyWoVersion")]
+        public Output<int?> SecretKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Override the URL Vault uses when making STS API
@@ -246,6 +201,7 @@ namespace Pulumi.Vault.Aws
                 {
                     "accessKey",
                     "secretKey",
+                    "secretKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -399,8 +355,7 @@ namespace Pulumi.Vault.Aws
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The AWS secret key that Vault should use for the
-        /// auth backend.
+        /// AWS Secret key with permissions to query AWS APIs.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -411,6 +366,30 @@ namespace Pulumi.Vault.Aws
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretKeyWo")]
+        private Input<string>? _secretKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over SecretKey for enhanced security.
+        /// </summary>
+        public Input<string>? SecretKeyWo
+        {
+            get => _secretKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `SecretKeyWo` field.
+        /// Increment this value to rotate the secret key. Required when `SecretKeyWo` is set.
+        /// </summary>
+        [Input("secretKeyWoVersion")]
+        public Input<int>? SecretKeyWoVersion { get; set; }
 
         /// <summary>
         /// Override the URL Vault uses when making STS API
@@ -573,8 +552,7 @@ namespace Pulumi.Vault.Aws
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The AWS secret key that Vault should use for the
-        /// auth backend.
+        /// AWS Secret key with permissions to query AWS APIs.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -585,6 +563,30 @@ namespace Pulumi.Vault.Aws
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretKeyWo")]
+        private Input<string>? _secretKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over SecretKey for enhanced security.
+        /// </summary>
+        public Input<string>? SecretKeyWo
+        {
+            get => _secretKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `SecretKeyWo` field.
+        /// Increment this value to rotate the secret key. Required when `SecretKeyWo` is set.
+        /// </summary>
+        [Input("secretKeyWoVersion")]
+        public Input<int>? SecretKeyWoVersion { get; set; }
 
         /// <summary>
         /// Override the URL Vault uses when making STS API

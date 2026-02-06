@@ -130,6 +130,20 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keySize);
     }
     /**
+     * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     * 
+     */
+    @Export(name="maxValidationAttempts", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxValidationAttempts;
+
+    /**
+     * @return `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     * 
+     */
+    public Output<Optional<Integer>> maxValidationAttempts() {
+        return Codegen.optional(this.maxValidationAttempts);
+    }
+    /**
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */

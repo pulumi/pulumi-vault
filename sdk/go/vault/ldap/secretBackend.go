@@ -45,6 +45,14 @@ import (
 //
 // ```
 //
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+//   - `bindpassWo` - (Optional) Write-only password to use along with binddn when performing user search. Can be updated. Conflicts with `bindpass`.
+//     Exactly one of `bindpass` or `bindpassWo` must be provided.
+//     **Note**: This property is write-only and will not be read from the API.
+//
 // ## Import
 //
 // LDAP secret backend can be imported using the `${mount}/config`, e.g.
@@ -67,8 +75,16 @@ type SecretBackend struct {
 	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn pulumi.StringOutput `pulumi:"binddn"`
-	// Password to use along with binddn when performing user search.
-	Bindpass pulumi.StringOutput `pulumi:"bindpass"`
+	// Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+	// Exactly one of `bindpass` or `bindpassWo` must be provided.
+	Bindpass pulumi.StringPtrOutput `pulumi:"bindpass"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only LDAP password for searching for the user DN.
+	BindpassWo pulumi.StringPtrOutput `pulumi:"bindpassWo"`
+	// Version counter for write-only bind password.
+	// Required when using `bindpassWo`. For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	BindpassWoVersion pulumi.IntPtrOutput `pulumi:"bindpassWoVersion"`
 	// CA certificate to use when verifying LDAP server certificate, must be
 	// x509 PEM encoded.
 	Certificate pulumi.StringPtrOutput `pulumi:"certificate"`
@@ -165,11 +181,11 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.Binddn == nil {
 		return nil, errors.New("invalid value for required argument 'Binddn'")
 	}
-	if args.Bindpass == nil {
-		return nil, errors.New("invalid value for required argument 'Bindpass'")
-	}
 	if args.Bindpass != nil {
-		args.Bindpass = pulumi.ToSecret(args.Bindpass).(pulumi.StringInput)
+		args.Bindpass = pulumi.ToSecret(args.Bindpass).(pulumi.StringPtrInput)
+	}
+	if args.BindpassWo != nil {
+		args.BindpassWo = pulumi.ToSecret(args.BindpassWo).(pulumi.StringPtrInput)
 	}
 	if args.ClientTlsCert != nil {
 		args.ClientTlsCert = pulumi.ToSecret(args.ClientTlsCert).(pulumi.StringPtrInput)
@@ -179,6 +195,7 @@ func NewSecretBackend(ctx *pulumi.Context,
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"bindpass",
+		"bindpassWo",
 		"clientTlsCert",
 		"clientTlsKey",
 	})
@@ -218,8 +235,16 @@ type secretBackendState struct {
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn *string `pulumi:"binddn"`
-	// Password to use along with binddn when performing user search.
+	// Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+	// Exactly one of `bindpass` or `bindpassWo` must be provided.
 	Bindpass *string `pulumi:"bindpass"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only LDAP password for searching for the user DN.
+	BindpassWo *string `pulumi:"bindpassWo"`
+	// Version counter for write-only bind password.
+	// Required when using `bindpassWo`. For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	BindpassWoVersion *int `pulumi:"bindpassWoVersion"`
 	// CA certificate to use when verifying LDAP server certificate, must be
 	// x509 PEM encoded.
 	Certificate *string `pulumi:"certificate"`
@@ -319,8 +344,16 @@ type SecretBackendState struct {
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn pulumi.StringPtrInput
-	// Password to use along with binddn when performing user search.
+	// Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+	// Exactly one of `bindpass` or `bindpassWo` must be provided.
 	Bindpass pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only LDAP password for searching for the user DN.
+	BindpassWo pulumi.StringPtrInput
+	// Version counter for write-only bind password.
+	// Required when using `bindpassWo`. For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	BindpassWoVersion pulumi.IntPtrInput
 	// CA certificate to use when verifying LDAP server certificate, must be
 	// x509 PEM encoded.
 	Certificate pulumi.StringPtrInput
@@ -422,8 +455,16 @@ type secretBackendArgs struct {
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn string `pulumi:"binddn"`
-	// Password to use along with binddn when performing user search.
-	Bindpass string `pulumi:"bindpass"`
+	// Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+	// Exactly one of `bindpass` or `bindpassWo` must be provided.
+	Bindpass *string `pulumi:"bindpass"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only LDAP password for searching for the user DN.
+	BindpassWo *string `pulumi:"bindpassWo"`
+	// Version counter for write-only bind password.
+	// Required when using `bindpassWo`. For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	BindpassWoVersion *int `pulumi:"bindpassWoVersion"`
 	// CA certificate to use when verifying LDAP server certificate, must be
 	// x509 PEM encoded.
 	Certificate *string `pulumi:"certificate"`
@@ -522,8 +563,16 @@ type SecretBackendArgs struct {
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn pulumi.StringInput
-	// Password to use along with binddn when performing user search.
-	Bindpass pulumi.StringInput
+	// Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+	// Exactly one of `bindpass` or `bindpassWo` must be provided.
+	Bindpass pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only LDAP password for searching for the user DN.
+	BindpassWo pulumi.StringPtrInput
+	// Version counter for write-only bind password.
+	// Required when using `bindpassWo`. For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	BindpassWoVersion pulumi.IntPtrInput
 	// CA certificate to use when verifying LDAP server certificate, must be
 	// x509 PEM encoded.
 	Certificate pulumi.StringPtrInput
@@ -727,9 +776,23 @@ func (o SecretBackendOutput) Binddn() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Binddn }).(pulumi.StringOutput)
 }
 
-// Password to use along with binddn when performing user search.
-func (o SecretBackendOutput) Bindpass() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Bindpass }).(pulumi.StringOutput)
+// Password to use along with binddn when performing user search. Conflicts with `bindpassWo`.
+// Exactly one of `bindpass` or `bindpassWo` must be provided.
+func (o SecretBackendOutput) Bindpass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Bindpass }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only LDAP password for searching for the user DN.
+func (o SecretBackendOutput) BindpassWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.BindpassWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for write-only bind password.
+// Required when using `bindpassWo`. For more information about write-only attributes, see
+// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+func (o SecretBackendOutput) BindpassWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.BindpassWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // CA certificate to use when verifying LDAP server certificate, must be

@@ -645,6 +645,10 @@ export namespace database {
          */
         connectTimeout?: pulumi.Input<number>;
         /**
+         * Cassandra consistency level.
+         */
+        consistency?: pulumi.Input<string>;
+        /**
          * Cassandra hosts to connect to.
          */
         hosts?: pulumi.Input<pulumi.Input<string>[]>;
@@ -652,6 +656,10 @@ export namespace database {
          * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
+        /**
+         * Cassandra local datacenter name.
+         */
+        localDatacenter?: pulumi.Input<string>;
         /**
          * The password to use when authenticating with Cassandra.
          */
@@ -677,13 +685,25 @@ export namespace database {
          */
         skipVerification?: pulumi.Input<boolean>;
         /**
+         * Enable TCP keepalive for Cassandra connections.
+         */
+        socketKeepAlive?: pulumi.Input<string>;
+        /**
          * Whether to use TLS when connecting to Cassandra.
          */
         tls?: pulumi.Input<boolean>;
         /**
+         * SNI host for TLS connections.
+         */
+        tlsServerName?: pulumi.Input<string>;
+        /**
          * The username to use when authenticating with Cassandra.
          */
         username?: pulumi.Input<string>;
+        /**
+         * Template for dynamic Cassandra usernames.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionCouchbase {
@@ -802,6 +822,10 @@ export namespace database {
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
+        /**
+         * Username generation template.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionInfluxdb {
@@ -878,6 +902,14 @@ export namespace database {
          */
         passwordWoVersion?: pulumi.Input<number>;
         /**
+         * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         */
+        tlsCa?: pulumi.Input<string>;
+        /**
+         * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificateKey?: pulumi.Input<string>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -885,6 +917,10 @@ export namespace database {
          * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
+        /**
+         * Specifies the MongoDB write concern for Vault management operations.
+         */
+        writeConcern?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMongodbatlas {
@@ -900,6 +936,10 @@ export namespace database {
          * The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
          */
         publicKey: pulumi.Input<string>;
+        /**
+         * Template describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMssql {
@@ -1454,6 +1494,10 @@ export namespace database {
          */
         connectTimeout?: pulumi.Input<number>;
         /**
+         * Cassandra consistency level.
+         */
+        consistency?: pulumi.Input<string>;
+        /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
         data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -1471,6 +1515,10 @@ export namespace database {
          * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
+        /**
+         * Cassandra local datacenter name.
+         */
+        localDatacenter?: pulumi.Input<string>;
         /**
          * Name of the database connection.
          */
@@ -1524,13 +1572,25 @@ export namespace database {
          */
         skipVerification?: pulumi.Input<boolean>;
         /**
+         * Enable TCP keepalive for Cassandra connections.
+         */
+        socketKeepAlive?: pulumi.Input<string>;
+        /**
          * Whether to use TLS when connecting to Cassandra.
          */
         tls?: pulumi.Input<boolean>;
         /**
+         * SNI host for TLS connections.
+         */
+        tlsServerName?: pulumi.Input<string>;
+        /**
          * The username to use when authenticating with Cassandra.
          */
         username?: pulumi.Input<string>;
+        /**
+         * Template for dynamic Cassandra usernames.
+         */
+        usernameTemplate?: pulumi.Input<string>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
@@ -1794,6 +1854,10 @@ export namespace database {
          */
         username?: pulumi.Input<string>;
         /**
+         * Username generation template.
+         */
+        usernameTemplate?: pulumi.Input<string>;
+        /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
@@ -1965,6 +2029,14 @@ export namespace database {
          */
         rotationWindow?: pulumi.Input<number>;
         /**
+         * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         */
+        tlsCa?: pulumi.Input<string>;
+        /**
+         * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificateKey?: pulumi.Input<string>;
+        /**
          * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
@@ -1977,6 +2049,10 @@ export namespace database {
          * initial configuration or not.
          */
         verifyConnection?: pulumi.Input<boolean>;
+        /**
+         * Specifies the MongoDB write concern for Vault management operations.
+         */
+        writeConcern?: pulumi.Input<string>;
     }
 
     export interface SecretsMountMongodbatla {
@@ -2035,6 +2111,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Template describing how dynamic usernames are generated.
+         */
+        usernameTemplate?: pulumi.Input<string>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
@@ -3529,11 +3609,11 @@ export namespace managed {
         /**
          * The id of a PKCS#11 key to use
          */
-        keyId: pulumi.Input<string>;
+        keyId?: pulumi.Input<string>;
         /**
          * The label of the key to use
          */
-        keyLabel: pulumi.Input<string>;
+        keyLabel?: pulumi.Input<string>;
         /**
          * The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
          */

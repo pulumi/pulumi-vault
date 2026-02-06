@@ -19,78 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * 
- * ### Creating a standard backend resource:
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.consul.SecretBackend;
- * import com.pulumi.vault.consul.SecretBackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new SecretBackend("test", SecretBackendArgs.builder()
- *             .path("consul")
- *             .description("Manages the Consul backend")
- *             .address("127.0.0.1:8500")
- *             .token("4240861b-ce3d-8530-115a-521ff070dd29")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * ### Creating a backend resource to bootstrap a new Consul instance:
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.consul.SecretBackend;
- * import com.pulumi.vault.consul.SecretBackendArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new SecretBackend("test", SecretBackendArgs.builder()
- *             .path("consul")
- *             .description("Bootstrap the Consul backend")
- *             .address("127.0.0.1:8500")
- *             .bootstrap(true)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * Consul secret backends can be imported using the `path`, e.g.
@@ -231,20 +159,50 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.clientCert);
     }
     /**
-     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
      * 
      */
     @Export(name="clientKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientKey;
 
     /**
-     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
-     * you need to also set client_cert.
+     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
      * 
      */
     public Output<Optional<String>> clientKey() {
         return Codegen.optional(this.clientKey);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_key&#39;. Requires &#39;client_key_wo_version&#39; to trigger updates.
+     * 
+     */
+    @Export(name="clientKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_key&#39;. Requires &#39;client_key_wo_version&#39; to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> clientKeyWo() {
+        return Codegen.optional(this.clientKeyWo);
+    }
+    /**
+     * Version counter for the write-only client key. Increment this value to trigger
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     * 
+     */
+    @Export(name="clientKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientKeyWoVersion;
+
+    /**
+     * @return Version counter for the write-only client key. Increment this value to trigger
+     * an update of the client key in Vault. Required when using `clientKeyWo`.
+     * 
+     */
+    public Output<Optional<Integer>> clientKeyWoVersion() {
+        return Codegen.optional(this.clientKeyWoVersion);
     }
     /**
      * Default lease duration for secrets in seconds
@@ -495,18 +453,50 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.sealWrap;
     }
     /**
-     * Specifies the Consul token to use when managing or issuing new tokens.
+     * Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
-     * @return Specifies the Consul token to use when managing or issuing new tokens.
+     * @return Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
      * 
      */
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with &#39;token&#39;. Requires &#39;token_wo_version&#39; to trigger updates.
+     * 
+     */
+    @Export(name="tokenWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with &#39;token&#39;. Requires &#39;token_wo_version&#39; to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> tokenWo() {
+        return Codegen.optional(this.tokenWo);
+    }
+    /**
+     * Version counter for the write-only token. Increment this value to trigger an update
+     * of the token in Vault. Required when using `tokenWo`.
+     * 
+     */
+    @Export(name="tokenWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenWoVersion;
+
+    /**
+     * @return Version counter for the write-only token. Increment this value to trigger an update
+     * of the token in Vault. Required when using `tokenWo`.
+     * 
+     */
+    public Output<Optional<Integer>> tokenWoVersion() {
+        return Codegen.optional(this.tokenWoVersion);
     }
 
     /**
@@ -551,7 +541,9 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
             .additionalSecretOutputs(List.of(
                 "clientCert",
                 "clientKey",
-                "token"
+                "clientKeyWo",
+                "token",
+                "tokenWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

@@ -28,6 +28,21 @@ namespace Pulumi.Vault.Secrets
     ///         ClientSecret = clientSecret,
     ///         TenantId = tenantId,
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         AllowedIpv4Addresses = new[]
+    ///         {
+    ///             "192.168.1.1/24",
+    ///             "10.0.0.1/8",
+    ///         },
+    ///         AllowedIpv6Addresses = new[]
+    ///         {
+    ///             "2001:db9::/32",
+    ///         },
+    ///         AllowedPorts = new[]
+    ///         {
+    ///             443,
+    ///             9443,
+    ///         },
+    ///         DisableStrictNetworking = false,
     ///         CustomTags = 
     ///         {
     ///             { "foo", "bar" },
@@ -48,6 +63,27 @@ namespace Pulumi.Vault.Secrets
     [VaultResourceType("vault:secrets/syncAzureDestination:SyncAzureDestination")]
     public partial class SyncAzureDestination : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// List of IPv4 addresses or CIDR blocks allowed to make outbound
+        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// </summary>
+        [Output("allowedIpv4Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv4Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// List of IPv6 addresses or CIDR blocks allowed to make outbound
+        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// </summary>
+        [Output("allowedIpv6Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv6Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// List of port numbers allowed for outbound connections from Vault to the
+        /// destination. Requires Vault 1.19+.
+        /// </summary>
+        [Output("allowedPorts")]
+        public Output<ImmutableArray<int>> AllowedPorts { get; private set; } = null!;
+
         /// <summary>
         /// Client ID of an Azure app registration.
         /// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -75,6 +111,13 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Output("customTags")]
         public Output<ImmutableDictionary<string, string>?> CustomTags { get; private set; } = null!;
+
+        /// <summary>
+        /// When set to `True`, disables strict enforcement of networking
+        /// restrictions. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Output("disableStrictNetworking")]
+        public Output<bool?> DisableStrictNetworking { get; private set; } = null!;
 
         /// <summary>
         /// Determines what level of information is synced as a distinct resource
@@ -176,6 +219,45 @@ namespace Pulumi.Vault.Secrets
 
     public sealed class SyncAzureDestinationArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// List of IPv4 addresses or CIDR blocks allowed to make outbound
+        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// List of IPv6 addresses or CIDR blocks allowed to make outbound
+        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// List of port numbers allowed for outbound connections from Vault to the
+        /// destination. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         /// <summary>
         /// Client ID of an Azure app registration.
         /// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -219,6 +301,13 @@ namespace Pulumi.Vault.Secrets
             get => _customTags ?? (_customTags = new InputMap<string>());
             set => _customTags = value;
         }
+
+        /// <summary>
+        /// When set to `True`, disables strict enforcement of networking
+        /// restrictions. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
 
         /// <summary>
         /// Determines what level of information is synced as a distinct resource
@@ -272,6 +361,45 @@ namespace Pulumi.Vault.Secrets
 
     public sealed class SyncAzureDestinationState : global::Pulumi.ResourceArgs
     {
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// List of IPv4 addresses or CIDR blocks allowed to make outbound
+        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// List of IPv6 addresses or CIDR blocks allowed to make outbound
+        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// List of port numbers allowed for outbound connections from Vault to the
+        /// destination. Requires Vault 1.19+.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         /// <summary>
         /// Client ID of an Azure app registration.
         /// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -315,6 +443,13 @@ namespace Pulumi.Vault.Secrets
             get => _customTags ?? (_customTags = new InputMap<string>());
             set => _customTags = value;
         }
+
+        /// <summary>
+        /// When set to `True`, disables strict enforcement of networking
+        /// restrictions. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
 
         /// <summary>
         /// Determines what level of information is synced as a distinct resource

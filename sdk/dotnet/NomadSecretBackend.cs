@@ -35,6 +35,18 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `ClientKeyWo` - (Optional) Write-only client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+    /// Use this for enhanced security when you don't want the client key to appear in state files. Requires `ClientKeyWoVersion`. Conflicts with `ClientKey`.
+    /// **Note**: This property is write-only and will not be read from the API.
+    /// 
+    /// * `TokenWo` - (Optional) Write-only Nomad Management token to use.
+    /// Use this for enhanced security when you don't want the token to appear in state files. Requires `TokenWoVersion`. Conflicts with `Token`.
+    /// **Note**: This property is write-only and will not be read from the API.
+    /// 
     /// ## Import
     /// 
     /// Nomad secret backend can be imported using the `backend`, e.g.
@@ -105,9 +117,24 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        /// Conflicts with `ClientKeyWo`.
         /// </summary>
         [Output("clientKey")]
         public Output<string?> ClientKey { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        /// </summary>
+        [Output("clientKeyWo")]
+        public Output<string?> ClientKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only client key. This must be incremented
+        /// each time the `ClientKeyWo` value is changed to trigger an update. Required when using `ClientKeyWo`.
+        /// </summary>
+        [Output("clientKeyWoVersion")]
+        public Output<int?> ClientKeyWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -218,10 +245,24 @@ namespace Pulumi.Vault
         public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Nomad Management token to use.
+        /// Specifies the Nomad Management token to use. Conflicts with `TokenWo`.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Nomad Management token to use.
+        /// </summary>
+        [Output("tokenWo")]
+        public Output<string?> TokenWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only token. This must be incremented each time
+        /// the `TokenWo` value is changed to trigger an update. Required when using `TokenWo`.
+        /// </summary>
+        [Output("tokenWoVersion")]
+        public Output<int?> TokenWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the ttl of the lease for the generated token.
@@ -256,7 +297,9 @@ namespace Pulumi.Vault
                 {
                     "clientCert",
                     "clientKey",
+                    "clientKeyWo",
                     "token",
+                    "tokenWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -371,6 +414,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        /// Conflicts with `ClientKeyWo`.
         /// </summary>
         public Input<string>? ClientKey
         {
@@ -381,6 +425,30 @@ namespace Pulumi.Vault
                 _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientKeyWo")]
+        private Input<string>? _clientKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        /// </summary>
+        public Input<string>? ClientKeyWo
+        {
+            get => _clientKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only client key. This must be incremented
+        /// each time the `ClientKeyWo` value is changed to trigger an update. Required when using `ClientKeyWo`.
+        /// </summary>
+        [Input("clientKeyWoVersion")]
+        public Input<int>? ClientKeyWoVersion { get; set; }
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -512,7 +580,7 @@ namespace Pulumi.Vault
         private Input<string>? _token;
 
         /// <summary>
-        /// Specifies the Nomad Management token to use.
+        /// Specifies the Nomad Management token to use. Conflicts with `TokenWo`.
         /// </summary>
         public Input<string>? Token
         {
@@ -523,6 +591,30 @@ namespace Pulumi.Vault
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Nomad Management token to use.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only token. This must be incremented each time
+        /// the `TokenWo` value is changed to trigger an update. Required when using `TokenWo`.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
 
         /// <summary>
         /// Specifies the ttl of the lease for the generated token.
@@ -634,6 +726,7 @@ namespace Pulumi.Vault
 
         /// <summary>
         /// Client certificate key to provide to the Nomad server, must be x509 PEM encoded.
+        /// Conflicts with `ClientKeyWo`.
         /// </summary>
         public Input<string>? ClientKey
         {
@@ -644,6 +737,30 @@ namespace Pulumi.Vault
                 _clientKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientKeyWo")]
+        private Input<string>? _clientKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only client key used for Nomad's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert.
+        /// </summary>
+        public Input<string>? ClientKeyWo
+        {
+            get => _clientKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only client key. This must be incremented
+        /// each time the `ClientKeyWo` value is changed to trigger an update. Required when using `ClientKeyWo`.
+        /// </summary>
+        [Input("clientKeyWoVersion")]
+        public Input<int>? ClientKeyWoVersion { get; set; }
 
         /// <summary>
         /// Default lease duration for secrets in seconds.
@@ -775,7 +892,7 @@ namespace Pulumi.Vault
         private Input<string>? _token;
 
         /// <summary>
-        /// Specifies the Nomad Management token to use.
+        /// Specifies the Nomad Management token to use. Conflicts with `TokenWo`.
         /// </summary>
         public Input<string>? Token
         {
@@ -786,6 +903,30 @@ namespace Pulumi.Vault
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenWo")]
+        private Input<string>? _tokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Nomad Management token to use.
+        /// </summary>
+        public Input<string>? TokenWo
+        {
+            get => _tokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only token. This must be incremented each time
+        /// the `TokenWo` value is changed to trigger an update. Required when using `TokenWo`.
+        /// </summary>
+        [Input("tokenWoVersion")]
+        public Input<int>? TokenWoVersion { get; set; }
 
         /// <summary>
         /// Specifies the ttl of the lease for the generated token.

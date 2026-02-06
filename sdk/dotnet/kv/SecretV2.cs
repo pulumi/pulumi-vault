@@ -43,11 +43,12 @@ namespace Pulumi.Vault.kv
     ///         Name = "secret",
     ///         Cas = 1,
     ///         DeleteAllVersions = true,
-    ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         DataJsonWo = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["zip"] = "zap",
     ///             ["foo"] = "bar",
     ///         }),
+    ///         DataJsonWoVersion = 1,
     ///         CustomMetadata = new Vault.kv.Inputs.SecretV2CustomMetadataArgs
     ///         {
     ///             MaxVersions = 5,
@@ -80,13 +81,6 @@ namespace Pulumi.Vault.kv
     /// a version is deleted. Accepts duration in integer seconds.
     /// 
     /// * `Data` - (Optional) A string to string map describing the secret.
-    /// 
-    /// ## Ephemeral Attributes Reference
-    /// 
-    /// The following write-only attributes are supported:
-    /// 
-    /// * `DataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
-    ///   **Note**: This property is write-only and will not be read from the API.
     /// 
     /// ## Import
     /// 
@@ -127,14 +121,15 @@ namespace Pulumi.Vault.kv
 
         /// <summary>
         /// JSON-encoded string that will be
-        /// written as the secret data at the given path.
+        /// written as the secret data at the given path. This is required if `DataJsonWo` is not set.
         /// </summary>
         [Output("dataJson")]
         public Output<string?> DataJson { get; private set; } = null!;
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Write-Only JSON-encoded secret data to write.
+        /// JSON-encoded string that will be
+        /// written as the secret data at the given path. This is required if `DataJson` is not set. **Note**: This property is write-only and will not be read from the API.
         /// </summary>
         [Output("dataJsonWo")]
         public Output<string?> DataJsonWo { get; private set; } = null!;
@@ -275,7 +270,7 @@ namespace Pulumi.Vault.kv
 
         /// <summary>
         /// JSON-encoded string that will be
-        /// written as the secret data at the given path.
+        /// written as the secret data at the given path. This is required if `DataJsonWo` is not set.
         /// </summary>
         public Input<string>? DataJson
         {
@@ -292,7 +287,8 @@ namespace Pulumi.Vault.kv
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Write-Only JSON-encoded secret data to write.
+        /// JSON-encoded string that will be
+        /// written as the secret data at the given path. This is required if `DataJson` is not set. **Note**: This property is write-only and will not be read from the API.
         /// </summary>
         public Input<string>? DataJsonWo
         {
@@ -410,7 +406,7 @@ namespace Pulumi.Vault.kv
 
         /// <summary>
         /// JSON-encoded string that will be
-        /// written as the secret data at the given path.
+        /// written as the secret data at the given path. This is required if `DataJsonWo` is not set.
         /// </summary>
         public Input<string>? DataJson
         {
@@ -427,7 +423,8 @@ namespace Pulumi.Vault.kv
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Write-Only JSON-encoded secret data to write.
+        /// JSON-encoded string that will be
+        /// written as the secret data at the given path. This is required if `DataJson` is not set. **Note**: This property is write-only and will not be read from the API.
         /// </summary>
         public Input<string>? DataJsonWo
         {

@@ -11,110 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource for managing an
-// [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-//
-// ## Example Usage
-//
-// Manage JWT auth backend:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-//				Path:             pulumi.String("jwt"),
-//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// Manage OIDC auth backend:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-//				Path:             pulumi.String("oidc"),
-//				Type:             pulumi.String("oidc"),
-//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-//				OidcClientId:     pulumi.String("1234567890"),
-//				OidcClientSecret: pulumi.String("secret123456"),
-//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
-//				Tune: &jwt.AuthBackendTuneArgs{
-//					ListingVisibility: pulumi.String("unauth"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// Configuring the auth backend with a `provider_config:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
-//				Description:      pulumi.String("OIDC backend"),
-//				OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
-//				Path:             pulumi.String("oidc"),
-//				Type:             pulumi.String("oidc"),
-//				ProviderConfig: pulumi.StringMap{
-//					"provider":                 pulumi.String("gsuite"),
-//					"fetch_groups":             pulumi.String("true"),
-//					"fetch_user_info":          pulumi.String("true"),
-//					"groups_recurse_max_depth": pulumi.String("1"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // JWT auth backend can be imported using the `path`, e.g.
@@ -166,8 +62,13 @@ type AuthBackend struct {
 	NamespaceInState pulumi.BoolPtrOutput `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrOutput `pulumi:"oidcClientId"`
-	// Client Secret used for OIDC backends
+	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret pulumi.StringPtrOutput `pulumi:"oidcClientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+	OidcClientSecretWo pulumi.StringPtrOutput `pulumi:"oidcClientSecretWo"`
+	// Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+	OidcClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"oidcClientSecretWoVersion"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
 	OidcDiscoveryCaPem pulumi.StringPtrOutput `pulumi:"oidcDiscoveryCaPem"`
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
@@ -195,8 +96,12 @@ func NewAuthBackend(ctx *pulumi.Context,
 	if args.OidcClientSecret != nil {
 		args.OidcClientSecret = pulumi.ToSecret(args.OidcClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.OidcClientSecretWo != nil {
+		args.OidcClientSecretWo = pulumi.ToSecret(args.OidcClientSecretWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"oidcClientSecret",
+		"oidcClientSecretWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -258,8 +163,13 @@ type authBackendState struct {
 	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
-	// Client Secret used for OIDC backends
+	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret *string `pulumi:"oidcClientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+	OidcClientSecretWo *string `pulumi:"oidcClientSecretWo"`
+	// Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+	OidcClientSecretWoVersion *int `pulumi:"oidcClientSecretWoVersion"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
 	OidcDiscoveryCaPem *string `pulumi:"oidcDiscoveryCaPem"`
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
@@ -314,8 +224,13 @@ type AuthBackendState struct {
 	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
-	// Client Secret used for OIDC backends
+	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+	OidcClientSecretWo pulumi.StringPtrInput
+	// Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+	OidcClientSecretWoVersion pulumi.IntPtrInput
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
 	OidcDiscoveryCaPem pulumi.StringPtrInput
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
@@ -372,8 +287,13 @@ type authBackendArgs struct {
 	NamespaceInState *bool `pulumi:"namespaceInState"`
 	// Client ID used for OIDC backends
 	OidcClientId *string `pulumi:"oidcClientId"`
-	// Client Secret used for OIDC backends
+	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret *string `pulumi:"oidcClientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+	OidcClientSecretWo *string `pulumi:"oidcClientSecretWo"`
+	// Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+	OidcClientSecretWoVersion *int `pulumi:"oidcClientSecretWoVersion"`
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
 	OidcDiscoveryCaPem *string `pulumi:"oidcDiscoveryCaPem"`
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
@@ -427,8 +347,13 @@ type AuthBackendArgs struct {
 	NamespaceInState pulumi.BoolPtrInput
 	// Client ID used for OIDC backends
 	OidcClientId pulumi.StringPtrInput
-	// Client Secret used for OIDC backends
+	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+	OidcClientSecretWo pulumi.StringPtrInput
+	// Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+	OidcClientSecretWoVersion pulumi.IntPtrInput
 	// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
 	OidcDiscoveryCaPem pulumi.StringPtrInput
 	// The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
@@ -611,9 +536,20 @@ func (o AuthBackendOutput) OidcClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientId }).(pulumi.StringPtrOutput)
 }
 
-// Client Secret used for OIDC backends
+// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 func (o AuthBackendOutput) OidcClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+func (o AuthBackendOutput) OidcClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientSecretWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+func (o AuthBackendOutput) OidcClientSecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.OidcClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used

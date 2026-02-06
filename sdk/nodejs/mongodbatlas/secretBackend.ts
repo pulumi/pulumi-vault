@@ -5,24 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const mongo = new vault.Mount("mongo", {
- *     path: "mongodbatlas",
- *     type: "mongodbatlas",
- *     description: "MongoDB Atlas secret engine mount",
- * });
- * const config = new vault.mongodbatlas.SecretBackend("config", {
- *     mount: mongo.path,
- *     privateKey: "privateKey",
- *     publicKey: "publicKey",
- * });
- * ```
- *
  * ## Import
  *
  * MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
@@ -75,9 +57,19 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly path: pulumi.Output<string>;
     /**
-     * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API
      */
-    declare public readonly privateKey: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     */
+    declare public readonly privateKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * An incrementing version counter. Increment this value to force an update 
+     * to the private key. Required when using `privateKeyWo`.
+     */
+    declare public readonly privateKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      */
@@ -100,25 +92,28 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
             resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["privateKeyWo"] = state?.privateKeyWo;
+            resourceInputs["privateKeyWoVersion"] = state?.privateKeyWoVersion;
             resourceInputs["publicKey"] = state?.publicKey;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
-            if (args?.privateKey === undefined && !opts.urn) {
-                throw new Error("Missing required property 'privateKey'");
-            }
             if (args?.publicKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'publicKey'");
             }
             resourceInputs["mount"] = args?.mount;
             resourceInputs["namespace"] = args?.namespace;
-            resourceInputs["privateKey"] = args?.privateKey;
+            resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["privateKeyWo"] = args?.privateKeyWo ? pulumi.secret(args.privateKeyWo) : undefined;
+            resourceInputs["privateKeyWoVersion"] = args?.privateKeyWoVersion;
             resourceInputs["publicKey"] = args?.publicKey;
             resourceInputs["path"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["privateKey", "privateKeyWo"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -143,9 +138,19 @@ export interface SecretBackendState {
      */
     path?: pulumi.Input<string>;
     /**
-     * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API
      */
     privateKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     */
+    privateKeyWo?: pulumi.Input<string>;
+    /**
+     * An incrementing version counter. Increment this value to force an update 
+     * to the private key. Required when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number>;
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      */
@@ -168,9 +173,19 @@ export interface SecretBackendArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API
      */
-    privateKey: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     */
+    privateKeyWo?: pulumi.Input<string>;
+    /**
+     * An incrementing version counter. Increment this value to force an update 
+     * to the private key. Required when using `privateKeyWo`.
+     */
+    privateKeyWoVersion?: pulumi.Input<number>;
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      */

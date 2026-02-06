@@ -39,6 +39,108 @@ namespace Pulumi.Vault.Secrets
     /// });
     /// ```
     /// 
+    /// ### With Networking Configuration (Vault 1.19+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpNetworking = new Vault.Secrets.SyncGcpDestination("gcp_networking", new()
+    ///     {
+    ///         Name = "gcp-dest-networking",
+    ///         ProjectId = "gcp-project-id",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         AllowedIpv4Addresses = new[]
+    ///         {
+    ///             "10.0.0.0/8",
+    ///             "192.168.0.0/16",
+    ///         },
+    ///         AllowedIpv6Addresses = new[]
+    ///         {
+    ///             "2001:db8::/32",
+    ///         },
+    ///         AllowedPorts = new[]
+    ///         {
+    ///             443,
+    ///             8443,
+    ///         },
+    ///         DisableStrictNetworking = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Global Encryption (Vault 1.19+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpEncryption = new Vault.Secrets.SyncGcpDestination("gcp_encryption", new()
+    ///     {
+    ///         Name = "gcp-dest-encryption",
+    ///         ProjectId = "gcp-project-id",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         GlobalKmsKey = "projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Multi-Region Replication and Regional Encryption (Vault 1.19+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpReplicationEncryption = new Vault.Secrets.SyncGcpDestination("gcp_replication_encryption", new()
+    ///     {
+    ///         Name = "gcp-dest-replication-encryption",
+    ///         ProjectId = "gcp-project-id",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}_{{ .SecretKey | lowercase }}",
+    ///         Granularity = "secret-key",
+    ///         LocationalKmsKeys = 
+    ///         {
+    ///             { "us-central1", "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key" },
+    ///             { "us-east1", "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key" },
+    ///         },
+    ///         ReplicationLocations = new[]
+    ///         {
+    ///             "us-central1",
+    ///             "us-east1",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -50,6 +152,24 @@ namespace Pulumi.Vault.Secrets
     [VaultResourceType("vault:secrets/syncGcpDestination:SyncGcpDestination")]
     public partial class SyncGcpDestination : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        /// </summary>
+        [Output("allowedIpv4Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv4Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        /// </summary>
+        [Output("allowedIpv6Addresses")]
+        public Output<ImmutableArray<string>> AllowedIpv6Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+        /// </summary>
+        [Output("allowedPorts")]
+        public Output<ImmutableArray<int>> AllowedPorts { get; private set; } = null!;
+
         /// <summary>
         /// JSON-encoded credentials to use to connect to GCP.
         /// Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
@@ -65,11 +185,29 @@ namespace Pulumi.Vault.Secrets
         public Output<ImmutableDictionary<string, string>?> CustomTags { get; private set; } = null!;
 
         /// <summary>
+        /// Disable strict networking requirements.
+        /// </summary>
+        [Output("disableStrictNetworking")]
+        public Output<bool?> DisableStrictNetworking { get; private set; } = null!;
+
+        /// <summary>
+        /// Global KMS key for encryption.
+        /// </summary>
+        [Output("globalKmsKey")]
+        public Output<string?> GlobalKmsKey { get; private set; } = null!;
+
+        /// <summary>
         /// Determines what level of information is synced as a distinct resource
         /// at the destination. Supports `secret-path` and `secret-key`.
         /// </summary>
         [Output("granularity")]
         public Output<string?> Granularity { get; private set; } = null!;
+
+        /// <summary>
+        /// Locational KMS keys for encryption.
+        /// </summary>
+        [Output("locationalKmsKeys")]
+        public Output<ImmutableDictionary<string, string>?> LocationalKmsKeys { get; private set; } = null!;
 
         /// <summary>
         /// Unique name of the GCP destination.
@@ -93,6 +231,12 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Output("projectId")]
         public Output<string?> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Replication locations for secrets.
+        /// </summary>
+        [Output("replicationLocations")]
+        public Output<ImmutableArray<string>> ReplicationLocations { get; private set; } = null!;
 
         /// <summary>
         /// Template describing how to generate external secret names.
@@ -157,6 +301,42 @@ namespace Pulumi.Vault.Secrets
 
     public sealed class SyncGcpDestinationArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         [Input("credentials")]
         private Input<string>? _credentials;
 
@@ -188,11 +368,35 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
+        /// Disable strict networking requirements.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
+
+        /// <summary>
+        /// Global KMS key for encryption.
+        /// </summary>
+        [Input("globalKmsKey")]
+        public Input<string>? GlobalKmsKey { get; set; }
+
+        /// <summary>
         /// Determines what level of information is synced as a distinct resource
         /// at the destination. Supports `secret-path` and `secret-key`.
         /// </summary>
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
+
+        [Input("locationalKmsKeys")]
+        private InputMap<string>? _locationalKmsKeys;
+
+        /// <summary>
+        /// Locational KMS keys for encryption.
+        /// </summary>
+        public InputMap<string> LocationalKmsKeys
+        {
+            get => _locationalKmsKeys ?? (_locationalKmsKeys = new InputMap<string>());
+            set => _locationalKmsKeys = value;
+        }
 
         /// <summary>
         /// Unique name of the GCP destination.
@@ -216,6 +420,18 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("replicationLocations")]
+        private InputList<string>? _replicationLocations;
+
+        /// <summary>
+        /// Replication locations for secrets.
+        /// </summary>
+        public InputList<string> ReplicationLocations
+        {
+            get => _replicationLocations ?? (_replicationLocations = new InputList<string>());
+            set => _replicationLocations = value;
+        }
 
         /// <summary>
         /// Template describing how to generate external secret names.
@@ -232,6 +448,42 @@ namespace Pulumi.Vault.Secrets
 
     public sealed class SyncGcpDestinationState : global::Pulumi.ResourceArgs
     {
+        [Input("allowedIpv4Addresses")]
+        private InputList<string>? _allowedIpv4Addresses;
+
+        /// <summary>
+        /// Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
+        /// </summary>
+        public InputList<string> AllowedIpv4Addresses
+        {
+            get => _allowedIpv4Addresses ?? (_allowedIpv4Addresses = new InputList<string>());
+            set => _allowedIpv4Addresses = value;
+        }
+
+        [Input("allowedIpv6Addresses")]
+        private InputList<string>? _allowedIpv6Addresses;
+
+        /// <summary>
+        /// Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
+        /// </summary>
+        public InputList<string> AllowedIpv6Addresses
+        {
+            get => _allowedIpv6Addresses ?? (_allowedIpv6Addresses = new InputList<string>());
+            set => _allowedIpv6Addresses = value;
+        }
+
+        [Input("allowedPorts")]
+        private InputList<int>? _allowedPorts;
+
+        /// <summary>
+        /// Allowed ports for outbound network connectivity. If not set, all ports are allowed.
+        /// </summary>
+        public InputList<int> AllowedPorts
+        {
+            get => _allowedPorts ?? (_allowedPorts = new InputList<int>());
+            set => _allowedPorts = value;
+        }
+
         [Input("credentials")]
         private Input<string>? _credentials;
 
@@ -263,11 +515,35 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
+        /// Disable strict networking requirements.
+        /// </summary>
+        [Input("disableStrictNetworking")]
+        public Input<bool>? DisableStrictNetworking { get; set; }
+
+        /// <summary>
+        /// Global KMS key for encryption.
+        /// </summary>
+        [Input("globalKmsKey")]
+        public Input<string>? GlobalKmsKey { get; set; }
+
+        /// <summary>
         /// Determines what level of information is synced as a distinct resource
         /// at the destination. Supports `secret-path` and `secret-key`.
         /// </summary>
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
+
+        [Input("locationalKmsKeys")]
+        private InputMap<string>? _locationalKmsKeys;
+
+        /// <summary>
+        /// Locational KMS keys for encryption.
+        /// </summary>
+        public InputMap<string> LocationalKmsKeys
+        {
+            get => _locationalKmsKeys ?? (_locationalKmsKeys = new InputMap<string>());
+            set => _locationalKmsKeys = value;
+        }
 
         /// <summary>
         /// Unique name of the GCP destination.
@@ -291,6 +567,18 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("replicationLocations")]
+        private InputList<string>? _replicationLocations;
+
+        /// <summary>
+        /// Replication locations for secrets.
+        /// </summary>
+        public InputList<string> ReplicationLocations
+        {
+            get => _replicationLocations ?? (_replicationLocations = new InputList<string>());
+            set => _replicationLocations = value;
+        }
 
         /// <summary>
         /// Template describing how to generate external secret names.

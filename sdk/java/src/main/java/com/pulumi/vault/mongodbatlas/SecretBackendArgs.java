@@ -6,6 +6,7 @@ package com.pulumi.vault.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -53,18 +54,52 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API
      * 
      */
-    @Import(name="privateKey", required=true)
-    private Output<String> privateKey;
+    @Import(name="privateKey")
+    private @Nullable Output<String> privateKey;
 
     /**
-     * @return Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+     * @return The Private Programmatic API Key used to connect with MongoDB Atlas API
      * 
      */
-    public Output<String> privateKey() {
-        return this.privateKey;
+    public Optional<Output<String>> privateKey() {
+        return Optional.ofNullable(this.privateKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     * 
+     */
+    @Import(name="privateKeyWo")
+    private @Nullable Output<String> privateKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+     * 
+     */
+    public Optional<Output<String>> privateKeyWo() {
+        return Optional.ofNullable(this.privateKeyWo);
+    }
+
+    /**
+     * An incrementing version counter. Increment this value to force an update
+     * to the private key. Required when using `privateKeyWo`.
+     * 
+     */
+    @Import(name="privateKeyWoVersion")
+    private @Nullable Output<Integer> privateKeyWoVersion;
+
+    /**
+     * @return An incrementing version counter. Increment this value to force an update
+     * to the private key. Required when using `privateKeyWo`.
+     * 
+     */
+    public Optional<Output<Integer>> privateKeyWoVersion() {
+        return Optional.ofNullable(this.privateKeyWoVersion);
     }
 
     /**
@@ -88,6 +123,8 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.mount = $.mount;
         this.namespace = $.namespace;
         this.privateKey = $.privateKey;
+        this.privateKeyWo = $.privateKeyWo;
+        this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.publicKey = $.publicKey;
     }
 
@@ -158,24 +195,70 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateKey Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+         * @param privateKey The Private Programmatic API Key used to connect with MongoDB Atlas API
          * 
          * @return builder
          * 
          */
-        public Builder privateKey(Output<String> privateKey) {
+        public Builder privateKey(@Nullable Output<String> privateKey) {
             $.privateKey = privateKey;
             return this;
         }
 
         /**
-         * @param privateKey Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
+         * @param privateKey The Private Programmatic API Key used to connect with MongoDB Atlas API
          * 
          * @return builder
          * 
          */
         public Builder privateKey(String privateKey) {
             return privateKey(Output.of(privateKey));
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(@Nullable Output<String> privateKeyWo) {
+            $.privateKeyWo = privateKeyWo;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWo(String privateKeyWo) {
+            return privateKeyWo(Output.of(privateKeyWo));
+        }
+
+        /**
+         * @param privateKeyWoVersion An incrementing version counter. Increment this value to force an update
+         * to the private key. Required when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(@Nullable Output<Integer> privateKeyWoVersion) {
+            $.privateKeyWoVersion = privateKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param privateKeyWoVersion An incrementing version counter. Increment this value to force an update
+         * to the private key. Required when using `privateKeyWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKeyWoVersion(Integer privateKeyWoVersion) {
+            return privateKeyWoVersion(Output.of(privateKeyWoVersion));
         }
 
         /**
@@ -202,9 +285,6 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         public SecretBackendArgs build() {
             if ($.mount == null) {
                 throw new MissingRequiredPropertyException("SecretBackendArgs", "mount");
-            }
-            if ($.privateKey == null) {
-                throw new MissingRequiredPropertyException("SecretBackendArgs", "privateKey");
             }
             if ($.publicKey == null) {
                 throw new MissingRequiredPropertyException("SecretBackendArgs", "publicKey");

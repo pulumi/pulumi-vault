@@ -44,11 +44,11 @@ namespace Pulumi.Vault.Managed.Outputs
         /// <summary>
         /// The id of a PKCS#11 key to use
         /// </summary>
-        public readonly string KeyId;
+        public readonly string? KeyId;
         /// <summary>
         /// The label of the key to use
         /// </summary>
-        public readonly string KeyLabel;
+        public readonly string? KeyLabel;
         /// <summary>
         /// The name of the KmsLibrary stanza to use from Vault's config to lookup the local library path
         /// </summary>
@@ -94,9 +94,9 @@ namespace Pulumi.Vault.Managed.Outputs
 
             string? keyBits,
 
-            string keyId,
+            string? keyId,
 
-            string keyLabel,
+            string? keyLabel,
 
             string library,
 

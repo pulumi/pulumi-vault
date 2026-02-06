@@ -154,6 +154,21 @@ public final class SecretBackendConnectionHanaArgs extends com.pulumi.resources.
         return Optional.ofNullable(this.username);
     }
 
+    /**
+     * Username generation template.
+     * 
+     */
+    @Import(name="usernameTemplate")
+    private @Nullable Output<String> usernameTemplate;
+
+    /**
+     * @return Username generation template.
+     * 
+     */
+    public Optional<Output<String>> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
+
     private SecretBackendConnectionHanaArgs() {}
 
     private SecretBackendConnectionHanaArgs(SecretBackendConnectionHanaArgs $) {
@@ -166,6 +181,7 @@ public final class SecretBackendConnectionHanaArgs extends com.pulumi.resources.
         this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
         this.username = $.username;
+        this.usernameTemplate = $.usernameTemplate;
     }
 
     public static Builder builder() {
@@ -375,6 +391,27 @@ public final class SecretBackendConnectionHanaArgs extends com.pulumi.resources.
          */
         public Builder username(String username) {
             return username(Output.of(username));
+        }
+
+        /**
+         * @param usernameTemplate Username generation template.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(@Nullable Output<String> usernameTemplate) {
+            $.usernameTemplate = usernameTemplate;
+            return this;
+        }
+
+        /**
+         * @param usernameTemplate Username generation template.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(String usernameTemplate) {
+            return usernameTemplate(Output.of(usernameTemplate));
         }
 
         public SecretBackendConnectionHanaArgs build() {

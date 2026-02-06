@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class SecretBackendConnectionMongodbatlasArgs extends com.pulumi.resources.ResourceArgs {
@@ -59,12 +61,28 @@ public final class SecretBackendConnectionMongodbatlasArgs extends com.pulumi.re
         return this.publicKey;
     }
 
+    /**
+     * Template describing how dynamic usernames are generated.
+     * 
+     */
+    @Import(name="usernameTemplate")
+    private @Nullable Output<String> usernameTemplate;
+
+    /**
+     * @return Template describing how dynamic usernames are generated.
+     * 
+     */
+    public Optional<Output<String>> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
+
     private SecretBackendConnectionMongodbatlasArgs() {}
 
     private SecretBackendConnectionMongodbatlasArgs(SecretBackendConnectionMongodbatlasArgs $) {
         this.privateKey = $.privateKey;
         this.projectId = $.projectId;
         this.publicKey = $.publicKey;
+        this.usernameTemplate = $.usernameTemplate;
     }
 
     public static Builder builder() {
@@ -146,6 +164,27 @@ public final class SecretBackendConnectionMongodbatlasArgs extends com.pulumi.re
          */
         public Builder publicKey(String publicKey) {
             return publicKey(Output.of(publicKey));
+        }
+
+        /**
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(@Nullable Output<String> usernameTemplate) {
+            $.usernameTemplate = usernameTemplate;
+            return this;
+        }
+
+        /**
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(String usernameTemplate) {
+            return usernameTemplate(Output.of(usernameTemplate));
         }
 
         public SecretBackendConnectionMongodbatlasArgs build() {

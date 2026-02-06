@@ -62,7 +62,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
     /**
      * JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      * 
      */
     @Import(name="dataJson")
@@ -70,7 +70,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return JSON-encoded string that will be
-     * written as the secret data at the given path.
+     * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      * 
      */
     public Optional<Output<String>> dataJson() {
@@ -79,7 +79,8 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      * 
      */
     @Import(name="dataJsonWo")
@@ -87,7 +88,8 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Write-Only JSON-encoded secret data to write.
+     * JSON-encoded string that will be
+     * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      * 
      */
     public Optional<Output<String>> dataJsonWo() {
@@ -303,7 +305,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dataJson JSON-encoded string that will be
-         * written as the secret data at the given path.
+         * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
          * 
          * @return builder
          * 
@@ -315,7 +317,7 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dataJson JSON-encoded string that will be
-         * written as the secret data at the given path.
+         * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
          * 
          * @return builder
          * 
@@ -326,7 +328,8 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dataJsonWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Write-Only JSON-encoded secret data to write.
+         * JSON-encoded string that will be
+         * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
          * 
          * @return builder
          * 
@@ -338,7 +341,8 @@ public final class SecretV2Args extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param dataJsonWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Write-Only JSON-encoded secret data to write.
+         * JSON-encoded string that will be
+         * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
          * 
          * @return builder
          * 

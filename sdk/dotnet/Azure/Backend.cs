@@ -9,56 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Azure
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ### 
-    /// 
-    /// You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var azure = new Vault.Azure.Backend("azure", new()
-    ///     {
-    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///         TenantId = "11111111-2222-3333-4444-222222222222",
-    ///         ClientId = "11111111-2222-3333-4444-333333333333",
-    ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
-    ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
-    ///         RotationSchedule = "0 * * * SAT",
-    ///         RotationWindow = 3600,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var azure = new Vault.Azure.Backend("azure", new()
-    ///     {
-    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///         TenantId = "11111111-2222-3333-4444-222222222222",
-    ///         ClientId = "11111111-2222-3333-4444-333333333333",
-    ///         ClientSecret = "12345678901234567890",
-    ///         Environment = "AzurePublicCloud",
-    ///         RotationSchedule = "0 * * * SAT",
-    ///         RotationWindow = 3600,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [VaultResourceType("vault:azure/backend:Backend")]
     public partial class Backend : global::Pulumi.CustomResource
     {
@@ -100,9 +50,23 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The OAuth2 client secret to connect to Azure.
+        /// Conflicts with `ClientSecretWo`.
         /// </summary>
         [Output("clientSecret")]
         public Output<string?> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("clientSecretWo")]
+        public Output<string?> ClientSecretWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only ClientSecretWo field. Incrementing this value will trigger an update to the client secret.
+        /// </summary>
+        [Output("clientSecretWoVersion")]
+        public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Default lease duration for tokens and secrets in seconds
@@ -300,6 +264,7 @@ namespace Pulumi.Vault.Azure
                 {
                     "clientId",
                     "clientSecret",
+                    "clientSecretWo",
                     "subscriptionId",
                     "tenantId",
                 },
@@ -395,6 +360,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The OAuth2 client secret to connect to Azure.
+        /// Conflicts with `ClientSecretWo`.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -405,6 +371,29 @@ namespace Pulumi.Vault.Azure
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only ClientSecretWo field. Incrementing this value will trigger an update to the client secret.
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// Default lease duration for tokens and secrets in seconds
@@ -696,6 +685,7 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The OAuth2 client secret to connect to Azure.
+        /// Conflicts with `ClientSecretWo`.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -706,6 +696,29 @@ namespace Pulumi.Vault.Azure
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only ClientSecretWo field. Incrementing this value will trigger an update to the client secret.
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// Default lease duration for tokens and secrets in seconds

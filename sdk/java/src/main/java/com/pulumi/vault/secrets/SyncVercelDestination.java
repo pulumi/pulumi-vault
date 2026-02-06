@@ -10,6 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncVercelDestinationArgs;
 import com.pulumi.vault.secrets.inputs.SyncVercelDestinationState;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +51,14 @@ import javax.annotation.Nullable;
  *                 "preview",
  *                 "production")
  *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .allowedIpv4Addresses(            
+ *                 "192.168.1.1/32",
+ *                 "10.0.0.1/32")
+ *             .allowedIpv6Addresses("2001:db8:85a3::8a2e:370:7334/128")
+ *             .allowedPorts(            
+ *                 443,
+ *                 8443)
+ *             .disableStrictNetworking(false)
  *             .build());
  * 
  *     }
@@ -58,7 +68,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * GitHub Secrets sync destinations can be imported using the `name`, e.g.
+ * Vercel Secrets sync destinations can be imported using the `name`, e.g.
  * 
  * ```sh
  * $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
@@ -84,6 +94,58 @@ public class SyncVercelDestination extends com.pulumi.resources.CustomResource {
         return this.accessToken;
     }
     /**
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedIpv4Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv4Addresses() {
+        return Codegen.optional(this.allowedIpv4Addresses);
+    }
+    /**
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedIpv6Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv6Addresses() {
+        return Codegen.optional(this.allowedIpv6Addresses);
+    }
+    /**
+     * Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedPorts", refs={List.class,Integer.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<Integer>> allowedPorts;
+
+    /**
+     * @return Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<Integer>>> allowedPorts() {
+        return Codegen.optional(this.allowedPorts);
+    }
+    /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      * 
@@ -98,6 +160,24 @@ public class SyncVercelDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> deploymentEnvironments() {
         return this.deploymentEnvironments;
+    }
+    /**
+     * If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="disableStrictNetworking", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableStrictNetworking;
+
+    /**
+     * @return If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<Boolean>> disableStrictNetworking() {
+        return Codegen.optional(this.disableStrictNetworking);
     }
     /**
      * Determines what level of information is synced as a distinct resource

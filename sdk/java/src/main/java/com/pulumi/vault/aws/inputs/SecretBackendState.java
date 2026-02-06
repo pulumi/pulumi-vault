@@ -535,6 +535,38 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="secretKeyWo")
+    private @Nullable Output<String> secretKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> secretKeyWo() {
+        return Optional.ofNullable(this.secretKeyWo);
+    }
+
+    /**
+     * A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     * 
+     */
+    @Import(name="secretKeyWoVersion")
+    private @Nullable Output<Integer> secretKeyWoVersion;
+
+    /**
+     * @return A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     * 
+     */
+    public Optional<Output<Integer>> secretKeyWoVersion() {
+        return Optional.ofNullable(this.secretKeyWoVersion);
+    }
+
+    /**
      * Specifies a custom HTTP STS endpoint to use.
      * 
      */
@@ -645,6 +677,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.rotationWindow = $.rotationWindow;
         this.sealWrap = $.sealWrap;
         this.secretKey = $.secretKey;
+        this.secretKeyWo = $.secretKeyWo;
+        this.secretKeyWoVersion = $.secretKeyWoVersion;
         this.stsEndpoint = $.stsEndpoint;
         this.stsFallbackEndpoints = $.stsFallbackEndpoints;
         this.stsFallbackRegions = $.stsFallbackRegions;
@@ -1441,6 +1475,50 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder secretKey(String secretKey) {
             return secretKey(Output.of(secretKey));
+        }
+
+        /**
+         * @param secretKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWo(@Nullable Output<String> secretKeyWo) {
+            $.secretKeyWo = secretKeyWo;
+            return this;
+        }
+
+        /**
+         * @param secretKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWo(String secretKeyWo) {
+            return secretKeyWo(Output.of(secretKeyWo));
+        }
+
+        /**
+         * @param secretKeyWoVersion A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWoVersion(@Nullable Output<Integer> secretKeyWoVersion) {
+            $.secretKeyWoVersion = secretKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param secretKeyWoVersion A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretKeyWoVersion(Integer secretKeyWoVersion) {
+            return secretKeyWoVersion(Output.of(secretKeyWoVersion));
         }
 
         /**

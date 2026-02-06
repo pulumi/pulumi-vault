@@ -40,6 +40,12 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
 
+        /// <summary>
+        /// Template describing how dynamic usernames are generated.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
+
         public SecretBackendConnectionMongodbatlasArgs()
         {
         }

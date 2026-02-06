@@ -277,6 +277,36 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCa")
+    private @Nullable Output<String> tlsCa;
+
+    /**
+     * @return The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+
+    /**
+     * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCertificateKey")
+    private @Nullable Output<String> tlsCertificateKey;
+
+    /**
+     * @return The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+
+    /**
      * The root credential username used in the connection URL
      * 
      */
@@ -323,6 +353,21 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.verifyConnection);
     }
 
+    /**
+     * Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    @Import(name="writeConcern")
+    private @Nullable Output<String> writeConcern;
+
+    /**
+     * @return Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    public Optional<Output<String>> writeConcern() {
+        return Optional.ofNullable(this.writeConcern);
+    }
+
     private SecretsMountMongodbArgs() {}
 
     private SecretsMountMongodbArgs(SecretsMountMongodbArgs $) {
@@ -342,9 +387,12 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
+        this.tlsCa = $.tlsCa;
+        this.tlsCertificateKey = $.tlsCertificateKey;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
+        this.writeConcern = $.writeConcern;
     }
 
     public static Builder builder() {
@@ -739,6 +787,48 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param tlsCa The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(@Nullable Output<String> tlsCa) {
+            $.tlsCa = tlsCa;
+            return this;
+        }
+
+        /**
+         * @param tlsCa The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(String tlsCa) {
+            return tlsCa(Output.of(tlsCa));
+        }
+
+        /**
+         * @param tlsCertificateKey The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(@Nullable Output<String> tlsCertificateKey) {
+            $.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+
+        /**
+         * @param tlsCertificateKey The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(String tlsCertificateKey) {
+            return tlsCertificateKey(Output.of(tlsCertificateKey));
+        }
+
+        /**
          * @param username The root credential username used in the connection URL
          * 
          * @return builder
@@ -801,6 +891,27 @@ public final class SecretsMountMongodbArgs extends com.pulumi.resources.Resource
          */
         public Builder verifyConnection(Boolean verifyConnection) {
             return verifyConnection(Output.of(verifyConnection));
+        }
+
+        /**
+         * @param writeConcern Specifies the MongoDB write concern for Vault management operations.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeConcern(@Nullable Output<String> writeConcern) {
+            $.writeConcern = writeConcern;
+            return this;
+        }
+
+        /**
+         * @param writeConcern Specifies the MongoDB write concern for Vault management operations.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeConcern(String writeConcern) {
+            return writeConcern(Output.of(writeConcern));
         }
 
         public SecretsMountMongodbArgs build() {

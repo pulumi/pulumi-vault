@@ -77,6 +77,12 @@ namespace Pulumi.Vault.AppRole
         public Output<bool?> BindSecretId { get; private set; } = null!;
 
         /// <summary>
+        /// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+        /// </summary>
+        [Output("localSecretIds")]
+        public Output<bool?> LocalSecretIds { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -248,6 +254,12 @@ namespace Pulumi.Vault.AppRole
         public Input<bool>? BindSecretId { get; set; }
 
         /// <summary>
+        /// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+        /// </summary>
+        [Input("localSecretIds")]
+        public Input<bool>? LocalSecretIds { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -397,6 +409,12 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Input("bindSecretId")]
         public Input<bool>? BindSecretId { get; set; }
+
+        /// <summary>
+        /// If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+        /// </summary>
+        [Input("localSecretIds")]
+        public Input<bool>? LocalSecretIds { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

@@ -126,30 +126,30 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
      * The id of a PKCS#11 key to use
      * 
      */
-    @Import(name="keyId", required=true)
-    private Output<String> keyId;
+    @Import(name="keyId")
+    private @Nullable Output<String> keyId;
 
     /**
      * @return The id of a PKCS#11 key to use
      * 
      */
-    public Output<String> keyId() {
-        return this.keyId;
+    public Optional<Output<String>> keyId() {
+        return Optional.ofNullable(this.keyId);
     }
 
     /**
      * The label of the key to use
      * 
      */
-    @Import(name="keyLabel", required=true)
-    private Output<String> keyLabel;
+    @Import(name="keyLabel")
+    private @Nullable Output<String> keyLabel;
 
     /**
      * @return The label of the key to use
      * 
      */
-    public Output<String> keyLabel() {
-        return this.keyLabel;
+    public Optional<Output<String>> keyLabel() {
+        return Optional.ofNullable(this.keyLabel);
     }
 
     /**
@@ -449,7 +449,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder keyId(Output<String> keyId) {
+        public Builder keyId(@Nullable Output<String> keyId) {
             $.keyId = keyId;
             return this;
         }
@@ -470,7 +470,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder keyLabel(Output<String> keyLabel) {
+        public Builder keyLabel(@Nullable Output<String> keyLabel) {
             $.keyLabel = keyLabel;
             return this;
         }
@@ -633,12 +633,6 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public KeysPkcArgs build() {
-            if ($.keyId == null) {
-                throw new MissingRequiredPropertyException("KeysPkcArgs", "keyId");
-            }
-            if ($.keyLabel == null) {
-                throw new MissingRequiredPropertyException("KeysPkcArgs", "keyLabel");
-            }
             if ($.library == null) {
                 throw new MissingRequiredPropertyException("KeysPkcArgs", "library");
             }

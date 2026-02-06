@@ -184,6 +184,15 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly secretKey: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly secretKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     */
+    declare public readonly secretKeyWoVersion: pulumi.Output<number | undefined>;
+    /**
      * Specifies a custom HTTP STS endpoint to use.
      */
     declare public readonly stsEndpoint: pulumi.Output<string | undefined>;
@@ -259,6 +268,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = state?.rotationWindow;
             resourceInputs["sealWrap"] = state?.sealWrap;
             resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["secretKeyWo"] = state?.secretKeyWo;
+            resourceInputs["secretKeyWoVersion"] = state?.secretKeyWoVersion;
             resourceInputs["stsEndpoint"] = state?.stsEndpoint;
             resourceInputs["stsFallbackEndpoints"] = state?.stsFallbackEndpoints;
             resourceInputs["stsFallbackRegions"] = state?.stsFallbackRegions;
@@ -298,6 +309,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
+            resourceInputs["secretKeyWo"] = args?.secretKeyWo ? pulumi.secret(args.secretKeyWo) : undefined;
+            resourceInputs["secretKeyWoVersion"] = args?.secretKeyWoVersion;
             resourceInputs["stsEndpoint"] = args?.stsEndpoint;
             resourceInputs["stsFallbackEndpoints"] = args?.stsFallbackEndpoints;
             resourceInputs["stsFallbackRegions"] = args?.stsFallbackRegions;
@@ -306,7 +319,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };
+        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey", "secretKeyWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -458,6 +471,15 @@ export interface SecretBackendState {
      * The AWS Secret Access Key to use when generating new credentials.
      */
     secretKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     */
+    secretKeyWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     */
+    secretKeyWoVersion?: pulumi.Input<number>;
     /**
      * Specifies a custom HTTP STS endpoint to use.
      */
@@ -631,6 +653,15 @@ export interface SecretBackendArgs {
      * The AWS Secret Access Key to use when generating new credentials.
      */
     secretKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+     */
+    secretKeyWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only secretKeyWo field. Incrementing this value will trigger an update to the secret_key.
+     */
+    secretKeyWoVersion?: pulumi.Input<number>;
     /**
      * Specifies a custom HTTP STS endpoint to use.
      */

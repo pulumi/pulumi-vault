@@ -28,6 +28,8 @@ class AuthBackendConfigArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
@@ -42,7 +44,10 @@ class AuthBackendConfigArgs:
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.int] token_reviewer_jwt_wo_version: The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         pulumi.set(__self__, "kubernetes_host", kubernetes_host)
@@ -62,6 +67,10 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "pem_keys", pem_keys)
         if token_reviewer_jwt is not None:
             pulumi.set(__self__, "token_reviewer_jwt", token_reviewer_jwt)
+        if token_reviewer_jwt_wo is not None:
+            pulumi.set(__self__, "token_reviewer_jwt_wo", token_reviewer_jwt_wo)
+        if token_reviewer_jwt_wo_version is not None:
+            pulumi.set(__self__, "token_reviewer_jwt_wo_version", token_reviewer_jwt_wo_version)
         if use_annotations_as_alias_metadata is not None:
             pulumi.set(__self__, "use_annotations_as_alias_metadata", use_annotations_as_alias_metadata)
 
@@ -168,13 +177,38 @@ class AuthBackendConfigArgs:
     @pulumi.getter(name="tokenReviewerJwt")
     def token_reviewer_jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 
     @token_reviewer_jwt.setter
     def token_reviewer_jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token_reviewer_jwt", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenReviewerJwtWo")
+    def token_reviewer_jwt_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        """
+        return pulumi.get(self, "token_reviewer_jwt_wo")
+
+    @token_reviewer_jwt_wo.setter
+    def token_reviewer_jwt_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_reviewer_jwt_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenReviewerJwtWoVersion")
+    def token_reviewer_jwt_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "token_reviewer_jwt_wo_version")
+
+    @token_reviewer_jwt_wo_version.setter
+    def token_reviewer_jwt_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_reviewer_jwt_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="useAnnotationsAsAliasMetadata")
@@ -201,6 +235,8 @@ class _AuthBackendConfigState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
@@ -215,7 +251,10 @@ class _AuthBackendConfigState:
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.int] token_reviewer_jwt_wo_version: The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         if backend is not None:
@@ -236,6 +275,10 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "pem_keys", pem_keys)
         if token_reviewer_jwt is not None:
             pulumi.set(__self__, "token_reviewer_jwt", token_reviewer_jwt)
+        if token_reviewer_jwt_wo is not None:
+            pulumi.set(__self__, "token_reviewer_jwt_wo", token_reviewer_jwt_wo)
+        if token_reviewer_jwt_wo_version is not None:
+            pulumi.set(__self__, "token_reviewer_jwt_wo_version", token_reviewer_jwt_wo_version)
         if use_annotations_as_alias_metadata is not None:
             pulumi.set(__self__, "use_annotations_as_alias_metadata", use_annotations_as_alias_metadata)
 
@@ -342,13 +385,38 @@ class _AuthBackendConfigState:
     @pulumi.getter(name="tokenReviewerJwt")
     def token_reviewer_jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 
     @token_reviewer_jwt.setter
     def token_reviewer_jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token_reviewer_jwt", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenReviewerJwtWo")
+    def token_reviewer_jwt_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        """
+        return pulumi.get(self, "token_reviewer_jwt_wo")
+
+    @token_reviewer_jwt_wo.setter
+    def token_reviewer_jwt_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_reviewer_jwt_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenReviewerJwtWoVersion")
+    def token_reviewer_jwt_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "token_reviewer_jwt_wo_version")
+
+    @token_reviewer_jwt_wo_version.setter
+    def token_reviewer_jwt_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_reviewer_jwt_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="useAnnotationsAsAliasMetadata")
@@ -378,6 +446,8 @@ class AuthBackendConfig(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -403,6 +473,34 @@ class AuthBackendConfig(pulumi.CustomResource):
             disable_iss_validation=True)
         ```
 
+        ### Example Usage with Write-Only JWT
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
+        example = vault.kubernetes.AuthBackendConfig("example",
+            backend=kubernetes.path,
+            kubernetes_host="http://example.com:443",
+            kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
+        example
+        -----END CERTIFICATE-----\"\"\",
+            token_reviewer_jwt_wo=k8s_token_reviewer_jwt,
+            token_reviewer_jwt_wo_version=1,
+            issuer="api",
+            disable_iss_validation=True)
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `token_reviewer_jwt_wo` - (Optional) A write-only service account JWT (or other token) used as a bearer token to access the
+          TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+          Conflicts with `token_reviewer_jwt`.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         Kubernetes authentication backend can be imported using the `path`, e.g.
@@ -424,7 +522,10 @@ class AuthBackendConfig(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.int] token_reviewer_jwt_wo_version: The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         ...
@@ -455,6 +556,34 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer="api",
             disable_iss_validation=True)
         ```
+
+        ### Example Usage with Write-Only JWT
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        kubernetes = vault.AuthBackend("kubernetes", type="kubernetes")
+        example = vault.kubernetes.AuthBackendConfig("example",
+            backend=kubernetes.path,
+            kubernetes_host="http://example.com:443",
+            kubernetes_ca_cert=\"\"\"-----BEGIN CERTIFICATE-----
+        example
+        -----END CERTIFICATE-----\"\"\",
+            token_reviewer_jwt_wo=k8s_token_reviewer_jwt,
+            token_reviewer_jwt_wo_version=1,
+            issuer="api",
+            disable_iss_validation=True)
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `token_reviewer_jwt_wo` - (Optional) A write-only service account JWT (or other token) used as a bearer token to access the
+          TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+          Conflicts with `token_reviewer_jwt`.
+          **Note**: This property is write-only and will not be read from the API.
 
         ## Import
 
@@ -488,6 +617,8 @@ class AuthBackendConfig(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -509,8 +640,10 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["pem_keys"] = pem_keys
             __props__.__dict__["token_reviewer_jwt"] = None if token_reviewer_jwt is None else pulumi.Output.secret(token_reviewer_jwt)
+            __props__.__dict__["token_reviewer_jwt_wo"] = None if token_reviewer_jwt_wo is None else pulumi.Output.secret(token_reviewer_jwt_wo)
+            __props__.__dict__["token_reviewer_jwt_wo_version"] = token_reviewer_jwt_wo_version
             __props__.__dict__["use_annotations_as_alias_metadata"] = use_annotations_as_alias_metadata
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["tokenReviewerJwt"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["tokenReviewerJwt", "tokenReviewerJwtWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendConfig, __self__).__init__(
             'vault:kubernetes/authBackendConfig:AuthBackendConfig',
@@ -531,6 +664,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+            token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackendConfig':
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
@@ -550,7 +685,10 @@ class AuthBackendConfig(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
+        :param pulumi.Input[_builtins.str] token_reviewer_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[_builtins.int] token_reviewer_jwt_wo_version: The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -566,6 +704,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["pem_keys"] = pem_keys
         __props__.__dict__["token_reviewer_jwt"] = token_reviewer_jwt
+        __props__.__dict__["token_reviewer_jwt_wo"] = token_reviewer_jwt_wo
+        __props__.__dict__["token_reviewer_jwt_wo_version"] = token_reviewer_jwt_wo_version
         __props__.__dict__["use_annotations_as_alias_metadata"] = use_annotations_as_alias_metadata
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
@@ -640,9 +780,26 @@ class AuthBackendConfig(pulumi.CustomResource):
     @pulumi.getter(name="tokenReviewerJwt")
     def token_reviewer_jwt(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
         """
         return pulumi.get(self, "token_reviewer_jwt")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenReviewerJwtWo")
+    def token_reviewer_jwt_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        """
+        return pulumi.get(self, "token_reviewer_jwt_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenReviewerJwtWoVersion")
+    def token_reviewer_jwt_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "token_reviewer_jwt_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="useAnnotationsAsAliasMetadata")

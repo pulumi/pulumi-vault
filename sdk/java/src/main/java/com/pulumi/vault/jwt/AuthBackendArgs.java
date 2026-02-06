@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.jwt.inputs.AuthBackendTuneArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -231,18 +232,50 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Client Secret used for OIDC backends
+     * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      * 
      */
     @Import(name="oidcClientSecret")
     private @Nullable Output<String> oidcClientSecret;
 
     /**
-     * @return Client Secret used for OIDC backends
+     * @return Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      * 
      */
     public Optional<Output<String>> oidcClientSecret() {
         return Optional.ofNullable(this.oidcClientSecret);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+     * 
+     */
+    @Import(name="oidcClientSecretWo")
+    private @Nullable Output<String> oidcClientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+     * 
+     */
+    public Optional<Output<String>> oidcClientSecretWo() {
+        return Optional.ofNullable(this.oidcClientSecretWo);
+    }
+
+    /**
+     * Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+     * 
+     */
+    @Import(name="oidcClientSecretWoVersion")
+    private @Nullable Output<Integer> oidcClientSecretWoVersion;
+
+    /**
+     * @return Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+     * 
+     */
+    public Optional<Output<Integer>> oidcClientSecretWoVersion() {
+        return Optional.ofNullable(this.oidcClientSecretWoVersion);
     }
 
     /**
@@ -374,6 +407,8 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.namespaceInState = $.namespaceInState;
         this.oidcClientId = $.oidcClientId;
         this.oidcClientSecret = $.oidcClientSecret;
+        this.oidcClientSecretWo = $.oidcClientSecretWo;
+        this.oidcClientSecretWoVersion = $.oidcClientSecretWoVersion;
         this.oidcDiscoveryCaPem = $.oidcDiscoveryCaPem;
         this.oidcDiscoveryUrl = $.oidcDiscoveryUrl;
         this.oidcResponseMode = $.oidcResponseMode;
@@ -722,7 +757,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcClientSecret Client Secret used for OIDC backends
+         * @param oidcClientSecret Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
          * 
          * @return builder
          * 
@@ -733,13 +768,57 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcClientSecret Client Secret used for OIDC backends
+         * @param oidcClientSecret Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
          * 
          * @return builder
          * 
          */
         public Builder oidcClientSecret(String oidcClientSecret) {
             return oidcClientSecret(Output.of(oidcClientSecret));
+        }
+
+        /**
+         * @param oidcClientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientSecretWo(@Nullable Output<String> oidcClientSecretWo) {
+            $.oidcClientSecretWo = oidcClientSecretWo;
+            return this;
+        }
+
+        /**
+         * @param oidcClientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientSecretWo(String oidcClientSecretWo) {
+            return oidcClientSecretWo(Output.of(oidcClientSecretWo));
+        }
+
+        /**
+         * @param oidcClientSecretWoVersion Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientSecretWoVersion(@Nullable Output<Integer> oidcClientSecretWoVersion) {
+            $.oidcClientSecretWoVersion = oidcClientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param oidcClientSecretWoVersion Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientSecretWoVersion(Integer oidcClientSecretWoVersion) {
+            return oidcClientSecretWoVersion(Output.of(oidcClientSecretWoVersion));
         }
 
         /**

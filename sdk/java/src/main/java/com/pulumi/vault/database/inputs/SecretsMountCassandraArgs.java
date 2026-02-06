@@ -53,6 +53,21 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Cassandra consistency level.
+     * 
+     */
+    @Import(name="consistency")
+    private @Nullable Output<String> consistency;
+
+    /**
+     * @return Cassandra consistency level.
+     * 
+     */
+    public Optional<Output<String>> consistency() {
+        return Optional.ofNullable(this.consistency);
+    }
+
+    /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
@@ -114,6 +129,21 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<Boolean>> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
+    }
+
+    /**
+     * Cassandra local datacenter name.
+     * 
+     */
+    @Import(name="localDatacenter")
+    private @Nullable Output<String> localDatacenter;
+
+    /**
+     * @return Cassandra local datacenter name.
+     * 
+     */
+    public Optional<Output<String>> localDatacenter() {
+        return Optional.ofNullable(this.localDatacenter);
     }
 
     /**
@@ -305,6 +335,21 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Enable TCP keepalive for Cassandra connections.
+     * 
+     */
+    @Import(name="socketKeepAlive")
+    private @Nullable Output<String> socketKeepAlive;
+
+    /**
+     * @return Enable TCP keepalive for Cassandra connections.
+     * 
+     */
+    public Optional<Output<String>> socketKeepAlive() {
+        return Optional.ofNullable(this.socketKeepAlive);
+    }
+
+    /**
      * Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -320,6 +365,21 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * SNI host for TLS connections.
+     * 
+     */
+    @Import(name="tlsServerName")
+    private @Nullable Output<String> tlsServerName;
+
+    /**
+     * @return SNI host for TLS connections.
+     * 
+     */
+    public Optional<Output<String>> tlsServerName() {
+        return Optional.ofNullable(this.tlsServerName);
+    }
+
+    /**
      * The username to use when authenticating with Cassandra.
      * 
      */
@@ -332,6 +392,21 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> username() {
         return Optional.ofNullable(this.username);
+    }
+
+    /**
+     * Template for dynamic Cassandra usernames.
+     * 
+     */
+    @Import(name="usernameTemplate")
+    private @Nullable Output<String> usernameTemplate;
+
+    /**
+     * @return Template for dynamic Cassandra usernames.
+     * 
+     */
+    public Optional<Output<String>> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
     }
 
     /**
@@ -356,10 +431,12 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     private SecretsMountCassandraArgs(SecretsMountCassandraArgs $) {
         this.allowedRoles = $.allowedRoles;
         this.connectTimeout = $.connectTimeout;
+        this.consistency = $.consistency;
         this.data = $.data;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.hosts = $.hosts;
         this.insecureTls = $.insecureTls;
+        this.localDatacenter = $.localDatacenter;
         this.name = $.name;
         this.password = $.password;
         this.pemBundle = $.pemBundle;
@@ -372,8 +449,11 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
         this.skipVerification = $.skipVerification;
+        this.socketKeepAlive = $.socketKeepAlive;
         this.tls = $.tls;
+        this.tlsServerName = $.tlsServerName;
         this.username = $.username;
+        this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
     }
 
@@ -448,6 +528,27 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
          */
         public Builder connectTimeout(Integer connectTimeout) {
             return connectTimeout(Output.of(connectTimeout));
+        }
+
+        /**
+         * @param consistency Cassandra consistency level.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consistency(@Nullable Output<String> consistency) {
+            $.consistency = consistency;
+            return this;
+        }
+
+        /**
+         * @param consistency Cassandra consistency level.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consistency(String consistency) {
+            return consistency(Output.of(consistency));
         }
 
         /**
@@ -546,6 +647,27 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
          */
         public Builder insecureTls(Boolean insecureTls) {
             return insecureTls(Output.of(insecureTls));
+        }
+
+        /**
+         * @param localDatacenter Cassandra local datacenter name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder localDatacenter(@Nullable Output<String> localDatacenter) {
+            $.localDatacenter = localDatacenter;
+            return this;
+        }
+
+        /**
+         * @param localDatacenter Cassandra local datacenter name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder localDatacenter(String localDatacenter) {
+            return localDatacenter(Output.of(localDatacenter));
         }
 
         /**
@@ -819,6 +941,27 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
+         * @param socketKeepAlive Enable TCP keepalive for Cassandra connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder socketKeepAlive(@Nullable Output<String> socketKeepAlive) {
+            $.socketKeepAlive = socketKeepAlive;
+            return this;
+        }
+
+        /**
+         * @param socketKeepAlive Enable TCP keepalive for Cassandra connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder socketKeepAlive(String socketKeepAlive) {
+            return socketKeepAlive(Output.of(socketKeepAlive));
+        }
+
+        /**
          * @param tls Whether to use TLS when connecting to Cassandra.
          * 
          * @return builder
@@ -840,6 +983,27 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
+         * @param tlsServerName SNI host for TLS connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsServerName(@Nullable Output<String> tlsServerName) {
+            $.tlsServerName = tlsServerName;
+            return this;
+        }
+
+        /**
+         * @param tlsServerName SNI host for TLS connections.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsServerName(String tlsServerName) {
+            return tlsServerName(Output.of(tlsServerName));
+        }
+
+        /**
          * @param username The username to use when authenticating with Cassandra.
          * 
          * @return builder
@@ -858,6 +1022,27 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
          */
         public Builder username(String username) {
             return username(Output.of(username));
+        }
+
+        /**
+         * @param usernameTemplate Template for dynamic Cassandra usernames.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(@Nullable Output<String> usernameTemplate) {
+            $.usernameTemplate = usernameTemplate;
+            return this;
+        }
+
+        /**
+         * @param usernameTemplate Template for dynamic Cassandra usernames.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usernameTemplate(String usernameTemplate) {
+            return usernameTemplate(Output.of(usernameTemplate));
         }
 
         /**

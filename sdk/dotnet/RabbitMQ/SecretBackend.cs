@@ -10,26 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.RabbitMQ
 {
     /// <summary>
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new()
-    ///     {
-    ///         ConnectionUri = "https://.....",
-    ///         Username = "user",
-    ///         Password = "password",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// RabbitMQ secret backends can be imported using the `path`, e.g.
@@ -161,15 +141,29 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// Specifies the RabbitMQ management administrator password.
+        /// Conflicts with `PasswordWo`.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
         /// Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
         /// </summary>
         [Output("passwordPolicy")]
         public Output<string?> PasswordPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only PasswordWo field. Incrementing this value will trigger an update to the password.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -235,6 +229,7 @@ namespace Pulumi.Vault.RabbitMQ
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                     "username",
                 },
             };
@@ -414,11 +409,12 @@ namespace Pulumi.Vault.RabbitMQ
             set => _passthroughRequestHeaders = value;
         }
 
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
         /// Specifies the RabbitMQ management administrator password.
+        /// Conflicts with `PasswordWo`.
         /// </summary>
         public Input<string>? Password
         {
@@ -435,6 +431,29 @@ namespace Pulumi.Vault.RabbitMQ
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only PasswordWo field. Incrementing this value will trigger an update to the password.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must
@@ -657,6 +676,7 @@ namespace Pulumi.Vault.RabbitMQ
 
         /// <summary>
         /// Specifies the RabbitMQ management administrator password.
+        /// Conflicts with `PasswordWo`.
         /// </summary>
         public Input<string>? Password
         {
@@ -673,6 +693,29 @@ namespace Pulumi.Vault.RabbitMQ
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only PasswordWo field. Incrementing this value will trigger an update to the password.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The unique path this backend should be mounted at. Must

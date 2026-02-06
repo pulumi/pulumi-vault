@@ -9,54 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AppRole
 {
-    /// <summary>
-    /// Logs into Vault using the AppRole auth backend. See the [Vault
-    /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
-    /// information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var approle = new Vault.AuthBackend("approle", new()
-    ///     {
-    ///         Type = "approle",
-    ///     });
-    /// 
-    ///     var example = new Vault.AppRole.AuthBackendRole("example", new()
-    ///     {
-    ///         Backend = approle.Path,
-    ///         RoleName = "test-role",
-    ///         TokenPolicies = new[]
-    ///         {
-    ///             "default",
-    ///             "dev",
-    ///             "prod",
-    ///         },
-    ///     });
-    /// 
-    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
-    ///     {
-    ///         Backend = approle.Path,
-    ///         RoleName = example.RoleName,
-    ///     });
-    /// 
-    ///     var login = new Vault.AppRole.AuthBackendLogin("login", new()
-    ///     {
-    ///         Backend = approle.Path,
-    ///         RoleId = example.RoleId,
-    ///         SecretId = id.SecretId,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [VaultResourceType("vault:appRole/authBackendLogin:AuthBackendLogin")]
     public partial class AuthBackendLogin : global::Pulumi.CustomResource
     {
@@ -130,6 +82,19 @@ namespace Pulumi.Vault.AppRole
         [Output("secretId")]
         public Output<string?> SecretId { get; private set; } = null!;
 
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `BindSecretId` is set to false on the role.
+        /// </summary>
+        [Output("secretIdWo")]
+        public Output<string?> SecretIdWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the `SecretIdWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Output("secretIdWoVersion")]
+        public Output<int?> SecretIdWoVersion { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackendLogin resource with the given unique name, arguments, and options.
@@ -157,6 +122,7 @@ namespace Pulumi.Vault.AppRole
                 {
                     "clientToken",
                     "secretId",
+                    "secretIdWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -218,6 +184,29 @@ namespace Pulumi.Vault.AppRole
                 _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretIdWo")]
+        private Input<string>? _secretIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `BindSecretId` is set to false on the role.
+        /// </summary>
+        public Input<string>? SecretIdWo
+        {
+            get => _secretIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the `SecretIdWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("secretIdWoVersion")]
+        public Input<int>? SecretIdWoVersion { get; set; }
 
         public AuthBackendLoginArgs()
         {
@@ -328,6 +317,29 @@ namespace Pulumi.Vault.AppRole
                 _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretIdWo")]
+        private Input<string>? _secretIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `BindSecretId` is set to false on the role.
+        /// </summary>
+        public Input<string>? SecretIdWo
+        {
+            get => _secretIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the `SecretIdWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("secretIdWoVersion")]
+        public Input<int>? SecretIdWoVersion { get; set; }
 
         public AuthBackendLoginState()
         {

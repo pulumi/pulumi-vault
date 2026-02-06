@@ -28,6 +28,8 @@ class SecretBackendArgs:
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -45,7 +47,9 @@ class SecretBackendArgs:
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  scheme: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[_builtins.str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
@@ -57,8 +61,11 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-               you need to also set client_cert.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+               an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: A human-friendly description for this backend.
@@ -81,7 +88,11 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens.
+        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+               of the token in Vault. Required when using `token_wo`.
         """
         pulumi.set(__self__, "address", address)
         if allowed_managed_keys is not None:
@@ -100,6 +111,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "client_cert", client_cert)
         if client_key is not None:
             pulumi.set(__self__, "client_key", client_key)
+        if client_key_wo is not None:
+            pulumi.set(__self__, "client_key_wo", client_key_wo)
+        if client_key_wo_version is not None:
+            pulumi.set(__self__, "client_key_wo_version", client_key_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -136,6 +151,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -238,14 +257,39 @@ class SecretBackendArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-        you need to also set client_cert.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
         """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
     def client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWo")
+    def client_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "client_key_wo")
+
+    @client_key_wo.setter
+    def client_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWoVersion")
+    def client_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only client key. Increment this value to trigger 
+        an update of the client key in Vault. Required when using `client_key_wo`.
+        """
+        return pulumi.get(self, "client_key_wo_version")
+
+    @client_key_wo_version.setter
+    def client_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -460,13 +504,39 @@ class SecretBackendArgs:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Consul token to use when managing or issuing new tokens.
+        Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
         """
         return pulumi.get(self, "token")
 
     @token.setter
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only token. Increment this value to trigger an update 
+        of the token in Vault. Required when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
 
 
 @pulumi.input_type
@@ -482,6 +552,8 @@ class _SecretBackendState:
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -499,7 +571,9 @@ class _SecretBackendState:
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  scheme: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None):
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
@@ -512,8 +586,11 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-               you need to also set client_cert.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+               an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: A human-friendly description for this backend.
@@ -536,7 +613,11 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens.
+        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+               of the token in Vault. Required when using `token_wo`.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -558,6 +639,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "client_cert", client_cert)
         if client_key is not None:
             pulumi.set(__self__, "client_key", client_key)
+        if client_key_wo is not None:
+            pulumi.set(__self__, "client_key_wo", client_key_wo)
+        if client_key_wo_version is not None:
+            pulumi.set(__self__, "client_key_wo_version", client_key_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -594,6 +679,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_wo is not None:
+            pulumi.set(__self__, "token_wo", token_wo)
+        if token_wo_version is not None:
+            pulumi.set(__self__, "token_wo_version", token_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -708,14 +797,39 @@ class _SecretBackendState:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-        you need to also set client_cert.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
         """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
     def client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWo")
+    def client_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "client_key_wo")
+
+    @client_key_wo.setter
+    def client_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWoVersion")
+    def client_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only client key. Increment this value to trigger 
+        an update of the client key in Vault. Required when using `client_key_wo`.
+        """
+        return pulumi.get(self, "client_key_wo_version")
+
+    @client_key_wo_version.setter
+    def client_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -930,13 +1044,39 @@ class _SecretBackendState:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Consul token to use when managing or issuing new tokens.
+        Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
         """
         return pulumi.get(self, "token")
 
     @token.setter
     def token(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @token_wo.setter
+    def token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only token. Increment this value to trigger an update 
+        of the token in Vault. Required when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
+
+    @token_wo_version.setter
+    def token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "token_wo_version", value)
 
 
 @pulumi.type_token("vault:consul/secretBackend:SecretBackend")
@@ -954,6 +1094,8 @@ class SecretBackend(pulumi.CustomResource):
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -972,34 +1114,10 @@ class SecretBackend(pulumi.CustomResource):
                  scheme: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ### Creating a standard backend resource:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        test = vault.consul.SecretBackend("test",
-            path="consul",
-            description="Manages the Consul backend",
-            address="127.0.0.1:8500",
-            token="4240861b-ce3d-8530-115a-521ff070dd29")
-        ```
-
-        ### Creating a backend resource to bootstrap a new Consul instance:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        test = vault.consul.SecretBackend("test",
-            path="consul",
-            description="Bootstrap the Consul backend",
-            address="127.0.0.1:8500",
-            bootstrap=True)
-        ```
-
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
@@ -1019,8 +1137,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-               you need to also set client_cert.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+               an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: A human-friendly description for this backend.
@@ -1043,7 +1164,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens.
+        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+               of the token in Vault. Required when using `token_wo`.
         """
         ...
     @overload
@@ -1052,32 +1177,6 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ### Creating a standard backend resource:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        test = vault.consul.SecretBackend("test",
-            path="consul",
-            description="Manages the Consul backend",
-            address="127.0.0.1:8500",
-            token="4240861b-ce3d-8530-115a-521ff070dd29")
-        ```
-
-        ### Creating a backend resource to bootstrap a new Consul instance:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        test = vault.consul.SecretBackend("test",
-            path="consul",
-            description="Bootstrap the Consul backend",
-            address="127.0.0.1:8500",
-            bootstrap=True)
-        ```
-
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
@@ -1110,6 +1209,8 @@ class SecretBackend(pulumi.CustomResource):
                  ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1128,6 +1229,8 @@ class SecretBackend(pulumi.CustomResource):
                  scheme: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1148,6 +1251,8 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["client_cert"] = None if client_cert is None else pulumi.Output.secret(client_cert)
             __props__.__dict__["client_key"] = None if client_key is None else pulumi.Output.secret(client_key)
+            __props__.__dict__["client_key_wo"] = None if client_key_wo is None else pulumi.Output.secret(client_key_wo)
+            __props__.__dict__["client_key_wo_version"] = client_key_wo_version
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
@@ -1166,8 +1271,10 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["scheme"] = scheme
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["token_wo"] = None if token_wo is None else pulumi.Output.secret(token_wo)
+            __props__.__dict__["token_wo_version"] = token_wo_version
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientCert", "clientKey", "token"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientCert", "clientKey", "clientKeyWo", "token", "tokenWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:consul/secretBackend:SecretBackend',
@@ -1189,6 +1296,8 @@ class SecretBackend(pulumi.CustomResource):
             ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
             client_cert: Optional[pulumi.Input[_builtins.str]] = None,
             client_key: Optional[pulumi.Input[_builtins.str]] = None,
+            client_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1206,7 +1315,9 @@ class SecretBackend(pulumi.CustomResource):
             plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
             scheme: Optional[pulumi.Input[_builtins.str]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackend':
+            token: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            token_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1224,8 +1335,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-               you need to also set client_cert.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+               an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: A human-friendly description for this backend.
@@ -1248,7 +1362,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens.
+        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+               of the token in Vault. Required when using `token_wo`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1264,6 +1382,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["ca_cert"] = ca_cert
         __props__.__dict__["client_cert"] = client_cert
         __props__.__dict__["client_key"] = client_key
+        __props__.__dict__["client_key_wo"] = client_key_wo
+        __props__.__dict__["client_key_wo_version"] = client_key_wo_version
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
@@ -1282,6 +1402,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["scheme"] = scheme
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["token"] = token
+        __props__.__dict__["token_wo"] = token_wo
+        __props__.__dict__["token_wo_version"] = token_wo_version
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1361,10 +1483,27 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="clientKey")
     def client_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
-        you need to also set client_cert.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
         """
         return pulumi.get(self, "client_key")
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWo")
+    def client_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "client_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientKeyWoVersion")
+    def client_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only client key. Increment this value to trigger 
+        an update of the client key in Vault. Required when using `client_key_wo`.
+        """
+        return pulumi.get(self, "client_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -1511,7 +1650,25 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the Consul token to use when managing or issuing new tokens.
+        Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
         """
         return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWo")
+    def token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
+        """
+        return pulumi.get(self, "token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenWoVersion")
+    def token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only token. Increment this value to trigger an update 
+        of the token in Vault. Required when using `token_wo`.
+        """
+        return pulumi.get(self, "token_wo_version")
 

@@ -5,6 +5,8 @@ package com.pulumi.vault.secrets.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +36,61 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
     }
 
     /**
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    @Import(name="allowedIpv4Addresses")
+    private @Nullable Output<List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedIpv4Addresses() {
+        return Optional.ofNullable(this.allowedIpv4Addresses);
+    }
+
+    /**
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    @Import(name="allowedIpv6Addresses")
+    private @Nullable Output<List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    public Optional<Output<List<String>>> allowedIpv6Addresses() {
+        return Optional.ofNullable(this.allowedIpv6Addresses);
+    }
+
+    /**
+     * Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     * 
+     */
+    @Import(name="allowedPorts")
+    private @Nullable Output<List<Integer>> allowedPorts;
+
+    /**
+     * @return Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     * 
+     */
+    public Optional<Output<List<Integer>>> allowedPorts() {
+        return Optional.ofNullable(this.allowedPorts);
+    }
+
+    /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      * 
@@ -48,6 +105,25 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
      */
     public Optional<Output<List<String>>> deploymentEnvironments() {
         return Optional.ofNullable(this.deploymentEnvironments);
+    }
+
+    /**
+     * If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Import(name="disableStrictNetworking")
+    private @Nullable Output<Boolean> disableStrictNetworking;
+
+    /**
+     * @return If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Optional<Output<Boolean>> disableStrictNetworking() {
+        return Optional.ofNullable(this.disableStrictNetworking);
     }
 
     /**
@@ -167,7 +243,11 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
 
     private SyncVercelDestinationState(SyncVercelDestinationState $) {
         this.accessToken = $.accessToken;
+        this.allowedIpv4Addresses = $.allowedIpv4Addresses;
+        this.allowedIpv6Addresses = $.allowedIpv6Addresses;
+        this.allowedPorts = $.allowedPorts;
         this.deploymentEnvironments = $.deploymentEnvironments;
+        this.disableStrictNetworking = $.disableStrictNetworking;
         this.granularity = $.granularity;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -219,6 +299,114 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param allowedIpv4Addresses Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+         * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+         * Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv4Addresses(@Nullable Output<List<String>> allowedIpv4Addresses) {
+            $.allowedIpv4Addresses = allowedIpv4Addresses;
+            return this;
+        }
+
+        /**
+         * @param allowedIpv4Addresses Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+         * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+         * Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv4Addresses(List<String> allowedIpv4Addresses) {
+            return allowedIpv4Addresses(Output.of(allowedIpv4Addresses));
+        }
+
+        /**
+         * @param allowedIpv4Addresses Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+         * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+         * Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv4Addresses(String... allowedIpv4Addresses) {
+            return allowedIpv4Addresses(List.of(allowedIpv4Addresses));
+        }
+
+        /**
+         * @param allowedIpv6Addresses Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+         * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+         * Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv6Addresses(@Nullable Output<List<String>> allowedIpv6Addresses) {
+            $.allowedIpv6Addresses = allowedIpv6Addresses;
+            return this;
+        }
+
+        /**
+         * @param allowedIpv6Addresses Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+         * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+         * Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv6Addresses(List<String> allowedIpv6Addresses) {
+            return allowedIpv6Addresses(Output.of(allowedIpv6Addresses));
+        }
+
+        /**
+         * @param allowedIpv6Addresses Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+         * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+         * Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedIpv6Addresses(String... allowedIpv6Addresses) {
+            return allowedIpv6Addresses(List.of(allowedIpv6Addresses));
+        }
+
+        /**
+         * @param allowedPorts Set of allowed ports for outbound connections from Vault to the
+         * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPorts(@Nullable Output<List<Integer>> allowedPorts) {
+            $.allowedPorts = allowedPorts;
+            return this;
+        }
+
+        /**
+         * @param allowedPorts Set of allowed ports for outbound connections from Vault to the
+         * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPorts(List<Integer> allowedPorts) {
+            return allowedPorts(Output.of(allowedPorts));
+        }
+
+        /**
+         * @param allowedPorts Set of allowed ports for outbound connections from Vault to the
+         * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedPorts(Integer... allowedPorts) {
+            return allowedPorts(List.of(allowedPorts));
+        }
+
+        /**
          * @param deploymentEnvironments Deployment environments where the environment variables
          * are available. Accepts `development`, `preview` and `production`.
          * 
@@ -250,6 +438,31 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
          */
         public Builder deploymentEnvironments(String... deploymentEnvironments) {
             return deploymentEnvironments(List.of(deploymentEnvironments));
+        }
+
+        /**
+         * @param disableStrictNetworking If set to `true`, disables strict networking enforcement
+         * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+         * Defaults to `false`. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableStrictNetworking(@Nullable Output<Boolean> disableStrictNetworking) {
+            $.disableStrictNetworking = disableStrictNetworking;
+            return this;
+        }
+
+        /**
+         * @param disableStrictNetworking If set to `true`, disables strict networking enforcement
+         * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+         * Defaults to `false`. Requires Vault 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableStrictNetworking(Boolean disableStrictNetworking) {
+            return disableStrictNetworking(Output.of(disableStrictNetworking));
         }
 
         /**

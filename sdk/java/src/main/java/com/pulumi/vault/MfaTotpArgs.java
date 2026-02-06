@@ -82,6 +82,21 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     * 
+     */
+    @Import(name="maxValidationAttempts")
+    private @Nullable Output<Integer> maxValidationAttempts;
+
+    /**
+     * @return `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+     * 
+     */
+    public Optional<Output<Integer>> maxValidationAttempts() {
+        return Optional.ofNullable(this.maxValidationAttempts);
+    }
+
+    /**
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */
@@ -171,6 +186,7 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
         this.digits = $.digits;
         this.issuer = $.issuer;
         this.keySize = $.keySize;
+        this.maxValidationAttempts = $.maxValidationAttempts;
         this.name = $.name;
         this.namespace = $.namespace;
         this.period = $.period;
@@ -282,6 +298,27 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder keySize(Integer keySize) {
             return keySize(Output.of(keySize));
+        }
+
+        /**
+         * @param maxValidationAttempts `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxValidationAttempts(@Nullable Output<Integer> maxValidationAttempts) {
+            $.maxValidationAttempts = maxValidationAttempts;
+            return this;
+        }
+
+        /**
+         * @param maxValidationAttempts `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxValidationAttempts(Integer maxValidationAttempts) {
+            return maxValidationAttempts(Output.of(maxValidationAttempts));
         }
 
         /**

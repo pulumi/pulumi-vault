@@ -40,14 +40,15 @@ import (
 //				return err
 //			}
 //			_, err = kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
-//				Path:                   pulumi.String("kubernetes"),
-//				Description:            pulumi.String("kubernetes secrets engine description"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(43200),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
-//				KubernetesHost:         pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:       pulumi.String(invokeFile.Result),
-//				ServiceAccountJwt:      pulumi.String(invokeFile1.Result),
-//				DisableLocalCaJwt:      pulumi.Bool(false),
+//				Path:                       pulumi.String("kubernetes"),
+//				Description:                pulumi.String("kubernetes secrets engine description"),
+//				DefaultLeaseTtlSeconds:     pulumi.Int(43200),
+//				MaxLeaseTtlSeconds:         pulumi.Int(86400),
+//				KubernetesHost:             pulumi.String("https://127.0.0.1:61233"),
+//				KubernetesCaCert:           pulumi.String(invokeFile.Result),
+//				ServiceAccountJwtWo:        pulumi.String(invokeFile1.Result),
+//				ServiceAccountJwtWoVersion: pulumi.Int(1),
+//				DisableLocalCaJwt:          pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -57,6 +58,13 @@ import (
 //	}
 //
 // ```
+//
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+//   - `serviceAccountJwtWo` - (Optional) Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value is not stored in state.
+//     **Note**: This property is write-only and will not be read from the API.
 //
 // ## Import
 //
@@ -127,6 +135,13 @@ type SecretBackend struct {
 	// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
 	// is running in Kubernetes.
 	ServiceAccountJwt pulumi.StringPtrOutput `pulumi:"serviceAccountJwt"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+	ServiceAccountJwtWo pulumi.StringPtrOutput `pulumi:"serviceAccountJwtWo"`
+	// Version counter for `serviceAccountJwtWo`. Increment to force an update.
+	// For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	ServiceAccountJwtWoVersion pulumi.IntPtrOutput `pulumi:"serviceAccountJwtWoVersion"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -142,8 +157,12 @@ func NewSecretBackend(ctx *pulumi.Context,
 	if args.ServiceAccountJwt != nil {
 		args.ServiceAccountJwt = pulumi.ToSecret(args.ServiceAccountJwt).(pulumi.StringPtrInput)
 	}
+	if args.ServiceAccountJwtWo != nil {
+		args.ServiceAccountJwtWo = pulumi.ToSecret(args.ServiceAccountJwtWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"serviceAccountJwt",
+		"serviceAccountJwtWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -228,6 +247,13 @@ type secretBackendState struct {
 	// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
 	// is running in Kubernetes.
 	ServiceAccountJwt *string `pulumi:"serviceAccountJwt"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+	ServiceAccountJwtWo *string `pulumi:"serviceAccountJwtWo"`
+	// Version counter for `serviceAccountJwtWo`. Increment to force an update.
+	// For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	ServiceAccountJwtWoVersion *int `pulumi:"serviceAccountJwtWoVersion"`
 }
 
 type SecretBackendState struct {
@@ -290,6 +316,13 @@ type SecretBackendState struct {
 	// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
 	// is running in Kubernetes.
 	ServiceAccountJwt pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+	ServiceAccountJwtWo pulumi.StringPtrInput
+	// Version counter for `serviceAccountJwtWo`. Increment to force an update.
+	// For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	ServiceAccountJwtWoVersion pulumi.IntPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -354,6 +387,13 @@ type secretBackendArgs struct {
 	// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
 	// is running in Kubernetes.
 	ServiceAccountJwt *string `pulumi:"serviceAccountJwt"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+	ServiceAccountJwtWo *string `pulumi:"serviceAccountJwtWo"`
+	// Version counter for `serviceAccountJwtWo`. Increment to force an update.
+	// For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	ServiceAccountJwtWoVersion *int `pulumi:"serviceAccountJwtWoVersion"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
@@ -415,6 +455,13 @@ type SecretBackendArgs struct {
 	// secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
 	// is running in Kubernetes.
 	ServiceAccountJwt pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+	ServiceAccountJwtWo pulumi.StringPtrInput
+	// Version counter for `serviceAccountJwtWo`. Increment to force an update.
+	// For more information about write-only attributes, see
+	// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+	ServiceAccountJwtWoVersion pulumi.IntPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {
@@ -633,6 +680,19 @@ func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
 // is running in Kubernetes.
 func (o SecretBackendOutput) ServiceAccountJwt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ServiceAccountJwt }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+func (o SecretBackendOutput) ServiceAccountJwtWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ServiceAccountJwtWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for `serviceAccountJwtWo`. Increment to force an update.
+// For more information about write-only attributes, see
+// [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+func (o SecretBackendOutput) ServiceAccountJwtWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.ServiceAccountJwtWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

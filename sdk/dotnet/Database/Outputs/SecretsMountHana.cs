@@ -94,6 +94,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Username;
         /// <summary>
+        /// Username generation template.
+        /// </summary>
+        public readonly string? UsernameTemplate;
+        /// <summary>
         /// Whether the connection should be verified on
         /// initial configuration or not.
         /// </summary>
@@ -137,6 +141,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? username,
 
+            string? usernameTemplate,
+
             bool? verifyConnection)
         {
             AllowedRoles = allowedRoles;
@@ -157,6 +163,7 @@ namespace Pulumi.Vault.Database.Outputs
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
             Username = username;
+            UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;
         }
     }

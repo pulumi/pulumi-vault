@@ -9,6 +9,8 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### Basic Example
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -23,6 +25,52 @@ import * as utilities from "../utilities";
  * const key = new vault.transit.SecretBackendKey("key", {
  *     backend: transit.path,
  *     name: "my_key",
+ * });
+ * ```
+ *
+ * ### Example with Key Derivation and Context
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transit = new vault.Mount("transit", {
+ *     path: "transit",
+ *     type: "transit",
+ * });
+ * const derivedKey = new vault.transit.SecretBackendKey("derived_key", {
+ *     backend: transit.path,
+ *     name: "derived_key",
+ *     derived: true,
+ *     convergentEncryption: true,
+ *     context: "dGVzdGNvbnRleHQ=",
+ *     deletionAllowed: true,
+ * });
+ * ```
+ *
+ * ### Example with Managed Key
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transit = new vault.Mount("transit", {
+ *     path: "transit",
+ *     type: "transit",
+ * });
+ * const managedKeyByName = new vault.transit.SecretBackendKey("managed_key_by_name", {
+ *     backend: transit.path,
+ *     name: "my_managed_key",
+ *     type: "managed_key",
+ *     managedKeyName: "my_aws_kms_key",
+ *     deletionAllowed: true,
+ * });
+ * const managedKeyById = new vault.transit.SecretBackendKey("managed_key_by_id", {
+ *     backend: transit.path,
+ *     name: "my_managed_key_by_id",
+ *     type: "managed_key",
+ *     managedKeyId: "12345678-1234-1234-1234-123456789012",
+ *     deletionAllowed: true,
  * });
  * ```
  *
@@ -77,6 +125,10 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public readonly backend: pulumi.Output<string>;
     /**
+     * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     */
+    declare public readonly context: pulumi.Output<string | undefined>;
+    /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      */
     declare public readonly convergentEncryption: pulumi.Output<boolean | undefined>;
@@ -116,6 +168,14 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
      */
     declare public /*out*/ readonly latestVersion: pulumi.Output<number>;
+    /**
+     * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     */
+    declare public readonly managedKeyId: pulumi.Output<string | undefined>;
+    /**
+     * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     */
+    declare public readonly managedKeyName: pulumi.Output<string | undefined>;
     /**
      * Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
      */
@@ -186,6 +246,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["allowPlaintextBackup"] = state?.allowPlaintextBackup;
             resourceInputs["autoRotatePeriod"] = state?.autoRotatePeriod;
             resourceInputs["backend"] = state?.backend;
+            resourceInputs["context"] = state?.context;
             resourceInputs["convergentEncryption"] = state?.convergentEncryption;
             resourceInputs["deletionAllowed"] = state?.deletionAllowed;
             resourceInputs["derived"] = state?.derived;
@@ -195,6 +256,8 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["keySize"] = state?.keySize;
             resourceInputs["keys"] = state?.keys;
             resourceInputs["latestVersion"] = state?.latestVersion;
+            resourceInputs["managedKeyId"] = state?.managedKeyId;
+            resourceInputs["managedKeyName"] = state?.managedKeyName;
             resourceInputs["minAvailableVersion"] = state?.minAvailableVersion;
             resourceInputs["minDecryptionVersion"] = state?.minDecryptionVersion;
             resourceInputs["minEncryptionVersion"] = state?.minEncryptionVersion;
@@ -214,6 +277,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["allowPlaintextBackup"] = args?.allowPlaintextBackup;
             resourceInputs["autoRotatePeriod"] = args?.autoRotatePeriod;
             resourceInputs["backend"] = args?.backend;
+            resourceInputs["context"] = args?.context;
             resourceInputs["convergentEncryption"] = args?.convergentEncryption;
             resourceInputs["deletionAllowed"] = args?.deletionAllowed;
             resourceInputs["derived"] = args?.derived;
@@ -221,6 +285,8 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["hybridKeyTypeEc"] = args?.hybridKeyTypeEc;
             resourceInputs["hybridKeyTypePqc"] = args?.hybridKeyTypePqc;
             resourceInputs["keySize"] = args?.keySize;
+            resourceInputs["managedKeyId"] = args?.managedKeyId;
+            resourceInputs["managedKeyName"] = args?.managedKeyName;
             resourceInputs["minDecryptionVersion"] = args?.minDecryptionVersion;
             resourceInputs["minEncryptionVersion"] = args?.minEncryptionVersion;
             resourceInputs["name"] = args?.name;
@@ -258,6 +324,10 @@ export interface SecretBackendKeyState {
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     */
+    context?: pulumi.Input<string>;
     /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      */
@@ -298,6 +368,14 @@ export interface SecretBackendKeyState {
      * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
      */
     latestVersion?: pulumi.Input<number>;
+    /**
+     * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     */
+    managedKeyName?: pulumi.Input<string>;
     /**
      * Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
      */
@@ -372,6 +450,10 @@ export interface SecretBackendKeyArgs {
      */
     backend: pulumi.Input<string>;
     /**
+     * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     */
+    context?: pulumi.Input<string>;
+    /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      */
     convergentEncryption?: pulumi.Input<boolean>;
@@ -401,6 +483,14 @@ export interface SecretBackendKeyArgs {
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
     keySize?: pulumi.Input<number>;
+    /**
+     * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     */
+    managedKeyId?: pulumi.Input<string>;
+    /**
+     * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     */
+    managedKeyName?: pulumi.Input<string>;
     /**
      * Minimum key version to use for decryption.
      */

@@ -20,6 +20,11 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Integer connectTimeout;
     /**
+     * @return Cassandra consistency level.
+     * 
+     */
+    private @Nullable String consistency;
+    /**
      * @return Cassandra hosts to connect to.
      * 
      */
@@ -29,6 +34,11 @@ public final class SecretBackendConnectionCassandra {
      * 
      */
     private @Nullable Boolean insecureTls;
+    /**
+     * @return Cassandra local datacenter name.
+     * 
+     */
+    private @Nullable String localDatacenter;
     /**
      * @return The password to use when authenticating with Cassandra.
      * 
@@ -60,15 +70,30 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Boolean skipVerification;
     /**
+     * @return Enable TCP keepalive for Cassandra connections.
+     * 
+     */
+    private @Nullable String socketKeepAlive;
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
     private @Nullable Boolean tls;
     /**
+     * @return SNI host for TLS connections.
+     * 
+     */
+    private @Nullable String tlsServerName;
+    /**
      * @return The username to use when authenticating with Cassandra.
      * 
      */
     private @Nullable String username;
+    /**
+     * @return Template for dynamic Cassandra usernames.
+     * 
+     */
+    private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionCassandra() {}
     /**
@@ -77,6 +102,13 @@ public final class SecretBackendConnectionCassandra {
      */
     public Optional<Integer> connectTimeout() {
         return Optional.ofNullable(this.connectTimeout);
+    }
+    /**
+     * @return Cassandra consistency level.
+     * 
+     */
+    public Optional<String> consistency() {
+        return Optional.ofNullable(this.consistency);
     }
     /**
      * @return Cassandra hosts to connect to.
@@ -91,6 +123,13 @@ public final class SecretBackendConnectionCassandra {
      */
     public Optional<Boolean> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
+    }
+    /**
+     * @return Cassandra local datacenter name.
+     * 
+     */
+    public Optional<String> localDatacenter() {
+        return Optional.ofNullable(this.localDatacenter);
     }
     /**
      * @return The password to use when authenticating with Cassandra.
@@ -135,6 +174,13 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.skipVerification);
     }
     /**
+     * @return Enable TCP keepalive for Cassandra connections.
+     * 
+     */
+    public Optional<String> socketKeepAlive() {
+        return Optional.ofNullable(this.socketKeepAlive);
+    }
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -142,11 +188,25 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.tls);
     }
     /**
+     * @return SNI host for TLS connections.
+     * 
+     */
+    public Optional<String> tlsServerName() {
+        return Optional.ofNullable(this.tlsServerName);
+    }
+    /**
      * @return The username to use when authenticating with Cassandra.
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
+    }
+    /**
+     * @return Template for dynamic Cassandra usernames.
+     * 
+     */
+    public Optional<String> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
     }
 
     public static Builder builder() {
@@ -159,36 +219,52 @@ public final class SecretBackendConnectionCassandra {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer connectTimeout;
+        private @Nullable String consistency;
         private @Nullable List<String> hosts;
         private @Nullable Boolean insecureTls;
+        private @Nullable String localDatacenter;
         private @Nullable String password;
         private @Nullable String pemBundle;
         private @Nullable String pemJson;
         private @Nullable Integer port;
         private @Nullable Integer protocolVersion;
         private @Nullable Boolean skipVerification;
+        private @Nullable String socketKeepAlive;
         private @Nullable Boolean tls;
+        private @Nullable String tlsServerName;
         private @Nullable String username;
+        private @Nullable String usernameTemplate;
         public Builder() {}
         public Builder(SecretBackendConnectionCassandra defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectTimeout = defaults.connectTimeout;
+    	      this.consistency = defaults.consistency;
     	      this.hosts = defaults.hosts;
     	      this.insecureTls = defaults.insecureTls;
+    	      this.localDatacenter = defaults.localDatacenter;
     	      this.password = defaults.password;
     	      this.pemBundle = defaults.pemBundle;
     	      this.pemJson = defaults.pemJson;
     	      this.port = defaults.port;
     	      this.protocolVersion = defaults.protocolVersion;
     	      this.skipVerification = defaults.skipVerification;
+    	      this.socketKeepAlive = defaults.socketKeepAlive;
     	      this.tls = defaults.tls;
+    	      this.tlsServerName = defaults.tlsServerName;
     	      this.username = defaults.username;
+    	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
         @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
 
             this.connectTimeout = connectTimeout;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder consistency(@Nullable String consistency) {
+
+            this.consistency = consistency;
             return this;
         }
         @CustomType.Setter
@@ -204,6 +280,12 @@ public final class SecretBackendConnectionCassandra {
         public Builder insecureTls(@Nullable Boolean insecureTls) {
 
             this.insecureTls = insecureTls;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder localDatacenter(@Nullable String localDatacenter) {
+
+            this.localDatacenter = localDatacenter;
             return this;
         }
         @CustomType.Setter
@@ -243,9 +325,21 @@ public final class SecretBackendConnectionCassandra {
             return this;
         }
         @CustomType.Setter
+        public Builder socketKeepAlive(@Nullable String socketKeepAlive) {
+
+            this.socketKeepAlive = socketKeepAlive;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
 
             this.tls = tls;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsServerName(@Nullable String tlsServerName) {
+
+            this.tlsServerName = tlsServerName;
             return this;
         }
         @CustomType.Setter
@@ -254,19 +348,30 @@ public final class SecretBackendConnectionCassandra {
             this.username = username;
             return this;
         }
+        @CustomType.Setter
+        public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
+            this.usernameTemplate = usernameTemplate;
+            return this;
+        }
         public SecretBackendConnectionCassandra build() {
             final var _resultValue = new SecretBackendConnectionCassandra();
             _resultValue.connectTimeout = connectTimeout;
+            _resultValue.consistency = consistency;
             _resultValue.hosts = hosts;
             _resultValue.insecureTls = insecureTls;
+            _resultValue.localDatacenter = localDatacenter;
             _resultValue.password = password;
             _resultValue.pemBundle = pemBundle;
             _resultValue.pemJson = pemJson;
             _resultValue.port = port;
             _resultValue.protocolVersion = protocolVersion;
             _resultValue.skipVerification = skipVerification;
+            _resultValue.socketKeepAlive = socketKeepAlive;
             _resultValue.tls = tls;
+            _resultValue.tlsServerName = tlsServerName;
             _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
             return _resultValue;
         }
     }

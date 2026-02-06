@@ -51,6 +51,8 @@ class SecretBackendArgs:
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -100,6 +102,9 @@ class SecretBackendArgs:
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
         :param pulumi.Input[_builtins.str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
@@ -179,6 +184,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
+        if secret_key_wo is not None:
+            pulumi.set(__self__, "secret_key_wo", secret_key_wo)
+        if secret_key_wo_version is not None:
+            pulumi.set(__self__, "secret_key_wo_version", secret_key_wo_version)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
         if sts_fallback_endpoints is not None:
@@ -585,6 +594,31 @@ class SecretBackendArgs:
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
+    @pulumi.getter(name="secretKeyWo")
+    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "secret_key_wo")
+
+    @secret_key_wo.setter
+    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWoVersion")
+    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
+        """
+        return pulumi.get(self, "secret_key_wo_version")
+
+    @secret_key_wo_version.setter
+    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_key_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="stsEndpoint")
     def sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -690,6 +724,8 @@ class _SecretBackendState:
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -740,6 +776,9 @@ class _SecretBackendState:
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
         :param pulumi.Input[_builtins.str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
@@ -821,6 +860,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
+        if secret_key_wo is not None:
+            pulumi.set(__self__, "secret_key_wo", secret_key_wo)
+        if secret_key_wo_version is not None:
+            pulumi.set(__self__, "secret_key_wo_version", secret_key_wo_version)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
         if sts_fallback_endpoints is not None:
@@ -1239,6 +1282,31 @@ class _SecretBackendState:
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
+    @pulumi.getter(name="secretKeyWo")
+    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "secret_key_wo")
+
+    @secret_key_wo.setter
+    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWoVersion")
+    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
+        """
+        return pulumi.get(self, "secret_key_wo_version")
+
+    @secret_key_wo_version.setter
+    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_key_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter(name="stsEndpoint")
     def sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1346,6 +1414,8 @@ class SecretBackend(pulumi.CustomResource):
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1405,6 +1475,9 @@ class SecretBackend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
         :param pulumi.Input[_builtins.str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
@@ -1482,6 +1555,8 @@ class SecretBackend(pulumi.CustomResource):
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1528,13 +1603,15 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
+            __props__.__dict__["secret_key_wo"] = None if secret_key_wo is None else pulumi.Output.secret(secret_key_wo)
+            __props__.__dict__["secret_key_wo_version"] = secret_key_wo_version
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_fallback_endpoints"] = sts_fallback_endpoints
             __props__.__dict__["sts_fallback_regions"] = sts_fallback_regions
             __props__.__dict__["sts_region"] = sts_region
             __props__.__dict__["username_template"] = username_template
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["accessKey", "secretKey", "secretKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:aws/secretBackend:SecretBackend',
@@ -1579,6 +1656,8 @@ class SecretBackend(pulumi.CustomResource):
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
             secret_key: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
             sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1634,6 +1713,9 @@ class SecretBackend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
         :param pulumi.Input[_builtins.str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
@@ -1686,6 +1768,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["secret_key"] = secret_key
+        __props__.__dict__["secret_key_wo"] = secret_key_wo
+        __props__.__dict__["secret_key_wo_version"] = secret_key_wo_version
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_fallback_endpoints"] = sts_fallback_endpoints
         __props__.__dict__["sts_fallback_regions"] = sts_fallback_regions
@@ -1966,6 +2050,23 @@ class SecretBackend(pulumi.CustomResource):
         The AWS Secret Access Key to use when generating new credentials.
         """
         return pulumi.get(self, "secret_key")
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWo")
+    def secret_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "secret_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="secretKeyWoVersion")
+    def secret_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
+        """
+        return pulumi.get(self, "secret_key_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")

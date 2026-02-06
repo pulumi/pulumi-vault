@@ -34,8 +34,10 @@ class CertAuthBackendRoleArgs:
                  ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
                  ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -73,6 +75,9 @@ class CertAuthBackendRoleArgs:
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_max_retries: The number of retries to attempt when
+               connecting to an OCSP server. Defaults to 4 retries.
+               Must be a non-negative value. Requires Vault version 1.16+.
         :param pulumi.Input[_builtins.bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
@@ -81,6 +86,10 @@ class CertAuthBackendRoleArgs:
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_this_update_max_age: The maximum age in seconds of the
+               'thisUpdate' field in an OCSP response before it is considered too old.
+               Defaults to 0 (disabled). Must be a non-negative value.
+               Requires Vault version 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_extensions: TLS extensions required on
                client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -122,10 +131,14 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "ocsp_enabled", ocsp_enabled)
         if ocsp_fail_open is not None:
             pulumi.set(__self__, "ocsp_fail_open", ocsp_fail_open)
+        if ocsp_max_retries is not None:
+            pulumi.set(__self__, "ocsp_max_retries", ocsp_max_retries)
         if ocsp_query_all_servers is not None:
             pulumi.set(__self__, "ocsp_query_all_servers", ocsp_query_all_servers)
         if ocsp_servers_overrides is not None:
             pulumi.set(__self__, "ocsp_servers_overrides", ocsp_servers_overrides)
+        if ocsp_this_update_max_age is not None:
+            pulumi.set(__self__, "ocsp_this_update_max_age", ocsp_this_update_max_age)
         if required_extensions is not None:
             pulumi.set(__self__, "required_extensions", required_extensions)
         if token_bound_cidrs is not None:
@@ -338,6 +351,20 @@ class CertAuthBackendRoleArgs:
         pulumi.set(self, "ocsp_fail_open", value)
 
     @_builtins.property
+    @pulumi.getter(name="ocspMaxRetries")
+    def ocsp_max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The number of retries to attempt when
+        connecting to an OCSP server. Defaults to 4 retries.
+        Must be a non-negative value. Requires Vault version 1.16+.
+        """
+        return pulumi.get(self, "ocsp_max_retries")
+
+    @ocsp_max_retries.setter
+    def ocsp_max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ocsp_max_retries", value)
+
+    @_builtins.property
     @pulumi.getter(name="ocspQueryAllServers")
     def ocsp_query_all_servers(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -366,6 +393,21 @@ class CertAuthBackendRoleArgs:
     @ocsp_servers_overrides.setter
     def ocsp_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers_overrides", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ocspThisUpdateMaxAge")
+    def ocsp_this_update_max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum age in seconds of the
+        'thisUpdate' field in an OCSP response before it is considered too old.
+        Defaults to 0 (disabled). Must be a non-negative value.
+        Requires Vault version 1.16+.
+        """
+        return pulumi.get(self, "ocsp_this_update_max_age")
+
+    @ocsp_this_update_max_age.setter
+    def ocsp_this_update_max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ocsp_this_update_max_age", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredExtensions")
@@ -507,8 +549,10 @@ class _CertAuthBackendRoleState:
                  ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
                  ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -546,6 +590,9 @@ class _CertAuthBackendRoleState:
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_max_retries: The number of retries to attempt when
+               connecting to an OCSP server. Defaults to 4 retries.
+               Must be a non-negative value. Requires Vault version 1.16+.
         :param pulumi.Input[_builtins.bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
@@ -554,6 +601,10 @@ class _CertAuthBackendRoleState:
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_this_update_max_age: The maximum age in seconds of the
+               'thisUpdate' field in an OCSP response before it is considered too old.
+               Defaults to 0 (disabled). Must be a non-negative value.
+               Requires Vault version 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_extensions: TLS extensions required on
                client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -596,10 +647,14 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "ocsp_enabled", ocsp_enabled)
         if ocsp_fail_open is not None:
             pulumi.set(__self__, "ocsp_fail_open", ocsp_fail_open)
+        if ocsp_max_retries is not None:
+            pulumi.set(__self__, "ocsp_max_retries", ocsp_max_retries)
         if ocsp_query_all_servers is not None:
             pulumi.set(__self__, "ocsp_query_all_servers", ocsp_query_all_servers)
         if ocsp_servers_overrides is not None:
             pulumi.set(__self__, "ocsp_servers_overrides", ocsp_servers_overrides)
+        if ocsp_this_update_max_age is not None:
+            pulumi.set(__self__, "ocsp_this_update_max_age", ocsp_this_update_max_age)
         if required_extensions is not None:
             pulumi.set(__self__, "required_extensions", required_extensions)
         if token_bound_cidrs is not None:
@@ -812,6 +867,20 @@ class _CertAuthBackendRoleState:
         pulumi.set(self, "ocsp_fail_open", value)
 
     @_builtins.property
+    @pulumi.getter(name="ocspMaxRetries")
+    def ocsp_max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The number of retries to attempt when
+        connecting to an OCSP server. Defaults to 4 retries.
+        Must be a non-negative value. Requires Vault version 1.16+.
+        """
+        return pulumi.get(self, "ocsp_max_retries")
+
+    @ocsp_max_retries.setter
+    def ocsp_max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ocsp_max_retries", value)
+
+    @_builtins.property
     @pulumi.getter(name="ocspQueryAllServers")
     def ocsp_query_all_servers(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -840,6 +909,21 @@ class _CertAuthBackendRoleState:
     @ocsp_servers_overrides.setter
     def ocsp_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers_overrides", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ocspThisUpdateMaxAge")
+    def ocsp_this_update_max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The maximum age in seconds of the
+        'thisUpdate' field in an OCSP response before it is considered too old.
+        Defaults to 0 (disabled). Must be a non-negative value.
+        Requires Vault version 1.16+.
+        """
+        return pulumi.get(self, "ocsp_this_update_max_age")
+
+    @ocsp_this_update_max_age.setter
+    def ocsp_this_update_max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "ocsp_this_update_max_age", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredExtensions")
@@ -984,8 +1068,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
                  ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1050,6 +1136,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_max_retries: The number of retries to attempt when
+               connecting to an OCSP server. Defaults to 4 retries.
+               Must be a non-negative value. Requires Vault version 1.16+.
         :param pulumi.Input[_builtins.bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
@@ -1058,6 +1147,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_this_update_max_age: The maximum age in seconds of the
+               'thisUpdate' field in an OCSP response before it is considered too old.
+               Defaults to 0 (disabled). Must be a non-negative value.
+               Requires Vault version 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_extensions: TLS extensions required on
                client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -1132,8 +1225,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
                  ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
+                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
                  ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
                  ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
                  required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1170,8 +1265,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["ocsp_ca_certificates"] = ocsp_ca_certificates
             __props__.__dict__["ocsp_enabled"] = ocsp_enabled
             __props__.__dict__["ocsp_fail_open"] = ocsp_fail_open
+            __props__.__dict__["ocsp_max_retries"] = ocsp_max_retries
             __props__.__dict__["ocsp_query_all_servers"] = ocsp_query_all_servers
             __props__.__dict__["ocsp_servers_overrides"] = ocsp_servers_overrides
+            __props__.__dict__["ocsp_this_update_max_age"] = ocsp_this_update_max_age
             __props__.__dict__["required_extensions"] = required_extensions
             __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
             __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1207,8 +1304,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
             ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
             ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
+            ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
             ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
             ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
             required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1251,6 +1350,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
                be fetched or is of an unknown status, the login will proceed as if the
                certificate has not been revoked.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_max_retries: The number of retries to attempt when
+               connecting to an OCSP server. Defaults to 4 retries.
+               Must be a non-negative value. Requires Vault version 1.16+.
         :param pulumi.Input[_builtins.bool] ocsp_query_all_servers: If set to true, rather than
                accepting the first successful OCSP response, query all servers and consider
                the certificate valid only if all servers agree.
@@ -1259,6 +1361,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
                server addresses. If unset, the OCSP server is determined from the
                AuthorityInformationAccess extension on the certificate being inspected.
                Requires Vault version 1.13+.
+        :param pulumi.Input[_builtins.int] ocsp_this_update_max_age: The maximum age in seconds of the
+               'thisUpdate' field in an OCSP response before it is considered too old.
+               Defaults to 0 (disabled). Must be a non-negative value.
+               Requires Vault version 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] required_extensions: TLS extensions required on
                client certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -1290,8 +1396,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["ocsp_ca_certificates"] = ocsp_ca_certificates
         __props__.__dict__["ocsp_enabled"] = ocsp_enabled
         __props__.__dict__["ocsp_fail_open"] = ocsp_fail_open
+        __props__.__dict__["ocsp_max_retries"] = ocsp_max_retries
         __props__.__dict__["ocsp_query_all_servers"] = ocsp_query_all_servers
         __props__.__dict__["ocsp_servers_overrides"] = ocsp_servers_overrides
+        __props__.__dict__["ocsp_this_update_max_age"] = ocsp_this_update_max_age
         __props__.__dict__["required_extensions"] = required_extensions
         __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
         __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
@@ -1435,6 +1543,16 @@ class CertAuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "ocsp_fail_open")
 
     @_builtins.property
+    @pulumi.getter(name="ocspMaxRetries")
+    def ocsp_max_retries(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The number of retries to attempt when
+        connecting to an OCSP server. Defaults to 4 retries.
+        Must be a non-negative value. Requires Vault version 1.16+.
+        """
+        return pulumi.get(self, "ocsp_max_retries")
+
+    @_builtins.property
     @pulumi.getter(name="ocspQueryAllServers")
     def ocsp_query_all_servers(self) -> pulumi.Output[_builtins.bool]:
         """
@@ -1455,6 +1573,17 @@ class CertAuthBackendRole(pulumi.CustomResource):
         Requires Vault version 1.13+.
         """
         return pulumi.get(self, "ocsp_servers_overrides")
+
+    @_builtins.property
+    @pulumi.getter(name="ocspThisUpdateMaxAge")
+    def ocsp_this_update_max_age(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The maximum age in seconds of the
+        'thisUpdate' field in an OCSP response before it is considered too old.
+        Defaults to 0 (disabled). Must be a non-negative value.
+        Requires Vault version 1.16+.
+        """
+        return pulumi.get(self, "ocsp_this_update_max_age")
 
     @_builtins.property
     @pulumi.getter(name="requiredExtensions")

@@ -266,6 +266,25 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * The number of retries to attempt when
+     * connecting to an OCSP server. Defaults to 4 retries.
+     * Must be a non-negative value. Requires Vault version 1.16+.
+     * 
+     */
+    @Import(name="ocspMaxRetries")
+    private @Nullable Output<Integer> ocspMaxRetries;
+
+    /**
+     * @return The number of retries to attempt when
+     * connecting to an OCSP server. Defaults to 4 retries.
+     * Must be a non-negative value. Requires Vault version 1.16+.
+     * 
+     */
+    public Optional<Output<Integer>> ocspMaxRetries() {
+        return Optional.ofNullable(this.ocspMaxRetries);
+    }
+
+    /**
      * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
@@ -305,6 +324,27 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
      */
     public Optional<Output<List<String>>> ocspServersOverrides() {
         return Optional.ofNullable(this.ocspServersOverrides);
+    }
+
+    /**
+     * The maximum age in seconds of the
+     * &#39;thisUpdate&#39; field in an OCSP response before it is considered too old.
+     * Defaults to 0 (disabled). Must be a non-negative value.
+     * Requires Vault version 1.16+.
+     * 
+     */
+    @Import(name="ocspThisUpdateMaxAge")
+    private @Nullable Output<Integer> ocspThisUpdateMaxAge;
+
+    /**
+     * @return The maximum age in seconds of the
+     * &#39;thisUpdate&#39; field in an OCSP response before it is considered too old.
+     * Defaults to 0 (disabled). Must be a non-negative value.
+     * Requires Vault version 1.16+.
+     * 
+     */
+    public Optional<Output<Integer>> ocspThisUpdateMaxAge() {
+        return Optional.ofNullable(this.ocspThisUpdateMaxAge);
     }
 
     /**
@@ -477,8 +517,10 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         this.ocspCaCertificates = $.ocspCaCertificates;
         this.ocspEnabled = $.ocspEnabled;
         this.ocspFailOpen = $.ocspFailOpen;
+        this.ocspMaxRetries = $.ocspMaxRetries;
         this.ocspQueryAllServers = $.ocspQueryAllServers;
         this.ocspServersOverrides = $.ocspServersOverrides;
+        this.ocspThisUpdateMaxAge = $.ocspThisUpdateMaxAge;
         this.requiredExtensions = $.requiredExtensions;
         this.tokenBoundCidrs = $.tokenBoundCidrs;
         this.tokenExplicitMaxTtl = $.tokenExplicitMaxTtl;
@@ -905,6 +947,31 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param ocspMaxRetries The number of retries to attempt when
+         * connecting to an OCSP server. Defaults to 4 retries.
+         * Must be a non-negative value. Requires Vault version 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspMaxRetries(@Nullable Output<Integer> ocspMaxRetries) {
+            $.ocspMaxRetries = ocspMaxRetries;
+            return this;
+        }
+
+        /**
+         * @param ocspMaxRetries The number of retries to attempt when
+         * connecting to an OCSP server. Defaults to 4 retries.
+         * Must be a non-negative value. Requires Vault version 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspMaxRetries(Integer ocspMaxRetries) {
+            return ocspMaxRetries(Output.of(ocspMaxRetries));
+        }
+
+        /**
          * @param ocspQueryAllServers If set to true, rather than
          * accepting the first successful OCSP response, query all servers and consider
          * the certificate valid only if all servers agree.
@@ -969,6 +1036,33 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
          */
         public Builder ocspServersOverrides(String... ocspServersOverrides) {
             return ocspServersOverrides(List.of(ocspServersOverrides));
+        }
+
+        /**
+         * @param ocspThisUpdateMaxAge The maximum age in seconds of the
+         * &#39;thisUpdate&#39; field in an OCSP response before it is considered too old.
+         * Defaults to 0 (disabled). Must be a non-negative value.
+         * Requires Vault version 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspThisUpdateMaxAge(@Nullable Output<Integer> ocspThisUpdateMaxAge) {
+            $.ocspThisUpdateMaxAge = ocspThisUpdateMaxAge;
+            return this;
+        }
+
+        /**
+         * @param ocspThisUpdateMaxAge The maximum age in seconds of the
+         * &#39;thisUpdate&#39; field in an OCSP response before it is considered too old.
+         * Defaults to 0 (disabled). Must be a non-negative value.
+         * Requires Vault version 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ocspThisUpdateMaxAge(Integer ocspThisUpdateMaxAge) {
+            return ocspThisUpdateMaxAge(Output.of(ocspThisUpdateMaxAge));
         }
 
         /**

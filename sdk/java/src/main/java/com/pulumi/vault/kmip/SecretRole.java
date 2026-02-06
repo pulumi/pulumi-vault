@@ -166,6 +166,48 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return this.operationCreate;
     }
     /**
+     * Grant permission to use the KMIP Create Key Pair operation.
+     * 
+     */
+    @Export(name="operationCreateKeyPair", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationCreateKeyPair;
+
+    /**
+     * @return Grant permission to use the KMIP Create Key Pair operation.
+     * 
+     */
+    public Output<Boolean> operationCreateKeyPair() {
+        return this.operationCreateKeyPair;
+    }
+    /**
+     * Grant permission to use the KMIP Decrypt operation.
+     * 
+     */
+    @Export(name="operationDecrypt", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationDecrypt;
+
+    /**
+     * @return Grant permission to use the KMIP Decrypt operation.
+     * 
+     */
+    public Output<Boolean> operationDecrypt() {
+        return this.operationDecrypt;
+    }
+    /**
+     * Grant permission to use the KMIP Delete Attribute operation.
+     * 
+     */
+    @Export(name="operationDeleteAttribute", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationDeleteAttribute;
+
+    /**
+     * @return Grant permission to use the KMIP Delete Attribute operation.
+     * 
+     */
+    public Output<Boolean> operationDeleteAttribute() {
+        return this.operationDeleteAttribute;
+    }
+    /**
      * Grant permission to use the KMIP Destroy operation.
      * 
      */
@@ -192,6 +234,20 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> operationDiscoverVersions() {
         return this.operationDiscoverVersions;
+    }
+    /**
+     * Grant permission to use the KMIP Encrypt operation.
+     * 
+     */
+    @Export(name="operationEncrypt", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationEncrypt;
+
+    /**
+     * @return Grant permission to use the KMIP Encrypt operation.
+     * 
+     */
+    public Output<Boolean> operationEncrypt() {
+        return this.operationEncrypt;
     }
     /**
      * Grant permission to use the KMIP Get operation.
@@ -236,6 +292,20 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return this.operationGetAttributes;
     }
     /**
+     * Grant permission to use the KMIP Import operation.
+     * 
+     */
+    @Export(name="operationImport", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationImport;
+
+    /**
+     * @return Grant permission to use the KMIP Import operation.
+     * 
+     */
+    public Output<Boolean> operationImport() {
+        return this.operationImport;
+    }
+    /**
      * Grant permission to use the KMIP Get Locate operation.
      * 
      */
@@ -250,6 +320,48 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return this.operationLocate;
     }
     /**
+     * Grant permission to use the KMIP MAC operation.
+     * 
+     */
+    @Export(name="operationMac", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationMac;
+
+    /**
+     * @return Grant permission to use the KMIP MAC operation.
+     * 
+     */
+    public Output<Boolean> operationMac() {
+        return this.operationMac;
+    }
+    /**
+     * Grant permission to use the KMIP MAC Verify operation.
+     * 
+     */
+    @Export(name="operationMacVerify", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationMacVerify;
+
+    /**
+     * @return Grant permission to use the KMIP MAC Verify operation.
+     * 
+     */
+    public Output<Boolean> operationMacVerify() {
+        return this.operationMacVerify;
+    }
+    /**
+     * Grant permission to use the KMIP Modify Attribute operation.
+     * 
+     */
+    @Export(name="operationModifyAttribute", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationModifyAttribute;
+
+    /**
+     * @return Grant permission to use the KMIP Modify Attribute operation.
+     * 
+     */
+    public Output<Boolean> operationModifyAttribute() {
+        return this.operationModifyAttribute;
+    }
+    /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      * 
      */
@@ -262,6 +374,20 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> operationNone() {
         return this.operationNone;
+    }
+    /**
+     * Grant permission to use the KMIP Query operation.
+     * 
+     */
+    @Export(name="operationQuery", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationQuery;
+
+    /**
+     * @return Grant permission to use the KMIP Query operation.
+     * 
+     */
+    public Output<Boolean> operationQuery() {
+        return this.operationQuery;
     }
     /**
      * Grant permission to use the KMIP Register operation.
@@ -292,6 +418,20 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return this.operationRekey;
     }
     /**
+     * Grant permission to use the KMIP Rekey Key Pair operation.
+     * 
+     */
+    @Export(name="operationRekeyKeyPair", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationRekeyKeyPair;
+
+    /**
+     * @return Grant permission to use the KMIP Rekey Key Pair operation.
+     * 
+     */
+    public Output<Boolean> operationRekeyKeyPair() {
+        return this.operationRekeyKeyPair;
+    }
+    /**
      * Grant permission to use the KMIP Revoke operation.
      * 
      */
@@ -304,6 +444,62 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> operationRevoke() {
         return this.operationRevoke;
+    }
+    /**
+     * Grant permission to use the KMIP RNG Retrieve operation.
+     * 
+     */
+    @Export(name="operationRngRetrieve", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationRngRetrieve;
+
+    /**
+     * @return Grant permission to use the KMIP RNG Retrieve operation.
+     * 
+     */
+    public Output<Boolean> operationRngRetrieve() {
+        return this.operationRngRetrieve;
+    }
+    /**
+     * Grant permission to use the KMIP RNG Seed operation.
+     * 
+     */
+    @Export(name="operationRngSeed", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationRngSeed;
+
+    /**
+     * @return Grant permission to use the KMIP RNG Seed operation.
+     * 
+     */
+    public Output<Boolean> operationRngSeed() {
+        return this.operationRngSeed;
+    }
+    /**
+     * Grant permission to use the KMIP Sign operation.
+     * 
+     */
+    @Export(name="operationSign", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationSign;
+
+    /**
+     * @return Grant permission to use the KMIP Sign operation.
+     * 
+     */
+    public Output<Boolean> operationSign() {
+        return this.operationSign;
+    }
+    /**
+     * Grant permission to use the KMIP Signature Verify operation.
+     * 
+     */
+    @Export(name="operationSignatureVerify", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> operationSignatureVerify;
+
+    /**
+     * @return Grant permission to use the KMIP Signature Verify operation.
+     * 
+     */
+    public Output<Boolean> operationSignatureVerify() {
+        return this.operationSignatureVerify;
     }
     /**
      * The unique path this backend should be mounted at. Must

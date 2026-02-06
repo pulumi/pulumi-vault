@@ -58,7 +58,8 @@ import (
 //				Name:              pulumi.String("secret"),
 //				Cas:               pulumi.Int(1),
 //				DeleteAllVersions: pulumi.Bool(true),
-//				DataJson:          pulumi.String(json0),
+//				DataJsonWo:        pulumi.String(json0),
+//				DataJsonWoVersion: pulumi.Int(1),
 //				CustomMetadata: &kv.SecretV2CustomMetadataArgs{
 //					MaxVersions: pulumi.Int(5),
 //					Data: pulumi.StringMap{
@@ -95,13 +96,6 @@ import (
 //
 // * `data` - (Optional) A string to string map describing the secret.
 //
-// ## Ephemeral Attributes Reference
-//
-// The following write-only attributes are supported:
-//
-//   - `dataJsonWo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
-//     **Note**: This property is write-only and will not be read from the API.
-//
 // ## Import
 //
 // KV-V2 secrets can be imported using the `path`, e.g.
@@ -129,10 +123,11 @@ type SecretV2 struct {
 	// Deprecated: Deprecated. Will no longer be set on a read.
 	Data pulumi.StringMapOutput `pulumi:"data"`
 	// JSON-encoded string that will be
-	// written as the secret data at the given path.
+	// written as the secret data at the given path. This is required if `dataJsonWo` is not set.
 	DataJson pulumi.StringPtrOutput `pulumi:"dataJson"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Write-Only JSON-encoded secret data to write.
+	// JSON-encoded string that will be
+	// written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
 	DataJsonWo pulumi.StringPtrOutput `pulumi:"dataJsonWo"`
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion pulumi.IntPtrOutput `pulumi:"dataJsonWoVersion"`
@@ -224,10 +219,11 @@ type secretV2State struct {
 	// Deprecated: Deprecated. Will no longer be set on a read.
 	Data map[string]string `pulumi:"data"`
 	// JSON-encoded string that will be
-	// written as the secret data at the given path.
+	// written as the secret data at the given path. This is required if `dataJsonWo` is not set.
 	DataJson *string `pulumi:"dataJson"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Write-Only JSON-encoded secret data to write.
+	// JSON-encoded string that will be
+	// written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
 	DataJsonWo *string `pulumi:"dataJsonWo"`
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion *int `pulumi:"dataJsonWoVersion"`
@@ -275,10 +271,11 @@ type SecretV2State struct {
 	// Deprecated: Deprecated. Will no longer be set on a read.
 	Data pulumi.StringMapInput
 	// JSON-encoded string that will be
-	// written as the secret data at the given path.
+	// written as the secret data at the given path. This is required if `dataJsonWo` is not set.
 	DataJson pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Write-Only JSON-encoded secret data to write.
+	// JSON-encoded string that will be
+	// written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
 	DataJsonWo pulumi.StringPtrInput
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion pulumi.IntPtrInput
@@ -323,10 +320,11 @@ type secretV2Args struct {
 	// Configuration Options for more info.
 	CustomMetadata *SecretV2CustomMetadata `pulumi:"customMetadata"`
 	// JSON-encoded string that will be
-	// written as the secret data at the given path.
+	// written as the secret data at the given path. This is required if `dataJsonWo` is not set.
 	DataJson *string `pulumi:"dataJson"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Write-Only JSON-encoded secret data to write.
+	// JSON-encoded string that will be
+	// written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
 	DataJsonWo *string `pulumi:"dataJsonWo"`
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion *int `pulumi:"dataJsonWoVersion"`
@@ -364,10 +362,11 @@ type SecretV2Args struct {
 	// Configuration Options for more info.
 	CustomMetadata SecretV2CustomMetadataPtrInput
 	// JSON-encoded string that will be
-	// written as the secret data at the given path.
+	// written as the secret data at the given path. This is required if `dataJsonWo` is not set.
 	DataJson pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Write-Only JSON-encoded secret data to write.
+	// JSON-encoded string that will be
+	// written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
 	DataJsonWo pulumi.StringPtrInput
 	// The version of the `dataJsonWo`. For more info see updating write-only attributes.
 	DataJsonWoVersion pulumi.IntPtrInput
@@ -506,13 +505,14 @@ func (o SecretV2Output) Data() pulumi.StringMapOutput {
 }
 
 // JSON-encoded string that will be
-// written as the secret data at the given path.
+// written as the secret data at the given path. This is required if `dataJsonWo` is not set.
 func (o SecretV2Output) DataJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretV2) pulumi.StringPtrOutput { return v.DataJson }).(pulumi.StringPtrOutput)
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// Write-Only JSON-encoded secret data to write.
+// JSON-encoded string that will be
+// written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
 func (o SecretV2Output) DataJsonWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretV2) pulumi.StringPtrOutput { return v.DataJsonWo }).(pulumi.StringPtrOutput)
 }

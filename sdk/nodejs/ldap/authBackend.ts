@@ -33,6 +33,13 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `bindpassWo` - (Optional) Write-only bind password to use for LDAP authentication. Can be updated. Conflicts with `bindpass`.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * LDAP authentication backends can be imported using the `path`, e.g.
@@ -87,9 +94,20 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly binddn: pulumi.Output<string>;
     /**
-     * Password to use with `binddn` when performing user search
+     * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      */
     declare public readonly bindpass: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     */
+    declare public readonly bindpassWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    declare public readonly bindpassWoVersion: pulumi.Output<number | undefined>;
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      */
@@ -291,6 +309,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["anonymousGroupSearch"] = state?.anonymousGroupSearch;
             resourceInputs["binddn"] = state?.binddn;
             resourceInputs["bindpass"] = state?.bindpass;
+            resourceInputs["bindpassWo"] = state?.bindpassWo;
+            resourceInputs["bindpassWoVersion"] = state?.bindpassWoVersion;
             resourceInputs["caseSensitiveNames"] = state?.caseSensitiveNames;
             resourceInputs["certificate"] = state?.certificate;
             resourceInputs["clientTlsCert"] = state?.clientTlsCert;
@@ -344,6 +364,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["anonymousGroupSearch"] = args?.anonymousGroupSearch;
             resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
+            resourceInputs["bindpassWo"] = args?.bindpassWo ? pulumi.secret(args.bindpassWo) : undefined;
+            resourceInputs["bindpassWoVersion"] = args?.bindpassWoVersion;
             resourceInputs["caseSensitiveNames"] = args?.caseSensitiveNames;
             resourceInputs["certificate"] = args?.certificate;
             resourceInputs["clientTlsCert"] = args?.clientTlsCert;
@@ -391,7 +413,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["bindpass", "clientTlsKey"] };
+        const secretOpts = { additionalSecretOutputs: ["bindpass", "bindpassWo", "clientTlsKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -419,9 +441,20 @@ export interface AuthBackendState {
      */
     binddn?: pulumi.Input<string>;
     /**
-     * Password to use with `binddn` when performing user search
+     * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      */
     bindpass?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     */
+    bindpassWo?: pulumi.Input<string>;
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    bindpassWoVersion?: pulumi.Input<number>;
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      */
@@ -624,9 +657,20 @@ export interface AuthBackendArgs {
      */
     binddn?: pulumi.Input<string>;
     /**
-     * Password to use with `binddn` when performing user search
+     * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      */
     bindpass?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     */
+    bindpassWo?: pulumi.Input<string>;
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    bindpassWoVersion?: pulumi.Input<number>;
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      */

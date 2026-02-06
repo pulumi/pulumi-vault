@@ -466,9 +466,9 @@ type KeysPkc struct {
 	// Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
 	KeyBits *string `pulumi:"keyBits"`
 	// The id of a PKCS#11 key to use
-	KeyId string `pulumi:"keyId"`
+	KeyId *string `pulumi:"keyId"`
 	// The label of the key to use
-	KeyLabel string `pulumi:"keyLabel"`
+	KeyLabel *string `pulumi:"keyLabel"`
 	// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 	Library string `pulumi:"library"`
 	// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
@@ -512,9 +512,9 @@ type KeysPkcArgs struct {
 	// Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
 	KeyBits pulumi.StringPtrInput `pulumi:"keyBits"`
 	// The id of a PKCS#11 key to use
-	KeyId pulumi.StringInput `pulumi:"keyId"`
+	KeyId pulumi.StringPtrInput `pulumi:"keyId"`
 	// The label of the key to use
-	KeyLabel pulumi.StringInput `pulumi:"keyLabel"`
+	KeyLabel pulumi.StringPtrInput `pulumi:"keyLabel"`
 	// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 	Library pulumi.StringInput `pulumi:"library"`
 	// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
@@ -618,13 +618,13 @@ func (o KeysPkcOutput) KeyBits() pulumi.StringPtrOutput {
 }
 
 // The id of a PKCS#11 key to use
-func (o KeysPkcOutput) KeyId() pulumi.StringOutput {
-	return o.ApplyT(func(v KeysPkc) string { return v.KeyId }).(pulumi.StringOutput)
+func (o KeysPkcOutput) KeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeysPkc) *string { return v.KeyId }).(pulumi.StringPtrOutput)
 }
 
 // The label of the key to use
-func (o KeysPkcOutput) KeyLabel() pulumi.StringOutput {
-	return o.ApplyT(func(v KeysPkc) string { return v.KeyLabel }).(pulumi.StringOutput)
+func (o KeysPkcOutput) KeyLabel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeysPkc) *string { return v.KeyLabel }).(pulumi.StringPtrOutput)
 }
 
 // The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path

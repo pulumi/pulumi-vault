@@ -35,6 +35,8 @@ class AuthBackendArgs:
                  namespace_in_state: Optional[pulumi.Input[_builtins.bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_response_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -66,7 +68,10 @@ class AuthBackendArgs:
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
-        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        :param pulumi.Input[_builtins.int] oidc_client_secret_wo_version: Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
         :param pulumi.Input[_builtins.str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[_builtins.str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[_builtins.str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
@@ -103,6 +108,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
             pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
+        if oidc_client_secret_wo is not None:
+            pulumi.set(__self__, "oidc_client_secret_wo", oidc_client_secret_wo)
+        if oidc_client_secret_wo_version is not None:
+            pulumi.set(__self__, "oidc_client_secret_wo_version", oidc_client_secret_wo_version)
         if oidc_discovery_ca_pem is not None:
             pulumi.set(__self__, "oidc_discovery_ca_pem", oidc_discovery_ca_pem)
         if oidc_discovery_url is not None:
@@ -288,13 +297,38 @@ class AuthBackendArgs:
     @pulumi.getter(name="oidcClientSecret")
     def oidc_client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client Secret used for OIDC backends
+        Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         """
         return pulumi.get(self, "oidc_client_secret")
 
     @oidc_client_secret.setter
     def oidc_client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "oidc_client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientSecretWo")
+    def oidc_client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        """
+        return pulumi.get(self, "oidc_client_secret_wo")
+
+    @oidc_client_secret_wo.setter
+    def oidc_client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "oidc_client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientSecretWoVersion")
+    def oidc_client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
+        """
+        return pulumi.get(self, "oidc_client_secret_wo_version")
+
+    @oidc_client_secret_wo_version.setter
+    def oidc_client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "oidc_client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcDiscoveryCaPem")
@@ -408,6 +442,8 @@ class _AuthBackendState:
                  namespace_in_state: Optional[pulumi.Input[_builtins.bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_response_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -440,7 +476,10 @@ class _AuthBackendState:
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
-        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        :param pulumi.Input[_builtins.int] oidc_client_secret_wo_version: Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
         :param pulumi.Input[_builtins.str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[_builtins.str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[_builtins.str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
@@ -479,6 +518,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
             pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
+        if oidc_client_secret_wo is not None:
+            pulumi.set(__self__, "oidc_client_secret_wo", oidc_client_secret_wo)
+        if oidc_client_secret_wo_version is not None:
+            pulumi.set(__self__, "oidc_client_secret_wo_version", oidc_client_secret_wo_version)
         if oidc_discovery_ca_pem is not None:
             pulumi.set(__self__, "oidc_discovery_ca_pem", oidc_discovery_ca_pem)
         if oidc_discovery_url is not None:
@@ -676,13 +719,38 @@ class _AuthBackendState:
     @pulumi.getter(name="oidcClientSecret")
     def oidc_client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client Secret used for OIDC backends
+        Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         """
         return pulumi.get(self, "oidc_client_secret")
 
     @oidc_client_secret.setter
     def oidc_client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "oidc_client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientSecretWo")
+    def oidc_client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        """
+        return pulumi.get(self, "oidc_client_secret_wo")
+
+    @oidc_client_secret_wo.setter
+    def oidc_client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "oidc_client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientSecretWoVersion")
+    def oidc_client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
+        """
+        return pulumi.get(self, "oidc_client_secret_wo_version")
+
+    @oidc_client_secret_wo_version.setter
+    def oidc_client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "oidc_client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcDiscoveryCaPem")
@@ -798,6 +866,8 @@ class AuthBackend(pulumi.CustomResource):
                  namespace_in_state: Optional[pulumi.Input[_builtins.bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_response_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -808,62 +878,6 @@ class AuthBackend(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Provides a resource for managing an
-        [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-
-        ## Example Usage
-
-        Manage JWT auth backend:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.jwt.AuthBackend("example",
-            description="Demonstration of the Terraform JWT auth backend",
-            path="jwt",
-            oidc_discovery_url="https://myco.auth0.com/",
-            bound_issuer="https://myco.auth0.com/")
-        ```
-
-        Manage OIDC auth backend:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.jwt.AuthBackend("example",
-            description="Demonstration of the Terraform JWT auth backend",
-            path="oidc",
-            type="oidc",
-            oidc_discovery_url="https://myco.auth0.com/",
-            oidc_client_id="1234567890",
-            oidc_client_secret="secret123456",
-            bound_issuer="https://myco.auth0.com/",
-            tune={
-                "listing_visibility": "unauth",
-            })
-        ```
-
-        Configuring the auth backend with a `provider_config:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        gsuite = vault.jwt.AuthBackend("gsuite",
-            description="OIDC backend",
-            oidc_discovery_url="https://accounts.google.com",
-            path="oidc",
-            type="oidc",
-            provider_config={
-                "provider": "gsuite",
-                "fetch_groups": "true",
-                "fetch_user_info": "true",
-                "groups_recurse_max_depth": "1",
-            })
-        ```
-
         ## Import
 
         JWT auth backend can be imported using the `path`, e.g.
@@ -900,7 +914,10 @@ class AuthBackend(pulumi.CustomResource):
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
-        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        :param pulumi.Input[_builtins.int] oidc_client_secret_wo_version: Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
         :param pulumi.Input[_builtins.str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[_builtins.str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[_builtins.str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
@@ -916,62 +933,6 @@ class AuthBackend(pulumi.CustomResource):
                  args: Optional[AuthBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a resource for managing an
-        [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-
-        ## Example Usage
-
-        Manage JWT auth backend:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.jwt.AuthBackend("example",
-            description="Demonstration of the Terraform JWT auth backend",
-            path="jwt",
-            oidc_discovery_url="https://myco.auth0.com/",
-            bound_issuer="https://myco.auth0.com/")
-        ```
-
-        Manage OIDC auth backend:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        example = vault.jwt.AuthBackend("example",
-            description="Demonstration of the Terraform JWT auth backend",
-            path="oidc",
-            type="oidc",
-            oidc_discovery_url="https://myco.auth0.com/",
-            oidc_client_id="1234567890",
-            oidc_client_secret="secret123456",
-            bound_issuer="https://myco.auth0.com/",
-            tune={
-                "listing_visibility": "unauth",
-            })
-        ```
-
-        Configuring the auth backend with a `provider_config:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        gsuite = vault.jwt.AuthBackend("gsuite",
-            description="OIDC backend",
-            oidc_discovery_url="https://accounts.google.com",
-            path="oidc",
-            type="oidc",
-            provider_config={
-                "provider": "gsuite",
-                "fetch_groups": "true",
-                "fetch_user_info": "true",
-                "groups_recurse_max_depth": "1",
-            })
-        ```
-
         ## Import
 
         JWT auth backend can be imported using the `path`, e.g.
@@ -1014,6 +975,8 @@ class AuthBackend(pulumi.CustomResource):
                  namespace_in_state: Optional[pulumi.Input[_builtins.bool]] = None,
                  oidc_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 oidc_client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  oidc_discovery_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_discovery_url: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_response_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1045,6 +1008,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["namespace_in_state"] = namespace_in_state
             __props__.__dict__["oidc_client_id"] = oidc_client_id
             __props__.__dict__["oidc_client_secret"] = None if oidc_client_secret is None else pulumi.Output.secret(oidc_client_secret)
+            __props__.__dict__["oidc_client_secret_wo"] = None if oidc_client_secret_wo is None else pulumi.Output.secret(oidc_client_secret_wo)
+            __props__.__dict__["oidc_client_secret_wo_version"] = oidc_client_secret_wo_version
             __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
             __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
             __props__.__dict__["oidc_response_mode"] = oidc_response_mode
@@ -1054,7 +1019,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["tune"] = tune
             __props__.__dict__["type"] = type
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["oidcClientSecret"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["oidcClientSecret", "oidcClientSecretWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:jwt/authBackend:AuthBackend',
@@ -1081,6 +1046,8 @@ class AuthBackend(pulumi.CustomResource):
             namespace_in_state: Optional[pulumi.Input[_builtins.bool]] = None,
             oidc_client_id: Optional[pulumi.Input[_builtins.str]] = None,
             oidc_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            oidc_client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            oidc_client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             oidc_discovery_ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
             oidc_discovery_url: Optional[pulumi.Input[_builtins.str]] = None,
             oidc_response_mode: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1118,7 +1085,10 @@ class AuthBackend(pulumi.CustomResource):
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
-        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        :param pulumi.Input[_builtins.int] oidc_client_secret_wo_version: Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
         :param pulumi.Input[_builtins.str] oidc_discovery_ca_pem: The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
         :param pulumi.Input[_builtins.str] oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwt_validation_pubkeys`
         :param pulumi.Input[_builtins.str] oidc_response_mode: The response mode to be used in the OAuth2 request. Allowed values are `query` and `form_post`. Defaults to `query`. If using Vault namespaces, and `oidc_response_mode` is `form_post`, then `namespace_in_state` should be set to `false`.
@@ -1146,6 +1116,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["namespace_in_state"] = namespace_in_state
         __props__.__dict__["oidc_client_id"] = oidc_client_id
         __props__.__dict__["oidc_client_secret"] = oidc_client_secret
+        __props__.__dict__["oidc_client_secret_wo"] = oidc_client_secret_wo
+        __props__.__dict__["oidc_client_secret_wo_version"] = oidc_client_secret_wo_version
         __props__.__dict__["oidc_discovery_ca_pem"] = oidc_discovery_ca_pem
         __props__.__dict__["oidc_discovery_url"] = oidc_discovery_url
         __props__.__dict__["oidc_response_mode"] = oidc_response_mode
@@ -1280,9 +1252,26 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="oidcClientSecret")
     def oidc_client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Client Secret used for OIDC backends
+        Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         """
         return pulumi.get(self, "oidc_client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientSecretWo")
+    def oidc_client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
+        """
+        return pulumi.get(self, "oidc_client_secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientSecretWoVersion")
+    def oidc_client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only `oidc_client_secret_wo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidc_client_secret_wo`.
+        """
+        return pulumi.get(self, "oidc_client_secret_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="oidcDiscoveryCaPem")

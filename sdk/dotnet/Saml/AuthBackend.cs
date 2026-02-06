@@ -128,6 +128,20 @@ namespace Pulumi.Vault.Saml
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
         /// <summary>
+        /// If set to `True`, validates the signature of 
+        /// the SAML assertion. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Output("validateAssertionSignature")]
+        public Output<bool> ValidateAssertionSignature { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to `True`, validates the signature of 
+        /// the SAML response. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Output("validateResponseSignature")]
+        public Output<bool> ValidateResponseSignature { get; private set; } = null!;
+
+        /// <summary>
         /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
@@ -265,6 +279,20 @@ namespace Pulumi.Vault.Saml
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
         /// <summary>
+        /// If set to `True`, validates the signature of 
+        /// the SAML assertion. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("validateAssertionSignature")]
+        public Input<bool>? ValidateAssertionSignature { get; set; }
+
+        /// <summary>
+        /// If set to `True`, validates the signature of 
+        /// the SAML response. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("validateResponseSignature")]
+        public Input<bool>? ValidateResponseSignature { get; set; }
+
+        /// <summary>
         /// If set to `True`, logs additional, potentially sensitive
         /// information during the SAML exchange according to the current logging level. Not
         /// recommended for production.
@@ -362,6 +390,20 @@ namespace Pulumi.Vault.Saml
         /// </summary>
         [Input("tune")]
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
+
+        /// <summary>
+        /// If set to `True`, validates the signature of 
+        /// the SAML assertion. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("validateAssertionSignature")]
+        public Input<bool>? ValidateAssertionSignature { get; set; }
+
+        /// <summary>
+        /// If set to `True`, validates the signature of 
+        /// the SAML response. Defaults to `False`. Requires Vault 1.19+.
+        /// </summary>
+        [Input("validateResponseSignature")]
+        public Input<bool>? ValidateResponseSignature { get; set; }
 
         /// <summary>
         /// If set to `True`, logs additional, potentially sensitive

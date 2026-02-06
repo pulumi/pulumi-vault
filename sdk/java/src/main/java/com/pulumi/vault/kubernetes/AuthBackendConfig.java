@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.kubernetes.AuthBackendConfigArgs;
 import com.pulumi.vault.kubernetes.inputs.AuthBackendConfigState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +68,63 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Example Usage with Write-Only JWT
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.kubernetes.AuthBackendConfig;
+ * import com.pulumi.vault.kubernetes.AuthBackendConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()
+ *             .type("kubernetes")
+ *             .build());
+ * 
+ *         var example = new AuthBackendConfig("example", AuthBackendConfigArgs.builder()
+ *             .backend(kubernetes.path())
+ *             .kubernetesHost("http://example.com:443")
+ *             .kubernetesCaCert("""
+ * -----BEGIN CERTIFICATE-----
+ * example
+ * -----END CERTIFICATE-----            """)
+ *             .tokenReviewerJwtWo(k8sTokenReviewerJwt)
+ *             .tokenReviewerJwtWoVersion(1)
+ *             .issuer("api")
+ *             .disableIssValidation(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `tokenReviewerJwtWo` - (Optional) A write-only service account JWT (or other token) used as a bearer token to access the
+ *   TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+ *   Conflicts with `tokenReviewerJwt`.
+ *   **Note**: This property is write-only and will not be read from the API.
  * 
  * ## Import
  * 
@@ -198,18 +256,48 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.pemKeys);
     }
     /**
-     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
      * 
      */
     @Export(name="tokenReviewerJwt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenReviewerJwt;
 
     /**
-     * @return A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * @return A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
      * 
      */
     public Output<Optional<String>> tokenReviewerJwt() {
         return Codegen.optional(this.tokenReviewerJwt);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * 
+     */
+    @Export(name="tokenReviewerJwtWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenReviewerJwtWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * 
+     */
+    public Output<Optional<String>> tokenReviewerJwtWo() {
+        return Codegen.optional(this.tokenReviewerJwtWo);
+    }
+    /**
+     * The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Export(name="tokenReviewerJwtWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenReviewerJwtWoVersion;
+
+    /**
+     * @return The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Output<Optional<Integer>> tokenReviewerJwtWoVersion() {
+        return Codegen.optional(this.tokenReviewerJwtWoVersion);
     }
     /**
      * Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
@@ -266,7 +354,8 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "tokenReviewerJwt"
+                "tokenReviewerJwt",
+                "tokenReviewerJwtWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

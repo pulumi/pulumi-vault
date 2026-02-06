@@ -87,6 +87,12 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("username")]
         public Input<string>? Username { get; set; }
 
+        /// <summary>
+        /// Username generation template.
+        /// </summary>
+        [Input("usernameTemplate")]
+        public Input<string>? UsernameTemplate { get; set; }
+
         public SecretBackendConnectionHanaArgs()
         {
         }

@@ -52,20 +52,54 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The client secret for credentials to query the
-     * Azure APIs.
+     * The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
      * 
      */
     @Import(name="clientSecret")
     private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The client secret for credentials to query the
-     * Azure APIs.
+     * @return The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
      * 
      */
     public Optional<Output<String>> clientSecret() {
         return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_secret&#39;. Requires &#39;client_secret_wo_version&#39; to trigger updates.
+     * 
+     */
+    @Import(name="clientSecretWo")
+    private @Nullable Output<String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_secret&#39;. Requires &#39;client_secret_wo_version&#39; to trigger updates.
+     * 
+     */
+    public Optional<Output<String>> clientSecretWo() {
+        return Optional.ofNullable(this.clientSecretWo);
+    }
+
+    /**
+     * Version counter for the write-only client secret.
+     * Increment this value to trigger an update of the client secret in Vault.
+     * Required when using `clientSecretWo`.
+     * 
+     */
+    @Import(name="clientSecretWoVersion")
+    private @Nullable Output<Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version counter for the write-only client secret.
+     * Increment this value to trigger an update of the client secret in Vault.
+     * Required when using `clientSecretWo`.
+     * 
+     */
+    public Optional<Output<Integer>> clientSecretWoVersion() {
+        return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
     /**
@@ -307,6 +341,8 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         this.backend = $.backend;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.clientSecretWo = $.clientSecretWo;
+        this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.environment = $.environment;
         this.identityTokenAudience = $.identityTokenAudience;
@@ -387,8 +423,7 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The client secret for credentials to query the
-         * Azure APIs.
+         * @param clientSecret The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
          * 
          * @return builder
          * 
@@ -399,14 +434,61 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The client secret for credentials to query the
-         * Azure APIs.
+         * @param clientSecret The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
          * 
          * @return builder
          * 
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_secret&#39;. Requires &#39;client_secret_wo_version&#39; to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(@Nullable Output<String> clientSecretWo) {
+            $.clientSecretWo = clientSecretWo;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_secret&#39;. Requires &#39;client_secret_wo_version&#39; to trigger updates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(String clientSecretWo) {
+            return clientSecretWo(Output.of(clientSecretWo));
+        }
+
+        /**
+         * @param clientSecretWoVersion Version counter for the write-only client secret.
+         * Increment this value to trigger an update of the client secret in Vault.
+         * Required when using `clientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+            $.clientSecretWoVersion = clientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWoVersion Version counter for the write-only client secret.
+         * Increment this value to trigger an update of the client secret in Vault.
+         * Required when using `clientSecretWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+            return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 
         /**

@@ -10,88 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Jwt
 {
     /// <summary>
-    /// Provides a resource for managing an
-    /// [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// Manage JWT auth backend:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Vault.Jwt.AuthBackend("example", new()
-    ///     {
-    ///         Description = "Demonstration of the Terraform JWT auth backend",
-    ///         Path = "jwt",
-    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
-    ///         BoundIssuer = "https://myco.auth0.com/",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// Manage OIDC auth backend:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Vault.Jwt.AuthBackend("example", new()
-    ///     {
-    ///         Description = "Demonstration of the Terraform JWT auth backend",
-    ///         Path = "oidc",
-    ///         Type = "oidc",
-    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
-    ///         OidcClientId = "1234567890",
-    ///         OidcClientSecret = "secret123456",
-    ///         BoundIssuer = "https://myco.auth0.com/",
-    ///         Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
-    ///         {
-    ///             ListingVisibility = "unauth",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// Configuring the auth backend with a `provider_config:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var gsuite = new Vault.Jwt.AuthBackend("gsuite", new()
-    ///     {
-    ///         Description = "OIDC backend",
-    ///         OidcDiscoveryUrl = "https://accounts.google.com",
-    ///         Path = "oidc",
-    ///         Type = "oidc",
-    ///         ProviderConfig = 
-    ///         {
-    ///             { "provider", "gsuite" },
-    ///             { "fetch_groups", "true" },
-    ///             { "fetch_user_info", "true" },
-    ///             { "groups_recurse_max_depth", "1" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// JWT auth backend can be imported using the `path`, e.g.
@@ -201,10 +119,23 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> OidcClientId { get; private set; } = null!;
 
         /// <summary>
-        /// Client Secret used for OIDC backends
+        /// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `OidcClientSecretWo` instead.
         /// </summary>
         [Output("oidcClientSecret")]
         public Output<string?> OidcClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Client Secret used for OIDC. This field is recommended over OidcClientSecret for enhanced security.
+        /// </summary>
+        [Output("oidcClientSecretWo")]
+        public Output<string?> OidcClientSecretWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only `OidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `OidcClientSecretWo`.
+        /// </summary>
+        [Output("oidcClientSecretWoVersion")]
+        public Output<int?> OidcClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -277,6 +208,7 @@ namespace Pulumi.Vault.Jwt
                 AdditionalSecretOutputs =
                 {
                     "oidcClientSecret",
+                    "oidcClientSecretWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -409,7 +341,7 @@ namespace Pulumi.Vault.Jwt
         private Input<string>? _oidcClientSecret;
 
         /// <summary>
-        /// Client Secret used for OIDC backends
+        /// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `OidcClientSecretWo` instead.
         /// </summary>
         public Input<string>? OidcClientSecret
         {
@@ -420,6 +352,29 @@ namespace Pulumi.Vault.Jwt
                 _oidcClientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("oidcClientSecretWo")]
+        private Input<string>? _oidcClientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Client Secret used for OIDC. This field is recommended over OidcClientSecret for enhanced security.
+        /// </summary>
+        public Input<string>? OidcClientSecretWo
+        {
+            get => _oidcClientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oidcClientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `OidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `OidcClientSecretWo`.
+        /// </summary>
+        [Input("oidcClientSecretWoVersion")]
+        public Input<int>? OidcClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
@@ -600,7 +555,7 @@ namespace Pulumi.Vault.Jwt
         private Input<string>? _oidcClientSecret;
 
         /// <summary>
-        /// Client Secret used for OIDC backends
+        /// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `OidcClientSecretWo` instead.
         /// </summary>
         public Input<string>? OidcClientSecret
         {
@@ -611,6 +566,29 @@ namespace Pulumi.Vault.Jwt
                 _oidcClientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("oidcClientSecretWo")]
+        private Input<string>? _oidcClientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Client Secret used for OIDC. This field is recommended over OidcClientSecret for enhanced security.
+        /// </summary>
+        public Input<string>? OidcClientSecretWo
+        {
+            get => _oidcClientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oidcClientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `OidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `OidcClientSecretWo`.
+        /// </summary>
+        [Input("oidcClientSecretWoVersion")]
+        public Input<int>? OidcClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used

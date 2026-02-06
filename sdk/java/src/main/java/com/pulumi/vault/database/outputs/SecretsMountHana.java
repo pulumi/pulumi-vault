@@ -115,6 +115,11 @@ public final class SecretsMountHana {
      */
     private @Nullable String username;
     /**
+     * @return Username generation template.
+     * 
+     */
+    private @Nullable String usernameTemplate;
+    /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -257,6 +262,13 @@ public final class SecretsMountHana {
         return Optional.ofNullable(this.username);
     }
     /**
+     * @return Username generation template.
+     * 
+     */
+    public Optional<String> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
+    /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -292,6 +304,7 @@ public final class SecretsMountHana {
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
         private @Nullable String username;
+        private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
         public Builder() {}
         public Builder(SecretsMountHana defaults) {
@@ -314,6 +327,7 @@ public final class SecretsMountHana {
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
     	      this.username = defaults.username;
+    	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
@@ -434,6 +448,12 @@ public final class SecretsMountHana {
             return this;
         }
         @CustomType.Setter
+        public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
+            this.usernameTemplate = usernameTemplate;
+            return this;
+        }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
 
             this.verifyConnection = verifyConnection;
@@ -459,6 +479,7 @@ public final class SecretsMountHana {
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
             _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;
             return _resultValue;
         }

@@ -23,6 +23,7 @@ class AuthBackendRoleArgs:
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bind_secret_id: Optional[pulumi.Input[_builtins.bool]] = None,
+                 local_secret_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_id_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -46,6 +47,7 @@ class AuthBackendRoleArgs:
                Defaults to `approle`.
         :param pulumi.Input[_builtins.bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] local_secret_ids: If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -76,6 +78,8 @@ class AuthBackendRoleArgs:
             pulumi.set(__self__, "backend", backend)
         if bind_secret_id is not None:
             pulumi.set(__self__, "bind_secret_id", bind_secret_id)
+        if local_secret_ids is not None:
+            pulumi.set(__self__, "local_secret_ids", local_secret_ids)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if role_id is not None:
@@ -155,6 +159,18 @@ class AuthBackendRoleArgs:
     @bind_secret_id.setter
     def bind_secret_id(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "bind_secret_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localSecretIds")
+    def local_secret_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+        """
+        return pulumi.get(self, "local_secret_ids")
+
+    @local_secret_ids.setter
+    def local_secret_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "local_secret_ids", value)
 
     @_builtins.property
     @pulumi.getter
@@ -339,6 +355,7 @@ class _AuthBackendRoleState:
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bind_secret_id: Optional[pulumi.Input[_builtins.bool]] = None,
+                 local_secret_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -362,6 +379,7 @@ class _AuthBackendRoleState:
                Defaults to `approle`.
         :param pulumi.Input[_builtins.bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] local_secret_ids: If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -392,6 +410,8 @@ class _AuthBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if bind_secret_id is not None:
             pulumi.set(__self__, "bind_secret_id", bind_secret_id)
+        if local_secret_ids is not None:
+            pulumi.set(__self__, "local_secret_ids", local_secret_ids)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if role_id is not None:
@@ -461,6 +481,18 @@ class _AuthBackendRoleState:
     @bind_secret_id.setter
     def bind_secret_id(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "bind_secret_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localSecretIds")
+    def local_secret_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+        """
+        return pulumi.get(self, "local_secret_ids")
+
+    @local_secret_ids.setter
+    def local_secret_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "local_secret_ids", value)
 
     @_builtins.property
     @pulumi.getter
@@ -660,6 +692,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bind_secret_id: Optional[pulumi.Input[_builtins.bool]] = None,
+                 local_secret_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -714,6 +747,7 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `approle`.
         :param pulumi.Input[_builtins.bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] local_secret_ids: If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -792,6 +826,7 @@ class AuthBackendRole(pulumi.CustomResource):
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
                  bind_secret_id: Optional[pulumi.Input[_builtins.bool]] = None,
+                 local_secret_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -819,6 +854,7 @@ class AuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["alias_metadata"] = alias_metadata
             __props__.__dict__["backend"] = backend
             __props__.__dict__["bind_secret_id"] = bind_secret_id
+            __props__.__dict__["local_secret_ids"] = local_secret_ids
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["role_id"] = role_id
             if role_name is None and not opts.urn:
@@ -849,6 +885,7 @@ class AuthBackendRole(pulumi.CustomResource):
             alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
             bind_secret_id: Optional[pulumi.Input[_builtins.bool]] = None,
+            local_secret_ids: Optional[pulumi.Input[_builtins.bool]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             role_id: Optional[pulumi.Input[_builtins.str]] = None,
             role_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -877,6 +914,7 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `approle`.
         :param pulumi.Input[_builtins.bool] bind_secret_id: Whether or not to require `secret_id` to be
                presented when logging in using this AppRole. Defaults to `true`.
+        :param pulumi.Input[_builtins.bool] local_secret_ids: If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -908,6 +946,7 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["alias_metadata"] = alias_metadata
         __props__.__dict__["backend"] = backend
         __props__.__dict__["bind_secret_id"] = bind_secret_id
+        __props__.__dict__["local_secret_ids"] = local_secret_ids
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_id"] = role_id
         __props__.__dict__["role_name"] = role_name
@@ -951,6 +990,14 @@ class AuthBackendRole(pulumi.CustomResource):
         presented when logging in using this AppRole. Defaults to `true`.
         """
         return pulumi.get(self, "bind_secret_id")
+
+    @_builtins.property
+    @pulumi.getter(name="localSecretIds")
+    def local_secret_ids(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+        """
+        return pulumi.get(self, "local_secret_ids")
 
     @_builtins.property
     @pulumi.getter

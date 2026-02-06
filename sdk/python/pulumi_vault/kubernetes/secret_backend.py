@@ -41,7 +41,9 @@ class SecretBackendArgs:
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
@@ -78,6 +80,11 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
                is running in Kubernetes.
+        :param pulumi.Input[_builtins.str] service_account_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        :param pulumi.Input[_builtins.int] service_account_jwt_wo_version: Version counter for `service_account_jwt_wo`. Increment to force an update.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         """
         pulumi.set(__self__, "path", path)
         if allowed_managed_keys is not None:
@@ -124,6 +131,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if service_account_jwt is not None:
             pulumi.set(__self__, "service_account_jwt", service_account_jwt)
+        if service_account_jwt_wo is not None:
+            pulumi.set(__self__, "service_account_jwt_wo", service_account_jwt_wo)
+        if service_account_jwt_wo_version is not None:
+            pulumi.set(__self__, "service_account_jwt_wo_version", service_account_jwt_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -412,6 +423,33 @@ class SecretBackendArgs:
     def service_account_jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_jwt", value)
 
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountJwtWo")
+    def service_account_jwt_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        """
+        return pulumi.get(self, "service_account_jwt_wo")
+
+    @service_account_jwt_wo.setter
+    def service_account_jwt_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_account_jwt_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountJwtWoVersion")
+    def service_account_jwt_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for `service_account_jwt_wo`. Increment to force an update.
+        For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "service_account_jwt_wo_version")
+
+    @service_account_jwt_wo_version.setter
+    def service_account_jwt_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "service_account_jwt_wo_version", value)
+
 
 @pulumi.input_type
 class _SecretBackendState:
@@ -439,7 +477,9 @@ class _SecretBackendState:
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
@@ -477,6 +517,11 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
                is running in Kubernetes.
+        :param pulumi.Input[_builtins.str] service_account_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        :param pulumi.Input[_builtins.int] service_account_jwt_wo_version: Version counter for `service_account_jwt_wo`. Increment to force an update.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -526,6 +571,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if service_account_jwt is not None:
             pulumi.set(__self__, "service_account_jwt", service_account_jwt)
+        if service_account_jwt_wo is not None:
+            pulumi.set(__self__, "service_account_jwt_wo", service_account_jwt_wo)
+        if service_account_jwt_wo_version is not None:
+            pulumi.set(__self__, "service_account_jwt_wo_version", service_account_jwt_wo_version)
 
     @_builtins.property
     @pulumi.getter
@@ -826,6 +875,33 @@ class _SecretBackendState:
     def service_account_jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_jwt", value)
 
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountJwtWo")
+    def service_account_jwt_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        """
+        return pulumi.get(self, "service_account_jwt_wo")
+
+    @service_account_jwt_wo.setter
+    def service_account_jwt_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_account_jwt_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountJwtWoVersion")
+    def service_account_jwt_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for `service_account_jwt_wo`. Increment to force an update.
+        For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "service_account_jwt_wo_version")
+
+    @service_account_jwt_wo_version.setter
+    def service_account_jwt_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "service_account_jwt_wo_version", value)
+
 
 @pulumi.type_token("vault:kubernetes/secretBackend:SecretBackend")
 class SecretBackend(pulumi.CustomResource):
@@ -856,6 +932,8 @@ class SecretBackend(pulumi.CustomResource):
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -872,9 +950,17 @@ class SecretBackend(pulumi.CustomResource):
             max_lease_ttl_seconds=86400,
             kubernetes_host="https://127.0.0.1:61233",
             kubernetes_ca_cert=std.file(input="/path/to/cert").result,
-            service_account_jwt=std.file(input="/path/to/token").result,
+            service_account_jwt_wo=std.file(input="/path/to/token").result,
+            service_account_jwt_wo_version=1,
             disable_local_ca_jwt=False)
         ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `service_account_jwt_wo` - (Optional) Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value is not stored in state.
+          **Note**: This property is write-only and will not be read from the API.
 
         ## Import
 
@@ -920,6 +1006,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
                is running in Kubernetes.
+        :param pulumi.Input[_builtins.str] service_account_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        :param pulumi.Input[_builtins.int] service_account_jwt_wo_version: Version counter for `service_account_jwt_wo`. Increment to force an update.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         """
         ...
     @overload
@@ -942,9 +1033,17 @@ class SecretBackend(pulumi.CustomResource):
             max_lease_ttl_seconds=86400,
             kubernetes_host="https://127.0.0.1:61233",
             kubernetes_ca_cert=std.file(input="/path/to/cert").result,
-            service_account_jwt=std.file(input="/path/to/token").result,
+            service_account_jwt_wo=std.file(input="/path/to/token").result,
+            service_account_jwt_wo_version=1,
             disable_local_ca_jwt=False)
         ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `service_account_jwt_wo` - (Optional) Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value is not stored in state.
+          **Note**: This property is write-only and will not be read from the API.
 
         ## Import
 
@@ -992,6 +1091,8 @@ class SecretBackend(pulumi.CustomResource):
                  plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1026,8 +1127,10 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["service_account_jwt"] = None if service_account_jwt is None else pulumi.Output.secret(service_account_jwt)
+            __props__.__dict__["service_account_jwt_wo"] = None if service_account_jwt_wo is None else pulumi.Output.secret(service_account_jwt_wo)
+            __props__.__dict__["service_account_jwt_wo_version"] = service_account_jwt_wo_version
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["serviceAccountJwt"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["serviceAccountJwt", "serviceAccountJwtWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
             'vault:kubernetes/secretBackend:SecretBackend',
@@ -1062,7 +1165,9 @@ class SecretBackend(pulumi.CustomResource):
             path: Optional[pulumi.Input[_builtins.str]] = None,
             plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
             seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackend':
+            service_account_jwt: Optional[pulumi.Input[_builtins.str]] = None,
+            service_account_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1105,6 +1210,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
                is running in Kubernetes.
+        :param pulumi.Input[_builtins.str] service_account_jwt_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        :param pulumi.Input[_builtins.int] service_account_jwt_wo_version: Version counter for `service_account_jwt_wo`. Increment to force an update.
+               For more information about write-only attributes, see
+               [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1134,6 +1244,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["service_account_jwt"] = service_account_jwt
+        __props__.__dict__["service_account_jwt_wo"] = service_account_jwt_wo
+        __props__.__dict__["service_account_jwt_wo_version"] = service_account_jwt_wo_version
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1338,4 +1450,23 @@ class SecretBackend(pulumi.CustomResource):
         is running in Kubernetes.
         """
         return pulumi.get(self, "service_account_jwt")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountJwtWo")
+    def service_account_jwt_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+        """
+        return pulumi.get(self, "service_account_jwt_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountJwtWoVersion")
+    def service_account_jwt_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for `service_account_jwt_wo`. Increment to force an update.
+        For more information about write-only attributes, see
+        [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+        """
+        return pulumi.get(self, "service_account_jwt_wo_version")
 

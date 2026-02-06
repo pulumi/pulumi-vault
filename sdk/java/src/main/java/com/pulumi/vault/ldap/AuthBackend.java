@@ -68,6 +68,13 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `bindpassWo` - (Optional) Write-only bind password to use for LDAP authentication. Can be updated. Conflicts with `bindpass`.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * LDAP authentication backends can be imported using the `path`, e.g.
@@ -138,18 +145,52 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.binddn;
     }
     /**
-     * Password to use with `binddn` when performing user search
+     * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      * 
      */
     @Export(name="bindpass", refs={String.class}, tree="[0]")
     private Output<String> bindpass;
 
     /**
-     * @return Password to use with `binddn` when performing user search
+     * @return Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      * 
      */
     public Output<String> bindpass() {
         return this.bindpass;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     * 
+     */
+    @Export(name="bindpassWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> bindpassWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only bind password to use for LDAP authentication.
+     * 
+     */
+    public Output<Optional<String>> bindpassWo() {
+        return Codegen.optional(this.bindpassWo);
+    }
+    /**
+     * Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Export(name="bindpassWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> bindpassWoVersion;
+
+    /**
+     * @return Version counter for write-only bind password.
+     * Required when using `bindpassWo`. For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Output<Optional<Integer>> bindpassWoVersion() {
+        return Codegen.optional(this.bindpassWoVersion);
     }
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
@@ -817,6 +858,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "bindpass",
+                "bindpassWo",
                 "clientTlsKey"
             ))
             .build();

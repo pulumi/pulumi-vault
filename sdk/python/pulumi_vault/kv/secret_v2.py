@@ -43,9 +43,10 @@ class SecretV2Args:
                KV secret. Refer to the
                Configuration Options for more info.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
-               written as the secret data at the given path.
+               written as the secret data at the given path. This is required if `data_json_wo` is not set.
         :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Write-Only JSON-encoded secret data to write.
+               JSON-encoded string that will be
+               written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -129,7 +130,7 @@ class SecretV2Args:
     def data_json(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         JSON-encoded string that will be
-        written as the secret data at the given path.
+        written as the secret data at the given path. This is required if `data_json_wo` is not set.
         """
         return pulumi.get(self, "data_json")
 
@@ -142,7 +143,8 @@ class SecretV2Args:
     def data_json_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-Only JSON-encoded secret data to write.
+        JSON-encoded string that will be
+        written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "data_json_wo")
 
@@ -262,9 +264,10 @@ class _SecretV2State:
                Vault and whose values are the corresponding values. This map can only represent string data,
                so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
-               written as the secret data at the given path.
+               written as the secret data at the given path. This is required if `data_json_wo` is not set.
         :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Write-Only JSON-encoded secret data to write.
+               JSON-encoded string that will be
+               written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -365,7 +368,7 @@ class _SecretV2State:
     def data_json(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         JSON-encoded string that will be
-        written as the secret data at the given path.
+        written as the secret data at the given path. This is required if `data_json_wo` is not set.
         """
         return pulumi.get(self, "data_json")
 
@@ -378,7 +381,8 @@ class _SecretV2State:
     def data_json_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-Only JSON-encoded secret data to write.
+        JSON-encoded string that will be
+        written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "data_json_wo")
 
@@ -546,10 +550,11 @@ class SecretV2(pulumi.CustomResource):
             name="secret",
             cas=1,
             delete_all_versions=True,
-            data_json=json.dumps({
+            data_json_wo=json.dumps({
                 "zip": "zap",
                 "foo": "bar",
             }),
+            data_json_wo_version=1,
             custom_metadata={
                 "max_versions": 5,
                 "data": {
@@ -578,13 +583,6 @@ class SecretV2(pulumi.CustomResource):
 
         * `data` - (Optional) A string to string map describing the secret.
 
-        ## Ephemeral Attributes Reference
-
-        The following write-only attributes are supported:
-
-        * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
-          **Note**: This property is write-only and will not be read from the API.
-
         ## Import
 
         KV-V2 secrets can be imported using the `path`, e.g.
@@ -603,9 +601,10 @@ class SecretV2(pulumi.CustomResource):
                KV secret. Refer to the
                Configuration Options for more info.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
-               written as the secret data at the given path.
+               written as the secret data at the given path. This is required if `data_json_wo` is not set.
         :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Write-Only JSON-encoded secret data to write.
+               JSON-encoded string that will be
+               written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -653,10 +652,11 @@ class SecretV2(pulumi.CustomResource):
             name="secret",
             cas=1,
             delete_all_versions=True,
-            data_json=json.dumps({
+            data_json_wo=json.dumps({
                 "zip": "zap",
                 "foo": "bar",
             }),
+            data_json_wo_version=1,
             custom_metadata={
                 "max_versions": 5,
                 "data": {
@@ -684,13 +684,6 @@ class SecretV2(pulumi.CustomResource):
         a version is deleted. Accepts duration in integer seconds.
 
         * `data` - (Optional) A string to string map describing the secret.
-
-        ## Ephemeral Attributes Reference
-
-        The following write-only attributes are supported:
-
-        * `data_json_wo` - (Optional) JSON-encoded secret data to write to Vault. Can be updated.
-          **Note**: This property is write-only and will not be read from the API.
 
         ## Import
 
@@ -796,9 +789,10 @@ class SecretV2(pulumi.CustomResource):
                Vault and whose values are the corresponding values. This map can only represent string data,
                so any non-string values returned from Vault are serialized as JSON.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
-               written as the secret data at the given path.
+               written as the secret data at the given path. This is required if `data_json_wo` is not set.
         :param pulumi.Input[_builtins.str] data_json_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Write-Only JSON-encoded secret data to write.
+               JSON-encoded string that will be
+               written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] data_json_wo_version: The version of the `data_json_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.bool] delete_all_versions: If set to true, permanently deletes all
                versions for the specified key.
@@ -875,7 +869,7 @@ class SecretV2(pulumi.CustomResource):
     def data_json(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         JSON-encoded string that will be
-        written as the secret data at the given path.
+        written as the secret data at the given path. This is required if `data_json_wo` is not set.
         """
         return pulumi.get(self, "data_json")
 
@@ -884,7 +878,8 @@ class SecretV2(pulumi.CustomResource):
     def data_json_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-Only JSON-encoded secret data to write.
+        JSON-encoded string that will be
+        written as the secret data at the given path. This is required if `data_json` is not set. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "data_json_wo")
 

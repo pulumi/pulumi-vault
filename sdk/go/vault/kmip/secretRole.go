@@ -89,26 +89,54 @@ type SecretRole struct {
 	OperationAll pulumi.BoolOutput `pulumi:"operationAll"`
 	// Grant permission to use the KMIP Create operation.
 	OperationCreate pulumi.BoolOutput `pulumi:"operationCreate"`
+	// Grant permission to use the KMIP Create Key Pair operation.
+	OperationCreateKeyPair pulumi.BoolOutput `pulumi:"operationCreateKeyPair"`
+	// Grant permission to use the KMIP Decrypt operation.
+	OperationDecrypt pulumi.BoolOutput `pulumi:"operationDecrypt"`
+	// Grant permission to use the KMIP Delete Attribute operation.
+	OperationDeleteAttribute pulumi.BoolOutput `pulumi:"operationDeleteAttribute"`
 	// Grant permission to use the KMIP Destroy operation.
 	OperationDestroy pulumi.BoolOutput `pulumi:"operationDestroy"`
 	// Grant permission to use the KMIP Discover Version operation.
 	OperationDiscoverVersions pulumi.BoolOutput `pulumi:"operationDiscoverVersions"`
+	// Grant permission to use the KMIP Encrypt operation.
+	OperationEncrypt pulumi.BoolOutput `pulumi:"operationEncrypt"`
 	// Grant permission to use the KMIP Get operation.
 	OperationGet pulumi.BoolOutput `pulumi:"operationGet"`
 	// Grant permission to use the KMIP Get Atrribute List operation.
 	OperationGetAttributeList pulumi.BoolOutput `pulumi:"operationGetAttributeList"`
 	// Grant permission to use the KMIP Get Atrributes operation.
 	OperationGetAttributes pulumi.BoolOutput `pulumi:"operationGetAttributes"`
+	// Grant permission to use the KMIP Import operation.
+	OperationImport pulumi.BoolOutput `pulumi:"operationImport"`
 	// Grant permission to use the KMIP Get Locate operation.
 	OperationLocate pulumi.BoolOutput `pulumi:"operationLocate"`
+	// Grant permission to use the KMIP MAC operation.
+	OperationMac pulumi.BoolOutput `pulumi:"operationMac"`
+	// Grant permission to use the KMIP MAC Verify operation.
+	OperationMacVerify pulumi.BoolOutput `pulumi:"operationMacVerify"`
+	// Grant permission to use the KMIP Modify Attribute operation.
+	OperationModifyAttribute pulumi.BoolOutput `pulumi:"operationModifyAttribute"`
 	// Remove all permissions from this role. May not be specified with any other `operation_*` params.
 	OperationNone pulumi.BoolOutput `pulumi:"operationNone"`
+	// Grant permission to use the KMIP Query operation.
+	OperationQuery pulumi.BoolOutput `pulumi:"operationQuery"`
 	// Grant permission to use the KMIP Register operation.
 	OperationRegister pulumi.BoolOutput `pulumi:"operationRegister"`
 	// Grant permission to use the KMIP Rekey operation.
 	OperationRekey pulumi.BoolOutput `pulumi:"operationRekey"`
+	// Grant permission to use the KMIP Rekey Key Pair operation.
+	OperationRekeyKeyPair pulumi.BoolOutput `pulumi:"operationRekeyKeyPair"`
 	// Grant permission to use the KMIP Revoke operation.
 	OperationRevoke pulumi.BoolOutput `pulumi:"operationRevoke"`
+	// Grant permission to use the KMIP RNG Retrieve operation.
+	OperationRngRetrieve pulumi.BoolOutput `pulumi:"operationRngRetrieve"`
+	// Grant permission to use the KMIP RNG Seed operation.
+	OperationRngSeed pulumi.BoolOutput `pulumi:"operationRngSeed"`
+	// Grant permission to use the KMIP Sign operation.
+	OperationSign pulumi.BoolOutput `pulumi:"operationSign"`
+	// Grant permission to use the KMIP Signature Verify operation.
+	OperationSignatureVerify pulumi.BoolOutput `pulumi:"operationSignatureVerify"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path pulumi.StringOutput `pulumi:"path"`
@@ -176,26 +204,54 @@ type secretRoleState struct {
 	OperationAll *bool `pulumi:"operationAll"`
 	// Grant permission to use the KMIP Create operation.
 	OperationCreate *bool `pulumi:"operationCreate"`
+	// Grant permission to use the KMIP Create Key Pair operation.
+	OperationCreateKeyPair *bool `pulumi:"operationCreateKeyPair"`
+	// Grant permission to use the KMIP Decrypt operation.
+	OperationDecrypt *bool `pulumi:"operationDecrypt"`
+	// Grant permission to use the KMIP Delete Attribute operation.
+	OperationDeleteAttribute *bool `pulumi:"operationDeleteAttribute"`
 	// Grant permission to use the KMIP Destroy operation.
 	OperationDestroy *bool `pulumi:"operationDestroy"`
 	// Grant permission to use the KMIP Discover Version operation.
 	OperationDiscoverVersions *bool `pulumi:"operationDiscoverVersions"`
+	// Grant permission to use the KMIP Encrypt operation.
+	OperationEncrypt *bool `pulumi:"operationEncrypt"`
 	// Grant permission to use the KMIP Get operation.
 	OperationGet *bool `pulumi:"operationGet"`
 	// Grant permission to use the KMIP Get Atrribute List operation.
 	OperationGetAttributeList *bool `pulumi:"operationGetAttributeList"`
 	// Grant permission to use the KMIP Get Atrributes operation.
 	OperationGetAttributes *bool `pulumi:"operationGetAttributes"`
+	// Grant permission to use the KMIP Import operation.
+	OperationImport *bool `pulumi:"operationImport"`
 	// Grant permission to use the KMIP Get Locate operation.
 	OperationLocate *bool `pulumi:"operationLocate"`
+	// Grant permission to use the KMIP MAC operation.
+	OperationMac *bool `pulumi:"operationMac"`
+	// Grant permission to use the KMIP MAC Verify operation.
+	OperationMacVerify *bool `pulumi:"operationMacVerify"`
+	// Grant permission to use the KMIP Modify Attribute operation.
+	OperationModifyAttribute *bool `pulumi:"operationModifyAttribute"`
 	// Remove all permissions from this role. May not be specified with any other `operation_*` params.
 	OperationNone *bool `pulumi:"operationNone"`
+	// Grant permission to use the KMIP Query operation.
+	OperationQuery *bool `pulumi:"operationQuery"`
 	// Grant permission to use the KMIP Register operation.
 	OperationRegister *bool `pulumi:"operationRegister"`
 	// Grant permission to use the KMIP Rekey operation.
 	OperationRekey *bool `pulumi:"operationRekey"`
+	// Grant permission to use the KMIP Rekey Key Pair operation.
+	OperationRekeyKeyPair *bool `pulumi:"operationRekeyKeyPair"`
 	// Grant permission to use the KMIP Revoke operation.
 	OperationRevoke *bool `pulumi:"operationRevoke"`
+	// Grant permission to use the KMIP RNG Retrieve operation.
+	OperationRngRetrieve *bool `pulumi:"operationRngRetrieve"`
+	// Grant permission to use the KMIP RNG Seed operation.
+	OperationRngSeed *bool `pulumi:"operationRngSeed"`
+	// Grant permission to use the KMIP Sign operation.
+	OperationSign *bool `pulumi:"operationSign"`
+	// Grant permission to use the KMIP Signature Verify operation.
+	OperationSignatureVerify *bool `pulumi:"operationSignatureVerify"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path *string `pulumi:"path"`
@@ -225,26 +281,54 @@ type SecretRoleState struct {
 	OperationAll pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Create operation.
 	OperationCreate pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Create Key Pair operation.
+	OperationCreateKeyPair pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Decrypt operation.
+	OperationDecrypt pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Delete Attribute operation.
+	OperationDeleteAttribute pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Destroy operation.
 	OperationDestroy pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Discover Version operation.
 	OperationDiscoverVersions pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Encrypt operation.
+	OperationEncrypt pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get operation.
 	OperationGet pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get Atrribute List operation.
 	OperationGetAttributeList pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get Atrributes operation.
 	OperationGetAttributes pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Import operation.
+	OperationImport pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get Locate operation.
 	OperationLocate pulumi.BoolPtrInput
+	// Grant permission to use the KMIP MAC operation.
+	OperationMac pulumi.BoolPtrInput
+	// Grant permission to use the KMIP MAC Verify operation.
+	OperationMacVerify pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Modify Attribute operation.
+	OperationModifyAttribute pulumi.BoolPtrInput
 	// Remove all permissions from this role. May not be specified with any other `operation_*` params.
 	OperationNone pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Query operation.
+	OperationQuery pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Register operation.
 	OperationRegister pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Rekey operation.
 	OperationRekey pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Rekey Key Pair operation.
+	OperationRekeyKeyPair pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Revoke operation.
 	OperationRevoke pulumi.BoolPtrInput
+	// Grant permission to use the KMIP RNG Retrieve operation.
+	OperationRngRetrieve pulumi.BoolPtrInput
+	// Grant permission to use the KMIP RNG Seed operation.
+	OperationRngSeed pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Sign operation.
+	OperationSign pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Signature Verify operation.
+	OperationSignatureVerify pulumi.BoolPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path pulumi.StringPtrInput
@@ -278,26 +362,54 @@ type secretRoleArgs struct {
 	OperationAll *bool `pulumi:"operationAll"`
 	// Grant permission to use the KMIP Create operation.
 	OperationCreate *bool `pulumi:"operationCreate"`
+	// Grant permission to use the KMIP Create Key Pair operation.
+	OperationCreateKeyPair *bool `pulumi:"operationCreateKeyPair"`
+	// Grant permission to use the KMIP Decrypt operation.
+	OperationDecrypt *bool `pulumi:"operationDecrypt"`
+	// Grant permission to use the KMIP Delete Attribute operation.
+	OperationDeleteAttribute *bool `pulumi:"operationDeleteAttribute"`
 	// Grant permission to use the KMIP Destroy operation.
 	OperationDestroy *bool `pulumi:"operationDestroy"`
 	// Grant permission to use the KMIP Discover Version operation.
 	OperationDiscoverVersions *bool `pulumi:"operationDiscoverVersions"`
+	// Grant permission to use the KMIP Encrypt operation.
+	OperationEncrypt *bool `pulumi:"operationEncrypt"`
 	// Grant permission to use the KMIP Get operation.
 	OperationGet *bool `pulumi:"operationGet"`
 	// Grant permission to use the KMIP Get Atrribute List operation.
 	OperationGetAttributeList *bool `pulumi:"operationGetAttributeList"`
 	// Grant permission to use the KMIP Get Atrributes operation.
 	OperationGetAttributes *bool `pulumi:"operationGetAttributes"`
+	// Grant permission to use the KMIP Import operation.
+	OperationImport *bool `pulumi:"operationImport"`
 	// Grant permission to use the KMIP Get Locate operation.
 	OperationLocate *bool `pulumi:"operationLocate"`
+	// Grant permission to use the KMIP MAC operation.
+	OperationMac *bool `pulumi:"operationMac"`
+	// Grant permission to use the KMIP MAC Verify operation.
+	OperationMacVerify *bool `pulumi:"operationMacVerify"`
+	// Grant permission to use the KMIP Modify Attribute operation.
+	OperationModifyAttribute *bool `pulumi:"operationModifyAttribute"`
 	// Remove all permissions from this role. May not be specified with any other `operation_*` params.
 	OperationNone *bool `pulumi:"operationNone"`
+	// Grant permission to use the KMIP Query operation.
+	OperationQuery *bool `pulumi:"operationQuery"`
 	// Grant permission to use the KMIP Register operation.
 	OperationRegister *bool `pulumi:"operationRegister"`
 	// Grant permission to use the KMIP Rekey operation.
 	OperationRekey *bool `pulumi:"operationRekey"`
+	// Grant permission to use the KMIP Rekey Key Pair operation.
+	OperationRekeyKeyPair *bool `pulumi:"operationRekeyKeyPair"`
 	// Grant permission to use the KMIP Revoke operation.
 	OperationRevoke *bool `pulumi:"operationRevoke"`
+	// Grant permission to use the KMIP RNG Retrieve operation.
+	OperationRngRetrieve *bool `pulumi:"operationRngRetrieve"`
+	// Grant permission to use the KMIP RNG Seed operation.
+	OperationRngSeed *bool `pulumi:"operationRngSeed"`
+	// Grant permission to use the KMIP Sign operation.
+	OperationSign *bool `pulumi:"operationSign"`
+	// Grant permission to use the KMIP Signature Verify operation.
+	OperationSignatureVerify *bool `pulumi:"operationSignatureVerify"`
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path string `pulumi:"path"`
@@ -328,26 +440,54 @@ type SecretRoleArgs struct {
 	OperationAll pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Create operation.
 	OperationCreate pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Create Key Pair operation.
+	OperationCreateKeyPair pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Decrypt operation.
+	OperationDecrypt pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Delete Attribute operation.
+	OperationDeleteAttribute pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Destroy operation.
 	OperationDestroy pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Discover Version operation.
 	OperationDiscoverVersions pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Encrypt operation.
+	OperationEncrypt pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get operation.
 	OperationGet pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get Atrribute List operation.
 	OperationGetAttributeList pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get Atrributes operation.
 	OperationGetAttributes pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Import operation.
+	OperationImport pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Get Locate operation.
 	OperationLocate pulumi.BoolPtrInput
+	// Grant permission to use the KMIP MAC operation.
+	OperationMac pulumi.BoolPtrInput
+	// Grant permission to use the KMIP MAC Verify operation.
+	OperationMacVerify pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Modify Attribute operation.
+	OperationModifyAttribute pulumi.BoolPtrInput
 	// Remove all permissions from this role. May not be specified with any other `operation_*` params.
 	OperationNone pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Query operation.
+	OperationQuery pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Register operation.
 	OperationRegister pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Rekey operation.
 	OperationRekey pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Rekey Key Pair operation.
+	OperationRekeyKeyPair pulumi.BoolPtrInput
 	// Grant permission to use the KMIP Revoke operation.
 	OperationRevoke pulumi.BoolPtrInput
+	// Grant permission to use the KMIP RNG Retrieve operation.
+	OperationRngRetrieve pulumi.BoolPtrInput
+	// Grant permission to use the KMIP RNG Seed operation.
+	OperationRngSeed pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Sign operation.
+	OperationSign pulumi.BoolPtrInput
+	// Grant permission to use the KMIP Signature Verify operation.
+	OperationSignatureVerify pulumi.BoolPtrInput
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `kmip`.
 	Path pulumi.StringInput
@@ -478,6 +618,21 @@ func (o SecretRoleOutput) OperationCreate() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationCreate }).(pulumi.BoolOutput)
 }
 
+// Grant permission to use the KMIP Create Key Pair operation.
+func (o SecretRoleOutput) OperationCreateKeyPair() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationCreateKeyPair }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Decrypt operation.
+func (o SecretRoleOutput) OperationDecrypt() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationDecrypt }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Delete Attribute operation.
+func (o SecretRoleOutput) OperationDeleteAttribute() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationDeleteAttribute }).(pulumi.BoolOutput)
+}
+
 // Grant permission to use the KMIP Destroy operation.
 func (o SecretRoleOutput) OperationDestroy() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationDestroy }).(pulumi.BoolOutput)
@@ -486,6 +641,11 @@ func (o SecretRoleOutput) OperationDestroy() pulumi.BoolOutput {
 // Grant permission to use the KMIP Discover Version operation.
 func (o SecretRoleOutput) OperationDiscoverVersions() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationDiscoverVersions }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Encrypt operation.
+func (o SecretRoleOutput) OperationEncrypt() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationEncrypt }).(pulumi.BoolOutput)
 }
 
 // Grant permission to use the KMIP Get operation.
@@ -503,14 +663,39 @@ func (o SecretRoleOutput) OperationGetAttributes() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationGetAttributes }).(pulumi.BoolOutput)
 }
 
+// Grant permission to use the KMIP Import operation.
+func (o SecretRoleOutput) OperationImport() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationImport }).(pulumi.BoolOutput)
+}
+
 // Grant permission to use the KMIP Get Locate operation.
 func (o SecretRoleOutput) OperationLocate() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationLocate }).(pulumi.BoolOutput)
 }
 
+// Grant permission to use the KMIP MAC operation.
+func (o SecretRoleOutput) OperationMac() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationMac }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP MAC Verify operation.
+func (o SecretRoleOutput) OperationMacVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationMacVerify }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Modify Attribute operation.
+func (o SecretRoleOutput) OperationModifyAttribute() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationModifyAttribute }).(pulumi.BoolOutput)
+}
+
 // Remove all permissions from this role. May not be specified with any other `operation_*` params.
 func (o SecretRoleOutput) OperationNone() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationNone }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Query operation.
+func (o SecretRoleOutput) OperationQuery() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationQuery }).(pulumi.BoolOutput)
 }
 
 // Grant permission to use the KMIP Register operation.
@@ -523,9 +708,34 @@ func (o SecretRoleOutput) OperationRekey() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRekey }).(pulumi.BoolOutput)
 }
 
+// Grant permission to use the KMIP Rekey Key Pair operation.
+func (o SecretRoleOutput) OperationRekeyKeyPair() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRekeyKeyPair }).(pulumi.BoolOutput)
+}
+
 // Grant permission to use the KMIP Revoke operation.
 func (o SecretRoleOutput) OperationRevoke() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRevoke }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP RNG Retrieve operation.
+func (o SecretRoleOutput) OperationRngRetrieve() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRngRetrieve }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP RNG Seed operation.
+func (o SecretRoleOutput) OperationRngSeed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationRngSeed }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Sign operation.
+func (o SecretRoleOutput) OperationSign() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationSign }).(pulumi.BoolOutput)
+}
+
+// Grant permission to use the KMIP Signature Verify operation.
+func (o SecretRoleOutput) OperationSignatureVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.BoolOutput { return v.OperationSignatureVerify }).(pulumi.BoolOutput)
 }
 
 // The unique path this backend should be mounted at. Must

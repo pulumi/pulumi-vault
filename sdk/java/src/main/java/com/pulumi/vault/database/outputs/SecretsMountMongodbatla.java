@@ -84,6 +84,11 @@ public final class SecretsMountMongodbatla {
      */
     private @Nullable Integer rotationWindow;
     /**
+     * @return Template describing how dynamic usernames are generated.
+     * 
+     */
+    private @Nullable String usernameTemplate;
+    /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -183,6 +188,13 @@ public final class SecretsMountMongodbatla {
         return Optional.ofNullable(this.rotationWindow);
     }
     /**
+     * @return Template describing how dynamic usernames are generated.
+     * 
+     */
+    public Optional<String> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
+    /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -212,6 +224,7 @@ public final class SecretsMountMongodbatla {
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
         public Builder() {}
         public Builder(SecretsMountMongodbatla defaults) {
@@ -228,6 +241,7 @@ public final class SecretsMountMongodbatla {
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
@@ -318,6 +332,12 @@ public final class SecretsMountMongodbatla {
             return this;
         }
         @CustomType.Setter
+        public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
+            this.usernameTemplate = usernameTemplate;
+            return this;
+        }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
 
             this.verifyConnection = verifyConnection;
@@ -337,6 +357,7 @@ public final class SecretsMountMongodbatla {
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;
             return _resultValue;
         }

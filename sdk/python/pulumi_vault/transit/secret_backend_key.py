@@ -22,6 +22,7 @@ class SecretBackendKeyArgs:
                  backend: pulumi.Input[_builtins.str],
                  allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
                  auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
+                 context: Optional[pulumi.Input[_builtins.str]] = None,
                  convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
                  derived: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -29,6 +30,8 @@ class SecretBackendKeyArgs:
                  hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
                  hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -42,6 +45,7 @@ class SecretBackendKeyArgs:
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         :param pulumi.Input[_builtins.int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
+        :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
@@ -51,6 +55,8 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[_builtins.str] hybrid_key_type_pqc: The post-quantum algorithm to use for hybrid signatures.
                Currently, ML-DSA is the only supported key type.
         :param pulumi.Input[_builtins.int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+        :param pulumi.Input[_builtins.str] managed_key_id: The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         :param pulumi.Input[_builtins.int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[_builtins.int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[_builtins.str] name: The name to identify this key within the backend. Must be unique within the backend.
@@ -72,6 +78,8 @@ class SecretBackendKeyArgs:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
         if auto_rotate_period is not None:
             pulumi.set(__self__, "auto_rotate_period", auto_rotate_period)
+        if context is not None:
+            pulumi.set(__self__, "context", context)
         if convergent_encryption is not None:
             pulumi.set(__self__, "convergent_encryption", convergent_encryption)
         if deletion_allowed is not None:
@@ -86,6 +94,10 @@ class SecretBackendKeyArgs:
             pulumi.set(__self__, "hybrid_key_type_pqc", hybrid_key_type_pqc)
         if key_size is not None:
             pulumi.set(__self__, "key_size", key_size)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
         if min_decryption_version is not None:
             pulumi.set(__self__, "min_decryption_version", min_decryption_version)
         if min_encryption_version is not None:
@@ -136,6 +148,18 @@ class SecretBackendKeyArgs:
     @auto_rotate_period.setter
     def auto_rotate_period(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "auto_rotate_period", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def context(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+        """
+        return pulumi.get(self, "context")
+
+    @context.setter
+    def context(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "context", value)
 
     @_builtins.property
     @pulumi.getter(name="convergentEncryption")
@@ -222,6 +246,30 @@ class SecretBackendKeyArgs:
     @key_size.setter
     def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "key_size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="minDecryptionVersion")
@@ -311,6 +359,7 @@ class _SecretBackendKeyState:
                  allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
                  auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 context: Optional[pulumi.Input[_builtins.str]] = None,
                  convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
                  derived: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -320,6 +369,8 @@ class _SecretBackendKeyState:
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
                  keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
                  latest_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  min_available_version: Optional[pulumi.Input[_builtins.int]] = None,
                  min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
@@ -338,6 +389,7 @@ class _SecretBackendKeyState:
         :param pulumi.Input[_builtins.int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
@@ -351,6 +403,8 @@ class _SecretBackendKeyState:
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
                * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         :param pulumi.Input[_builtins.int] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        :param pulumi.Input[_builtins.str] managed_key_id: The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         :param pulumi.Input[_builtins.int] min_available_version: Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
         :param pulumi.Input[_builtins.int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[_builtins.int] min_encryption_version: Minimum key version to use for encryption
@@ -378,6 +432,8 @@ class _SecretBackendKeyState:
             pulumi.set(__self__, "auto_rotate_period", auto_rotate_period)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if context is not None:
+            pulumi.set(__self__, "context", context)
         if convergent_encryption is not None:
             pulumi.set(__self__, "convergent_encryption", convergent_encryption)
         if deletion_allowed is not None:
@@ -396,6 +452,10 @@ class _SecretBackendKeyState:
             pulumi.set(__self__, "keys", keys)
         if latest_version is not None:
             pulumi.set(__self__, "latest_version", latest_version)
+        if managed_key_id is not None:
+            pulumi.set(__self__, "managed_key_id", managed_key_id)
+        if managed_key_name is not None:
+            pulumi.set(__self__, "managed_key_name", managed_key_name)
         if min_available_version is not None:
             pulumi.set(__self__, "min_available_version", min_available_version)
         if min_decryption_version is not None:
@@ -456,6 +516,18 @@ class _SecretBackendKeyState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def context(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+        """
+        return pulumi.get(self, "context")
+
+    @context.setter
+    def context(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "context", value)
 
     @_builtins.property
     @pulumi.getter(name="convergentEncryption")
@@ -568,6 +640,30 @@ class _SecretBackendKeyState:
     @latest_version.setter
     def latest_version(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "latest_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @managed_key_id.setter
+    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        """
+        return pulumi.get(self, "managed_key_name")
+
+    @managed_key_name.setter
+    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="minAvailableVersion")
@@ -720,6 +816,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
                  auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 context: Optional[pulumi.Input[_builtins.str]] = None,
                  convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
                  derived: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -727,6 +824,8 @@ class SecretBackendKey(pulumi.CustomResource):
                  hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
                  hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -738,6 +837,8 @@ class SecretBackendKey(pulumi.CustomResource):
         Creates an Encryption Keyring on a Transit Secret Backend for Vault.
 
         ## Example Usage
+
+        ### Basic Example
 
         ```python
         import pulumi
@@ -752,6 +853,47 @@ class SecretBackendKey(pulumi.CustomResource):
         key = vault.transit.SecretBackendKey("key",
             backend=transit.path,
             name="my_key")
+        ```
+
+        ### Example with Key Derivation and Context
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit = vault.Mount("transit",
+            path="transit",
+            type="transit")
+        derived_key = vault.transit.SecretBackendKey("derived_key",
+            backend=transit.path,
+            name="derived_key",
+            derived=True,
+            convergent_encryption=True,
+            context="dGVzdGNvbnRleHQ=",
+            deletion_allowed=True)
+        ```
+
+        ### Example with Managed Key
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit = vault.Mount("transit",
+            path="transit",
+            type="transit")
+        managed_key_by_name = vault.transit.SecretBackendKey("managed_key_by_name",
+            backend=transit.path,
+            name="my_managed_key",
+            type="managed_key",
+            managed_key_name="my_aws_kms_key",
+            deletion_allowed=True)
+        managed_key_by_id = vault.transit.SecretBackendKey("managed_key_by_id",
+            backend=transit.path,
+            name="my_managed_key_by_id",
+            type="managed_key",
+            managed_key_id="12345678-1234-1234-1234-123456789012",
+            deletion_allowed=True)
         ```
 
         ## Import
@@ -769,6 +911,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
@@ -778,6 +921,8 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hybrid_key_type_pqc: The post-quantum algorithm to use for hybrid signatures.
                Currently, ML-DSA is the only supported key type.
         :param pulumi.Input[_builtins.int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
+        :param pulumi.Input[_builtins.str] managed_key_id: The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         :param pulumi.Input[_builtins.int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[_builtins.int] min_encryption_version: Minimum key version to use for encryption
         :param pulumi.Input[_builtins.str] name: The name to identify this key within the backend. Must be unique within the backend.
@@ -805,6 +950,8 @@ class SecretBackendKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic Example
+
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -818,6 +965,47 @@ class SecretBackendKey(pulumi.CustomResource):
         key = vault.transit.SecretBackendKey("key",
             backend=transit.path,
             name="my_key")
+        ```
+
+        ### Example with Key Derivation and Context
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit = vault.Mount("transit",
+            path="transit",
+            type="transit")
+        derived_key = vault.transit.SecretBackendKey("derived_key",
+            backend=transit.path,
+            name="derived_key",
+            derived=True,
+            convergent_encryption=True,
+            context="dGVzdGNvbnRleHQ=",
+            deletion_allowed=True)
+        ```
+
+        ### Example with Managed Key
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transit = vault.Mount("transit",
+            path="transit",
+            type="transit")
+        managed_key_by_name = vault.transit.SecretBackendKey("managed_key_by_name",
+            backend=transit.path,
+            name="my_managed_key",
+            type="managed_key",
+            managed_key_name="my_aws_kms_key",
+            deletion_allowed=True)
+        managed_key_by_id = vault.transit.SecretBackendKey("managed_key_by_id",
+            backend=transit.path,
+            name="my_managed_key_by_id",
+            type="managed_key",
+            managed_key_id="12345678-1234-1234-1234-123456789012",
+            deletion_allowed=True)
         ```
 
         ## Import
@@ -846,6 +1034,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
                  auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
                  backend: Optional[pulumi.Input[_builtins.str]] = None,
+                 context: Optional[pulumi.Input[_builtins.str]] = None,
                  convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
                  derived: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -853,6 +1042,8 @@ class SecretBackendKey(pulumi.CustomResource):
                  hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
                  hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
                  key_size: Optional[pulumi.Input[_builtins.int]] = None,
+                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -873,6 +1064,7 @@ class SecretBackendKey(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["context"] = context
             __props__.__dict__["convergent_encryption"] = convergent_encryption
             __props__.__dict__["deletion_allowed"] = deletion_allowed
             __props__.__dict__["derived"] = derived
@@ -880,6 +1072,8 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__.__dict__["hybrid_key_type_ec"] = hybrid_key_type_ec
             __props__.__dict__["hybrid_key_type_pqc"] = hybrid_key_type_pqc
             __props__.__dict__["key_size"] = key_size
+            __props__.__dict__["managed_key_id"] = managed_key_id
+            __props__.__dict__["managed_key_name"] = managed_key_name
             __props__.__dict__["min_decryption_version"] = min_decryption_version
             __props__.__dict__["min_encryption_version"] = min_encryption_version
             __props__.__dict__["name"] = name
@@ -906,6 +1100,7 @@ class SecretBackendKey(pulumi.CustomResource):
             allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
             auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
             backend: Optional[pulumi.Input[_builtins.str]] = None,
+            context: Optional[pulumi.Input[_builtins.str]] = None,
             convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
             deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
             derived: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -915,6 +1110,8 @@ class SecretBackendKey(pulumi.CustomResource):
             key_size: Optional[pulumi.Input[_builtins.int]] = None,
             keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
             latest_version: Optional[pulumi.Input[_builtins.int]] = None,
+            managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
+            managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
             min_available_version: Optional[pulumi.Input[_builtins.int]] = None,
             min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
             min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
@@ -938,6 +1135,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
@@ -951,6 +1149,8 @@ class SecretBackendKey(pulumi.CustomResource):
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
                * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         :param pulumi.Input[_builtins.int] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
+        :param pulumi.Input[_builtins.str] managed_key_id: The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         :param pulumi.Input[_builtins.int] min_available_version: Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
         :param pulumi.Input[_builtins.int] min_decryption_version: Minimum key version to use for decryption.
         :param pulumi.Input[_builtins.int] min_encryption_version: Minimum key version to use for encryption
@@ -979,6 +1179,7 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
         __props__.__dict__["auto_rotate_period"] = auto_rotate_period
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["context"] = context
         __props__.__dict__["convergent_encryption"] = convergent_encryption
         __props__.__dict__["deletion_allowed"] = deletion_allowed
         __props__.__dict__["derived"] = derived
@@ -988,6 +1189,8 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["key_size"] = key_size
         __props__.__dict__["keys"] = keys
         __props__.__dict__["latest_version"] = latest_version
+        __props__.__dict__["managed_key_id"] = managed_key_id
+        __props__.__dict__["managed_key_name"] = managed_key_name
         __props__.__dict__["min_available_version"] = min_available_version
         __props__.__dict__["min_decryption_version"] = min_decryption_version
         __props__.__dict__["min_encryption_version"] = min_encryption_version
@@ -1026,6 +1229,14 @@ class SecretBackendKey(pulumi.CustomResource):
         The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
+
+    @_builtins.property
+    @pulumi.getter
+    def context(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+        """
+        return pulumi.get(self, "context")
 
     @_builtins.property
     @pulumi.getter(name="convergentEncryption")
@@ -1102,6 +1313,22 @@ class SecretBackendKey(pulumi.CustomResource):
         Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
         """
         return pulumi.get(self, "latest_version")
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyId")
+    def managed_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        """
+        return pulumi.get(self, "managed_key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="managedKeyName")
+    def managed_key_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
+        """
+        return pulumi.get(self, "managed_key_name")
 
     @_builtins.property
     @pulumi.getter(name="minAvailableVersion")

@@ -5,41 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Example Usage
- *
- * You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = new vault.AuthBackend("example", {type: "aws"});
- * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("example", {
- *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
- *     roleArn: "<AWS_ROLE_ARN>",
- *     rotationSchedule: "0 * * * SAT",
- *     rotationWindow: 3600,
- * });
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = new vault.AuthBackend("example", {type: "aws"});
- * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("example", {
- *     backend: example.path,
- *     accessKey: "INSERT_AWS_ACCESS_KEY",
- *     secretKey: "INSERT_AWS_SECRET_KEY",
- *     rotationSchedule: "0 * * * SAT",
- *     rotationWindow: 3600,
- *     allowedStsHeaderValues: [
- *         "X-Custom-Header",
- *         "X-Another-Header",
- *     ],
- * });
- * ```
- *
  * ## Import
  *
  * AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
@@ -156,10 +121,19 @@ export class AuthBackendClient extends pulumi.CustomResource {
      */
     declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
-     * The AWS secret key that Vault should use for the
-     * auth backend.
+     * AWS Secret key with permissions to query AWS APIs.
      */
     declare public readonly secretKey: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     */
+    declare public readonly secretKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     */
+    declare public readonly secretKeyWoVersion: pulumi.Output<number | undefined>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
@@ -208,6 +182,8 @@ export class AuthBackendClient extends pulumi.CustomResource {
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
             resourceInputs["rotationWindow"] = state?.rotationWindow;
             resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["secretKeyWo"] = state?.secretKeyWo;
+            resourceInputs["secretKeyWoVersion"] = state?.secretKeyWoVersion;
             resourceInputs["stsEndpoint"] = state?.stsEndpoint;
             resourceInputs["stsRegion"] = state?.stsRegion;
             resourceInputs["useStsRegionFromClient"] = state?.useStsRegionFromClient;
@@ -229,12 +205,14 @@ export class AuthBackendClient extends pulumi.CustomResource {
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
             resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
+            resourceInputs["secretKeyWo"] = args?.secretKeyWo ? pulumi.secret(args.secretKeyWo) : undefined;
+            resourceInputs["secretKeyWoVersion"] = args?.secretKeyWoVersion;
             resourceInputs["stsEndpoint"] = args?.stsEndpoint;
             resourceInputs["stsRegion"] = args?.stsRegion;
             resourceInputs["useStsRegionFromClient"] = args?.useStsRegionFromClient;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };
+        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey", "secretKeyWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackendClient.__pulumiType, name, resourceInputs, opts);
     }
@@ -324,10 +302,19 @@ export interface AuthBackendClientState {
      */
     rotationWindow?: pulumi.Input<number>;
     /**
-     * The AWS secret key that Vault should use for the
-     * auth backend.
+     * AWS Secret key with permissions to query AWS APIs.
      */
     secretKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     */
+    secretKeyWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     */
+    secretKeyWoVersion?: pulumi.Input<number>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
@@ -432,10 +419,19 @@ export interface AuthBackendClientArgs {
      */
     rotationWindow?: pulumi.Input<number>;
     /**
-     * The AWS secret key that Vault should use for the
-     * auth backend.
+     * AWS Secret key with permissions to query AWS APIs.
      */
     secretKey?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+     */
+    secretKeyWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only `secretKeyWo` field.
+     * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+     */
+    secretKeyWoVersion?: pulumi.Input<number>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.

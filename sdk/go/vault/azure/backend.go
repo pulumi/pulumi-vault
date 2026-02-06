@@ -12,70 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ###
-//
-// You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				SubscriptionId:        pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:              pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				ClientId:              pulumi.String("11111111-2222-3333-4444-333333333333"),
-//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
-//				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
-//				RotationSchedule:      pulumi.String("0 * * * SAT"),
-//				RotationWindow:        pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				SubscriptionId:   pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:         pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				ClientId:         pulumi.String("11111111-2222-3333-4444-333333333333"),
-//				ClientSecret:     pulumi.String("12345678901234567890"),
-//				Environment:      pulumi.String("AzurePublicCloud"),
-//				RotationSchedule: pulumi.String("0 * * * SAT"),
-//				RotationWindow:   pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type Backend struct {
 	pulumi.CustomResourceState
 
@@ -92,7 +28,13 @@ type Backend struct {
 	// The OAuth2 client id to connect to Azure.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The OAuth2 client secret to connect to Azure.
+	// Conflicts with `clientSecretWo`.
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
+	// A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -179,6 +121,9 @@ func NewBackend(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.ClientSecretWo != nil {
+		args.ClientSecretWo = pulumi.ToSecret(args.ClientSecretWo).(pulumi.StringPtrInput)
+	}
 	if args.SubscriptionId != nil {
 		args.SubscriptionId = pulumi.ToSecret(args.SubscriptionId).(pulumi.StringInput)
 	}
@@ -188,6 +133,7 @@ func NewBackend(ctx *pulumi.Context,
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientId",
 		"clientSecret",
+		"clientSecretWo",
 		"subscriptionId",
 		"tenantId",
 	})
@@ -228,7 +174,13 @@ type backendState struct {
 	// The OAuth2 client id to connect to Azure.
 	ClientId *string `pulumi:"clientId"`
 	// The OAuth2 client secret to connect to Azure.
+	// Conflicts with `clientSecretWo`.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -310,7 +262,13 @@ type BackendState struct {
 	// The OAuth2 client id to connect to Azure.
 	ClientId pulumi.StringPtrInput
 	// The OAuth2 client secret to connect to Azure.
+	// Conflicts with `clientSecretWo`.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+	ClientSecretWo pulumi.StringPtrInput
+	// A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
@@ -394,7 +352,13 @@ type backendArgs struct {
 	// The OAuth2 client id to connect to Azure.
 	ClientId *string `pulumi:"clientId"`
 	// The OAuth2 client secret to connect to Azure.
+	// Conflicts with `clientSecretWo`.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
+	// A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// List of headers to allow and pass from the request to the plugin
@@ -475,7 +439,13 @@ type BackendArgs struct {
 	// The OAuth2 client id to connect to Azure.
 	ClientId pulumi.StringPtrInput
 	// The OAuth2 client secret to connect to Azure.
+	// Conflicts with `clientSecretWo`.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+	ClientSecretWo pulumi.StringPtrInput
+	// A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// List of headers to allow and pass from the request to the plugin
@@ -661,8 +631,20 @@ func (o BackendOutput) ClientId() pulumi.StringPtrOutput {
 }
 
 // The OAuth2 client secret to connect to Azure.
+// Conflicts with `clientSecretWo`.
 func (o BackendOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+func (o BackendOutput) ClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
+func (o BackendOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Default lease duration for tokens and secrets in seconds

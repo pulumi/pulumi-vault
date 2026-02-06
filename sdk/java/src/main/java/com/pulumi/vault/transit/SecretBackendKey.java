@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### Basic Example
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -58,6 +60,103 @@ import javax.annotation.Nullable;
  *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
  *             .backend(transit.path())
  *             .name("my_key")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example with Key Derivation and Context
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.transit.SecretBackendKey;
+ * import com.pulumi.vault.transit.SecretBackendKeyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var transit = new Mount("transit", MountArgs.builder()
+ *             .path("transit")
+ *             .type("transit")
+ *             .build());
+ * 
+ *         var derivedKey = new SecretBackendKey("derivedKey", SecretBackendKeyArgs.builder()
+ *             .backend(transit.path())
+ *             .name("derived_key")
+ *             .derived(true)
+ *             .convergentEncryption(true)
+ *             .context("dGVzdGNvbnRleHQ=")
+ *             .deletionAllowed(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example with Managed Key
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.transit.SecretBackendKey;
+ * import com.pulumi.vault.transit.SecretBackendKeyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var transit = new Mount("transit", MountArgs.builder()
+ *             .path("transit")
+ *             .type("transit")
+ *             .build());
+ * 
+ *         var managedKeyByName = new SecretBackendKey("managedKeyByName", SecretBackendKeyArgs.builder()
+ *             .backend(transit.path())
+ *             .name("my_managed_key")
+ *             .type("managed_key")
+ *             .managedKeyName("my_aws_kms_key")
+ *             .deletionAllowed(true)
+ *             .build());
+ * 
+ *         var managedKeyById = new SecretBackendKey("managedKeyById", SecretBackendKeyArgs.builder()
+ *             .backend(transit.path())
+ *             .name("my_managed_key_by_id")
+ *             .type("managed_key")
+ *             .managedKeyId("12345678-1234-1234-1234-123456789012")
+ *             .deletionAllowed(true)
  *             .build());
  * 
  *     }
@@ -121,6 +220,20 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      */
     public Output<String> backend() {
         return this.backend;
+    }
+    /**
+     * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     * 
+     */
+    @Export(name="context", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> context;
+
+    /**
+     * @return Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+     * 
+     */
+    public Output<Optional<String>> context() {
+        return Codegen.optional(this.context);
     }
     /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -255,6 +368,34 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> latestVersion() {
         return this.latestVersion;
+    }
+    /**
+     * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    @Export(name="managedKeyId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> managedKeyId;
+
+    /**
+     * @return The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    public Output<Optional<String>> managedKeyId() {
+        return Codegen.optional(this.managedKeyId);
+    }
+    /**
+     * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    @Export(name="managedKeyName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> managedKeyName;
+
+    /**
+     * @return The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+     * 
+     */
+    public Output<Optional<String>> managedKeyName() {
+        return Codegen.optional(this.managedKeyName);
     }
     /**
      * Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.

@@ -27,6 +27,8 @@ class BackendArgs:
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -61,6 +63,10 @@ class BackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+               Conflicts with `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -113,6 +119,10 @@ class BackendArgs:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -251,12 +261,38 @@ class BackendArgs:
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The OAuth2 client secret to connect to Azure.
+        Conflicts with `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -570,6 +606,8 @@ class _BackendState:
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -605,6 +643,10 @@ class _BackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+               Conflicts with `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -659,6 +701,10 @@ class _BackendState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if delegated_auth_accessors is not None:
@@ -789,12 +835,38 @@ class _BackendState:
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The OAuth2 client secret to connect to Azure.
+        Conflicts with `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
@@ -1134,6 +1206,8 @@ class Backend(pulumi.CustomResource):
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1162,39 +1236,7 @@ class Backend(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ### 
-
-        You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        azure = vault.azure.Backend("azure",
-            subscription_id="11111111-2222-3333-4444-111111111111",
-            tenant_id="11111111-2222-3333-4444-222222222222",
-            client_id="11111111-2222-3333-4444-333333333333",
-            identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        azure = vault.azure.Backend("azure",
-            subscription_id="11111111-2222-3333-4444-111111111111",
-            tenant_id="11111111-2222-3333-4444-222222222222",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
+        Create a Backend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -1203,6 +1245,10 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+               Conflicts with `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -1250,39 +1296,7 @@ class Backend(pulumi.CustomResource):
                  args: BackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ### 
-
-        You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        azure = vault.azure.Backend("azure",
-            subscription_id="11111111-2222-3333-4444-111111111111",
-            tenant_id="11111111-2222-3333-4444-222222222222",
-            client_id="11111111-2222-3333-4444-333333333333",
-            identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        azure = vault.azure.Backend("azure",
-            subscription_id="11111111-2222-3333-4444-111111111111",
-            tenant_id="11111111-2222-3333-4444-222222222222",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
-            rotation_schedule="0 * * * SAT",
-            rotation_window=3600)
-        ```
-
+        Create a Backend resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param BackendArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1304,6 +1318,8 @@ class Backend(pulumi.CustomResource):
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1345,6 +1361,8 @@ class Backend(pulumi.CustomResource):
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["client_secret_wo"] = None if client_secret_wo is None else pulumi.Output.secret(client_secret_wo)
+            __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
@@ -1376,7 +1394,7 @@ class Backend(pulumi.CustomResource):
                 raise TypeError("Missing required property 'tenant_id'")
             __props__.__dict__["tenant_id"] = None if tenant_id is None else pulumi.Output.secret(tenant_id)
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "subscriptionId", "tenantId"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientId", "clientSecret", "clientSecretWo", "subscriptionId", "tenantId"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Backend, __self__).__init__(
             'vault:azure/backend:Backend',
@@ -1395,6 +1413,8 @@ class Backend(pulumi.CustomResource):
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
             delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1435,6 +1455,10 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[_builtins.str] client_id: The OAuth2 client id to connect to Azure.
         :param pulumi.Input[_builtins.str] client_secret: The OAuth2 client secret to connect to Azure.
+               Conflicts with `client_secret_wo`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -1486,6 +1510,8 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["client_secret_wo"] = client_secret_wo
+        __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
@@ -1567,8 +1593,26 @@ class Backend(pulumi.CustomResource):
     def client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The OAuth2 client secret to connect to Azure.
+        Conflicts with `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only client_secret_wo field. Incrementing this value will trigger an update to the client secret.
+        """
+        return pulumi.get(self, "client_secret_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")

@@ -59,6 +59,11 @@ public final class SecretBackendConnectionHana {
      * 
      */
     private @Nullable String username;
+    /**
+     * @return Username generation template.
+     * 
+     */
+    private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionHana() {}
     /**
@@ -125,6 +130,13 @@ public final class SecretBackendConnectionHana {
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
+    /**
+     * @return Username generation template.
+     * 
+     */
+    public Optional<String> usernameTemplate() {
+        return Optional.ofNullable(this.usernameTemplate);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -144,6 +156,7 @@ public final class SecretBackendConnectionHana {
         private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String username;
+        private @Nullable String usernameTemplate;
         public Builder() {}
         public Builder(SecretBackendConnectionHana defaults) {
     	      Objects.requireNonNull(defaults);
@@ -156,6 +169,7 @@ public final class SecretBackendConnectionHana {
     	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.username = defaults.username;
+    	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
         @CustomType.Setter
@@ -212,6 +226,12 @@ public final class SecretBackendConnectionHana {
             this.username = username;
             return this;
         }
+        @CustomType.Setter
+        public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
+            this.usernameTemplate = usernameTemplate;
+            return this;
+        }
         public SecretBackendConnectionHana build() {
             final var _resultValue = new SecretBackendConnectionHana();
             _resultValue.connectionUrl = connectionUrl;
@@ -223,6 +243,7 @@ public final class SecretBackendConnectionHana {
             _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.username = username;
+            _resultValue.usernameTemplate = usernameTemplate;
             return _resultValue;
         }
     }

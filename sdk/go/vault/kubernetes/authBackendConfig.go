@@ -54,6 +54,54 @@ import (
 //
 // ```
 //
+// ### Example Usage with Write-Only JWT
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/kubernetes"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+//				Type: pulumi.String("kubernetes"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
+//				Backend:                   kubernetes.Path,
+//				KubernetesHost:            pulumi.String("http://example.com:443"),
+//				KubernetesCaCert:          pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
+//				TokenReviewerJwtWo:        pulumi.Any(k8sTokenReviewerJwt),
+//				TokenReviewerJwtWoVersion: pulumi.Int(1),
+//				Issuer:                    pulumi.String("api"),
+//				DisableIssValidation:      pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+//   - `tokenReviewerJwtWo` - (Optional) A write-only service account JWT (or other token) used as a bearer token to access the
+//     TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+//     Conflicts with `tokenReviewerJwt`.
+//     **Note**: This property is write-only and will not be read from the API.
+//
 // ## Import
 //
 // Kubernetes authentication backend can be imported using the `path`, e.g.
@@ -83,8 +131,13 @@ type AuthBackendConfig struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayOutput `pulumi:"pemKeys"`
-	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
 	TokenReviewerJwt pulumi.StringPtrOutput `pulumi:"tokenReviewerJwt"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	TokenReviewerJwtWo pulumi.StringPtrOutput `pulumi:"tokenReviewerJwtWo"`
+	// The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+	TokenReviewerJwtWoVersion pulumi.IntPtrOutput `pulumi:"tokenReviewerJwtWoVersion"`
 	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
 	UseAnnotationsAsAliasMetadata pulumi.BoolOutput `pulumi:"useAnnotationsAsAliasMetadata"`
 }
@@ -102,8 +155,12 @@ func NewAuthBackendConfig(ctx *pulumi.Context,
 	if args.TokenReviewerJwt != nil {
 		args.TokenReviewerJwt = pulumi.ToSecret(args.TokenReviewerJwt).(pulumi.StringPtrInput)
 	}
+	if args.TokenReviewerJwtWo != nil {
+		args.TokenReviewerJwtWo = pulumi.ToSecret(args.TokenReviewerJwtWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"tokenReviewerJwt",
+		"tokenReviewerJwtWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -148,8 +205,13 @@ type authBackendConfigState struct {
 	Namespace *string `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
-	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
 	TokenReviewerJwt *string `pulumi:"tokenReviewerJwt"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	TokenReviewerJwtWo *string `pulumi:"tokenReviewerJwtWo"`
+	// The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+	TokenReviewerJwtWoVersion *int `pulumi:"tokenReviewerJwtWoVersion"`
 	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
 	UseAnnotationsAsAliasMetadata *bool `pulumi:"useAnnotationsAsAliasMetadata"`
 }
@@ -174,8 +236,13 @@ type AuthBackendConfigState struct {
 	Namespace pulumi.StringPtrInput
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput
-	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
 	TokenReviewerJwt pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	TokenReviewerJwtWo pulumi.StringPtrInput
+	// The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+	TokenReviewerJwtWoVersion pulumi.IntPtrInput
 	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
 	UseAnnotationsAsAliasMetadata pulumi.BoolPtrInput
 }
@@ -204,8 +271,13 @@ type authBackendConfigArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
-	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
 	TokenReviewerJwt *string `pulumi:"tokenReviewerJwt"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	TokenReviewerJwtWo *string `pulumi:"tokenReviewerJwtWo"`
+	// The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+	TokenReviewerJwtWoVersion *int `pulumi:"tokenReviewerJwtWoVersion"`
 	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
 	UseAnnotationsAsAliasMetadata *bool `pulumi:"useAnnotationsAsAliasMetadata"`
 }
@@ -231,8 +303,13 @@ type AuthBackendConfigArgs struct {
 	Namespace pulumi.StringPtrInput
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput
-	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
 	TokenReviewerJwt pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	TokenReviewerJwtWo pulumi.StringPtrInput
+	// The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+	TokenReviewerJwtWoVersion pulumi.IntPtrInput
 	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
 	UseAnnotationsAsAliasMetadata pulumi.BoolPtrInput
 }
@@ -367,9 +444,20 @@ func (o AuthBackendConfigOutput) PemKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringArrayOutput { return v.PemKeys }).(pulumi.StringArrayOutput)
 }
 
-// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
 func (o AuthBackendConfigOutput) TokenReviewerJwt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.TokenReviewerJwt }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+func (o AuthBackendConfigOutput) TokenReviewerJwtWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.TokenReviewerJwtWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
+func (o AuthBackendConfigOutput) TokenReviewerJwtWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntPtrOutput { return v.TokenReviewerJwtWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`

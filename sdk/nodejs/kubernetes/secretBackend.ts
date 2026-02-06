@@ -21,12 +21,20 @@ import * as utilities from "../utilities";
  *     kubernetesCaCert: std.file({
  *         input: "/path/to/cert",
  *     }).then(invoke => invoke.result),
- *     serviceAccountJwt: std.file({
+ *     serviceAccountJwtWo: std.file({
  *         input: "/path/to/token",
  *     }).then(invoke => invoke.result),
+ *     serviceAccountJwtWoVersion: 1,
  *     disableLocalCaJwt: false,
  * });
  * ```
+ *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `serviceAccountJwtWo` - (Optional) Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value is not stored in state.
+ *   **Note**: This property is write-only and will not be read from the API.
  *
  * ## Import
  *
@@ -171,6 +179,17 @@ export class SecretBackend extends pulumi.CustomResource {
      * is running in Kubernetes.
      */
     declare public readonly serviceAccountJwt: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     */
+    declare public readonly serviceAccountJwtWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    declare public readonly serviceAccountJwtWoVersion: pulumi.Output<number | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -209,6 +228,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["pluginVersion"] = state?.pluginVersion;
             resourceInputs["sealWrap"] = state?.sealWrap;
             resourceInputs["serviceAccountJwt"] = state?.serviceAccountJwt;
+            resourceInputs["serviceAccountJwtWo"] = state?.serviceAccountJwtWo;
+            resourceInputs["serviceAccountJwtWoVersion"] = state?.serviceAccountJwtWoVersion;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             if (args?.path === undefined && !opts.urn) {
@@ -237,10 +258,12 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["pluginVersion"] = args?.pluginVersion;
             resourceInputs["sealWrap"] = args?.sealWrap;
             resourceInputs["serviceAccountJwt"] = args?.serviceAccountJwt ? pulumi.secret(args.serviceAccountJwt) : undefined;
+            resourceInputs["serviceAccountJwtWo"] = args?.serviceAccountJwtWo ? pulumi.secret(args.serviceAccountJwtWo) : undefined;
+            resourceInputs["serviceAccountJwtWoVersion"] = args?.serviceAccountJwtWoVersion;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["serviceAccountJwt"] };
+        const secretOpts = { additionalSecretOutputs: ["serviceAccountJwt", "serviceAccountJwtWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -357,6 +380,17 @@ export interface SecretBackendState {
      * is running in Kubernetes.
      */
     serviceAccountJwt?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     */
+    serviceAccountJwtWo?: pulumi.Input<string>;
+    /**
+     * Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    serviceAccountJwtWoVersion?: pulumi.Input<number>;
 }
 
 /**
@@ -466,4 +500,15 @@ export interface SecretBackendArgs {
      * is running in Kubernetes.
      */
     serviceAccountJwt?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     */
+    serviceAccountJwtWo?: pulumi.Input<string>;
+    /**
+     * Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     */
+    serviceAccountJwtWoVersion?: pulumi.Input<number>;
 }

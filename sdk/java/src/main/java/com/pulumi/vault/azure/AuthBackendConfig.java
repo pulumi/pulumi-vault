@@ -18,96 +18,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## Example Usage
- * 
- * You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.azure.AuthBackendConfig;
- * import com.pulumi.vault.azure.AuthBackendConfigArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()
- *             .type("azure")
- *             .identityTokenKey("example-key")
- *             .build());
- * 
- *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
- *             .backend(example.path())
- *             .tenantId("11111111-2222-3333-4444-555555555555")
- *             .clientId("11111111-2222-3333-4444-555555555555")
- *             .identityTokenAudience("<TOKEN_AUDIENCE>")
- *             .identityTokenTtl("<TOKEN_TTL>")
- *             .rotationSchedule("0 * * * SAT")
- *             .rotationWindow(3600)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.azure.AuthBackendConfig;
- * import com.pulumi.vault.azure.AuthBackendConfigArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()
- *             .type("azure")
- *             .build());
- * 
- *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
- *             .backend(example.path())
- *             .tenantId("11111111-2222-3333-4444-555555555555")
- *             .clientId("11111111-2222-3333-4444-555555555555")
- *             .clientSecret("01234567890123456789")
- *             .resource("https://vault.hashicorp.com")
- *             .rotationSchedule("0 * * * SAT")
- *             .rotationWindow(3600)
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -152,20 +62,52 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The client secret for credentials to query the
-     * Azure APIs.
+     * The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientSecret;
 
     /**
-     * @return The client secret for credentials to query the
-     * Azure APIs.
+     * @return The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
      * 
      */
     public Output<Optional<String>> clientSecret() {
         return Codegen.optional(this.clientSecret);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_secret&#39;. Requires &#39;client_secret_wo_version&#39; to trigger updates.
+     * 
+     */
+    @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with &#39;client_secret&#39;. Requires &#39;client_secret_wo_version&#39; to trigger updates.
+     * 
+     */
+    public Output<Optional<String>> clientSecretWo() {
+        return Codegen.optional(this.clientSecretWo);
+    }
+    /**
+     * Version counter for the write-only client secret.
+     * Increment this value to trigger an update of the client secret in Vault.
+     * Required when using `clientSecretWo`.
+     * 
+     */
+    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version counter for the write-only client secret.
+     * Increment this value to trigger an update of the client secret in Vault.
+     * Required when using `clientSecretWo`.
+     * 
+     */
+    public Output<Optional<Integer>> clientSecretWoVersion() {
+        return Codegen.optional(this.clientSecretWoVersion);
     }
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
@@ -430,6 +372,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
             .additionalSecretOutputs(List.of(
                 "clientId",
                 "clientSecret",
+                "clientSecretWo",
                 "tenantId"
             ))
             .build();

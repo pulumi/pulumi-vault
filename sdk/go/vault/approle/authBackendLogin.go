@@ -12,63 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Logs into Vault using the AppRole auth backend. See the [Vault
-// documentation](https://www.vaultproject.io/docs/auth/approle) for more
-// information.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/approle"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
-//				Type: pulumi.String("approle"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example, err := approle.NewAuthBackendRole(ctx, "example", &approle.AuthBackendRoleArgs{
-//				Backend:  approle.Path,
-//				RoleName: pulumi.String("test-role"),
-//				TokenPolicies: pulumi.StringArray{
-//					pulumi.String("default"),
-//					pulumi.String("dev"),
-//					pulumi.String("prod"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			id, err := approle.NewAuthBackendRoleSecretId(ctx, "id", &approle.AuthBackendRoleSecretIdArgs{
-//				Backend:  approle.Path,
-//				RoleName: example.RoleName,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = approle.NewAuthBackendLogin(ctx, "login", &approle.AuthBackendLoginArgs{
-//				Backend:  approle.Path,
-//				RoleId:   example.RoleId,
-//				SecretId: id.SecretId,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type AuthBackendLogin struct {
 	pulumi.CustomResourceState
 
@@ -98,6 +41,11 @@ type AuthBackendLogin struct {
 	// The secret ID of the role to log in with. Required
 	// unless `bindSecretId` is set to false on the role.
 	SecretId pulumi.StringPtrOutput `pulumi:"secretId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+	SecretIdWo pulumi.StringPtrOutput `pulumi:"secretIdWo"`
+	// The version of the `secretIdWo`. For more info see updating write-only attributes.
+	SecretIdWoVersion pulumi.IntPtrOutput `pulumi:"secretIdWoVersion"`
 }
 
 // NewAuthBackendLogin registers a new resource with the given unique name, arguments, and options.
@@ -113,9 +61,13 @@ func NewAuthBackendLogin(ctx *pulumi.Context,
 	if args.SecretId != nil {
 		args.SecretId = pulumi.ToSecret(args.SecretId).(pulumi.StringPtrInput)
 	}
+	if args.SecretIdWo != nil {
+		args.SecretIdWo = pulumi.ToSecret(args.SecretIdWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientToken",
 		"secretId",
+		"secretIdWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -167,6 +119,11 @@ type authBackendLoginState struct {
 	// The secret ID of the role to log in with. Required
 	// unless `bindSecretId` is set to false on the role.
 	SecretId *string `pulumi:"secretId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+	SecretIdWo *string `pulumi:"secretIdWo"`
+	// The version of the `secretIdWo`. For more info see updating write-only attributes.
+	SecretIdWoVersion *int `pulumi:"secretIdWoVersion"`
 }
 
 type AuthBackendLoginState struct {
@@ -196,6 +153,11 @@ type AuthBackendLoginState struct {
 	// The secret ID of the role to log in with. Required
 	// unless `bindSecretId` is set to false on the role.
 	SecretId pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+	SecretIdWo pulumi.StringPtrInput
+	// The version of the `secretIdWo`. For more info see updating write-only attributes.
+	SecretIdWoVersion pulumi.IntPtrInput
 }
 
 func (AuthBackendLoginState) ElementType() reflect.Type {
@@ -215,6 +177,11 @@ type authBackendLoginArgs struct {
 	// The secret ID of the role to log in with. Required
 	// unless `bindSecretId` is set to false on the role.
 	SecretId *string `pulumi:"secretId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+	SecretIdWo *string `pulumi:"secretIdWo"`
+	// The version of the `secretIdWo`. For more info see updating write-only attributes.
+	SecretIdWoVersion *int `pulumi:"secretIdWoVersion"`
 }
 
 // The set of arguments for constructing a AuthBackendLogin resource.
@@ -231,6 +198,11 @@ type AuthBackendLoginArgs struct {
 	// The secret ID of the role to log in with. Required
 	// unless `bindSecretId` is set to false on the role.
 	SecretId pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+	SecretIdWo pulumi.StringPtrInput
+	// The version of the `secretIdWo`. For more info see updating write-only attributes.
+	SecretIdWoVersion pulumi.IntPtrInput
 }
 
 func (AuthBackendLoginArgs) ElementType() reflect.Type {
@@ -377,6 +349,17 @@ func (o AuthBackendLoginOutput) RoleId() pulumi.StringOutput {
 // unless `bindSecretId` is set to false on the role.
 func (o AuthBackendLoginOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
+func (o AuthBackendLoginOutput) SecretIdWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringPtrOutput { return v.SecretIdWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the `secretIdWo`. For more info see updating write-only attributes.
+func (o AuthBackendLoginOutput) SecretIdWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.IntPtrOutput { return v.SecretIdWoVersion }).(pulumi.IntPtrOutput)
 }
 
 type AuthBackendLoginArrayOutput struct{ *pulumi.OutputState }

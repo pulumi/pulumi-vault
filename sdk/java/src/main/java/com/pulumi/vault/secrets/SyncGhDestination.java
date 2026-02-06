@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncGhDestinationArgs;
 import com.pulumi.vault.secrets.inputs.SyncGhDestinationState;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -47,6 +48,17 @@ import javax.annotation.Nullable;
  *             .repositoryOwner(repoOwner)
  *             .repositoryName("repo-name-example")
  *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .secretsLocation("repository")
+ *             .environmentName("production")
+ *             .allowedIpv4Addresses(            
+ *                 "192.168.1.0/24",
+ *                 "10.0.0.0/8")
+ *             .allowedIpv6Addresses("2001:db8::/32")
+ *             .allowedPorts(            
+ *                 443,
+ *                 80,
+ *                 22)
+ *             .disableStrictNetworking(false)
  *             .build());
  * 
  *     }
@@ -84,6 +96,58 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessToken);
     }
     /**
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedIpv4Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv4Addresses;
+
+    /**
+     * @return Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
+     * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv4Addresses() {
+        return Codegen.optional(this.allowedIpv4Addresses);
+    }
+    /**
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedIpv6Addresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedIpv6Addresses;
+
+    /**
+     * @return Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
+     * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
+     * Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedIpv6Addresses() {
+        return Codegen.optional(this.allowedIpv6Addresses);
+    }
+    /**
+     * Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="allowedPorts", refs={List.class,Integer.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<Integer>> allowedPorts;
+
+    /**
+     * @return Set of allowed ports for outbound connections from Vault to the
+     * destination. If not set, all ports are allowed. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<List<Integer>>> allowedPorts() {
+        return Codegen.optional(this.allowedPorts);
+    }
+    /**
      * The user-defined name of the GitHub App configuration. This is a reference to the name used\
      * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
      * Takes precedence over the `accessToken` field.
@@ -100,6 +164,38 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> appName() {
         return Codegen.optional(this.appName);
+    }
+    /**
+     * If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    @Export(name="disableStrictNetworking", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableStrictNetworking;
+
+    /**
+     * @return If set to `true`, disables strict networking enforcement
+     * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
+     * Defaults to `false`. Requires Vault 1.19+.
+     * 
+     */
+    public Output<Optional<Boolean>> disableStrictNetworking() {
+        return Codegen.optional(this.disableStrictNetworking);
+    }
+    /**
+     * Environment name for the destination. Requires Vault 1.18+.
+     * 
+     */
+    @Export(name="environmentName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> environmentName;
+
+    /**
+     * @return Environment name for the destination. Requires Vault 1.18+.
+     * 
+     */
+    public Output<Optional<String>> environmentName() {
+        return Codegen.optional(this.environmentName);
     }
     /**
      * Determines what level of information is synced as a distinct resource
@@ -119,7 +215,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
     }
     /**
      * The ID of the installation generated by GitHub when the app referenced by the `appName`
-     * was installed in the user’s GitHub account. Can be modified. Necessary if the `appName` field is also provided.
+     * was installed in the user&#39;s GitHub account. Can be modified. Necessary if the `appName` field is also provided.
      * 
      */
     @Export(name="installationId", refs={Integer.class}, tree="[0]")
@@ -127,7 +223,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ID of the installation generated by GitHub when the app referenced by the `appName`
-     * was installed in the user’s GitHub account. Can be modified. Necessary if the `appName` field is also provided.
+     * was installed in the user&#39;s GitHub account. Can be modified. Necessary if the `appName` field is also provided.
      * 
      */
     public Output<Optional<Integer>> installationId() {
@@ -216,6 +312,20 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<String> secretNameTemplate() {
         return this.secretNameTemplate;
+    }
+    /**
+     * Location where secrets are stored in the destination. Requires Vault 1.18+.
+     * 
+     */
+    @Export(name="secretsLocation", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> secretsLocation;
+
+    /**
+     * @return Location where secrets are stored in the destination. Requires Vault 1.18+.
+     * 
+     */
+    public Output<Optional<String>> secretsLocation() {
+        return Codegen.optional(this.secretsLocation);
     }
     /**
      * The type of the secrets destination (`gh`).

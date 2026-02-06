@@ -91,6 +91,12 @@ type AuthBackend struct {
 	//
 	// The `tune` block is used to tune the auth backend:
 	Tune AuthBackendTuneOutput `pulumi:"tune"`
+	// If set to `true`, validates the signature of
+	// the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+	ValidateAssertionSignature pulumi.BoolOutput `pulumi:"validateAssertionSignature"`
+	// If set to `true`, validates the signature of
+	// the SAML response. Defaults to `false`. Requires Vault 1.19+.
+	ValidateResponseSignature pulumi.BoolOutput `pulumi:"validateResponseSignature"`
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -166,6 +172,12 @@ type authBackendState struct {
 	//
 	// The `tune` block is used to tune the auth backend:
 	Tune *AuthBackendTune `pulumi:"tune"`
+	// If set to `true`, validates the signature of
+	// the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+	ValidateAssertionSignature *bool `pulumi:"validateAssertionSignature"`
+	// If set to `true`, validates the signature of
+	// the SAML response. Defaults to `false`. Requires Vault 1.19+.
+	ValidateResponseSignature *bool `pulumi:"validateResponseSignature"`
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -206,6 +218,12 @@ type AuthBackendState struct {
 	//
 	// The `tune` block is used to tune the auth backend:
 	Tune AuthBackendTunePtrInput
+	// If set to `true`, validates the signature of
+	// the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+	ValidateAssertionSignature pulumi.BoolPtrInput
+	// If set to `true`, validates the signature of
+	// the SAML response. Defaults to `false`. Requires Vault 1.19+.
+	ValidateResponseSignature pulumi.BoolPtrInput
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -250,6 +268,12 @@ type authBackendArgs struct {
 	//
 	// The `tune` block is used to tune the auth backend:
 	Tune *AuthBackendTune `pulumi:"tune"`
+	// If set to `true`, validates the signature of
+	// the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+	ValidateAssertionSignature *bool `pulumi:"validateAssertionSignature"`
+	// If set to `true`, validates the signature of
+	// the SAML response. Defaults to `false`. Requires Vault 1.19+.
+	ValidateResponseSignature *bool `pulumi:"validateResponseSignature"`
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -291,6 +315,12 @@ type AuthBackendArgs struct {
 	//
 	// The `tune` block is used to tune the auth backend:
 	Tune AuthBackendTunePtrInput
+	// If set to `true`, validates the signature of
+	// the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+	ValidateAssertionSignature pulumi.BoolPtrInput
+	// If set to `true`, validates the signature of
+	// the SAML response. Defaults to `false`. Requires Vault 1.19+.
+	ValidateResponseSignature pulumi.BoolPtrInput
 	// If set to `true`, logs additional, potentially sensitive
 	// information during the SAML exchange according to the current logging level. Not
 	// recommended for production.
@@ -448,6 +478,18 @@ func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
 // The `tune` block is used to tune the auth backend:
 func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
 	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
+}
+
+// If set to `true`, validates the signature of
+// the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
+func (o AuthBackendOutput) ValidateAssertionSignature() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.ValidateAssertionSignature }).(pulumi.BoolOutput)
+}
+
+// If set to `true`, validates the signature of
+// the SAML response. Defaults to `false`. Requires Vault 1.19+.
+func (o AuthBackendOutput) ValidateResponseSignature() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolOutput { return v.ValidateResponseSignature }).(pulumi.BoolOutput)
 }
 
 // If set to `true`, logs additional, potentially sensitive

@@ -57,14 +57,14 @@ namespace Pulumi.Vault.Managed.Inputs
         /// <summary>
         /// The id of a PKCS#11 key to use
         /// </summary>
-        [Input("keyId", required: true)]
-        public Input<string> KeyId { get; set; } = null!;
+        [Input("keyId")]
+        public Input<string>? KeyId { get; set; }
 
         /// <summary>
         /// The label of the key to use
         /// </summary>
-        [Input("keyLabel", required: true)]
-        public Input<string> KeyLabel { get; set; } = null!;
+        [Input("keyLabel")]
+        public Input<string>? KeyLabel { get; set; }
 
         /// <summary>
         /// The name of the KmsLibrary stanza to use from Vault's config to lookup the local library path

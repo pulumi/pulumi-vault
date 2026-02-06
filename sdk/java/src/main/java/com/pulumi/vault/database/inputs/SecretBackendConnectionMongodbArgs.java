@@ -124,6 +124,36 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
+     * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCa")
+    private @Nullable Output<String> tlsCa;
+
+    /**
+     * @return The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+
+    /**
+     * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCertificateKey")
+    private @Nullable Output<String> tlsCertificateKey;
+
+    /**
+     * @return The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+
+    /**
      * The root credential username used in the connection URL
      * 
      */
@@ -153,6 +183,21 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         return Optional.ofNullable(this.usernameTemplate);
     }
 
+    /**
+     * Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    @Import(name="writeConcern")
+    private @Nullable Output<String> writeConcern;
+
+    /**
+     * @return Specifies the MongoDB write concern for Vault management operations.
+     * 
+     */
+    public Optional<Output<String>> writeConcern() {
+        return Optional.ofNullable(this.writeConcern);
+    }
+
     private SecretBackendConnectionMongodbArgs() {}
 
     private SecretBackendConnectionMongodbArgs(SecretBackendConnectionMongodbArgs $) {
@@ -163,8 +208,11 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         this.password = $.password;
         this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
+        this.tlsCa = $.tlsCa;
+        this.tlsCertificateKey = $.tlsCertificateKey;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
+        this.writeConcern = $.writeConcern;
     }
 
     public static Builder builder() {
@@ -335,6 +383,48 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
+         * @param tlsCa The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(@Nullable Output<String> tlsCa) {
+            $.tlsCa = tlsCa;
+            return this;
+        }
+
+        /**
+         * @param tlsCa The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(String tlsCa) {
+            return tlsCa(Output.of(tlsCa));
+        }
+
+        /**
+         * @param tlsCertificateKey The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(@Nullable Output<String> tlsCertificateKey) {
+            $.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+
+        /**
+         * @param tlsCertificateKey The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(String tlsCertificateKey) {
+            return tlsCertificateKey(Output.of(tlsCertificateKey));
+        }
+
+        /**
          * @param username The root credential username used in the connection URL
          * 
          * @return builder
@@ -374,6 +464,27 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
          */
         public Builder usernameTemplate(String usernameTemplate) {
             return usernameTemplate(Output.of(usernameTemplate));
+        }
+
+        /**
+         * @param writeConcern Specifies the MongoDB write concern for Vault management operations.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeConcern(@Nullable Output<String> writeConcern) {
+            $.writeConcern = writeConcern;
+            return this;
+        }
+
+        /**
+         * @param writeConcern Specifies the MongoDB write concern for Vault management operations.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeConcern(String writeConcern) {
+            return writeConcern(Output.of(writeConcern));
         }
 
         public SecretBackendConnectionMongodbArgs build() {

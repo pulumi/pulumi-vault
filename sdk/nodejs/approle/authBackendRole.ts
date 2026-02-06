@@ -79,6 +79,10 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     declare public readonly bindSecretId: pulumi.Output<boolean | undefined>;
     /**
+     * If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     */
+    declare public readonly localSecretIds: pulumi.Output<boolean | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -163,6 +167,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["aliasMetadata"] = state?.aliasMetadata;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["bindSecretId"] = state?.bindSecretId;
+            resourceInputs["localSecretIds"] = state?.localSecretIds;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["roleId"] = state?.roleId;
             resourceInputs["roleName"] = state?.roleName;
@@ -186,6 +191,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
             resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["bindSecretId"] = args?.bindSecretId;
+            resourceInputs["localSecretIds"] = args?.localSecretIds;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["roleId"] = args?.roleId;
             resourceInputs["roleName"] = args?.roleName;
@@ -226,6 +232,10 @@ export interface AuthBackendRoleState {
      * presented when logging in using this AppRole. Defaults to `true`.
      */
     bindSecretId?: pulumi.Input<boolean>;
+    /**
+     * If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     */
+    localSecretIds?: pulumi.Input<boolean>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -315,6 +325,10 @@ export interface AuthBackendRoleArgs {
      * presented when logging in using this AppRole. Defaults to `true`.
      */
     bindSecretId?: pulumi.Input<boolean>;
+    /**
+     * If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
+     */
+    localSecretIds?: pulumi.Input<boolean>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

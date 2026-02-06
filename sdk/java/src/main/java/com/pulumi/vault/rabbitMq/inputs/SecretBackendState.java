@@ -314,6 +314,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
     /**
      * Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      * 
      */
     @Import(name="password")
@@ -321,6 +322,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
     /**
      * @return Specifies the RabbitMQ management administrator password.
+     * Conflicts with `passwordWo`.
      * 
      */
     public Optional<Output<String>> password() {
@@ -340,6 +342,38 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<String>> passwordPolicy() {
         return Optional.ofNullable(this.passwordPolicy);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
 
     /**
@@ -460,6 +494,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.passthroughRequestHeaders = $.passthroughRequestHeaders;
         this.password = $.password;
         this.passwordPolicy = $.passwordPolicy;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.path = $.path;
         this.pluginVersion = $.pluginVersion;
         this.sealWrap = $.sealWrap;
@@ -955,6 +991,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param password Specifies the RabbitMQ management administrator password.
+         * Conflicts with `passwordWo`.
          * 
          * @return builder
          * 
@@ -966,6 +1003,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param password Specifies the RabbitMQ management administrator password.
+         * Conflicts with `passwordWo`.
          * 
          * @return builder
          * 
@@ -993,6 +1031,50 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder passwordPolicy(String passwordPolicy) {
             return passwordPolicy(Output.of(passwordPolicy));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

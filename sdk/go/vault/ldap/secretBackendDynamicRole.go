@@ -44,21 +44,13 @@ import (
 // objectClass: person
 // objectClass: top
 // cn: learn
-// sn: {{.Password | utf16le | base64}}
+// sn: {{ random 20 }}
 // memberOf: cn=dev,ou=groups,dc=learn,dc=example
 // userPassword: {{.Password}}
 // `),
 //
-//	DeletionLdif: pulumi.String(`dn: cn={{.Username}},ou=users,dc=learn,dc=example
-//
-// changetype: delete
-//
-//	rollback_ldif = <<EOT
-//
-// dn: cn={{.Username}},ou=users,dc=learn,dc=example
-// changetype: delete
-// `),
-//
+//				DeletionLdif: pulumi.String("dn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n"),
+//				RollbackLdif: pulumi.String("dn: cn={{.Username}},ou=users,dc=learn,dc=example\nchangetype: delete\n"),
 //			})
 //			if err != nil {
 //				return err

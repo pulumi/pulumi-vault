@@ -107,6 +107,10 @@ type CertAuthBackendRole struct {
 	// certificate has not been revoked.
 	// Requires Vault version 1.13+.
 	OcspFailOpen pulumi.BoolOutput `pulumi:"ocspFailOpen"`
+	// The number of retries to attempt when
+	// connecting to an OCSP server. Defaults to 4 retries.
+	// Must be a non-negative value. Requires Vault version 1.16+.
+	OcspMaxRetries pulumi.IntPtrOutput `pulumi:"ocspMaxRetries"`
 	// If set to true, rather than
 	// accepting the first successful OCSP response, query all servers and consider
 	// the certificate valid only if all servers agree.
@@ -117,6 +121,11 @@ type CertAuthBackendRole struct {
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
 	OcspServersOverrides pulumi.StringArrayOutput `pulumi:"ocspServersOverrides"`
+	// The maximum age in seconds of the
+	// 'thisUpdate' field in an OCSP response before it is considered too old.
+	// Defaults to 0 (disabled). Must be a non-negative value.
+	// Requires Vault version 1.16+.
+	OcspThisUpdateMaxAge pulumi.IntPtrOutput `pulumi:"ocspThisUpdateMaxAge"`
 	// TLS extensions required on
 	// client certificates
 	RequiredExtensions pulumi.StringArrayOutput `pulumi:"requiredExtensions"`
@@ -213,6 +222,10 @@ type certAuthBackendRoleState struct {
 	// certificate has not been revoked.
 	// Requires Vault version 1.13+.
 	OcspFailOpen *bool `pulumi:"ocspFailOpen"`
+	// The number of retries to attempt when
+	// connecting to an OCSP server. Defaults to 4 retries.
+	// Must be a non-negative value. Requires Vault version 1.16+.
+	OcspMaxRetries *int `pulumi:"ocspMaxRetries"`
 	// If set to true, rather than
 	// accepting the first successful OCSP response, query all servers and consider
 	// the certificate valid only if all servers agree.
@@ -223,6 +236,11 @@ type certAuthBackendRoleState struct {
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
 	OcspServersOverrides []string `pulumi:"ocspServersOverrides"`
+	// The maximum age in seconds of the
+	// 'thisUpdate' field in an OCSP response before it is considered too old.
+	// Defaults to 0 (disabled). Must be a non-negative value.
+	// Requires Vault version 1.16+.
+	OcspThisUpdateMaxAge *int `pulumi:"ocspThisUpdateMaxAge"`
 	// TLS extensions required on
 	// client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
@@ -287,6 +305,10 @@ type CertAuthBackendRoleState struct {
 	// certificate has not been revoked.
 	// Requires Vault version 1.13+.
 	OcspFailOpen pulumi.BoolPtrInput
+	// The number of retries to attempt when
+	// connecting to an OCSP server. Defaults to 4 retries.
+	// Must be a non-negative value. Requires Vault version 1.16+.
+	OcspMaxRetries pulumi.IntPtrInput
 	// If set to true, rather than
 	// accepting the first successful OCSP response, query all servers and consider
 	// the certificate valid only if all servers agree.
@@ -297,6 +319,11 @@ type CertAuthBackendRoleState struct {
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
 	OcspServersOverrides pulumi.StringArrayInput
+	// The maximum age in seconds of the
+	// 'thisUpdate' field in an OCSP response before it is considered too old.
+	// Defaults to 0 (disabled). Must be a non-negative value.
+	// Requires Vault version 1.16+.
+	OcspThisUpdateMaxAge pulumi.IntPtrInput
 	// TLS extensions required on
 	// client certificates
 	RequiredExtensions pulumi.StringArrayInput
@@ -365,6 +392,10 @@ type certAuthBackendRoleArgs struct {
 	// certificate has not been revoked.
 	// Requires Vault version 1.13+.
 	OcspFailOpen *bool `pulumi:"ocspFailOpen"`
+	// The number of retries to attempt when
+	// connecting to an OCSP server. Defaults to 4 retries.
+	// Must be a non-negative value. Requires Vault version 1.16+.
+	OcspMaxRetries *int `pulumi:"ocspMaxRetries"`
 	// If set to true, rather than
 	// accepting the first successful OCSP response, query all servers and consider
 	// the certificate valid only if all servers agree.
@@ -375,6 +406,11 @@ type certAuthBackendRoleArgs struct {
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
 	OcspServersOverrides []string `pulumi:"ocspServersOverrides"`
+	// The maximum age in seconds of the
+	// 'thisUpdate' field in an OCSP response before it is considered too old.
+	// Defaults to 0 (disabled). Must be a non-negative value.
+	// Requires Vault version 1.16+.
+	OcspThisUpdateMaxAge *int `pulumi:"ocspThisUpdateMaxAge"`
 	// TLS extensions required on
 	// client certificates
 	RequiredExtensions []string `pulumi:"requiredExtensions"`
@@ -440,6 +476,10 @@ type CertAuthBackendRoleArgs struct {
 	// certificate has not been revoked.
 	// Requires Vault version 1.13+.
 	OcspFailOpen pulumi.BoolPtrInput
+	// The number of retries to attempt when
+	// connecting to an OCSP server. Defaults to 4 retries.
+	// Must be a non-negative value. Requires Vault version 1.16+.
+	OcspMaxRetries pulumi.IntPtrInput
 	// If set to true, rather than
 	// accepting the first successful OCSP response, query all servers and consider
 	// the certificate valid only if all servers agree.
@@ -450,6 +490,11 @@ type CertAuthBackendRoleArgs struct {
 	// AuthorityInformationAccess extension on the certificate being inspected.
 	// Requires Vault version 1.13+.
 	OcspServersOverrides pulumi.StringArrayInput
+	// The maximum age in seconds of the
+	// 'thisUpdate' field in an OCSP response before it is considered too old.
+	// Defaults to 0 (disabled). Must be a non-negative value.
+	// Requires Vault version 1.16+.
+	OcspThisUpdateMaxAge pulumi.IntPtrInput
 	// TLS extensions required on
 	// client certificates
 	RequiredExtensions pulumi.StringArrayInput
@@ -646,6 +691,13 @@ func (o CertAuthBackendRoleOutput) OcspFailOpen() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.BoolOutput { return v.OcspFailOpen }).(pulumi.BoolOutput)
 }
 
+// The number of retries to attempt when
+// connecting to an OCSP server. Defaults to 4 retries.
+// Must be a non-negative value. Requires Vault version 1.16+.
+func (o CertAuthBackendRoleOutput) OcspMaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.OcspMaxRetries }).(pulumi.IntPtrOutput)
+}
+
 // If set to true, rather than
 // accepting the first successful OCSP response, query all servers and consider
 // the certificate valid only if all servers agree.
@@ -660,6 +712,14 @@ func (o CertAuthBackendRoleOutput) OcspQueryAllServers() pulumi.BoolOutput {
 // Requires Vault version 1.13+.
 func (o CertAuthBackendRoleOutput) OcspServersOverrides() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.OcspServersOverrides }).(pulumi.StringArrayOutput)
+}
+
+// The maximum age in seconds of the
+// 'thisUpdate' field in an OCSP response before it is considered too old.
+// Defaults to 0 (disabled). Must be a non-negative value.
+// Requires Vault version 1.16+.
+func (o CertAuthBackendRoleOutput) OcspThisUpdateMaxAge() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.OcspThisUpdateMaxAge }).(pulumi.IntPtrOutput)
 }
 
 // TLS extensions required on

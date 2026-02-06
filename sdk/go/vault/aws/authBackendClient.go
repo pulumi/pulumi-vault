@@ -11,83 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/aws"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
-//				Type: pulumi.String("aws"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = aws.NewAuthBackendClient(ctx, "example", &aws.AuthBackendClientArgs{
-//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
-//				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
-//				RoleArn:               pulumi.String("<AWS_ROLE_ARN>"),
-//				RotationSchedule:      pulumi.String("0 * * * SAT"),
-//				RotationWindow:        pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/aws"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
-//				Type: pulumi.String("aws"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = aws.NewAuthBackendClient(ctx, "example", &aws.AuthBackendClientArgs{
-//				Backend:          example.Path,
-//				AccessKey:        pulumi.String("INSERT_AWS_ACCESS_KEY"),
-//				SecretKey:        pulumi.String("INSERT_AWS_SECRET_KEY"),
-//				RotationSchedule: pulumi.String("0 * * * SAT"),
-//				RotationWindow:   pulumi.Int(3600),
-//				AllowedStsHeaderValues: pulumi.StringArray{
-//					pulumi.String("X-Custom-Header"),
-//					pulumi.String("X-Another-Header"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
@@ -147,9 +70,14 @@ type AuthBackendClient struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
-	// The AWS secret key that Vault should use for the
-	// auth backend.
+	// AWS Secret key with permissions to query AWS APIs.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+	SecretKeyWo pulumi.StringPtrOutput `pulumi:"secretKeyWo"`
+	// Version counter for the write-only `secretKeyWo` field.
+	// Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+	SecretKeyWoVersion pulumi.IntPtrOutput `pulumi:"secretKeyWoVersion"`
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
@@ -177,9 +105,13 @@ func NewAuthBackendClient(ctx *pulumi.Context,
 	if args.SecretKey != nil {
 		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrInput)
 	}
+	if args.SecretKeyWo != nil {
+		args.SecretKeyWo = pulumi.ToSecret(args.SecretKeyWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"accessKey",
 		"secretKey",
+		"secretKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -254,9 +186,14 @@ type authBackendClientState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
-	// The AWS secret key that Vault should use for the
-	// auth backend.
+	// AWS Secret key with permissions to query AWS APIs.
 	SecretKey *string `pulumi:"secretKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+	SecretKeyWo *string `pulumi:"secretKeyWo"`
+	// Version counter for the write-only `secretKeyWo` field.
+	// Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+	SecretKeyWoVersion *int `pulumi:"secretKeyWoVersion"`
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
@@ -321,9 +258,14 @@ type AuthBackendClientState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
-	// The AWS secret key that Vault should use for the
-	// auth backend.
+	// AWS Secret key with permissions to query AWS APIs.
 	SecretKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+	SecretKeyWo pulumi.StringPtrInput
+	// Version counter for the write-only `secretKeyWo` field.
+	// Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+	SecretKeyWoVersion pulumi.IntPtrInput
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint pulumi.StringPtrInput
@@ -392,9 +334,14 @@ type authBackendClientArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
-	// The AWS secret key that Vault should use for the
-	// auth backend.
+	// AWS Secret key with permissions to query AWS APIs.
 	SecretKey *string `pulumi:"secretKey"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+	SecretKeyWo *string `pulumi:"secretKeyWo"`
+	// Version counter for the write-only `secretKeyWo` field.
+	// Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+	SecretKeyWoVersion *int `pulumi:"secretKeyWoVersion"`
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
@@ -460,9 +407,14 @@ type AuthBackendClientArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
-	// The AWS secret key that Vault should use for the
-	// auth backend.
+	// AWS Secret key with permissions to query AWS APIs.
 	SecretKey pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+	SecretKeyWo pulumi.StringPtrInput
+	// Version counter for the write-only `secretKeyWo` field.
+	// Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+	SecretKeyWoVersion pulumi.IntPtrInput
 	// Override the URL Vault uses when making STS API
 	// calls.
 	StsEndpoint pulumi.StringPtrInput
@@ -658,10 +610,21 @@ func (o AuthBackendClientOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
-// The AWS secret key that Vault should use for the
-// auth backend.
+// AWS Secret key with permissions to query AWS APIs.
 func (o AuthBackendClientOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
+func (o AuthBackendClientOutput) SecretKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.SecretKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only `secretKeyWo` field.
+// Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
+func (o AuthBackendClientOutput) SecretKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.IntPtrOutput { return v.SecretKeyWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Override the URL Vault uses when making STS API

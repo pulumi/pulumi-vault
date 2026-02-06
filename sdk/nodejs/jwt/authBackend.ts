@@ -7,65 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Provides a resource for managing an
- * [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
- *
- * ## Example Usage
- *
- * Manage JWT auth backend:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = new vault.jwt.AuthBackend("example", {
- *     description: "Demonstration of the Terraform JWT auth backend",
- *     path: "jwt",
- *     oidcDiscoveryUrl: "https://myco.auth0.com/",
- *     boundIssuer: "https://myco.auth0.com/",
- * });
- * ```
- *
- * Manage OIDC auth backend:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const example = new vault.jwt.AuthBackend("example", {
- *     description: "Demonstration of the Terraform JWT auth backend",
- *     path: "oidc",
- *     type: "oidc",
- *     oidcDiscoveryUrl: "https://myco.auth0.com/",
- *     oidcClientId: "1234567890",
- *     oidcClientSecret: "secret123456",
- *     boundIssuer: "https://myco.auth0.com/",
- *     tune: {
- *         listingVisibility: "unauth",
- *     },
- * });
- * ```
- *
- * Configuring the auth backend with a `provider_config:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const gsuite = new vault.jwt.AuthBackend("gsuite", {
- *     description: "OIDC backend",
- *     oidcDiscoveryUrl: "https://accounts.google.com",
- *     path: "oidc",
- *     type: "oidc",
- *     providerConfig: {
- *         provider: "gsuite",
- *         fetch_groups: "true",
- *         fetch_user_info: "true",
- *         groups_recurse_max_depth: "1",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * JWT auth backend can be imported using the `path`, e.g.
@@ -172,9 +113,18 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly oidcClientId: pulumi.Output<string | undefined>;
     /**
-     * Client Secret used for OIDC backends
+     * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
     declare public readonly oidcClientSecret: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+     */
+    declare public readonly oidcClientSecretWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+     */
+    declare public readonly oidcClientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      */
@@ -233,6 +183,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["namespaceInState"] = state?.namespaceInState;
             resourceInputs["oidcClientId"] = state?.oidcClientId;
             resourceInputs["oidcClientSecret"] = state?.oidcClientSecret;
+            resourceInputs["oidcClientSecretWo"] = state?.oidcClientSecretWo;
+            resourceInputs["oidcClientSecretWoVersion"] = state?.oidcClientSecretWoVersion;
             resourceInputs["oidcDiscoveryCaPem"] = state?.oidcDiscoveryCaPem;
             resourceInputs["oidcDiscoveryUrl"] = state?.oidcDiscoveryUrl;
             resourceInputs["oidcResponseMode"] = state?.oidcResponseMode;
@@ -257,6 +209,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["namespaceInState"] = args?.namespaceInState;
             resourceInputs["oidcClientId"] = args?.oidcClientId;
             resourceInputs["oidcClientSecret"] = args?.oidcClientSecret ? pulumi.secret(args.oidcClientSecret) : undefined;
+            resourceInputs["oidcClientSecretWo"] = args?.oidcClientSecretWo ? pulumi.secret(args.oidcClientSecretWo) : undefined;
+            resourceInputs["oidcClientSecretWoVersion"] = args?.oidcClientSecretWoVersion;
             resourceInputs["oidcDiscoveryCaPem"] = args?.oidcDiscoveryCaPem;
             resourceInputs["oidcDiscoveryUrl"] = args?.oidcDiscoveryUrl;
             resourceInputs["oidcResponseMode"] = args?.oidcResponseMode;
@@ -268,7 +222,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["oidcClientSecret"] };
+        const secretOpts = { additionalSecretOutputs: ["oidcClientSecret", "oidcClientSecretWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -343,9 +297,18 @@ export interface AuthBackendState {
      */
     oidcClientId?: pulumi.Input<string>;
     /**
-     * Client Secret used for OIDC backends
+     * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
     oidcClientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+     */
+    oidcClientSecretWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+     */
+    oidcClientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      */
@@ -442,9 +405,18 @@ export interface AuthBackendArgs {
      */
     oidcClientId?: pulumi.Input<string>;
     /**
-     * Client Secret used for OIDC backends
+     * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
     oidcClientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
+     */
+    oidcClientSecretWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
+     */
+    oidcClientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      */

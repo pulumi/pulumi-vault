@@ -401,6 +401,42 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.serviceAccountJwt);
     }
 
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     * 
+     */
+    @Import(name="serviceAccountJwtWo")
+    private @Nullable Output<String> serviceAccountJwtWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+     * 
+     */
+    public Optional<Output<String>> serviceAccountJwtWo() {
+        return Optional.ofNullable(this.serviceAccountJwtWo);
+    }
+
+    /**
+     * Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    @Import(name="serviceAccountJwtWoVersion")
+    private @Nullable Output<Integer> serviceAccountJwtWoVersion;
+
+    /**
+     * @return Version counter for `serviceAccountJwtWo`. Increment to force an update.
+     * For more information about write-only attributes, see
+     * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+     * 
+     */
+    public Optional<Output<Integer>> serviceAccountJwtWoVersion() {
+        return Optional.ofNullable(this.serviceAccountJwtWoVersion);
+    }
+
     private SecretBackendState() {}
 
     private SecretBackendState(SecretBackendState $) {
@@ -428,6 +464,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.pluginVersion = $.pluginVersion;
         this.sealWrap = $.sealWrap;
         this.serviceAccountJwt = $.serviceAccountJwt;
+        this.serviceAccountJwtWo = $.serviceAccountJwtWo;
+        this.serviceAccountJwtWoVersion = $.serviceAccountJwtWoVersion;
     }
 
     public static Builder builder() {
@@ -1032,6 +1070,54 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder serviceAccountJwt(String serviceAccountJwt) {
             return serviceAccountJwt(Output.of(serviceAccountJwt));
+        }
+
+        /**
+         * @param serviceAccountJwtWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJwtWo(@Nullable Output<String> serviceAccountJwtWo) {
+            $.serviceAccountJwtWo = serviceAccountJwtWo;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountJwtWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJwtWo(String serviceAccountJwtWo) {
+            return serviceAccountJwtWo(Output.of(serviceAccountJwtWo));
+        }
+
+        /**
+         * @param serviceAccountJwtWoVersion Version counter for `serviceAccountJwtWo`. Increment to force an update.
+         * For more information about write-only attributes, see
+         * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJwtWoVersion(@Nullable Output<Integer> serviceAccountJwtWoVersion) {
+            $.serviceAccountJwtWoVersion = serviceAccountJwtWoVersion;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountJwtWoVersion Version counter for `serviceAccountJwtWo`. Increment to force an update.
+         * For more information about write-only attributes, see
+         * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJwtWoVersion(Integer serviceAccountJwtWoVersion) {
+            return serviceAccountJwtWoVersion(Output.of(serviceAccountJwtWoVersion));
         }
 
         public SecretBackendState build() {

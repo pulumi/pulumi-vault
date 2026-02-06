@@ -86,6 +86,14 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? RotationWindow;
         /// <summary>
+        /// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCa;
+        /// <summary>
+        /// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCertificateKey;
+        /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
@@ -98,6 +106,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// initial configuration or not.
         /// </summary>
         public readonly bool? VerifyConnection;
+        /// <summary>
+        /// Specifies the MongoDB write concern for Vault management operations.
+        /// </summary>
+        public readonly string? WriteConcern;
 
         [OutputConstructor]
         private SecretsMountMongodb(
@@ -133,11 +145,17 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? rotationWindow,
 
+            string? tlsCa,
+
+            string? tlsCertificateKey,
+
             string? username,
 
             string? usernameTemplate,
 
-            bool? verifyConnection)
+            bool? verifyConnection,
+
+            string? writeConcern)
         {
             AllowedRoles = allowedRoles;
             ConnectionUrl = connectionUrl;
@@ -155,9 +173,12 @@ namespace Pulumi.Vault.Database.Outputs
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
+            TlsCa = tlsCa;
+            TlsCertificateKey = tlsCertificateKey;
             Username = username;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;
+            WriteConcern = writeConcern;
         }
     }
 }

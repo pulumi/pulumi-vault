@@ -16,6 +16,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic Example
+//
 // ```go
 // package main
 //
@@ -52,6 +54,93 @@ import (
 //
 // ```
 //
+// ### Example with Key Derivation and Context
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transit"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+//				Path: pulumi.String("transit"),
+//				Type: pulumi.String("transit"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit.NewSecretBackendKey(ctx, "derived_key", &transit.SecretBackendKeyArgs{
+//				Backend:              transit.Path,
+//				Name:                 pulumi.String("derived_key"),
+//				Derived:              pulumi.Bool(true),
+//				ConvergentEncryption: pulumi.Bool(true),
+//				Context:              pulumi.String("dGVzdGNvbnRleHQ="),
+//				DeletionAllowed:      pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with Managed Key
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transit"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+//				Path: pulumi.String("transit"),
+//				Type: pulumi.String("transit"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit.NewSecretBackendKey(ctx, "managed_key_by_name", &transit.SecretBackendKeyArgs{
+//				Backend:         transit.Path,
+//				Name:            pulumi.String("my_managed_key"),
+//				Type:            pulumi.String("managed_key"),
+//				ManagedKeyName:  pulumi.String("my_aws_kms_key"),
+//				DeletionAllowed: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit.NewSecretBackendKey(ctx, "managed_key_by_id", &transit.SecretBackendKeyArgs{
+//				Backend:         transit.Path,
+//				Name:            pulumi.String("my_managed_key_by_id"),
+//				Type:            pulumi.String("managed_key"),
+//				ManagedKeyId:    pulumi.String("12345678-1234-1234-1234-123456789012"),
+//				DeletionAllowed: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Transit secret backend keys can be imported using the `path`, e.g.
@@ -70,6 +159,8 @@ type SecretBackendKey struct {
 	AutoRotatePeriod pulumi.IntOutput `pulumi:"autoRotatePeriod"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+	Context pulumi.StringPtrOutput `pulumi:"context"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption pulumi.BoolPtrOutput `pulumi:"convergentEncryption"`
 	// Specifies if the key is allowed to be deleted.
@@ -92,6 +183,10 @@ type SecretBackendKey struct {
 	Keys pulumi.StringMapArrayOutput `pulumi:"keys"`
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion pulumi.IntOutput `pulumi:"latestVersion"`
+	// The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyId pulumi.StringPtrOutput `pulumi:"managedKeyId"`
+	// The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyName pulumi.StringPtrOutput `pulumi:"managedKeyName"`
 	// Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
 	MinAvailableVersion pulumi.IntOutput `pulumi:"minAvailableVersion"`
 	// Minimum key version to use for decryption.
@@ -166,6 +261,8 @@ type secretBackendKeyState struct {
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
+	// Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+	Context *string `pulumi:"context"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption *bool `pulumi:"convergentEncryption"`
 	// Specifies if the key is allowed to be deleted.
@@ -188,6 +285,10 @@ type secretBackendKeyState struct {
 	Keys []map[string]string `pulumi:"keys"`
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion *int `pulumi:"latestVersion"`
+	// The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
 	MinAvailableVersion *int `pulumi:"minAvailableVersion"`
 	// Minimum key version to use for decryption.
@@ -230,6 +331,8 @@ type SecretBackendKeyState struct {
 	AutoRotatePeriod pulumi.IntPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
+	// Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+	Context pulumi.StringPtrInput
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption pulumi.BoolPtrInput
 	// Specifies if the key is allowed to be deleted.
@@ -252,6 +355,10 @@ type SecretBackendKeyState struct {
 	Keys pulumi.StringMapArrayInput
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion pulumi.IntPtrInput
+	// The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyName pulumi.StringPtrInput
 	// Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
 	MinAvailableVersion pulumi.IntPtrInput
 	// Minimum key version to use for decryption.
@@ -298,6 +405,8 @@ type secretBackendKeyArgs struct {
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+	Context *string `pulumi:"context"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption *bool `pulumi:"convergentEncryption"`
 	// Specifies if the key is allowed to be deleted.
@@ -314,6 +423,10 @@ type secretBackendKeyArgs struct {
 	HybridKeyTypePqc *string `pulumi:"hybridKeyTypePqc"`
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize *int `pulumi:"keySize"`
+	// The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyId *string `pulumi:"managedKeyId"`
+	// The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// Minimum key version to use for decryption.
 	MinDecryptionVersion *int `pulumi:"minDecryptionVersion"`
 	// Minimum key version to use for encryption
@@ -347,6 +460,8 @@ type SecretBackendKeyArgs struct {
 	AutoRotatePeriod pulumi.IntPtrInput
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
+	// Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+	Context pulumi.StringPtrInput
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption pulumi.BoolPtrInput
 	// Specifies if the key is allowed to be deleted.
@@ -363,6 +478,10 @@ type SecretBackendKeyArgs struct {
 	HybridKeyTypePqc pulumi.StringPtrInput
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize pulumi.IntPtrInput
+	// The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyId pulumi.StringPtrInput
+	// The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+	ManagedKeyName pulumi.StringPtrInput
 	// Minimum key version to use for decryption.
 	MinDecryptionVersion pulumi.IntPtrInput
 	// Minimum key version to use for encryption
@@ -490,6 +609,11 @@ func (o SecretBackendKeyOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
+// Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
+func (o SecretBackendKeyOutput) Context() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.Context }).(pulumi.StringPtrOutput)
+}
+
 // Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 func (o SecretBackendKeyOutput) ConvergentEncryption() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolPtrOutput { return v.ConvergentEncryption }).(pulumi.BoolPtrOutput)
@@ -537,6 +661,16 @@ func (o SecretBackendKeyOutput) Keys() pulumi.StringMapArrayOutput {
 // Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 func (o SecretBackendKeyOutput) LatestVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntOutput { return v.LatestVersion }).(pulumi.IntOutput)
+}
+
+// The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+func (o SecretBackendKeyOutput) ManagedKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.ManagedKeyId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
+func (o SecretBackendKeyOutput) ManagedKeyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.ManagedKeyName }).(pulumi.StringPtrOutput)
 }
 
 // Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
