@@ -25,7 +25,8 @@ class TeamArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
-        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format.
+        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format, for example: Terraform
+               Developers > `terraform-developers`.
         :param pulumi.Input[_builtins.str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -47,7 +48,8 @@ class TeamArgs:
     @pulumi.getter
     def team(self) -> pulumi.Input[_builtins.str]:
         """
-        GitHub team name in "slugified" format.
+        GitHub team name in "slugified" format, for example: Terraform
+        Developers > `terraform-developers`.
         """
         return pulumi.get(self, "team")
 
@@ -114,7 +116,8 @@ class _TeamState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
-        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format.
+        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format, for example: Terraform
+               Developers > `terraform-developers`.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -170,7 +173,8 @@ class _TeamState:
     @pulumi.getter
     def team(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        GitHub team name in "slugified" format.
+        GitHub team name in "slugified" format, for example: Terraform
+        Developers > `terraform-developers`.
         """
         return pulumi.get(self, "team")
 
@@ -229,7 +233,8 @@ class Team(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
-        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format.
+        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format, for example: Terraform
+               Developers > `terraform-developers`.
         """
         ...
     @overload
@@ -329,7 +334,8 @@ class Team(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: An array of strings specifying the policies to be set on tokens
                issued using this role.
-        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format.
+        :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format, for example: Terraform
+               Developers > `terraform-developers`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -374,7 +380,8 @@ class Team(pulumi.CustomResource):
     @pulumi.getter
     def team(self) -> pulumi.Output[_builtins.str]:
         """
-        GitHub team name in "slugified" format.
+        GitHub team name in "slugified" format, for example: Terraform
+        Developers > `terraform-developers`.
         """
         return pulumi.get(self, "team")
 

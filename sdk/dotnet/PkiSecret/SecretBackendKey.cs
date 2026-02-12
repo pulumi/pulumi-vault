@@ -44,7 +44,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Import
     /// 
-    /// PKI secret backend key can be imported using the `id`, e.g.
+    /// PKI secret backend key can be imported using the `Id`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:pkiSecret/secretBackendKey:SecretBackendKey key pki/key/bf9b0d48-d0dd-652c-30be-77d04fc7e94d

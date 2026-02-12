@@ -24,7 +24,6 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * As EAB tokens are only available on initial creation there is no possibility to
- *
  * import or update this resource.
  */
 export class BackendAcmeEab extends pulumi.CustomResource {

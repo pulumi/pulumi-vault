@@ -74,7 +74,7 @@ namespace Pulumi.Vault.Managed
     /// 
     /// ## Import
     /// 
-    /// Mounts can be imported using the `id` of `default`, e.g.
+    /// Mounts can be imported using the `Id` of `Default`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:managed/keys:Keys keys default

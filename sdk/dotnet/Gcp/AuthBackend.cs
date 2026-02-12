@@ -194,7 +194,9 @@ namespace Pulumi.Vault.Gcp
         public Output<string?> IdentityTokenKey { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL of generated tokens.
+        /// The TTL of generated tokens. Defaults to
+        /// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        /// Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Output("identityTokenTtl")]
         public Output<int?> IdentityTokenTtl { get; private set; } = null!;
@@ -456,7 +458,9 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
-        /// The TTL of generated tokens.
+        /// The TTL of generated tokens. Defaults to
+        /// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        /// Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("identityTokenTtl")]
         public Input<int>? IdentityTokenTtl { get; set; }
@@ -681,7 +685,9 @@ namespace Pulumi.Vault.Gcp
         public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
-        /// The TTL of generated tokens.
+        /// The TTL of generated tokens. Defaults to
+        /// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        /// Requires Vault 1.17+. *Available only for Vault Enterprise*.
         /// </summary>
         [Input("identityTokenTtl")]
         public Input<int>? IdentityTokenTtl { get; set; }

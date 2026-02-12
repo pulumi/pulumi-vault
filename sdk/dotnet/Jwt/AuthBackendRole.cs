@@ -95,7 +95,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// ## Import
     /// 
-    /// JWT authentication backend roles can be imported using the `path`, e.g.
+    /// JWT authentication backend roles can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role

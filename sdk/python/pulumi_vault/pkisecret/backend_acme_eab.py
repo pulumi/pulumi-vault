@@ -313,7 +313,6 @@ class BackendAcmeEab(pulumi.CustomResource):
         ## Import
 
         As EAB tokens are only available on initial creation there is no possibility to
-
         import or update this resource.
 
         :param str resource_name: The name of the resource.
@@ -359,7 +358,6 @@ class BackendAcmeEab(pulumi.CustomResource):
         ## Import
 
         As EAB tokens are only available on initial creation there is no possibility to
-
         import or update this resource.
 
         :param str resource_name: The name of the resource.

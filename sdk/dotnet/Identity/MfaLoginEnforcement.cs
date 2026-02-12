@@ -44,7 +44,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// Resource can be imported using its `name` field, e.g.
+    /// Resource can be imported using its `Name` field, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default

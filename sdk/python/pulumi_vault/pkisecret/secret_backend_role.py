@@ -120,7 +120,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[_builtins.bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[_builtins.bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRolePolicyIdentifierArgs']]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
@@ -688,7 +688,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -981,7 +981,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[_builtins.bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[_builtins.bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRolePolicyIdentifierArgs']]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
@@ -1550,7 +1550,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -1883,7 +1883,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[_builtins.bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
@@ -2188,7 +2188,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[_builtins.bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
@@ -2566,7 +2566,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 

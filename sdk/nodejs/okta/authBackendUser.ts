@@ -31,7 +31,6 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * Okta authentication backend users can be imported using its `path/user` ID format, e.g.
- *
  * ```sh
  * $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
  * ```

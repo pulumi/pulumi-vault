@@ -23,6 +23,9 @@ __config__ = pulumi.Config('vault')
 class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def add_address_to_env(self) -> Optional[str]:
+        """
+        If true, adds the value of the `address` argument to the Terraform process environment.
+        """
         return __config__.get('addAddressToEnv')
 
     @_builtins.property

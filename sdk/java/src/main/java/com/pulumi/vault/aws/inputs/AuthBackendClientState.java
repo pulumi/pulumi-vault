@@ -282,14 +282,20 @@ public final class AuthBackendClientState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * AWS Secret key with permissions to query AWS APIs.
+     * The AWS secret key that Vault should use for the
+     * auth backend. Mutually exclusive with `secretKeyWo`.
+     * **Note:** This field stores the secret in Terraform state in plain text.
+     * Consider using `secretKeyWo` instead for enhanced security.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return AWS Secret key with permissions to query AWS APIs.
+     * @return The AWS secret key that Vault should use for the
+     * auth backend. Mutually exclusive with `secretKeyWo`.
+     * **Note:** This field stores the secret in Terraform state in plain text.
+     * Consider using `secretKeyWo` instead for enhanced security.
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -797,7 +803,10 @@ public final class AuthBackendClientState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param secretKey AWS Secret key with permissions to query AWS APIs.
+         * @param secretKey The AWS secret key that Vault should use for the
+         * auth backend. Mutually exclusive with `secretKeyWo`.
+         * **Note:** This field stores the secret in Terraform state in plain text.
+         * Consider using `secretKeyWo` instead for enhanced security.
          * 
          * @return builder
          * 
@@ -808,7 +817,10 @@ public final class AuthBackendClientState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param secretKey AWS Secret key with permissions to query AWS APIs.
+         * @param secretKey The AWS secret key that Vault should use for the
+         * auth backend. Mutually exclusive with `secretKeyWo`.
+         * **Note:** This field stores the secret in Terraform state in plain text.
+         * Consider using `secretKeyWo` instead for enhanced security.
          * 
          * @return builder
          * 

@@ -10,6 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// Provides a resource to generate a vault token with its options. The token renewing is supported through optional
+    /// arguments.
+    /// 
+    /// The token used by Terraform will require update access to the `auth/token/lookup-accessor`
+    /// path to create tokens and the `auth/token/revoke-accessor` path in Vault to
+    /// destroy a token.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -43,7 +50,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Import
     /// 
-    /// Tokens can be imported using its `id` as accessor id, e.g.
+    /// Tokens can be imported using its `Id` as accessor id, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;

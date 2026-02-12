@@ -72,14 +72,16 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * GitHub team name in &#34;slugified&#34; format.
+     * GitHub team name in &#34;slugified&#34; format, for example: Terraform
+     * Developers &gt; `terraform-developers`.
      * 
      */
     @Import(name="team")
     private @Nullable Output<String> team;
 
     /**
-     * @return GitHub team name in &#34;slugified&#34; format.
+     * @return GitHub team name in &#34;slugified&#34; format, for example: Terraform
+     * Developers &gt; `terraform-developers`.
      * 
      */
     public Optional<Output<String>> team() {
@@ -198,7 +200,8 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param team GitHub team name in &#34;slugified&#34; format.
+         * @param team GitHub team name in &#34;slugified&#34; format, for example: Terraform
+         * Developers &gt; `terraform-developers`.
          * 
          * @return builder
          * 
@@ -209,7 +212,8 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param team GitHub team name in &#34;slugified&#34; format.
+         * @param team GitHub team name in &#34;slugified&#34; format, for example: Terraform
+         * Developers &gt; `terraform-developers`.
          * 
          * @return builder
          * 

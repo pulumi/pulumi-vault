@@ -11,6 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Terraform Cloud secrets role for a Terraform Cloud secrets engine in Vault.
+// Terraform Cloud secret backends can then issue Terraform Cloud tokens.
+//
 // ## Example Usage
 //
 // ```go
@@ -58,22 +61,28 @@ import (
 type SecretRole struct {
 	pulumi.CustomResourceState
 
+	// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
 	CredentialType pulumi.StringPtrOutput `pulumi:"credentialType"`
-	Description    pulumi.StringPtrOutput `pulumi:"description"`
+	// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
-	Name   pulumi.StringOutput `pulumi:"name"`
+	// The name of the Terraform Cloud secrets engine role to create.
+	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace    pulumi.StringPtrOutput `pulumi:"namespace"`
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// The organization name managing your Terraform Cloud instance.
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
-	TeamId       pulumi.StringPtrOutput `pulumi:"teamId"`
+	// The id of the team you wish to create a token for in your Terraform Cloud instance.
+	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
 	// Specifies the TTL for this role, in seconds.
-	Ttl    pulumi.IntPtrOutput    `pulumi:"ttl"`
+	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
+	// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
 	UserId pulumi.StringPtrOutput `pulumi:"userId"`
 }
 
@@ -107,42 +116,54 @@ func GetSecretRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretRole resources.
 type secretRoleState struct {
+	// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 	Backend *string `pulumi:"backend"`
 	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
 	CredentialType *string `pulumi:"credentialType"`
-	Description    *string `pulumi:"description"`
+	// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+	Description *string `pulumi:"description"`
 	// Maximum TTL for leases associated with this role, in seconds.
-	MaxTtl *int    `pulumi:"maxTtl"`
-	Name   *string `pulumi:"name"`
+	MaxTtl *int `pulumi:"maxTtl"`
+	// The name of the Terraform Cloud secrets engine role to create.
+	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace    *string `pulumi:"namespace"`
+	Namespace *string `pulumi:"namespace"`
+	// The organization name managing your Terraform Cloud instance.
 	Organization *string `pulumi:"organization"`
-	TeamId       *string `pulumi:"teamId"`
+	// The id of the team you wish to create a token for in your Terraform Cloud instance.
+	TeamId *string `pulumi:"teamId"`
 	// Specifies the TTL for this role, in seconds.
-	Ttl    *int    `pulumi:"ttl"`
+	Ttl *int `pulumi:"ttl"`
+	// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
 	UserId *string `pulumi:"userId"`
 }
 
 type SecretRoleState struct {
+	// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 	Backend pulumi.StringPtrInput
 	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
 	CredentialType pulumi.StringPtrInput
-	Description    pulumi.StringPtrInput
+	// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+	Description pulumi.StringPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
-	Name   pulumi.StringPtrInput
+	// The name of the Terraform Cloud secrets engine role to create.
+	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace    pulumi.StringPtrInput
+	Namespace pulumi.StringPtrInput
+	// The organization name managing your Terraform Cloud instance.
 	Organization pulumi.StringPtrInput
-	TeamId       pulumi.StringPtrInput
+	// The id of the team you wish to create a token for in your Terraform Cloud instance.
+	TeamId pulumi.StringPtrInput
 	// Specifies the TTL for this role, in seconds.
-	Ttl    pulumi.IntPtrInput
+	Ttl pulumi.IntPtrInput
+	// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
 	UserId pulumi.StringPtrInput
 }
 
@@ -151,43 +172,55 @@ func (SecretRoleState) ElementType() reflect.Type {
 }
 
 type secretRoleArgs struct {
+	// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 	Backend *string `pulumi:"backend"`
 	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
 	CredentialType *string `pulumi:"credentialType"`
-	Description    *string `pulumi:"description"`
+	// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+	Description *string `pulumi:"description"`
 	// Maximum TTL for leases associated with this role, in seconds.
-	MaxTtl *int    `pulumi:"maxTtl"`
-	Name   *string `pulumi:"name"`
+	MaxTtl *int `pulumi:"maxTtl"`
+	// The name of the Terraform Cloud secrets engine role to create.
+	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace    *string `pulumi:"namespace"`
+	Namespace *string `pulumi:"namespace"`
+	// The organization name managing your Terraform Cloud instance.
 	Organization *string `pulumi:"organization"`
-	TeamId       *string `pulumi:"teamId"`
+	// The id of the team you wish to create a token for in your Terraform Cloud instance.
+	TeamId *string `pulumi:"teamId"`
 	// Specifies the TTL for this role, in seconds.
-	Ttl    *int    `pulumi:"ttl"`
+	Ttl *int `pulumi:"ttl"`
+	// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
 	UserId *string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a SecretRole resource.
 type SecretRoleArgs struct {
+	// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 	Backend pulumi.StringPtrInput
 	// The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
 	CredentialType pulumi.StringPtrInput
-	Description    pulumi.StringPtrInput
+	// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+	Description pulumi.StringPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
-	Name   pulumi.StringPtrInput
+	// The name of the Terraform Cloud secrets engine role to create.
+	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace    pulumi.StringPtrInput
+	Namespace pulumi.StringPtrInput
+	// The organization name managing your Terraform Cloud instance.
 	Organization pulumi.StringPtrInput
-	TeamId       pulumi.StringPtrInput
+	// The id of the team you wish to create a token for in your Terraform Cloud instance.
+	TeamId pulumi.StringPtrInput
 	// Specifies the TTL for this role, in seconds.
-	Ttl    pulumi.IntPtrInput
+	Ttl pulumi.IntPtrInput
+	// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
 	UserId pulumi.StringPtrInput
 }
 
@@ -278,6 +311,7 @@ func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) Sec
 	return o
 }
 
+// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 func (o SecretRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
@@ -287,6 +321,7 @@ func (o SecretRoleOutput) CredentialType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.CredentialType }).(pulumi.StringPtrOutput)
 }
 
+// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
 func (o SecretRoleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -296,6 +331,7 @@ func (o SecretRoleOutput) MaxTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.MaxTtl }).(pulumi.IntPtrOutput)
 }
 
+// The name of the Terraform Cloud secrets engine role to create.
 func (o SecretRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -308,10 +344,12 @@ func (o SecretRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// The organization name managing your Terraform Cloud instance.
 func (o SecretRoleOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
 }
 
+// The id of the team you wish to create a token for in your Terraform Cloud instance.
 func (o SecretRoleOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
@@ -321,6 +359,7 @@ func (o SecretRoleOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
+// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
 func (o SecretRoleOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.UserId }).(pulumi.StringPtrOutput)
 }

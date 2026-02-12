@@ -57,7 +57,12 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials: The GCP service account credentials in JSON format.
+               
+               > **Important** Because Vault does not support reading the configured
+               credentials back from the API, Terraform cannot detect and correct drift
+               on `credentials`. Changing the values, however, _will_ overwrite the
+               previously stored values.
         :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
@@ -74,7 +79,9 @@ class SecretBackendArgs:
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
@@ -218,7 +225,12 @@ class SecretBackendArgs:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        JSON-encoded credentials to use to connect to GCP
+        The GCP service account credentials in JSON format.
+
+        > **Important** Because Vault does not support reading the configured
+        credentials back from the API, Terraform cannot detect and correct drift
+        on `credentials`. Changing the values, however, _will_ overwrite the
+        previously stored values.
         """
         return pulumi.get(self, "credentials")
 
@@ -367,7 +379,9 @@ class SecretBackendArgs:
     @pulumi.getter(name="identityTokenTtl")
     def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The TTL of generated tokens.
+        The TTL of generated tokens. Defaults to
+        1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "identity_token_ttl")
 
@@ -609,7 +623,12 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials: The GCP service account credentials in JSON format.
+               
+               > **Important** Because Vault does not support reading the configured
+               credentials back from the API, Terraform cannot detect and correct drift
+               on `credentials`. Changing the values, however, _will_ overwrite the
+               previously stored values.
         :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
@@ -626,7 +645,9 @@ class _SecretBackendState:
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
@@ -784,7 +805,12 @@ class _SecretBackendState:
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        JSON-encoded credentials to use to connect to GCP
+        The GCP service account credentials in JSON format.
+
+        > **Important** Because Vault does not support reading the configured
+        credentials back from the API, Terraform cannot detect and correct drift
+        on `credentials`. Changing the values, however, _will_ overwrite the
+        previously stored values.
         """
         return pulumi.get(self, "credentials")
 
@@ -933,7 +959,9 @@ class _SecretBackendState:
     @pulumi.getter(name="identityTokenTtl")
     def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The TTL of generated tokens.
+        The TTL of generated tokens. Defaults to
+        1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "identity_token_ttl")
 
@@ -1172,6 +1200,16 @@ class SecretBackend(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        Creates an GCP Secret Backend for Vault. GCP secret backends can then issue GCP
+        OAuth token or Service Account keys, once a role has been added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
         ## Example Usage
 
         You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
@@ -1212,7 +1250,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials: The GCP service account credentials in JSON format.
+               
+               > **Important** Because Vault does not support reading the configured
+               credentials back from the API, Terraform cannot detect and correct drift
+               on `credentials`. Changing the values, however, _will_ overwrite the
+               previously stored values.
         :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
@@ -1229,7 +1272,9 @@ class SecretBackend(pulumi.CustomResource):
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
@@ -1263,6 +1308,16 @@ class SecretBackend(pulumi.CustomResource):
                  args: Optional[SecretBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates an GCP Secret Backend for Vault. GCP secret backends can then issue GCP
+        OAuth token or Service Account keys, once a role has been added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
         ## Example Usage
 
         You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
@@ -1443,7 +1498,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.str] credentials: JSON-encoded credentials to use to connect to GCP
+        :param pulumi.Input[_builtins.str] credentials: The GCP service account credentials in JSON format.
+               
+               > **Important** Because Vault does not support reading the configured
+               credentials back from the API, Terraform cannot detect and correct drift
+               on `credentials`. Changing the values, however, _will_ overwrite the
+               previously stored values.
         :param pulumi.Input[_builtins.str] credentials_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[_builtins.int] credentials_wo_version: The version of the `credentials_wo`. For more info see updating write-only attributes.
@@ -1460,7 +1520,9 @@ class SecretBackend(pulumi.CustomResource):
                tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing identity tokens.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds
@@ -1570,7 +1632,12 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def credentials(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        JSON-encoded credentials to use to connect to GCP
+        The GCP service account credentials in JSON format.
+
+        > **Important** Because Vault does not support reading the configured
+        credentials back from the API, Terraform cannot detect and correct drift
+        on `credentials`. Changing the values, however, _will_ overwrite the
+        previously stored values.
         """
         return pulumi.get(self, "credentials")
 
@@ -1671,7 +1738,9 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="identityTokenTtl")
     def identity_token_ttl(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The TTL of generated tokens.
+        The TTL of generated tokens. Defaults to
+        1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "identity_token_ttl")
 

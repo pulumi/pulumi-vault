@@ -518,6 +518,12 @@ class OciAuthBackendRole(pulumi.CustomResource):
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Manages an OCI (Oracle Cloud Infrastructure) auth backend role in a
+        Vault server. Roles constrain the instances or principals that can
+        perform the login operation against the backend. See the [Vault
+        documentation](https://developer.hashicorp.com/vault/docs/auth/oci) for
+        more information.
+
         ## Example Usage
 
         ```python
@@ -579,6 +585,12 @@ class OciAuthBackendRole(pulumi.CustomResource):
                  args: Optional[OciAuthBackendRoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages an OCI (Oracle Cloud Infrastructure) auth backend role in a
+        Vault server. Roles constrain the instances or principals that can
+        perform the login operation against the backend. See the [Vault
+        documentation](https://developer.hashicorp.com/vault/docs/auth/oci) for
+        more information.
+
         ## Example Usage
 
         ```python

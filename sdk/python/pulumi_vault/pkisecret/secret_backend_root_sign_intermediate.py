@@ -83,7 +83,7 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. 
                The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
                for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -400,7 +400,7 @@ class SecretBackendRootSignIntermediateArgs:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -690,7 +690,7 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. 
                The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
                for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -1070,7 +1070,7 @@ class _SecretBackendRootSignIntermediateState:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -1385,7 +1385,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. 
                The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
                for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -1625,7 +1625,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. 
                The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
                for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
-        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
+        :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
@@ -1881,7 +1881,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the duration by which to backdate the NotBefore property.
+        Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 

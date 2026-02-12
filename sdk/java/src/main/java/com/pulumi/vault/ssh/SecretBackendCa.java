@@ -128,14 +128,20 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyType);
     }
     /**
-     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * 
+     * &gt; **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      * 
      */
     @Export(name="managedKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyId;
 
     /**
-     * @return The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * @return The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * 
+     * &gt; **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      * 
      */
     public Output<Optional<String>> managedKeyId() {

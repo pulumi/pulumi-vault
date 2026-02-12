@@ -71,7 +71,10 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     declare public readonly keyType: pulumi.Output<string | undefined>;
     /**
-     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     *
+     * > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      */
     declare public readonly managedKeyId: pulumi.Output<string | undefined>;
     /**
@@ -156,7 +159,10 @@ export interface SecretBackendCaState {
      */
     keyType?: pulumi.Input<string>;
     /**
-     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     *
+     * > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      */
     managedKeyId?: pulumi.Input<string>;
     /**
@@ -201,7 +207,10 @@ export interface SecretBackendCaArgs {
      */
     keyType?: pulumi.Input<string>;
     /**
-     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     *
+     * > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      */
     managedKeyId?: pulumi.Input<string>;
     /**

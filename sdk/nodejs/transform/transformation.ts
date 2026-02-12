@@ -4,6 +4,36 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * This resource supports the "/transform/transformation/{name}" Vault endpoint.
+ *
+ * It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+ * it will be created. If the transformation exists, it will be updated with the new attributes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.Mount("example", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const exampleTransformation = new vault.transform.Transformation("example", {
+ *     path: example.path,
+ *     name: "ccn-fpe",
+ *     type: "fpe",
+ *     template: "ccn",
+ *     tweakSource: "internal",
+ *     allowedRoles: ["payments"],
+ * });
+ * ```
+ *
+ * ## Tutorials
+ *
+ * Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
+ */
 export class Transformation extends pulumi.CustomResource {
     /**
      * Get an existing Transformation resource's state with the given name, ID, and optional extra

@@ -42,7 +42,7 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// ## Import
     /// 
-    /// KMIP Secret scope can be imported using the `path`, e.g.
+    /// KMIP Secret scope can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kmip/secretScope:SecretScope dev kmip

@@ -55,54 +55,49 @@ __all__ = [
     'GetPolicyDocumentRuleDeniedParameterArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AuthBackendTuneArgsDict(TypedDict):
-        allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of headers to whitelist and allowing
-        a plugin to include them in the response.
-        """
-        audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of keys that will
-        not be HMAC'd by audit devices in the request data object.
-        """
-        audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of keys that will
-        not be HMAC'd by audit devices in the response data object.
-        """
-        default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default time-to-live.
-        If set, this overrides the global default.
-        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        """
-        listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to show this mount in
-        the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-        """
-        max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum time-to-live.
-        If set, this overrides the global default.
-        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        """
-        passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of headers to whitelist and
-        pass from the request to the backend.
-        """
-        token_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of tokens that should be returned by
-        the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        """
-elif False:
-    AuthBackendTuneArgsDict: TypeAlias = Mapping[str, Any]
+class AuthBackendTuneArgsDict(TypedDict):
+    allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of headers to whitelist and allowing
+    a plugin to include them in the response.
+    """
+    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of keys that will
+    not be HMAC'd by audit devices in the request data object.
+    """
+    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of keys that will
+    not be HMAC'd by audit devices in the response data object.
+    """
+    default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default time-to-live.
+    If set, this overrides the global default.
+    Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+    """
+    listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to show this mount in
+    the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+    """
+    max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum time-to-live.
+    If set, this overrides the global default.
+    Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+    """
+    passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of headers to whitelist and
+    pass from the request to the backend.
+    """
+    token_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of tokens that should be returned by
+    the mount. Valid values are "default-service", "default-batch", "service", "batch".
+    """
 
 @pulumi.input_type
 class AuthBackendTuneArgs:
@@ -259,51 +254,52 @@ class AuthBackendTuneArgs:
         pulumi.set(self, "token_type", value)
 
 
-if not MYPY:
-    class OciAuthBackendTuneArgsDict(TypedDict):
-        allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of headers to whitelist and allowing
-        a plugin to include them in the response.
-        """
-        audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of keys that will
-        not be HMAC'd by audit devices in the request data object.
-        """
-        audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of keys that will
-        not be HMAC'd by audit devices in the response data object.
-        """
-        default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default time-to-live.
-        If set, this overrides the global default.
-        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        """
-        listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to show this mount in
-        the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
-        """
-        max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum time-to-live.
-        If set, this overrides the global default.
-        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
-        """
-        passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of headers to whitelist and
-        pass from the request to the backend.
-        """
-        token_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of tokens that should be returned by the mount.
-        """
-elif False:
-    OciAuthBackendTuneArgsDict: TypeAlias = Mapping[str, Any]
+class OciAuthBackendTuneArgsDict(TypedDict):
+    allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of headers to whitelist and allowing
+    a plugin to include them in the response.
+    """
+    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of keys that will
+    not be HMAC'd by audit devices in the request data object.
+    """
+    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of keys that will
+    not be HMAC'd by audit devices in the response data object.
+    """
+    default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default time-to-live.
+    If set, this overrides the global default.
+    Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+    """
+    listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to show this mount in
+    the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+    """
+    max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum time-to-live.
+    If set, this overrides the global default.
+    Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+    """
+    passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of headers to whitelist and
+    pass from the request to the backend.
+    """
+    token_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of tokens that should be returned by
+    the mount. Valid values are "default-service", "default-batch", "service", "batch".
+
+
+    For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
+    """
 
 @pulumi.input_type
 class OciAuthBackendTuneArgs:
@@ -333,7 +329,11 @@ class OciAuthBackendTuneArgs:
                Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to whitelist and
                pass from the request to the backend.
-        :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by the mount.
+        :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
+               
+               
+               For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
         if allowed_response_headers is not None:
             pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
@@ -449,7 +449,11 @@ class OciAuthBackendTuneArgs:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the type of tokens that should be returned by the mount.
+        Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
+
+
+        For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
         return pulumi.get(self, "token_type")
 
@@ -458,21 +462,18 @@ class OciAuthBackendTuneArgs:
         pulumi.set(self, "token_type", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginArgsDict(TypedDict):
-        path: pulumi.Input[_builtins.str]
-        method: NotRequired[pulumi.Input[_builtins.str]]
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        parameters: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginArgsDict(TypedDict):
+    path: pulumi.Input[_builtins.str]
+    method: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    parameters: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginArgs:
@@ -548,74 +549,71 @@ class ProviderAuthLoginArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginAwsArgsDict(TypedDict):
-        role: pulumi.Input[_builtins.str]
-        """
-        The Vault role to use when logging into Vault.
-        """
-        aws_access_key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS access key ID.
-        """
-        aws_iam_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The IAM endpoint URL.
-        """
-        aws_profile: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of the AWS profile.
-        """
-        aws_region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS region.
-        """
-        aws_role_arn: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The ARN of the AWS Role to assume.Used during STS AssumeRole
-        """
-        aws_role_session_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name to attach to the AWS role session. Used during STS AssumeRole
-        """
-        aws_secret_access_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS secret access key.
-        """
-        aws_session_token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS session token.
-        """
-        aws_shared_credentials_file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path to the AWS shared credentials file.
-        """
-        aws_sts_endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The STS endpoint URL.
-        """
-        aws_web_identity_token_file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
-        """
-        header_value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Vault header value to include in the STS signing request.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginAwsArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginAwsArgsDict(TypedDict):
+    role: pulumi.Input[_builtins.str]
+    """
+    The Vault role to use when logging into Vault.
+    """
+    aws_access_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS access key ID.
+    """
+    aws_iam_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The IAM endpoint URL.
+    """
+    aws_profile: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the AWS profile.
+    """
+    aws_region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS region.
+    """
+    aws_role_arn: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The ARN of the AWS Role to assume.Used during STS AssumeRole
+    """
+    aws_role_session_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+    """
+    aws_secret_access_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS secret access key.
+    """
+    aws_session_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS session token.
+    """
+    aws_shared_credentials_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path to the AWS shared credentials file.
+    """
+    aws_sts_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The STS endpoint URL.
+    """
+    aws_web_identity_token_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+    """
+    header_value: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Vault header value to include in the STS signing request.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginAwsArgs:
@@ -879,58 +877,55 @@ class ProviderAuthLoginAwsArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginAzureArgsDict(TypedDict):
-        resource_group_name: pulumi.Input[_builtins.str]
-        """
-        The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
-        """
-        role: pulumi.Input[_builtins.str]
-        """
-        Name of the login role.
-        """
-        subscription_id: pulumi.Input[_builtins.str]
-        """
-        The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
-        """
-        client_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The identity's client ID.
-        """
-        jwt: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A signed JSON Web Token. If not specified on will be created automatically
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        scope: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The scopes to include in the token request.
-        """
-        tenant_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Provides the tenant ID to use in a multi-tenant authentication scenario.
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-        vm_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
-        """
-        vmss_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
-        """
-elif False:
-    ProviderAuthLoginAzureArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginAzureArgsDict(TypedDict):
+    resource_group_name: pulumi.Input[_builtins.str]
+    """
+    The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+    """
+    role: pulumi.Input[_builtins.str]
+    """
+    Name of the login role.
+    """
+    subscription_id: pulumi.Input[_builtins.str]
+    """
+    The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+    """
+    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The identity's client ID.
+    """
+    jwt: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A signed JSON Web Token. If not specified on will be created automatically
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    scope: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The scopes to include in the token request.
+    """
+    tenant_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Provides the tenant ID to use in a multi-tenant authentication scenario.
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
+    vm_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+    """
+    vmss_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginAzureArgs:
@@ -1128,34 +1123,31 @@ class ProviderAuthLoginAzureArgs:
         pulumi.set(self, "vmss_name", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginCertArgsDict(TypedDict):
-        cert_file: pulumi.Input[_builtins.str]
-        """
-        Path to a file containing the client certificate.
-        """
-        key_file: pulumi.Input[_builtins.str]
-        """
-        Path to a file containing the private key that the certificate was issued for.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Name of the certificate's role
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginCertArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginCertArgsDict(TypedDict):
+    cert_file: pulumi.Input[_builtins.str]
+    """
+    Path to a file containing the client certificate.
+    """
+    key_file: pulumi.Input[_builtins.str]
+    """
+    Path to a file containing the private key that the certificate was issued for.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Name of the certificate's role
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginCertArgs:
@@ -1258,38 +1250,35 @@ class ProviderAuthLoginCertArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginGcpArgsDict(TypedDict):
-        role: pulumi.Input[_builtins.str]
-        """
-        Name of the login role.
-        """
-        credentials: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Path to the Google Cloud credentials file.
-        """
-        jwt: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A signed JSON Web Token.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        service_account: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IAM service account.
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginGcpArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginGcpArgsDict(TypedDict):
+    role: pulumi.Input[_builtins.str]
+    """
+    Name of the login role.
+    """
+    credentials: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Path to the Google Cloud credentials file.
+    """
+    jwt: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A signed JSON Web Token.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    service_account: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    IAM service account.
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginGcpArgs:
@@ -1409,30 +1398,27 @@ class ProviderAuthLoginGcpArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginJwtArgsDict(TypedDict):
-        role: pulumi.Input[_builtins.str]
-        """
-        Name of the login role.
-        """
-        jwt: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A signed JSON Web Token.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginJwtArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginJwtArgsDict(TypedDict):
+    role: pulumi.Input[_builtins.str]
+    """
+    Name of the login role.
+    """
+    jwt: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A signed JSON Web Token.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginJwtArgs:
@@ -1520,54 +1506,51 @@ class ProviderAuthLoginJwtArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginKerberosArgsDict(TypedDict):
-        disable_fast_negotiation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable the Kerberos FAST negotiation.
-        """
-        keytab_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Kerberos keytab file containing the entry of the login entity.
-        """
-        krb5conf_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A valid Kerberos configuration file e.g. /etc/krb5.conf.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        realm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Kerberos server's authoritative authentication domain
-        """
-        remove_instance_name: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Strip the host from the username found in the keytab.
-        """
-        service: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The service principle name.
-        """
-        token: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The username to login into Kerberos with.
-        """
-elif False:
-    ProviderAuthLoginKerberosArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginKerberosArgsDict(TypedDict):
+    disable_fast_negotiation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable the Kerberos FAST negotiation.
+    """
+    keytab_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Kerberos keytab file containing the entry of the login entity.
+    """
+    krb5conf_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A valid Kerberos configuration file e.g. /etc/krb5.conf.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    realm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Kerberos server's authoritative authentication domain
+    """
+    remove_instance_name: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Strip the host from the username found in the keytab.
+    """
+    service: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The service principle name.
+    """
+    token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The username to login into Kerberos with.
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginKerberosArgs:
@@ -1752,30 +1735,27 @@ class ProviderAuthLoginKerberosArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginOciArgsDict(TypedDict):
-        auth_type: pulumi.Input[_builtins.str]
-        """
-        Authentication type to use when getting OCI credentials.
-        """
-        role: pulumi.Input[_builtins.str]
-        """
-        Name of the login role.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginOciArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginOciArgsDict(TypedDict):
+    auth_type: pulumi.Input[_builtins.str]
+    """
+    Authentication type to use when getting OCI credentials.
+    """
+    role: pulumi.Input[_builtins.str]
+    """
+    Name of the login role.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginOciArgs:
@@ -1862,34 +1842,31 @@ class ProviderAuthLoginOciArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginOidcArgsDict(TypedDict):
-        role: pulumi.Input[_builtins.str]
-        """
-        Name of the login role.
-        """
-        callback_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The callback address. Must be a valid URI without the path.
-        """
-        callback_listener_address: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The callback listener's address. Must be a valid URI without the path.
-        """
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginOidcArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginOidcArgsDict(TypedDict):
+    role: pulumi.Input[_builtins.str]
+    """
+    Name of the login role.
+    """
+    callback_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The callback address. Must be a valid URI without the path.
+    """
+    callback_listener_address: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The callback listener's address. Must be a valid URI without the path.
+    """
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginOidcArgs:
@@ -1993,30 +1970,27 @@ class ProviderAuthLoginOidcArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginRadiusArgsDict(TypedDict):
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Radius password for username.
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Radius username.
-        """
-elif False:
-    ProviderAuthLoginRadiusArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginRadiusArgsDict(TypedDict):
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Radius password for username.
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Radius username.
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginRadiusArgs:
@@ -2105,22 +2079,19 @@ class ProviderAuthLoginRadiusArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginTokenFileArgsDict(TypedDict):
-        filename: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The name of a file containing a single line that is a valid Vault token
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-elif False:
-    ProviderAuthLoginTokenFileArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginTokenFileArgsDict(TypedDict):
+    filename: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of a file containing a single line that is a valid Vault token
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginTokenFileArgs:
@@ -2177,34 +2148,31 @@ class ProviderAuthLoginTokenFileArgs:
         pulumi.set(self, "use_root_namespace", value)
 
 
-if not MYPY:
-    class ProviderAuthLoginUserpassArgsDict(TypedDict):
-        mount: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path where the authentication engine is mounted.
-        """
-        namespace: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The authentication engine's namespace. Conflicts with use_root_namespace
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Login with password
-        """
-        password_file: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Login with password from a file
-        """
-        use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Authenticate to the root Vault namespace. Conflicts with namespace
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Login with username
-        """
-elif False:
-    ProviderAuthLoginUserpassArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderAuthLoginUserpassArgsDict(TypedDict):
+    mount: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path where the authentication engine is mounted.
+    """
+    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The authentication engine's namespace. Conflicts with use_root_namespace
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Login with password
+    """
+    password_file: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Login with password from a file
+    """
+    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Authenticate to the root Vault namespace. Conflicts with namespace
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Login with username
+    """
 
 @pulumi.input_type
 class ProviderAuthLoginUserpassArgs:
@@ -2309,18 +2277,15 @@ class ProviderAuthLoginUserpassArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class ProviderClientAuthArgsDict(TypedDict):
-        cert_file: pulumi.Input[_builtins.str]
-        """
-        Path to a file containing the client certificate.
-        """
-        key_file: pulumi.Input[_builtins.str]
-        """
-        Path to a file containing the private key that the certificate was issued for.
-        """
-elif False:
-    ProviderClientAuthArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderClientAuthArgsDict(TypedDict):
+    cert_file: pulumi.Input[_builtins.str]
+    """
+    Path to a file containing the client certificate.
+    """
+    key_file: pulumi.Input[_builtins.str]
+    """
+    Path to a file containing the private key that the certificate was issued for.
+    """
 
 @pulumi.input_type
 class ProviderClientAuthArgs:
@@ -2359,18 +2324,15 @@ class ProviderClientAuthArgs:
         pulumi.set(self, "key_file", value)
 
 
-if not MYPY:
-    class ProviderHeaderArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The header name
-        """
-        value: pulumi.Input[_builtins.str]
-        """
-        The header value
-        """
-elif False:
-    ProviderHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class ProviderHeaderArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The header name
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    The header value
+    """
 
 @pulumi.input_type
 class ProviderHeaderArgs:
@@ -2409,46 +2371,43 @@ class ProviderHeaderArgs:
         pulumi.set(self, "value", value)
 
 
-if not MYPY:
-    class GetPolicyDocumentRuleArgsDict(TypedDict):
-        capabilities: Sequence[_builtins.str]
-        """
-        A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
-        """
-        path: _builtins.str
-        """
-        A path in Vault that this rule applies to.
-        """
-        allowed_parameters: NotRequired[Sequence['GetPolicyDocumentRuleAllowedParameterArgsDict']]
-        """
-        Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
-        """
-        denied_parameters: NotRequired[Sequence['GetPolicyDocumentRuleDeniedParameterArgsDict']]
-        """
-        Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
-        """
-        description: NotRequired[_builtins.str]
-        """
-        Description of the rule. Will be added as a comment to rendered rule.
-        """
-        max_wrapping_ttl: NotRequired[_builtins.str]
-        """
-        The maximum allowed TTL that clients can specify for a wrapped response.
-        """
-        min_wrapping_ttl: NotRequired[_builtins.str]
-        """
-        The minimum allowed TTL that clients can specify for a wrapped response.
-        """
-        required_parameters: NotRequired[Sequence[_builtins.str]]
-        """
-        A list of parameters that must be specified.
-        """
-        subscribe_event_types: NotRequired[Sequence[_builtins.str]]
-        """
-        A list of event types to subscribe to when using `subscribe` capability.
-        """
-elif False:
-    GetPolicyDocumentRuleArgsDict: TypeAlias = Mapping[str, Any]
+class GetPolicyDocumentRuleArgsDict(TypedDict):
+    capabilities: Sequence[_builtins.str]
+    """
+    A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
+    """
+    path: _builtins.str
+    """
+    A path in Vault that this rule applies to.
+    """
+    allowed_parameters: NotRequired[Sequence['GetPolicyDocumentRuleAllowedParameterArgsDict']]
+    """
+    Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
+    """
+    denied_parameters: NotRequired[Sequence['GetPolicyDocumentRuleDeniedParameterArgsDict']]
+    """
+    Blacklists a list of parameter and values. Any values specified here take precedence over `allowed_parameter`. See Parameters below.
+    """
+    description: NotRequired[_builtins.str]
+    """
+    Description of the rule. Will be added as a comment to rendered rule.
+    """
+    max_wrapping_ttl: NotRequired[_builtins.str]
+    """
+    The maximum allowed TTL that clients can specify for a wrapped response.
+    """
+    min_wrapping_ttl: NotRequired[_builtins.str]
+    """
+    The minimum allowed TTL that clients can specify for a wrapped response.
+    """
+    required_parameters: NotRequired[Sequence[_builtins.str]]
+    """
+    A list of parameters that must be specified.
+    """
+    subscribe_event_types: NotRequired[Sequence[_builtins.str]]
+    """
+    A list of event types to subscribe to when using `subscribe` capability.
+    """
 
 @pulumi.input_type
 class GetPolicyDocumentRuleArgs:
@@ -2599,18 +2558,15 @@ class GetPolicyDocumentRuleArgs:
         pulumi.set(self, "subscribe_event_types", value)
 
 
-if not MYPY:
-    class GetPolicyDocumentRuleAllowedParameterArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Name of permitted key.
-        """
-        values: Sequence[_builtins.str]
-        """
-        A list of values what are permitted by policy rule.
-        """
-elif False:
-    GetPolicyDocumentRuleAllowedParameterArgsDict: TypeAlias = Mapping[str, Any]
+class GetPolicyDocumentRuleAllowedParameterArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Name of permitted key.
+    """
+    values: Sequence[_builtins.str]
+    """
+    A list of values what are permitted by policy rule.
+    """
 
 @pulumi.input_type
 class GetPolicyDocumentRuleAllowedParameterArgs:
@@ -2649,18 +2605,15 @@ class GetPolicyDocumentRuleAllowedParameterArgs:
         pulumi.set(self, "values", value)
 
 
-if not MYPY:
-    class GetPolicyDocumentRuleDeniedParameterArgsDict(TypedDict):
-        key: _builtins.str
-        """
-        Name of denied key.
-        """
-        values: Sequence[_builtins.str]
-        """
-        A list of values what are denied by policy rule.
-        """
-elif False:
-    GetPolicyDocumentRuleDeniedParameterArgsDict: TypeAlias = Mapping[str, Any]
+class GetPolicyDocumentRuleDeniedParameterArgsDict(TypedDict):
+    key: _builtins.str
+    """
+    Name of denied key.
+    """
+    values: Sequence[_builtins.str]
+    """
+    A list of values what are denied by policy rule.
+    """
 
 @pulumi.input_type
 class GetPolicyDocumentRuleDeniedParameterArgs:

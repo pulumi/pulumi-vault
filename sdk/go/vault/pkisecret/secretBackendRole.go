@@ -151,7 +151,7 @@ type SecretBackendRole struct {
 	NoStoreMetadata pulumi.BoolPtrOutput `pulumi:"noStoreMetadata"`
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringOutput `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayOutput `pulumi:"organizationUnit"`
@@ -301,7 +301,7 @@ type secretBackendRoleState struct {
 	NoStoreMetadata *bool `pulumi:"noStoreMetadata"`
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter *string `pulumi:"notAfter"`
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit []string `pulumi:"organizationUnit"`
@@ -419,7 +419,7 @@ type SecretBackendRoleState struct {
 	NoStoreMetadata pulumi.BoolPtrInput
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrInput
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayInput
@@ -541,7 +541,7 @@ type secretBackendRoleArgs struct {
 	NoStoreMetadata *bool `pulumi:"noStoreMetadata"`
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter *string `pulumi:"notAfter"`
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit []string `pulumi:"organizationUnit"`
@@ -660,7 +660,7 @@ type SecretBackendRoleArgs struct {
 	NoStoreMetadata pulumi.BoolPtrInput
 	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrInput
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayInput
@@ -972,7 +972,7 @@ func (o SecretBackendRoleOutput) NotAfter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the duration by which to backdate the NotBefore property.
+// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 func (o SecretBackendRoleOutput) NotBeforeDuration() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.NotBeforeDuration }).(pulumi.StringOutput)
 }

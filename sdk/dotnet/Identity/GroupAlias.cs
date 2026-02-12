@@ -52,7 +52,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// The group alias can be imported with the group alias `id`, for example:
+    /// The group alias can be imported with the group alias `Id`, for example:
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id

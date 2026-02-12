@@ -23,68 +23,63 @@ __all__ = [
     'KeysPkcArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class KeysAwArgsDict(TypedDict):
-        access_key: pulumi.Input[_builtins.str]
-        """
-        The AWS access key to use
-        """
-        key_bits: pulumi.Input[_builtins.str]
-        """
-        The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
-        """
-        key_type: pulumi.Input[_builtins.str]
-        """
-        The type of key to use
-        """
-        kms_key: pulumi.Input[_builtins.str]
-        """
-        An identifier for the key
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        A unique lowercase name that serves as identifying the key
-        """
-        secret_key: pulumi.Input[_builtins.str]
-        """
-        The AWS secret key to use
-        """
-        allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
-        """
-        allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
-        """
-        allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
-        """
-        any_mount: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Allow usage from any mount point within the namespace if 'true'
-        """
-        curve: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
-        """
-        endpoint: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Used to specify a custom AWS endpoint
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS region where the keys are stored (or will be stored)
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the managed key read from Vault
-        """
-elif False:
-    KeysAwArgsDict: TypeAlias = Mapping[str, Any]
+class KeysAwArgsDict(TypedDict):
+    access_key: pulumi.Input[_builtins.str]
+    """
+    The AWS access key to use
+    """
+    key_bits: pulumi.Input[_builtins.str]
+    """
+    The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
+    """
+    key_type: pulumi.Input[_builtins.str]
+    """
+    The type of key to use
+    """
+    kms_key: pulumi.Input[_builtins.str]
+    """
+    An identifier for the key
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    A unique lowercase name that serves as identifying the key
+    """
+    secret_key: pulumi.Input[_builtins.str]
+    """
+    The AWS secret key to use
+    """
+    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+    """
+    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+    """
+    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+    """
+    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Allow usage from any mount point within the namespace if 'true'
+    """
+    curve: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
+    """
+    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Used to specify a custom AWS endpoint
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS region where the keys are stored (or will be stored)
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the managed key read from Vault
+    """
 
 @pulumi.input_type
 class KeysAwArgs:
@@ -311,70 +306,67 @@ class KeysAwArgs:
         pulumi.set(self, "uuid", value)
 
 
-if not MYPY:
-    class KeysAzureArgsDict(TypedDict):
-        client_id: pulumi.Input[_builtins.str]
-        """
-        The client id for credentials to query the Azure APIs
-        """
-        client_secret: pulumi.Input[_builtins.str]
-        """
-        The client secret for credentials to query the Azure APIs
-        """
-        key_name: pulumi.Input[_builtins.str]
-        """
-        The Key Vault key to use for encryption and decryption
-        """
-        key_type: pulumi.Input[_builtins.str]
-        """
-        The type of key to use
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        A unique lowercase name that serves as identifying the key
-        """
-        tenant_id: pulumi.Input[_builtins.str]
-        """
-        The tenant id for the Azure Active Directory organization
-        """
-        vault_name: pulumi.Input[_builtins.str]
-        """
-        The Key Vault vault to use the encryption keys for encryption and decryption
-        """
-        allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
-        """
-        allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
-        """
-        allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
-        """
-        any_mount: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Allow usage from any mount point within the namespace if 'true'
-        """
-        environment: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Azure Cloud environment API endpoints to use
-        """
-        key_bits: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
-        """
-        resource: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Azure Key Vault resource's DNS Suffix to connect to
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the managed key read from Vault
-        """
-elif False:
-    KeysAzureArgsDict: TypeAlias = Mapping[str, Any]
+class KeysAzureArgsDict(TypedDict):
+    client_id: pulumi.Input[_builtins.str]
+    """
+    The client id for credentials to query the Azure APIs
+    """
+    client_secret: pulumi.Input[_builtins.str]
+    """
+    The client secret for credentials to query the Azure APIs
+    """
+    key_name: pulumi.Input[_builtins.str]
+    """
+    The Key Vault key to use for encryption and decryption
+    """
+    key_type: pulumi.Input[_builtins.str]
+    """
+    The type of key to use
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    A unique lowercase name that serves as identifying the key
+    """
+    tenant_id: pulumi.Input[_builtins.str]
+    """
+    The tenant id for the Azure Active Directory organization
+    """
+    vault_name: pulumi.Input[_builtins.str]
+    """
+    The Key Vault vault to use the encryption keys for encryption and decryption
+    """
+    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+    """
+    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+    """
+    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+    """
+    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Allow usage from any mount point within the namespace if 'true'
+    """
+    environment: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Azure Cloud environment API endpoints to use
+    """
+    key_bits: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
+    """
+    resource: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Azure Key Vault resource's DNS Suffix to connect to
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the managed key read from Vault
+    """
 
 @pulumi.input_type
 class KeysAzureArgs:
@@ -616,74 +608,71 @@ class KeysAzureArgs:
         pulumi.set(self, "uuid", value)
 
 
-if not MYPY:
-    class KeysPkcArgsDict(TypedDict):
-        library: pulumi.Input[_builtins.str]
-        """
-        The name of the kms_library stanza to use from Vault's config to lookup the local library path
-        """
-        mechanism: pulumi.Input[_builtins.str]
-        """
-        The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        A unique lowercase name that serves as identifying the key
-        """
-        pin: pulumi.Input[_builtins.str]
-        """
-        The PIN for login
-        """
-        allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
-        """
-        allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
-        """
-        allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
-        """
-        any_mount: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Allow usage from any mount point within the namespace if 'true'
-        """
-        curve: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
-        """
-        force_rw_session: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Force all operations to open up a read-write session to the HSM
-        """
-        key_bits: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
-        """
-        key_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The id of a PKCS#11 key to use
-        """
-        key_label: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The label of the key to use
-        """
-        slot: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
-        """
-        token_label: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The slot token label to use
-        """
-        uuid: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the managed key read from Vault
-        """
-elif False:
-    KeysPkcArgsDict: TypeAlias = Mapping[str, Any]
+class KeysPkcArgsDict(TypedDict):
+    library: pulumi.Input[_builtins.str]
+    """
+    The name of the kms_library stanza to use from Vault's config to lookup the local library path
+    """
+    mechanism: pulumi.Input[_builtins.str]
+    """
+    The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    A unique lowercase name that serves as identifying the key
+    """
+    pin: pulumi.Input[_builtins.str]
+    """
+    The PIN for login
+    """
+    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+    """
+    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+    """
+    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+    """
+    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Allow usage from any mount point within the namespace if 'true'
+    """
+    curve: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
+    """
+    force_rw_session: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Force all operations to open up a read-write session to the HSM
+    """
+    key_bits: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
+    """
+    key_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The id of a PKCS#11 key to use
+    """
+    key_label: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The label of the key to use
+    """
+    slot: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
+    """
+    token_label: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The slot token label to use
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the managed key read from Vault
+    """
 
 @pulumi.input_type
 class KeysPkcArgs:

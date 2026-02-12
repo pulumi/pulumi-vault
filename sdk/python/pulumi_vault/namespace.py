@@ -207,6 +207,71 @@ class Namespace(pulumi.CustomResource):
                  path_fq: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
+
+        **Note** this feature is available only with Vault Enterprise.
+
+        ## Example Usage
+
+        ### Single namespace
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ns1 = vault.Namespace("ns1", path="ns1")
+        ```
+
+        ### Nested namespaces
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        child_namespaces = config.get_object("childNamespaces")
+        if child_namespaces is None:
+            child_namespaces = [
+                "child_0",
+                "child_1",
+                "child_2",
+            ]
+        parent = vault.Namespace("parent", path="parent")
+        children = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
+            children.append(vault.Namespace(f"children-{range['key']}",
+                namespace=parent.path,
+                path=range["key"]))
+        children_mount = []
+        def create_children(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_mount.append(vault.Mount(f"children-{range['key']}",
+                    namespace=range["value"].path_fq,
+                    path="secrets",
+                    type="kv",
+                    options={
+                        "version": "1",
+                    }))
+
+        children.apply(create_children)
+        children_secret = []
+        def create_children(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_secret.append(vault.generic.Secret(f"children-{range['key']}",
+                    namespace=range["value"].namespace,
+                    path=f"{range['value'].path}/secret",
+                    data_json=json.dumps({
+                        "ns": range["key"],
+                    })))
+
+        children_mount.apply(create_children)
+        ```
+
+        ## Tutorials
+
+        Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.
+
         ## Import
 
         Namespaces can be imported using its `name` as accessor id
@@ -217,44 +282,25 @@ class Namespace(pulumi.CustomResource):
 
         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
 
-        hcl
+        ```python
+        import pulumi
+        import pulumi_vault as vault
 
-        provider "vault" {
-
-        # Configuration options
-
-          namespace = "example"
-
-          alias     = "example"
-
-        }
-
-        resource "vault_namespace" "example2" {
-
-          provider = vault.example
-
-          path     = "example2"
-
-        }
+        example2 = vault.Namespace("example2", path="example2")
+        ```
 
         ```sh
         $ pulumi import vault:index/namespace:Namespace example2 example2
-        ```
 
         $ terraform state show vault_namespace.example2
+        ```
 
         vault_namespace.example2:
-
-        resource "vault_namespace" "example2" {
-
-            id           = "example/example2/"
-            
-            namespace_id = <known after import>
-            
-            path         = "example2"
-            
-            path_fq      = "example2"
-
+        resource "Namespace" "example2" {
+        id           = "example/example2/"
+        namespace_id = <known after import>
+        path         = "example2"
+        path_fq      = "example2"
         }
 
         :param str resource_name: The name of the resource.
@@ -276,6 +322,71 @@ class Namespace(pulumi.CustomResource):
                  args: NamespaceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
+
+        **Note** this feature is available only with Vault Enterprise.
+
+        ## Example Usage
+
+        ### Single namespace
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        ns1 = vault.Namespace("ns1", path="ns1")
+        ```
+
+        ### Nested namespaces
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        child_namespaces = config.get_object("childNamespaces")
+        if child_namespaces is None:
+            child_namespaces = [
+                "child_0",
+                "child_1",
+                "child_2",
+            ]
+        parent = vault.Namespace("parent", path="parent")
+        children = []
+        for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
+            children.append(vault.Namespace(f"children-{range['key']}",
+                namespace=parent.path,
+                path=range["key"]))
+        children_mount = []
+        def create_children(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_mount.append(vault.Mount(f"children-{range['key']}",
+                    namespace=range["value"].path_fq,
+                    path="secrets",
+                    type="kv",
+                    options={
+                        "version": "1",
+                    }))
+
+        children.apply(create_children)
+        children_secret = []
+        def create_children(range_body):
+            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_secret.append(vault.generic.Secret(f"children-{range['key']}",
+                    namespace=range["value"].namespace,
+                    path=f"{range['value'].path}/secret",
+                    data_json=json.dumps({
+                        "ns": range["key"],
+                    })))
+
+        children_mount.apply(create_children)
+        ```
+
+        ## Tutorials
+
+        Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.
+
         ## Import
 
         Namespaces can be imported using its `name` as accessor id
@@ -286,44 +397,25 @@ class Namespace(pulumi.CustomResource):
 
         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
 
-        hcl
+        ```python
+        import pulumi
+        import pulumi_vault as vault
 
-        provider "vault" {
-
-        # Configuration options
-
-          namespace = "example"
-
-          alias     = "example"
-
-        }
-
-        resource "vault_namespace" "example2" {
-
-          provider = vault.example
-
-          path     = "example2"
-
-        }
+        example2 = vault.Namespace("example2", path="example2")
+        ```
 
         ```sh
         $ pulumi import vault:index/namespace:Namespace example2 example2
-        ```
 
         $ terraform state show vault_namespace.example2
+        ```
 
         vault_namespace.example2:
-
-        resource "vault_namespace" "example2" {
-
-            id           = "example/example2/"
-            
-            namespace_id = <known after import>
-            
-            path         = "example2"
-            
-            path_fq      = "example2"
-
+        resource "Namespace" "example2" {
+        id           = "example/example2/"
+        namespace_id = <known after import>
+        path         = "example2"
+        path_fq      = "example2"
         }
 
         :param str resource_name: The name of the resource.

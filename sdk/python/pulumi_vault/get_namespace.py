@@ -111,6 +111,10 @@ def get_namespace(namespace: Optional[_builtins.str] = None,
                   path: Optional[_builtins.str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNamespaceResult:
     """
+    Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+
+    **Note** this feature is available only with Vault Enterprise.
+
     ## Example Usage
 
     ### Current namespace
@@ -170,6 +174,10 @@ def get_namespace_output(namespace: Optional[pulumi.Input[Optional[_builtins.str
                          path: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespaceResult]:
     """
+    Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+
+    **Note** this feature is available only with Vault Enterprise.
+
     ## Example Usage
 
     ### Current namespace

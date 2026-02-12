@@ -51,8 +51,7 @@ import (
 //
 // ## Import
 //
-// # As EAB tokens are only available on initial creation there is no possibility to
-//
+// As EAB tokens are only available on initial creation there is no possibility to
 // import or update this resource.
 type BackendAcmeEab struct {
 	pulumi.CustomResourceState

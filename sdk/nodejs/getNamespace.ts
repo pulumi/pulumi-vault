@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+ *
+ * **Note** this feature is available only with Vault Enterprise.
+ *
  * ## Example Usage
  *
  * ### Current namespace
@@ -98,6 +102,10 @@ export interface GetNamespaceResult {
     readonly pathFq: string;
 }
 /**
+ * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+ *
+ * **Note** this feature is available only with Vault Enterprise.
+ *
  * ## Example Usage
  *
  * ### Current namespace

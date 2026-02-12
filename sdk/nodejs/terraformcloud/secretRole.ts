@@ -5,6 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Manages a Terraform Cloud secrets role for a Terraform Cloud secrets engine in Vault.
+ * Terraform Cloud secret backends can then issue Terraform Cloud tokens.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -60,16 +63,25 @@ export class SecretRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretRole.__pulumiType;
     }
 
+    /**
+     * The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     */
     declare public readonly backend: pulumi.Output<string | undefined>;
     /**
      * The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
      */
     declare public readonly credentialType: pulumi.Output<string | undefined>;
+    /**
+     * Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     declare public readonly maxTtl: pulumi.Output<number | undefined>;
+    /**
+     * The name of the Terraform Cloud secrets engine role to create.
+     */
     declare public readonly name: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
@@ -78,12 +90,21 @@ export class SecretRole extends pulumi.CustomResource {
      * *Available only for Vault Enterprise*.
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
+    /**
+     * The organization name managing your Terraform Cloud instance.
+     */
     declare public readonly organization: pulumi.Output<string | undefined>;
+    /**
+     * The id of the team you wish to create a token for in your Terraform Cloud instance.
+     */
     declare public readonly teamId: pulumi.Output<string | undefined>;
     /**
      * Specifies the TTL for this role, in seconds.
      */
     declare public readonly ttl: pulumi.Output<number | undefined>;
+    /**
+     * The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     */
     declare public readonly userId: pulumi.Output<string | undefined>;
 
     /**
@@ -131,16 +152,25 @@ export class SecretRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretRole resources.
  */
 export interface SecretRoleState {
+    /**
+     * The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     */
     backend?: pulumi.Input<string>;
     /**
      * The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
      */
     credentialType?: pulumi.Input<string>;
+    /**
+     * Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     */
     description?: pulumi.Input<string>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     maxTtl?: pulumi.Input<number>;
+    /**
+     * The name of the Terraform Cloud secrets engine role to create.
+     */
     name?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
@@ -149,12 +179,21 @@ export interface SecretRoleState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The organization name managing your Terraform Cloud instance.
+     */
     organization?: pulumi.Input<string>;
+    /**
+     * The id of the team you wish to create a token for in your Terraform Cloud instance.
+     */
     teamId?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role, in seconds.
      */
     ttl?: pulumi.Input<number>;
+    /**
+     * The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     */
     userId?: pulumi.Input<string>;
 }
 
@@ -162,16 +201,25 @@ export interface SecretRoleState {
  * The set of arguments for constructing a SecretRole resource.
  */
 export interface SecretRoleArgs {
+    /**
+     * The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     */
     backend?: pulumi.Input<string>;
     /**
      * The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
      */
     credentialType?: pulumi.Input<string>;
+    /**
+     * Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     */
     description?: pulumi.Input<string>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     maxTtl?: pulumi.Input<number>;
+    /**
+     * The name of the Terraform Cloud secrets engine role to create.
+     */
     name?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
@@ -180,11 +228,20 @@ export interface SecretRoleArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The organization name managing your Terraform Cloud instance.
+     */
     organization?: pulumi.Input<string>;
+    /**
+     * The id of the team you wish to create a token for in your Terraform Cloud instance.
+     */
     teamId?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role, in seconds.
      */
     ttl?: pulumi.Input<number>;
+    /**
+     * The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     */
     userId?: pulumi.Input<string>;
 }

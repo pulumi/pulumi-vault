@@ -18,6 +18,133 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Logs into Vault using the AppRole auth backend. See the [Vault
+ * documentation](https://www.vaultproject.io/docs/auth/approle) for more
+ * information.
+ * 
+ * ## Example Usage
+ * 
+ * ### Standard Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRole;
+ * import com.pulumi.vault.appRole.AuthBackendRoleArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretId;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
+ * import com.pulumi.vault.appRole.AuthBackendLogin;
+ * import com.pulumi.vault.appRole.AuthBackendLoginArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var approle = new AuthBackend("approle", AuthBackendArgs.builder()
+ *             .type("approle")
+ *             .build());
+ * 
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
+ *             .backend(approle.path())
+ *             .roleName("test-role")
+ *             .tokenPolicies(            
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
+ *             .build());
+ * 
+ *         var id = new AuthBackendRoleSecretId("id", AuthBackendRoleSecretIdArgs.builder()
+ *             .backend(approle.path())
+ *             .roleName(example.roleName())
+ *             .build());
+ * 
+ *         var login = new AuthBackendLogin("login", AuthBackendLoginArgs.builder()
+ *             .backend(approle.path())
+ *             .roleId(example.roleId())
+ *             .secretId(id.secretId())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Using Write-Only Field
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRole;
+ * import com.pulumi.vault.appRole.AuthBackendRoleArgs;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretId;
+ * import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
+ * import com.pulumi.vault.appRole.AuthBackendLogin;
+ * import com.pulumi.vault.appRole.AuthBackendLoginArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var approle = new AuthBackend("approle", AuthBackendArgs.builder()
+ *             .type("approle")
+ *             .build());
+ * 
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
+ *             .backend(approle.path())
+ *             .roleName("test-role")
+ *             .tokenPolicies(            
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
+ *             .build());
+ * 
+ *         var id = new AuthBackendRoleSecretId("id", AuthBackendRoleSecretIdArgs.builder()
+ *             .backend(approle.path())
+ *             .roleName(example.roleName())
+ *             .build());
+ * 
+ *         var login = new AuthBackendLogin("login", AuthBackendLoginArgs.builder()
+ *             .backend(approle.path())
+ *             .roleId(example.roleId())
+ *             .secretIdWo(id.secretId())
+ *             .secretIdWoVersion(1)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ */
 @ResourceType(type="vault:appRole/authBackendLogin:AuthBackendLogin")
 public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     /**

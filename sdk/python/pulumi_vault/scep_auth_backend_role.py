@@ -575,6 +575,8 @@ class ScepAuthBackendRole(pulumi.CustomResource):
                  token_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Provides a resource to create a role in an [SCEP auth backend within Vault](https://developer.hashicorp.com/vault/docs/auth/scep).
+
         ## Example Usage
 
         ```python
@@ -624,6 +626,8 @@ class ScepAuthBackendRole(pulumi.CustomResource):
                  args: ScepAuthBackendRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Provides a resource to create a role in an [SCEP auth backend within Vault](https://developer.hashicorp.com/vault/docs/auth/scep).
+
         ## Example Usage
 
         ```python

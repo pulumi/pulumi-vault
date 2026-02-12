@@ -9,6 +9,100 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.AppRole
 {
+    /// <summary>
+    /// Logs into Vault using the AppRole auth backend. See the [Vault
+    /// documentation](https://www.vaultproject.io/docs/auth/approle) for more
+    /// information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Standard Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var approle = new Vault.AuthBackend("approle", new()
+    ///     {
+    ///         Type = "approle",
+    ///     });
+    /// 
+    ///     var example = new Vault.AppRole.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = example.RoleName,
+    ///     });
+    /// 
+    ///     var login = new Vault.AppRole.AuthBackendLogin("login", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleId = example.RoleId,
+    ///         SecretId = id.SecretId,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Using Write-Only Field
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var approle = new Vault.AuthBackend("approle", new()
+    ///     {
+    ///         Type = "approle",
+    ///     });
+    /// 
+    ///     var example = new Vault.AppRole.AuthBackendRole("example", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = "test-role",
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "default",
+    ///             "dev",
+    ///             "prod",
+    ///         },
+    ///     });
+    /// 
+    ///     var id = new Vault.AppRole.AuthBackendRoleSecretId("id", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleName = example.RoleName,
+    ///     });
+    /// 
+    ///     var login = new Vault.AppRole.AuthBackendLogin("login", new()
+    ///     {
+    ///         Backend = approle.Path,
+    ///         RoleId = example.RoleId,
+    ///         SecretIdWo = id.SecretId,
+    ///         SecretIdWoVersion = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [VaultResourceType("vault:appRole/authBackendLogin:AuthBackendLogin")]
     public partial class AuthBackendLogin : global::Pulumi.CustomResource
     {

@@ -78,14 +78,20 @@ public final class SecretBackendCaArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * 
+     * &gt; **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      * 
      */
     @Import(name="managedKeyId")
     private @Nullable Output<String> managedKeyId;
 
     /**
-     * @return The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * @return The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+     * 
+     * &gt; **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+     * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      * 
      */
     public Optional<Output<String>> managedKeyId() {
@@ -275,7 +281,10 @@ public final class SecretBackendCaArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+         * @param managedKeyId The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+         * 
+         * &gt; **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+         * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
          * 
          * @return builder
          * 
@@ -286,7 +295,10 @@ public final class SecretBackendCaArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param managedKeyId The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+         * @param managedKeyId The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+         * 
+         * &gt; **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+         * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
          * 
          * @return builder
          * 

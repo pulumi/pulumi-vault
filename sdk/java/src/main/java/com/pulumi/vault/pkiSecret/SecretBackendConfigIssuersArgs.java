@@ -35,14 +35,18 @@ public final class SecretBackendConfigIssuersArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Specifies the default issuer by ID.
+     * Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      * 
      */
     @Import(name="default")
     private @Nullable Output<String> default_;
 
     /**
-     * @return Specifies the default issuer by ID.
+     * @return Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      * 
      */
     public Optional<Output<String>> default_() {
@@ -138,7 +142,9 @@ public final class SecretBackendConfigIssuersArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param default_ Specifies the default issuer by ID.
+         * @param default_ Specifies the default issuer using the issuer ID.
+         * **NOTE:** It is recommended to only set the default issuer using the ID.
+         * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
          * 
          * @return builder
          * 
@@ -149,7 +155,9 @@ public final class SecretBackendConfigIssuersArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param default_ Specifies the default issuer by ID.
+         * @param default_ Specifies the default issuer using the issuer ID.
+         * **NOTE:** It is recommended to only set the default issuer using the ID.
+         * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
          * 
          * @return builder
          * 

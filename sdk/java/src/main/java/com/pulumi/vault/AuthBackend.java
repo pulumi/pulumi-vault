@@ -17,6 +17,54 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * This resource enables a new auth method at the given path.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.inputs.AuthBackendTuneArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("github")
+ *             .tune(AuthBackendTuneArgs.builder()
+ *                 .maxLeaseTtl("90000s")
+ *                 .listingVisibility("unauth")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Tutorials
+ * 
+ * Refer to the following tutorials for additional usage examples:
+ * 
+ * - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+ * 
+ * - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+ * 
  * ## Import
  * 
  * Auth methods can be imported using the `path`, e.g.

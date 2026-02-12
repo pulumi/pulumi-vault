@@ -34,9 +34,17 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         return Optional.ofNullable(this.backend);
     }
 
+    /**
+     * The configuration for the credential type.Full documentation for the allowed values can be found under &#34;https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config&#34;.
+     * 
+     */
     @Import(name="credentialConfig")
     private @Nullable Output<Map<String,String>> credentialConfig;
 
+    /**
+     * @return The configuration for the credential type.Full documentation for the allowed values can be found under &#34;https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config&#34;.
+     * 
+     */
     public Optional<Output<Map<String,String>>> credentialConfig() {
         return Optional.ofNullable(this.credentialConfig);
     }
@@ -331,11 +339,23 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
             return backend(Output.of(backend));
         }
 
+        /**
+         * @param credentialConfig The configuration for the credential type.Full documentation for the allowed values can be found under &#34;https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder credentialConfig(@Nullable Output<Map<String,String>> credentialConfig) {
             $.credentialConfig = credentialConfig;
             return this;
         }
 
+        /**
+         * @param credentialConfig The configuration for the credential type.Full documentation for the allowed values can be found under &#34;https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder credentialConfig(Map<String,String> credentialConfig) {
             return credentialConfig(Output.of(credentialConfig));
         }

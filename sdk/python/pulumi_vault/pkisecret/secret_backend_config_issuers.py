@@ -27,7 +27,9 @@ class SecretBackendConfigIssuersArgs:
         The set of arguments for constructing a SecretBackendConfigIssuers resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] default: Specifies the default issuer by ID.
+        :param pulumi.Input[_builtins.str] default: Specifies the default issuer using the issuer ID.
+               **NOTE:** It is recommended to only set the default issuer using the ID.
+               While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         :param pulumi.Input[_builtins.bool] default_follows_latest_issuer: Specifies whether a root creation
                or an issuer import operation updates the default issuer to the newly added issuer.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -60,7 +62,9 @@ class SecretBackendConfigIssuersArgs:
     @pulumi.getter
     def default(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the default issuer by ID.
+        Specifies the default issuer using the issuer ID.
+        **NOTE:** It is recommended to only set the default issuer using the ID.
+        While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         """
         return pulumi.get(self, "default")
 
@@ -108,7 +112,9 @@ class _SecretBackendConfigIssuersState:
         Input properties used for looking up and filtering SecretBackendConfigIssuers resources.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] default: Specifies the default issuer by ID.
+        :param pulumi.Input[_builtins.str] default: Specifies the default issuer using the issuer ID.
+               **NOTE:** It is recommended to only set the default issuer using the ID.
+               While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         :param pulumi.Input[_builtins.bool] default_follows_latest_issuer: Specifies whether a root creation
                or an issuer import operation updates the default issuer to the newly added issuer.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -142,7 +148,9 @@ class _SecretBackendConfigIssuersState:
     @pulumi.getter
     def default(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the default issuer by ID.
+        Specifies the default issuer using the issuer ID.
+        **NOTE:** It is recommended to only set the default issuer using the ID.
+        While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         """
         return pulumi.get(self, "default")
 
@@ -191,6 +199,9 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Allows setting the value of the default issuer. For more information, see the
+        [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
+
         ## Example Usage
 
         ```python
@@ -229,7 +240,9 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] default: Specifies the default issuer by ID.
+        :param pulumi.Input[_builtins.str] default: Specifies the default issuer using the issuer ID.
+               **NOTE:** It is recommended to only set the default issuer using the ID.
+               While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         :param pulumi.Input[_builtins.bool] default_follows_latest_issuer: Specifies whether a root creation
                or an issuer import operation updates the default issuer to the newly added issuer.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -244,6 +257,9 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
                  args: SecretBackendConfigIssuersArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Allows setting the value of the default issuer. For more information, see the
+        [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
+
         ## Example Usage
 
         ```python
@@ -335,7 +351,9 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] default: Specifies the default issuer by ID.
+        :param pulumi.Input[_builtins.str] default: Specifies the default issuer using the issuer ID.
+               **NOTE:** It is recommended to only set the default issuer using the ID.
+               While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         :param pulumi.Input[_builtins.bool] default_follows_latest_issuer: Specifies whether a root creation
                or an issuer import operation updates the default issuer to the newly added issuer.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -366,7 +384,9 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
     @pulumi.getter
     def default(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the default issuer by ID.
+        Specifies the default issuer using the issuer ID.
+        **NOTE:** It is recommended to only set the default issuer using the ID.
+        While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         """
         return pulumi.get(self, "default")
 

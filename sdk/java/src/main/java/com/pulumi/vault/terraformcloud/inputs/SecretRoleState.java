@@ -16,9 +16,17 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
 
     public static final SecretRoleState Empty = new SecretRoleState();
 
+    /**
+     * The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     * 
+     */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
+    /**
+     * @return The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     * 
+     */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -38,9 +46,17 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.credentialType);
     }
 
+    /**
+     * Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
@@ -60,9 +76,17 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.maxTtl);
     }
 
+    /**
+     * The name of the Terraform Cloud secrets engine role to create.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return The name of the Terraform Cloud secrets engine role to create.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -88,16 +112,32 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * The organization name managing your Terraform Cloud instance.
+     * 
+     */
     @Import(name="organization")
     private @Nullable Output<String> organization;
 
+    /**
+     * @return The organization name managing your Terraform Cloud instance.
+     * 
+     */
     public Optional<Output<String>> organization() {
         return Optional.ofNullable(this.organization);
     }
 
+    /**
+     * The id of the team you wish to create a token for in your Terraform Cloud instance.
+     * 
+     */
     @Import(name="teamId")
     private @Nullable Output<String> teamId;
 
+    /**
+     * @return The id of the team you wish to create a token for in your Terraform Cloud instance.
+     * 
+     */
     public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -117,9 +157,17 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.ttl);
     }
 
+    /**
+     * The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     * 
+     */
     @Import(name="userId")
     private @Nullable Output<String> userId;
 
+    /**
+     * @return The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     * 
+     */
     public Optional<Output<String>> userId() {
         return Optional.ofNullable(this.userId);
     }
@@ -157,11 +205,23 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             $ = new SecretRoleState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param backend The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(@Nullable Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
+        /**
+         * @param backend The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }
@@ -187,11 +247,23 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return credentialType(Output.of(credentialType));
         }
 
+        /**
+         * @param description Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
@@ -217,11 +289,23 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return maxTtl(Output.of(maxTtl));
         }
 
+        /**
+         * @param name The name of the Terraform Cloud secrets engine role to create.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name The name of the Terraform Cloud secrets engine role to create.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
@@ -253,20 +337,44 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return namespace(Output.of(namespace));
         }
 
+        /**
+         * @param organization The organization name managing your Terraform Cloud instance.
+         * 
+         * @return builder
+         * 
+         */
         public Builder organization(@Nullable Output<String> organization) {
             $.organization = organization;
             return this;
         }
 
+        /**
+         * @param organization The organization name managing your Terraform Cloud instance.
+         * 
+         * @return builder
+         * 
+         */
         public Builder organization(String organization) {
             return organization(Output.of(organization));
         }
 
+        /**
+         * @param teamId The id of the team you wish to create a token for in your Terraform Cloud instance.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
+        /**
+         * @param teamId The id of the team you wish to create a token for in your Terraform Cloud instance.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }
@@ -292,11 +400,23 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return ttl(Output.of(ttl));
         }
 
+        /**
+         * @param userId The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(@Nullable Output<String> userId) {
             $.userId = userId;
             return this;
         }
 
+        /**
+         * @param userId The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(String userId) {
             return userId(Output.of(userId));
         }

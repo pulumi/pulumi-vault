@@ -68,14 +68,16 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The Private Programmatic API Key used to connect with MongoDB Atlas API
+     * Specifies the Private API Key used to authenticate with the MongoDB Atlas API. Mutually exclusive
+     * with `privateKeyWo`. **Note:** This field will be stored in Terraform state. Consider using `privateKeyWo` instead for enhanced security.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return The Private Programmatic API Key used to connect with MongoDB Atlas API
+     * @return Specifies the Private API Key used to authenticate with the MongoDB Atlas API. Mutually exclusive
+     * with `privateKeyWo`. **Note:** This field will be stored in Terraform state. Consider using `privateKeyWo` instead for enhanced security.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -231,7 +233,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param privateKey The Private Programmatic API Key used to connect with MongoDB Atlas API
+         * @param privateKey Specifies the Private API Key used to authenticate with the MongoDB Atlas API. Mutually exclusive
+         * with `privateKeyWo`. **Note:** This field will be stored in Terraform state. Consider using `privateKeyWo` instead for enhanced security.
          * 
          * @return builder
          * 
@@ -242,7 +245,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param privateKey The Private Programmatic API Key used to connect with MongoDB Atlas API
+         * @param privateKey Specifies the Private API Key used to authenticate with the MongoDB Atlas API. Mutually exclusive
+         * with `privateKeyWo`. **Note:** This field will be stored in Terraform state. Consider using `privateKeyWo` instead for enhanced security.
          * 
          * @return builder
          * 

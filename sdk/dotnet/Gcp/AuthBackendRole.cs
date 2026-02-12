@@ -56,7 +56,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Import
     /// 
-    /// GCP authentication roles can be imported using the `path`, e.g.
+    /// GCP authentication roles can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role

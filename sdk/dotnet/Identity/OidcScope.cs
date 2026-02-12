@@ -35,7 +35,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// OIDC Scopes can be imported using the `name`, e.g.
+    /// OIDC Scopes can be imported using the `Name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/oidcScope:OidcScope groups groups

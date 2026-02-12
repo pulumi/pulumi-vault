@@ -12,6 +12,120 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Logs into Vault using the AppRole auth backend. See the [Vault
+// documentation](https://www.vaultproject.io/docs/auth/approle) for more
+// information.
+//
+// ## Example Usage
+//
+// ### Standard Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/approle"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+//				Type: pulumi.String("approle"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := approle.NewAuthBackendRole(ctx, "example", &approle.AuthBackendRoleArgs{
+//				Backend:  approle.Path,
+//				RoleName: pulumi.String("test-role"),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			id, err := approle.NewAuthBackendRoleSecretId(ctx, "id", &approle.AuthBackendRoleSecretIdArgs{
+//				Backend:  approle.Path,
+//				RoleName: example.RoleName,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = approle.NewAuthBackendLogin(ctx, "login", &approle.AuthBackendLoginArgs{
+//				Backend:  approle.Path,
+//				RoleId:   example.RoleId,
+//				SecretId: id.SecretId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Using Write-Only Field
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/approle"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+//				Type: pulumi.String("approle"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := approle.NewAuthBackendRole(ctx, "example", &approle.AuthBackendRoleArgs{
+//				Backend:  approle.Path,
+//				RoleName: pulumi.String("test-role"),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("default"),
+//					pulumi.String("dev"),
+//					pulumi.String("prod"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			id, err := approle.NewAuthBackendRoleSecretId(ctx, "id", &approle.AuthBackendRoleSecretIdArgs{
+//				Backend:  approle.Path,
+//				RoleName: example.RoleName,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = approle.NewAuthBackendLogin(ctx, "login", &approle.AuthBackendLoginArgs{
+//				Backend:           approle.Path,
+//				RoleId:            example.RoleId,
+//				SecretIdWo:        id.SecretId,
+//				SecretIdWoVersion: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AuthBackendLogin struct {
 	pulumi.CustomResourceState
 

@@ -80,7 +80,8 @@ export class Team extends pulumi.CustomResource {
      */
     declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
-     * GitHub team name in "slugified" format.
+     * GitHub team name in "slugified" format, for example: Terraform
+     * Developers > `terraform-developers`.
      */
     declare public readonly team: pulumi.Output<string>;
 
@@ -138,7 +139,8 @@ export interface TeamState {
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * GitHub team name in "slugified" format.
+     * GitHub team name in "slugified" format, for example: Terraform
+     * Developers > `terraform-developers`.
      */
     team?: pulumi.Input<string>;
 }
@@ -165,7 +167,8 @@ export interface TeamArgs {
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * GitHub team name in "slugified" format.
+     * GitHub team name in "slugified" format, for example: Terraform
+     * Developers > `terraform-developers`.
      */
     team: pulumi.Input<string>;
 }

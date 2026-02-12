@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+//
+// **Note** this feature is available only with Vault Enterprise.
+//
 // ## Example Usage
 //
 // ### Current namespace

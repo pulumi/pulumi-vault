@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
+ * Token auth backend roles can be imported with `auth/token/roles/` followed by the `roleName`, e.g.
  *
  * ```sh
  * $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
@@ -105,6 +105,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
     declare public readonly orphan: pulumi.Output<boolean | undefined>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+     *
+     * > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
     declare public readonly pathSuffix: pulumi.Output<string | undefined>;
     /**
@@ -258,6 +260,8 @@ export interface AuthBackendRoleState {
     orphan?: pulumi.Input<boolean>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+     *
+     * > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
     pathSuffix?: pulumi.Input<string>;
     /**
@@ -348,6 +352,8 @@ export interface AuthBackendRoleArgs {
     orphan?: pulumi.Input<boolean>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+     *
+     * > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
     pathSuffix?: pulumi.Input<string>;
     /**

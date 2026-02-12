@@ -21,14 +21,9 @@ __all__ = [
     'BackendRoleAzureRoleArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackendRoleAzureGroupArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        object_id: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    BackendRoleAzureGroupArgsDict: TypeAlias = Mapping[str, Any]
+class BackendRoleAzureGroupArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    object_id: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class BackendRoleAzureGroupArgs:
@@ -58,13 +53,10 @@ class BackendRoleAzureGroupArgs:
         pulumi.set(self, "object_id", value)
 
 
-if not MYPY:
-    class BackendRoleAzureRoleArgsDict(TypedDict):
-        scope: pulumi.Input[_builtins.str]
-        role_id: NotRequired[pulumi.Input[_builtins.str]]
-        role_name: NotRequired[pulumi.Input[_builtins.str]]
-elif False:
-    BackendRoleAzureRoleArgsDict: TypeAlias = Mapping[str, Any]
+class BackendRoleAzureRoleArgsDict(TypedDict):
+    scope: pulumi.Input[_builtins.str]
+    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    role_name: NotRequired[pulumi.Input[_builtins.str]]
 
 @pulumi.input_type
 class BackendRoleAzureRoleArgs:

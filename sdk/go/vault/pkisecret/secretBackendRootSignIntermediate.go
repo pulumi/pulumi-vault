@@ -102,7 +102,7 @@ type SecretBackendRootSignIntermediate struct {
 	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
 	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrOutput `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
@@ -234,7 +234,7 @@ type secretBackendRootSignIntermediateState struct {
 	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
 	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter *string `pulumi:"notAfter"`
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization *string `pulumi:"organization"`
@@ -328,7 +328,7 @@ type SecretBackendRootSignIntermediateState struct {
 	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
 	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrInput
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
@@ -417,7 +417,7 @@ type secretBackendRootSignIntermediateArgs struct {
 	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
 	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter *string `pulumi:"notAfter"`
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization *string `pulumi:"organization"`
@@ -501,7 +501,7 @@ type SecretBackendRootSignIntermediateArgs struct {
 	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
 	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
 	NotAfter pulumi.StringPtrInput
-	// Specifies the duration by which to backdate the NotBefore property.
+	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
@@ -745,7 +745,7 @@ func (o SecretBackendRootSignIntermediateOutput) NotAfter() pulumi.StringPtrOutp
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the duration by which to backdate the NotBefore property.
+// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
 func (o SecretBackendRootSignIntermediateOutput) NotBeforeDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.NotBeforeDuration }).(pulumi.StringPtrOutput)
 }

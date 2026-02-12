@@ -4,6 +4,68 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Logs into Vault using the AppRole auth backend. See the [Vault
+ * documentation](https://www.vaultproject.io/docs/auth/approle) for more
+ * information.
+ *
+ * ## Example Usage
+ *
+ * ### Standard Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const approle = new vault.AuthBackend("approle", {type: "approle"});
+ * const example = new vault.approle.AuthBackendRole("example", {
+ *     backend: approle.path,
+ *     roleName: "test-role",
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ * });
+ * const id = new vault.approle.AuthBackendRoleSecretId("id", {
+ *     backend: approle.path,
+ *     roleName: example.roleName,
+ * });
+ * const login = new vault.approle.AuthBackendLogin("login", {
+ *     backend: approle.path,
+ *     roleId: example.roleId,
+ *     secretId: id.secretId,
+ * });
+ * ```
+ *
+ * ### Using Write-Only Field
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const approle = new vault.AuthBackend("approle", {type: "approle"});
+ * const example = new vault.approle.AuthBackendRole("example", {
+ *     backend: approle.path,
+ *     roleName: "test-role",
+ *     tokenPolicies: [
+ *         "default",
+ *         "dev",
+ *         "prod",
+ *     ],
+ * });
+ * const id = new vault.approle.AuthBackendRoleSecretId("id", {
+ *     backend: approle.path,
+ *     roleName: example.roleName,
+ * });
+ * const login = new vault.approle.AuthBackendLogin("login", {
+ *     backend: approle.path,
+ *     roleId: example.roleId,
+ *     secretIdWo: id.secretId,
+ *     secretIdWoVersion: 1,
+ * });
+ * ```
+ */
 export class AuthBackendLogin extends pulumi.CustomResource {
     /**
      * Get an existing AuthBackendLogin resource's state with the given name, ID, and optional extra

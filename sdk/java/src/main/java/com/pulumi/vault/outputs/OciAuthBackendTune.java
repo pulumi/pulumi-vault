@@ -57,7 +57,10 @@ public final class OciAuthBackendTune {
      */
     private @Nullable List<String> passthroughRequestHeaders;
     /**
-     * @return Specifies the type of tokens that should be returned by the mount.
+     * @return Specifies the type of tokens that should be returned by
+     * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
+     * 
+     * For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
      * 
      */
     private @Nullable String tokenType;
@@ -122,7 +125,10 @@ public final class OciAuthBackendTune {
         return this.passthroughRequestHeaders == null ? List.of() : this.passthroughRequestHeaders;
     }
     /**
-     * @return Specifies the type of tokens that should be returned by the mount.
+     * @return Specifies the type of tokens that should be returned by
+     * the mount. Valid values are &#34;default-service&#34;, &#34;default-batch&#34;, &#34;service&#34;, &#34;batch&#34;.
+     * 
+     * For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
      * 
      */
     public Optional<String> tokenType() {

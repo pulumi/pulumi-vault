@@ -51,7 +51,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ## Import
     /// 
-    /// SSH secret backend roles can be imported using the `path`, e.g.
+    /// SSH secret backend roles can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
@@ -219,7 +219,8 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+        /// Specifies the duration by which to backdate the ValidAfter property.
+        /// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         /// </summary>
         [Output("notBeforeDuration")]
         public Output<string> NotBeforeDuration { get; private set; } = null!;
@@ -453,7 +454,8 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+        /// Specifies the duration by which to backdate the ValidAfter property.
+        /// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         /// </summary>
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }
@@ -649,7 +651,8 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+        /// Specifies the duration by which to backdate the ValidAfter property.
+        /// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         /// </summary>
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }

@@ -56,7 +56,7 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// ## Import
     /// 
-    /// KMIP Secret role can be imported using the `path`, e.g.
+    /// KMIP Secret role can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kmip/secretRole:SecretRole admin kmip

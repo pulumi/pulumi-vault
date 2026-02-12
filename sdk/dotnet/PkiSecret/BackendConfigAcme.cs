@@ -60,9 +60,9 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Import
     /// 
-    /// The ACME configuration can be imported using the resource's `id`.
-    /// In the case of the example above the `id` would be `pki/config/acme`,
-    /// where the `pki` component is the resource's `backend`, e.g.
+    /// The ACME configuration can be imported using the resource's `Id`.
+    /// In the case of the example above the `Id` would be `pki/config/acme`,
+    /// where the `Pki` component is the resource's `Backend`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:pkiSecret/backendConfigAcme:BackendConfigAcme example pki/config/acme

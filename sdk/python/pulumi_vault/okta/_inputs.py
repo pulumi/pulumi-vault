@@ -23,20 +23,15 @@ __all__ = [
     'AuthBackendUserArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class AuthBackendGroupArgsDict(TypedDict):
-        group_name: pulumi.Input[_builtins.str]
-        """
-        Name of the Okta group
-        """
-        policies: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        Policies to associate with this group
-        """
-elif False:
-    AuthBackendGroupArgsDict: TypeAlias = Mapping[str, Any]
+class AuthBackendGroupArgsDict(TypedDict):
+    group_name: pulumi.Input[_builtins.str]
+    """
+    Name of the Okta group
+    """
+    policies: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    Policies to associate with this group
+    """
 
 @pulumi.input_type
 class AuthBackendGroupArgs:
@@ -75,42 +70,39 @@ class AuthBackendGroupArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class AuthBackendTuneArgsDict(TypedDict):
-        allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of headers to whitelist and allowing a plugin to include them in the response.
-        """
-        audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
-        """
-        audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        """
-        default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the default time-to-live duration. This overrides the global default. A value of 0 is equivalent to the system default TTL
-        """
-        listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies whether to show this mount in the UI-specific listing endpoint. Valid values are "unauth" or "hidden". If not set, behaves like "hidden".
-        """
-        max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the maximum time-to-live duration. This overrides the global default. A value of 0 are equivalent and set to the system max TTL.
-        """
-        passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        List of headers to whitelist and pass from the request to the backend.
-        """
-        token_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the type of tokens that should be returned by the mount.
-        """
-elif False:
-    AuthBackendTuneArgsDict: TypeAlias = Mapping[str, Any]
+class AuthBackendTuneArgsDict(TypedDict):
+    allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of headers to whitelist and allowing a plugin to include them in the response.
+    """
+    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
+    """
+    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+    """
+    default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the default time-to-live duration. This overrides the global default. A value of 0 is equivalent to the system default TTL
+    """
+    listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies whether to show this mount in the UI-specific listing endpoint. Valid values are "unauth" or "hidden". If not set, behaves like "hidden".
+    """
+    max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the maximum time-to-live duration. This overrides the global default. A value of 0 are equivalent and set to the system max TTL.
+    """
+    passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    List of headers to whitelist and pass from the request to the backend.
+    """
+    token_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the type of tokens that should be returned by the mount.
+    """
 
 @pulumi.input_type
 class AuthBackendTuneArgs:
@@ -247,22 +239,19 @@ class AuthBackendTuneArgs:
         pulumi.set(self, "token_type", value)
 
 
-if not MYPY:
-    class AuthBackendUserArgsDict(TypedDict):
-        username: pulumi.Input[_builtins.str]
-        """
-        Name of the user within Okta
-        """
-        groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Groups within the Okta auth backend to associate with this user
-        """
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Policies to associate with this user
-        """
-elif False:
-    AuthBackendUserArgsDict: TypeAlias = Mapping[str, Any]
+class AuthBackendUserArgsDict(TypedDict):
+    username: pulumi.Input[_builtins.str]
+    """
+    Name of the user within Okta
+    """
+    groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Groups within the Okta auth backend to associate with this user
+    """
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Policies to associate with this user
+    """
 
 @pulumi.input_type
 class AuthBackendUserArgs:

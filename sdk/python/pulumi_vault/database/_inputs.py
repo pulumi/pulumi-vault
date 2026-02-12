@@ -89,76 +89,71 @@ __all__ = [
     'SecretsMountSnowflakeArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SecretBackendConnectionCassandraArgsDict(TypedDict):
-        connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds to use as a connection timeout.
-        """
-        consistency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Cassandra consistency level.
-        """
-        hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Cassandra hosts to connect to.
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to skip verification of the server certificate when using TLS.
-        """
-        local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Cassandra local datacenter name.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The password to use when authenticating with Cassandra.
-        """
-        pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        pem_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The transport port to use to connect to Cassandra.
-        """
-        protocol_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The CQL protocol version to use.
-        """
-        skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
-        """
-        socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Enable TCP keepalive for Cassandra connections.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to use TLS when connecting to Cassandra.
-        """
-        tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        SNI host for TLS connections.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The username to use when authenticating with Cassandra.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template for dynamic Cassandra usernames.
-        """
-elif False:
-    SecretBackendConnectionCassandraArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionCassandraArgsDict(TypedDict):
+    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds to use as a connection timeout.
+    """
+    consistency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Cassandra consistency level.
+    """
+    hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Cassandra hosts to connect to.
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to skip verification of the server certificate when using TLS.
+    """
+    local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Cassandra local datacenter name.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The password to use when authenticating with Cassandra.
+    """
+    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The transport port to use to connect to Cassandra.
+    """
+    protocol_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The CQL protocol version to use.
+    """
+    skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+    """
+    socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Enable TCP keepalive for Cassandra connections.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to use TLS when connecting to Cassandra.
+    """
+    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    SNI host for TLS connections.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The username to use when authenticating with Cassandra.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template for dynamic Cassandra usernames.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionCassandraArgs:
@@ -423,42 +418,39 @@ class SecretBackendConnectionCassandraArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionCouchbaseArgsDict(TypedDict):
-        hosts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password corresponding to the given username.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Specifies the username for Vault to use.
-        """
-        base64_pem: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
-        """
-        bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to skip verification of the server certificate when using TLS.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use TLS when connecting to Couchbase.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-elif False:
-    SecretBackendConnectionCouchbaseArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionCouchbaseArgsDict(TypedDict):
+    hosts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password corresponding to the given username.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Specifies the username for Vault to use.
+    """
+    base64_pem: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+    """
+    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip verification of the server certificate when using TLS.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use TLS when connecting to Couchbase.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionCouchbaseArgs:
@@ -592,50 +584,47 @@ class SecretBackendConnectionCouchbaseArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionElasticsearchArgsDict(TypedDict):
-        password: pulumi.Input[_builtins.str]
-        """
-        The password to be used in the connection URL
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        The URL for Elasticsearch's API
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        The username to be used in the connection URL
-        """
-        ca_cert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
-        """
-        ca_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
-        """
-        client_cert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to the certificate for the Elasticsearch client to present for communication
-        """
-        client_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to the key for the Elasticsearch client to use for communication
-        """
-        insecure: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to disable certificate verification
-        """
-        tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        This, if set, is used to set the SNI host when connecting via TLS
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-elif False:
-    SecretBackendConnectionElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionElasticsearchArgsDict(TypedDict):
+    password: pulumi.Input[_builtins.str]
+    """
+    The password to be used in the connection URL
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    The URL for Elasticsearch's API
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    The username to be used in the connection URL
+    """
+    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
+    """
+    ca_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
+    """
+    client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to the certificate for the Elasticsearch client to present for communication
+    """
+    client_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to the key for the Elasticsearch client to use for communication
+    """
+    insecure: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to disable certificate verification
+    """
+    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    This, if set, is used to set the SNI host when connecting via TLS
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionElasticsearchArgs:
@@ -801,51 +790,48 @@ class SecretBackendConnectionElasticsearchArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionHanaArgsDict(TypedDict):
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionHanaArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionHanaArgsDict(TypedDict):
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionHanaArgs:
@@ -1016,50 +1002,47 @@ class SecretBackendConnectionHanaArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionInfluxdbArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        Influxdb host to connect to.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password corresponding to the given username.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Specifies the username to use for superuser access.
-        """
-        connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds to use as a connection timeout.
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to skip verification of the server certificate when using TLS.
-        """
-        pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        pem_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The transport port to use to connect to Influxdb.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to use TLS when connecting to Influxdb.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-elif False:
-    SecretBackendConnectionInfluxdbArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionInfluxdbArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    Influxdb host to connect to.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password corresponding to the given username.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Specifies the username to use for superuser access.
+    """
+    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds to use as a connection timeout.
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to skip verification of the server certificate when using TLS.
+    """
+    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The transport port to use to connect to Influxdb.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to use TLS when connecting to Influxdb.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionInfluxdbArgs:
@@ -1225,59 +1208,56 @@ class SecretBackendConnectionInfluxdbArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMongodbArgsDict(TypedDict):
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        write_concern: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the MongoDB write concern for Vault management operations.
-        """
-elif False:
-    SecretBackendConnectionMongodbArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMongodbArgsDict(TypedDict):
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    write_concern: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the MongoDB write concern for Vault management operations.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMongodbArgs:
@@ -1480,26 +1460,23 @@ class SecretBackendConnectionMongodbArgs:
         pulumi.set(self, "write_concern", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMongodbatlasArgsDict(TypedDict):
-        private_key: pulumi.Input[_builtins.str]
-        """
-        The Private Programmatic API Key used to connect with MongoDB Atlas API.
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        The Project ID the Database User should be created within.
-        """
-        public_key: pulumi.Input[_builtins.str]
-        """
-        The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-elif False:
-    SecretBackendConnectionMongodbatlasArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMongodbatlasArgsDict(TypedDict):
+    private_key: pulumi.Input[_builtins.str]
+    """
+    The Private Programmatic API Key used to connect with MongoDB Atlas API.
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    The Project ID the Database User should be created within.
+    """
+    public_key: pulumi.Input[_builtins.str]
+    """
+    The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMongodbatlasArgs:
@@ -1569,55 +1546,52 @@ class SecretBackendConnectionMongodbatlasArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMssqlArgsDict(TypedDict):
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        contained_db: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true when the target is a Contained Database, e.g. AzureSQL.
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionMssqlArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMssqlArgsDict(TypedDict):
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    contained_db: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true when the target is a Contained Database, e.g. AzureSQL.
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMssqlArgs:
@@ -1804,63 +1778,60 @@ class SecretBackendConnectionMssqlArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMysqlArgsDict(TypedDict):
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionMysqlArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMysqlArgsDict(TypedDict):
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMysqlArgs:
@@ -2079,63 +2050,60 @@ class SecretBackendConnectionMysqlArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMysqlAuroraArgsDict(TypedDict):
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionMysqlAuroraArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMysqlAuroraArgsDict(TypedDict):
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMysqlAuroraArgs:
@@ -2354,63 +2322,60 @@ class SecretBackendConnectionMysqlAuroraArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMysqlLegacyArgsDict(TypedDict):
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionMysqlLegacyArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMysqlLegacyArgsDict(TypedDict):
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMysqlLegacyArgs:
@@ -2629,63 +2594,60 @@ class SecretBackendConnectionMysqlLegacyArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionMysqlRdsArgsDict(TypedDict):
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionMysqlRdsArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionMysqlRdsArgsDict(TypedDict):
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionMysqlRdsArgs:
@@ -2904,59 +2866,56 @@ class SecretBackendConnectionMysqlRdsArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionOracleArgsDict(TypedDict):
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        disconnect_sessions: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true to disconnect any open sessions prior to running the revocation statements.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        self_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set, allows onboarding static roles with a rootless connection configuration.
-        """
-        split_statements: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true in order to split statements after semi-colons.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionOracleArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionOracleArgsDict(TypedDict):
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    disconnect_sessions: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true to disconnect any open sessions prior to running the revocation statements.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set, allows onboarding static roles with a rootless connection configuration.
+    """
+    split_statements: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true in order to split statements after semi-colons.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionOracleArgs:
@@ -3159,79 +3118,76 @@ class SecretBackendConnectionOracleArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionPostgresqlArgsDict(TypedDict):
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_authentication: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        private_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The secret key used for the x509 client certificate. Must be PEM encoded.
-        """
-        self_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set, allows onboarding static roles with a rootless connection configuration.
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
-        """
-        tls_certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 client certificate for connecting to the database. Must be PEM encoded.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionPostgresqlArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionPostgresqlArgsDict(TypedDict):
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_authentication: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The secret key used for the x509 client certificate. Must be PEM encoded.
+    """
+    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set, allows onboarding static roles with a rootless connection configuration.
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+    """
+    tls_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 client certificate for connecting to the database. Must be PEM encoded.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionPostgresqlArgs:
@@ -3514,38 +3470,35 @@ class SecretBackendConnectionPostgresqlArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionRedisArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        Specifies the host to connect to
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password corresponding to the given username.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Specifies the username for Vault to use.
-        """
-        ca_cert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to skip verification of the server certificate when using TLS.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The transport port to use to connect to Redis.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use TLS when connecting to Redis.
-        """
-elif False:
-    SecretBackendConnectionRedisArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionRedisArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    Specifies the host to connect to
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password corresponding to the given username.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Specifies the username for Vault to use.
+    """
+    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip verification of the server certificate when using TLS.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The transport port to use to connect to Redis.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use TLS when connecting to Redis.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionRedisArgs:
@@ -3663,26 +3616,23 @@ class SecretBackendConnectionRedisArgs:
         pulumi.set(self, "tls", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionRedisElasticacheArgsDict(TypedDict):
-        url: pulumi.Input[_builtins.str]
-        """
-        The configuration endpoint for the ElastiCache cluster to connect to.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
-        """
-elif False:
-    SecretBackendConnectionRedisElasticacheArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionRedisElasticacheArgsDict(TypedDict):
+    url: pulumi.Input[_builtins.str]
+    """
+    The configuration endpoint for the ElastiCache cluster to connect to.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionRedisElasticacheArgs:
@@ -3754,51 +3704,48 @@ class SecretBackendConnectionRedisElasticacheArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionRedshiftArgsDict(TypedDict):
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionRedshiftArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionRedshiftArgsDict(TypedDict):
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionRedshiftArgs:
@@ -3969,56 +3916,53 @@ class SecretBackendConnectionRedshiftArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretBackendConnectionSnowflakeArgsDict(TypedDict):
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The private key configured for the admin user in Snowflake.
-        """
-        private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for the private key key-pair credentials write-only field
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-elif False:
-    SecretBackendConnectionSnowflakeArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendConnectionSnowflakeArgsDict(TypedDict):
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The private key configured for the admin user in Snowflake.
+    """
+    private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for the private key key-pair credentials write-only field
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
 
 @pulumi.input_type
 class SecretBackendConnectionSnowflakeArgs:
@@ -4211,122 +4155,119 @@ class SecretBackendConnectionSnowflakeArgs:
         pulumi.set(self, "username_template", value)
 
 
-if not MYPY:
-    class SecretsMountCassandraArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds to use as a connection timeout.
-        """
-        consistency: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Cassandra consistency level.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountCassandraArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds to use as a connection timeout.
+    """
+    consistency: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Cassandra consistency level.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Cassandra hosts to connect to.
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to skip verification of the server certificate when using TLS.
-        """
-        local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Cassandra local datacenter name.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The password to use when authenticating with Cassandra.
-        """
-        pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        pem_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The transport port to use to connect to Cassandra.
-        """
-        protocol_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The CQL protocol version to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
-        """
-        socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Enable TCP keepalive for Cassandra connections.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to use TLS when connecting to Cassandra.
-        """
-        tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        SNI host for TLS connections.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The username to use when authenticating with Cassandra.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template for dynamic Cassandra usernames.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountCassandraArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Cassandra hosts to connect to.
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to skip verification of the server certificate when using TLS.
+    """
+    local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Cassandra local datacenter name.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The password to use when authenticating with Cassandra.
+    """
+    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The transport port to use to connect to Cassandra.
+    """
+    protocol_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The CQL protocol version to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+    """
+    socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Enable TCP keepalive for Cassandra connections.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to use TLS when connecting to Cassandra.
+    """
+    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    SNI host for TLS connections.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The username to use when authenticating with Cassandra.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template for dynamic Cassandra usernames.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountCassandraArgs:
@@ -4766,90 +4707,87 @@ class SecretsMountCassandraArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountCouchbaseArgsDict(TypedDict):
-        hosts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password corresponding to the given username.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Specifies the username for Vault to use.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        base64_pem: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
-        """
-        bucket_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountCouchbaseArgsDict(TypedDict):
+    hosts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password corresponding to the given username.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Specifies the username for Vault to use.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    base64_pem: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+    """
+    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to skip verification of the server certificate when using TLS.
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use TLS when connecting to Couchbase.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountCouchbaseArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip verification of the server certificate when using TLS.
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use TLS when connecting to Couchbase.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountCouchbaseArgs:
@@ -5158,98 +5096,95 @@ class SecretsMountCouchbaseArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountElasticsearchArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        The password to be used in the connection URL
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        The URL for Elasticsearch's API
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        The username to be used in the connection URL
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        ca_cert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
-        """
-        ca_path: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
-        """
-        client_cert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to the certificate for the Elasticsearch client to present for communication
-        """
-        client_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The path to the key for the Elasticsearch client to use for communication
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountElasticsearchArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    The password to be used in the connection URL
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    The URL for Elasticsearch's API
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    The username to be used in the connection URL
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
+    """
+    ca_path: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
+    """
+    client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to the certificate for the Elasticsearch client to present for communication
+    """
+    client_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The path to the key for the Elasticsearch client to use for communication
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        insecure: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to disable certificate verification
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        This, if set, is used to set the SNI host when connecting via TLS
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    insecure: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to disable certificate verification
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    This, if set, is used to set the SNI host when connecting via TLS
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountElasticsearchArgs:
@@ -5590,99 +5525,96 @@ class SecretsMountElasticsearchArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountHanaArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountHanaArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountHanaArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountHanaArgs:
@@ -6028,98 +5960,95 @@ class SecretsMountHanaArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountInfluxdbArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        Influxdb host to connect to.
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password corresponding to the given username.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Specifies the username to use for superuser access.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of seconds to use as a connection timeout.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountInfluxdbArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    Influxdb host to connect to.
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password corresponding to the given username.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Specifies the username to use for superuser access.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of seconds to use as a connection timeout.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to skip verification of the server certificate when using TLS.
-        """
-        pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        pem_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The transport port to use to connect to Influxdb.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether to use TLS when connecting to Influxdb.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountInfluxdbArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to skip verification of the server certificate when using TLS.
+    """
+    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The transport port to use to connect to Influxdb.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether to use TLS when connecting to Influxdb.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountInfluxdbArgs:
@@ -6460,107 +6389,104 @@ class SecretsMountInfluxdbArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountMongodbArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMongodbArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-        write_concern: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the MongoDB write concern for Vault management operations.
-        """
-elif False:
-    SecretsMountMongodbArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
+    write_concern: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the MongoDB write concern for Vault management operations.
+    """
 
 @pulumi.input_type
 class SecretsMountMongodbArgs:
@@ -6938,74 +6864,71 @@ class SecretsMountMongodbArgs:
         pulumi.set(self, "write_concern", value)
 
 
-if not MYPY:
-    class SecretsMountMongodbatlaArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        private_key: pulumi.Input[_builtins.str]
-        """
-        The Private Programmatic API Key used to connect with MongoDB Atlas API.
-        """
-        project_id: pulumi.Input[_builtins.str]
-        """
-        The Project ID the Database User should be created within.
-        """
-        public_key: pulumi.Input[_builtins.str]
-        """
-        The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMongodbatlaArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    private_key: pulumi.Input[_builtins.str]
+    """
+    The Private Programmatic API Key used to connect with MongoDB Atlas API.
+    """
+    project_id: pulumi.Input[_builtins.str]
+    """
+    The Project ID the Database User should be created within.
+    """
+    public_key: pulumi.Input[_builtins.str]
+    """
+    The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Template describing how dynamic usernames are generated.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountMongodbatlaArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Template describing how dynamic usernames are generated.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountMongodbatlaArgs:
@@ -7250,103 +7173,100 @@ class SecretsMountMongodbatlaArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountMssqlArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        contained_db: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true when the target is a Contained Database, e.g. AzureSQL.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMssqlArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    contained_db: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true when the target is a Contained Database, e.g. AzureSQL.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountMssqlArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountMssqlArgs:
@@ -7708,111 +7628,108 @@ class SecretsMountMssqlArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountMysqlArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMysqlArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountMysqlArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountMysqlArgs:
@@ -8206,111 +8123,108 @@ class SecretsMountMysqlArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountMysqlAuroraArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMysqlAuroraArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountMysqlAuroraArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountMysqlAuroraArgs:
@@ -8704,111 +8618,108 @@ class SecretsMountMysqlAuroraArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountMysqlLegacyArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMysqlLegacyArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountMysqlLegacyArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountMysqlLegacyArgs:
@@ -9202,111 +9113,108 @@ class SecretsMountMysqlLegacyArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountMysqlRdArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountMysqlRdArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
-        """
-        tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountMysqlRdArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+    """
+    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountMysqlRdArgs:
@@ -9700,107 +9608,104 @@ class SecretsMountMysqlRdArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountOracleArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountOracleArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        disconnect_sessions: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true to disconnect any open sessions prior to running the revocation statements.
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        self_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set, allows onboarding static roles with a rootless connection configuration.
-        """
-        split_statements: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Set to true in order to split statements after semi-colons.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountOracleArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    disconnect_sessions: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true to disconnect any open sessions prior to running the revocation statements.
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set, allows onboarding static roles with a rootless connection configuration.
+    """
+    split_statements: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Set to true in order to split statements after semi-colons.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountOracleArgs:
@@ -10178,127 +10083,124 @@ class SecretsMountOracleArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountPostgresqlArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        auth_type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountPostgresqlArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_authentication: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        private_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The secret key used for the x509 client certificate. Must be PEM encoded.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        self_managed: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set, allows onboarding static roles with a rootless connection configuration.
-        """
-        service_account_json: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A JSON encoded credential for use with IAM authorization
-        """
-        tls_ca: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
-        """
-        tls_certificate: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The x509 client certificate for connecting to the database. Must be PEM encoded.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountPostgresqlArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_authentication: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The secret key used for the x509 client certificate. Must be PEM encoded.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set, allows onboarding static roles with a rootless connection configuration.
+    """
+    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A JSON encoded credential for use with IAM authorization
+    """
+    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+    """
+    tls_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The x509 client certificate for connecting to the database. Must be PEM encoded.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountPostgresqlArgs:
@@ -10756,86 +10658,83 @@ class SecretsMountPostgresqlArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountRediArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        Specifies the host to connect to
-        """
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        password: pulumi.Input[_builtins.str]
-        """
-        Specifies the password corresponding to the given username.
-        """
-        username: pulumi.Input[_builtins.str]
-        """
-        Specifies the username for Vault to use.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        ca_cert: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountRediArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    Specifies the host to connect to
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    Specifies the password corresponding to the given username.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    Specifies the username for Vault to use.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to skip verification of the server certificate when using TLS.
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        port: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The transport port to use to connect to Redis.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        tls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Specifies whether to use TLS when connecting to Redis.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountRediArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to skip verification of the server certificate when using TLS.
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    port: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The transport port to use to connect to Redis.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies whether to use TLS when connecting to Redis.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountRediArgs:
@@ -11128,74 +11027,71 @@ class SecretsMountRediArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountRedisElasticacheArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        The configuration endpoint for the ElastiCache cluster to connect to.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountRedisElasticacheArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    The configuration endpoint for the ElastiCache cluster to connect to.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountRedisElasticacheArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountRedisElasticacheArgs:
@@ -11442,99 +11338,96 @@ class SecretsMountRedisElasticacheArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountRedshiftArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountRedshiftArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Disable special character escaping in username and password
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountRedshiftArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Disable special character escaping in username and password
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountRedshiftArgs:
@@ -11880,104 +11773,101 @@ class SecretsMountRedshiftArgs:
         pulumi.set(self, "verify_connection", value)
 
 
-if not MYPY:
-    class SecretsMountSnowflakeArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        Name of the database connection.
-        """
-        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles that are allowed to use this
-        connection.
-        """
-        connection_url: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Connection string to use to connect to the database.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        """
-        disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+class SecretsMountSnowflakeArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Name of the database connection.
+    """
+    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles that are allowed to use this
+    connection.
+    """
+    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Connection string to use to connect to the database.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+    """
+    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
-        Supported list of database secrets engines that can be configured:
-        """
-        max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of seconds a connection may be reused.
-        """
-        max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of idle connections to the database.
-        """
-        max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Maximum number of open connections to the database.
-        """
-        password: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential password used in the connection URL
-        """
-        password_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Write-only field for the root credential password used in the connection URL
-        """
-        password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for root credential password write-only field
-        """
-        plugin_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Specifies the name of the plugin to use.
-        """
-        private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The private key configured for the admin user in Snowflake.
-        """
-        private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Version counter for the private key key-pair credentials write-only field
-        """
-        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of database statements to be executed to rotate the root user's credentials.
-        """
-        rotation_period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The amount of time in seconds Vault should wait before rotating the root credential.
-        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
-        """
-        rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
-        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
-        """
-        rotation_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The maximum amount of time in seconds allowed to complete
-        a rotation when a scheduled token rotation occurs. The default rotation window is
-        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
-        """
-        username: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The root credential username used in the connection URL
-        """
-        username_template: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Username generation template.
-        """
-        verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether the connection should be verified on
-        initial configuration or not.
-        """
-elif False:
-    SecretsMountSnowflakeArgsDict: TypeAlias = Mapping[str, Any]
+    Supported list of database secrets engines that can be configured:
+    """
+    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of seconds a connection may be reused.
+    """
+    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of idle connections to the database.
+    """
+    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Maximum number of open connections to the database.
+    """
+    password: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential password used in the connection URL
+    """
+    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    Write-only field for the root credential password used in the connection URL
+    """
+    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for root credential password write-only field
+    """
+    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the name of the plugin to use.
+    """
+    private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+    The private key configured for the admin user in Snowflake.
+    """
+    private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Version counter for the private key key-pair credentials write-only field
+    """
+    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of database statements to be executed to rotate the root user's credentials.
+    """
+    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The amount of time in seconds Vault should wait before rotating the root credential.
+    A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+    """
+    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+    defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+    """
+    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The maximum amount of time in seconds allowed to complete
+    a rotation when a scheduled token rotation occurs. The default rotation window is
+    unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    username: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The root credential username used in the connection URL
+    """
+    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Username generation template.
+    """
+    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether the connection should be verified on
+    initial configuration or not.
+    """
 
 @pulumi.input_type
 class SecretsMountSnowflakeArgs:

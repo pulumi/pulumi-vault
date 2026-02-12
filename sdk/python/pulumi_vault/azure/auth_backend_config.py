@@ -47,7 +47,9 @@ class AuthBackendConfigArgs:
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
+               Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+               stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
@@ -61,6 +63,8 @@ class AuthBackendConfigArgs:
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+               Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
@@ -173,7 +177,9 @@ class AuthBackendConfigArgs:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        The client secret for credentials to query the
+        Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+        stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         """
         return pulumi.get(self, "client_secret")
 
@@ -253,6 +259,8 @@ class AuthBackendConfigArgs:
     def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds.
+        Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_ttl")
 
@@ -385,7 +393,9 @@ class _AuthBackendConfigState:
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
+               Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+               stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
@@ -399,6 +409,8 @@ class _AuthBackendConfigState:
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+               Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
@@ -491,7 +503,9 @@ class _AuthBackendConfigState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        The client secret for credentials to query the
+        Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+        stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         """
         return pulumi.get(self, "client_secret")
 
@@ -571,6 +585,8 @@ class _AuthBackendConfigState:
     def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds.
+        Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_ttl")
 
@@ -728,6 +744,82 @@ class AuthBackendConfig(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Configures the Azure Auth Backend in Vault.
+
+        This resource sets the access key and secret key that Vault will use
+        when making API requests on behalf of an Azure Auth Backend. It can also
+        be used to override the URLs Vault uses when making those API requests.
+
+        For more information, see the
+        [Vault docs](https://www.vaultproject.io/api-docs/auth/azure#configure).
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
+        ## Example Usage
+
+        You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="azure",
+            identity_token_key="example-key")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret="01234567890123456789",
+            resource="https://vault.hashicorp.com",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        You can use the write-only fields to prevent the client secret from being stored in Terraform state:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1,
+            resource="https://vault.hashicorp.com")
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `client_secret_wo` - (Optional) The client secret for credentials to query the Azure APIs,
+            provided as a write-only field. This value will **never** be stored in Terraform state.
+            Mutually exclusive with `client_secret`. Must be used with `client_secret_wo_version`.
+            To rotate the secret, update the value and increment `client_secret_wo_version`.
+
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -742,7 +834,9 @@ class AuthBackendConfig(pulumi.CustomResource):
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
+               Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+               stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
@@ -756,6 +850,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+               Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
@@ -788,6 +884,82 @@ class AuthBackendConfig(pulumi.CustomResource):
                  args: AuthBackendConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Configures the Azure Auth Backend in Vault.
+
+        This resource sets the access key and secret key that Vault will use
+        when making API requests on behalf of an Azure Auth Backend. It can also
+        be used to override the URLs Vault uses when making those API requests.
+
+        For more information, see the
+        [Vault docs](https://www.vaultproject.io/api-docs/auth/azure#configure).
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
+        ## Example Usage
+
+        You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="azure",
+            identity_token_key="example-key")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret="01234567890123456789",
+            resource="https://vault.hashicorp.com",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        You can use the write-only fields to prevent the client secret from being stored in Terraform state:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret_wo=azure_client_secret,
+            client_secret_wo_version=1,
+            resource="https://vault.hashicorp.com")
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `client_secret_wo` - (Optional) The client secret for credentials to query the Azure APIs,
+            provided as a write-only field. This value will **never** be stored in Terraform state.
+            Mutually exclusive with `client_secret`. Must be used with `client_secret_wo_version`.
+            To rotate the secret, update the value and increment `client_secret_wo_version`.
+
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
@@ -901,7 +1073,9 @@ class AuthBackendConfig(pulumi.CustomResource):
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
                Currently read permissions to query compute resources are required.
-        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the
+               Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+               stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version counter for the write-only client secret.
@@ -915,6 +1089,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
+               Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
@@ -986,7 +1162,9 @@ class AuthBackendConfig(pulumi.CustomResource):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The client secret for credentials to query the Azure APIs. Mutually exclusive with 'client_secret_wo'.
+        The client secret for credentials to query the
+        Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
+        stored in Terraform state. Consider using `client_secret_wo` instead for enhanced security.
         """
         return pulumi.get(self, "client_secret")
 
@@ -1042,6 +1220,8 @@ class AuthBackendConfig(pulumi.CustomResource):
     def identity_token_ttl(self) -> pulumi.Output[_builtins.int]:
         """
         The TTL of generated identity tokens in seconds.
+        Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_ttl")
 

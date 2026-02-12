@@ -34,7 +34,10 @@ class SecretBackendCaArgs:
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_id: The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+               
+               > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+               and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -114,7 +117,10 @@ class SecretBackendCaArgs:
     @pulumi.getter(name="managedKeyId")
     def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+
+        > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+        and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -192,7 +198,10 @@ class _SecretBackendCaState:
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_id: The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+               
+               > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+               and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -272,7 +281,10 @@ class _SecretBackendCaState:
     @pulumi.getter(name="managedKeyId")
     def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+
+        > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+        and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -376,7 +388,10 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_id: The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+               
+               > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+               and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -487,7 +502,10 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        :param pulumi.Input[_builtins.str] managed_key_id: The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+               
+               > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+               and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -547,7 +565,10 @@ class SecretBackendCa(pulumi.CustomResource):
     @pulumi.getter(name="managedKeyId")
     def managed_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The id of the managed key to use. When using a managed key, this field or managed_key_name is required.
+        The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
+
+        > **Important** Because Vault does not support reading the private_key back from the API, Terraform cannot detect
+        and correct drift on `private_key`. Changing the values, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "managed_key_id")
 

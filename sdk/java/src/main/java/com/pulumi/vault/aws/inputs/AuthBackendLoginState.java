@@ -183,9 +183,19 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.leaseDuration);
     }
 
+    /**
+     * The approximate time at which the token was created,
+     * using the clock of the system where Terraform was running.
+     * 
+     */
     @Import(name="leaseStartTime")
     private @Nullable Output<String> leaseStartTime;
 
+    /**
+     * @return The approximate time at which the token was created,
+     * using the clock of the system where Terraform was running.
+     * 
+     */
     public Optional<Output<String>> leaseStartTime() {
         return Optional.ofNullable(this.leaseStartTime);
     }
@@ -600,11 +610,25 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
             return leaseDuration(Output.of(leaseDuration));
         }
 
+        /**
+         * @param leaseStartTime The approximate time at which the token was created,
+         * using the clock of the system where Terraform was running.
+         * 
+         * @return builder
+         * 
+         */
         public Builder leaseStartTime(@Nullable Output<String> leaseStartTime) {
             $.leaseStartTime = leaseStartTime;
             return this;
         }
 
+        /**
+         * @param leaseStartTime The approximate time at which the token was created,
+         * using the clock of the system where Terraform was running.
+         * 
+         * @return builder
+         * 
+         */
         public Builder leaseStartTime(String leaseStartTime) {
             return leaseStartTime(Output.of(leaseStartTime));
         }

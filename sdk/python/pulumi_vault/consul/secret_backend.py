@@ -57,11 +57,17 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        :param pulumi.Input[_builtins.bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
+               
+               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+               you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+               Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
@@ -88,7 +94,12 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token: The Consul management token this backend should use to issue new tokens. This field is required
+               when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+               Consider using `token_wo` instead for enhanced security.
+               
+               > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+               and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
@@ -220,7 +231,11 @@ class SecretBackendArgs:
     @pulumi.getter
     def bootstrap(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        Denotes that the resource is used to bootstrap the Consul ACL system.
+
+        > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+        this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+        and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         """
         return pulumi.get(self, "bootstrap")
 
@@ -257,7 +272,9 @@ class SecretBackendArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+        you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+        Terraform state. Consider using `client_key_wo` instead for enhanced security.
         """
         return pulumi.get(self, "client_key")
 
@@ -504,7 +521,12 @@ class SecretBackendArgs:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        The Consul management token this backend should use to issue new tokens. This field is required
+        when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+        Consider using `token_wo` instead for enhanced security.
+
+        > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+        and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "token")
 
@@ -582,11 +604,17 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        :param pulumi.Input[_builtins.bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
+               
+               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+               you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+               Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
@@ -613,7 +641,12 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token: The Consul management token this backend should use to issue new tokens. This field is required
+               when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+               Consider using `token_wo` instead for enhanced security.
+               
+               > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+               and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
@@ -760,7 +793,11 @@ class _SecretBackendState:
     @pulumi.getter
     def bootstrap(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        Denotes that the resource is used to bootstrap the Consul ACL system.
+
+        > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+        this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+        and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         """
         return pulumi.get(self, "bootstrap")
 
@@ -797,7 +834,9 @@ class _SecretBackendState:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+        you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+        Terraform state. Consider using `client_key_wo` instead for enhanced security.
         """
         return pulumi.get(self, "client_key")
 
@@ -1044,7 +1083,12 @@ class _SecretBackendState:
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        The Consul management token this backend should use to issue new tokens. This field is required
+        when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+        Consider using `token_wo` instead for enhanced security.
+
+        > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+        and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "token")
 
@@ -1118,6 +1162,73 @@ class SecretBackend(pulumi.CustomResource):
                  token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        Creates a Consul Secret Backend for Vault. Consul secret backends can then issue Consul tokens, once a role has been
+        added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
+        ## Example Usage
+
+        ### Creating a standard backend resource:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Manages the Consul backend",
+            address="127.0.0.1:8500",
+            token="4240861b-ce3d-8530-115a-521ff070dd29")
+        ```
+
+        ### Creating a backend resource to bootstrap a new Consul instance:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Bootstrap the Consul backend",
+            address="127.0.0.1:8500",
+            bootstrap=True)
+        ```
+
+        ### Using write-only fields for enhanced security (Recommended):
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Manages the Consul backend with write-only token",
+            address="127.0.0.1:8500",
+            token_wo=consul_token,
+            token_wo_version=1,
+            scheme="https",
+            ca_cert=std.file(input="ca.pem").result,
+            client_cert=std.file(input="client.pem").result,
+            client_key_wo=consul_client_key,
+            client_key_wo_version=1)
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `token_wo` - (Optional) The Consul management token this backend should use to issue new tokens, provided as a
+        write-only field. This value will **never** be stored in Terraform state. Mutually exclusive with `token`. Must be
+        used with `token_wo_version`.
+
+        * `client_key_wo` - (Optional) Client key used for Consul's TLS communication, must be x509 PEM encoded, provided as a
+        write-only field. This value will **never** be stored in Terraform state. Mutually exclusive with `client_key`. Must be
+        used with `client_key_wo_version`.
+
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
@@ -1133,11 +1244,17 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        :param pulumi.Input[_builtins.bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
+               
+               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+               you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+               Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
@@ -1164,7 +1281,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token: The Consul management token this backend should use to issue new tokens. This field is required
+               when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+               Consider using `token_wo` instead for enhanced security.
+               
+               > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+               and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
@@ -1177,6 +1299,73 @@ class SecretBackend(pulumi.CustomResource):
                  args: SecretBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates a Consul Secret Backend for Vault. Consul secret backends can then issue Consul tokens, once a role has been
+        added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
+        ## Example Usage
+
+        ### Creating a standard backend resource:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Manages the Consul backend",
+            address="127.0.0.1:8500",
+            token="4240861b-ce3d-8530-115a-521ff070dd29")
+        ```
+
+        ### Creating a backend resource to bootstrap a new Consul instance:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Bootstrap the Consul backend",
+            address="127.0.0.1:8500",
+            bootstrap=True)
+        ```
+
+        ### Using write-only fields for enhanced security (Recommended):
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        test = vault.consul.SecretBackend("test",
+            path="consul",
+            description="Manages the Consul backend with write-only token",
+            address="127.0.0.1:8500",
+            token_wo=consul_token,
+            token_wo_version=1,
+            scheme="https",
+            ca_cert=std.file(input="ca.pem").result,
+            client_cert=std.file(input="client.pem").result,
+            client_key_wo=consul_client_key,
+            client_key_wo_version=1)
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `token_wo` - (Optional) The Consul management token this backend should use to issue new tokens, provided as a
+        write-only field. This value will **never** be stored in Terraform state. Mutually exclusive with `token`. Must be
+        used with `token_wo_version`.
+
+        * `client_key_wo` - (Optional) Client key used for Consul's TLS communication, must be x509 PEM encoded, provided as a
+        write-only field. This value will **never** be stored in Terraform state. Mutually exclusive with `client_key`. Must be
+        used with `client_key_wo_version`.
+
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
@@ -1331,11 +1520,17 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[_builtins.bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        :param pulumi.Input[_builtins.bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
+               
+               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         :param pulumi.Input[_builtins.str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[_builtins.str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
-        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        :param pulumi.Input[_builtins.str] client_key: Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+               you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+               Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
@@ -1362,7 +1557,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.str] scheme: Specifies the URL scheme to use. Defaults to `http`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        :param pulumi.Input[_builtins.str] token: The Consul management token this backend should use to issue new tokens. This field is required
+               when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+               Consider using `token_wo` instead for enhanced security.
+               
+               > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+               and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
         :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
@@ -1458,7 +1658,11 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def bootstrap(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+        Denotes that the resource is used to bootstrap the Consul ACL system.
+
+        > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+        this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+        and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
         """
         return pulumi.get(self, "bootstrap")
 
@@ -1483,7 +1687,9 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="clientKey")
     def client_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with 'client_key_wo'.
+        Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
+        you need to also set client_cert. Mutually exclusive with `client_key_wo`. **Note:** This field will be stored in
+        Terraform state. Consider using `client_key_wo` instead for enhanced security.
         """
         return pulumi.get(self, "client_key")
 
@@ -1650,7 +1856,12 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with 'token_wo'.
+        The Consul management token this backend should use to issue new tokens. This field is required
+        when `bootstrap` is false. Mutually exclusive with `token_wo`. **Note:** This field will be stored in Terraform state.
+        Consider using `token_wo` instead for enhanced security.
+
+        > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+        and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "token")
 

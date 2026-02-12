@@ -110,7 +110,7 @@ namespace Pulumi.Vault.Transit
     /// 
     /// ## Import
     /// 
-    /// Transit secret backend keys can be imported using the `path`, e.g.
+    /// Transit secret backend keys can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
@@ -152,7 +152,7 @@ namespace Pulumi.Vault.Transit
         public Output<bool?> ConvergentEncryption { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if the key is allowed to be deleted.
+        /// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         /// </summary>
         [Output("deletionAllowed")]
         public Output<bool?> DeletionAllowed { get; private set; } = null!;
@@ -369,7 +369,7 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? ConvergentEncryption { get; set; }
 
         /// <summary>
-        /// Specifies if the key is allowed to be deleted.
+        /// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         /// </summary>
         [Input("deletionAllowed")]
         public Input<bool>? DeletionAllowed { get; set; }
@@ -504,7 +504,7 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? ConvergentEncryption { get; set; }
 
         /// <summary>
-        /// Specifies if the key is allowed to be deleted.
+        /// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         /// </summary>
         [Input("deletionAllowed")]
         public Input<bool>? DeletionAllowed { get; set; }

@@ -16,6 +16,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Allows setting the value of the default issuer. For more information, see the
+ * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
+ * 
  * ## Example Usage
  * 
  * <pre>
@@ -105,14 +108,18 @@ public class SecretBackendConfigIssuers extends com.pulumi.resources.CustomResou
         return this.backend;
     }
     /**
-     * Specifies the default issuer by ID.
+     * Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      * 
      */
     @Export(name="default", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> default_;
 
     /**
-     * @return Specifies the default issuer by ID.
+     * @return Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      * 
      */
     public Output<Optional<String>> default_() {

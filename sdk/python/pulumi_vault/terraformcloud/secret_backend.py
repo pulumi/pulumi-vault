@@ -46,10 +46,15 @@ class SecretBackendArgs:
                  token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+        :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
+               Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+               `https://app.terraform.io` for Terraform Cloud.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.str] backend: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        :param pulumi.Input[_builtins.str] base_path: Specifies the base path for the Terraform Cloud or Enterprise API.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -69,8 +74,16 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+               use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
+               The Terraform Cloud management token this backend should 
+               use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
+        :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
+               
+               > **Important** Because Vault does not support reading the configured
+               token back from the API, Terraform cannot detect and correct drift
+               on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -126,6 +139,11 @@ class SecretBackendArgs:
     @_builtins.property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The address of the Terraform Cloud server, if using
+        Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+        `https://app.terraform.io` for Terraform Cloud.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -183,6 +201,9 @@ class SecretBackendArgs:
     @_builtins.property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -192,6 +213,9 @@ class SecretBackendArgs:
     @_builtins.property
     @pulumi.getter(name="basePath")
     def base_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the base path for the Terraform Cloud or Enterprise API.
+        """
         return pulumi.get(self, "base_path")
 
     @base_path.setter
@@ -385,6 +409,10 @@ class SecretBackendArgs:
     @_builtins.property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Terraform Cloud management token this backend should 
+        use to issue new tokens.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -396,6 +424,8 @@ class SecretBackendArgs:
     def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The Terraform Cloud management token this backend should 
+        use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "token_wo")
 
@@ -407,7 +437,11 @@ class SecretBackendArgs:
     @pulumi.getter(name="tokenWoVersion")
     def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version counter for write-only secret data.
+        The version of the `token_wo`. For more info see updating write-only attributes.
+
+        > **Important** Because Vault does not support reading the configured
+        token back from the API, Terraform cannot detect and correct drift
+        on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "token_wo_version")
 
@@ -448,10 +482,15 @@ class _SecretBackendState:
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
+        :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
+               Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+               `https://app.terraform.io` for Terraform Cloud.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.str] backend: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        :param pulumi.Input[_builtins.str] base_path: Specifies the base path for the Terraform Cloud or Enterprise API.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -471,8 +510,16 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+               use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
+               The Terraform Cloud management token this backend should 
+               use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
+        :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
+               
+               > **Important** Because Vault does not support reading the configured
+               token back from the API, Terraform cannot detect and correct drift
+               on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -542,6 +589,11 @@ class _SecretBackendState:
     @_builtins.property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The address of the Terraform Cloud server, if using
+        Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+        `https://app.terraform.io` for Terraform Cloud.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -599,6 +651,9 @@ class _SecretBackendState:
     @_builtins.property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -608,6 +663,9 @@ class _SecretBackendState:
     @_builtins.property
     @pulumi.getter(name="basePath")
     def base_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the base path for the Terraform Cloud or Enterprise API.
+        """
         return pulumi.get(self, "base_path")
 
     @base_path.setter
@@ -801,6 +859,10 @@ class _SecretBackendState:
     @_builtins.property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Terraform Cloud management token this backend should 
+        use to issue new tokens.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -812,6 +874,8 @@ class _SecretBackendState:
     def token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The Terraform Cloud management token this backend should 
+        use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "token_wo")
 
@@ -823,7 +887,11 @@ class _SecretBackendState:
     @pulumi.getter(name="tokenWoVersion")
     def token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version counter for write-only secret data.
+        The version of the `token_wo`. For more info see updating write-only attributes.
+
+        > **Important** Because Vault does not support reading the configured
+        token back from the API, Terraform cannot detect and correct drift
+        on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "token_wo_version")
 
@@ -865,6 +933,17 @@ class SecretBackend(pulumi.CustomResource):
                  token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        Creates a Terraform Cloud Secret Backend for Vault. Terraform Cloud secret backends
+        can then create Terraform Cloud tokens, once a role with the appropriate creds
+        has been added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
         ## Example Usage
 
         ```python
@@ -887,10 +966,15 @@ class SecretBackend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
+               Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+               `https://app.terraform.io` for Terraform Cloud.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.str] backend: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        :param pulumi.Input[_builtins.str] base_path: Specifies the base path for the Terraform Cloud or Enterprise API.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -910,8 +994,16 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+               use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
+               The Terraform Cloud management token this backend should 
+               use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
+        :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
+               
+               > **Important** Because Vault does not support reading the configured
+               token back from the API, Terraform cannot detect and correct drift
+               on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         ...
     @overload
@@ -920,6 +1012,17 @@ class SecretBackend(pulumi.CustomResource):
                  args: Optional[SecretBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates a Terraform Cloud Secret Backend for Vault. Terraform Cloud secret backends
+        can then create Terraform Cloud tokens, once a role with the appropriate creds
+        has been added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
         ## Example Usage
 
         ```python
@@ -1061,10 +1164,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
+        :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
+               Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+               `https://app.terraform.io` for Terraform Cloud.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.str] backend: The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        :param pulumi.Input[_builtins.str] base_path: Specifies the base path for the Terraform Cloud or Enterprise API.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
@@ -1084,8 +1192,16 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+               use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for write-only secret data.
+               The Terraform Cloud management token this backend should 
+               use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
+        :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
+               
+               > **Important** Because Vault does not support reading the configured
+               token back from the API, Terraform cannot detect and correct drift
+               on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1130,6 +1246,11 @@ class SecretBackend(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def address(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The address of the Terraform Cloud server, if using
+        Terraform Enterprise, provided as `"protocol://host:port"`. The default is
+        `https://app.terraform.io` for Terraform Cloud.
+        """
         return pulumi.get(self, "address")
 
     @_builtins.property
@@ -1167,11 +1288,17 @@ class SecretBackend(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+        """
         return pulumi.get(self, "backend")
 
     @_builtins.property
     @pulumi.getter(name="basePath")
     def base_path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the base path for the Terraform Cloud or Enterprise API.
+        """
         return pulumi.get(self, "base_path")
 
     @_builtins.property
@@ -1301,6 +1428,10 @@ class SecretBackend(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Terraform Cloud management token this backend should 
+        use to issue new tokens.
+        """
         return pulumi.get(self, "token")
 
     @_builtins.property
@@ -1308,6 +1439,8 @@ class SecretBackend(pulumi.CustomResource):
     def token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The Terraform Cloud management token this backend should 
+        use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "token_wo")
 
@@ -1315,7 +1448,11 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenWoVersion")
     def token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Version counter for write-only secret data.
+        The version of the `token_wo`. For more info see updating write-only attributes.
+
+        > **Important** Because Vault does not support reading the configured
+        token back from the API, Terraform cannot detect and correct drift
+        on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         """
         return pulumi.get(self, "token_wo_version")
 

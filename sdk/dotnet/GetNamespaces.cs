@@ -12,6 +12,10 @@ namespace Pulumi.Vault
     public static class GetNamespaces
     {
         /// <summary>
+        /// Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+        /// 
+        /// **Note** this feature is available only with Vault Enterprise.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Direct child namespaces
@@ -83,6 +87,10 @@ namespace Pulumi.Vault
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNamespacesResult>("vault:index/getNamespaces:getNamespaces", args ?? new GetNamespacesArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+        /// 
+        /// **Note** this feature is available only with Vault Enterprise.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Direct child namespaces
@@ -154,6 +162,10 @@ namespace Pulumi.Vault
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespacesResult>("vault:index/getNamespaces:getNamespaces", args ?? new GetNamespacesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+        /// 
+        /// **Note** this feature is available only with Vault Enterprise.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Direct child namespaces

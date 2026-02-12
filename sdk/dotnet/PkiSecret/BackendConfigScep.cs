@@ -65,9 +65,9 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Import
     /// 
-    /// The PKI config cluster can be imported using the resource's `id`.
-    /// In the case of the example above the `id` would be `pki-root/config/scep`,
-    /// where the `pki-root` component is the resource's `backend`, e.g.
+    /// The PKI config cluster can be imported using the resource's `Id`.
+    /// In the case of the example above the `Id` would be `pki-root/config/scep`,
+    /// where the `pki-root` component is the resource's `Backend`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:pkiSecret/backendConfigScep:BackendConfigScep example pki-root/config/scep

@@ -16,6 +16,62 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * This resource supports the &#34;/transform/transformation/{name}&#34; Vault endpoint.
+ * 
+ * It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+ * it will be created. If the transformation exists, it will be updated with the new attributes.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.transform.Transformation;
+ * import com.pulumi.vault.transform.TransformationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Mount("example", MountArgs.builder()
+ *             .path("transform")
+ *             .type("transform")
+ *             .build());
+ * 
+ *         var exampleTransformation = new Transformation("exampleTransformation", TransformationArgs.builder()
+ *             .path(example.path())
+ *             .name("ccn-fpe")
+ *             .type("fpe")
+ *             .template("ccn")
+ *             .tweakSource("internal")
+ *             .allowedRoles("payments")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Tutorials
+ * 
+ * Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
+ * 
+ */
 @ResourceType(type="vault:transform/transformation:Transformation")
 public class Transformation extends com.pulumi.resources.CustomResource {
     /**

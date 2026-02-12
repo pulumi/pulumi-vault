@@ -74,7 +74,8 @@ type Team struct {
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
-	// GitHub team name in "slugified" format.
+	// GitHub team name in "slugified" format, for example: Terraform
+	// Developers > `terraform-developers`.
 	Team pulumi.StringOutput `pulumi:"team"`
 }
 
@@ -122,7 +123,8 @@ type teamState struct {
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies []string `pulumi:"policies"`
-	// GitHub team name in "slugified" format.
+	// GitHub team name in "slugified" format, for example: Terraform
+	// Developers > `terraform-developers`.
 	Team *string `pulumi:"team"`
 }
 
@@ -138,7 +140,8 @@ type TeamState struct {
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies pulumi.StringArrayInput
-	// GitHub team name in "slugified" format.
+	// GitHub team name in "slugified" format, for example: Terraform
+	// Developers > `terraform-developers`.
 	Team pulumi.StringPtrInput
 }
 
@@ -158,7 +161,8 @@ type teamArgs struct {
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies []string `pulumi:"policies"`
-	// GitHub team name in "slugified" format.
+	// GitHub team name in "slugified" format, for example: Terraform
+	// Developers > `terraform-developers`.
 	Team string `pulumi:"team"`
 }
 
@@ -175,7 +179,8 @@ type TeamArgs struct {
 	// An array of strings specifying the policies to be set on tokens
 	// issued using this role.
 	Policies pulumi.StringArrayInput
-	// GitHub team name in "slugified" format.
+	// GitHub team name in "slugified" format, for example: Terraform
+	// Developers > `terraform-developers`.
 	Team pulumi.StringInput
 }
 
@@ -286,7 +291,8 @@ func (o TeamOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
-// GitHub team name in "slugified" format.
+// GitHub team name in "slugified" format, for example: Terraform
+// Developers > `terraform-developers`.
 func (o TeamOutput) Team() pulumi.StringOutput {
 	return o.ApplyT(func(v *Team) pulumi.StringOutput { return v.Team }).(pulumi.StringOutput)
 }

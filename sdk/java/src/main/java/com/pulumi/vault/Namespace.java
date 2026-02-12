@@ -16,6 +16,120 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
+ * 
+ * **Note** this feature is available only with Vault Enterprise.
+ * 
+ * ## Example Usage
+ * 
+ * ### Single namespace
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Namespace;
+ * import com.pulumi.vault.NamespaceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var ns1 = new Namespace("ns1", NamespaceArgs.builder()
+ *             .path("ns1")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Nested namespaces
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Namespace;
+ * import com.pulumi.vault.NamespaceArgs;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.generic.Secret;
+ * import com.pulumi.vault.generic.SecretArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import com.pulumi.codegen.internal.KeyedValue;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var childNamespaces = config.get("childNamespaces").orElse(List.of(        
+ *             "child_0",
+ *             "child_1",
+ *             "child_2"));
+ *         var parent = new Namespace("parent", NamespaceArgs.builder()
+ *             .path("parent")
+ *             .build());
+ * 
+ *         for (var range : KeyedValue.of(childNamespaces)) {
+ *             new Namespace("children-" + range.key(), NamespaceArgs.builder()
+ *                 .namespace(parent.path())
+ *                 .path(range.key())
+ *                 .build());
+ *         }
+ * 
+ *         for (var range : KeyedValue.of(children)) {
+ *             new Mount("childrenMount-" + range.key(), MountArgs.builder()
+ *                 .namespace(range.value().pathFq())
+ *                 .path("secrets")
+ *                 .type("kv")
+ *                 .options(Map.of("version", "1"))
+ *                 .build());
+ *         }
+ * 
+ *         for (var range : KeyedValue.of(childrenMount)) {
+ *             new Secret("childrenSecret-" + range.key(), SecretArgs.builder()
+ *                 .namespace(range.value().namespace())
+ *                 .path(String.format("%s/secret", range.value().path()))
+ *                 .dataJson(serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty("ns", range.key())
+ *                     )))
+ *                 .build());
+ *         }
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Tutorials
+ * 
+ * Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.
+ * 
  * ## Import
  * 
  * Namespaces can be imported using its `name` as accessor id
@@ -26,44 +140,49 @@ import javax.annotation.Nullable;
  * 
  * If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
  * 
- * hcl
+ * <pre>
+ * {@code
+ * package generated_program;
  * 
- * provider &#34;vault&#34; {
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Namespace;
+ * import com.pulumi.vault.NamespaceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
  * 
- * # Configuration options
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
  * 
- *   namespace = &#34;example&#34;
+ *     public static void stack(Context ctx) {
+ *         var example2 = new Namespace("example2", NamespaceArgs.builder()
+ *             .path("example2")
+ *             .build());
  * 
- *   alias     = &#34;example&#34;
- * 
+ *     }
  * }
- * 
- * resource &#34;vault_namespace&#34; &#34;example2&#34; {
- * 
- *   provider = vault.example
- * 
- *   path     = &#34;example2&#34;
- * 
  * }
+ * </pre>
  * 
  * ```sh
  * $ pulumi import vault:index/namespace:Namespace example2 example2
- * ```
  * 
  * $ terraform state show vault_namespace.example2
+ * ```
  * 
  * vault_namespace.example2:
- * 
- * resource &#34;vault_namespace&#34; &#34;example2&#34; {
- * 
- *     id           = &#34;example/example2/&#34;
- *     
- *     namespace_id = &lt;known after import&gt;
- *     
- *     path         = &#34;example2&#34;
- *     
- *     path_fq      = &#34;example2&#34;
- * 
+ * resource &#34;vault.Namespace&#34; &#34;example2&#34; {
+ * id           = &#34;example/example2/&#34;
+ * namespaceId = &lt;known after import&gt;
+ * path         = &#34;example2&#34;
+ * pathFq      = &#34;example2&#34;
  * }
  * 
  */

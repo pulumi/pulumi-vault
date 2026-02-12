@@ -168,7 +168,9 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
-     * The TTL of generated tokens.
+     * The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     declare public readonly identityTokenTtl: pulumi.Output<number | undefined>;
     /**
@@ -381,7 +383,9 @@ export interface AuthBackendState {
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
-     * The TTL of generated tokens.
+     * The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     identityTokenTtl?: pulumi.Input<number>;
     /**
@@ -514,7 +518,9 @@ export interface AuthBackendArgs {
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
-     * The TTL of generated tokens.
+     * The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
     identityTokenTtl?: pulumi.Input<number>;
     /**

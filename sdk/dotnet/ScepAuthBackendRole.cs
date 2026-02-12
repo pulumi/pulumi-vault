@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// Provides a resource to create a role in an [SCEP auth backend within Vault](https://developer.hashicorp.com/vault/docs/auth/scep).
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

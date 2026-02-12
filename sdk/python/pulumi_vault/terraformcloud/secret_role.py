@@ -31,13 +31,19 @@ class SecretRoleArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
+        :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
         :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        :param pulumi.Input[_builtins.str] description: Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[_builtins.str] name: The name of the Terraform Cloud secrets engine role to create.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] organization: The organization name managing your Terraform Cloud instance.
+        :param pulumi.Input[_builtins.str] team_id: The id of the team you wish to create a token for in your Terraform Cloud instance.
         :param pulumi.Input[_builtins.int] ttl: Specifies the TTL for this role, in seconds.
+        :param pulumi.Input[_builtins.str] user_id: The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -63,6 +69,9 @@ class SecretRoleArgs:
     @_builtins.property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -84,6 +93,9 @@ class SecretRoleArgs:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -105,6 +117,9 @@ class SecretRoleArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the Terraform Cloud secrets engine role to create.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -129,6 +144,9 @@ class SecretRoleArgs:
     @_builtins.property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The organization name managing your Terraform Cloud instance.
+        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -138,6 +156,9 @@ class SecretRoleArgs:
     @_builtins.property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The id of the team you wish to create a token for in your Terraform Cloud instance.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -159,6 +180,9 @@ class SecretRoleArgs:
     @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
+        """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -181,13 +205,19 @@ class _SecretRoleState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+        :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
         :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        :param pulumi.Input[_builtins.str] description: Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[_builtins.str] name: The name of the Terraform Cloud secrets engine role to create.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] organization: The organization name managing your Terraform Cloud instance.
+        :param pulumi.Input[_builtins.str] team_id: The id of the team you wish to create a token for in your Terraform Cloud instance.
         :param pulumi.Input[_builtins.int] ttl: Specifies the TTL for this role, in seconds.
+        :param pulumi.Input[_builtins.str] user_id: The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -213,6 +243,9 @@ class _SecretRoleState:
     @_builtins.property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -234,6 +267,9 @@ class _SecretRoleState:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -255,6 +291,9 @@ class _SecretRoleState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the Terraform Cloud secrets engine role to create.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -279,6 +318,9 @@ class _SecretRoleState:
     @_builtins.property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The organization name managing your Terraform Cloud instance.
+        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -288,6 +330,9 @@ class _SecretRoleState:
     @_builtins.property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The id of the team you wish to create a token for in your Terraform Cloud instance.
+        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -309,6 +354,9 @@ class _SecretRoleState:
     @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
+        """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -334,6 +382,9 @@ class SecretRole(pulumi.CustomResource):
                  user_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Manages a Terraform Cloud secrets role for a Terraform Cloud secrets engine in Vault.
+        Terraform Cloud secret backends can then issue Terraform Cloud tokens.
+
         ## Example Usage
 
         ```python
@@ -361,13 +412,19 @@ class SecretRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
         :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        :param pulumi.Input[_builtins.str] description: Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[_builtins.str] name: The name of the Terraform Cloud secrets engine role to create.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] organization: The organization name managing your Terraform Cloud instance.
+        :param pulumi.Input[_builtins.str] team_id: The id of the team you wish to create a token for in your Terraform Cloud instance.
         :param pulumi.Input[_builtins.int] ttl: Specifies the TTL for this role, in seconds.
+        :param pulumi.Input[_builtins.str] user_id: The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
         """
         ...
     @overload
@@ -376,6 +433,9 @@ class SecretRole(pulumi.CustomResource):
                  args: Optional[SecretRoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Manages a Terraform Cloud secrets role for a Terraform Cloud secrets engine in Vault.
+        Terraform Cloud secret backends can then issue Terraform Cloud tokens.
+
         ## Example Usage
 
         ```python
@@ -472,13 +532,19 @@ class SecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
         :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
+        :param pulumi.Input[_builtins.str] description: Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
         :param pulumi.Input[_builtins.int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
+        :param pulumi.Input[_builtins.str] name: The name of the Terraform Cloud secrets engine role to create.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] organization: The organization name managing your Terraform Cloud instance.
+        :param pulumi.Input[_builtins.str] team_id: The id of the team you wish to create a token for in your Terraform Cloud instance.
         :param pulumi.Input[_builtins.int] ttl: Specifies the TTL for this role, in seconds.
+        :param pulumi.Input[_builtins.str] user_id: The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -499,6 +565,9 @@ class SecretRole(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+        """
         return pulumi.get(self, "backend")
 
     @_builtins.property
@@ -512,6 +581,9 @@ class SecretRole(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+        """
         return pulumi.get(self, "description")
 
     @_builtins.property
@@ -525,6 +597,9 @@ class SecretRole(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the Terraform Cloud secrets engine role to create.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -541,11 +616,17 @@ class SecretRole(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def organization(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The organization name managing your Terraform Cloud instance.
+        """
         return pulumi.get(self, "organization")
 
     @_builtins.property
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The id of the team you wish to create a token for in your Terraform Cloud instance.
+        """
         return pulumi.get(self, "team_id")
 
     @_builtins.property
@@ -559,5 +640,8 @@ class SecretRole(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `team_id` and/or `organization`)
+        """
         return pulumi.get(self, "user_id")
 
