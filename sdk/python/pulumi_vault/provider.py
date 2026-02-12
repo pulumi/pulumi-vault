@@ -52,6 +52,7 @@ class ProviderArgs:
                  vault_version_override: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[_builtins.str] add_address_to_env: If true, adds the value of the `address` argument to the Terraform process environment.
         :param pulumi.Input[_builtins.str] address: URL of the root of the target Vault server.
         :param pulumi.Input['ProviderAuthLoginArgs'] auth_login: Login to vault with an existing auth method using auth/<mount>/login
         :param pulumi.Input['ProviderAuthLoginAwsArgs'] auth_login_aws: Login to vault using the AWS method
@@ -152,6 +153,9 @@ class ProviderArgs:
     @_builtins.property
     @pulumi.getter(name="addAddressToEnv")
     def add_address_to_env(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        If true, adds the value of the `address` argument to the Terraform process environment.
+        """
         return pulumi.get(self, "add_address_to_env")
 
     @add_address_to_env.setter
@@ -552,6 +556,7 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] add_address_to_env: If true, adds the value of the `address` argument to the Terraform process environment.
         :param pulumi.Input[_builtins.str] address: URL of the root of the target Vault server.
         :param pulumi.Input[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']] auth_login: Login to vault with an existing auth method using auth/<mount>/login
         :param pulumi.Input[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']] auth_login_aws: Login to vault using the AWS method
@@ -693,6 +698,9 @@ class Provider(pulumi.ProviderResource):
     @_builtins.property
     @pulumi.getter(name="addAddressToEnv")
     def add_address_to_env(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        If true, adds the value of the `address` argument to the Terraform process environment.
+        """
         return pulumi.get(self, "add_address_to_env")
 
     @_builtins.property

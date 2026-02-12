@@ -163,7 +163,7 @@ type SecretBackendKey struct {
 	Context pulumi.StringPtrOutput `pulumi:"context"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption pulumi.BoolPtrOutput `pulumi:"convergentEncryption"`
-	// Specifies if the key is allowed to be deleted.
+	// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
 	DeletionAllowed pulumi.BoolPtrOutput `pulumi:"deletionAllowed"`
 	// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
 	Derived pulumi.BoolPtrOutput `pulumi:"derived"`
@@ -265,7 +265,7 @@ type secretBackendKeyState struct {
 	Context *string `pulumi:"context"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption *bool `pulumi:"convergentEncryption"`
-	// Specifies if the key is allowed to be deleted.
+	// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
 	DeletionAllowed *bool `pulumi:"deletionAllowed"`
 	// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
 	Derived *bool `pulumi:"derived"`
@@ -335,7 +335,7 @@ type SecretBackendKeyState struct {
 	Context pulumi.StringPtrInput
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption pulumi.BoolPtrInput
-	// Specifies if the key is allowed to be deleted.
+	// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
 	DeletionAllowed pulumi.BoolPtrInput
 	// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
 	Derived pulumi.BoolPtrInput
@@ -409,7 +409,7 @@ type secretBackendKeyArgs struct {
 	Context *string `pulumi:"context"`
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption *bool `pulumi:"convergentEncryption"`
-	// Specifies if the key is allowed to be deleted.
+	// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
 	DeletionAllowed *bool `pulumi:"deletionAllowed"`
 	// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
 	Derived *bool `pulumi:"derived"`
@@ -464,7 +464,7 @@ type SecretBackendKeyArgs struct {
 	Context pulumi.StringPtrInput
 	// Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
 	ConvergentEncryption pulumi.BoolPtrInput
-	// Specifies if the key is allowed to be deleted.
+	// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
 	DeletionAllowed pulumi.BoolPtrInput
 	// Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
 	Derived pulumi.BoolPtrInput
@@ -619,7 +619,7 @@ func (o SecretBackendKeyOutput) ConvergentEncryption() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolPtrOutput { return v.ConvergentEncryption }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies if the key is allowed to be deleted.
+// Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
 func (o SecretBackendKeyOutput) DeletionAllowed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolPtrOutput { return v.DeletionAllowed }).(pulumi.BoolPtrOutput)
 }

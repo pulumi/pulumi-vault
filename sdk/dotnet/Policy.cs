@@ -10,9 +10,39 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.Policy("example", new()
+    ///     {
+    ///         Name = "dev-team",
+    ///         PolicyContents = @"path \""secret/my_app\"" {
+    ///   capabilities = [\""update\""]
+    /// }
+    /// ",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Tutorials
+    /// 
+    /// Refer to the following tutorials for additional usage examples:
+    /// 
+    /// - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+    /// 
+    /// - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+    /// 
     /// ## Import
     /// 
-    /// Policies can be imported using the `name`, e.g.
+    /// Policies can be imported using the `Name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:index/policy:Policy example dev-team

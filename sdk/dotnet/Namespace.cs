@@ -10,9 +10,99 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
+    /// 
+    /// **Note** this feature is available only with Vault Enterprise.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Single namespace
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ns1 = new Vault.Namespace("ns1", new()
+    ///     {
+    ///         Path = "ns1",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Nested namespaces
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var childNamespaces = config.GetObject&lt;string[]&gt;("childNamespaces") ?? new[]
+    ///     {
+    ///         "child_0",
+    ///         "child_1",
+    ///         "child_2",
+    ///     };
+    ///     var parent = new Vault.Namespace("parent", new()
+    ///     {
+    ///         Path = "parent",
+    ///     });
+    /// 
+    ///     var children = new List&lt;Vault.Namespace&gt;();
+    ///     foreach (var range in childNamespaces.Select((v, k) =&gt; new { Key = k, Value = v }))
+    ///     {
+    ///         children.Add(new Vault.Namespace($"children-{range.Key}", new()
+    ///         {
+    ///             TargetNamespace = parent.Path,
+    ///             Path = range.Key,
+    ///         }));
+    ///     }
+    ///     var childrenMount = new List&lt;Vault.Mount&gt;();
+    ///     foreach (var range in children.Select((v, k) =&gt; new { Key = k, Value = v }))
+    ///     {
+    ///         childrenMount.Add(new Vault.Mount($"children-{range.Key}", new()
+    ///         {
+    ///             Namespace = range.Value.PathFq,
+    ///             Path = "secrets",
+    ///             Type = "kv",
+    ///             Options = 
+    ///             {
+    ///                 { "version", "1" },
+    ///             },
+    ///         }));
+    ///     }
+    ///     var childrenSecret = new List&lt;Vault.Generic.Secret&gt;();
+    ///     foreach (var range in childrenMount.Select((v, k) =&gt; new { Key = k, Value = v }))
+    ///     {
+    ///         childrenSecret.Add(new Vault.Generic.Secret($"children-{range.Key}", new()
+    ///         {
+    ///             Namespace = range.Value.Namespace,
+    ///             Path = $"{range.Value.Path}/secret",
+    ///             DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["ns"] = range.Key,
+    ///             }),
+    ///         }));
+    ///     }
+    /// });
+    /// ```
+    /// 
+    /// ## Tutorials
+    /// 
+    /// Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.
+    /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using its `name` as accessor id
+    /// Namespaces can be imported using its `Name` as accessor id
     /// 
     /// ```sh
     /// $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
@@ -20,44 +110,34 @@ namespace Pulumi.Vault
     /// 
     /// If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
     /// 
-    /// hcl
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
     /// 
-    /// provider "vault" {
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example2 = new Vault.Namespace("example2", new()
+    ///     {
+    ///         Path = "example2",
+    ///     });
     /// 
-    /// # Configuration options
-    /// 
-    ///   namespace = "example"
-    /// 
-    ///   alias     = "example"
-    /// 
-    /// }
-    /// 
-    /// resource "vault_namespace" "example2" {
-    /// 
-    ///   provider = vault.example
-    /// 
-    ///   path     = "example2"
-    /// 
-    /// }
+    /// });
+    /// ```
     /// 
     /// ```sh
     /// $ pulumi import vault:index/namespace:Namespace example2 example2
-    /// ```
     /// 
     /// $ terraform state show vault_namespace.example2
+    /// ```
     /// 
     /// vault_namespace.example2:
-    /// 
-    /// resource "vault_namespace" "example2" {
-    /// 
-    ///     id           = "example/example2/"
-    ///     
-    ///     namespace_id = &lt;known after import&gt;
-    ///     
-    ///     path         = "example2"
-    ///     
-    ///     path_fq      = "example2"
-    /// 
+    /// resource "vault.Namespace" "example2" {
+    /// id           = "example/example2/"
+    /// NamespaceId = &lt;known after import&gt;
+    /// path         = "example2"
+    /// PathFq      = "example2"
     /// }
     /// </summary>
     [VaultResourceType("vault:index/namespace:Namespace")]

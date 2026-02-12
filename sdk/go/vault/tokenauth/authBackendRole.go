@@ -59,7 +59,7 @@ import (
 //
 // ## Import
 //
-// Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
+// Token auth backend roles can be imported with `auth/token/roles/` followed by the `roleName`, e.g.
 //
 // ```sh
 // $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
@@ -88,6 +88,8 @@ type AuthBackendRole struct {
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrOutput `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+	//
+	// > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
 	PathSuffix pulumi.StringPtrOutput `pulumi:"pathSuffix"`
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrOutput `pulumi:"renewable"`
@@ -167,6 +169,8 @@ type authBackendRoleState struct {
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+	//
+	// > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
 	PathSuffix *string `pulumi:"pathSuffix"`
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable *bool `pulumi:"renewable"`
@@ -214,6 +218,8 @@ type AuthBackendRoleState struct {
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+	//
+	// > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
 	PathSuffix pulumi.StringPtrInput
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrInput
@@ -265,6 +271,8 @@ type authBackendRoleArgs struct {
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan *bool `pulumi:"orphan"`
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+	//
+	// > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
 	PathSuffix *string `pulumi:"pathSuffix"`
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable *bool `pulumi:"renewable"`
@@ -313,6 +321,8 @@ type AuthBackendRoleArgs struct {
 	// If true, tokens created against this policy will be orphan tokens.
 	Orphan pulumi.BoolPtrInput
 	// Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+	//
+	// > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
 	PathSuffix pulumi.StringPtrInput
 	// Whether to disable the ability of the token to be renewed past its initial TTL.
 	Renewable pulumi.BoolPtrInput
@@ -471,6 +481,8 @@ func (o AuthBackendRoleOutput) Orphan() pulumi.BoolPtrOutput {
 }
 
 // Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+//
+// > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
 func (o AuthBackendRoleOutput) PathSuffix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.PathSuffix }).(pulumi.StringPtrOutput)
 }

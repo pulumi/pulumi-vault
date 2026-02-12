@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ## Import
     /// 
-    /// SSH secret backend CAs can be imported using the `path`, e.g.
+    /// SSH secret backend CAs can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
@@ -72,7 +72,10 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
+        /// The ID of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
+        /// 
+        /// &gt; **Important** Because Vault does not support reading the PrivateKey back from the API, Terraform cannot detect
+        /// and correct drift on `PrivateKey`. Changing the values, however, _will_ overwrite the previously stored values.
         /// </summary>
         [Output("managedKeyId")]
         public Output<string?> ManagedKeyId { get; private set; } = null!;
@@ -179,7 +182,10 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The id of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
+        /// The ID of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
+        /// 
+        /// &gt; **Important** Because Vault does not support reading the PrivateKey back from the API, Terraform cannot detect
+        /// and correct drift on `PrivateKey`. Changing the values, however, _will_ overwrite the previously stored values.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
@@ -254,7 +260,10 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The id of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
+        /// The ID of the managed key to use. When using a managed key, this field or ManagedKeyName is required.
+        /// 
+        /// &gt; **Important** Because Vault does not support reading the PrivateKey back from the API, Terraform cannot detect
+        /// and correct drift on `PrivateKey`. Changing the values, however, _will_ overwrite the previously stored values.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }

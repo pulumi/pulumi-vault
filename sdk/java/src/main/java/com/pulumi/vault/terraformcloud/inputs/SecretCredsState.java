@@ -15,9 +15,19 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
 
     public static final SecretCredsState Empty = new SecretCredsState();
 
+    /**
+     * The path to the Terraform Cloud secret backend to
+     * read credentials from, with no leading or trailing `/`s.
+     * 
+     */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
+    /**
+     * @return The path to the Terraform Cloud secret backend to
+     * read credentials from, with no leading or trailing `/`s.
+     * 
+     */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -76,14 +86,16 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Name of the role.
+     * The name of the Terraform Cloud secret backend role to generate
+     * a token for, with no leading or trailing `/`s.
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return Name of the role.
+     * @return The name of the Terraform Cloud secret backend role to generate
+     * a token for, with no leading or trailing `/`s.
      * 
      */
     public Optional<Output<String>> role() {
@@ -170,11 +182,25 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
             $ = new SecretCredsState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param backend The path to the Terraform Cloud secret backend to
+         * read credentials from, with no leading or trailing `/`s.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(@Nullable Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
+        /**
+         * @param backend The path to the Terraform Cloud secret backend to
+         * read credentials from, with no leading or trailing `/`s.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }
@@ -251,7 +277,8 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param role Name of the role.
+         * @param role The name of the Terraform Cloud secret backend role to generate
+         * a token for, with no leading or trailing `/`s.
          * 
          * @return builder
          * 
@@ -262,7 +289,8 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param role Name of the role.
+         * @param role The name of the Terraform Cloud secret backend role to generate
+         * a token for, with no leading or trailing `/`s.
          * 
          * @return builder
          * 

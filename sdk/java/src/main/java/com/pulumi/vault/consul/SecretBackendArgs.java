@@ -96,14 +96,22 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+     * Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+     * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+     * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
      * 
      */
     @Import(name="bootstrap")
     private @Nullable Output<Boolean> bootstrap;
 
     /**
-     * @return Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+     * @return Denotes that the resource is used to bootstrap the Consul ACL system.
+     * 
+     * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+     * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+     * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
      * 
      */
     public Optional<Output<Boolean>> bootstrap() {
@@ -143,14 +151,18 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
+     * Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+     * you need to also set client_cert. Mutually exclusive with `clientKeyWo`. **Note:** This field will be stored in
+     * Terraform state. Consider using `clientKeyWo` instead for enhanced security.
      * 
      */
     @Import(name="clientKey")
     private @Nullable Output<String> clientKey;
 
     /**
-     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
+     * @return Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+     * you need to also set client_cert. Mutually exclusive with `clientKeyWo`. **Note:** This field will be stored in
+     * Terraform state. Consider using `clientKeyWo` instead for enhanced security.
      * 
      */
     public Optional<Output<String>> clientKey() {
@@ -457,14 +469,24 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
+     * The Consul management token this backend should use to issue new tokens. This field is required
+     * when `bootstrap` is false. Mutually exclusive with `tokenWo`. **Note:** This field will be stored in Terraform state.
+     * Consider using `tokenWo` instead for enhanced security.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+     * and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
+     * @return The Consul management token this backend should use to issue new tokens. This field is required
+     * when `bootstrap` is false. Mutually exclusive with `tokenWo`. **Note:** This field will be stored in Terraform state.
+     * Consider using `tokenWo` instead for enhanced security.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+     * and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
      * 
      */
     public Optional<Output<String>> token() {
@@ -705,7 +727,11 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootstrap Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+         * @param bootstrap Denotes that the resource is used to bootstrap the Consul ACL system.
+         * 
+         * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+         * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+         * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
          * 
          * @return builder
          * 
@@ -716,7 +742,11 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param bootstrap Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
+         * @param bootstrap Denotes that the resource is used to bootstrap the Consul ACL system.
+         * 
+         * &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
+         * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
+         * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
          * 
          * @return builder
          * 
@@ -770,7 +800,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
+         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+         * you need to also set client_cert. Mutually exclusive with `clientKeyWo`. **Note:** This field will be stored in
+         * Terraform state. Consider using `clientKeyWo` instead for enhanced security.
          * 
          * @return builder
          * 
@@ -781,7 +813,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set you need to also set client_cert. Mutually exclusive with &#39;client_key_wo&#39;.
+         * @param clientKey Client key used for Consul&#39;s TLS communication, must be x509 PEM encoded and if this is set
+         * you need to also set client_cert. Mutually exclusive with `clientKeyWo`. **Note:** This field will be stored in
+         * Terraform state. Consider using `clientKeyWo` instead for enhanced security.
          * 
          * @return builder
          * 
@@ -1224,7 +1258,12 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
+         * @param token The Consul management token this backend should use to issue new tokens. This field is required
+         * when `bootstrap` is false. Mutually exclusive with `tokenWo`. **Note:** This field will be stored in Terraform state.
+         * Consider using `tokenWo` instead for enhanced security.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+         * and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
          * 
          * @return builder
          * 
@@ -1235,7 +1274,12 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param token Specifies the Consul token to use when managing or issuing new tokens. Mutually exclusive with &#39;token_wo&#39;.
+         * @param token The Consul management token this backend should use to issue new tokens. This field is required
+         * when `bootstrap` is false. Mutually exclusive with `tokenWo`. **Note:** This field will be stored in Terraform state.
+         * Consider using `tokenWo` instead for enhanced security.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
+         * and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
          * 
          * @return builder
          * 

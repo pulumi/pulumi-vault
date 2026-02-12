@@ -46,7 +46,23 @@ public final class GetSecretResult {
      * 
      */
     private String leaseId;
+    /**
+     * @return `true` if the lease can be renewed using Vault&#39;s
+     * `sys/renew/{lease-id}` endpoint. Terraform does not currently support lease
+     * renewal, and so it will request a new lease each time this data source is
+     * refreshed.
+     * 
+     */
     private Boolean leaseRenewable;
+    /**
+     * @return The date and time of Terraform execution.
+     * It is derived from the local machine&#39;s clock, and is
+     * recorded in RFC3339 format UTC.
+     * This can be used to approximate the absolute time represented by
+     * `leaseDuration`, though users must allow for any clock drift and response
+     * latency relative to the Vault server. _Provided only as a convenience_.
+     * 
+     */
     private String leaseStartTime;
     private @Nullable String namespace;
     private String path;
@@ -95,9 +111,25 @@ public final class GetSecretResult {
     public String leaseId() {
         return this.leaseId;
     }
+    /**
+     * @return `true` if the lease can be renewed using Vault&#39;s
+     * `sys/renew/{lease-id}` endpoint. Terraform does not currently support lease
+     * renewal, and so it will request a new lease each time this data source is
+     * refreshed.
+     * 
+     */
     public Boolean leaseRenewable() {
         return this.leaseRenewable;
     }
+    /**
+     * @return The date and time of Terraform execution.
+     * It is derived from the local machine&#39;s clock, and is
+     * recorded in RFC3339 format UTC.
+     * This can be used to approximate the absolute time represented by
+     * `leaseDuration`, though users must allow for any clock drift and response
+     * latency relative to the Vault server. _Provided only as a convenience_.
+     * 
+     */
     public String leaseStartTime() {
         return this.leaseStartTime;
     }

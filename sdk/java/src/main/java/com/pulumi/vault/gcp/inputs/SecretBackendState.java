@@ -95,14 +95,24 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * JSON-encoded credentials to use to connect to GCP
+     * The GCP service account credentials in JSON format.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured
+     * credentials back from the API, Terraform cannot detect and correct drift
+     * on `credentials`. Changing the values, however, _will_ overwrite the
+     * previously stored values.
      * 
      */
     @Import(name="credentials")
     private @Nullable Output<String> credentials;
 
     /**
-     * @return JSON-encoded credentials to use to connect to GCP
+     * @return The GCP service account credentials in JSON format.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured
+     * credentials back from the API, Terraform cannot detect and correct drift
+     * on `credentials`. Changing the values, however, _will_ overwrite the
+     * previously stored values.
      * 
      */
     public Optional<Output<String>> credentials() {
@@ -285,14 +295,18 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The TTL of generated tokens.
+     * The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Import(name="identityTokenTtl")
     private @Nullable Output<Integer> identityTokenTtl;
 
     /**
-     * @return The TTL of generated tokens.
+     * @return The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Optional<Output<Integer>> identityTokenTtl() {
@@ -746,7 +760,12 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param credentials JSON-encoded credentials to use to connect to GCP
+         * @param credentials The GCP service account credentials in JSON format.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured
+         * credentials back from the API, Terraform cannot detect and correct drift
+         * on `credentials`. Changing the values, however, _will_ overwrite the
+         * previously stored values.
          * 
          * @return builder
          * 
@@ -757,7 +776,12 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param credentials JSON-encoded credentials to use to connect to GCP
+         * @param credentials The GCP service account credentials in JSON format.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured
+         * credentials back from the API, Terraform cannot detect and correct drift
+         * on `credentials`. Changing the values, however, _will_ overwrite the
+         * previously stored values.
          * 
          * @return builder
          * 
@@ -1018,7 +1042,9 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param identityTokenTtl The TTL of generated tokens.
+         * @param identityTokenTtl The TTL of generated tokens. Defaults to
+         * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 
@@ -1029,7 +1055,9 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param identityTokenTtl The TTL of generated tokens.
+         * @param identityTokenTtl The TTL of generated tokens. Defaults to
+         * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 

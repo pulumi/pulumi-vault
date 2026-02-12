@@ -151,7 +151,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     declare public readonly notAfter: pulumi.Output<string | undefined>;
     /**
-     * Specifies the duration by which to backdate the NotBefore property.
+     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      */
     declare public readonly notBeforeDuration: pulumi.Output<string | undefined>;
     /**
@@ -441,7 +441,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     notAfter?: pulumi.Input<string>;
     /**
-     * Specifies the duration by which to backdate the NotBefore property.
+     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      */
     notBeforeDuration?: pulumi.Input<string>;
     /**
@@ -603,7 +603,7 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     notAfter?: pulumi.Input<string>;
     /**
-     * Specifies the duration by which to backdate the NotBefore property.
+     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      */
     notBeforeDuration?: pulumi.Input<string>;
     /**

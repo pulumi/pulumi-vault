@@ -56,7 +56,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ## Import
     /// 
-    /// Kubernetes auth backend role can be imported using the `path`, e.g.
+    /// Kubernetes auth backend role can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo

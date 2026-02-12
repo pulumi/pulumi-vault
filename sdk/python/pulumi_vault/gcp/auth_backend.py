@@ -77,7 +77,9 @@ class AuthBackendArgs:
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin identity
                tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -349,7 +351,9 @@ class AuthBackendArgs:
     @pulumi.getter(name="identityTokenTtl")
     def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The TTL of generated tokens.
+        The TTL of generated tokens. Defaults to
+        1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "identity_token_ttl")
 
@@ -549,7 +553,9 @@ class _AuthBackendState:
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin identity
                tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -835,7 +841,9 @@ class _AuthBackendState:
     @pulumi.getter(name="identityTokenTtl")
     def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The TTL of generated tokens.
+        The TTL of generated tokens. Defaults to
+        1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "identity_token_ttl")
 
@@ -1089,7 +1097,9 @@ class AuthBackend(pulumi.CustomResource):
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin identity
                tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1321,7 +1331,9 @@ class AuthBackend(pulumi.CustomResource):
                Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin identity
                tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens. Defaults to
+               1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+               Requires Vault 1.17+. *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1521,7 +1533,9 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="identityTokenTtl")
     def identity_token_ttl(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The TTL of generated tokens.
+        The TTL of generated tokens. Defaults to
+        1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "identity_token_ttl")
 

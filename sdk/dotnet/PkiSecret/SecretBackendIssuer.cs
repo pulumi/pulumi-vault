@@ -10,6 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
+    /// Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not
+    /// create issuers. It instead tracks and performs updates made to an existing issuer that was
+    /// created by one of the PKI generate endpoints. For more information, see the
+    /// [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#managing-keys-and-issuers)
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -48,7 +53,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Import
     /// 
-    /// PKI secret backend issuer can be imported using the `id`, e.g.
+    /// PKI secret backend issuer can be imported using the `Id`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d

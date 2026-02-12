@@ -55,6 +55,8 @@ class AuthBackendRoleArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[_builtins.str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[_builtins.bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[_builtins.int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
@@ -223,6 +225,8 @@ class AuthBackendRoleArgs:
     def path_suffix(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+
+        > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         """
         return pulumi.get(self, "path_suffix")
 
@@ -389,6 +393,8 @@ class _AuthBackendRoleState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[_builtins.str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[_builtins.bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[_builtins.str] role_name: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -547,6 +553,8 @@ class _AuthBackendRoleState:
     def path_suffix(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+
+        > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         """
         return pulumi.get(self, "path_suffix")
 
@@ -763,6 +771,8 @@ class AuthBackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[_builtins.str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[_builtins.bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[_builtins.str] role_name: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -931,6 +941,8 @@ class AuthBackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[_builtins.str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+               
+               > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         :param pulumi.Input[_builtins.bool] renewable: Whether to disable the ability of the token to be renewed past its initial TTL.
         :param pulumi.Input[_builtins.str] role_name: The name of the role.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
@@ -1042,6 +1054,8 @@ class AuthBackendRole(pulumi.CustomResource):
     def path_suffix(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Tokens created against this role will have the given suffix as part of their path in addition to the role name.
+
+        > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `path_suffix` or `bound_cidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
         """
         return pulumi.get(self, "path_suffix")
 

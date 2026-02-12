@@ -99,6 +99,9 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * The unique name of the Vault mount to configure.
      */
     declare public readonly backend: pulumi.Output<string>;
+    /**
+     * The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+     */
     declare public readonly credentialConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
@@ -241,6 +244,9 @@ export interface SecretBackendStaticRoleState {
      * The unique name of the Vault mount to configure.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+     */
     credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
@@ -322,6 +328,9 @@ export interface SecretBackendStaticRoleArgs {
      * The unique name of the Vault mount to configure.
      */
     backend: pulumi.Input<string>;
+    /**
+     * The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+     */
     credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.

@@ -58,7 +58,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// OIDC Clients can be imported using the `name`, e.g.
+    /// OIDC Clients can be imported using the `Name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/oidcClient:OidcClient test my-app

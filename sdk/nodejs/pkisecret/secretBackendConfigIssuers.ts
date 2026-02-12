@@ -5,6 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Allows setting the value of the default issuer. For more information, see the
+ * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -77,7 +80,9 @@ export class SecretBackendConfigIssuers extends pulumi.CustomResource {
      */
     declare public readonly backend: pulumi.Output<string>;
     /**
-     * Specifies the default issuer by ID.
+     * Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      */
     declare public readonly default: pulumi.Output<string | undefined>;
     /**
@@ -135,7 +140,9 @@ export interface SecretBackendConfigIssuersState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * Specifies the default issuer by ID.
+     * Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      */
     default?: pulumi.Input<string>;
     /**
@@ -162,7 +169,9 @@ export interface SecretBackendConfigIssuersArgs {
      */
     backend: pulumi.Input<string>;
     /**
-     * Specifies the default issuer by ID.
+     * Specifies the default issuer using the issuer ID.
+     * **NOTE:** It is recommended to only set the default issuer using the ID.
+     * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      */
     default?: pulumi.Input<string>;
     /**

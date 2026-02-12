@@ -11,6 +11,152 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a resource for managing an
+// [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+//
+// ## Example Usage
+//
+// Manage JWT auth backend:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+//				Path:             pulumi.String("jwt"),
+//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Manage OIDC auth backend:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+//				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+//				Path:             pulumi.String("oidc"),
+//				Type:             pulumi.String("oidc"),
+//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+//				OidcClientId:     pulumi.String("1234567890"),
+//				OidcClientSecret: pulumi.String("secret123456"),
+//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
+//				Tune: &jwt.AuthBackendTuneArgs{
+//					ListingVisibility: pulumi.String("unauth"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Manage OIDC auth backend with write-only secret (recommended):
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
+//				Description:               pulumi.String("Demonstration of the Terraform JWT auth backend"),
+//				Path:                      pulumi.String("oidc"),
+//				Type:                      pulumi.String("oidc"),
+//				OidcDiscoveryUrl:          pulumi.String("https://myco.auth0.com/"),
+//				OidcClientId:              pulumi.String("1234567890"),
+//				OidcClientSecretWo:        pulumi.String("secret123456"),
+//				OidcClientSecretWoVersion: pulumi.Int(1),
+//				BoundIssuer:               pulumi.String("https://myco.auth0.com/"),
+//				Tune: &jwt.AuthBackendTuneArgs{
+//					ListingVisibility: pulumi.String("unauth"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Configuring the auth backend with a `provider_config:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
+//				Description:      pulumi.String("OIDC backend"),
+//				OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
+//				Path:             pulumi.String("oidc"),
+//				Type:             pulumi.String("oidc"),
+//				ProviderConfig: pulumi.StringMap{
+//					"provider":                 pulumi.String("gsuite"),
+//					"fetch_groups":             pulumi.String("true"),
+//					"fetch_user_info":          pulumi.String("true"),
+//					"groups_recurse_max_depth": pulumi.String("1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+// * `oidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidcClientSecret`. Must be used with `oidcClientSecretWoVersion`. To rotate the secret, update the value and increment `oidcClientSecretWoVersion`.
+//
 // ## Import
 //
 // JWT auth backend can be imported using the `path`, e.g.
@@ -18,6 +164,7 @@ import (
 // ```sh
 // $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
 // ```
+//
 // or
 //
 // ```sh

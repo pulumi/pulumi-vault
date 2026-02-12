@@ -374,14 +374,18 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.identityTokenKey);
     }
     /**
-     * The TTL of generated tokens.
+     * The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> identityTokenTtl;
 
     /**
-     * @return The TTL of generated tokens.
+     * @return The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Output<Optional<Integer>> identityTokenTtl() {

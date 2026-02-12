@@ -45,7 +45,7 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ## Import
     /// 
-    /// Github team mappings can be imported using the `path`, e.g.
+    /// Github team mappings can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
@@ -78,7 +78,8 @@ namespace Pulumi.Vault.GitHub
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
 
         /// <summary>
-        /// GitHub team name in "slugified" format.
+        /// GitHub team name in "slugified" format, for example: Terraform
+        /// Developers &gt; `terraform-developers`.
         /// </summary>
         [Output("team")]
         public Output<string> TeamCity { get; private set; } = null!;
@@ -159,7 +160,8 @@ namespace Pulumi.Vault.GitHub
         }
 
         /// <summary>
-        /// GitHub team name in "slugified" format.
+        /// GitHub team name in "slugified" format, for example: Terraform
+        /// Developers &gt; `terraform-developers`.
         /// </summary>
         [Input("team", required: true)]
         public Input<string> TeamCity { get; set; } = null!;
@@ -202,7 +204,8 @@ namespace Pulumi.Vault.GitHub
         }
 
         /// <summary>
-        /// GitHub team name in "slugified" format.
+        /// GitHub team name in "slugified" format, for example: Terraform
+        /// Developers &gt; `terraform-developers`.
         /// </summary>
         [Input("team")]
         public Input<string>? TeamCity { get; set; }

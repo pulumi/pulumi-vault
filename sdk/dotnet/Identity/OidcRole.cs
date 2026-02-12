@@ -10,6 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Identity
 {
     /// <summary>
+    /// Creates an Identity OIDC Role for Vault Identity secrets engine to issue
+    /// [identity tokens](https://www.vaultproject.io/docs/secrets/identity/index.html#identity-tokens).
+    /// 
+    /// The Identity secrets engine is the identity management solution for Vault. It internally maintains
+    /// the clients who are recognized by Vault.
+    /// 
+    /// Use this with `vault.identity.OidcKey`
+    /// and `vault.identity.OidcKeyAllowedClientID`
+    /// to configure a Role to generate Identity Tokens.
+    /// 
+    /// &gt; **NOTE on `AllowedClientIds`:** Terraform currently
+    /// provides both a standalone Allowed Client ID (a single
+    /// Client ID), and a OIDC Named Key with a inline list of Allowed Client IDs.
+    /// At this time you cannot use an OIDC Named Key inline list of Allowed Client IDs
+    /// in conjunction with any Allowed Client ID resources. Doing so will cause
+    /// a conflict of the list of Allowed Client IDs for the named Key.
+    /// 
     /// ## Example Usage
     /// 
     /// You need to create a role with a named key.

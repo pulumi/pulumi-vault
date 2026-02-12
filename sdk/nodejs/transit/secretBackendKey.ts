@@ -133,7 +133,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public readonly convergentEncryption: pulumi.Output<boolean | undefined>;
     /**
-     * Specifies if the key is allowed to be deleted.
+     * Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
      */
     declare public readonly deletionAllowed: pulumi.Output<boolean | undefined>;
     /**
@@ -333,7 +333,7 @@ export interface SecretBackendKeyState {
      */
     convergentEncryption?: pulumi.Input<boolean>;
     /**
-     * Specifies if the key is allowed to be deleted.
+     * Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
      */
     deletionAllowed?: pulumi.Input<boolean>;
     /**
@@ -458,7 +458,7 @@ export interface SecretBackendKeyArgs {
      */
     convergentEncryption?: pulumi.Input<boolean>;
     /**
-     * Specifies if the key is allowed to be deleted.
+     * Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
      */
     deletionAllowed?: pulumi.Input<boolean>;
     /**

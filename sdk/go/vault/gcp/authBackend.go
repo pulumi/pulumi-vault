@@ -147,7 +147,9 @@ type AuthBackend struct {
 	// The key to use for signing plugin identity
 	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
-	// The TTL of generated tokens.
+	// The TTL of generated tokens. Defaults to
+	// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenTtl pulumi.IntPtrOutput `pulumi:"identityTokenTtl"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -267,7 +269,9 @@ type authBackendState struct {
 	// The key to use for signing plugin identity
 	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
-	// The TTL of generated tokens.
+	// The TTL of generated tokens. Defaults to
+	// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
@@ -347,7 +351,9 @@ type AuthBackendState struct {
 	// The key to use for signing plugin identity
 	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenKey pulumi.StringPtrInput
-	// The TTL of generated tokens.
+	// The TTL of generated tokens. Defaults to
+	// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenTtl pulumi.IntPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
@@ -429,7 +435,9 @@ type authBackendArgs struct {
 	// The key to use for signing plugin identity
 	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
-	// The TTL of generated tokens.
+	// The TTL of generated tokens. Defaults to
+	// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
@@ -508,7 +516,9 @@ type AuthBackendArgs struct {
 	// The key to use for signing plugin identity
 	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenKey pulumi.StringPtrInput
-	// The TTL of generated tokens.
+	// The TTL of generated tokens. Defaults to
+	// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	IdentityTokenTtl pulumi.IntPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
@@ -722,7 +732,9 @@ func (o AuthBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
 }
 
-// The TTL of generated tokens.
+// The TTL of generated tokens. Defaults to
+// 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+// Requires Vault 1.17+. *Available only for Vault Enterprise*.
 func (o AuthBackendOutput) IdentityTokenTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.IdentityTokenTtl }).(pulumi.IntPtrOutput)
 }

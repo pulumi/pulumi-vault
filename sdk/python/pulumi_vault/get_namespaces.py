@@ -95,6 +95,10 @@ def get_namespaces(namespace: Optional[_builtins.str] = None,
                    recursive: Optional[_builtins.bool] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNamespacesResult:
     """
+    Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+
+    **Note** this feature is available only with Vault Enterprise.
+
     ## Example Usage
 
     ### Direct child namespaces
@@ -150,6 +154,10 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[_builtins.st
                           recursive: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespacesResult]:
     """
+    Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+
+    **Note** this feature is available only with Vault Enterprise.
+
     ## Example Usage
 
     ### Direct child namespaces

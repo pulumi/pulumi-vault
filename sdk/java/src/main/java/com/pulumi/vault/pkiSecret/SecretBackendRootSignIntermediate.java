@@ -391,14 +391,14 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
         return Codegen.optional(this.notAfter);
     }
     /**
-     * Specifies the duration by which to backdate the NotBefore property.
+     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      * 
      */
     @Export(name="notBeforeDuration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notBeforeDuration;
 
     /**
-     * @return Specifies the duration by which to backdate the NotBefore property.
+     * @return Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      * 
      */
     public Output<Optional<String>> notBeforeDuration() {

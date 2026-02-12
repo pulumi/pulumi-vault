@@ -34,9 +34,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.accessor);
     }
 
+    /**
+     * The address of the Terraform Cloud server, if using
+     * Terraform Enterprise, provided as `&#34;protocol://host:port&#34;`. The default is
+     * `https://app.terraform.io` for Terraform Cloud.
+     * 
+     */
     @Import(name="address")
     private @Nullable Output<String> address;
 
+    /**
+     * @return The address of the Terraform Cloud server, if using
+     * Terraform Enterprise, provided as `&#34;protocol://host:port&#34;`. The default is
+     * `https://app.terraform.io` for Terraform Cloud.
+     * 
+     */
     public Optional<Output<String>> address() {
         return Optional.ofNullable(this.address);
     }
@@ -101,16 +113,32 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.auditNonHmacResponseKeys);
     }
 
+    /**
+     * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+     * 
+     */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
+    /**
+     * @return The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+     * 
+     */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
     }
 
+    /**
+     * Specifies the base path for the Terraform Cloud or Enterprise API.
+     * 
+     */
     @Import(name="basePath")
     private @Nullable Output<String> basePath;
 
+    /**
+     * @return Specifies the base path for the Terraform Cloud or Enterprise API.
+     * 
+     */
     public Optional<Output<String>> basePath() {
         return Optional.ofNullable(this.basePath);
     }
@@ -348,15 +376,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.sealWrap);
     }
 
+    /**
+     * The Terraform Cloud management token this backend should
+     * use to issue new tokens.
+     * 
+     */
     @Import(name="token")
     private @Nullable Output<String> token;
 
+    /**
+     * @return The Terraform Cloud management token this backend should
+     * use to issue new tokens.
+     * 
+     */
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
     }
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Terraform Cloud management token this backend should
+     * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
      * 
      */
     @Import(name="tokenWo")
@@ -364,6 +404,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The Terraform Cloud management token this backend should
+     * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
      * 
      */
     public Optional<Output<String>> tokenWo() {
@@ -371,14 +413,22 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Version counter for write-only secret data.
+     * The version of the `tokenWo`. For more info see updating write-only attributes.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured
+     * token back from the API, Terraform cannot detect and correct drift
+     * on `token`. Changing the value, however, _will_ overwrite the previously stored values.
      * 
      */
     @Import(name="tokenWoVersion")
     private @Nullable Output<Integer> tokenWoVersion;
 
     /**
-     * @return Version counter for write-only secret data.
+     * @return The version of the `tokenWo`. For more info see updating write-only attributes.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured
+     * token back from the API, Terraform cannot detect and correct drift
+     * on `token`. Changing the value, however, _will_ overwrite the previously stored values.
      * 
      */
     public Optional<Output<Integer>> tokenWoVersion() {
@@ -455,11 +505,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
             return accessor(Output.of(accessor));
         }
 
+        /**
+         * @param address The address of the Terraform Cloud server, if using
+         * Terraform Enterprise, provided as `&#34;protocol://host:port&#34;`. The default is
+         * `https://app.terraform.io` for Terraform Cloud.
+         * 
+         * @return builder
+         * 
+         */
         public Builder address(@Nullable Output<String> address) {
             $.address = address;
             return this;
         }
 
+        /**
+         * @param address The address of the Terraform Cloud server, if using
+         * Terraform Enterprise, provided as `&#34;protocol://host:port&#34;`. The default is
+         * `https://app.terraform.io` for Terraform Cloud.
+         * 
+         * @return builder
+         * 
+         */
         public Builder address(String address) {
             return address(Output.of(address));
         }
@@ -588,20 +654,44 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
             return auditNonHmacResponseKeys(List.of(auditNonHmacResponseKeys));
         }
 
+        /**
+         * @param backend The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(@Nullable Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
+        /**
+         * @param backend The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults to `terraform`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }
 
+        /**
+         * @param basePath Specifies the base path for the Terraform Cloud or Enterprise API.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basePath(@Nullable Output<String> basePath) {
             $.basePath = basePath;
             return this;
         }
 
+        /**
+         * @param basePath Specifies the base path for the Terraform Cloud or Enterprise API.
+         * 
+         * @return builder
+         * 
+         */
         public Builder basePath(String basePath) {
             return basePath(Output.of(basePath));
         }
@@ -949,17 +1039,33 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
             return sealWrap(Output.of(sealWrap));
         }
 
+        /**
+         * @param token The Terraform Cloud management token this backend should
+         * use to issue new tokens.
+         * 
+         * @return builder
+         * 
+         */
         public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
 
+        /**
+         * @param token The Terraform Cloud management token this backend should
+         * use to issue new tokens.
+         * 
+         * @return builder
+         * 
+         */
         public Builder token(String token) {
             return token(Output.of(token));
         }
 
         /**
          * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The Terraform Cloud management token this backend should
+         * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
          * 
          * @return builder
          * 
@@ -971,6 +1077,8 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param tokenWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The Terraform Cloud management token this backend should
+         * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
          * 
          * @return builder
          * 
@@ -980,7 +1088,11 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param tokenWoVersion Version counter for write-only secret data.
+         * @param tokenWoVersion The version of the `tokenWo`. For more info see updating write-only attributes.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured
+         * token back from the API, Terraform cannot detect and correct drift
+         * on `token`. Changing the value, however, _will_ overwrite the previously stored values.
          * 
          * @return builder
          * 
@@ -991,7 +1103,11 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param tokenWoVersion Version counter for write-only secret data.
+         * @param tokenWoVersion The version of the `tokenWo`. For more info see updating write-only attributes.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured
+         * token back from the API, Terraform cannot detect and correct drift
+         * on `token`. Changing the value, however, _will_ overwrite the previously stored values.
          * 
          * @return builder
          * 

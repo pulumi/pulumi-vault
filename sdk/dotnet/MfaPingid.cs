@@ -45,7 +45,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Import
     /// 
-    /// Mounts can be imported using the `path`, e.g.
+    /// Mounts can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid

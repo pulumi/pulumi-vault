@@ -16,6 +16,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Manages a Terraform Cloud secrets role for a Terraform Cloud secrets engine in Vault.
+ * Terraform Cloud secret backends can then issue Terraform Cloud tokens.
+ * 
  * ## Example Usage
  * 
  * <pre>
@@ -71,9 +74,17 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:terraformcloud/secretRole:SecretRole")
 public class SecretRole extends com.pulumi.resources.CustomResource {
+    /**
+     * The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     * 
+     */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
+    /**
+     * @return The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+     * 
+     */
     public Output<Optional<String>> backend() {
         return Codegen.optional(this.backend);
     }
@@ -91,9 +102,17 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> credentialType() {
         return Codegen.optional(this.credentialType);
     }
+    /**
+     * Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
@@ -111,9 +130,17 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> maxTtl() {
         return Codegen.optional(this.maxTtl);
     }
+    /**
+     * The name of the Terraform Cloud secrets engine role to create.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return The name of the Terraform Cloud secrets engine role to create.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -137,15 +164,31 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
     }
+    /**
+     * The organization name managing your Terraform Cloud instance.
+     * 
+     */
     @Export(name="organization", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organization;
 
+    /**
+     * @return The organization name managing your Terraform Cloud instance.
+     * 
+     */
     public Output<Optional<String>> organization() {
         return Codegen.optional(this.organization);
     }
+    /**
+     * The id of the team you wish to create a token for in your Terraform Cloud instance.
+     * 
+     */
     @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
+    /**
+     * @return The id of the team you wish to create a token for in your Terraform Cloud instance.
+     * 
+     */
     public Output<Optional<String>> teamId() {
         return Codegen.optional(this.teamId);
     }
@@ -163,9 +206,17 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> ttl() {
         return Codegen.optional(this.ttl);
     }
+    /**
+     * The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     * 
+     */
     @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
+    /**
+     * @return The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `teamId` and/or `organization`)
+     * 
+     */
     public Output<Optional<String>> userId() {
         return Codegen.optional(this.userId);
     }

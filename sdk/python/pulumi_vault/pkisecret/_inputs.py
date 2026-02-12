@@ -27,16 +27,11 @@ __all__ = [
     'SecretBackendRolePolicyIdentifierArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class BackendConfigCmpv2AuthenticatorsArgsDict(TypedDict):
-        cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        "The accessor (required) and cert_role (optional) properties for cert auth backends".
-        """
-elif False:
-    BackendConfigCmpv2AuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
+class BackendConfigCmpv2AuthenticatorsArgsDict(TypedDict):
+    cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    "The accessor (required) and cert_role (optional) properties for cert auth backends".
+    """
 
 @pulumi.input_type
 class BackendConfigCmpv2AuthenticatorsArgs:
@@ -61,18 +56,15 @@ class BackendConfigCmpv2AuthenticatorsArgs:
         pulumi.set(self, "cert", value)
 
 
-if not MYPY:
-    class BackendConfigEstAuthenticatorsArgsDict(TypedDict):
-        cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The accessor (required) and cert_role (optional) properties for cert auth backends.
-        """
-        userpass: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The accessor (required) property for user pass auth backends.
-        """
-elif False:
-    BackendConfigEstAuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
+class BackendConfigEstAuthenticatorsArgsDict(TypedDict):
+    cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The accessor (required) and cert_role (optional) properties for cert auth backends.
+    """
+    userpass: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The accessor (required) property for user pass auth backends.
+    """
 
 @pulumi.input_type
 class BackendConfigEstAuthenticatorsArgs:
@@ -113,18 +105,15 @@ class BackendConfigEstAuthenticatorsArgs:
         pulumi.set(self, "userpass", value)
 
 
-if not MYPY:
-    class BackendConfigScepAuthenticatorsArgsDict(TypedDict):
-        cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The accessor and cert_role properties for cert auth backends
-        """
-        scep: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The accessor property for SCEP auth backends
-        """
-elif False:
-    BackendConfigScepAuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
+class BackendConfigScepAuthenticatorsArgsDict(TypedDict):
+    cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The accessor and cert_role properties for cert auth backends
+    """
+    scep: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The accessor property for SCEP auth backends
+    """
 
 @pulumi.input_type
 class BackendConfigScepAuthenticatorsArgs:
@@ -165,14 +154,11 @@ class BackendConfigScepAuthenticatorsArgs:
         pulumi.set(self, "scep", value)
 
 
-if not MYPY:
-    class BackendConfigScepExternalValidationArgsDict(TypedDict):
-        intune: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        The credentials to enable Microsoft Intune validation of SCEP requests
-        """
-elif False:
-    BackendConfigScepExternalValidationArgsDict: TypeAlias = Mapping[str, Any]
+class BackendConfigScepExternalValidationArgsDict(TypedDict):
+    intune: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    The credentials to enable Microsoft Intune validation of SCEP requests
+    """
 
 @pulumi.input_type
 class BackendConfigScepExternalValidationArgs:
@@ -197,22 +183,19 @@ class BackendConfigScepExternalValidationArgs:
         pulumi.set(self, "intune", value)
 
 
-if not MYPY:
-    class SecretBackendRolePolicyIdentifierArgsDict(TypedDict):
-        oid: pulumi.Input[_builtins.str]
-        """
-        The OID for the policy identifier
-        """
-        cps: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The URL of the CPS for the policy identifier
-        """
-        notice: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A notice for the policy identifier
-        """
-elif False:
-    SecretBackendRolePolicyIdentifierArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendRolePolicyIdentifierArgsDict(TypedDict):
+    oid: pulumi.Input[_builtins.str]
+    """
+    The OID for the policy identifier
+    """
+    cps: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The URL of the CPS for the policy identifier
+    """
+    notice: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A notice for the policy identifier
+    """
 
 @pulumi.input_type
 class SecretBackendRolePolicyIdentifierArgs:

@@ -129,9 +129,17 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     public Output<String> backend() {
         return this.backend;
     }
+    /**
+     * The configuration for the credential type.Full documentation for the allowed values can be found under &#34;https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config&#34;.
+     * 
+     */
     @Export(name="credentialConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> credentialConfig;
 
+    /**
+     * @return The configuration for the credential type.Full documentation for the allowed values can be found under &#34;https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config&#34;.
+     * 
+     */
     public Output<Optional<Map<String,String>>> credentialConfig() {
         return Codegen.optional(this.credentialConfig);
     }

@@ -18,6 +18,7 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
+	// If true, adds the value of the `address` argument to the Terraform process environment.
 	AddAddressToEnv pulumi.StringPtrOutput `pulumi:"addAddressToEnv"`
 	// URL of the root of the target Vault server.
 	Address pulumi.StringPtrOutput `pulumi:"address"`
@@ -69,6 +70,7 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	// If true, adds the value of the `address` argument to the Terraform process environment.
 	AddAddressToEnv *string `pulumi:"addAddressToEnv"`
 	// URL of the root of the target Vault server.
 	Address *string `pulumi:"address"`
@@ -132,6 +134,7 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	// If true, adds the value of the `address` argument to the Terraform process environment.
 	AddAddressToEnv pulumi.StringPtrInput
 	// URL of the root of the target Vault server.
 	Address pulumi.StringPtrInput
@@ -253,6 +256,7 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+// If true, adds the value of the `address` argument to the Terraform process environment.
 func (o ProviderOutput) AddAddressToEnv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AddAddressToEnv }).(pulumi.StringPtrOutput)
 }

@@ -7,6 +7,31 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * This resource enables a new auth method at the given path.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.AuthBackend("example", {
+ *     type: "github",
+ *     tune: {
+ *         maxLeaseTtl: "90000s",
+ *         listingVisibility: "unauth",
+ *     },
+ * });
+ * ```
+ *
+ * ## Tutorials
+ *
+ * Refer to the following tutorials for additional usage examples:
+ *
+ * - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+ *
+ * - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+ *
  * ## Import
  *
  * Auth methods can be imported using the `path`, e.g.

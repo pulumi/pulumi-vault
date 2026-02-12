@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+//
+// **Note** this feature is available only with Vault Enterprise.
+//
 // ## Example Usage
 //
 // ### Direct child namespaces

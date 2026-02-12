@@ -427,12 +427,22 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Template describing how dynamic usernames are generated.
      * 
+     * &gt; **Important** Because Vault does not support reading the configured
+     * credentials back from the API, Terraform cannot detect and correct drift
+     * on `connectionUri`, `username`, `password`, `verifyConnection`, `usernameTemplate`, and `passwordPolicy`. Changing the values, however, _will_
+     * overwrite the previously stored values.
+     * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
      * @return Template describing how dynamic usernames are generated.
+     * 
+     * &gt; **Important** Because Vault does not support reading the configured
+     * credentials back from the API, Terraform cannot detect and correct drift
+     * on `connectionUri`, `username`, `password`, `verifyConnection`, `usernameTemplate`, and `passwordPolicy`. Changing the values, however, _will_
+     * overwrite the previously stored values.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -1130,6 +1140,11 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
+         * &gt; **Important** Because Vault does not support reading the configured
+         * credentials back from the API, Terraform cannot detect and correct drift
+         * on `connectionUri`, `username`, `password`, `verifyConnection`, `usernameTemplate`, and `passwordPolicy`. Changing the values, however, _will_
+         * overwrite the previously stored values.
+         * 
          * @return builder
          * 
          */
@@ -1140,6 +1155,11 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * 
+         * &gt; **Important** Because Vault does not support reading the configured
+         * credentials back from the API, Terraform cannot detect and correct drift
+         * on `connectionUri`, `username`, `password`, `verifyConnection`, `usernameTemplate`, and `passwordPolicy`. Changing the values, however, _will_
+         * overwrite the previously stored values.
          * 
          * @return builder
          * 

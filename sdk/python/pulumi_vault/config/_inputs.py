@@ -19,20 +19,15 @@ __all__ = [
     'UiCustomMessageLinkArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class UiCustomMessageLinkArgsDict(TypedDict):
-        href: pulumi.Input[_builtins.str]
-        """
-        The URL of the hyperlink
-        """
-        title: pulumi.Input[_builtins.str]
-        """
-        The title of the hyperlink
-        """
-elif False:
-    UiCustomMessageLinkArgsDict: TypeAlias = Mapping[str, Any]
+class UiCustomMessageLinkArgsDict(TypedDict):
+    href: pulumi.Input[_builtins.str]
+    """
+    The URL of the hyperlink
+    """
+    title: pulumi.Input[_builtins.str]
+    """
+    The title of the hyperlink
+    """
 
 @pulumi.input_type
 class UiCustomMessageLinkArgs:

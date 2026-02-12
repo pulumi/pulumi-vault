@@ -61,7 +61,7 @@ namespace Pulumi.Vault.Saml
     /// 
     /// ## Import
     /// 
-    /// SAML authentication backend roles can be imported using the `path`, e.g.
+    /// SAML authentication backend roles can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role

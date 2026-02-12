@@ -113,7 +113,8 @@ type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState
 
 	// The unique name of the Vault mount to configure.
-	Backend          pulumi.StringOutput    `pulumi:"backend"`
+	Backend pulumi.StringOutput `pulumi:"backend"`
+	// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
 	CredentialConfig pulumi.StringMapOutput `pulumi:"credentialConfig"`
 	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType pulumi.StringOutput `pulumi:"credentialType"`
@@ -212,7 +213,8 @@ func GetSecretBackendStaticRole(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SecretBackendStaticRole resources.
 type secretBackendStaticRoleState struct {
 	// The unique name of the Vault mount to configure.
-	Backend          *string           `pulumi:"backend"`
+	Backend *string `pulumi:"backend"`
+	// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
 	CredentialConfig map[string]string `pulumi:"credentialConfig"`
 	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType *string `pulumi:"credentialType"`
@@ -262,7 +264,8 @@ type secretBackendStaticRoleState struct {
 
 type SecretBackendStaticRoleState struct {
 	// The unique name of the Vault mount to configure.
-	Backend          pulumi.StringPtrInput
+	Backend pulumi.StringPtrInput
+	// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
 	CredentialConfig pulumi.StringMapInput
 	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType pulumi.StringPtrInput
@@ -316,7 +319,8 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 
 type secretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
-	Backend          string            `pulumi:"backend"`
+	Backend string `pulumi:"backend"`
+	// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
 	CredentialConfig map[string]string `pulumi:"credentialConfig"`
 	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType *string `pulumi:"credentialType"`
@@ -367,7 +371,8 @@ type secretBackendStaticRoleArgs struct {
 // The set of arguments for constructing a SecretBackendStaticRole resource.
 type SecretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
-	Backend          pulumi.StringInput
+	Backend pulumi.StringInput
+	// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
 	CredentialConfig pulumi.StringMapInput
 	// The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
 	CredentialType pulumi.StringPtrInput
@@ -507,6 +512,7 @@ func (o SecretBackendStaticRoleOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
+// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
 func (o SecretBackendStaticRoleOutput) CredentialConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringMapOutput { return v.CredentialConfig }).(pulumi.StringMapOutput)
 }

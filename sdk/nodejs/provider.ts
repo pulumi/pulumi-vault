@@ -27,6 +27,9 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
+    /**
+     * If true, adds the value of the `address` argument to the Terraform process environment.
+     */
     declare public readonly addAddressToEnv: pulumi.Output<string | undefined>;
     /**
      * URL of the root of the target Vault server.
@@ -121,6 +124,9 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * If true, adds the value of the `address` argument to the Terraform process environment.
+     */
     addAddressToEnv?: pulumi.Input<string>;
     /**
      * URL of the root of the target Vault server.

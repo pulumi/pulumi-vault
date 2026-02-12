@@ -12,6 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a resource to create a role in an [SCEP auth backend within Vault](https://developer.hashicorp.com/vault/docs/auth/scep).
+//
 // ## Example Usage
 //
 // ```go

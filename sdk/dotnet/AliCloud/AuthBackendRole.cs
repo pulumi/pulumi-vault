@@ -40,7 +40,7 @@ namespace Pulumi.Vault.AliCloud
     /// 
     /// ## Import
     /// 
-    /// Alicloud authentication roles can be imported using the `path`, e.g.
+    /// Alicloud authentication roles can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role

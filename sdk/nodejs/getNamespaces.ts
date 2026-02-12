@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+ *
+ * **Note** this feature is available only with Vault Enterprise.
+ *
  * ## Example Usage
  *
  * ### Direct child namespaces
@@ -89,6 +93,10 @@ export interface GetNamespacesResult {
     readonly recursive?: boolean;
 }
 /**
+ * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+ *
+ * **Note** this feature is available only with Vault Enterprise.
+ *
  * ## Example Usage
  *
  * ### Direct child namespaces

@@ -178,7 +178,8 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
-     * Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
     declare public readonly notBeforeDuration: pulumi.Output<string>;
     /**
@@ -380,7 +381,8 @@ export interface SecretBackendRoleState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
     notBeforeDuration?: pulumi.Input<string>;
     /**
@@ -502,7 +504,8 @@ export interface SecretBackendRoleArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
     notBeforeDuration?: pulumi.Input<string>;
     /**

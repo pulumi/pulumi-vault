@@ -369,7 +369,61 @@ class AuthBackendLogin(pulumi.CustomResource):
                  secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        Create a AuthBackendLogin resource with the given unique name, props, and options.
+        Logs into Vault using the AppRole auth backend. See the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
+        information.
+
+        ## Example Usage
+
+        ### Standard Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.approle.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        id = vault.approle.AuthBackendRoleSecretId("id",
+            backend=approle.path,
+            role_name=example.role_name)
+        login = vault.approle.AuthBackendLogin("login",
+            backend=approle.path,
+            role_id=example.role_id,
+            secret_id=id.secret_id)
+        ```
+
+        ### Using Write-Only Field
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.approle.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        id = vault.approle.AuthBackendRoleSecretId("id",
+            backend=approle.path,
+            role_name=example.role_name)
+        login = vault.approle.AuthBackendLogin("login",
+            backend=approle.path,
+            role_id=example.role_id,
+            secret_id_wo=id.secret_id,
+            secret_id_wo_version=1)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique path of the Vault backend to log in with.
@@ -391,7 +445,61 @@ class AuthBackendLogin(pulumi.CustomResource):
                  args: AuthBackendLoginArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AuthBackendLogin resource with the given unique name, props, and options.
+        Logs into Vault using the AppRole auth backend. See the [Vault
+        documentation](https://www.vaultproject.io/docs/auth/approle) for more
+        information.
+
+        ## Example Usage
+
+        ### Standard Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.approle.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        id = vault.approle.AuthBackendRoleSecretId("id",
+            backend=approle.path,
+            role_name=example.role_name)
+        login = vault.approle.AuthBackendLogin("login",
+            backend=approle.path,
+            role_id=example.role_id,
+            secret_id=id.secret_id)
+        ```
+
+        ### Using Write-Only Field
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        approle = vault.AuthBackend("approle", type="approle")
+        example = vault.approle.AuthBackendRole("example",
+            backend=approle.path,
+            role_name="test-role",
+            token_policies=[
+                "default",
+                "dev",
+                "prod",
+            ])
+        id = vault.approle.AuthBackendRoleSecretId("id",
+            backend=approle.path,
+            role_name=example.role_name)
+        login = vault.approle.AuthBackendLogin("login",
+            backend=approle.path,
+            role_id=example.role_id,
+            secret_id_wo=id.secret_id,
+            secret_id_wo_version=1)
+        ```
+
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

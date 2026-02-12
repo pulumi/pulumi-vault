@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Aws
     /// 
     /// ## Import
     /// 
-    /// AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
+    /// AWS auth backend roles can be imported using `auth/`, the `Backend` path, `/role/`, and the `Role` name e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role

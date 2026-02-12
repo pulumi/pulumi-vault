@@ -275,6 +275,8 @@ class _AuthBackendLoginState:
                authenticate with. Can be retrieved from the EC2 metadata server.
         :param pulumi.Input[_builtins.int] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
+        :param pulumi.Input[_builtins.str] lease_start_time: The approximate time at which the token was created,
+               using the clock of the system where Terraform was running.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -465,6 +467,10 @@ class _AuthBackendLoginState:
     @_builtins.property
     @pulumi.getter(name="leaseStartTime")
     def lease_start_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The approximate time at which the token was created,
+        using the clock of the system where Terraform was running.
+        """
         return pulumi.get(self, "lease_start_time")
 
     @lease_start_time.setter
@@ -830,6 +836,8 @@ class AuthBackendLogin(pulumi.CustomResource):
                authenticate with. Can be retrieved from the EC2 metadata server.
         :param pulumi.Input[_builtins.int] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
+        :param pulumi.Input[_builtins.str] lease_start_time: The approximate time at which the token was created,
+               using the clock of the system where Terraform was running.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -966,6 +974,10 @@ class AuthBackendLogin(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="leaseStartTime")
     def lease_start_time(self) -> pulumi.Output[_builtins.str]:
+        """
+        The approximate time at which the token was created,
+        using the clock of the system where Terraform was running.
+        """
         return pulumi.get(self, "lease_start_time")
 
     @_builtins.property

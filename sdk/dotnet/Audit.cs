@@ -62,7 +62,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Import
     /// 
-    /// Audit devices can be imported using the `path`, e.g.
+    /// Audit devices can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:index/audit:Audit test syslog

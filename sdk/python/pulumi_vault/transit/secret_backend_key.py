@@ -47,7 +47,7 @@ class SecretBackendKeyArgs:
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
-        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
+        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[_builtins.bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[_builtins.str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
@@ -177,7 +177,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies if the key is allowed to be deleted.
+        Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         """
         return pulumi.get(self, "deletion_allowed")
 
@@ -391,7 +391,7 @@ class _SecretBackendKeyState:
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
-        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
+        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[_builtins.bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[_builtins.str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
@@ -545,7 +545,7 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Specifies if the key is allowed to be deleted.
+        Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         """
         return pulumi.get(self, "deletion_allowed")
 
@@ -913,7 +913,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
-        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
+        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[_builtins.bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[_builtins.str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
@@ -1137,7 +1137,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] context: Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         :param pulumi.Input[_builtins.bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
-        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the key is allowed to be deleted.
+        :param pulumi.Input[_builtins.bool] deletion_allowed: Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         :param pulumi.Input[_builtins.bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[_builtins.bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[_builtins.str] hybrid_key_type_ec: The elliptic curve algorithm to use for hybrid signatures.
@@ -1250,7 +1250,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Specifies if the key is allowed to be deleted.
+        Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         """
         return pulumi.get(self, "deletion_allowed")
 

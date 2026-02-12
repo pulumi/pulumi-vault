@@ -51,7 +51,11 @@ namespace Pulumi.Vault.Outputs
         /// </summary>
         public readonly ImmutableArray<string> PassthroughRequestHeaders;
         /// <summary>
-        /// Specifies the type of tokens that should be returned by the mount.
+        /// Specifies the type of tokens that should be returned by
+        /// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+        /// 
+        /// 
+        /// For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         /// </summary>
         public readonly string? TokenType;
 

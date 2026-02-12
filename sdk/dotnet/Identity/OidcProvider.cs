@@ -96,7 +96,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// OIDC Providers can be imported using the `name`, e.g.
+    /// OIDC Providers can be imported using the `Name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider

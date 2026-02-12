@@ -250,14 +250,14 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.convergentEncryption);
     }
     /**
-     * Specifies if the key is allowed to be deleted.
+     * Specifies if the keyring is allowed to be deleted. Must be set to &#39;true&#39; before terraform will be able to destroy keys.
      * 
      */
     @Export(name="deletionAllowed", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deletionAllowed;
 
     /**
-     * @return Specifies if the key is allowed to be deleted.
+     * @return Specifies if the keyring is allowed to be deleted. Must be set to &#39;true&#39; before terraform will be able to destroy keys.
      * 
      */
     public Output<Optional<Boolean>> deletionAllowed() {

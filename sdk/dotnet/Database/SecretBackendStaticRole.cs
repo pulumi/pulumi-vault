@@ -94,7 +94,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// ## Import
     /// 
-    /// Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
+    /// Database secret backend static roles can be imported using the `Backend`, `/static-roles/`, and the `Name` e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
@@ -109,6 +109,9 @@ namespace Pulumi.Vault.Database
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
+        /// <summary>
+        /// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+        /// </summary>
         [Output("credentialConfig")]
         public Output<ImmutableDictionary<string, string>?> CredentialConfig { get; private set; } = null!;
 
@@ -267,6 +270,10 @@ namespace Pulumi.Vault.Database
 
         [Input("credentialConfig")]
         private InputMap<string>? _credentialConfig;
+
+        /// <summary>
+        /// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+        /// </summary>
         public InputMap<string> CredentialConfig
         {
             get => _credentialConfig ?? (_credentialConfig = new InputMap<string>());
@@ -411,6 +418,10 @@ namespace Pulumi.Vault.Database
 
         [Input("credentialConfig")]
         private InputMap<string>? _credentialConfig;
+
+        /// <summary>
+        /// The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+        /// </summary>
         public InputMap<string> CredentialConfig
         {
             get => _credentialConfig ?? (_credentialConfig = new InputMap<string>());

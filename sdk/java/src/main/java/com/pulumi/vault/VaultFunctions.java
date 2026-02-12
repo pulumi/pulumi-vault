@@ -700,6 +700,10 @@ public final class VaultFunctions {
         return Deployment.getInstance().invokeAsync("vault:index/getAuthBackends:getAuthBackends", TypeShape.of(GetAuthBackendsResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -811,6 +815,10 @@ public final class VaultFunctions {
         return getNamespace(GetNamespaceArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -922,6 +930,10 @@ public final class VaultFunctions {
         return getNamespacePlain(GetNamespacePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -1033,6 +1045,10 @@ public final class VaultFunctions {
         return getNamespace(args, InvokeOptions.Empty);
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -1144,6 +1160,10 @@ public final class VaultFunctions {
         return getNamespacePlain(args, InvokeOptions.Empty);
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -1255,6 +1275,10 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -1366,6 +1390,10 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Current namespace
@@ -1477,6 +1505,10 @@ public final class VaultFunctions {
         return Deployment.getInstance().invokeAsync("vault:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -1553,6 +1585,10 @@ public final class VaultFunctions {
         return getNamespaces(GetNamespacesArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -1629,6 +1665,10 @@ public final class VaultFunctions {
         return getNamespacesPlain(GetNamespacesPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -1705,6 +1745,10 @@ public final class VaultFunctions {
         return getNamespaces(args, InvokeOptions.Empty);
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -1781,6 +1825,10 @@ public final class VaultFunctions {
         return getNamespacesPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -1857,6 +1905,10 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -1933,6 +1985,10 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
+     * 
+     * **Note** this feature is available only with Vault Enterprise.
+     * 
      * ## Example Usage
      * 
      * ### Direct child namespaces
@@ -2009,6 +2065,16 @@ public final class VaultFunctions {
         return Deployment.getInstance().invokeAsync("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Generates tokens for Nomad.
+     * 
+     * &gt; **Important** All data retrieved from Vault will be
+     * written in cleartext to state file generated by Terraform, will appear in
+     * the console output when Terraform runs, and may be included in plan files
+     * if secrets are interpolated into any resource attributes.
+     * Protect these artifacts accordingly. See
+     * the main provider documentation
+     * for more details.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2072,6 +2138,16 @@ public final class VaultFunctions {
         return getNomadAccessToken(args, InvokeOptions.Empty);
     }
     /**
+     * Generates tokens for Nomad.
+     * 
+     * &gt; **Important** All data retrieved from Vault will be
+     * written in cleartext to state file generated by Terraform, will appear in
+     * the console output when Terraform runs, and may be included in plan files
+     * if secrets are interpolated into any resource attributes.
+     * Protect these artifacts accordingly. See
+     * the main provider documentation
+     * for more details.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2135,6 +2211,16 @@ public final class VaultFunctions {
         return getNomadAccessTokenPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Generates tokens for Nomad.
+     * 
+     * &gt; **Important** All data retrieved from Vault will be
+     * written in cleartext to state file generated by Terraform, will appear in
+     * the console output when Terraform runs, and may be included in plan files
+     * if secrets are interpolated into any resource attributes.
+     * Protect these artifacts accordingly. See
+     * the main provider documentation
+     * for more details.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2198,6 +2284,16 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getNomadAccessToken:getNomadAccessToken", TypeShape.of(GetNomadAccessTokenResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Generates tokens for Nomad.
+     * 
+     * &gt; **Important** All data retrieved from Vault will be
+     * written in cleartext to state file generated by Terraform, will appear in
+     * the console output when Terraform runs, and may be included in plan files
+     * if secrets are interpolated into any resource attributes.
+     * Protect these artifacts accordingly. See
+     * the main provider documentation
+     * for more details.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2261,6 +2357,16 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getNomadAccessToken:getNomadAccessToken", TypeShape.of(GetNomadAccessTokenResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Generates tokens for Nomad.
+     * 
+     * &gt; **Important** All data retrieved from Vault will be
+     * written in cleartext to state file generated by Terraform, will appear in
+     * the console output when Terraform runs, and may be included in plan files
+     * if secrets are interpolated into any resource attributes.
+     * Protect these artifacts accordingly. See
+     * the main provider documentation
+     * for more details.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2716,6 +2822,12 @@ public final class VaultFunctions {
         return Deployment.getInstance().invokeAsync("vault:index/getPolicyDocument:getPolicyDocument", TypeShape.of(GetPolicyDocumentResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2754,6 +2866,12 @@ public final class VaultFunctions {
         return getRaftAutopilotState(GetRaftAutopilotStateArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2792,6 +2910,12 @@ public final class VaultFunctions {
         return getRaftAutopilotStatePlain(GetRaftAutopilotStatePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2830,6 +2954,12 @@ public final class VaultFunctions {
         return getRaftAutopilotState(args, InvokeOptions.Empty);
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2868,6 +2998,12 @@ public final class VaultFunctions {
         return getRaftAutopilotStatePlain(args, InvokeOptions.Empty);
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2906,6 +3042,12 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getRaftAutopilotState:getRaftAutopilotState", TypeShape.of(GetRaftAutopilotStateResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2944,6 +3086,12 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getRaftAutopilotState:getRaftAutopilotState", TypeShape.of(GetRaftAutopilotStateResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Displays the state of the raft cluster under integrated storage as seen by
+     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
+     * Tolerance&#34;). For more information, please refer to the
+     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+     * 
      * ## Example Usage
      * 
      * <pre>

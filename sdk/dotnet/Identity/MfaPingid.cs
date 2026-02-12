@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// Resource can be imported using its `uuid` field, e.g.
+    /// Resource can be imported using its `Uuid` field, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec

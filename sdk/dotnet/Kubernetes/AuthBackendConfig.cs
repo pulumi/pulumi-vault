@@ -86,7 +86,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ## Import
     /// 
-    /// Kubernetes authentication backend can be imported using the `path`, e.g.
+    /// Kubernetes authentication backend can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config

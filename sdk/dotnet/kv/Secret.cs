@@ -59,7 +59,7 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Import
     /// 
-    /// KV-V1 secrets can be imported using the `path`, e.g.
+    /// KV-V1 secrets can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kv/secret:Secret secret kvv1/secret

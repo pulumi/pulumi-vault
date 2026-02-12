@@ -52,14 +52,18 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
+     * The client secret for credentials to query the
+     * Azure APIs. Mutually exclusive with `clientSecretWo`. **Note:** This field will be
+     * stored in Terraform state. Consider using `clientSecretWo` instead for enhanced security.
      * 
      */
     @Import(name="clientSecret")
     private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
+     * @return The client secret for credentials to query the
+     * Azure APIs. Mutually exclusive with `clientSecretWo`. **Note:** This field will be
+     * stored in Terraform state. Consider using `clientSecretWo` instead for enhanced security.
      * 
      */
     public Optional<Output<String>> clientSecret() {
@@ -157,6 +161,8 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
 
     /**
      * The TTL of generated identity tokens in seconds.
+     * Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*
      * 
      */
     @Import(name="identityTokenTtl")
@@ -164,6 +170,8 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
 
     /**
      * @return The TTL of generated identity tokens in seconds.
+     * Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*
      * 
      */
     public Optional<Output<Integer>> identityTokenTtl() {
@@ -423,7 +431,9 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
+         * @param clientSecret The client secret for credentials to query the
+         * Azure APIs. Mutually exclusive with `clientSecretWo`. **Note:** This field will be
+         * stored in Terraform state. Consider using `clientSecretWo` instead for enhanced security.
          * 
          * @return builder
          * 
@@ -434,7 +444,9 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param clientSecret The client secret for credentials to query the Azure APIs. Mutually exclusive with &#39;client_secret_wo&#39;.
+         * @param clientSecret The client secret for credentials to query the
+         * Azure APIs. Mutually exclusive with `clientSecretWo`. **Note:** This field will be
+         * stored in Terraform state. Consider using `clientSecretWo` instead for enhanced security.
          * 
          * @return builder
          * 
@@ -564,6 +576,8 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
 
         /**
          * @param identityTokenTtl The TTL of generated identity tokens in seconds.
+         * Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*
          * 
          * @return builder
          * 
@@ -575,6 +589,8 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
 
         /**
          * @param identityTokenTtl The TTL of generated identity tokens in seconds.
+         * Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*
          * 
          * @return builder
          * 

@@ -19,6 +19,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides a resource to generate a vault token with its options. The token renewing is supported through optional
+ * arguments.
+ * 
+ * The token used by Terraform will require update access to the `auth/token/lookup-accessor`
+ * path to create tokens and the `auth/token/revoke-accessor` path in Vault to
+ * destroy a token.
+ * 
  * ## Example Usage
  * 
  * <pre>

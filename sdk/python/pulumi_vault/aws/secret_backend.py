@@ -91,7 +91,12 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[_builtins.str] region: The AWS region for API calls. Defaults to `us-east-1`.
+               
+               > **Important** The same limitation noted above for the `access_key` parameter
+               also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+               allow Terraform to detect (and thus correct) drift in the `region` parameter,
+               while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -101,7 +106,16 @@ class SecretBackendArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Key this backend should use to
+               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+               
+               > **Important** Vault version 1.2.3 and older does not support reading the configured
+               credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+               on `access_key` or `secret_key`. Changing the values, however, _will_
+               overwrite the previously stored values. With versions of Vault newer than
+               1.2.3, reading the `access_key` only is supported, and so drifts of the
+               `access_key` will be detected and corrected, but drifts on the `secret_key`
+               will not.
         :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
@@ -509,7 +523,12 @@ class SecretBackendArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AWS region to make API calls against. Defaults to us-east-1.
+        The AWS region for API calls. Defaults to `us-east-1`.
+
+        > **Important** The same limitation noted above for the `access_key` parameter
+        also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+        allow Terraform to detect (and thus correct) drift in the `region` parameter,
+        while newer versions of Vault will.
         """
         return pulumi.get(self, "region")
 
@@ -585,7 +604,16 @@ class SecretBackendArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AWS Secret Access Key to use when generating new credentials.
+        The AWS Secret Key this backend should use to
+        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+
+        > **Important** Vault version 1.2.3 and older does not support reading the configured
+        credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+        on `access_key` or `secret_key`. Changing the values, however, _will_
+        overwrite the previously stored values. With versions of Vault newer than
+        1.2.3, reading the `access_key` only is supported, and so drifts of the
+        `access_key` will be detected and corrected, but drifts on the `secret_key`
+        will not.
         """
         return pulumi.get(self, "secret_key")
 
@@ -765,7 +793,12 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[_builtins.str] region: The AWS region for API calls. Defaults to `us-east-1`.
+               
+               > **Important** The same limitation noted above for the `access_key` parameter
+               also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+               allow Terraform to detect (and thus correct) drift in the `region` parameter,
+               while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -775,7 +808,16 @@ class _SecretBackendState:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Key this backend should use to
+               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+               
+               > **Important** Vault version 1.2.3 and older does not support reading the configured
+               credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+               on `access_key` or `secret_key`. Changing the values, however, _will_
+               overwrite the previously stored values. With versions of Vault newer than
+               1.2.3, reading the `access_key` only is supported, and so drifts of the
+               `access_key` will be detected and corrected, but drifts on the `secret_key`
+               will not.
         :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
@@ -1197,7 +1239,12 @@ class _SecretBackendState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AWS region to make API calls against. Defaults to us-east-1.
+        The AWS region for API calls. Defaults to `us-east-1`.
+
+        > **Important** The same limitation noted above for the `access_key` parameter
+        also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+        allow Terraform to detect (and thus correct) drift in the `region` parameter,
+        while newer versions of Vault will.
         """
         return pulumi.get(self, "region")
 
@@ -1273,7 +1320,16 @@ class _SecretBackendState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The AWS Secret Access Key to use when generating new credentials.
+        The AWS Secret Key this backend should use to
+        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+
+        > **Important** Vault version 1.2.3 and older does not support reading the configured
+        credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+        on `access_key` or `secret_key`. Changing the values, however, _will_
+        overwrite the previously stored values. With versions of Vault newer than
+        1.2.3, reading the `access_key` only is supported, and so drifts of the
+        `access_key` will be detected and corrected, but drifts on the `secret_key`
+        will not.
         """
         return pulumi.get(self, "secret_key")
 
@@ -1423,6 +1479,92 @@ class SecretBackend(pulumi.CustomResource):
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates an AWS Secret Backend for Vault. AWS secret backends can then issue AWS
+        access keys and secret keys, once a role has been added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key="AWS secret key",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ### Using Write-Only Secret Key
+
+        The `secret_key_wo` field allows you to configure the AWS secret key without
+        storing it in Terraform state. This is recommended for enhanced security.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key_wo=aws_secret_key,
+            secret_key_wo_version=1,
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        To update the `secret_key_wo` value, increment the `secret_key_wo_version`:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key_wo=aws_secret_key,
+            secret_key_wo_version=2,
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ### Using Workload Identity Federation
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>",
+            role_arn="<AWS_ROLE_ARN>",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        These attributes are write-only and will not be persisted to Terraform state.
+        Requires Terraform 1.11+.
+
+        * `secret_key_wo` - (Optional) The AWS Secret Key this backend should use to
+        issue new credentials. This is a write-only field and will not be stored in state.
+        Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS
+        environment credentials, shared file credentials or IAM role/ECS task credentials.
+        Conflicts with `secret_key`.
+
+        * `secret_key_wo_version` - (Optional, Required if `secret_key_wo` is set) A version counter for the
+        `secret_key_wo` field. Incrementing this value will trigger an update to the secret key.
+
+        ## Tutorials
+
+        Refer to the Inject Secrets into Terraform Using the Vault Provider tutorial for a step-by-step usage example.
+
         ## Import
 
         AWS secret backends can be imported using the `path`, e.g.
@@ -1464,7 +1606,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[_builtins.str] region: The AWS region for API calls. Defaults to `us-east-1`.
+               
+               > **Important** The same limitation noted above for the `access_key` parameter
+               also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+               allow Terraform to detect (and thus correct) drift in the `region` parameter,
+               while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -1474,7 +1621,16 @@ class SecretBackend(pulumi.CustomResource):
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Key this backend should use to
+               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+               
+               > **Important** Vault version 1.2.3 and older does not support reading the configured
+               credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+               on `access_key` or `secret_key`. Changing the values, however, _will_
+               overwrite the previously stored values. With versions of Vault newer than
+               1.2.3, reading the `access_key` only is supported, and so drifts of the
+               `access_key` will be detected and corrected, but drifts on the `secret_key`
+               will not.
         :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
@@ -1500,6 +1656,92 @@ class SecretBackend(pulumi.CustomResource):
                  args: Optional[SecretBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates an AWS Secret Backend for Vault. AWS secret backends can then issue AWS
+        access keys and secret keys, once a role has been added to the backend.
+
+        > **Important** All data provided in the resource configuration will be
+        written in cleartext to state and plan files generated by Terraform, and
+        will appear in the console output when Terraform runs. Protect these
+        artifacts accordingly. See
+        the main provider documentation
+        for more details.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key="AWS secret key",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ### Using Write-Only Secret Key
+
+        The `secret_key_wo` field allows you to configure the AWS secret key without
+        storing it in Terraform state. This is recommended for enhanced security.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key_wo=aws_secret_key,
+            secret_key_wo_version=1,
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        To update the `secret_key_wo` value, increment the `secret_key_wo_version`:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            access_key="AKIA.....",
+            secret_key_wo=aws_secret_key,
+            secret_key_wo_version=2,
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ### Using Workload Identity Federation
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>",
+            role_arn="<AWS_ROLE_ARN>",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        These attributes are write-only and will not be persisted to Terraform state.
+        Requires Terraform 1.11+.
+
+        * `secret_key_wo` - (Optional) The AWS Secret Key this backend should use to
+        issue new credentials. This is a write-only field and will not be stored in state.
+        Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS
+        environment credentials, shared file credentials or IAM role/ECS task credentials.
+        Conflicts with `secret_key`.
+
+        * `secret_key_wo_version` - (Optional, Required if `secret_key_wo` is set) A version counter for the
+        `secret_key_wo` field. Incrementing this value will trigger an update to the secret key.
+
+        ## Tutorials
+
+        Refer to the Inject Secrets into Terraform Using the Vault Provider tutorial for a step-by-step usage example.
+
         ## Import
 
         AWS secret backends can be imported using the `path`, e.g.
@@ -1702,7 +1944,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[_builtins.str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[_builtins.str] region: The AWS region for API calls. Defaults to `us-east-1`.
+               
+               > **Important** The same limitation noted above for the `access_key` parameter
+               also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+               allow Terraform to detect (and thus correct) drift in the `region` parameter,
+               while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -1712,7 +1959,16 @@ class SecretBackend(pulumi.CustomResource):
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[_builtins.str] secret_key: The AWS Secret Key this backend should use to
+               issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+               
+               > **Important** Vault version 1.2.3 and older does not support reading the configured
+               credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+               on `access_key` or `secret_key`. Changing the values, however, _will_
+               overwrite the previously stored values. With versions of Vault newer than
+               1.2.3, reading the `access_key` only is supported, and so drifts of the
+               `access_key` will be detected and corrected, but drifts on the `secret_key`
+               will not.
         :param pulumi.Input[_builtins.str] secret_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] secret_key_wo_version: A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
@@ -1995,7 +2251,12 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The AWS region to make API calls against. Defaults to us-east-1.
+        The AWS region for API calls. Defaults to `us-east-1`.
+
+        > **Important** The same limitation noted above for the `access_key` parameter
+        also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+        allow Terraform to detect (and thus correct) drift in the `region` parameter,
+        while newer versions of Vault will.
         """
         return pulumi.get(self, "region")
 
@@ -2047,7 +2308,16 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The AWS Secret Access Key to use when generating new credentials.
+        The AWS Secret Key this backend should use to
+        issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
+
+        > **Important** Vault version 1.2.3 and older does not support reading the configured
+        credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+        on `access_key` or `secret_key`. Changing the values, however, _will_
+        overwrite the previously stored values. With versions of Vault newer than
+        1.2.3, reading the `access_key` only is supported, and so drifts of the
+        `access_key` will be detected and corrected, but drifts on the `secret_key`
+        will not.
         """
         return pulumi.get(self, "secret_key")
 

@@ -10,13 +10,131 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Jwt
 {
     /// <summary>
+    /// Provides a resource for managing an
+    /// [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Manage JWT auth backend:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.Jwt.AuthBackend("example", new()
+    ///     {
+    ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         Path = "jwt",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         BoundIssuer = "https://myco.auth0.com/",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Manage OIDC auth backend:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.Jwt.AuthBackend("example", new()
+    ///     {
+    ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         Path = "oidc",
+    ///         Type = "oidc",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         OidcClientId = "1234567890",
+    ///         OidcClientSecret = "secret123456",
+    ///         BoundIssuer = "https://myco.auth0.com/",
+    ///         Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
+    ///         {
+    ///             ListingVisibility = "unauth",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Manage OIDC auth backend with write-only secret (recommended):
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.Jwt.AuthBackend("example", new()
+    ///     {
+    ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         Path = "oidc",
+    ///         Type = "oidc",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         OidcClientId = "1234567890",
+    ///         OidcClientSecretWo = "secret123456",
+    ///         OidcClientSecretWoVersion = 1,
+    ///         BoundIssuer = "https://myco.auth0.com/",
+    ///         Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
+    ///         {
+    ///             ListingVisibility = "unauth",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Configuring the auth backend with a `provider_config:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gsuite = new Vault.Jwt.AuthBackend("gsuite", new()
+    ///     {
+    ///         Description = "OIDC backend",
+    ///         OidcDiscoveryUrl = "https://accounts.google.com",
+    ///         Path = "oidc",
+    ///         Type = "oidc",
+    ///         ProviderConfig = 
+    ///         {
+    ///             { "provider", "gsuite" },
+    ///             { "fetch_groups", "true" },
+    ///             { "fetch_user_info", "true" },
+    ///             { "groups_recurse_max_depth", "1" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `OidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `OidcClientSecret`. Must be used with `OidcClientSecretWoVersion`. To rotate the secret, update the value and increment `OidcClientSecretWoVersion`.
+    /// 
     /// ## Import
     /// 
-    /// JWT auth backend can be imported using the `path`, e.g.
+    /// JWT auth backend can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
     /// ```
+    /// 
     /// or
     /// 
     /// ```sh

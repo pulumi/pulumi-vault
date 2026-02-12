@@ -33,6 +33,9 @@ namespace Pulumi.Vault
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("vault");
 
         private static readonly __Value<string?> _addAddressToEnv = new __Value<string?>(() => __config.Get("addAddressToEnv"));
+        /// <summary>
+        /// If true, adds the value of the `Address` argument to the Terraform process environment.
+        /// </summary>
         public static string? AddAddressToEnv
         {
             get => _addAddressToEnv.Get();

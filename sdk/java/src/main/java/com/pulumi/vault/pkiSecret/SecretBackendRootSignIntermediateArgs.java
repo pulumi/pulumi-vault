@@ -306,14 +306,14 @@ public final class SecretBackendRootSignIntermediateArgs extends com.pulumi.reso
     }
 
     /**
-     * Specifies the duration by which to backdate the NotBefore property.
+     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      * 
      */
     @Import(name="notBeforeDuration")
     private @Nullable Output<String> notBeforeDuration;
 
     /**
-     * @return Specifies the duration by which to backdate the NotBefore property.
+     * @return Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      * 
      */
     public Optional<Output<String>> notBeforeDuration() {
@@ -1099,7 +1099,7 @@ public final class SecretBackendRootSignIntermediateArgs extends com.pulumi.reso
         }
 
         /**
-         * @param notBeforeDuration Specifies the duration by which to backdate the NotBefore property.
+         * @param notBeforeDuration Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
          * 
          * @return builder
          * 
@@ -1110,7 +1110,7 @@ public final class SecretBackendRootSignIntermediateArgs extends com.pulumi.reso
         }
 
         /**
-         * @param notBeforeDuration Specifies the duration by which to backdate the NotBefore property.
+         * @param notBeforeDuration Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
          * 
          * @return builder
          * 

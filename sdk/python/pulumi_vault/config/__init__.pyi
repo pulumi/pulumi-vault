@@ -16,6 +16,9 @@ from .. import _utilities
 from . import outputs
 
 addAddressToEnv: Optional[str]
+"""
+If true, adds the value of the `address` argument to the Terraform process environment.
+"""
 
 address: Optional[str]
 """

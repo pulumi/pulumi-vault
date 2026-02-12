@@ -12,6 +12,41 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewPolicy(ctx, "example", &vault.PolicyArgs{
+//				Name:   pulumi.String("dev-team"),
+//				Policy: pulumi.String("path \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Tutorials
+//
+// Refer to the following tutorials for additional usage examples:
+//
+// - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+//
+// - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+//
 // ## Import
 //
 // Policies can be imported using the `name`, e.g.

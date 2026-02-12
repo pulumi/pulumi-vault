@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Manages an OCI (Oracle Cloud Infrastructure) auth backend role in a
+ * Vault server. Roles constrain the instances or principals that can
+ * perform the login operation against the backend. See the [Vault
+ * documentation](https://developer.hashicorp.com/vault/docs/auth/oci) for
+ * more information.
+ *
  * ## Example Usage
  *
  * ```typescript

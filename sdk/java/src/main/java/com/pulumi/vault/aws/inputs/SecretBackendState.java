@@ -422,14 +422,24 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The AWS region to make API calls against. Defaults to us-east-1.
+     * The AWS region for API calls. Defaults to `us-east-1`.
+     * 
+     * &gt; **Important** The same limitation noted above for the `accessKey` parameter
+     * also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+     * allow Terraform to detect (and thus correct) drift in the `region` parameter,
+     * while newer versions of Vault will.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The AWS region to make API calls against. Defaults to us-east-1.
+     * @return The AWS region for API calls. Defaults to `us-east-1`.
+     * 
+     * &gt; **Important** The same limitation noted above for the `accessKey` parameter
+     * also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+     * allow Terraform to detect (and thus correct) drift in the `region` parameter,
+     * while newer versions of Vault will.
      * 
      */
     public Optional<Output<String>> region() {
@@ -520,14 +530,32 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The AWS Secret Access Key to use when generating new credentials.
+     * The AWS Secret Key this backend should use to
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secretKeyWo`.
+     * 
+     * &gt; **Important** Vault version 1.2.3 and older does not support reading the configured
+     * credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+     * on `accessKey` or `secretKey`. Changing the values, however, _will_
+     * overwrite the previously stored values. With versions of Vault newer than
+     * 1.2.3, reading the `accessKey` only is supported, and so drifts of the
+     * `accessKey` will be detected and corrected, but drifts on the `secretKey`
+     * will not.
      * 
      */
     @Import(name="secretKey")
     private @Nullable Output<String> secretKey;
 
     /**
-     * @return The AWS Secret Access Key to use when generating new credentials.
+     * @return The AWS Secret Key this backend should use to
+     * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secretKeyWo`.
+     * 
+     * &gt; **Important** Vault version 1.2.3 and older does not support reading the configured
+     * credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+     * on `accessKey` or `secretKey`. Changing the values, however, _will_
+     * overwrite the previously stored values. With versions of Vault newer than
+     * 1.2.3, reading the `accessKey` only is supported, and so drifts of the
+     * `accessKey` will be detected and corrected, but drifts on the `secretKey`
+     * will not.
      * 
      */
     public Optional<Output<String>> secretKey() {
@@ -1323,7 +1351,12 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The AWS region to make API calls against. Defaults to us-east-1.
+         * @param region The AWS region for API calls. Defaults to `us-east-1`.
+         * 
+         * &gt; **Important** The same limitation noted above for the `accessKey` parameter
+         * also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+         * allow Terraform to detect (and thus correct) drift in the `region` parameter,
+         * while newer versions of Vault will.
          * 
          * @return builder
          * 
@@ -1334,7 +1367,12 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param region The AWS region to make API calls against. Defaults to us-east-1.
+         * @param region The AWS region for API calls. Defaults to `us-east-1`.
+         * 
+         * &gt; **Important** The same limitation noted above for the `accessKey` parameter
+         * also applies to the `region` parameter. Vault versions 1.2.3 and older will not
+         * allow Terraform to detect (and thus correct) drift in the `region` parameter,
+         * while newer versions of Vault will.
          * 
          * @return builder
          * 
@@ -1457,7 +1495,16 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param secretKey The AWS Secret Access Key to use when generating new credentials.
+         * @param secretKey The AWS Secret Key this backend should use to
+         * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secretKeyWo`.
+         * 
+         * &gt; **Important** Vault version 1.2.3 and older does not support reading the configured
+         * credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+         * on `accessKey` or `secretKey`. Changing the values, however, _will_
+         * overwrite the previously stored values. With versions of Vault newer than
+         * 1.2.3, reading the `accessKey` only is supported, and so drifts of the
+         * `accessKey` will be detected and corrected, but drifts on the `secretKey`
+         * will not.
          * 
          * @return builder
          * 
@@ -1468,7 +1515,16 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param secretKey The AWS Secret Access Key to use when generating new credentials.
+         * @param secretKey The AWS Secret Key this backend should use to
+         * issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secretKeyWo`.
+         * 
+         * &gt; **Important** Vault version 1.2.3 and older does not support reading the configured
+         * credentials back from the API, With these older versions, Terraform cannot detect and correct drift
+         * on `accessKey` or `secretKey`. Changing the values, however, _will_
+         * overwrite the previously stored values. With versions of Vault newer than
+         * 1.2.3, reading the `accessKey` only is supported, and so drifts of the
+         * `accessKey` will be detected and corrected, but drifts on the `secretKey`
+         * will not.
          * 
          * @return builder
          * 

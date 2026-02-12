@@ -51,7 +51,7 @@ namespace Pulumi.Vault.Consul
     /// 
     /// ## Import
     /// 
-    /// Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+    /// Consul secret backend roles can be imported using the `Backend`, `/roles/`, and the `Name` e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role

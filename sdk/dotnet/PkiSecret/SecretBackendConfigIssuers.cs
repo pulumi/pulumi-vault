@@ -10,6 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
+    /// Allows setting the value of the default issuer. For more information, see the
+    /// [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -72,7 +75,9 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the default issuer by ID.
+        /// Specifies the default issuer using the issuer ID.
+        /// **NOTE:** It is recommended to only set the default issuer using the ID.
+        /// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         /// </summary>
         [Output("default")]
         public Output<string?> Default { get; private set; } = null!;
@@ -147,7 +152,9 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the default issuer by ID.
+        /// Specifies the default issuer using the issuer ID.
+        /// **NOTE:** It is recommended to only set the default issuer using the ID.
+        /// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         /// </summary>
         [Input("default")]
         public Input<string>? Default { get; set; }
@@ -184,7 +191,9 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Specifies the default issuer by ID.
+        /// Specifies the default issuer using the issuer ID.
+        /// **NOTE:** It is recommended to only set the default issuer using the ID.
+        /// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
         /// </summary>
         [Input("default")]
         public Input<string>? Default { get; set; }

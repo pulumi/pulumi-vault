@@ -61,7 +61,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Import
     /// 
-    /// OIDC Assignments can be imported using the `name`, e.g.
+    /// OIDC Assignments can be imported using the `Name`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment

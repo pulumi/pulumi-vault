@@ -287,14 +287,18 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The TTL of generated tokens.
+     * The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     @Import(name="identityTokenTtl")
     private @Nullable Output<Integer> identityTokenTtl;
 
     /**
-     * @return The TTL of generated tokens.
+     * @return The TTL of generated tokens. Defaults to
+     * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      * 
      */
     public Optional<Output<Integer>> identityTokenTtl() {
@@ -904,7 +908,9 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param identityTokenTtl The TTL of generated tokens.
+         * @param identityTokenTtl The TTL of generated tokens. Defaults to
+         * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 
@@ -915,7 +921,9 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param identityTokenTtl The TTL of generated tokens.
+         * @param identityTokenTtl The TTL of generated tokens. Defaults to
+         * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*.
          * 
          * @return builder
          * 

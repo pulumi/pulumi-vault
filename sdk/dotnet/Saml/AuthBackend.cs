@@ -41,7 +41,7 @@ namespace Pulumi.Vault.Saml
     /// 
     /// ## Import
     /// 
-    /// SAML authentication mounts can be imported using the `path`, e.g.
+    /// SAML authentication mounts can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:saml/authBackend:AuthBackend example saml

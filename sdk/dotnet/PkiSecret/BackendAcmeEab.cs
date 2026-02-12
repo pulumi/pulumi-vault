@@ -40,7 +40,6 @@ namespace Pulumi.Vault.PkiSecret
     /// ## Import
     /// 
     /// As EAB tokens are only available on initial creation there is no possibility to
-    /// 
     /// import or update this resource.
     /// </summary>
     [VaultResourceType("vault:pkiSecret/backendAcmeEab:BackendAcmeEab")]

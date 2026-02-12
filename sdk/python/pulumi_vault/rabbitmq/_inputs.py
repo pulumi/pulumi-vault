@@ -23,28 +23,23 @@ __all__ = [
     'SecretBackendRoleVhostTopicVhostArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SecretBackendRoleVhostArgsDict(TypedDict):
-        configure: pulumi.Input[_builtins.str]
-        """
-        The configure permissions for this vhost.
-        """
-        host: pulumi.Input[_builtins.str]
-        """
-        The vhost to set permissions for.
-        """
-        read: pulumi.Input[_builtins.str]
-        """
-        The read permissions for this vhost.
-        """
-        write: pulumi.Input[_builtins.str]
-        """
-        The write permissions for this vhost.
-        """
-elif False:
-    SecretBackendRoleVhostArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendRoleVhostArgsDict(TypedDict):
+    configure: pulumi.Input[_builtins.str]
+    """
+    The configure permissions for this vhost.
+    """
+    host: pulumi.Input[_builtins.str]
+    """
+    The vhost to set permissions for.
+    """
+    read: pulumi.Input[_builtins.str]
+    """
+    The read permissions for this vhost.
+    """
+    write: pulumi.Input[_builtins.str]
+    """
+    The write permissions for this vhost.
+    """
 
 @pulumi.input_type
 class SecretBackendRoleVhostArgs:
@@ -113,18 +108,15 @@ class SecretBackendRoleVhostArgs:
         pulumi.set(self, "write", value)
 
 
-if not MYPY:
-    class SecretBackendRoleVhostTopicArgsDict(TypedDict):
-        host: pulumi.Input[_builtins.str]
-        """
-        The vhost to set permissions for.
-        """
-        vhosts: NotRequired[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgsDict']]]]
-        """
-        Specifies a map of virtual hosts to permissions.
-        """
-elif False:
-    SecretBackendRoleVhostTopicArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendRoleVhostTopicArgsDict(TypedDict):
+    host: pulumi.Input[_builtins.str]
+    """
+    The vhost to set permissions for.
+    """
+    vhosts: NotRequired[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgsDict']]]]
+    """
+    Specifies a map of virtual hosts to permissions.
+    """
 
 @pulumi.input_type
 class SecretBackendRoleVhostTopicArgs:
@@ -164,22 +156,19 @@ class SecretBackendRoleVhostTopicArgs:
         pulumi.set(self, "vhosts", value)
 
 
-if not MYPY:
-    class SecretBackendRoleVhostTopicVhostArgsDict(TypedDict):
-        read: pulumi.Input[_builtins.str]
-        """
-        The read permissions for this vhost.
-        """
-        topic: pulumi.Input[_builtins.str]
-        """
-        The vhost to set permissions for.
-        """
-        write: pulumi.Input[_builtins.str]
-        """
-        The write permissions for this vhost.
-        """
-elif False:
-    SecretBackendRoleVhostTopicVhostArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendRoleVhostTopicVhostArgsDict(TypedDict):
+    read: pulumi.Input[_builtins.str]
+    """
+    The read permissions for this vhost.
+    """
+    topic: pulumi.Input[_builtins.str]
+    """
+    The vhost to set permissions for.
+    """
+    write: pulumi.Input[_builtins.str]
+    """
+    The write permissions for this vhost.
+    """
 
 @pulumi.input_type
 class SecretBackendRoleVhostTopicVhostArgs:

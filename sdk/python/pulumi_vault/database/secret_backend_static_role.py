@@ -39,6 +39,7 @@ class SecretBackendStaticRoleArgs:
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] username: The database username that this static role corresponds to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credential_config: The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
         :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -136,6 +137,9 @@ class SecretBackendStaticRoleArgs:
     @_builtins.property
     @pulumi.getter(name="credentialConfig")
     def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+        """
         return pulumi.get(self, "credential_config")
 
     @credential_config.setter
@@ -314,6 +318,7 @@ class _SecretBackendStaticRoleState:
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credential_config: The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
         :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
@@ -392,6 +397,9 @@ class _SecretBackendStaticRoleState:
     @_builtins.property
     @pulumi.getter(name="credentialConfig")
     def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+        """
         return pulumi.get(self, "credential_config")
 
     @credential_config.setter
@@ -656,6 +664,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credential_config: The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
         :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
@@ -847,6 +856,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credential_config: The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
         :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] name: A unique name to give the static role.
@@ -911,6 +921,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="credentialConfig")
     def credential_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
+        """
         return pulumi.get(self, "credential_config")
 
     @_builtins.property

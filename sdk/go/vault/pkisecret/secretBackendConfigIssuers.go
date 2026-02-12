@@ -12,6 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows setting the value of the default issuer. For more information, see the
+// [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
+//
 // ## Example Usage
 //
 // ```go
@@ -80,7 +83,9 @@ type SecretBackendConfigIssuers struct {
 	// The path the PKI secret backend is mounted at, with no
 	// leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// Specifies the default issuer by ID.
+	// Specifies the default issuer using the issuer ID.
+	// **NOTE:** It is recommended to only set the default issuer using the ID.
+	// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
 	Default pulumi.StringPtrOutput `pulumi:"default"`
 	// Specifies whether a root creation
 	// or an issuer import operation updates the default issuer to the newly added issuer.
@@ -128,7 +133,9 @@ type secretBackendConfigIssuersState struct {
 	// The path the PKI secret backend is mounted at, with no
 	// leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
-	// Specifies the default issuer by ID.
+	// Specifies the default issuer using the issuer ID.
+	// **NOTE:** It is recommended to only set the default issuer using the ID.
+	// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
 	Default *string `pulumi:"default"`
 	// Specifies whether a root creation
 	// or an issuer import operation updates the default issuer to the newly added issuer.
@@ -144,7 +151,9 @@ type SecretBackendConfigIssuersState struct {
 	// The path the PKI secret backend is mounted at, with no
 	// leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
-	// Specifies the default issuer by ID.
+	// Specifies the default issuer using the issuer ID.
+	// **NOTE:** It is recommended to only set the default issuer using the ID.
+	// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
 	Default pulumi.StringPtrInput
 	// Specifies whether a root creation
 	// or an issuer import operation updates the default issuer to the newly added issuer.
@@ -164,7 +173,9 @@ type secretBackendConfigIssuersArgs struct {
 	// The path the PKI secret backend is mounted at, with no
 	// leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
-	// Specifies the default issuer by ID.
+	// Specifies the default issuer using the issuer ID.
+	// **NOTE:** It is recommended to only set the default issuer using the ID.
+	// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
 	Default *string `pulumi:"default"`
 	// Specifies whether a root creation
 	// or an issuer import operation updates the default issuer to the newly added issuer.
@@ -181,7 +192,9 @@ type SecretBackendConfigIssuersArgs struct {
 	// The path the PKI secret backend is mounted at, with no
 	// leading or trailing `/`s.
 	Backend pulumi.StringInput
-	// Specifies the default issuer by ID.
+	// Specifies the default issuer using the issuer ID.
+	// **NOTE:** It is recommended to only set the default issuer using the ID.
+	// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
 	Default pulumi.StringPtrInput
 	// Specifies whether a root creation
 	// or an issuer import operation updates the default issuer to the newly added issuer.
@@ -286,7 +299,9 @@ func (o SecretBackendConfigIssuersOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendConfigIssuers) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
-// Specifies the default issuer by ID.
+// Specifies the default issuer using the issuer ID.
+// **NOTE:** It is recommended to only set the default issuer using the ID.
+// While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
 func (o SecretBackendConfigIssuersOutput) Default() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConfigIssuers) pulumi.StringPtrOutput { return v.Default }).(pulumi.StringPtrOutput)
 }

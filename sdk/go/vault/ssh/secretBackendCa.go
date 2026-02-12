@@ -65,7 +65,10 @@ type SecretBackendCa struct {
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
-	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	// The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	//
+	// > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+	// and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
 	ManagedKeyId pulumi.StringPtrOutput `pulumi:"managedKeyId"`
 	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
 	ManagedKeyName pulumi.StringPtrOutput `pulumi:"managedKeyName"`
@@ -125,7 +128,10 @@ type secretBackendCaState struct {
 	KeyBits *int `pulumi:"keyBits"`
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType *string `pulumi:"keyType"`
-	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	// The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	//
+	// > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+	// and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
 	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
 	ManagedKeyName *string `pulumi:"managedKeyName"`
@@ -149,7 +155,10 @@ type SecretBackendCaState struct {
 	KeyBits pulumi.IntPtrInput
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType pulumi.StringPtrInput
-	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	// The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	//
+	// > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+	// and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
 	ManagedKeyId pulumi.StringPtrInput
 	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
 	ManagedKeyName pulumi.StringPtrInput
@@ -177,7 +186,10 @@ type secretBackendCaArgs struct {
 	KeyBits *int `pulumi:"keyBits"`
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType *string `pulumi:"keyType"`
-	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	// The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	//
+	// > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+	// and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
 	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
 	ManagedKeyName *string `pulumi:"managedKeyName"`
@@ -202,7 +214,10 @@ type SecretBackendCaArgs struct {
 	KeyBits pulumi.IntPtrInput
 	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
 	KeyType pulumi.StringPtrInput
-	// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	// The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+	//
+	// > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+	// and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
 	ManagedKeyId pulumi.StringPtrInput
 	// The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
 	ManagedKeyName pulumi.StringPtrInput
@@ -324,7 +339,10 @@ func (o SecretBackendCaOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
-// The id of the managed key to use. When using a managed key, this field or managedKeyName is required.
+// The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
+//
+// > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
+// and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
 func (o SecretBackendCaOutput) ManagedKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.ManagedKeyId }).(pulumi.StringPtrOutput)
 }

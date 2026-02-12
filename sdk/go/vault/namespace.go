@@ -12,6 +12,127 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
+//
+// **Note** this feature is available only with Vault Enterprise.
+//
+// ## Example Usage
+//
+// ### Single namespace
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewNamespace(ctx, "ns1", &vault.NamespaceArgs{
+//				Path: pulumi.String("ns1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Nested namespaces
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/generic"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			childNamespaces := []string{
+//				"child_0",
+//				"child_1",
+//				"child_2",
+//			}
+//			if param := cfg.GetObject("childNamespaces"); param != nil {
+//				childNamespaces = param
+//			}
+//			parent, err := vault.NewNamespace(ctx, "parent", &vault.NamespaceArgs{
+//				Path: pulumi.String("parent"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var children []*vault.Namespace
+//			for key0, _ := range childNamespaces {
+//				__res, err := vault.NewNamespace(ctx, fmt.Sprintf("children-%v", key0), &vault.NamespaceArgs{
+//					Namespace: parent.Path,
+//					Path:      pulumi.Float64(key0),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				children = append(children, __res)
+//			}
+//			var childrenMount []*vault.Mount
+//			for key0, val0 := range children {
+//				__res, err := vault.NewMount(ctx, fmt.Sprintf("children-%v", key0), &vault.MountArgs{
+//					Namespace: pulumi.String(val0),
+//					Path:      pulumi.String("secrets"),
+//					Type:      pulumi.String("kv"),
+//					Options: pulumi.StringMap{
+//						"version": pulumi.String("1"),
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				childrenMount = append(childrenMount, __res)
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"ns": key0,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			var childrenSecret []*generic.Secret
+//			for key0, val0 := range childrenMount {
+//				__res, err := generic.NewSecret(ctx, fmt.Sprintf("children-%v", key0), &generic.SecretArgs{
+//					Namespace: pulumi.String(val0),
+//					Path:      pulumi.Sprintf("%v/secret", val0),
+//					DataJson:  pulumi.String(json0),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				childrenSecret = append(childrenSecret, __res)
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Tutorials
+//
+// Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.
+//
 // ## Import
 //
 // # Namespaces can be imported using its `name` as accessor id
@@ -22,44 +143,42 @@ import (
 //
 // If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
 //
-// hcl
+// ```go
+// package main
 //
-// provider "vault" {
+// import (
 //
-// # Configuration options
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-//	namespace = "example"
+// )
 //
-//	alias     = "example"
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewNamespace(ctx, "example2", &vault.NamespaceArgs{
+//				Path: pulumi.String("example2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
 //
-// }
-//
-// resource "vault_namespace" "example2" {
-//
-//	provider = vault.example
-//
-//	path     = "example2"
-//
-// }
+// ```
 //
 // ```sh
 // $ pulumi import vault:index/namespace:Namespace example2 example2
-// ```
 //
 // $ terraform state show vault_namespace.example2
+// ```
 //
 // vault_namespace.example2:
-//
-// resource "vault_namespace" "example2" {
-//
-//	id           = "example/example2/"
-//
-//	namespace_id = <known after import>
-//
-//	path         = "example2"
-//
-//	path_fq      = "example2"
-//
+// resource "Namespace" "example2" {
+// id           = "example/example2/"
+// namespaceId = <known after import>
+// path         = "example2"
+// pathFq      = "example2"
 // }
 type Namespace struct {
 	pulumi.CustomResourceState

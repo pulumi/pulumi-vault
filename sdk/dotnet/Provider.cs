@@ -18,6 +18,9 @@ namespace Pulumi.Vault
     [VaultResourceType("pulumi:providers:vault")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
+        /// <summary>
+        /// If true, adds the value of the `Address` argument to the Terraform process environment.
+        /// </summary>
         [Output("addAddressToEnv")]
         public Output<string?> AddAddressToEnv { get; private set; } = null!;
 
@@ -103,6 +106,9 @@ namespace Pulumi.Vault
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, adds the value of the `Address` argument to the Terraform process environment.
+        /// </summary>
         [Input("addAddressToEnv")]
         public Input<string>? AddAddressToEnv { get; set; }
 

@@ -58,7 +58,7 @@ namespace Pulumi.Vault.Okta
     /// 
     /// ## Import
     /// 
-    /// Okta authentication backends can be imported using its `path`, e.g.
+    /// Okta authentication backends can be imported using its `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:okta/authBackend:AuthBackend example okta

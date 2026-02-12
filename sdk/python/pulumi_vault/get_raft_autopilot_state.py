@@ -193,6 +193,12 @@ class AwaitableGetRaftAutopilotStateResult(GetRaftAutopilotStateResult):
 def get_raft_autopilot_state(namespace: Optional[_builtins.str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRaftAutopilotStateResult:
     """
+    Displays the state of the raft cluster under integrated storage as seen by
+    autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+    how many nodes could fail before the cluster becomes unhealthy ("Failure
+    Tolerance"). For more information, please refer to the
+    [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+
     ## Example Usage
 
     ```python
@@ -231,6 +237,12 @@ def get_raft_autopilot_state(namespace: Optional[_builtins.str] = None,
 def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRaftAutopilotStateResult]:
     """
+    Displays the state of the raft cluster under integrated storage as seen by
+    autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+    how many nodes could fail before the cluster becomes unhealthy ("Failure
+    Tolerance"). For more information, please refer to the
+    [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+
     ## Example Usage
 
     ```python

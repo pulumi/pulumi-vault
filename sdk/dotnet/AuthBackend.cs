@@ -10,9 +10,42 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault
 {
     /// <summary>
+    /// This resource enables a new auth method at the given path.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.AuthBackend("example", new()
+    ///     {
+    ///         Type = "github",
+    ///         Tune = new Vault.Inputs.AuthBackendTuneArgs
+    ///         {
+    ///             MaxLeaseTtl = "90000s",
+    ///             ListingVisibility = "unauth",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Tutorials
+    /// 
+    /// Refer to the following tutorials for additional usage examples:
+    /// 
+    /// - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+    /// 
+    /// - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+    /// 
     /// ## Import
     /// 
-    /// Auth methods can be imported using the `path`, e.g.
+    /// Auth methods can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:index/authBackend:AuthBackend example github

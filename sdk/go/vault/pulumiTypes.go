@@ -347,7 +347,10 @@ type OciAuthBackendTune struct {
 	// List of headers to whitelist and
 	// pass from the request to the backend.
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
-	// Specifies the type of tokens that should be returned by the mount.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+	//
+	// For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
 	TokenType *string `pulumi:"tokenType"`
 }
 
@@ -386,7 +389,10 @@ type OciAuthBackendTuneArgs struct {
 	// List of headers to whitelist and
 	// pass from the request to the backend.
 	PassthroughRequestHeaders pulumi.StringArrayInput `pulumi:"passthroughRequestHeaders"`
-	// Specifies the type of tokens that should be returned by the mount.
+	// Specifies the type of tokens that should be returned by
+	// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+	//
+	// For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
 	TokenType pulumi.StringPtrInput `pulumi:"tokenType"`
 }
 
@@ -511,7 +517,10 @@ func (o OciAuthBackendTuneOutput) PassthroughRequestHeaders() pulumi.StringArray
 	return o.ApplyT(func(v OciAuthBackendTune) []string { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the type of tokens that should be returned by the mount.
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+//
+// For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
 func (o OciAuthBackendTuneOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OciAuthBackendTune) *string { return v.TokenType }).(pulumi.StringPtrOutput)
 }
@@ -619,7 +628,10 @@ func (o OciAuthBackendTunePtrOutput) PassthroughRequestHeaders() pulumi.StringAr
 	}).(pulumi.StringArrayOutput)
 }
 
-// Specifies the type of tokens that should be returned by the mount.
+// Specifies the type of tokens that should be returned by
+// the mount. Valid values are "default-service", "default-batch", "service", "batch".
+//
+// For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
 func (o OciAuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OciAuthBackendTune) *string {
 		if v == nil {

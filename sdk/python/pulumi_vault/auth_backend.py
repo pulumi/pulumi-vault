@@ -345,6 +345,30 @@ class AuthBackend(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        This resource enables a new auth method at the given path.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="github",
+            tune={
+                "max_lease_ttl": "90000s",
+                "listing_visibility": "unauth",
+            })
+        ```
+
+        ## Tutorials
+
+        Refer to the following tutorials for additional usage examples:
+
+        - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+
+        - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+
         ## Import
 
         Auth methods can be imported using the `path`, e.g.
@@ -377,6 +401,30 @@ class AuthBackend(pulumi.CustomResource):
                  args: AuthBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        This resource enables a new auth method at the given path.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="github",
+            tune={
+                "max_lease_ttl": "90000s",
+                "listing_visibility": "unauth",
+            })
+        ```
+
+        ## Tutorials
+
+        Refer to the following tutorials for additional usage examples:
+
+        - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+
+        - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+
         ## Import
 
         Auth methods can be imported using the `path`, e.g.

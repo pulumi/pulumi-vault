@@ -10,6 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.TerraformCloud
 {
     /// <summary>
+    /// Manages a Terraform Cloud secrets role for a Terraform Cloud secrets engine in Vault.
+    /// Terraform Cloud secret backends can then issue Terraform Cloud tokens.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -40,7 +43,7 @@ namespace Pulumi.Vault.TerraformCloud
     /// 
     /// ## Import
     /// 
-    /// Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
+    /// Terraform Cloud secret backend roles can be imported using the `Backend`, `/roles/`, and the `Name` e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
@@ -49,6 +52,9 @@ namespace Pulumi.Vault.TerraformCloud
     [VaultResourceType("vault:terraformcloud/secretRole:SecretRole")]
     public partial class SecretRole : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+        /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
@@ -58,6 +64,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("credentialType")]
         public Output<string?> CredentialType { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `Team` or `User` credential types.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
@@ -67,6 +76,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("maxTtl")]
         public Output<int?> MaxTtl { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the Terraform Cloud secrets engine role to create.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -79,9 +91,15 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
+        /// <summary>
+        /// The organization name managing your Terraform Cloud instance.
+        /// </summary>
         [Output("organization")]
         public Output<string?> Organization { get; private set; } = null!;
 
+        /// <summary>
+        /// The id of the team you wish to create a token for in your Terraform Cloud instance.
+        /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
 
@@ -91,6 +109,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
 
+        /// <summary>
+        /// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `TeamId` and/or `Organization`)
+        /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
 
@@ -140,6 +161,9 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
@@ -149,6 +173,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
 
+        /// <summary>
+        /// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `Team` or `User` credential types.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -158,6 +185,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
+        /// <summary>
+        /// The name of the Terraform Cloud secrets engine role to create.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -170,9 +200,15 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// The organization name managing your Terraform Cloud instance.
+        /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
 
+        /// <summary>
+        /// The id of the team you wish to create a token for in your Terraform Cloud instance.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -182,6 +218,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
+        /// <summary>
+        /// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `TeamId` and/or `Organization`)
+        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
@@ -193,6 +232,9 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
+        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
@@ -202,6 +244,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("credentialType")]
         public Input<string>? CredentialType { get; set; }
 
+        /// <summary>
+        /// Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `Team` or `User` credential types.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -211,6 +256,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
+        /// <summary>
+        /// The name of the Terraform Cloud secrets engine role to create.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -223,9 +271,15 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// The organization name managing your Terraform Cloud instance.
+        /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
 
+        /// <summary>
+        /// The id of the team you wish to create a token for in your Terraform Cloud instance.
+        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -235,6 +289,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
+        /// <summary>
+        /// The user id you wish to create a token for in your Terraform Cloud instance. (Note: this value can not be provided in conjunction with `TeamId` and/or `Organization`)
+        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 

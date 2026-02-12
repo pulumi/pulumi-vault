@@ -7,6 +7,92 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Provides a resource for managing an
+ * [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+ *
+ * ## Example Usage
+ *
+ * Manage JWT auth backend:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.jwt.AuthBackend("example", {
+ *     description: "Demonstration of the Terraform JWT auth backend",
+ *     path: "jwt",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
+ *     boundIssuer: "https://myco.auth0.com/",
+ * });
+ * ```
+ *
+ * Manage OIDC auth backend:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.jwt.AuthBackend("example", {
+ *     description: "Demonstration of the Terraform JWT auth backend",
+ *     path: "oidc",
+ *     type: "oidc",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
+ *     oidcClientId: "1234567890",
+ *     oidcClientSecret: "secret123456",
+ *     boundIssuer: "https://myco.auth0.com/",
+ *     tune: {
+ *         listingVisibility: "unauth",
+ *     },
+ * });
+ * ```
+ *
+ * Manage OIDC auth backend with write-only secret (recommended):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.jwt.AuthBackend("example", {
+ *     description: "Demonstration of the Terraform JWT auth backend",
+ *     path: "oidc",
+ *     type: "oidc",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
+ *     oidcClientId: "1234567890",
+ *     oidcClientSecretWo: "secret123456",
+ *     oidcClientSecretWoVersion: 1,
+ *     boundIssuer: "https://myco.auth0.com/",
+ *     tune: {
+ *         listingVisibility: "unauth",
+ *     },
+ * });
+ * ```
+ *
+ * Configuring the auth backend with a `provider_config:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gsuite = new vault.jwt.AuthBackend("gsuite", {
+ *     description: "OIDC backend",
+ *     oidcDiscoveryUrl: "https://accounts.google.com",
+ *     path: "oidc",
+ *     type: "oidc",
+ *     providerConfig: {
+ *         provider: "gsuite",
+ *         fetch_groups: "true",
+ *         fetch_user_info: "true",
+ *         groups_recurse_max_depth: "1",
+ *     },
+ * });
+ * ```
+ *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `oidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidcClientSecret`. Must be used with `oidcClientSecretWoVersion`. To rotate the secret, update the value and increment `oidcClientSecretWoVersion`.
+ *
  * ## Import
  *
  * JWT auth backend can be imported using the `path`, e.g.
@@ -14,6 +100,7 @@ import * as utilities from "../utilities";
  * ```sh
  * $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
  * ```
+ *
  * or
  *
  * ```sh

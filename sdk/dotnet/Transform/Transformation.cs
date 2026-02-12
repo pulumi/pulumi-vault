@@ -9,6 +9,48 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Transform
 {
+    /// <summary>
+    /// This resource supports the "/transform/transformation/{name}" Vault endpoint.
+    /// 
+    /// It creates or updates a transformation with the given name. If a transformation with the name does not exist,
+    /// it will be created. If the transformation exists, it will be updated with the new attributes.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.Mount("example", new()
+    ///     {
+    ///         Path = "transform",
+    ///         Type = "transform",
+    ///     });
+    /// 
+    ///     var exampleTransformation = new Vault.Transform.Transformation("example", new()
+    ///     {
+    ///         Path = example.Path,
+    ///         Name = "ccn-fpe",
+    ///         Type = "fpe",
+    ///         Template = "ccn",
+    ///         TweakSource = "internal",
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "payments",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Tutorials
+    /// 
+    /// Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
+    /// </summary>
     [VaultResourceType("vault:transform/transformation:Transformation")]
     public partial class Transformation : global::Pulumi.CustomResource
     {

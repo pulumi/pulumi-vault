@@ -19,21 +19,16 @@ __all__ = [
     'SecretBackendRoleAllowedUserKeyConfigArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SecretBackendRoleAllowedUserKeyConfigArgsDict(TypedDict):
-        lengths: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
-        """
-        List of allowed key lengths, vault-1.10 and above
-        """
-        type: pulumi.Input[_builtins.str]
-        """
-        Key type, choices:
-        rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
-        """
-elif False:
-    SecretBackendRoleAllowedUserKeyConfigArgsDict: TypeAlias = Mapping[str, Any]
+class SecretBackendRoleAllowedUserKeyConfigArgsDict(TypedDict):
+    lengths: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]
+    """
+    List of allowed key lengths, vault-1.10 and above
+    """
+    type: pulumi.Input[_builtins.str]
+    """
+    Key type, choices:
+    rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
+    """
 
 @pulumi.input_type
 class SecretBackendRoleAllowedUserKeyConfigArgs:

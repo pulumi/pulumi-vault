@@ -20,6 +20,182 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Provides a resource for managing an
+ * [JWT auth backend within Vault](https://www.vaultproject.io/docs/auth/jwt.html).
+ * 
+ * ## Example Usage
+ * 
+ * Manage JWT auth backend:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.jwt.AuthBackend;
+ * import com.pulumi.vault.jwt.AuthBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .description("Demonstration of the Terraform JWT auth backend")
+ *             .path("jwt")
+ *             .oidcDiscoveryUrl("https://myco.auth0.com/")
+ *             .boundIssuer("https://myco.auth0.com/")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Manage OIDC auth backend:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.jwt.AuthBackend;
+ * import com.pulumi.vault.jwt.AuthBackendArgs;
+ * import com.pulumi.vault.jwt.inputs.AuthBackendTuneArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .description("Demonstration of the Terraform JWT auth backend")
+ *             .path("oidc")
+ *             .type("oidc")
+ *             .oidcDiscoveryUrl("https://myco.auth0.com/")
+ *             .oidcClientId("1234567890")
+ *             .oidcClientSecret("secret123456")
+ *             .boundIssuer("https://myco.auth0.com/")
+ *             .tune(AuthBackendTuneArgs.builder()
+ *                 .listingVisibility("unauth")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Manage OIDC auth backend with write-only secret (recommended):
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.jwt.AuthBackend;
+ * import com.pulumi.vault.jwt.AuthBackendArgs;
+ * import com.pulumi.vault.jwt.inputs.AuthBackendTuneArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .description("Demonstration of the Terraform JWT auth backend")
+ *             .path("oidc")
+ *             .type("oidc")
+ *             .oidcDiscoveryUrl("https://myco.auth0.com/")
+ *             .oidcClientId("1234567890")
+ *             .oidcClientSecretWo("secret123456")
+ *             .oidcClientSecretWoVersion(1)
+ *             .boundIssuer("https://myco.auth0.com/")
+ *             .tune(AuthBackendTuneArgs.builder()
+ *                 .listingVisibility("unauth")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Configuring the auth backend with a `provider_config:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.jwt.AuthBackend;
+ * import com.pulumi.vault.jwt.AuthBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gsuite = new AuthBackend("gsuite", AuthBackendArgs.builder()
+ *             .description("OIDC backend")
+ *             .oidcDiscoveryUrl("https://accounts.google.com")
+ *             .path("oidc")
+ *             .type("oidc")
+ *             .providerConfig(Map.ofEntries(
+ *                 Map.entry("provider", "gsuite"),
+ *                 Map.entry("fetch_groups", "true"),
+ *                 Map.entry("fetch_user_info", "true"),
+ *                 Map.entry("groups_recurse_max_depth", "1")
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `oidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidcClientSecret`. Must be used with `oidcClientSecretWoVersion`. To rotate the secret, update the value and increment `oidcClientSecretWoVersion`.
+ * 
  * ## Import
  * 
  * JWT auth backend can be imported using the `path`, e.g.
@@ -27,6 +203,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
  * ```
+ * 
  * or
  * 
  * ```sh

@@ -19,31 +19,26 @@ __all__ = [
     'SecretV2CustomMetadataArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class SecretV2CustomMetadataArgsDict(TypedDict):
-        cas_required: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If true, all keys will require the cas parameter to be set on all write requests.
-        """
-        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
-        secret data from Vault**. A mapping whose keys are the top-level data keys returned from
-        Vault and whose values are the corresponding values. This map can only represent string data,
-        so any non-string values returned from Vault are serialized as JSON.
-        """
-        delete_version_after: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        If set, specifies the length of time before a version is deleted.
-        """
-        max_versions: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The number of versions to keep per key.
-        """
-elif False:
-    SecretV2CustomMetadataArgsDict: TypeAlias = Mapping[str, Any]
+class SecretV2CustomMetadataArgsDict(TypedDict):
+    cas_required: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If true, all keys will require the cas parameter to be set on all write requests.
+    """
+    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
+    secret data from Vault**. A mapping whose keys are the top-level data keys returned from
+    Vault and whose values are the corresponding values. This map can only represent string data,
+    so any non-string values returned from Vault are serialized as JSON.
+    """
+    delete_version_after: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    If set, specifies the length of time before a version is deleted.
+    """
+    max_versions: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The number of versions to keep per key.
+    """
 
 @pulumi.input_type
 class SecretV2CustomMetadataArgs:

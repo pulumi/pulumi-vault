@@ -236,7 +236,11 @@ class OciAuthBackendTune(dict):
                Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
         :param Sequence[_builtins.str] passthrough_request_headers: List of headers to whitelist and
                pass from the request to the backend.
-        :param _builtins.str token_type: Specifies the type of tokens that should be returned by the mount.
+        :param _builtins.str token_type: Specifies the type of tokens that should be returned by
+               the mount. Valid values are "default-service", "default-batch", "service", "batch".
+               
+               
+               For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
         if allowed_response_headers is not None:
             pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
@@ -324,7 +328,11 @@ class OciAuthBackendTune(dict):
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[_builtins.str]:
         """
-        Specifies the type of tokens that should be returned by the mount.
+        Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
+
+
+        For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
         return pulumi.get(self, "token_type")
 

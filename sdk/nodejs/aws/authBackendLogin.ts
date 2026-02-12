@@ -127,6 +127,10 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      * to the time in `leaseStartTime`.
      */
     declare public /*out*/ readonly leaseDuration: pulumi.Output<number>;
+    /**
+     * The approximate time at which the token was created,
+     * using the clock of the system where Terraform was running.
+     */
     declare public /*out*/ readonly leaseStartTime: pulumi.Output<string>;
     /**
      * A map of information returned by the Vault server about the
@@ -285,6 +289,10 @@ export interface AuthBackendLoginState {
      * to the time in `leaseStartTime`.
      */
     leaseDuration?: pulumi.Input<number>;
+    /**
+     * The approximate time at which the token was created,
+     * using the clock of the system where Terraform was running.
+     */
     leaseStartTime?: pulumi.Input<string>;
     /**
      * A map of information returned by the Vault server about the

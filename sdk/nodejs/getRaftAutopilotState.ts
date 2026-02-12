@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Displays the state of the raft cluster under integrated storage as seen by
+ * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+ * how many nodes could fail before the cluster becomes unhealthy ("Failure
+ * Tolerance"). For more information, please refer to the
+ * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -95,6 +101,12 @@ export interface GetRaftAutopilotStateResult {
     readonly voters: string[];
 }
 /**
+ * Displays the state of the raft cluster under integrated storage as seen by
+ * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
+ * how many nodes could fail before the cluster becomes unhealthy ("Failure
+ * Tolerance"). For more information, please refer to the
+ * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
+ *
  * ## Example Usage
  *
  * ```typescript

@@ -412,14 +412,16 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+     * Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      * 
      */
     @Import(name="notBeforeDuration")
     private @Nullable Output<String> notBeforeDuration;
 
     /**
-     * @return Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+     * @return Specifies the duration by which to backdate the ValidAfter property.
+     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      * 
      */
     public Optional<Output<String>> notBeforeDuration() {
@@ -1045,7 +1047,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param notBeforeDuration Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+         * @param notBeforeDuration Specifies the duration by which to backdate the ValidAfter property.
+         * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
          * 
          * @return builder
          * 
@@ -1056,7 +1059,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param notBeforeDuration Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
+         * @param notBeforeDuration Specifies the duration by which to backdate the ValidAfter property.
+         * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
          * 
          * @return builder
          * 

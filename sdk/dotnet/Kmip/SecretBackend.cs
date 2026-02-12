@@ -45,7 +45,7 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// ## Import
     /// 
-    /// KMIP Secret backend can be imported using the `path`, e.g.
+    /// KMIP Secret backend can be imported using the `Path`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip

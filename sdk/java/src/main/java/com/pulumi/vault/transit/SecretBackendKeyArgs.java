@@ -98,14 +98,14 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies if the key is allowed to be deleted.
+     * Specifies if the keyring is allowed to be deleted. Must be set to &#39;true&#39; before terraform will be able to destroy keys.
      * 
      */
     @Import(name="deletionAllowed")
     private @Nullable Output<Boolean> deletionAllowed;
 
     /**
-     * @return Specifies if the key is allowed to be deleted.
+     * @return Specifies if the keyring is allowed to be deleted. Must be set to &#39;true&#39; before terraform will be able to destroy keys.
      * 
      */
     public Optional<Output<Boolean>> deletionAllowed() {
@@ -481,7 +481,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param deletionAllowed Specifies if the key is allowed to be deleted.
+         * @param deletionAllowed Specifies if the keyring is allowed to be deleted. Must be set to &#39;true&#39; before terraform will be able to destroy keys.
          * 
          * @return builder
          * 
@@ -492,7 +492,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param deletionAllowed Specifies if the key is allowed to be deleted.
+         * @param deletionAllowed Specifies if the keyring is allowed to be deleted. Must be set to &#39;true&#39; before terraform will be able to destroy keys.
          * 
          * @return builder
          * 

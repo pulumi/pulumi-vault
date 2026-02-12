@@ -12,6 +12,10 @@ namespace Pulumi.Vault
     public static class GetNamespace
     {
         /// <summary>
+        /// Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+        /// 
+        /// **Note** this feature is available only with Vault Enterprise.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Current namespace
@@ -75,6 +79,10 @@ namespace Pulumi.Vault
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNamespaceResult>("vault:index/getNamespace:getNamespace", args ?? new GetNamespaceArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+        /// 
+        /// **Note** this feature is available only with Vault Enterprise.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Current namespace
@@ -138,6 +146,10 @@ namespace Pulumi.Vault
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespaceResult>("vault:index/getNamespace:getNamespace", args ?? new GetNamespaceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.
+        /// 
+        /// **Note** this feature is available only with Vault Enterprise.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Current namespace

@@ -150,6 +150,28 @@ class Policy(pulumi.CustomResource):
                  policy: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Policy("example",
+            name="dev-team",
+            policy=\"\"\"path \\"secret/my_app\\" {
+          capabilities = [\\"update\\"]
+        }
+        \"\"\")
+        ```
+
+        ## Tutorials
+
+        Refer to the following tutorials for additional usage examples:
+
+        - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+
+        - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+
         ## Import
 
         Policies can be imported using the `name`, e.g.
@@ -174,6 +196,28 @@ class Policy(pulumi.CustomResource):
                  args: PolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.Policy("example",
+            name="dev-team",
+            policy=\"\"\"path \\"secret/my_app\\" {
+          capabilities = [\\"update\\"]
+        }
+        \"\"\")
+        ```
+
+        ## Tutorials
+
+        Refer to the following tutorials for additional usage examples:
+
+        - [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)
+
+        - [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)
+
         ## Import
 
         Policies can be imported using the `name`, e.g.
