@@ -26,6 +26,7 @@ class AuthBackendCertArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendCert resource.
+
         :param pulumi.Input[_builtins.str] aws_public_cert: The  Base64 encoded AWS Public key required to
                verify PKCS7 signature of the EC2 instance metadata. You can find this key in
                the [AWS
@@ -130,6 +131,7 @@ class _AuthBackendCertState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendCert resources.
+
         :param pulumi.Input[_builtins.str] aws_public_cert: The  Base64 encoded AWS Public key required to
                verify PKCS7 signature of the EC2 instance metadata. You can find this key in
                the [AWS
@@ -262,6 +264,7 @@ class AuthBackendCert(pulumi.CustomResource):
         $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aws_public_cert: The  Base64 encoded AWS Public key required to
@@ -308,6 +311,7 @@ class AuthBackendCert(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/authBackendCert:AuthBackendCert example auth/aws/config/certificate/my-cert
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendCertArgs args: The arguments to use to populate this resource's properties.

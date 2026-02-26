@@ -37,6 +37,7 @@ class SecretBackendIssuerArgs:
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendIssuer resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] issuer_ref: Reference to an existing issuer.
@@ -342,6 +343,7 @@ class _SecretBackendIssuerState:
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIssuer resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL
@@ -701,6 +703,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
@@ -782,6 +785,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendIssuerArgs args: The arguments to use to populate this resource's properties.

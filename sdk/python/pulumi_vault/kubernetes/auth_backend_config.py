@@ -33,6 +33,7 @@ class AuthBackendConfigArgs:
                  use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
+
         :param pulumi.Input[_builtins.str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[_builtins.bool] disable_iss_validation: Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
@@ -240,6 +241,7 @@ class _AuthBackendConfigState:
                  use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
+
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
         :param pulumi.Input[_builtins.bool] disable_iss_validation: Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         :param pulumi.Input[_builtins.bool] disable_local_ca_jwt: Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
@@ -509,6 +511,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: Unique name of the kubernetes backend to configure.
@@ -592,6 +595,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendConfigArgs args: The arguments to use to populate this resource's properties.

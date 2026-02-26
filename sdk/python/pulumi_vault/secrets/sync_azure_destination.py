@@ -35,6 +35,7 @@ class SyncAzureDestinationArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncAzureDestination resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
                connections from Vault to the destination. Requires Vault 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
@@ -300,6 +301,7 @@ class _SyncAzureDestinationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncAzureDestination resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
                connections from Vault to the destination. Requires Vault 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
@@ -631,6 +633,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
@@ -719,6 +722,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncAzureDestinationArgs args: The arguments to use to populate this resource's properties.

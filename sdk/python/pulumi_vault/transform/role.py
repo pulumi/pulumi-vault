@@ -25,6 +25,7 @@ class RoleArgs:
                  transformations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Role resource.
+
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[_builtins.str] name: The name of the role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -102,6 +103,7 @@ class _RoleState:
                  transformations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Role resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the role.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -203,6 +205,7 @@ class Role(pulumi.CustomResource):
             transformations=["ccn-fpe"])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the role.
@@ -239,6 +242,7 @@ class Role(pulumi.CustomResource):
             name="payments",
             transformations=["ccn-fpe"])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.

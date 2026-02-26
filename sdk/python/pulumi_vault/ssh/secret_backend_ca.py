@@ -30,6 +30,7 @@ class SecretBackendCaArgs:
                  public_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendCa resource.
+
         :param pulumi.Input[_builtins.str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
@@ -194,6 +195,7 @@ class _SecretBackendCaState:
                  public_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCa resources.
+
         :param pulumi.Input[_builtins.str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[_builtins.bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
         :param pulumi.Input[_builtins.int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
@@ -382,6 +384,7 @@ class SecretBackendCa(pulumi.CustomResource):
         $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
@@ -427,6 +430,7 @@ class SecretBackendCa(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendCaArgs args: The arguments to use to populate this resource's properties.

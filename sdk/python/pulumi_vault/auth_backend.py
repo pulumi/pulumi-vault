@@ -31,6 +31,7 @@ class AuthBackendArgs:
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
+
         :param pulumi.Input[_builtins.str] type: The name of the auth method type.
         :param pulumi.Input[_builtins.str] description: A description of the auth method.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
@@ -179,6 +180,7 @@ class _AuthBackendState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor for this auth method
         :param pulumi.Input[_builtins.str] description: A description of the auth method.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
@@ -377,6 +379,7 @@ class AuthBackend(pulumi.CustomResource):
         $ pulumi import vault:index/authBackend:AuthBackend example github
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description of the auth method.
@@ -432,6 +435,7 @@ class AuthBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/authBackend:AuthBackend example github
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class MfaOktaArgs:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaOkta resource.
+
         :param pulumi.Input[_builtins.str] api_token: Okta API token.
         :param pulumi.Input[_builtins.str] org_name: Name of the organization to be used in the Okta API.
         :param pulumi.Input[_builtins.str] base_url: The base domain to use for API requests.
@@ -136,6 +137,7 @@ class _MfaOktaState:
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaOkta resources.
+
         :param pulumi.Input[_builtins.str] api_token: Okta API token.
         :param pulumi.Input[_builtins.str] base_url: The base domain to use for API requests.
         :param pulumi.Input[_builtins.str] method_id: Method ID.
@@ -370,6 +372,7 @@ class MfaOkta(pulumi.CustomResource):
         $ pulumi import vault:identity/mfaOkta:MfaOkta example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_token: Okta API token.
@@ -407,6 +410,7 @@ class MfaOkta(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/mfaOkta:MfaOkta example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaOktaArgs args: The arguments to use to populate this resource's properties.

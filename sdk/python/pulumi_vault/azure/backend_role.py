@@ -37,6 +37,7 @@ class BackendRoleArgs:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendRole resource.
+
         :param pulumi.Input[_builtins.str] role: Name of the Azure role
         :param pulumi.Input[_builtins.str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
@@ -284,6 +285,7 @@ class _BackendRoleState:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendRole resources.
+
         :param pulumi.Input[_builtins.str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
         :param pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]] azure_groups: List of Azure groups to be assigned to the generated service principal.
@@ -579,6 +581,7 @@ class BackendRole(pulumi.CustomResource):
             max_ttl="600")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_object_id: Application Object ID for an existing service principal that will
@@ -654,6 +657,7 @@ class BackendRole(pulumi.CustomResource):
             ttl="300",
             max_ttl="600")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackendRoleArgs args: The arguments to use to populate this resource's properties.

@@ -46,6 +46,7 @@ class SecretBackendArgs:
                  token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
                Terraform Enterprise, provided as `"protocol://host:port"`. The default is
                `https://app.terraform.io` for Terraform Cloud.
@@ -481,6 +482,7 @@ class _SecretBackendState:
                  token_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
         :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
                Terraform Enterprise, provided as `"protocol://host:port"`. The default is
@@ -964,6 +966,7 @@ class SecretBackend(pulumi.CustomResource):
         $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: The address of the Terraform Cloud server, if using
@@ -1042,6 +1045,7 @@ class SecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

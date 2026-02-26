@@ -27,6 +27,7 @@ class NomadSecretRoleArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NomadSecretRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[_builtins.str] role: The name to identify this role within the backend.
                Must be unique within the backend.
@@ -143,6 +144,7 @@ class _NomadSecretRoleState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NomadSecretRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[_builtins.bool] global_: Specifies if the generated token should be global. Defaults to 
                false.
@@ -302,6 +304,7 @@ class NomadSecretRole(pulumi.CustomResource):
         $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique path this backend should be mounted at.
@@ -362,6 +365,7 @@ class NomadSecretRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NomadSecretRoleArgs args: The arguments to use to populate this resource's properties.

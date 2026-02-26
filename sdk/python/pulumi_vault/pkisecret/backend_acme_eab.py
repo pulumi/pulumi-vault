@@ -25,6 +25,7 @@ class BackendAcmeEabArgs:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendAcmeEab resource.
+
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                create the EAB token within, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] issuer: Create an EAB token that is specific to an issuer's ACME directory.
@@ -123,6 +124,7 @@ class _BackendAcmeEabState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendAcmeEab resources.
+
         :param pulumi.Input[_builtins.str] acme_directory: The ACME directory to which the key belongs
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                create the EAB token within, with no leading or trailing `/`s.
@@ -315,6 +317,7 @@ class BackendAcmeEab(pulumi.CustomResource):
         As EAB tokens are only available on initial creation there is no possibility to
         import or update this resource.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
@@ -359,6 +362,7 @@ class BackendAcmeEab(pulumi.CustomResource):
 
         As EAB tokens are only available on initial creation there is no possibility to
         import or update this resource.
+
 
         :param str resource_name: The name of the resource.
         :param BackendAcmeEabArgs args: The arguments to use to populate this resource's properties.

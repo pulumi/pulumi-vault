@@ -28,6 +28,7 @@ class SyncAssociationArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncAssociation resource.
+
         :param pulumi.Input[_builtins.str] mount: Specifies the mount where the secret is located.
         :param pulumi.Input[_builtins.str] secret_name: Specifies the name of the secret to synchronize.
         :param pulumi.Input[_builtins.str] type: Specifies the destination type.
@@ -118,6 +119,7 @@ class _SyncAssociationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncAssociation resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['SyncAssociationMetadataArgs']]] metadatas: Metadata for each subkey of the associated secret.
         :param pulumi.Input[_builtins.str] mount: Specifies the mount where the secret is located.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the destination.
@@ -275,6 +277,7 @@ class SyncAssociation(pulumi.CustomResource):
             secret_name=token.name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] mount: Specifies the mount where the secret is located.
@@ -338,6 +341,7 @@ class SyncAssociation(pulumi.CustomResource):
             mount=kvv2.path,
             secret_name=token.name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncAssociationArgs args: The arguments to use to populate this resource's properties.

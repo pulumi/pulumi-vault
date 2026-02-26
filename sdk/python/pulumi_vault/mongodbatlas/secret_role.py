@@ -32,6 +32,7 @@ class SecretRoleArgs:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
+
         :param pulumi.Input[_builtins.str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidr_blocks: Whitelist entry in CIDR notation to be added for the API key.
@@ -224,6 +225,7 @@ class _SecretRoleState:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidr_blocks: Whitelist entry in CIDR notation to be added for the API key.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_addresses: IP address to be added to the whitelist for the API key.
         :param pulumi.Input[_builtins.str] max_ttl: The maximum allowed lifetime of credentials issued using this role.
@@ -466,6 +468,7 @@ class SecretRole(pulumi.CustomResource):
         $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidr_blocks: Whitelist entry in CIDR notation to be added for the API key.
@@ -536,6 +539,7 @@ class SecretRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretRoleArgs args: The arguments to use to populate this resource's properties.

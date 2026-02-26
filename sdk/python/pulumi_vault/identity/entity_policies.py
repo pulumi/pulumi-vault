@@ -25,6 +25,7 @@ class EntityPoliciesArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EntityPolicies resource.
+
         :param pulumi.Input[_builtins.str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: List of policies to assign to the entity
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
@@ -110,6 +111,7 @@ class _EntityPoliciesState:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering EntityPolicies resources.
+
         :param pulumi.Input[_builtins.str] entity_id: Entity ID to assign policies to.
         :param pulumi.Input[_builtins.str] entity_name: The name of the entity that are assigned the policies.
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
@@ -258,6 +260,7 @@ class EntityPolicies(pulumi.CustomResource):
             entity_id=entity.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] entity_id: Entity ID to assign policies to.
@@ -322,6 +325,7 @@ class EntityPolicies(pulumi.CustomResource):
             exclusive=False,
             entity_id=entity.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EntityPoliciesArgs args: The arguments to use to populate this resource's properties.

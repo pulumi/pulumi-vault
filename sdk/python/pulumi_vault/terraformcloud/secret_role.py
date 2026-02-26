@@ -31,6 +31,7 @@ class SecretRoleArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
         :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
         :param pulumi.Input[_builtins.str] description: Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
@@ -205,6 +206,7 @@ class _SecretRoleState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
         :param pulumi.Input[_builtins.str] credential_type: The type of credential to generate. Valid values are 'team', 'team_legacy', 'user', or 'organization'. Can only create multiple-team tokens with `team`.
         :param pulumi.Input[_builtins.str] description: Description of the role. This is used as a prefix to help identify the token in the HCP Terraform UI. Only valid with `team` or `user` credential types.
@@ -410,6 +412,7 @@ class SecretRole(pulumi.CustomResource):
         $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
@@ -460,6 +463,7 @@ class SecretRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretRoleArgs args: The arguments to use to populate this resource's properties.

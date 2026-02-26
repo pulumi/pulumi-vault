@@ -53,6 +53,7 @@ class SecretBackendConnectionArgs:
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendConnection resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
@@ -562,6 +563,7 @@ class _SecretBackendConnectionState:
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConnection resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
@@ -1161,6 +1163,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -1297,6 +1300,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendConnectionArgs args: The arguments to use to populate this resource's properties.

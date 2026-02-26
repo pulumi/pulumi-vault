@@ -31,6 +31,7 @@ class QuotaRateLimitArgs:
                  secondary_rate: Optional[pulumi.Input[_builtins.float]] = None):
         """
         The set of arguments for constructing a QuotaRateLimit resource.
+
         :param pulumi.Input[_builtins.float] rate: The maximum number of requests at any given second to be allowed by the quota
                rule. The `rate` must be positive.
         :param pulumi.Input[_builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
@@ -234,6 +235,7 @@ class _QuotaRateLimitState:
                  secondary_rate: Optional[pulumi.Input[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering QuotaRateLimit resources.
+
         :param pulumi.Input[_builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
         :param pulumi.Input[_builtins.str] group_by: Attribute used to group requests for rate limiting. Limits are enforced independently for each
@@ -468,6 +470,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] block_interval: If set, when a client reaches a rate limit threshold, the client will
@@ -532,6 +535,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
         ```
+
 
         :param str resource_name: The name of the resource.
         :param QuotaRateLimitArgs args: The arguments to use to populate this resource's properties.

@@ -33,6 +33,7 @@ class SyncVercelDestinationArgs:
                  team_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncVercelDestination resource.
+
         :param pulumi.Input[_builtins.str] access_token: Vercel API access token with the permissions to manage environment
                variables.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] deployment_environments: Deployment environments where the environment variables
@@ -257,6 +258,7 @@ class _SyncVercelDestinationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncVercelDestination resources.
+
         :param pulumi.Input[_builtins.str] access_token: Vercel API access token with the permissions to manage environment
                variables.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
@@ -550,6 +552,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_token: Vercel API access token with the permissions to manage environment
@@ -633,6 +636,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncVercelDestinationArgs args: The arguments to use to populate this resource's properties.

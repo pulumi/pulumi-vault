@@ -27,6 +27,7 @@ class QuotaLeaseCountArgs:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a QuotaLeaseCount resource.
+
         :param pulumi.Input[_builtins.int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[_builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
@@ -148,6 +149,7 @@ class _QuotaLeaseCountState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering QuotaLeaseCount resources.
+
         :param pulumi.Input[_builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[_builtins.int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
@@ -302,6 +304,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
         $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
@@ -355,6 +358,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
         ```
+
 
         :param str resource_name: The name of the resource.
         :param QuotaLeaseCountArgs args: The arguments to use to populate this resource's properties.

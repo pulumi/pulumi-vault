@@ -25,6 +25,7 @@ class AuthBackendRoletagBlacklistArgs:
                  safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendRoletagBlacklist resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.
         :param pulumi.Input[_builtins.bool] disable_periodic_tidy: If set to true, disables the periodic
@@ -110,6 +111,7 @@ class _AuthBackendRoletagBlacklistState:
                  safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoletagBlacklist resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.
         :param pulumi.Input[_builtins.bool] disable_periodic_tidy: If set to true, disables the periodic
@@ -213,6 +215,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
             safety_buffer=360)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
@@ -247,6 +250,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
             backend=example.path,
             safety_buffer=360)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoletagBlacklistArgs args: The arguments to use to populate this resource's properties.

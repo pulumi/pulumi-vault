@@ -35,6 +35,7 @@ class SecretBackendRoleArgs:
                  token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
         :param pulumi.Input[_builtins.str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
@@ -312,6 +313,7 @@ class _SecretBackendRoleState:
                  token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+
         :param pulumi.Input[_builtins.str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
                in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
                of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
@@ -715,6 +717,7 @@ class SecretBackendRole(pulumi.CustomResource):
         $ terraform import vault_kubernetes_secret_backend_role.example kubernetes kubernetes/roles/example-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
@@ -883,6 +886,7 @@ class SecretBackendRole(pulumi.CustomResource):
         ```sh
         $ terraform import vault_kubernetes_secret_backend_role.example kubernetes kubernetes/roles/example-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.

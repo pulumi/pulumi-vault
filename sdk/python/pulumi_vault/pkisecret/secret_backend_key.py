@@ -29,6 +29,7 @@ class SecretBackendKeyArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
         :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys. 
@@ -178,6 +179,7 @@ class _SecretBackendKeyState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendKey resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys. 
                Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
@@ -375,6 +377,7 @@ class SecretBackendKey(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/secretBackendKey:SecretBackendKey key pki/key/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -428,6 +431,7 @@ class SecretBackendKey(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/secretBackendKey:SecretBackendKey key pki/key/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendKeyArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class RaftAutopilotArgs:
                  server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RaftAutopilot resource.
+
         :param pulumi.Input[_builtins.bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
                periodically or when a new server joins. This requires that `min-quorum` is also set.
         :param pulumi.Input[_builtins.str] dead_server_last_contact_threshold: Limit the amount of time a 
@@ -187,6 +188,7 @@ class _RaftAutopilotState:
                  server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RaftAutopilot resources.
+
         :param pulumi.Input[_builtins.bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
                periodically or when a new server joins. This requires that `min-quorum` is also set.
         :param pulumi.Input[_builtins.str] dead_server_last_contact_threshold: Limit the amount of time a 
@@ -376,6 +378,7 @@ class RaftAutopilot(pulumi.CustomResource):
         $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
@@ -432,6 +435,7 @@ class RaftAutopilot(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RaftAutopilotArgs args: The arguments to use to populate this resource's properties.

@@ -30,6 +30,7 @@ class PluginArgs:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Plugin resource.
+
         :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`.
         :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary.
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
@@ -183,6 +184,7 @@ class _PluginState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Plugin resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
         :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
@@ -382,6 +384,7 @@ class Plugin(pulumi.CustomResource):
         $ pulumi import vault:index/plugin:Plugin jwt auth/version/v0.17.0/name/jwt
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
@@ -442,6 +445,7 @@ class Plugin(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/plugin:Plugin jwt auth/version/v0.17.0/name/jwt
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PluginArgs args: The arguments to use to populate this resource's properties.

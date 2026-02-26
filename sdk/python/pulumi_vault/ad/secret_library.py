@@ -28,6 +28,7 @@ class SecretLibraryArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretLibrary resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
@@ -160,6 +161,7 @@ class _SecretLibraryState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretLibrary resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] disable_check_in_enforcement: Disable enforcing that service accounts must be checked in by the entity or client token that checked them out.
@@ -344,6 +346,7 @@ class SecretLibrary(pulumi.CustomResource):
         $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the AD secret backend is mounted at,
@@ -414,6 +417,7 @@ class SecretLibrary(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretLibraryArgs args: The arguments to use to populate this resource's properties.

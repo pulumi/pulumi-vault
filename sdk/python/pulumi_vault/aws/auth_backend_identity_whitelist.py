@@ -25,6 +25,7 @@ class AuthBackendIdentityWhitelistArgs:
                  safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendIdentityWhitelist resource.
+
         :param pulumi.Input[_builtins.str] backend: The path of the AWS backend being configured.
         :param pulumi.Input[_builtins.bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the identity-whitelist entries.
@@ -109,6 +110,7 @@ class _AuthBackendIdentityWhitelistState:
                  safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendIdentityWhitelist resources.
+
         :param pulumi.Input[_builtins.str] backend: The path of the AWS backend being configured.
         :param pulumi.Input[_builtins.bool] disable_periodic_tidy: If set to true, disables the periodic
                tidying of the identity-whitelist entries.
@@ -221,6 +223,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path of the AWS backend being configured.
@@ -265,6 +268,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendIdentityWhitelistArgs args: The arguments to use to populate this resource's properties.

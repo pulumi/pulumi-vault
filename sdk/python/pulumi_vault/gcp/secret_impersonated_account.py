@@ -27,6 +27,7 @@ class SecretImpersonatedAccountArgs:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretImpersonatedAccount resource.
+
         :param pulumi.Input[_builtins.str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[_builtins.str] impersonated_account: Name of the Impersonated Account to create
         :param pulumi.Input[_builtins.str] service_account_email: Email of the GCP service account to impersonate.
@@ -131,6 +132,7 @@ class _SecretImpersonatedAccountState:
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretImpersonatedAccount resources.
+
         :param pulumi.Input[_builtins.str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[_builtins.str] impersonated_account: Name of the Impersonated Account to create
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
@@ -287,6 +289,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: Path where the GCP Secrets Engine is mounted
@@ -335,6 +338,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretImpersonatedAccountArgs args: The arguments to use to populate this resource's properties.

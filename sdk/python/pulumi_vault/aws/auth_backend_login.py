@@ -32,6 +32,7 @@ class AuthBackendLoginArgs:
                  signature: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendLogin resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of the AWS auth backend. Defaults to
                'aws'.
         :param pulumi.Input[_builtins.str] iam_http_request_method: The HTTP method used in the signed IAM
@@ -258,6 +259,7 @@ class _AuthBackendLoginState:
                  signature: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendLogin resources.
+
         :param pulumi.Input[_builtins.str] accessor: The token's accessor.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type used to generate this token.
         :param pulumi.Input[_builtins.str] backend: The unique name of the AWS auth backend. Defaults to
@@ -647,6 +649,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             signature="BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the AWS auth backend. Defaults to
@@ -726,6 +729,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             identity="BASE64ENCODEDIDENTITYDOCUMENT",
             signature="BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.

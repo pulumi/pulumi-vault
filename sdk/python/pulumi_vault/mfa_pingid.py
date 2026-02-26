@@ -26,6 +26,7 @@ class MfaPingidArgs:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaPingid resource.
+
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
@@ -141,6 +142,7 @@ class _MfaPingidState:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaPingid resources.
+
         :param pulumi.Input[_builtins.str] admin_url: `(string)` – Admin URL computed by Vault
         :param pulumi.Input[_builtins.str] authenticator_url: `(string)` – Authenticator URL computed by Vault
         :param pulumi.Input[_builtins.str] idp_url: `(string)` – IDP URL computed by Vault
@@ -389,6 +391,7 @@ class MfaPingid(pulumi.CustomResource):
         $ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
@@ -444,6 +447,7 @@ class MfaPingid(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/mfaPingid:MfaPingid my_pingid my_pingid
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaPingidArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class OidcRoleArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a OidcRole resource.
+
         :param pulumi.Input[_builtins.str] key: A configured named key, the key must already exist
                before tokens can be issued.
         :param pulumi.Input[_builtins.str] client_id: The value that will be included in the `aud` field of all the OIDC identity
@@ -146,6 +147,7 @@ class _OidcRoleState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering OidcRole resources.
+
         :param pulumi.Input[_builtins.str] client_id: The value that will be included in the `aud` field of all the OIDC identity
                tokens issued by this role
         :param pulumi.Input[_builtins.str] key: A configured named key, the key must already exist
@@ -338,6 +340,7 @@ class OidcRole(pulumi.CustomResource):
         $ pulumi import vault:identity/oidcRole:OidcRole role role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The value that will be included in the `aud` field of all the OIDC identity
@@ -430,6 +433,7 @@ class OidcRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/oidcRole:OidcRole role role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcRoleArgs args: The arguments to use to populate this resource's properties.

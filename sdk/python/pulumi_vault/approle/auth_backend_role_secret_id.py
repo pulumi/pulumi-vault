@@ -32,6 +32,7 @@ class AuthBackendRoleSecretIdArgs:
                  wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRoleSecretId resource.
+
         :param pulumi.Input[_builtins.str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidr_lists: If set, specifies blocks of IP addresses which can
@@ -244,6 +245,7 @@ class _AuthBackendRoleSecretIdState:
                  wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoleSecretId resources.
+
         :param pulumi.Input[_builtins.str] accessor: The unique ID for this SecretID that can be safely logged.
         :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] cidr_lists: If set, specifies blocks of IP addresses which can
@@ -532,6 +534,7 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
             }))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: Unique name of the auth backend to configure.
@@ -593,6 +596,7 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
                 "hello": "world",
             }))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleSecretIdArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class MfaPingidArgs:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaPingid resource.
+
         :param pulumi.Input[_builtins.str] settings_file_base64: A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[_builtins.str] username_format: A template string for mapping Identity names to MFA methods.
@@ -91,6 +92,7 @@ class _MfaPingidState:
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaPingid resources.
+
         :param pulumi.Input[_builtins.str] admin_url: The admin URL, derived from "settings_file_base64"
         :param pulumi.Input[_builtins.str] authenticator_url: A unique identifier of the organization, derived from "settings_file_base64"
         :param pulumi.Input[_builtins.str] idp_url: The IDP URL, derived from "settings_file_base64"
@@ -349,6 +351,7 @@ class MfaPingid(pulumi.CustomResource):
         $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
@@ -380,6 +383,7 @@ class MfaPingid(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaPingidArgs args: The arguments to use to populate this resource's properties.

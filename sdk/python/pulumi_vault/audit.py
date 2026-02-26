@@ -27,6 +27,7 @@ class AuditArgs:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Audit resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Configuration options to pass to the audit device itself.
                
                For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
@@ -139,6 +140,7 @@ class _AuditState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Audit resources.
+
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the audit device.
         :param pulumi.Input[_builtins.bool] local: Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -296,6 +298,7 @@ class Audit(pulumi.CustomResource):
         $ pulumi import vault:index/audit:Audit test syslog
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the audit device.
@@ -356,6 +359,7 @@ class Audit(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/audit:Audit test syslog
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuditArgs args: The arguments to use to populate this resource's properties.

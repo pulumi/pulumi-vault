@@ -35,6 +35,7 @@ class SyncAwsDestinationArgs:
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncAwsDestination resource.
+
         :param pulumi.Input[_builtins.str] access_key_id: Access key id to authenticate against the AWS secrets manager.
                Can be omitted and directly provided to Vault using the `AWS_ACCESS_KEY_ID` environment
                variable.
@@ -320,6 +321,7 @@ class _SyncAwsDestinationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncAwsDestination resources.
+
         :param pulumi.Input[_builtins.str] access_key_id: Access key id to authenticate against the AWS secrets manager.
                Can be omitted and directly provided to Vault using the `AWS_ACCESS_KEY_ID` environment
                variable.
@@ -685,6 +687,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key_id: Access key id to authenticate against the AWS secrets manager.
@@ -797,6 +800,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncAwsDestinationArgs args: The arguments to use to populate this resource's properties.

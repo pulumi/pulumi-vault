@@ -60,6 +60,7 @@ class SecretsMountArgs:
                  snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]]] = None):
         """
         The set of arguments for constructing a SecretsMount resource.
+
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
                
@@ -701,6 +702,7 @@ class _SecretsMountState:
                  snowflakes: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]]] = None):
         """
         Input properties used for looking up and filtering SecretsMount resources.
+
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
                
@@ -1451,6 +1453,7 @@ class SecretsMount(pulumi.CustomResource):
         $ pulumi import vault:database/secretsMount:SecretsMount db db
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
@@ -1594,6 +1597,7 @@ class SecretsMount(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:database/secretsMount:SecretsMount db db
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretsMountArgs args: The arguments to use to populate this resource's properties.

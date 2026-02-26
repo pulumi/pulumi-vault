@@ -38,6 +38,7 @@ class SecretBackendSignArgs:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendSign resource.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] common_name: CN of certificate to create
         :param pulumi.Input[_builtins.str] csr: The CSR
@@ -333,6 +334,7 @@ class _SecretBackendSignState:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendSign resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
         :param pulumi.Input[_builtins.bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
@@ -768,6 +770,7 @@ class SecretBackendSign(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[admin]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
@@ -850,6 +853,7 @@ class SecretBackendSign(pulumi.CustomResource):
             common_name="test.my.domain",
             opts = pulumi.ResourceOptions(depends_on=[admin]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendSignArgs args: The arguments to use to populate this resource's properties.

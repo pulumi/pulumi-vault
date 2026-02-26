@@ -28,6 +28,7 @@ class SecretBackendStaticRoleArgs:
                  skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
+
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[_builtins.int] rotation_period: How often Vault should rotate the password of the user entry.
         :param pulumi.Input[_builtins.str] username: The username of the existing LDAP entry to manage password rotation for.
@@ -159,6 +160,7 @@ class _SecretBackendStaticRoleState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
+
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
                search performed during password rotation. Cannot be modified after creation.
@@ -335,6 +337,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
@@ -397,6 +400,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendStaticRoleArgs args: The arguments to use to populate this resource's properties.

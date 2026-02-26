@@ -25,6 +25,7 @@ class OidcScopeArgs:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OidcScope resource.
+
         :param pulumi.Input[_builtins.str] description: A description of the scope.
         :param pulumi.Input[_builtins.str] name: The name of the scope. The `openid` scope name is reserved.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -103,6 +104,7 @@ class _OidcScopeState:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OidcScope resources.
+
         :param pulumi.Input[_builtins.str] description: A description of the scope.
         :param pulumi.Input[_builtins.str] name: The name of the scope. The `openid` scope name is reserved.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -207,6 +209,7 @@ class OidcScope(pulumi.CustomResource):
         $ pulumi import vault:identity/oidcScope:OidcScope groups groups
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description of the scope.
@@ -246,6 +249,7 @@ class OidcScope(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/oidcScope:OidcScope groups groups
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcScopeArgs args: The arguments to use to populate this resource's properties.

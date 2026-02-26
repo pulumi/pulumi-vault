@@ -29,6 +29,7 @@ class SecretBackendRoleArgs:
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostArgs']]]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the RabbitMQ secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] name: The name to identify this role within the backend.
@@ -142,6 +143,7 @@ class _SecretBackendRoleState:
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostArgs']]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the RabbitMQ secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] name: The name to identify this role within the backend.
@@ -307,6 +309,7 @@ class SecretBackendRole(pulumi.CustomResource):
         $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the RabbitMQ secret backend is mounted at,
@@ -375,6 +378,7 @@ class SecretBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.

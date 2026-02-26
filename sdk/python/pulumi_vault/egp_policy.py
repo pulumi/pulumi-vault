@@ -26,6 +26,7 @@ class EgpPolicyArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EgpPolicy resource.
+
         :param pulumi.Input[_builtins.str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] paths: List of paths to which the policy will be applied to
         :param pulumi.Input[_builtins.str] policy: String containing a Sentinel policy
@@ -117,6 +118,7 @@ class _EgpPolicyState:
                  policy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EgpPolicy resources.
+
         :param pulumi.Input[_builtins.str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
         :param pulumi.Input[_builtins.str] name: The name of the policy
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -234,6 +236,7 @@ class EgpPolicy(pulumi.CustomResource):
         \"\"\")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] enforcement_level: Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
@@ -271,6 +274,7 @@ class EgpPolicy(pulumi.CustomResource):
         }
         \"\"\")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EgpPolicyArgs args: The arguments to use to populate this resource's properties.

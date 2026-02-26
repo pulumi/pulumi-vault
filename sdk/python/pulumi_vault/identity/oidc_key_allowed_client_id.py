@@ -24,6 +24,7 @@ class OidcKeyAllowedClientIDArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OidcKeyAllowedClientID resource.
+
         :param pulumi.Input[_builtins.str] allowed_client_id: Client ID to allow usage with the OIDC named key
         :param pulumi.Input[_builtins.str] key_name: Name of the OIDC Key allow the Client ID.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -84,6 +85,7 @@ class _OidcKeyAllowedClientIDState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OidcKeyAllowedClientID resources.
+
         :param pulumi.Input[_builtins.str] allowed_client_id: Client ID to allow usage with the OIDC named key
         :param pulumi.Input[_builtins.str] key_name: Name of the OIDC Key allow the Client ID.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -183,6 +185,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
             allowed_client_id=role.client_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] allowed_client_id: Client ID to allow usage with the OIDC named key
@@ -232,6 +235,7 @@ class OidcKeyAllowedClientID(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role.client_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcKeyAllowedClientIDArgs args: The arguments to use to populate this resource's properties.

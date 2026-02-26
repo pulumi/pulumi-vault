@@ -25,6 +25,7 @@ class GroupMemberEntityIdsArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMemberEntityIds resource.
+
         :param pulumi.Input[_builtins.str] group_id: Group ID to assign member entities to.
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
                
@@ -110,6 +111,7 @@ class _GroupMemberEntityIdsState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMemberEntityIds resources.
+
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
                
                If `true`, this resource will take exclusive control of the member entities that belong to the group and will set it equal to what is specified in the resource.
@@ -252,6 +254,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             group_id=internal.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
@@ -325,6 +328,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupMemberEntityIdsArgs args: The arguments to use to populate this resource's properties.

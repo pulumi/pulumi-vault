@@ -29,6 +29,7 @@ class MfaDuoArgs:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaDuo resource.
+
         :param pulumi.Input[_builtins.str] api_hostname: `(string: <required>)` - API hostname for Duo.
         :param pulumi.Input[_builtins.str] integration_key: `(string: <required>)` - Integration key for Duo.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -175,6 +176,7 @@ class _MfaDuoState:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaDuo resources.
+
         :param pulumi.Input[_builtins.str] api_hostname: `(string: <required>)` - API hostname for Duo.
         :param pulumi.Input[_builtins.str] integration_key: `(string: <required>)` - Integration key for Duo.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -357,6 +359,7 @@ class MfaDuo(pulumi.CustomResource):
         $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_hostname: `(string: <required>)` - API hostname for Duo.
@@ -410,6 +413,7 @@ class MfaDuo(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaDuoArgs args: The arguments to use to populate this resource's properties.

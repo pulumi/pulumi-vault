@@ -73,6 +73,7 @@ class AuthBackendArgs:
                  username_as_alias: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
+
         :param pulumi.Input[_builtins.str] url: The URL of the LDAP server
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -905,6 +906,7 @@ class _AuthBackendState:
                  username_as_alias: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor for this auth mount.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -1795,6 +1797,7 @@ class AuthBackend(pulumi.CustomResource):
         $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -1908,6 +1911,7 @@ class AuthBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendArgs args: The arguments to use to populate this resource's properties.

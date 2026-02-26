@@ -37,6 +37,7 @@ class AuthBackendArgs:
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acs_urls: The well-formatted URLs of your Assertion Consumer Service (ACS)
                that should receive a response from the identity provider.
         :param pulumi.Input[_builtins.str] entity_id: The entity ID of the SAML authentication service provider.
@@ -297,6 +298,7 @@ class _AuthBackendState:
                  verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acs_urls: The well-formatted URLs of your Assertion Consumer Service (ACS)
                that should receive a response from the identity provider.
         :param pulumi.Input[_builtins.str] default_role: The role to use if no role is provided during login.
@@ -588,6 +590,7 @@ class AuthBackend(pulumi.CustomResource):
         $ pulumi import vault:saml/authBackend:AuthBackend example saml
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] acs_urls: The well-formatted URLs of your Assertion Consumer Service (ACS)
@@ -652,6 +655,7 @@ class AuthBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:saml/authBackend:AuthBackend example saml
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendArgs args: The arguments to use to populate this resource's properties.

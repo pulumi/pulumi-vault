@@ -29,6 +29,7 @@ class AuthBackendRoleTagArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendRoleTag resource.
+
         :param pulumi.Input[_builtins.str] role: The name of the AWS auth backend role to read
                role tags from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -176,6 +177,7 @@ class _AuthBackendRoleTagState:
                  tag_value: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoleTag resources.
+
         :param pulumi.Input[_builtins.bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
         :param pulumi.Input[_builtins.str] backend: The path to the AWS auth backend to
                read role tags from, with no leading or trailing `/`s. Defaults to "aws".
@@ -390,6 +392,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
             instance_id="i-1234567")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_instance_migration: If set, allows migration of the underlying instances where the client resides. Use with caution.
@@ -447,6 +450,7 @@ class AuthBackendRoleTag(pulumi.CustomResource):
             max_ttl="1h",
             instance_id="i-1234567")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleTagArgs args: The arguments to use to populate this resource's properties.

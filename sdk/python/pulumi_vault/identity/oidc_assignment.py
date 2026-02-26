@@ -25,6 +25,7 @@ class OidcAssignmentArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a OidcAssignment resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entity_ids: A set of Vault entity IDs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of Vault group IDs.
         :param pulumi.Input[_builtins.str] name: The name of the assignment.
@@ -103,6 +104,7 @@ class _OidcAssignmentState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OidcAssignment resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entity_ids: A set of Vault entity IDs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of Vault group IDs.
         :param pulumi.Input[_builtins.str] name: The name of the assignment.
@@ -217,6 +219,7 @@ class OidcAssignment(pulumi.CustomResource):
         $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] entity_ids: A set of Vault entity IDs.
@@ -266,6 +269,7 @@ class OidcAssignment(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcAssignmentArgs args: The arguments to use to populate this resource's properties.

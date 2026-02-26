@@ -24,6 +24,7 @@ class SecretCacheConfigArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretCacheConfig resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.int] size: The number of cache entries. 0 means unlimited.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -84,6 +85,7 @@ class _SecretCacheConfigState:
                  size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretCacheConfig resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -168,6 +170,7 @@ class SecretCacheConfig(pulumi.CustomResource):
             size=500)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -202,6 +205,7 @@ class SecretCacheConfig(pulumi.CustomResource):
             backend=transit.path,
             size=500)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretCacheConfigArgs args: The arguments to use to populate this resource's properties.

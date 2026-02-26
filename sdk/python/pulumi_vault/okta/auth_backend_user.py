@@ -26,6 +26,7 @@ class AuthBackendUserInitArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendUser resource.
+
         :param pulumi.Input[_builtins.str] path: The path where the Okta auth backend is mounted
         :param pulumi.Input[_builtins.str] username: Name of the user within Okta
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] groups: List of Okta groups to associate with this user
@@ -118,6 +119,7 @@ class _AuthBackendUserState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendUser resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] groups: List of Okta groups to associate with this user
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -243,6 +245,7 @@ class AuthBackendUser(pulumi.CustomResource):
         $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] groups: List of Okta groups to associate with this user
@@ -288,6 +291,7 @@ class AuthBackendUser(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendUserInitArgs args: The arguments to use to populate this resource's properties.

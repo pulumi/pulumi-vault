@@ -39,6 +39,7 @@ class AuthBackendConfigArgs:
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
+
         :param pulumi.Input[_builtins.str] resource: The configured URL for the application registered in
                Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory
@@ -389,6 +390,7 @@ class _AuthBackendConfigState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the Azure auth backend being configured was
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
@@ -828,6 +830,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the Azure auth backend being configured was
@@ -967,6 +970,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendConfigArgs args: The arguments to use to populate this resource's properties.

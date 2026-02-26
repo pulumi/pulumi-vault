@@ -37,6 +37,7 @@ class SecretBackendRoleArgs:
                  user_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the AWS secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] credential_type: Specifies the type of credential to be used when
@@ -375,6 +376,7 @@ class _SecretBackendRoleState:
                  user_path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the AWS secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] credential_type: Specifies the type of credential to be used when
@@ -762,6 +764,7 @@ class SecretBackendRole(pulumi.CustomResource):
         $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the AWS secret backend is mounted at,
@@ -869,6 +872,7 @@ class SecretBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.

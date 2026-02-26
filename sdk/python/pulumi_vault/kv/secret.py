@@ -24,6 +24,7 @@ class SecretArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Secret resource.
+
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
                written as the secret data at the given path.
         :param pulumi.Input[_builtins.str] path: Full path of the KV-V1 secret.
@@ -87,6 +88,7 @@ class _SecretState:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
@@ -217,6 +219,7 @@ class Secret(pulumi.CustomResource):
         $ pulumi import vault:kv/secret:Secret secret kvv1/secret
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
@@ -275,6 +278,7 @@ class Secret(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kv/secret:Secret secret kvv1/secret
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class SyncConfigArgs:
                  queue_capacity: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SyncConfig resource.
+
         :param pulumi.Input[_builtins.bool] disabled: Disables the syncing process between Vault and external destinations. Defaults to `false`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                This resource can only be configured in the root namespace.
@@ -84,6 +85,7 @@ class _SyncConfigState:
                  queue_capacity: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SyncConfig resources.
+
         :param pulumi.Input[_builtins.bool] disabled: Disables the syncing process between Vault and external destinations. Defaults to `false`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                This resource can only be configured in the root namespace.
@@ -171,6 +173,7 @@ class SyncConfig(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] disabled: Disables the syncing process between Vault and external destinations. Defaults to `false`.
@@ -209,6 +212,7 @@ class SyncConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncConfigArgs args: The arguments to use to populate this resource's properties.

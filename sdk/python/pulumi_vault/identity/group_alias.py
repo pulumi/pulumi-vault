@@ -25,6 +25,7 @@ class GroupAliasArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupAlias resource.
+
         :param pulumi.Input[_builtins.str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[_builtins.str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[_builtins.str] name: Name of the group alias to create.
@@ -100,6 +101,7 @@ class _GroupAliasState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupAlias resources.
+
         :param pulumi.Input[_builtins.str] canonical_id: ID of the group to which this is an alias.
         :param pulumi.Input[_builtins.str] mount_accessor: Mount accessor of the authentication backend to which this alias belongs to.
         :param pulumi.Input[_builtins.str] name: Name of the group alias to create.
@@ -218,6 +220,7 @@ class GroupAlias(pulumi.CustomResource):
         $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] canonical_id: ID of the group to which this is an alias.
@@ -271,6 +274,7 @@ class GroupAlias(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupAliasArgs args: The arguments to use to populate this resource's properties.

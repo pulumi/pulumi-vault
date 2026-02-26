@@ -27,6 +27,7 @@ class KeysArgs:
                  pkcs: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
         """
         The set of arguments for constructing a Keys resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]] azures: Configuration block for Azure Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
@@ -99,6 +100,7 @@ class _KeysState:
                  pkcs: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
         """
         Input properties used for looking up and filtering Keys resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]] azures: Configuration block for Azure Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
@@ -228,6 +230,7 @@ class Keys(pulumi.CustomResource):
         $ pulumi import vault:managed/keys:Keys keys default
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]] aws: Configuration block for AWS Managed Keys
@@ -295,6 +298,7 @@ class Keys(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:managed/keys:Keys keys default
         ```
+
 
         :param str resource_name: The name of the resource.
         :param KeysArgs args: The arguments to use to populate this resource's properties.

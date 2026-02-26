@@ -59,6 +59,7 @@ class SecretBackendRootCertArgs:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendRootCert resource.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] common_name: CN of intermediate to create
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
@@ -695,6 +696,7 @@ class _SecretBackendRootCertState:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRootCert resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] certificate: The certificate.
@@ -1441,6 +1443,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
@@ -1531,6 +1534,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             organization="My organization",
             opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRootCertArgs args: The arguments to use to populate this resource's properties.

@@ -49,6 +49,7 @@ class AuthBackendArgs:
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
+
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the credentials
         :param pulumi.Input[_builtins.str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
@@ -524,6 +525,7 @@ class _AuthBackendState:
                  tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the credentials
@@ -1067,6 +1069,7 @@ class AuthBackend(pulumi.CustomResource):
         $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_email: The clients email associated with the credentials
@@ -1178,6 +1181,7 @@ class AuthBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendArgs args: The arguments to use to populate this resource's properties.

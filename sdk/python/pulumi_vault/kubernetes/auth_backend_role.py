@@ -39,6 +39,7 @@ class AuthBackendRoleArgs:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] bound_service_account_names: List of service account names able to access this role. If set to `["*"]` all names are allowed, both this and bound_service_account_namespaces can not be "*".
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -351,6 +352,7 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] alias_name_source: Configures how identity aliases are generated.
@@ -701,6 +703,7 @@ class AuthBackendRole(pulumi.CustomResource):
         $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -770,6 +773,7 @@ class AuthBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleArgs args: The arguments to use to populate this resource's properties.

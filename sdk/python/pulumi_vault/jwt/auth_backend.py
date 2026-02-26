@@ -47,6 +47,7 @@ class AuthBackendArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
+
         :param pulumi.Input[_builtins.str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[_builtins.str] default_role: The default role to use if none is provided during login
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -454,6 +455,7 @@ class _AuthBackendState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor for this auth method
         :param pulumi.Input[_builtins.str] bound_issuer: The value against which to match the iss claim in a JWT
         :param pulumi.Input[_builtins.str] default_role: The default role to use if none is provided during login
@@ -974,6 +976,7 @@ class AuthBackend(pulumi.CustomResource):
         $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bound_issuer: The value against which to match the iss claim in a JWT
@@ -1111,6 +1114,7 @@ class AuthBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendArgs args: The arguments to use to populate this resource's properties.

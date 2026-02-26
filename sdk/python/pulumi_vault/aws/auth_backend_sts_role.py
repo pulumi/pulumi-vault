@@ -26,6 +26,7 @@ class AuthBackendStsRoleArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendStsRole resource.
+
         :param pulumi.Input[_builtins.str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[_builtins.str] sts_role: The STS role to assume when verifying requests made
                by EC2 instances in the account specified by `account_id`.
@@ -122,6 +123,7 @@ class _AuthBackendStsRoleState:
                  sts_role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendStsRole resources.
+
         :param pulumi.Input[_builtins.str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
@@ -256,6 +258,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
         $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] account_id: The AWS account ID to configure the STS role for.
@@ -308,6 +311,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/authBackendStsRole:AuthBackendStsRole example auth/aws/config/sts/1234567890
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendStsRoleArgs args: The arguments to use to populate this resource's properties.

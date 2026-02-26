@@ -56,6 +56,7 @@ class SecretRoleArgs:
                  tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
+
         :param pulumi.Input[_builtins.str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[_builtins.str] role: Name of the role.
@@ -629,6 +630,7 @@ class _SecretRoleState:
                  tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1246,6 +1248,7 @@ class SecretRole(pulumi.CustomResource):
         $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1332,6 +1335,7 @@ class SecretRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretRoleArgs args: The arguments to use to populate this resource's properties.

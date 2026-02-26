@@ -36,6 +36,7 @@ class SecretBackendStaticRoleArgs:
                  skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[_builtins.str] db_name: The unique name of the database connection to use for the static role.
         :param pulumi.Input[_builtins.str] username: The database username that this static role corresponds to.
@@ -317,6 +318,7 @@ class _SecretBackendStaticRoleState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] credential_config: The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
         :param pulumi.Input[_builtins.str] credential_type: The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration can be done in `credential_config`.
@@ -661,6 +663,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
@@ -760,6 +763,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendStaticRoleArgs args: The arguments to use to populate this resource's properties.

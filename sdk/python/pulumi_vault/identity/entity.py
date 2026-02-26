@@ -27,6 +27,7 @@ class EntityArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Entity resource.
+
         :param pulumi.Input[_builtins.bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
         :param pulumi.Input[_builtins.bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A Map of additional metadata to associate with the user.
@@ -137,6 +138,7 @@ class _EntityState:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Entity resources.
+
         :param pulumi.Input[_builtins.bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
         :param pulumi.Input[_builtins.bool] external_policies: `false` by default. If set to `true`, this resource will ignore any policies return from Vault or specified in the resource. You can use `identity.EntityPolicies` to manage policies for this entity in a decoupled manner.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A Map of additional metadata to associate with the user.
@@ -281,6 +283,7 @@ class Entity(pulumi.CustomResource):
         $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] disabled: True/false Is this entity currently disabled. Defaults to `false`
@@ -330,6 +333,7 @@ class Entity(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EntityArgs args: The arguments to use to populate this resource's properties.

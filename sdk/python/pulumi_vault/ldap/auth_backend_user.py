@@ -26,6 +26,7 @@ class AuthBackendUserArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendUser resource.
+
         :param pulumi.Input[_builtins.str] username: The LDAP username
         :param pulumi.Input[_builtins.str] backend: Path to the authentication backend
                
@@ -123,6 +124,7 @@ class _AuthBackendUserState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendUser resources.
+
         :param pulumi.Input[_builtins.str] backend: Path to the authentication backend
                
                For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api-docs/auth/ldap).
@@ -258,6 +260,7 @@ class AuthBackendUser(pulumi.CustomResource):
         $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: Path to the authentication backend
@@ -311,6 +314,7 @@ class AuthBackendUser(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendUserArgs args: The arguments to use to populate this resource's properties.

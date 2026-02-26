@@ -39,6 +39,7 @@ class AuthBackendRoleArgs:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
+
         :param pulumi.Input[_builtins.str] path: Path where the auth backend is mounted.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -348,6 +349,7 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] bound_attributes: Mapping of attribute names to values that are expected to
@@ -697,6 +699,7 @@ class AuthBackendRole(pulumi.CustomResource):
         $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -767,6 +770,7 @@ class AuthBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleArgs args: The arguments to use to populate this resource's properties.

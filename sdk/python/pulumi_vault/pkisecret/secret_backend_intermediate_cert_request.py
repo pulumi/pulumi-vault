@@ -49,6 +49,7 @@ class SecretBackendIntermediateCertRequestArgs:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendIntermediateCertRequest resource.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] common_name: CN of intermediate to create
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
@@ -526,6 +527,7 @@ class _SecretBackendIntermediateCertRequestState:
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIntermediateCertRequest resources.
+
         :param pulumi.Input[_builtins.bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
                Only needed as a workaround in some compatibility scenarios with Active Directory
                Certificate Services
@@ -1091,6 +1093,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
@@ -1164,6 +1167,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             common_name="app.my.domain",
             opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendIntermediateCertRequestArgs args: The arguments to use to populate this resource's properties.

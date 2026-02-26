@@ -55,6 +55,7 @@ class BackendArgs:
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Backend resource.
+
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -636,6 +637,7 @@ class _BackendState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Backend resources.
+
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
@@ -1311,6 +1313,7 @@ class Backend(pulumi.CustomResource):
         Incrementing this value will trigger an update to the client secret.
         Required when using `client_secret_wo`.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -1444,6 +1447,7 @@ class Backend(pulumi.CustomResource):
         * `client_secret_wo_version` (`int:0`) - A version counter for the write-only `client_secret_wo` field.
         Incrementing this value will trigger an update to the client secret.
         Required when using `client_secret_wo`.
+
 
         :param str resource_name: The name of the resource.
         :param BackendArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class SecretBackendIntermediateSetSignedArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendIntermediateSetSigned resource.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
@@ -90,6 +91,7 @@ class _SecretBackendIntermediateSetSignedState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIntermediateSetSigned resources.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] certificate: Specifies the PEM encoded certificate. May optionally append additional
                CA certificates to populate the whole chain, which will then enable returning the full chain from
@@ -257,6 +259,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             certificate=example_secret_backend_root_sign_intermediate.certificate)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
@@ -340,6 +343,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             backend=intermediate.path,
             certificate=example_secret_backend_root_sign_intermediate.certificate)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendIntermediateSetSignedArgs args: The arguments to use to populate this resource's properties.

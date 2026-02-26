@@ -838,8 +838,8 @@ public class App {
 
     public static void stack(Context ctx) {
         final var config = ctx.config();
-        final var loginUsername = config.get("loginUsername");
-        final var loginPassword = config.get("loginPassword");
+        final var loginUsername = config.require("loginUsername");
+        final var loginPassword = config.require("loginPassword");
     }
 }
 ```
@@ -979,8 +979,8 @@ public class App {
 
     public static void stack(Context ctx) {
         final var config = ctx.config();
-        final var loginApproleRoleId = config.get("loginApproleRoleId");
-        final var loginApproleSecretId = config.get("loginApproleSecretId");
+        final var loginApproleRoleId = config.require("loginApproleRoleId");
+        final var loginApproleSecretId = config.require("loginApproleSecretId");
     }
 }
 ```

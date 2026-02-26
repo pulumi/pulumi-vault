@@ -31,6 +31,7 @@ class MfaTotpArgs:
                  skew: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a MfaTotp resource.
+
         :param pulumi.Input[_builtins.str] issuer: `(string: <required>)` - The name of the key's issuing organization.
         :param pulumi.Input[_builtins.str] algorithm: `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
                Options include `SHA1`, `SHA256` and `SHA512`
@@ -210,6 +211,7 @@ class _MfaTotpState:
                  skew: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MfaTotp resources.
+
         :param pulumi.Input[_builtins.str] algorithm: `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
                Options include `SHA1`, `SHA256` and `SHA512`
         :param pulumi.Input[_builtins.int] digits: `(int)` - The number of digits in the generated TOTP token.
@@ -420,6 +422,7 @@ class MfaTotp(pulumi.CustomResource):
         $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
@@ -472,6 +475,7 @@ class MfaTotp(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaTotpArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class SecretBackendStaticRoleArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
+
         :param pulumi.Input[_builtins.int] rotation_period: How often Vault should rotate the password of the user entry.
         :param pulumi.Input[_builtins.str] username: The username of the existing AWS IAM to manage password rotation for.
         :param pulumi.Input[_builtins.str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
@@ -185,6 +186,7 @@ class _SecretBackendStaticRoleState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
+
         :param pulumi.Input[_builtins.str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
                When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
                If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
@@ -397,6 +399,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
@@ -476,6 +479,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendStaticRoleArgs args: The arguments to use to populate this resource's properties.

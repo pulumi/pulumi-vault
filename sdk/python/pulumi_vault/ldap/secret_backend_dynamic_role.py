@@ -30,6 +30,7 @@ class SecretBackendDynamicRoleArgs:
                  username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendDynamicRole resource.
+
         :param pulumi.Input[_builtins.str] creation_ldif: A templatized LDIF string used to create a user
                account. This may contain multiple LDIF entries. The `creation_ldif` can also
                be used to add the user account to an existing group. All LDIF entries are
@@ -225,6 +226,7 @@ class _SecretBackendDynamicRoleState:
                  username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendDynamicRole resources.
+
         :param pulumi.Input[_builtins.str] creation_ldif: A templatized LDIF string used to create a user
                account. This may contain multiple LDIF entries. The `creation_ldif` can also
                be used to add the user account to an existing group. All LDIF entries are
@@ -475,6 +477,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] creation_ldif: A templatized LDIF string used to create a user
@@ -565,6 +568,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendDynamicRoleArgs args: The arguments to use to populate this resource's properties.

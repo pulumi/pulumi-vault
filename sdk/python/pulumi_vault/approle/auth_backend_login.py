@@ -27,6 +27,7 @@ class AuthBackendLoginArgs:
                  secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendLogin resource.
+
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to log in with.
         :param pulumi.Input[_builtins.str] backend: The unique path of the Vault backend to log in with.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -147,6 +148,7 @@ class _AuthBackendLoginState:
                  secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendLogin resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor for the token.
         :param pulumi.Input[_builtins.str] backend: The unique path of the Vault backend to log in with.
         :param pulumi.Input[_builtins.str] client_token: The Vault token created.
@@ -424,6 +426,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             secret_id_wo_version=1)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique path of the Vault backend to log in with.
@@ -499,6 +502,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             secret_id_wo=id.secret_id,
             secret_id_wo_version=1)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.
