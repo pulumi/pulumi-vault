@@ -49,6 +49,7 @@ class RaftSnapshotAgentConfigArgs:
                  retain: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RaftSnapshotAgentConfig resource.
+
         :param pulumi.Input[_builtins.int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[_builtins.str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -526,6 +527,7 @@ class _RaftSnapshotAgentConfigState:
                  storage_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
+
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID.
         :param pulumi.Input[_builtins.str] aws_s3_bucket: S3 bucket to write snapshots to.
         :param pulumi.Input[_builtins.bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
@@ -1066,6 +1068,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID.
@@ -1172,6 +1175,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
         ```
+
 
         :param str resource_name: The name of the resource.
         :param RaftSnapshotAgentConfigArgs args: The arguments to use to populate this resource's properties.

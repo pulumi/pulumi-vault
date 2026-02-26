@@ -31,6 +31,7 @@ class BackendConfigAcmeArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendConfigAcme resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether ACME is enabled.
         :param pulumi.Input[_builtins.bool] allow_role_ext_key_usage: Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
@@ -209,6 +210,7 @@ class _BackendConfigAcmeState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendConfigAcme resources.
+
         :param pulumi.Input[_builtins.bool] allow_role_ext_key_usage: Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_issuers: Specifies which issuers are allowed for use with ACME.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: Specifies which roles are allowed for use with ACME.
@@ -430,6 +432,7 @@ class BackendConfigAcme(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/backendConfigAcme:BackendConfigAcme example pki/config/acme
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_role_ext_key_usage: Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
@@ -493,6 +496,7 @@ class BackendConfigAcme(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/backendConfigAcme:BackendConfigAcme example pki/config/acme
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackendConfigAcmeArgs args: The arguments to use to populate this resource's properties.

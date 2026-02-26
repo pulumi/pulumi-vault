@@ -40,6 +40,7 @@ class SecretBackendKeyArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
@@ -384,6 +385,7 @@ class _SecretBackendKeyState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendKey resources.
+
         :param pulumi.Input[_builtins.bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         :param pulumi.Input[_builtins.int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
@@ -904,6 +906,7 @@ class SecretBackendKey(pulumi.CustomResource):
         $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
@@ -1015,6 +1018,7 @@ class SecretBackendKey(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendKeyArgs args: The arguments to use to populate this resource's properties.

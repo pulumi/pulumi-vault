@@ -50,6 +50,7 @@ class CertAuthBackendRoleArgs:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CertAuthBackendRole resource.
+
         :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -565,6 +566,7 @@ class _CertAuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CertAuthBackendRole resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_common_names: Allowed the common names for authenticated client certificates
@@ -1109,6 +1111,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
             token_policies=["foo"])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -1194,6 +1197,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
             token_max_ttl=600,
             token_policies=["foo"])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param CertAuthBackendRoleArgs args: The arguments to use to populate this resource's properties.

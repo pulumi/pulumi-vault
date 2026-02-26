@@ -25,6 +25,7 @@ class AlphabetArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Alphabet resource.
+
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[_builtins.str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[_builtins.str] name: The name of the alphabet.
@@ -102,6 +103,7 @@ class _AlphabetState:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Alphabet resources.
+
         :param pulumi.Input[_builtins.str] alphabet: A string of characters that contains the alphabet set.
         :param pulumi.Input[_builtins.str] name: The name of the alphabet.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -202,6 +204,7 @@ class Alphabet(pulumi.CustomResource):
             alphabet="0123456789")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alphabet: A string of characters that contains the alphabet set.
@@ -237,6 +240,7 @@ class Alphabet(pulumi.CustomResource):
             name="numerics",
             alphabet="0123456789")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AlphabetArgs args: The arguments to use to populate this resource's properties.

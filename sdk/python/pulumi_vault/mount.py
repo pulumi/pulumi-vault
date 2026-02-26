@@ -41,6 +41,7 @@ class MountArgs:
                  seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Mount resource.
+
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
         :param pulumi.Input[_builtins.str] type: Type of the backend, such as "aws"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
@@ -388,6 +389,7 @@ class _MountState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Mount resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor for this mount.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow, allowing a plugin to include
@@ -815,6 +817,7 @@ class Mount(pulumi.CustomResource):
         $ pulumi import vault:index/mount:Mount example dummy
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
@@ -915,6 +918,7 @@ class Mount(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/mount:Mount example dummy
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MountArgs args: The arguments to use to populate this resource's properties.

@@ -34,6 +34,7 @@ class SecretV2Args:
                  options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretV2 resource.
+
         :param pulumi.Input[_builtins.str] mount: Path where KV-V2 engine is mounted.
         :param pulumi.Input[_builtins.int] cas: This flag is required if `cas_required` is set to true
                on either the secret or the engine's config. In order for a
@@ -252,6 +253,7 @@ class _SecretV2State:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretV2 resources.
+
         :param pulumi.Input[_builtins.int] cas: This flag is required if `cas_required` is set to true
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
@@ -591,6 +593,7 @@ class SecretV2(pulumi.CustomResource):
         $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] cas: This flag is required if `cas_required` is set to true
@@ -692,6 +695,7 @@ class SecretV2(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretV2Args args: The arguments to use to populate this resource's properties.

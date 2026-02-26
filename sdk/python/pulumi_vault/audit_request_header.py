@@ -24,6 +24,7 @@ class AuditRequestHeaderArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuditRequestHeader resource.
+
         :param pulumi.Input[_builtins.bool] hmac: Whether this header's value should be HMAC'd in the audit logs.
         :param pulumi.Input[_builtins.str] name: The name of the request header to audit.
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
@@ -80,6 +81,7 @@ class _AuditRequestHeaderState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuditRequestHeader resources.
+
         :param pulumi.Input[_builtins.bool] hmac: Whether this header's value should be HMAC'd in the audit logs.
         :param pulumi.Input[_builtins.str] name: The name of the request header to audit.
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
@@ -157,6 +159,7 @@ class AuditRequestHeader(pulumi.CustomResource):
             hmac=False)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] hmac: Whether this header's value should be HMAC'd in the audit logs.
@@ -187,6 +190,7 @@ class AuditRequestHeader(pulumi.CustomResource):
             name="X-Forwarded-For",
             hmac=False)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuditRequestHeaderArgs args: The arguments to use to populate this resource's properties.

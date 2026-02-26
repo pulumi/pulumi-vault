@@ -29,6 +29,7 @@ class MfaOktaArgs:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaOkta resource.
+
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -186,6 +187,7 @@ class _MfaOktaState:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaOkta resources.
+
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
         :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
                `oktapreview.com`, and `okta-emea.com`.
@@ -378,6 +380,7 @@ class MfaOkta(pulumi.CustomResource):
         $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
@@ -436,6 +439,7 @@ class MfaOkta(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaOktaArgs args: The arguments to use to populate this resource's properties.

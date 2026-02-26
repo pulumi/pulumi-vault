@@ -33,6 +33,7 @@ class BackendConfigScepArgs:
                  restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a BackendConfigScep resource.
+
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the SCEP configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_digest_algorithms: List of allowed digest algorithms for SCEP requests.
@@ -215,6 +216,7 @@ class _BackendConfigScepState:
                  restrict_ca_chain_to_issuer: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering BackendConfigScep resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_digest_algorithms: List of allowed digest algorithms for SCEP requests.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_encryption_algorithms: List of allowed encryption algorithms for SCEP requests.
         :param pulumi.Input['BackendConfigScepAuthenticatorsArgs'] authenticators: Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
@@ -459,6 +461,7 @@ class BackendConfigScep(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/backendConfigScep:BackendConfigScep example pki-root/config/scep
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_digest_algorithms: List of allowed digest algorithms for SCEP requests.
@@ -529,6 +532,7 @@ class BackendConfigScep(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/backendConfigScep:BackendConfigScep example pki-root/config/scep
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackendConfigScepArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class OidcKeyArgs:
                  verification_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a OidcKey resource.
+
         :param pulumi.Input[_builtins.str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_client_ids: Array of role client ID allowed to use this key for signing. If
@@ -143,6 +144,7 @@ class _OidcKeyState:
                  verification_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering OidcKey resources.
+
         :param pulumi.Input[_builtins.str] algorithm: Signing algorithm to use. Signing algorithm to use.
                Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_client_ids: Array of role client ID allowed to use this key for signing. If
@@ -305,6 +307,7 @@ class OidcKey(pulumi.CustomResource):
         $ pulumi import vault:identity/oidcKey:OidcKey key key
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: Signing algorithm to use. Signing algorithm to use.
@@ -369,6 +372,7 @@ class OidcKey(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/oidcKey:OidcKey key key
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcKeyArgs args: The arguments to use to populate this resource's properties.

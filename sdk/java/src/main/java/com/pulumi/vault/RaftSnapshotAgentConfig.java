@@ -94,8 +94,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var azureAccountName = config.get("azureAccountName");
- *         final var azureAccountKey = config.get("azureAccountKey");
+ *         final var azureAccountName = config.require("azureAccountName");
+ *         final var azureAccountKey = config.require("azureAccountKey");
  *         var azureBackups = new RaftSnapshotAgentConfig("azureBackups", RaftSnapshotAgentConfigArgs.builder()
  *             .name("azure_backup")
  *             .intervalSeconds(86400)

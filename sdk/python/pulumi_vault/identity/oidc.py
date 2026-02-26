@@ -23,6 +23,7 @@ class OidcArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Oidc resource.
+
         :param pulumi.Input[_builtins.str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
@@ -75,6 +76,7 @@ class _OidcState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Oidc resources.
+
         :param pulumi.Input[_builtins.str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
                `api_addr` will be used. The issuer is a case sensitive URL using the https scheme that contains
                scheme, host, and optionally, port number and path components, but no query or fragment
@@ -146,6 +148,7 @@ class Oidc(pulumi.CustomResource):
         server = vault.identity.Oidc("server", issuer="https://www.acme.com")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] issuer: Issuer URL to be used in the iss claim of the token. If not set, Vault's
@@ -179,6 +182,7 @@ class Oidc(pulumi.CustomResource):
 
         server = vault.identity.Oidc("server", issuer="https://www.acme.com")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcArgs args: The arguments to use to populate this resource's properties.

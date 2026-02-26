@@ -29,6 +29,7 @@ class TemplateArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Template resource.
+
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[_builtins.str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] decode_formats: Optional mapping of name to regular expression template, used to customize
@@ -174,6 +175,7 @@ class _TemplateState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Template resources.
+
         :param pulumi.Input[_builtins.str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] decode_formats: Optional mapping of name to regular expression template, used to customize
                the decoded output. (requires Vault Enterprise 1.9+)
@@ -363,6 +365,7 @@ class Template(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alphabet: The alphabet to use for this template. This is only used during FPE transformations.
@@ -425,6 +428,7 @@ class Template(pulumi.CustomResource):
                 "last-four-digits": "$4",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TemplateArgs args: The arguments to use to populate this resource's properties.

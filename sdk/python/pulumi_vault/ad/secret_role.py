@@ -26,6 +26,7 @@ class SecretRoleArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] role: The name to identify this role within the backend.
@@ -127,6 +128,7 @@ class _SecretRoleState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the AD secret backend is mounted at,
                with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] last_vault_rotation: Timestamp of the last password rotation by Vault.
@@ -303,6 +305,7 @@ class SecretRole(pulumi.CustomResource):
         $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the AD secret backend is mounted at,
@@ -365,6 +368,7 @@ class SecretRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretRoleArgs args: The arguments to use to populate this resource's properties.

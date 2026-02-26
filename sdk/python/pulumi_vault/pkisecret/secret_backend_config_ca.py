@@ -24,6 +24,7 @@ class SecretBackendConfigCaArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigCa resource.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] pem_bundle: The key and certificate PEM bundle
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -84,6 +85,7 @@ class _SecretBackendConfigCaState:
                  pem_bundle: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigCa resources.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -218,6 +220,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
@@ -302,6 +305,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         \"\"\",
             opts = pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendConfigCaArgs args: The arguments to use to populate this resource's properties.

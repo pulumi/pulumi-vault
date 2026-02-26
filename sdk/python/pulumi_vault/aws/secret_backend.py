@@ -60,6 +60,7 @@ class SecretBackendArgs:
                  username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[_builtins.str] access_key: The AWS Access Key ID this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -761,6 +762,7 @@ class _SecretBackendState:
                  username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.str] access_key: The AWS Access Key ID this backend should use to
                issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
@@ -1573,6 +1575,7 @@ class SecretBackend(pulumi.CustomResource):
         $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The AWS Access Key ID this backend should use to
@@ -1749,6 +1752,7 @@ class SecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

@@ -34,6 +34,7 @@ class SecretBackendRoleArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
         :param pulumi.Input[_builtins.str] consul_namespace: The Consul namespace that the token will be created in.
                Applicable for Vault 1.10+ and Consul 1.7+".
@@ -270,6 +271,7 @@ class _SecretBackendRoleState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
         :param pulumi.Input[_builtins.str] consul_namespace: The Consul namespace that the token will be created in.
                Applicable for Vault 1.10+ and Consul 1.7+".
@@ -542,6 +544,7 @@ class SecretBackendRole(pulumi.CustomResource):
         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
@@ -607,6 +610,7 @@ class SecretBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.

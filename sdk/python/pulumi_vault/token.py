@@ -36,6 +36,7 @@ class TokenArgs:
                  wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Token resource.
+
         :param pulumi.Input[_builtins.str] display_name: String containing the token display name
         :param pulumi.Input[_builtins.str] explicit_max_ttl: The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Metadata to be set on this token
@@ -295,6 +296,7 @@ class _TokenState:
                  wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Token resources.
+
         :param pulumi.Input[_builtins.str] client_token: String containing the client token if stored in present file
         :param pulumi.Input[_builtins.str] display_name: String containing the token display name
         :param pulumi.Input[_builtins.str] explicit_max_ttl: The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
@@ -663,6 +665,7 @@ class Token(pulumi.CustomResource):
         $ pulumi import vault:index/token:Token example <accessor_id>
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] display_name: String containing the token display name
@@ -726,6 +729,7 @@ class Token(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/token:Token example <accessor_id>
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TokenArgs args: The arguments to use to populate this resource's properties.

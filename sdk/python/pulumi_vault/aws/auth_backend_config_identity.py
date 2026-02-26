@@ -27,6 +27,7 @@ class AuthBackendConfigIdentityArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendConfigIdentity resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.str] ec2_alias: How to generate the identity alias when using the ec2 auth method. Valid choices are
@@ -147,6 +148,7 @@ class _AuthBackendConfigIdentityState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfigIdentity resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[_builtins.str] ec2_alias: How to generate the identity alias when using the ec2 auth method. Valid choices are
@@ -298,6 +300,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the AWS auth backend being configured was
@@ -349,6 +352,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendConfigIdentityArgs args: The arguments to use to populate this resource's properties.

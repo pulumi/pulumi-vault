@@ -25,6 +25,7 @@ class TeamArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
+
         :param pulumi.Input[_builtins.str] team: GitHub team name in "slugified" format, for example: Terraform
                Developers > `terraform-developers`.
         :param pulumi.Input[_builtins.str] backend: Path where the github auth backend is mounted. Defaults to `github`
@@ -108,6 +109,7 @@ class _TeamState:
                  team: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Team resources.
+
         :param pulumi.Input[_builtins.str] backend: Path where the github auth backend is mounted. Defaults to `github`
                if not specified.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -223,6 +225,7 @@ class Team(pulumi.CustomResource):
         $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: Path where the github auth backend is mounted. Defaults to `github`
@@ -270,6 +273,7 @@ class Team(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TeamArgs args: The arguments to use to populate this resource's properties.

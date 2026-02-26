@@ -42,6 +42,7 @@ class AuthBackendClientArgs:
                  use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackendClient resource.
+
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
                auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_sts_header_values: List of additional headers that are allowed to be in STS request headers.
@@ -446,6 +447,7 @@ class _AuthBackendClientState:
                  use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendClient resources.
+
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
                auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_sts_header_values: List of additional headers that are allowed to be in STS request headers.
@@ -940,6 +942,7 @@ class AuthBackendClient(pulumi.CustomResource):
         $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The AWS access key that Vault should use for the
@@ -1087,6 +1090,7 @@ class AuthBackendClient(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendClientArgs args: The arguments to use to populate this resource's properties.

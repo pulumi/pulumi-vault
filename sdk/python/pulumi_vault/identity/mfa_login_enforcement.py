@@ -28,6 +28,7 @@ class MfaLoginEnforcementArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaLoginEnforcement resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] mfa_method_ids: Set of MFA method UUIDs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] auth_method_accessors: Set of auth method accessor IDs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] auth_method_types: Set of auth method types.
@@ -150,6 +151,7 @@ class _MfaLoginEnforcementState:
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaLoginEnforcement resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] auth_method_accessors: Set of auth method accessor IDs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] auth_method_types: Set of auth method types.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] identity_entity_ids: Set of identity entity IDs.
@@ -344,6 +346,7 @@ class MfaLoginEnforcement(pulumi.CustomResource):
         $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] auth_method_accessors: Set of auth method accessor IDs.
@@ -386,6 +389,7 @@ class MfaLoginEnforcement(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaLoginEnforcementArgs args: The arguments to use to populate this resource's properties.

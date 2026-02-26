@@ -25,6 +25,7 @@ class GroupPoliciesArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupPolicies resource.
+
         :param pulumi.Input[_builtins.str] group_id: Group ID to assign policies to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policies: List of policies to assign to the group
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
@@ -110,6 +111,7 @@ class _GroupPoliciesState:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering GroupPolicies resources.
+
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
                
                If `true`, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource.
@@ -266,6 +268,7 @@ class GroupPolicies(pulumi.CustomResource):
             group_id=internal.id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exclusive: Defaults to `true`.
@@ -338,6 +341,7 @@ class GroupPolicies(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupPoliciesArgs args: The arguments to use to populate this resource's properties.

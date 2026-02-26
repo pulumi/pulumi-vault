@@ -32,6 +32,7 @@ class BackendConfigEstArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendConfigEst resource.
+
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the EST configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
@@ -196,6 +197,7 @@ class _BackendConfigEstState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendConfigEst resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
                
                <a id="nestedatt--authenticators"></a>
@@ -458,6 +460,7 @@ class BackendConfigEst(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/backendConfigEst:BackendConfigEst example pki-root/config/est
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
@@ -562,6 +565,7 @@ class BackendConfigEst(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/backendConfigEst:BackendConfigEst example pki-root/config/est
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackendConfigEstArgs args: The arguments to use to populate this resource's properties.

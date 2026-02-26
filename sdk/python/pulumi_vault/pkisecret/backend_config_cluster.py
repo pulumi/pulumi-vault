@@ -25,6 +25,7 @@ class BackendConfigClusterArgs:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendConfigCluster resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] aia_path: Specifies the path to this performance replication cluster's AIA distribution point.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -102,6 +103,7 @@ class _BackendConfigClusterState:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendConfigCluster resources.
+
         :param pulumi.Input[_builtins.str] aia_path: Specifies the path to this performance replication cluster's AIA distribution point.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -213,6 +215,7 @@ class BackendConfigCluster(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/backendConfigCluster:BackendConfigCluster example pki-root/config/cluster
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aia_path: Specifies the path to this performance replication cluster's AIA distribution point.
@@ -259,6 +262,7 @@ class BackendConfigCluster(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/backendConfigCluster:BackendConfigCluster example pki-root/config/cluster
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackendConfigClusterArgs args: The arguments to use to populate this resource's properties.

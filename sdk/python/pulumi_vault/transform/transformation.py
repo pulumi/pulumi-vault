@@ -31,6 +31,7 @@ class TransformationArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Transformation resource.
+
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
@@ -208,6 +209,7 @@ class _TransformationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Transformation resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
@@ -416,6 +418,7 @@ class Transformation(pulumi.CustomResource):
 
         Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
@@ -467,6 +470,7 @@ class Transformation(pulumi.CustomResource):
         ## Tutorials
 
         Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
+
 
         :param str resource_name: The name of the resource.
         :param TransformationArgs args: The arguments to use to populate this resource's properties.

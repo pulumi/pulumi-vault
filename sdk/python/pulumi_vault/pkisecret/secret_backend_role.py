@@ -75,6 +75,7 @@ class SecretBackendRoleArgs:
                  use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] allow_any_name: Flag to allow any name
         :param pulumi.Input[_builtins.bool] allow_bare_domains: Flag to allow certificates matching the actual domain
@@ -936,6 +937,7 @@ class _SecretBackendRoleState:
                  use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+
         :param pulumi.Input[_builtins.bool] allow_any_name: Flag to allow any name
         :param pulumi.Input[_builtins.bool] allow_bare_domains: Flag to allow certificates matching the actual domain
         :param pulumi.Input[_builtins.bool] allow_glob_domains: Flag to allow names containing glob patterns.
@@ -1836,6 +1838,7 @@ class SecretBackendRole(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_any_name: Flag to allow any name
@@ -1943,6 +1946,7 @@ class SecretBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.

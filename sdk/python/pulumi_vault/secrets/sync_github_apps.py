@@ -25,6 +25,7 @@ class SyncGithubAppsArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncGithubApps resource.
+
         :param pulumi.Input[_builtins.int] app_id: The GitHub application ID.
         :param pulumi.Input[_builtins.str] private_key: The content of a PEM formatted private key generated on GitHub for the app.
         :param pulumi.Input[_builtins.str] name: The user-defined name of the GitHub App configuration.
@@ -100,6 +101,7 @@ class _SyncGithubAppsState:
                  private_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncGithubApps resources.
+
         :param pulumi.Input[_builtins.int] app_id: The GitHub application ID.
         :param pulumi.Input[_builtins.str] fingerprint: A fingerprint of a private key.
         :param pulumi.Input[_builtins.str] name: The user-defined name of the GitHub App configuration.
@@ -228,6 +230,7 @@ class SyncGithubApps(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncGithubApps:SyncGithubApps gh github-apps
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] app_id: The GitHub application ID.
@@ -277,6 +280,7 @@ class SyncGithubApps(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncGithubApps:SyncGithubApps gh github-apps
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncGithubAppsArgs args: The arguments to use to populate this resource's properties.

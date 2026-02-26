@@ -28,6 +28,7 @@ class MfaDuoArgs:
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaDuo resource.
+
         :param pulumi.Input[_builtins.str] api_hostname: API hostname for Duo
         :param pulumi.Input[_builtins.str] integration_key: Integration key for Duo
         :param pulumi.Input[_builtins.str] secret_key: Secret key for Duo
@@ -152,6 +153,7 @@ class _MfaDuoState:
                  uuid: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaDuo resources.
+
         :param pulumi.Input[_builtins.str] api_hostname: API hostname for Duo
         :param pulumi.Input[_builtins.str] integration_key: Integration key for Duo
         :param pulumi.Input[_builtins.str] method_id: Method ID.
@@ -402,6 +404,7 @@ class MfaDuo(pulumi.CustomResource):
         $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_hostname: API hostname for Duo
@@ -440,6 +443,7 @@ class MfaDuo(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
+
 
         :param str resource_name: The name of the resource.
         :param MfaDuoArgs args: The arguments to use to populate this resource's properties.

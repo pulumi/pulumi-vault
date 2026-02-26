@@ -29,6 +29,7 @@ class OidcClientArgs:
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OidcClient resource.
+
         :param pulumi.Input[_builtins.int] access_token_ttl: The time-to-live for access tokens obtained by the client.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] assignments: A list of assignment resources associated with the client.
         :param pulumi.Input[_builtins.str] client_type: The client type based on its ability to maintain confidentiality of credentials.
@@ -185,6 +186,7 @@ class _OidcClientState:
                  redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OidcClient resources.
+
         :param pulumi.Input[_builtins.int] access_token_ttl: The time-to-live for access tokens obtained by the client.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] assignments: A list of assignment resources associated with the client.
         :param pulumi.Input[_builtins.str] client_id: The Client ID returned by Vault.
@@ -407,6 +409,7 @@ class OidcClient(pulumi.CustomResource):
         $ pulumi import vault:identity/oidcClient:OidcClient test my-app
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] access_token_ttl: The time-to-live for access tokens obtained by the client.
@@ -466,6 +469,7 @@ class OidcClient(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/oidcClient:OidcClient test my-app
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcClientArgs args: The arguments to use to populate this resource's properties.

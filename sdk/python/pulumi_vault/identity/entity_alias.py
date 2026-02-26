@@ -26,6 +26,7 @@ class EntityAliasArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a EntityAlias resource.
+
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[_builtins.str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata to be associated with this alias.
@@ -118,6 +119,7 @@ class _EntityAliasState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EntityAlias resources.
+
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata to be associated with this alias.
         :param pulumi.Input[_builtins.str] mount_accessor: Accessor of the mount to which the alias should belong to.
@@ -244,6 +246,7 @@ class EntityAlias(pulumi.CustomResource):
         $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
@@ -290,6 +293,7 @@ class EntityAlias(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
         ```
+
 
         :param str resource_name: The name of the resource.
         :param EntityAliasArgs args: The arguments to use to populate this resource's properties.

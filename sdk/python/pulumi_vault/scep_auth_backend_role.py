@@ -37,6 +37,7 @@ class ScepAuthBackendRoleArgs:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ScepAuthBackendRole resource.
+
         :param pulumi.Input[_builtins.str] auth_type: The authentication type to use. This can be either "static-challenge" or "intune".
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -304,6 +305,7 @@ class _ScepAuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ScepAuthBackendRole resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.str] auth_type: The authentication type to use. This can be either "static-challenge" or "intune".
@@ -597,6 +599,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
             token_policies=["scep-clients"])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -647,6 +650,7 @@ class ScepAuthBackendRole(pulumi.CustomResource):
             token_max_ttl=600,
             token_policies=["scep-clients"])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ScepAuthBackendRoleArgs args: The arguments to use to populate this resource's properties.

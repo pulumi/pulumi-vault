@@ -24,6 +24,7 @@ class PluginPinnedVersionArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PluginPinnedVersion resource.
+
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
         :param pulumi.Input[_builtins.str] version: Semantic version of the plugin to pin.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
@@ -78,6 +79,7 @@ class _PluginPinnedVersionState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PluginPinnedVersion resources.
+
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
         :param pulumi.Input[_builtins.str] version: Semantic version of the plugin to pin.
@@ -177,6 +179,7 @@ class PluginPinnedVersion(pulumi.CustomResource):
         $ pulumi import vault:index/pluginPinnedVersion:PluginPinnedVersion jwt_pin auth/jwt
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
@@ -229,6 +232,7 @@ class PluginPinnedVersion(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/pluginPinnedVersion:PluginPinnedVersion jwt_pin auth/jwt
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PluginPinnedVersionArgs args: The arguments to use to populate this resource's properties.

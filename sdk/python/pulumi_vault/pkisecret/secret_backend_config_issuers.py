@@ -25,6 +25,7 @@ class SecretBackendConfigIssuersArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigIssuers resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] default: Specifies the default issuer using the issuer ID.
@@ -110,6 +111,7 @@ class _SecretBackendConfigIssuersState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigIssuers resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
                leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] default: Specifies the default issuer using the issuer ID.
@@ -236,6 +238,7 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no
@@ -293,6 +296,7 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendConfigIssuersArgs args: The arguments to use to populate this resource's properties.

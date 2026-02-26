@@ -36,6 +36,7 @@ class SyncGhDestinationArgs:
                  secrets_location: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncGhDestination resource.
+
         :param pulumi.Input[_builtins.str] access_token: Fine-grained or personal access token.
                Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
                variable.
@@ -325,6 +326,7 @@ class _SyncGhDestinationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncGhDestination resources.
+
         :param pulumi.Input[_builtins.str] access_token: Fine-grained or personal access token.
                Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
                variable.
@@ -679,6 +681,7 @@ class SyncGhDestination(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_token: Fine-grained or personal access token.
@@ -771,6 +774,7 @@ class SyncGhDestination(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncGhDestinationArgs args: The arguments to use to populate this resource's properties.

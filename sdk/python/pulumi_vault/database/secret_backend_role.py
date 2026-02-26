@@ -33,6 +33,7 @@ class SecretBackendRoleArgs:
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] creation_statements: The database statements to execute when
                creating a user.
@@ -260,6 +261,7 @@ class _SecretBackendRoleState:
                  rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] creation_statements: The database statements to execute when
                creating a user.
@@ -537,6 +539,7 @@ class SecretBackendRole(pulumi.CustomResource):
         $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The unique name of the Vault mount to configure.
@@ -617,6 +620,7 @@ class SecretBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRoleArgs args: The arguments to use to populate this resource's properties.

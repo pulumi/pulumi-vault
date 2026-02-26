@@ -53,6 +53,7 @@ class SecretBackendArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
@@ -618,6 +619,7 @@ class _SecretBackendState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor of the created GCP mount.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
@@ -1244,6 +1246,7 @@ class SecretBackend(pulumi.CustomResource):
         * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
           **Note**: This property is write-only and will not be read from the API.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -1351,6 +1354,7 @@ class SecretBackend(pulumi.CustomResource):
 
         * `credentials_wo` - (Optional) The GCP service account credentials in JSON format. Can be updated.
           **Note**: This property is write-only and will not be read from the API.
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

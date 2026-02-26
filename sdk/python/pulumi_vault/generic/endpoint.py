@@ -28,6 +28,7 @@ class EndpointArgs:
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
+
         :param pulumi.Input[_builtins.str] data_json: String containing a JSON-encoded object that will be
                written to the given path as the secret data.
         :param pulumi.Input[_builtins.str] path: The full logical path at which to write the given
@@ -198,6 +199,7 @@ class _EndpointState:
                  write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
+
         :param pulumi.Input[_builtins.str] data_json: String containing a JSON-encoded object that will be
                written to the given path as the secret data.
         :param pulumi.Input[_builtins.bool] disable_delete: - (Optional) True/false. Set this to true if your
@@ -481,6 +483,7 @@ class Endpoint(pulumi.CustomResource):
 
         Import is not supported for this resource.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] data_json: String containing a JSON-encoded object that will be
@@ -592,6 +595,7 @@ class Endpoint(pulumi.CustomResource):
         ## Import
 
         Import is not supported for this resource.
+
 
         :param str resource_name: The name of the resource.
         :param EndpointArgs args: The arguments to use to populate this resource's properties.

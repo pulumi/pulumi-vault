@@ -53,6 +53,7 @@ class NomadSecretBackendArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a NomadSecretBackend resource.
+
         :param pulumi.Input[_builtins.str] address: Specifies the address of the Nomad instance, provided
                as "protocol://host:port" like "http://127.0.0.1:4646".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -602,6 +603,7 @@ class _NomadSecretBackendState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering NomadSecretBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
         :param pulumi.Input[_builtins.str] address: Specifies the address of the Nomad instance, provided
                as "protocol://host:port" like "http://127.0.0.1:4646".
@@ -1215,6 +1217,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Specifies the address of the Nomad instance, provided
@@ -1317,6 +1320,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NomadSecretBackendArgs args: The arguments to use to populate this resource's properties.

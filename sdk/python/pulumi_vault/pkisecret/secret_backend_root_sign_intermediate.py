@@ -57,6 +57,7 @@ class SecretBackendRootSignIntermediateArgs:
                  use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendRootSignIntermediate resource.
+
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] common_name: CN of intermediate to create
         :param pulumi.Input[_builtins.str] csr: The CSR
@@ -659,6 +660,7 @@ class _SecretBackendRootSignIntermediateState:
                  use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRootSignIntermediate resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ca_chains: A list of the issuing and intermediate CA certificates in the `format` specified.
@@ -1357,6 +1359,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[intermediate]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
@@ -1428,6 +1431,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             organization="My organization",
             opts = pulumi.ResourceOptions(depends_on=[intermediate]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRootSignIntermediateArgs args: The arguments to use to populate this resource's properties.

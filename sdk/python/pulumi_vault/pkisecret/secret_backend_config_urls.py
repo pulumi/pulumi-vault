@@ -27,6 +27,7 @@ class SecretBackendConfigUrlsArgs:
                  ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigUrls resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[_builtins.bool] enable_templating: Specifies that templating of AIA fields is allowed.
@@ -136,6 +137,7 @@ class _SecretBackendConfigUrlsState:
                  ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigUrls resources.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
         :param pulumi.Input[_builtins.bool] enable_templating: Specifies that templating of AIA fields is allowed.
@@ -278,6 +280,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -325,6 +328,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendConfigUrlsArgs args: The arguments to use to populate this resource's properties.

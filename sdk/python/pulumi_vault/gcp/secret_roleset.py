@@ -30,6 +30,7 @@ class SecretRolesetArgs:
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretRoleset resource.
+
         :param pulumi.Input[_builtins.str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[_builtins.str] project: Name of the GCP project that this roleset's service account will belong to.
@@ -153,6 +154,7 @@ class _SecretRolesetState:
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretRoleset resources.
+
         :param pulumi.Input[_builtins.str] backend: Path where the GCP Secrets Engine is mounted
         :param pulumi.Input[Sequence[pulumi.Input['SecretRolesetBindingArgs']]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -332,6 +334,7 @@ class SecretRoleset(pulumi.CustomResource):
         $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: Path where the GCP Secrets Engine is mounted
@@ -386,6 +389,7 @@ class SecretRoleset(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretRolesetArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class SecretBackendArgs:
                  private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[_builtins.str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -142,6 +143,7 @@ class _SecretBackendState:
                  public_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -338,6 +340,7 @@ class SecretBackend(pulumi.CustomResource):
         $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
@@ -421,6 +424,7 @@ class SecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

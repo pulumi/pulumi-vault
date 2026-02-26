@@ -25,6 +25,7 @@ class NamespaceArgs:
                  path_fq: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+
         :param pulumi.Input[_builtins.str] path: The path of the namespace. Must not have a trailing `/`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata describing this namespace. Value type
                is `map[string]string`. Requires Vault version 1.12+.
@@ -107,6 +108,7 @@ class _NamespaceState:
                  path_fq: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata describing this namespace. Value type
                is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -303,6 +305,7 @@ class Namespace(pulumi.CustomResource):
         path_fq      = "example2"
         }
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata describing this namespace. Value type
@@ -417,6 +420,7 @@ class Namespace(pulumi.CustomResource):
         path         = "example2"
         path_fq      = "example2"
         }
+
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

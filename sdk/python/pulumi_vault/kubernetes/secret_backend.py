@@ -46,6 +46,7 @@ class SecretBackendArgs:
                  service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
@@ -482,6 +483,7 @@ class _SecretBackendState:
                  service_account_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
@@ -984,6 +986,7 @@ class SecretBackend(pulumi.CustomResource):
         $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -1080,6 +1083,7 @@ class SecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

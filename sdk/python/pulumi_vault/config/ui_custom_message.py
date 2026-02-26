@@ -32,6 +32,7 @@ class UiCustomMessageArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UiCustomMessage resource.
+
         :param pulumi.Input[_builtins.str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[_builtins.str] start_time: The starting time of the active period of the custom message
         :param pulumi.Input[_builtins.str] title: The title of the custom message
@@ -181,6 +182,7 @@ class _UiCustomMessageState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UiCustomMessage resources.
+
         :param pulumi.Input[_builtins.bool] authenticated: A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
         :param pulumi.Input[_builtins.str] end_time: The ending time of the active period of the custom message. Can be omitted for non-expiring message
         :param pulumi.Input['UiCustomMessageLinkArgs'] link: A block containing a hyperlink associated with the custom message
@@ -337,6 +339,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  __props__=None):
         """
         Create a UiCustomMessage resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] authenticated: A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
@@ -357,6 +360,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create a UiCustomMessage resource with the given unique name, props, and options.
+
         :param str resource_name: The name of the resource.
         :param UiCustomMessageArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

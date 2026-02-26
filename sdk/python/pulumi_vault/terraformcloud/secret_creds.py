@@ -24,6 +24,7 @@ class SecretCredsArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretCreds resource.
+
         :param pulumi.Input[_builtins.str] backend: The path to the Terraform Cloud secret backend to
                read credentials from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] role: The name of the Terraform Cloud secret backend role to generate
@@ -93,6 +94,7 @@ class _SecretCredsState:
                  token_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretCreds resources.
+
         :param pulumi.Input[_builtins.str] backend: The path to the Terraform Cloud secret backend to
                read credentials from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] lease_id: The lease associated with the token. Only user tokens will have a 
@@ -273,6 +275,7 @@ class SecretCreds(pulumi.CustomResource):
             role=example.name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path to the Terraform Cloud secret backend to
@@ -320,6 +323,7 @@ class SecretCreds(pulumi.CustomResource):
             backend=test.backend,
             role=example.name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretCredsArgs args: The arguments to use to populate this resource's properties.

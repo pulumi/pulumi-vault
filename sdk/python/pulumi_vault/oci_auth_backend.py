@@ -33,6 +33,7 @@ class OciAuthBackendArgs:
                  tune: Optional[pulumi.Input['OciAuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a OciAuthBackend resource.
+
         :param pulumi.Input[_builtins.str] home_tenancy_id: The Tenancy OCID of your OCI account.
         :param pulumi.Input[_builtins.str] description: A description of the auth backend.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Stops rotation of the root credential until set to false.
@@ -211,6 +212,7 @@ class _OciAuthBackendState:
                  tune: Optional[pulumi.Input['OciAuthBackendTuneArgs']] = None):
         """
         Input properties used for looking up and filtering OciAuthBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: The accessor of the auth backend
         :param pulumi.Input[_builtins.str] description: A description of the auth backend.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Stops rotation of the root credential until set to false.
@@ -441,6 +443,7 @@ class OciAuthBackend(pulumi.CustomResource):
         $ pulumi import vault:index/ociAuthBackend:OciAuthBackend example oci
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description of the auth backend.
@@ -499,6 +502,7 @@ class OciAuthBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:index/ociAuthBackend:OciAuthBackend example oci
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OciAuthBackendArgs args: The arguments to use to populate this resource's properties.

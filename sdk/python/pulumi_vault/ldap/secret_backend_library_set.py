@@ -28,6 +28,7 @@ class SecretBackendLibrarySetArgs:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackendLibrarySet resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[_builtins.bool] disable_check_in_enforcement: Disable enforcing that service
                accounts must be checked in by the entity or client token that checked them
@@ -163,6 +164,7 @@ class _SecretBackendLibrarySetState:
                  ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendLibrarySet resources.
+
         :param pulumi.Input[_builtins.bool] disable_check_in_enforcement: Disable enforcing that service
                accounts must be checked in by the entity or client token that checked them
                out. Defaults to false.
@@ -346,6 +348,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
         $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] disable_check_in_enforcement: Disable enforcing that service
@@ -414,6 +417,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendLibrarySetArgs args: The arguments to use to populate this resource's properties.

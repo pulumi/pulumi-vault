@@ -55,6 +55,7 @@ class SecretBackendArgs:
                  userdn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search.
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Use anonymous binds when performing LDAP group searches
@@ -653,6 +654,7 @@ class _SecretBackendState:
                  userdn: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Use anonymous binds when performing LDAP group searches
                (if true the initial credentials will still be used for the initial connection test).
         :param pulumi.Input[_builtins.str] backend: The unique path this backend should be mounted at. Must
@@ -1292,6 +1294,7 @@ class SecretBackend(pulumi.CustomResource):
         $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] anonymous_group_search: Use anonymous binds when performing LDAP group searches
@@ -1395,6 +1398,7 @@ class SecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

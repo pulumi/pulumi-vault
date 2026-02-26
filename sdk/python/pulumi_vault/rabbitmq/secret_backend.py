@@ -49,6 +49,7 @@ class SecretBackendArgs:
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
+
         :param pulumi.Input[_builtins.str] connection_uri: Specifies the RabbitMQ connection URI.
         :param pulumi.Input[_builtins.str] username: Specifies the RabbitMQ management administrator username.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -530,6 +531,7 @@ class _SecretBackendState:
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+
         :param pulumi.Input[_builtins.str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
@@ -1085,6 +1087,7 @@ class SecretBackend(pulumi.CustomResource):
         $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
@@ -1190,6 +1193,7 @@ class SecretBackend(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendArgs args: The arguments to use to populate this resource's properties.

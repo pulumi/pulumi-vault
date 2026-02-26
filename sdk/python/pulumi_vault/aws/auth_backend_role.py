@@ -50,6 +50,7 @@ class AuthBackendRoleArgs:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
+
         :param pulumi.Input[_builtins.str] role: The name of the role.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
@@ -632,6 +633,7 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[_builtins.bool] allow_instance_migration: If set to `true`, allows migration of
@@ -1274,6 +1276,7 @@ class AuthBackendRole(pulumi.CustomResource):
         $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
@@ -1409,6 +1412,7 @@ class AuthBackendRole(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoleArgs args: The arguments to use to populate this resource's properties.

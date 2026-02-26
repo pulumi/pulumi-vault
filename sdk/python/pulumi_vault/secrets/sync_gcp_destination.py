@@ -35,6 +35,7 @@ class SyncGcpDestinationArgs:
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncGcpDestination resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Allowed ports for outbound network connectivity. If not set, all ports are allowed.
@@ -286,6 +287,7 @@ class _SyncGcpDestinationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncGcpDestination resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Allowed ports for outbound network connectivity. If not set, all ports are allowed.
@@ -654,6 +656,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
@@ -786,6 +789,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SyncGcpDestinationArgs args: The arguments to use to populate this resource's properties.

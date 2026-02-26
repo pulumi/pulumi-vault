@@ -44,6 +44,7 @@ class BackendConfigAutoTidyArgs:
                  tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a BackendConfigAutoTidy resource.
+
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether automatic tidy is enabled or not.
@@ -460,6 +461,7 @@ class _BackendConfigAutoTidyState:
                  tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering BackendConfigAutoTidy resources.
+
         :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the configuration from, with no leading or trailing `/`s.
@@ -901,6 +903,7 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
             interval_duration="1h")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acme_account_safety_buffer: The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
@@ -974,6 +977,7 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
             tidy_cert_store=True,
             interval_duration="1h")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BackendConfigAutoTidyArgs args: The arguments to use to populate this resource's properties.

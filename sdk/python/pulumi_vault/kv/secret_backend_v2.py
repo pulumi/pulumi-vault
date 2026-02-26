@@ -26,6 +26,7 @@ class SecretBackendV2Args:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendV2 resource.
+
         :param pulumi.Input[_builtins.str] mount: Path where KV-V2 engine is mounted.
         :param pulumi.Input[_builtins.bool] cas_required: If true, all keys will require the cas
                parameter to be set on all write requests.
@@ -123,6 +124,7 @@ class _SecretBackendV2State:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendV2 resources.
+
         :param pulumi.Input[_builtins.bool] cas_required: If true, all keys will require the cas
                parameter to be set on all write requests.
         :param pulumi.Input[_builtins.int] delete_version_after: If set, specifies the length of time before
@@ -266,6 +268,7 @@ class SecretBackendV2(pulumi.CustomResource):
         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] cas_required: If true, all keys will require the cas
@@ -327,6 +330,7 @@ class SecretBackendV2(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendV2Args args: The arguments to use to populate this resource's properties.

@@ -31,6 +31,7 @@ class GroupArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs
                returned from Vault or specified in the resource. You can use
                `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
@@ -221,6 +222,7 @@ class _GroupState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[_builtins.bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs
                returned from Vault or specified in the resource. You can use
                `identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
@@ -493,6 +495,7 @@ class Group(pulumi.CustomResource):
         $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] external_member_entity_ids: `false` by default. If set to `true`, this resource will ignore any Entity IDs
@@ -602,6 +605,7 @@ class Group(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/group:Group test 'fcbf1efb-2b69-4209-bed8-811e3475dad3'
         ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

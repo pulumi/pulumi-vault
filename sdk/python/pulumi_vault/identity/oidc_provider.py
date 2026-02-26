@@ -27,6 +27,7 @@ class OidcProviderArgs:
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OidcProvider resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
                If empty, no clients are allowed. If `*`, all clients are allowed.
         :param pulumi.Input[_builtins.bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
@@ -140,6 +141,7 @@ class _OidcProviderState:
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OidcProvider resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
                If empty, no clients are allowed. If `*`, all clients are allowed.
         :param pulumi.Input[_builtins.bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
@@ -326,6 +328,7 @@ class OidcProvider(pulumi.CustomResource):
         $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
@@ -397,6 +400,7 @@ class OidcProvider(pulumi.CustomResource):
         ```sh
         $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OidcProviderArgs args: The arguments to use to populate this resource's properties.

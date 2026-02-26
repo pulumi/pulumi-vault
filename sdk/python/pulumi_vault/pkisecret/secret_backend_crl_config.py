@@ -35,6 +35,7 @@ class SecretBackendCrlConfigArgs:
                  unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendCrlConfig resource.
+
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         :param pulumi.Input[_builtins.str] auto_rebuild_grace_period: Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
@@ -280,6 +281,7 @@ class _SecretBackendCrlConfigState:
                  unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCrlConfig resources.
+
         :param pulumi.Input[_builtins.bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         :param pulumi.Input[_builtins.str] auto_rebuild_grace_period: Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -548,6 +550,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             disable=False)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_rebuild: Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
@@ -597,6 +600,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             expiry="72h",
             disable=False)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SecretBackendCrlConfigArgs args: The arguments to use to populate this resource's properties.
