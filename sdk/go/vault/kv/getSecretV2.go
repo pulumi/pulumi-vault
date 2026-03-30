@@ -64,7 +64,7 @@ import (
 //				Mount:             kvv2.Path,
 //				Name:              pulumi.String("secret"),
 //				DeleteAllVersions: pulumi.Bool(true),
-//				DataJson:          pulumi.String(json0),
+//				DataJson:          pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err

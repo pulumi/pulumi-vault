@@ -65,7 +65,7 @@ import (
 //			token, err := kv.NewSecretV2(ctx, "token", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
 //				Name:     pulumi.String("token"),
-//				DataJson: pulumi.String(json0),
+//				DataJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err

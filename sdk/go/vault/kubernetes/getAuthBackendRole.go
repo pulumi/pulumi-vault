@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("policies", role.Policies)
+//			ctx.Export("policies", pulumi.Any(role.Policies))
 //			return nil
 //		})
 //	}

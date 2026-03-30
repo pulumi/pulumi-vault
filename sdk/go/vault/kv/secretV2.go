@@ -58,7 +58,7 @@ import (
 //				Name:              pulumi.String("secret"),
 //				Cas:               pulumi.Int(1),
 //				DeleteAllVersions: pulumi.Bool(true),
-//				DataJsonWo:        pulumi.String(json0),
+//				DataJsonWo:        pulumi.String(pulumi.String(json0)),
 //				DataJsonWoVersion: pulumi.Int(1),
 //				CustomMetadata: &kv.SecretV2CustomMetadataArgs{
 //					MaxVersions: pulumi.Int(5),

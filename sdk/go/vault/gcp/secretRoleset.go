@@ -49,7 +49,7 @@ import (
 //				Backend:    gcp.Path,
 //				Roleset:    pulumi.String("project_viewer"),
 //				SecretType: pulumi.String("access_token"),
-//				Project:    pulumi.String(project),
+//				Project:    pulumi.String(pulumi.String(project)),
 //				TokenScopes: pulumi.StringArray{
 //					pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
 //				},

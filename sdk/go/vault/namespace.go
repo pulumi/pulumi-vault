@@ -82,7 +82,7 @@ import (
 //			for key0, _ := range childNamespaces {
 //				__res, err := vault.NewNamespace(ctx, fmt.Sprintf("children-%v", key0), &vault.NamespaceArgs{
 //					Namespace: parent.Path,
-//					Path:      pulumi.Float64(key0),
+//					Path:      pulumi.String(pulumi.Float64(key0)),
 //				})
 //				if err != nil {
 //					return err
@@ -92,7 +92,7 @@ import (
 //			var childrenMount []*vault.Mount
 //			for key0, val0 := range children {
 //				__res, err := vault.NewMount(ctx, fmt.Sprintf("children-%v", key0), &vault.MountArgs{
-//					Namespace: pulumi.String(val0),
+//					Namespace: pulumi.String(pulumi.String(val0)),
 //					Path:      pulumi.String("secrets"),
 //					Type:      pulumi.String("kv"),
 //					Options: pulumi.StringMap{
@@ -116,7 +116,7 @@ import (
 //				__res, err := generic.NewSecret(ctx, fmt.Sprintf("children-%v", key0), &generic.SecretArgs{
 //					Namespace: pulumi.String(val0),
 //					Path:      pulumi.Sprintf("%v/secret", val0),
-//					DataJson:  pulumi.String(json0),
+//					DataJson:  pulumi.String(pulumi.String(json0)),
 //				})
 //				if err != nil {
 //					return err
