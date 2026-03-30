@@ -57,13 +57,13 @@ import (
 //			}
 //			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
 //				Name: pulumi.String("role"),
-//				Key:  pulumi.String(key),
+//				Key:  pulumi.String(pulumi.String(key)),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
-//				Name:      pulumi.String(key),
+//				Name:      pulumi.String(pulumi.String(key)),
 //				Algorithm: pulumi.String("RS256"),
 //				AllowedClientIds: pulumi.StringArray{
 //					role.ClientId,

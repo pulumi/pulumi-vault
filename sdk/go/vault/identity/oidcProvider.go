@@ -79,7 +79,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			testOidcScope, err := identity.NewOidcScope(ctx, "test", &identity.OidcScopeArgs{
 //				Name:        pulumi.String("groups"),
-//				Template:    pulumi.String(json0),
+//				Template:    pulumi.String(pulumi.String(json0)),
 //				Description: pulumi.String("Groups scope."),
 //			})
 //			if err != nil {

@@ -63,7 +63,7 @@ import (
 //			awsSecret, err := kv.NewSecretV2(ctx, "aws_secret", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
 //				Name:     pulumi.String("aws_secret"),
-//				DataJson: pulumi.String(json0),
+//				DataJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err

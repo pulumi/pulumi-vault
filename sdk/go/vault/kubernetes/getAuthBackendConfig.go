@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("tokenReviewerJwt", config.TokenReviewerJwt)
+//			ctx.Export("tokenReviewerJwt", pulumi.Any(config.TokenReviewerJwt))
 //			return nil
 //		})
 //	}

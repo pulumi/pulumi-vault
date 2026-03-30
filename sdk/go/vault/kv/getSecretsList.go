@@ -64,7 +64,7 @@ import (
 //				Path: kvv1.Path.ApplyT(func(path string) (string, error) {
 //					return fmt.Sprintf("%v/aws-secret", path), nil
 //				}).(pulumi.StringOutput),
-//				DataJson: pulumi.String(json0),
+//				DataJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +80,7 @@ import (
 //				Path: kvv1.Path.ApplyT(func(path string) (string, error) {
 //					return fmt.Sprintf("%v/azure-secret", path), nil
 //				}).(pulumi.StringOutput),
-//				DataJson: pulumi.String(json1),
+//				DataJson: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err

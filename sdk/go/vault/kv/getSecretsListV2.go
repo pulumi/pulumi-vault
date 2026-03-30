@@ -63,7 +63,7 @@ import (
 //			_, err = kv.NewSecretV2(ctx, "aws_secret", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
 //				Name:     pulumi.String("aws_secret"),
-//				DataJson: pulumi.String(json0),
+//				DataJson: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
@@ -78,7 +78,7 @@ import (
 //			azureSecret, err := kv.NewSecretV2(ctx, "azure_secret", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
 //				Name:     pulumi.String("azure_secret"),
-//				DataJson: pulumi.String(json1),
+//				DataJson: pulumi.String(pulumi.String(json1)),
 //			})
 //			if err != nil {
 //				return err
@@ -95,7 +95,7 @@ import (
 //				Name: azureSecret.Name.ApplyT(func(name string) (string, error) {
 //					return fmt.Sprintf("%v/dev", name), nil
 //				}).(pulumi.StringOutput),
-//				DataJson: pulumi.String(json2),
+//				DataJson: pulumi.String(pulumi.String(json2)),
 //			})
 //			if err != nil {
 //				return err

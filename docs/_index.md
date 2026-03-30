@@ -628,7 +628,7 @@ func main() {
 		json0 := string(tmpJSON0)
 		_, err = generic.NewSecret(ctx, "example", &generic.SecretArgs{
 			Path:     pulumi.String("secret/foo"),
-			DataJson: pulumi.String(json0),
+			DataJson: pulumi.String(pulumi.String(json0)),
 		})
 		if err != nil {
 			return err
