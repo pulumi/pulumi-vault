@@ -2268,7 +2268,7 @@ class AuthBackend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def bindpass(self) -> pulumi.Output[_builtins.str]:
+    def bindpass(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Password to use with `binddn` when performing user search. Conflicts with `bindpass_wo`.
         """

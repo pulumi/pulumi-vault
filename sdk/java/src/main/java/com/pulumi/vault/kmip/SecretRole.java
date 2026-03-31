@@ -90,6 +90,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:kmip/secretRole:SecretRole")
 public class SecretRole extends com.pulumi.resources.CustomResource {
     /**
+     * Name of the ca to use, if absent use legacy ca
+     * 
+     */
+    @Export(name="ca", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> ca;
+
+    /**
+     * @return Name of the ca to use, if absent use legacy ca
+     * 
+     */
+    public Output<Optional<String>> ca() {
+        return Codegen.optional(this.ca);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).

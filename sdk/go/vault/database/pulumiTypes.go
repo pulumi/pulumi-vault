@@ -715,7 +715,7 @@ type SecretBackendConnectionElasticsearch struct {
 	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey *string `pulumi:"clientKey"`
 	// Whether to disable certificate verification
-	Insecure *bool `pulumi:"insecure"`
+	InsecureTls *bool `pulumi:"insecureTls"`
 	// The password to be used in the connection URL
 	Password string `pulumi:"password"`
 	// This, if set, is used to set the SNI host when connecting via TLS
@@ -749,7 +749,7 @@ type SecretBackendConnectionElasticsearchArgs struct {
 	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
 	// Whether to disable certificate verification
-	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// The password to be used in the connection URL
 	Password pulumi.StringInput `pulumi:"password"`
 	// This, if set, is used to set the SNI host when connecting via TLS
@@ -860,8 +860,8 @@ func (o SecretBackendConnectionElasticsearchOutput) ClientKey() pulumi.StringPtr
 }
 
 // Whether to disable certificate verification
-func (o SecretBackendConnectionElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
+func (o SecretBackendConnectionElasticsearchOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
 // The password to be used in the connection URL
@@ -954,12 +954,12 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) ClientKey() pulumi.String
 }
 
 // Whether to disable certificate verification
-func (o SecretBackendConnectionElasticsearchPtrOutput) Insecure() pulumi.BoolPtrOutput {
+func (o SecretBackendConnectionElasticsearchPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *bool {
 		if v == nil {
 			return nil
 		}
-		return v.Insecure
+		return v.InsecureTls
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -5903,12 +5903,16 @@ type SecretsMountCassandra struct {
 	Name string `pulumi:"name"`
 	// The password to use when authenticating with Cassandra.
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle *string `pulumi:"pemBundle"`
 	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson *string `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The transport port to use to connect to Cassandra.
 	Port *int `pulumi:"port"`
 	// The CQL protocol version to use.
@@ -5925,6 +5929,8 @@ type SecretsMountCassandra struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
 	SkipVerification *bool `pulumi:"skipVerification"`
 	// Enable TCP keepalive for Cassandra connections.
@@ -5977,12 +5983,16 @@ type SecretsMountCassandraArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password to use when authenticating with Cassandra.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
 	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// The transport port to use to connect to Cassandra.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The CQL protocol version to use.
@@ -5999,6 +6009,8 @@ type SecretsMountCassandraArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
 	SkipVerification pulumi.BoolPtrInput `pulumi:"skipVerification"`
 	// Enable TCP keepalive for Cassandra connections.
@@ -6120,6 +6132,11 @@ func (o SecretsMountCassandraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountCassandraOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretsMountCassandraOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
@@ -6133,6 +6150,11 @@ func (o SecretsMountCassandraOutput) PemJson() pulumi.StringPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountCassandraOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountCassandraOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The transport port to use to connect to Cassandra.
@@ -6167,6 +6189,11 @@ func (o SecretsMountCassandraOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountCassandraOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountCassandraOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
@@ -6247,8 +6274,12 @@ type SecretsMountCouchbase struct {
 	Name string `pulumi:"name"`
 	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6261,6 +6292,8 @@ type SecretsMountCouchbase struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Specifies whether to use TLS when connecting to Couchbase.
 	Tls *bool `pulumi:"tls"`
 	// Specifies the username for Vault to use.
@@ -6305,8 +6338,12 @@ type SecretsMountCouchbaseArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6319,6 +6356,8 @@ type SecretsMountCouchbaseArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// Specifies whether to use TLS when connecting to Couchbase.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// Specifies the username for Vault to use.
@@ -6429,9 +6468,19 @@ func (o SecretsMountCouchbaseOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountCouchbaseOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountCouchbaseOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountCouchbaseOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -6456,6 +6505,11 @@ func (o SecretsMountCouchbaseOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountCouchbaseOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountCouchbaseOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies whether to use TLS when connecting to Couchbase.
@@ -6518,13 +6572,17 @@ type SecretsMountElasticsearch struct {
 	// Supported list of database secrets engines that can be configured:
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// Whether to disable certificate verification
-	Insecure *bool `pulumi:"insecure"`
+	InsecureTls *bool `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
 	// The password to be used in the connection URL
 	Password string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6537,6 +6595,8 @@ type SecretsMountElasticsearch struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// This, if set, is used to set the SNI host when connecting via TLS
 	TlsServerName *string `pulumi:"tlsServerName"`
 	// The URL for Elasticsearch's API
@@ -6580,13 +6640,17 @@ type SecretsMountElasticsearchArgs struct {
 	// Supported list of database secrets engines that can be configured:
 	DisableAutomatedRotation pulumi.BoolPtrInput `pulumi:"disableAutomatedRotation"`
 	// Whether to disable certificate verification
-	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
+	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password to be used in the connection URL
 	Password pulumi.StringInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6599,6 +6663,8 @@ type SecretsMountElasticsearchArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// This, if set, is used to set the SNI host when connecting via TLS
 	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
 	// The URL for Elasticsearch's API
@@ -6702,8 +6768,8 @@ func (o SecretsMountElasticsearchOutput) DisableAutomatedRotation() pulumi.BoolP
 }
 
 // Whether to disable certificate verification
-func (o SecretsMountElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
+func (o SecretsMountElasticsearchOutput) InsecureTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
 // Name of the database connection.
@@ -6716,9 +6782,19 @@ func (o SecretsMountElasticsearchOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountElasticsearchOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountElasticsearchOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountElasticsearchOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -6743,6 +6819,11 @@ func (o SecretsMountElasticsearchOutput) RotationSchedule() pulumi.StringPtrOutp
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountElasticsearchOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountElasticsearchOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // This, if set, is used to set the SNI host when connecting via TLS
@@ -6815,6 +6896,8 @@ type SecretsMountHana struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -6822,6 +6905,8 @@ type SecretsMountHana struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6834,6 +6919,8 @@ type SecretsMountHana struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -6878,6 +6965,8 @@ type SecretsMountHanaArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -6885,6 +6974,8 @@ type SecretsMountHanaArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6897,6 +6988,8 @@ type SecretsMountHanaArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -7010,6 +7103,11 @@ func (o SecretsMountHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountHanaOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountHanaOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -7024,6 +7122,11 @@ func (o SecretsMountHanaOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountHanaOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountHanaOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -7048,6 +7151,11 @@ func (o SecretsMountHanaOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountHanaOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountHanaOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountHana) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -7106,12 +7214,16 @@ type SecretsMountInfluxdb struct {
 	Name string `pulumi:"name"`
 	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle *string `pulumi:"pemBundle"`
 	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson *string `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The transport port to use to connect to Influxdb.
 	Port *int `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7126,6 +7238,8 @@ type SecretsMountInfluxdb struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Whether to use TLS when connecting to Influxdb.
 	Tls *bool `pulumi:"tls"`
 	// Specifies the username to use for superuser access.
@@ -7168,12 +7282,16 @@ type SecretsMountInfluxdbArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
 	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// The transport port to use to connect to Influxdb.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -7188,6 +7306,8 @@ type SecretsMountInfluxdbArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// Whether to use TLS when connecting to Influxdb.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// Specifies the username to use for superuser access.
@@ -7293,6 +7413,11 @@ func (o SecretsMountInfluxdbOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountInfluxdbOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretsMountInfluxdbOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
@@ -7306,6 +7431,11 @@ func (o SecretsMountInfluxdbOutput) PemJson() pulumi.StringPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountInfluxdbOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountInfluxdbOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The transport port to use to connect to Influxdb.
@@ -7335,6 +7465,11 @@ func (o SecretsMountInfluxdbOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountInfluxdbOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountInfluxdbOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Whether to use TLS when connecting to Influxdb.
@@ -7400,6 +7535,8 @@ type SecretsMountMongodb struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -7407,6 +7544,8 @@ type SecretsMountMongodb struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -7419,6 +7558,8 @@ type SecretsMountMongodb struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
@@ -7467,6 +7608,8 @@ type SecretsMountMongodbArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -7474,6 +7617,8 @@ type SecretsMountMongodbArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -7486,6 +7631,8 @@ type SecretsMountMongodbArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
@@ -7600,6 +7747,11 @@ func (o SecretsMountMongodbOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMongodbOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountMongodbOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -7614,6 +7766,11 @@ func (o SecretsMountMongodbOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountMongodbOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMongodbOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -7638,6 +7795,11 @@ func (o SecretsMountMongodbOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountMongodbOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMongodbOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
@@ -7703,8 +7865,12 @@ type SecretsMountMongodbatla struct {
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 	PrivateKey string `pulumi:"privateKey"`
 	// The Project ID the Database User should be created within.
@@ -7723,6 +7889,8 @@ type SecretsMountMongodbatla struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
@@ -7753,8 +7921,12 @@ type SecretsMountMongodbatlaArgs struct {
 	DisableAutomatedRotation pulumi.BoolPtrInput `pulumi:"disableAutomatedRotation"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
 	PrivateKey pulumi.StringInput `pulumi:"privateKey"`
 	// The Project ID the Database User should be created within.
@@ -7773,6 +7945,8 @@ type SecretsMountMongodbatlaArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
@@ -7854,9 +8028,19 @@ func (o SecretsMountMongodbatlaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMongodbatla) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMongodbatlaOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountMongodbatlaOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodbatla) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMongodbatlaOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The Private Programmatic API Key used to connect with MongoDB Atlas API.
@@ -7896,6 +8080,11 @@ func (o SecretsMountMongodbatlaOutput) RotationSchedule() pulumi.StringPtrOutput
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountMongodbatlaOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodbatla) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMongodbatlaOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Template describing how dynamic usernames are generated.
@@ -7955,6 +8144,8 @@ type SecretsMountMssql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -7962,6 +8153,8 @@ type SecretsMountMssql struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -7974,6 +8167,8 @@ type SecretsMountMssql struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -8020,6 +8215,8 @@ type SecretsMountMssqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -8027,6 +8224,8 @@ type SecretsMountMssqlArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8039,6 +8238,8 @@ type SecretsMountMssqlArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -8157,6 +8358,11 @@ func (o SecretsMountMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMssqlOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountMssqlOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -8171,6 +8377,11 @@ func (o SecretsMountMssqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountMssqlOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMssqlOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -8195,6 +8406,11 @@ func (o SecretsMountMssqlOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountMssqlOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMssqlOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -8257,6 +8473,8 @@ type SecretsMountMysql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -8264,6 +8482,8 @@ type SecretsMountMysql struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8278,6 +8498,8 @@ type SecretsMountMysql struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -8326,6 +8548,8 @@ type SecretsMountMysqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -8333,6 +8557,8 @@ type SecretsMountMysqlArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8347,6 +8573,8 @@ type SecretsMountMysqlArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -8464,6 +8692,11 @@ func (o SecretsMountMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMysqlOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountMysqlOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -8478,6 +8711,11 @@ func (o SecretsMountMysqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMysqlOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -8507,6 +8745,11 @@ func (o SecretsMountMysqlOutput) RotationWindow() pulumi.IntPtrOutput {
 // A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMysqlOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysql) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -8579,6 +8822,8 @@ type SecretsMountMysqlAurora struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -8586,6 +8831,8 @@ type SecretsMountMysqlAurora struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8600,6 +8847,8 @@ type SecretsMountMysqlAurora struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -8648,6 +8897,8 @@ type SecretsMountMysqlAuroraArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -8655,6 +8906,8 @@ type SecretsMountMysqlAuroraArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8669,6 +8922,8 @@ type SecretsMountMysqlAuroraArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -8786,6 +9041,11 @@ func (o SecretsMountMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMysqlAuroraOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountMysqlAuroraOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -8800,6 +9060,11 @@ func (o SecretsMountMysqlAuroraOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlAuroraOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMysqlAuroraOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -8829,6 +9094,11 @@ func (o SecretsMountMysqlAuroraOutput) RotationWindow() pulumi.IntPtrOutput {
 // A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlAuroraOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMysqlAuroraOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -8901,6 +9171,8 @@ type SecretsMountMysqlLegacy struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -8908,6 +9180,8 @@ type SecretsMountMysqlLegacy struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8922,6 +9196,8 @@ type SecretsMountMysqlLegacy struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -8970,6 +9246,8 @@ type SecretsMountMysqlLegacyArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -8977,6 +9255,8 @@ type SecretsMountMysqlLegacyArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -8991,6 +9271,8 @@ type SecretsMountMysqlLegacyArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -9108,6 +9390,11 @@ func (o SecretsMountMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMysqlLegacyOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountMysqlLegacyOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -9122,6 +9409,11 @@ func (o SecretsMountMysqlLegacyOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlLegacyOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMysqlLegacyOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -9151,6 +9443,11 @@ func (o SecretsMountMysqlLegacyOutput) RotationWindow() pulumi.IntPtrOutput {
 // A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlLegacyOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMysqlLegacyOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -9223,6 +9520,8 @@ type SecretsMountMysqlRd struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -9230,6 +9529,8 @@ type SecretsMountMysqlRd struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -9244,6 +9545,8 @@ type SecretsMountMysqlRd struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -9292,6 +9595,8 @@ type SecretsMountMysqlRdArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -9299,6 +9604,8 @@ type SecretsMountMysqlRdArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -9313,6 +9620,8 @@ type SecretsMountMysqlRdArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -9430,6 +9739,11 @@ func (o SecretsMountMysqlRdOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountMysqlRdOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountMysqlRdOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -9444,6 +9758,11 @@ func (o SecretsMountMysqlRdOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountMysqlRdOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountMysqlRdOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -9473,6 +9792,11 @@ func (o SecretsMountMysqlRdOutput) RotationWindow() pulumi.IntPtrOutput {
 // A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlRdOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountMysqlRdOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -9545,6 +9869,8 @@ type SecretsMountOracle struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -9552,6 +9878,8 @@ type SecretsMountOracle struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -9566,6 +9894,8 @@ type SecretsMountOracle struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// If set, allows onboarding static roles with a rootless connection configuration.
 	SelfManaged *bool `pulumi:"selfManaged"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements *bool `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -9612,6 +9942,8 @@ type SecretsMountOracleArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -9619,6 +9951,8 @@ type SecretsMountOracleArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -9633,6 +9967,8 @@ type SecretsMountOracleArgs struct {
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
 	// If set, allows onboarding static roles with a rootless connection configuration.
 	SelfManaged pulumi.BoolPtrInput `pulumi:"selfManaged"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL
@@ -9748,6 +10084,11 @@ func (o SecretsMountOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountOracleOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountOracleOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -9762,6 +10103,11 @@ func (o SecretsMountOracleOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountOracleOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountOracleOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -9791,6 +10137,11 @@ func (o SecretsMountOracleOutput) RotationWindow() pulumi.IntPtrOutput {
 // If set, allows onboarding static roles with a rootless connection configuration.
 func (o SecretsMountOracleOutput) SelfManaged() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.SelfManaged }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountOracleOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Set to true in order to split statements after semi-colons.
@@ -9862,6 +10213,8 @@ type SecretsMountPostgresql struct {
 	Password *string `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -9869,6 +10222,8 @@ type SecretsMountPostgresql struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
 	PrivateKey *string `pulumi:"privateKey"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -9887,6 +10242,8 @@ type SecretsMountPostgresql struct {
 	SelfManaged *bool `pulumi:"selfManaged"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// The x509 client certificate for connecting to the database. Must be PEM encoded.
@@ -9939,6 +10296,8 @@ type SecretsMountPostgresqlArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
 	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -9946,6 +10305,8 @@ type SecretsMountPostgresqlArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
 	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -9964,6 +10325,8 @@ type SecretsMountPostgresqlArgs struct {
 	SelfManaged pulumi.BoolPtrInput `pulumi:"selfManaged"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// The x509 client certificate for connecting to the database. Must be PEM encoded.
@@ -10091,6 +10454,11 @@ func (o SecretsMountPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrO
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountPostgresqlOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountPostgresqlOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -10105,6 +10473,11 @@ func (o SecretsMountPostgresqlOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountPostgresqlOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountPostgresqlOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -10144,6 +10517,11 @@ func (o SecretsMountPostgresqlOutput) SelfManaged() pulumi.BoolPtrOutput {
 // A JSON encoded credential for use with IAM authorization
 func (o SecretsMountPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountPostgresqlOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
@@ -10212,8 +10590,12 @@ type SecretsMountRedi struct {
 	Name string `pulumi:"name"`
 	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The transport port to use to connect to Redis.
 	Port *int `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10228,6 +10610,8 @@ type SecretsMountRedi struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Specifies whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
 	// Specifies the username for Vault to use.
@@ -10268,8 +10652,12 @@ type SecretsMountRediArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// The transport port to use to connect to Redis.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10284,6 +10672,8 @@ type SecretsMountRediArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// Specifies whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// Specifies the username for Vault to use.
@@ -10387,9 +10777,19 @@ func (o SecretsMountRediOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedi) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountRediOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountRediOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountRediOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The transport port to use to connect to Redis.
@@ -10419,6 +10819,11 @@ func (o SecretsMountRediOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountRediOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountRediOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies whether to use TLS when connecting to Redis.
@@ -10471,8 +10876,12 @@ type SecretsMountRedisElasticache struct {
 	Name string `pulumi:"name"`
 	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 	Region *string `pulumi:"region"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10487,6 +10896,8 @@ type SecretsMountRedisElasticache struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url string `pulumi:"url"`
 	// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -10521,8 +10932,12 @@ type SecretsMountRedisElasticacheArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// A list of database statements to be executed to rotate the root user's credentials.
@@ -10537,6 +10952,8 @@ type SecretsMountRedisElasticacheArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url pulumi.StringInput `pulumi:"url"`
 	// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -10625,9 +11042,19 @@ func (o SecretsMountRedisElasticacheOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountRedisElasticacheOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretsMountRedisElasticacheOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountRedisElasticacheOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
@@ -10657,6 +11084,11 @@ func (o SecretsMountRedisElasticacheOutput) RotationSchedule() pulumi.StringPtrO
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountRedisElasticacheOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticache) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountRedisElasticacheOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticache) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The configuration endpoint for the ElastiCache cluster to connect to.
@@ -10719,6 +11151,8 @@ type SecretsMountRedshift struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -10726,6 +11160,8 @@ type SecretsMountRedshift struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -10738,6 +11174,8 @@ type SecretsMountRedshift struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -10782,6 +11220,8 @@ type SecretsMountRedshiftArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -10789,6 +11229,8 @@ type SecretsMountRedshiftArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -10801,6 +11243,8 @@ type SecretsMountRedshiftArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -10914,6 +11358,11 @@ func (o SecretsMountRedshiftOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountRedshiftOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountRedshiftOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -10928,6 +11377,11 @@ func (o SecretsMountRedshiftOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountRedshiftOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountRedshiftOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A list of database statements to be executed to rotate the root user's credentials.
@@ -10952,6 +11406,11 @@ func (o SecretsMountRedshiftOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountRedshiftOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountRedshiftOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -11014,6 +11473,8 @@ type SecretsMountSnowflake struct {
 	//
 	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password *string `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo *string `pulumi:"passwordWo"`
@@ -11021,6 +11482,8 @@ type SecretsMountSnowflake struct {
 	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The private key configured for the admin user in Snowflake.
 	PrivateKeyWo *string `pulumi:"privateKeyWo"`
@@ -11038,6 +11501,8 @@ type SecretsMountSnowflake struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -11082,6 +11547,8 @@ type SecretsMountSnowflakeArgs struct {
 	//
 	// Deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput `pulumi:"passwordPolicy"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only field for the root credential password used in the connection URL
 	PasswordWo pulumi.StringPtrInput `pulumi:"passwordWo"`
@@ -11089,6 +11556,8 @@ type SecretsMountSnowflakeArgs struct {
 	PasswordWoVersion pulumi.IntPtrInput `pulumi:"passwordWoVersion"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput `pulumi:"pluginVersion"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The private key configured for the admin user in Snowflake.
 	PrivateKeyWo pulumi.StringPtrInput `pulumi:"privateKeyWo"`
@@ -11106,6 +11575,8 @@ type SecretsMountSnowflakeArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput `pulumi:"skipStaticRoleImportRotation"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -11216,6 +11687,11 @@ func (o SecretsMountSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretsMountSnowflakeOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 // Write-only field for the root credential password used in the connection URL
 func (o SecretsMountSnowflakeOutput) PasswordWo() pulumi.StringPtrOutput {
@@ -11230,6 +11706,11 @@ func (o SecretsMountSnowflakeOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 // Specifies the name of the plugin to use.
 func (o SecretsMountSnowflakeOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PluginName }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretsMountSnowflakeOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -11265,6 +11746,11 @@ func (o SecretsMountSnowflakeOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretsMountSnowflakeOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretsMountSnowflakeOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) *bool { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // The root credential username used in the connection URL

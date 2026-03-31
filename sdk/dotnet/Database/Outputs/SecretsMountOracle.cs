@@ -57,6 +57,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        public readonly string? PasswordPolicy;
+        /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         /// Write-only field for the root credential password used in the connection URL
         /// </summary>
@@ -69,6 +73,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        public readonly string? PluginVersion;
         /// <summary>
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
@@ -93,6 +101,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// If set, allows onboarding static roles with a rootless connection configuration.
         /// </summary>
         public readonly bool? SelfManaged;
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly bool? SkipStaticRoleImportRotation;
         /// <summary>
         /// Set to true in order to split statements after semi-colons.
         /// </summary>
@@ -133,11 +145,15 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? passwordPolicy,
+
             string? passwordWo,
 
             int? passwordWoVersion,
 
             string? pluginName,
+
+            string? pluginVersion,
 
             ImmutableArray<string> rootRotationStatements,
 
@@ -148,6 +164,8 @@ namespace Pulumi.Vault.Database.Outputs
             int? rotationWindow,
 
             bool? selfManaged,
+
+            bool? skipStaticRoleImportRotation,
 
             bool? splitStatements,
 
@@ -167,14 +185,17 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             Name = name;
             Password = password;
+            PasswordPolicy = passwordPolicy;
             PasswordWo = passwordWo;
             PasswordWoVersion = passwordWoVersion;
             PluginName = pluginName;
+            PluginVersion = pluginVersion;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
             SelfManaged = selfManaged;
+            SkipStaticRoleImportRotation = skipStaticRoleImportRotation;
             SplitStatements = splitStatements;
             Username = username;
             UsernameTemplate = usernameTemplate;

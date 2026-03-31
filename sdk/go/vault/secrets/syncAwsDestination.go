@@ -100,6 +100,40 @@ import (
 //
 // ```
 //
+// ### Using Workload Identity Federation (Vault 2.0.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSyncAwsDestination(ctx, "aws_wif", &secrets.SyncAwsDestinationArgs{
+//				Name:                           pulumi.String("aws-dest-wif"),
+//				Region:                         pulumi.String("us-east-1"),
+//				RoleArn:                        pulumi.Any(roleArn),
+//				IdentityTokenAudienceWo:        pulumi.Any(identityTokenAudience),
+//				IdentityTokenAudienceWoVersion: pulumi.Int(1),
+//				IdentityTokenTtl:               pulumi.Int(3600),
+//				IdentityTokenKeyWo:             pulumi.String("my-key"),
+//				IdentityTokenKeyWoVersion:      pulumi.Int(1),
+//				Granularity:                    pulumi.String("secret-path"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -141,6 +175,18 @@ type SyncAwsDestination struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrOutput `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrOutput `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
 	// Unique name of the AWS destination.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -175,10 +221,18 @@ func NewSyncAwsDestination(ctx *pulumi.Context,
 		args = &SyncAwsDestinationArgs{}
 	}
 
+	if args.IdentityTokenAudienceWo != nil {
+		args.IdentityTokenAudienceWo = pulumi.ToSecret(args.IdentityTokenAudienceWo).(pulumi.StringPtrInput)
+	}
+	if args.IdentityTokenKeyWo != nil {
+		args.IdentityTokenKeyWo = pulumi.ToSecret(args.IdentityTokenKeyWo).(pulumi.StringPtrInput)
+	}
 	if args.SecretAccessKey != nil {
 		args.SecretAccessKey = pulumi.ToSecret(args.SecretAccessKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"identityTokenAudienceWo",
+		"identityTokenKeyWo",
 		"secretAccessKey",
 	})
 	opts = append(opts, secrets)
@@ -236,6 +290,18 @@ type syncAwsDestinationState struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo *string `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion *int `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo *string `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Unique name of the AWS destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -295,6 +361,18 @@ type SyncAwsDestinationState struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Unique name of the AWS destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -358,6 +436,18 @@ type syncAwsDestinationArgs struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo *string `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion *int `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo *string `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Unique name of the AWS destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -416,6 +506,18 @@ type SyncAwsDestinationArgs struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Unique name of the AWS destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -581,6 +683,33 @@ func (o SyncAwsDestinationOutput) ExternalId() pulumi.StringPtrOutput {
 // at the destination. Supports `secret-path` and `secret-key`.
 func (o SyncAwsDestinationOutput) Granularity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.Granularity }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+func (o SyncAwsDestinationOutput) IdentityTokenAudienceWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.IdentityTokenAudienceWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+func (o SyncAwsDestinationOutput) IdentityTokenAudienceWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.IntPtrOutput { return v.IdentityTokenAudienceWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+func (o SyncAwsDestinationOutput) IdentityTokenKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.IdentityTokenKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+func (o SyncAwsDestinationOutput) IdentityTokenKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.IntPtrOutput { return v.IdentityTokenKeyWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The TTL of generated tokens.
+func (o SyncAwsDestinationOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
 // Unique name of the AWS destination.

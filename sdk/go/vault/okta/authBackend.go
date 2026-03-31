@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -60,6 +59,14 @@ import (
 //
 // ```
 //
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+//   - `apiTokenWo` - (Optional) Write-only Okta API token. This is required to query Okta for user group membership.
+//     Use this for enhanced security when you don't want the token to appear in state files. Requires `apiTokenWoVersion`. Conflicts with `token` and `apiToken`.
+//     **Note**: This property is write-only and will not be read from the API.
+//
 // ## Import
 //
 // Okta authentication backends can be imported using its `path`, e.g.
@@ -75,6 +82,16 @@ type AuthBackend struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.
 	AliasMetadata pulumi.StringMapOutput `pulumi:"aliasMetadata"`
+	// The Okta API token. This is required to query Okta for user group membership.
+	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `token` and `apiTokenWo`.
+	ApiToken pulumi.StringPtrOutput `pulumi:"apiToken"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+	ApiTokenWo pulumi.StringPtrOutput `pulumi:"apiTokenWo"`
+	// Version counter for the write-only `apiTokenWo`.
+	// Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+	ApiTokenWoVersion pulumi.IntPtrOutput `pulumi:"apiTokenWoVersion"`
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -92,12 +109,21 @@ type AuthBackend struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	OrgName pulumi.StringOutput `pulumi:"orgName"`
+	// **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	//
+	// Deprecated: Use orgName instead
 	Organization pulumi.StringOutput `pulumi:"organization"`
 	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
-	// The Okta API token. This is required to query Okta for user group membership.
+	// **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `apiToken` and `apiTokenWo`.
+	//
+	// Deprecated: Use apiToken instead
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs pulumi.StringArrayOutput `pulumi:"tokenBoundCidrs"`
@@ -127,16 +153,21 @@ type AuthBackend struct {
 func NewAuthBackend(ctx *pulumi.Context,
 	name string, args *AuthBackendArgs, opts ...pulumi.ResourceOption) (*AuthBackend, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &AuthBackendArgs{}
 	}
 
-	if args.Organization == nil {
-		return nil, errors.New("invalid value for required argument 'Organization'")
+	if args.ApiToken != nil {
+		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringPtrInput)
+	}
+	if args.ApiTokenWo != nil {
+		args.ApiTokenWo = pulumi.ToSecret(args.ApiTokenWo).(pulumi.StringPtrInput)
 	}
 	if args.Token != nil {
 		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apiToken",
+		"apiTokenWo",
 		"token",
 	})
 	opts = append(opts, secrets)
@@ -168,6 +199,16 @@ type authBackendState struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.
 	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
+	// The Okta API token. This is required to query Okta for user group membership.
+	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `token` and `apiTokenWo`.
+	ApiToken *string `pulumi:"apiToken"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+	ApiTokenWo *string `pulumi:"apiTokenWo"`
+	// Version counter for the write-only `apiTokenWo`.
+	// Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+	ApiTokenWoVersion *int `pulumi:"apiTokenWoVersion"`
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl *string `pulumi:"baseUrl"`
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -185,12 +226,21 @@ type authBackendState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	OrgName *string `pulumi:"orgName"`
+	// **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	//
+	// Deprecated: Use orgName instead
 	Organization *string `pulumi:"organization"`
 	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path *string `pulumi:"path"`
-	// The Okta API token. This is required to query Okta for user group membership.
+	// **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `apiToken` and `apiTokenWo`.
+	//
+	// Deprecated: Use apiToken instead
 	Token *string `pulumi:"token"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
@@ -222,6 +272,16 @@ type AuthBackendState struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.
 	AliasMetadata pulumi.StringMapInput
+	// The Okta API token. This is required to query Okta for user group membership.
+	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `token` and `apiTokenWo`.
+	ApiToken pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+	ApiTokenWo pulumi.StringPtrInput
+	// Version counter for the write-only `apiTokenWo`.
+	// Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+	ApiTokenWoVersion pulumi.IntPtrInput
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl pulumi.StringPtrInput
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -239,12 +299,21 @@ type AuthBackendState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	OrgName pulumi.StringPtrInput
+	// **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	//
+	// Deprecated: Use orgName instead
 	Organization pulumi.StringPtrInput
 	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path pulumi.StringPtrInput
-	// The Okta API token. This is required to query Okta for user group membership.
+	// **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `apiToken` and `apiTokenWo`.
+	//
+	// Deprecated: Use apiToken instead
 	Token pulumi.StringPtrInput
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs pulumi.StringArrayInput
@@ -278,6 +347,16 @@ type authBackendArgs struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.
 	AliasMetadata map[string]string `pulumi:"aliasMetadata"`
+	// The Okta API token. This is required to query Okta for user group membership.
+	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `token` and `apiTokenWo`.
+	ApiToken *string `pulumi:"apiToken"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+	ApiTokenWo *string `pulumi:"apiTokenWo"`
+	// Version counter for the write-only `apiTokenWo`.
+	// Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+	ApiTokenWoVersion *int `pulumi:"apiTokenWoVersion"`
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl *string `pulumi:"baseUrl"`
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -295,12 +374,21 @@ type authBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-	Organization string `pulumi:"organization"`
+	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	OrgName *string `pulumi:"orgName"`
+	// **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	//
+	// Deprecated: Use orgName instead
+	Organization *string `pulumi:"organization"`
 	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path *string `pulumi:"path"`
-	// The Okta API token. This is required to query Okta for user group membership.
+	// **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `apiToken` and `apiTokenWo`.
+	//
+	// Deprecated: Use apiToken instead
 	Token *string `pulumi:"token"`
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
@@ -331,6 +419,16 @@ type AuthBackendArgs struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.
 	AliasMetadata pulumi.StringMapInput
+	// The Okta API token. This is required to query Okta for user group membership.
+	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `token` and `apiTokenWo`.
+	ApiToken pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+	ApiTokenWo pulumi.StringPtrInput
+	// Version counter for the write-only `apiTokenWo`.
+	// Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+	ApiTokenWoVersion pulumi.IntPtrInput
 	// The Okta url. Examples: oktapreview.com, okta.com
 	BaseUrl pulumi.StringPtrInput
 	// When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
@@ -348,12 +446,21 @@ type AuthBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-	Organization pulumi.StringInput
+	// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	OrgName pulumi.StringPtrInput
+	// **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+	// Exactly one of `orgName` or `organization` must be specified.
+	//
+	// Deprecated: Use orgName instead
+	Organization pulumi.StringPtrInput
 	// Path to mount the Okta auth backend. Default to path `okta`.
 	Path pulumi.StringPtrInput
-	// The Okta API token. This is required to query Okta for user group membership.
+	// **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
+	// Conflicts with `apiToken` and `apiTokenWo`.
+	//
+	// Deprecated: Use apiToken instead
 	Token pulumi.StringPtrInput
 	// Specifies the blocks of IP addresses which are allowed to use the generated token
 	TokenBoundCidrs pulumi.StringArrayInput
@@ -478,6 +585,25 @@ func (o AuthBackendOutput) AliasMetadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringMapOutput { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
+// The Okta API token. This is required to query Okta for user group membership.
+// If this is not supplied only locally configured groups will be enabled.
+// Conflicts with `token` and `apiTokenWo`.
+func (o AuthBackendOutput) ApiToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.ApiToken }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+func (o AuthBackendOutput) ApiTokenWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.ApiTokenWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only `apiTokenWo`.
+// Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+func (o AuthBackendOutput) ApiTokenWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.ApiTokenWoVersion }).(pulumi.IntPtrOutput)
+}
+
 // The Okta url. Examples: oktapreview.com, okta.com
 func (o AuthBackendOutput) BaseUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
@@ -513,7 +639,16 @@ func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+// Exactly one of `orgName` or `organization` must be specified.
+func (o AuthBackendOutput) OrgName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.OrgName }).(pulumi.StringOutput)
+}
+
+// **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+// Exactly one of `orgName` or `organization` must be specified.
+//
+// Deprecated: Use orgName instead
 func (o AuthBackendOutput) Organization() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Organization }).(pulumi.StringOutput)
 }
@@ -523,8 +658,11 @@ func (o AuthBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// The Okta API token. This is required to query Okta for user group membership.
+// **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
 // If this is not supplied only locally configured groups will be enabled.
+// Conflicts with `apiToken` and `apiTokenWo`.
+//
+// Deprecated: Use apiToken instead
 func (o AuthBackendOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }

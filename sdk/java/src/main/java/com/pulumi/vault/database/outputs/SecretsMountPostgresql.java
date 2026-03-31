@@ -80,6 +80,11 @@ public final class SecretsMountPostgresql {
      */
     private @Nullable String passwordAuthentication;
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    private @Nullable String passwordPolicy;
+    /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only field for the root credential password used in the connection URL
      * 
@@ -95,6 +100,11 @@ public final class SecretsMountPostgresql {
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    private @Nullable String pluginVersion;
     /**
      * @return The secret key used for the x509 client certificate. Must be PEM encoded.
      * 
@@ -134,6 +144,11 @@ public final class SecretsMountPostgresql {
      * 
      */
     private @Nullable String serviceAccountJson;
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Boolean skipStaticRoleImportRotation;
     /**
      * @return The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
      * 
@@ -250,6 +265,13 @@ public final class SecretsMountPostgresql {
         return Optional.ofNullable(this.passwordAuthentication);
     }
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<String> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+    /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only field for the root credential password used in the connection URL
      * 
@@ -270,6 +292,13 @@ public final class SecretsMountPostgresql {
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<String> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
     /**
      * @return The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -323,6 +352,13 @@ public final class SecretsMountPostgresql {
      */
     public Optional<String> serviceAccountJson() {
         return Optional.ofNullable(this.serviceAccountJson);
+    }
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Boolean> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
     }
     /**
      * @return The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
@@ -382,9 +418,11 @@ public final class SecretsMountPostgresql {
         private String name;
         private @Nullable String password;
         private @Nullable String passwordAuthentication;
+        private @Nullable String passwordPolicy;
         private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
+        private @Nullable String pluginVersion;
         private @Nullable String privateKey;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
@@ -392,6 +430,7 @@ public final class SecretsMountPostgresql {
         private @Nullable Integer rotationWindow;
         private @Nullable Boolean selfManaged;
         private @Nullable String serviceAccountJson;
+        private @Nullable Boolean skipStaticRoleImportRotation;
         private @Nullable String tlsCa;
         private @Nullable String tlsCertificate;
         private @Nullable String username;
@@ -412,9 +451,11 @@ public final class SecretsMountPostgresql {
     	      this.name = defaults.name;
     	      this.password = defaults.password;
     	      this.passwordAuthentication = defaults.passwordAuthentication;
+    	      this.passwordPolicy = defaults.passwordPolicy;
     	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
+    	      this.pluginVersion = defaults.pluginVersion;
     	      this.privateKey = defaults.privateKey;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
@@ -422,6 +463,7 @@ public final class SecretsMountPostgresql {
     	      this.rotationWindow = defaults.rotationWindow;
     	      this.selfManaged = defaults.selfManaged;
     	      this.serviceAccountJson = defaults.serviceAccountJson;
+    	      this.skipStaticRoleImportRotation = defaults.skipStaticRoleImportRotation;
     	      this.tlsCa = defaults.tlsCa;
     	      this.tlsCertificate = defaults.tlsCertificate;
     	      this.username = defaults.username;
@@ -507,6 +549,12 @@ public final class SecretsMountPostgresql {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordPolicy(@Nullable String passwordPolicy) {
+
+            this.passwordPolicy = passwordPolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder passwordWo(@Nullable String passwordWo) {
 
             this.passwordWo = passwordWo;
@@ -522,6 +570,12 @@ public final class SecretsMountPostgresql {
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder pluginVersion(@Nullable String pluginVersion) {
+
+            this.pluginVersion = pluginVersion;
             return this;
         }
         @CustomType.Setter
@@ -570,6 +624,12 @@ public final class SecretsMountPostgresql {
             return this;
         }
         @CustomType.Setter
+        public Builder skipStaticRoleImportRotation(@Nullable Boolean skipStaticRoleImportRotation) {
+
+            this.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tlsCa(@Nullable String tlsCa) {
 
             this.tlsCa = tlsCa;
@@ -613,9 +673,11 @@ public final class SecretsMountPostgresql {
             _resultValue.name = name;
             _resultValue.password = password;
             _resultValue.passwordAuthentication = passwordAuthentication;
+            _resultValue.passwordPolicy = passwordPolicy;
             _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
+            _resultValue.pluginVersion = pluginVersion;
             _resultValue.privateKey = privateKey;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;
@@ -623,6 +685,7 @@ public final class SecretsMountPostgresql {
             _resultValue.rotationWindow = rotationWindow;
             _resultValue.selfManaged = selfManaged;
             _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             _resultValue.tlsCa = tlsCa;
             _resultValue.tlsCertificate = tlsCertificate;
             _resultValue.username = username;

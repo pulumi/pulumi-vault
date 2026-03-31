@@ -53,8 +53,11 @@ import (
 //						AllowedRoles: pulumi.StringArray{
 //							pulumi.String("dev1"),
 //						},
-//						RotationSchedule: pulumi.String("0 * * * SAT"),
-//						RotationWindow:   pulumi.Int(3600),
+//						PluginVersion:                pulumi.String("v0.20.0"),
+//						SkipStaticRoleImportRotation: pulumi.Bool(true),
+//						PasswordPolicy:               pulumi.String("default"),
+//						RotationSchedule:             pulumi.String("0 * * * SAT"),
+//						RotationWindow:               pulumi.Int(3600),
 //					},
 //				},
 //				Postgresqls: database.SecretsMountPostgresqlArray{
@@ -67,8 +70,11 @@ import (
 //						AllowedRoles: pulumi.StringArray{
 //							pulumi.String("dev2"),
 //						},
-//						RotationSchedule: pulumi.String("0 * * * SAT"),
-//						RotationWindow:   pulumi.Int(3600),
+//						PluginVersion:                pulumi.String("v0.19.0"),
+//						SkipStaticRoleImportRotation: pulumi.Bool(true),
+//						PasswordPolicy:               pulumi.String("default"),
+//						RotationSchedule:             pulumi.String("0 * * * SAT"),
+//						RotationWindow:               pulumi.Int(3600),
 //					},
 //				},
 //			})
@@ -206,7 +212,7 @@ type SecretsMount struct {
 	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path pulumi.StringOutput `pulumi:"path"`
-	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	// Specifies the semantic version of the plugin to use for this connection.
 	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
@@ -339,7 +345,7 @@ type secretsMountState struct {
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path *string `pulumi:"path"`
-	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	// Specifies the semantic version of the plugin to use for this connection.
 	PluginVersion *string `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
@@ -440,7 +446,7 @@ type SecretsMountState struct {
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringPtrInput
-	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	// Specifies the semantic version of the plugin to use for this connection.
 	PluginVersion pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
@@ -541,7 +547,7 @@ type secretsMountArgs struct {
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path string `pulumi:"path"`
-	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	// Specifies the semantic version of the plugin to use for this connection.
 	PluginVersion *string `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
@@ -639,7 +645,7 @@ type SecretsMountArgs struct {
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringInput
-	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	// Specifies the semantic version of the plugin to use for this connection.
 	PluginVersion pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
@@ -922,7 +928,7 @@ func (o SecretsMountOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
 
-// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+// Specifies the semantic version of the plugin to use for this connection.
 func (o SecretsMountOutput) PluginVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }

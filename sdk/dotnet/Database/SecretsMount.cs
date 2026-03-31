@@ -51,6 +51,9 @@ namespace Pulumi.Vault.Database
     ///                 {
     ///                     "dev1",
     ///                 },
+    ///                 PluginVersion = "v0.20.0",
+    ///                 SkipStaticRoleImportRotation = true,
+    ///                 PasswordPolicy = "default",
     ///                 RotationSchedule = "0 * * * SAT",
     ///                 RotationWindow = 3600,
     ///             },
@@ -68,6 +71,9 @@ namespace Pulumi.Vault.Database
     ///                 {
     ///                     "dev2",
     ///                 },
+    ///                 PluginVersion = "v0.19.0",
+    ///                 SkipStaticRoleImportRotation = true,
+    ///                 PasswordPolicy = "default",
     ///                 RotationSchedule = "0 * * * SAT",
     ///                 RotationWindow = 3600,
     ///             },
@@ -328,7 +334,7 @@ namespace Pulumi.Vault.Database
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// Specifies the semantic version of the plugin to use for this connection.
         /// </summary>
         [Output("pluginVersion")]
         public Output<string?> PluginVersion { get; private set; } = null!;
@@ -736,7 +742,7 @@ namespace Pulumi.Vault.Database
         public Input<string> Path { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// Specifies the semantic version of the plugin to use for this connection.
         /// </summary>
         [Input("pluginVersion")]
         public Input<string>? PluginVersion { get; set; }
@@ -1148,7 +1154,7 @@ namespace Pulumi.Vault.Database
         public Input<string>? Path { get; set; }
 
         /// <summary>
-        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// Specifies the semantic version of the plugin to use for this connection.
         /// </summary>
         [Input("pluginVersion")]
         public Input<string>? PluginVersion { get; set; }

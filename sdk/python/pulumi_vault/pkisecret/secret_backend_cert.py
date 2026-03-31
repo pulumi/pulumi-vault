@@ -34,6 +34,7 @@ class SecretBackendCertArgs:
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke_with_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
@@ -60,6 +61,7 @@ class SecretBackendCertArgs:
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         :param pulumi.Input[_builtins.bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
         :param pulumi.Input[_builtins.str] ttl: Time to live
@@ -94,6 +96,8 @@ class SecretBackendCertArgs:
             pulumi.set(__self__, "other_sans", other_sans)
         if private_key_format is not None:
             pulumi.set(__self__, "private_key_format", private_key_format)
+        if remove_roots_from_chain is not None:
+            pulumi.set(__self__, "remove_roots_from_chain", remove_roots_from_chain)
         if revoke is not None:
             pulumi.set(__self__, "revoke", revoke)
         if revoke_with_key is not None:
@@ -289,6 +293,18 @@ class SecretBackendCertArgs:
         pulumi.set(self, "private_key_format", value)
 
     @_builtins.property
+    @pulumi.getter(name="removeRootsFromChain")
+    def remove_roots_from_chain(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+        """
+        return pulumi.get(self, "remove_roots_from_chain")
+
+    @remove_roots_from_chain.setter
+    def remove_roots_from_chain(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "remove_roots_from_chain", value)
+
+    @_builtins.property
     @pulumi.getter
     def revoke(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -373,6 +389,7 @@ class _SecretBackendCertState:
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  renew_pending: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke_with_key: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -407,6 +424,7 @@ class _SecretBackendCertState:
         :param pulumi.Input[_builtins.str] private_key: The private key
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] private_key_type: The private key type
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         :param pulumi.Input[_builtins.bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
@@ -457,6 +475,8 @@ class _SecretBackendCertState:
             pulumi.set(__self__, "private_key_format", private_key_format)
         if private_key_type is not None:
             pulumi.set(__self__, "private_key_type", private_key_type)
+        if remove_roots_from_chain is not None:
+            pulumi.set(__self__, "remove_roots_from_chain", remove_roots_from_chain)
         if renew_pending is not None:
             pulumi.set(__self__, "renew_pending", renew_pending)
         if revoke is not None:
@@ -728,6 +748,18 @@ class _SecretBackendCertState:
         pulumi.set(self, "private_key_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="removeRootsFromChain")
+    def remove_roots_from_chain(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+        """
+        return pulumi.get(self, "remove_roots_from_chain")
+
+    @remove_roots_from_chain.setter
+    def remove_roots_from_chain(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "remove_roots_from_chain", value)
+
+    @_builtins.property
     @pulumi.getter(name="renewPending")
     def renew_pending(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -833,6 +865,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke_with_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
@@ -883,6 +916,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         :param pulumi.Input[_builtins.bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
         :param pulumi.Input[_builtins.str] ttl: Time to live
@@ -949,6 +983,7 @@ class SecretBackendCert(pulumi.CustomResource):
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke: Optional[pulumi.Input[_builtins.bool]] = None,
                  revoke_with_key: Optional[pulumi.Input[_builtins.bool]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
@@ -982,6 +1017,7 @@ class SecretBackendCert(pulumi.CustomResource):
             __props__.__dict__["not_after"] = not_after
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["private_key_format"] = private_key_format
+            __props__.__dict__["remove_roots_from_chain"] = remove_roots_from_chain
             __props__.__dict__["revoke"] = revoke
             __props__.__dict__["revoke_with_key"] = revoke_with_key
             __props__.__dict__["ttl"] = ttl
@@ -1028,6 +1064,7 @@ class SecretBackendCert(pulumi.CustomResource):
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
             private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
             private_key_type: Optional[pulumi.Input[_builtins.str]] = None,
+            remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
             renew_pending: Optional[pulumi.Input[_builtins.bool]] = None,
             revoke: Optional[pulumi.Input[_builtins.bool]] = None,
             revoke_with_key: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1066,6 +1103,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] private_key: The private key
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] private_key_type: The private key type
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         :param pulumi.Input[_builtins.bool] revoke_with_key: If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
@@ -1099,6 +1137,7 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_format"] = private_key_format
         __props__.__dict__["private_key_type"] = private_key_type
+        __props__.__dict__["remove_roots_from_chain"] = remove_roots_from_chain
         __props__.__dict__["renew_pending"] = renew_pending
         __props__.__dict__["revoke"] = revoke
         __props__.__dict__["revoke_with_key"] = revoke_with_key
@@ -1278,6 +1317,14 @@ class SecretBackendCert(pulumi.CustomResource):
         The private key type
         """
         return pulumi.get(self, "private_key_type")
+
+    @_builtins.property
+    @pulumi.getter(name="removeRootsFromChain")
+    def remove_roots_from_chain(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+        """
+        return pulumi.get(self, "remove_roots_from_chain")
 
     @_builtins.property
     @pulumi.getter(name="renewPending")

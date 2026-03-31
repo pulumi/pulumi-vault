@@ -12,6 +12,7 @@ import com.pulumi.vault.ssh.SecretBackendRoleArgs;
 import com.pulumi.vault.ssh.inputs.SecretBackendRoleState;
 import com.pulumi.vault.ssh.outputs.SecretBackendRoleAllowedUserKeyConfig;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -347,6 +348,22 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.defaultExtensions);
     }
     /**
+     * Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     * 
+     */
+    @Export(name="defaultExtensionsTemplate", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> defaultExtensionsTemplate;
+
+    /**
+     * @return Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> defaultExtensionsTemplate() {
+        return Codegen.optional(this.defaultExtensionsTemplate);
+    }
+    /**
      * Specifies the default username for which a credential will be generated.
      * 
      */
@@ -373,6 +390,22 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> defaultUserTemplate() {
         return Codegen.optional(this.defaultUserTemplate);
+    }
+    /**
+     * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     * 
+     */
+    @Export(name="excludeCidrLists", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> excludeCidrLists;
+
+    /**
+     * @return Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     * 
+     */
+    public Output<Optional<List<String>>> excludeCidrLists() {
+        return Codegen.optional(this.excludeCidrLists);
     }
     /**
      * Specifies a custom format for the key id of a signed certificate.
@@ -465,6 +498,22 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<String> notBeforeDuration() {
         return this.notBeforeDuration;
+    }
+    /**
+     * Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     * 
+     */
+    @Export(name="port", refs={Integer.class}, tree="[0]")
+    private Output<Integer> port;
+
+    /**
+     * @return Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     * 
+     */
+    public Output<Integer> port() {
+        return this.port;
     }
     /**
      * Specifies the Time To Live value.

@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.managed.inputs.KeysAwArgs;
 import com.pulumi.vault.managed.inputs.KeysAzureArgs;
+import com.pulumi.vault.managed.inputs.KeysGcpArgs;
 import com.pulumi.vault.managed.inputs.KeysPkcArgs;
 import java.lang.String;
 import java.util.List;
@@ -50,6 +51,21 @@ public final class KeysArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Configuration block for GCP Cloud KMS Managed Keys
+     * 
+     */
+    @Import(name="gcps")
+    private @Nullable Output<List<KeysGcpArgs>> gcps;
+
+    /**
+     * @return Configuration block for GCP Cloud KMS Managed Keys
+     * 
+     */
+    public Optional<Output<List<KeysGcpArgs>>> gcps() {
+        return Optional.ofNullable(this.gcps);
+    }
+
+    /**
      * Target namespace. (requires Enterprise)
      * 
      */
@@ -84,6 +100,7 @@ public final class KeysArgs extends com.pulumi.resources.ResourceArgs {
     private KeysArgs(KeysArgs $) {
         this.aws = $.aws;
         this.azures = $.azures;
+        this.gcps = $.gcps;
         this.namespace = $.namespace;
         this.pkcs = $.pkcs;
     }
@@ -166,6 +183,37 @@ public final class KeysArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder azures(KeysAzureArgs... azures) {
             return azures(List.of(azures));
+        }
+
+        /**
+         * @param gcps Configuration block for GCP Cloud KMS Managed Keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcps(@Nullable Output<List<KeysGcpArgs>> gcps) {
+            $.gcps = gcps;
+            return this;
+        }
+
+        /**
+         * @param gcps Configuration block for GCP Cloud KMS Managed Keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcps(List<KeysGcpArgs> gcps) {
+            return gcps(Output.of(gcps));
+        }
+
+        /**
+         * @param gcps Configuration block for GCP Cloud KMS Managed Keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcps(KeysGcpArgs... gcps) {
+            return gcps(List.of(gcps));
         }
 
         /**

@@ -14,6 +14,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AuthLoginJwt {
     /**
+     * @return An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+     * 
+     */
+    private @Nullable String distributedClaimAccessToken;
+    /**
      * @return A signed JSON Web Token.
      * 
      */
@@ -40,6 +45,13 @@ public final class AuthLoginJwt {
     private @Nullable Boolean useRootNamespace;
 
     private AuthLoginJwt() {}
+    /**
+     * @return An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+     * 
+     */
+    public Optional<String> distributedClaimAccessToken() {
+        return Optional.ofNullable(this.distributedClaimAccessToken);
+    }
     /**
      * @return A signed JSON Web Token.
      * 
@@ -85,6 +97,7 @@ public final class AuthLoginJwt {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String distributedClaimAccessToken;
         private @Nullable String jwt;
         private @Nullable String mount;
         private @Nullable String namespace;
@@ -93,6 +106,7 @@ public final class AuthLoginJwt {
         public Builder() {}
         public Builder(AuthLoginJwt defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.distributedClaimAccessToken = defaults.distributedClaimAccessToken;
     	      this.jwt = defaults.jwt;
     	      this.mount = defaults.mount;
     	      this.namespace = defaults.namespace;
@@ -100,6 +114,12 @@ public final class AuthLoginJwt {
     	      this.useRootNamespace = defaults.useRootNamespace;
         }
 
+        @CustomType.Setter
+        public Builder distributedClaimAccessToken(@Nullable String distributedClaimAccessToken) {
+
+            this.distributedClaimAccessToken = distributedClaimAccessToken;
+            return this;
+        }
         @CustomType.Setter
         public Builder jwt(@Nullable String jwt) {
 
@@ -134,6 +154,7 @@ public final class AuthLoginJwt {
         }
         public AuthLoginJwt build() {
             final var _resultValue = new AuthLoginJwt();
+            _resultValue.distributedClaimAccessToken = distributedClaimAccessToken;
             _resultValue.jwt = jwt;
             _resultValue.mount = mount;
             _resultValue.namespace = namespace;

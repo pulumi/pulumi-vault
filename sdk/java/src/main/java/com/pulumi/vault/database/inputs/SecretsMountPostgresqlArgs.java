@@ -207,6 +207,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    @Import(name="passwordPolicy")
+    private @Nullable Output<String> passwordPolicy;
+
+    /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<Output<String>> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only field for the root credential password used in the connection URL
      * 
@@ -251,6 +266,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    @Import(name="pluginVersion")
+    private @Nullable Output<String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<Output<String>> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
 
     /**
@@ -367,6 +397,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Import(name="skipStaticRoleImportRotation")
+    private @Nullable Output<Boolean> skipStaticRoleImportRotation;
+
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Output<Boolean>> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
+    }
+
+    /**
      * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
      * 
      */
@@ -458,9 +503,11 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.name = $.name;
         this.password = $.password;
         this.passwordAuthentication = $.passwordAuthentication;
+        this.passwordPolicy = $.passwordPolicy;
         this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
+        this.pluginVersion = $.pluginVersion;
         this.privateKey = $.privateKey;
         this.rootRotationStatements = $.rootRotationStatements;
         this.rotationPeriod = $.rotationPeriod;
@@ -468,6 +515,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.rotationWindow = $.rotationWindow;
         this.selfManaged = $.selfManaged;
         this.serviceAccountJson = $.serviceAccountJson;
+        this.skipStaticRoleImportRotation = $.skipStaticRoleImportRotation;
         this.tlsCa = $.tlsCa;
         this.tlsCertificate = $.tlsCertificate;
         this.username = $.username;
@@ -763,6 +811,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param passwordPolicy The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(@Nullable Output<String> passwordPolicy) {
+            $.passwordPolicy = passwordPolicy;
+            return this;
+        }
+
+        /**
+         * @param passwordPolicy The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(String passwordPolicy) {
+            return passwordPolicy(Output.of(passwordPolicy));
+        }
+
+        /**
          * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          * 
@@ -825,6 +894,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder pluginName(String pluginName) {
             return pluginName(Output.of(pluginName));
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(@Nullable Output<String> pluginVersion) {
+            $.pluginVersion = pluginVersion;
+            return this;
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(String pluginVersion) {
+            return pluginVersion(Output.of(pluginVersion));
         }
 
         /**
@@ -990,6 +1080,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder serviceAccountJson(String serviceAccountJson) {
             return serviceAccountJson(Output.of(serviceAccountJson));
+        }
+
+        /**
+         * @param skipStaticRoleImportRotation Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipStaticRoleImportRotation(@Nullable Output<Boolean> skipStaticRoleImportRotation) {
+            $.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
+            return this;
+        }
+
+        /**
+         * @param skipStaticRoleImportRotation Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipStaticRoleImportRotation(Boolean skipStaticRoleImportRotation) {
+            return skipStaticRoleImportRotation(Output.of(skipStaticRoleImportRotation));
         }
 
         /**

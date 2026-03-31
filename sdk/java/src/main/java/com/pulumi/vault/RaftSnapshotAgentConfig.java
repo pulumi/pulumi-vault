@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * ### Azure BLOB
+ * ### Azure BLOB (Shared Key Authentication)
  * 
  * <pre>
  * {@code
@@ -102,9 +102,56 @@ import javax.annotation.Nullable;
  *             .retain(7)
  *             .pathPrefix("/")
  *             .storageType("azure-blob")
+ *             .autoloadEnabled(true)
  *             .azureContainerName("vault-blob")
  *             .azureAccountName(azureAccountName)
  *             .azureAccountKey(azureAccountKey)
+ *             .azureAuthMode("shared")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Azure BLOB (Managed Identity Authentication)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.RaftSnapshotAgentConfig;
+ * import com.pulumi.vault.RaftSnapshotAgentConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var config = ctx.config();
+ *         final var azureAccountName = config.require("azureAccountName");
+ *         final var azureClientId = config.require("azureClientId");
+ *         var azureManagedIdentity = new RaftSnapshotAgentConfig("azureManagedIdentity", RaftSnapshotAgentConfigArgs.builder()
+ *             .name("azure_managed")
+ *             .intervalSeconds(86400)
+ *             .retain(7)
+ *             .pathPrefix("/")
+ *             .storageType("azure-blob")
+ *             .autoloadEnabled(true)
+ *             .azureContainerName("vault-blob")
+ *             .azureAccountName(azureAccountName)
+ *             .azureAuthMode("managed")
+ *             .azureClientId(azureClientId)
  *             .build());
  * 
  *     }
@@ -123,6 +170,26 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig")
 public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = &#34;local&#34;`.
+     * 
+     * *Requires Vault Enterprise 1.21.0+*.
+     * 
+     */
+    @Export(name="autoloadEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> autoloadEnabled;
+
+    /**
+     * @return Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = &#34;local&#34;`.
+     * 
+     * *Requires Vault Enterprise 1.21.0+*.
+     * 
+     */
+    public Output<Optional<Boolean>> autoloadEnabled() {
+        return Codegen.optional(this.autoloadEnabled);
+    }
     /**
      * AWS access key ID.
      * 
@@ -278,14 +345,14 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.awsSessionToken);
     }
     /**
-     * Azure account key.
+     * Azure account key. Required when azureAuthMode is &#39;shared&#39;.
      * 
      */
     @Export(name="azureAccountKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureAccountKey;
 
     /**
-     * @return Azure account key.
+     * @return Azure account key. Required when azureAuthMode is &#39;shared&#39;.
      * 
      */
     public Output<Optional<String>> azureAccountKey() {
@@ -306,6 +373,20 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.azureAccountName);
     }
     /**
+     * Azure authentication mode. Required for azure-blob storage. Possible values are &#39;shared&#39;, &#39;managed&#39;, or &#39;environment&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    @Export(name="azureAuthMode", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> azureAuthMode;
+
+    /**
+     * @return Azure authentication mode. Required for azure-blob storage. Possible values are &#39;shared&#39;, &#39;managed&#39;, or &#39;environment&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    public Output<Optional<String>> azureAuthMode() {
+        return Codegen.optional(this.azureAuthMode);
+    }
+    /**
      * Azure blob environment.
      * 
      */
@@ -318,6 +399,20 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<String>> azureBlobEnvironment() {
         return Codegen.optional(this.azureBlobEnvironment);
+    }
+    /**
+     * Azure client ID for authentication. Required when azureAuthMode is &#39;managed&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    @Export(name="azureClientId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> azureClientId;
+
+    /**
+     * @return Azure client ID for authentication. Required when azureAuthMode is &#39;managed&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    public Output<Optional<String>> azureClientId() {
+        return Codegen.optional(this.azureClientId);
     }
     /**
      * Azure container name to write snapshots to.

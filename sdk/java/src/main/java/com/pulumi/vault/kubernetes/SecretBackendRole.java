@@ -80,6 +80,7 @@ import javax.annotation.Nullable;
  *             .allowedKubernetesNamespaces("*")
  *             .tokenMaxTtl(43200)
  *             .tokenDefaultTtl(21600)
+ *             .tokenDefaultAudiences("https://kubernetes.default.svc")
  *             .serviceAccountName("test-service-account-with-generated-token")
  *             .extraLabels(Map.ofEntries(
  *                 Map.entry("id", "abc123"),
@@ -453,6 +454,24 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> serviceAccountName() {
         return Codegen.optional(this.serviceAccountName);
+    }
+    /**
+     * The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+     * Vault 1.15 or later.
+     * 
+     */
+    @Export(name="tokenDefaultAudiences", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tokenDefaultAudiences;
+
+    /**
+     * @return The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+     * Vault 1.15 or later.
+     * 
+     */
+    public Output<Optional<List<String>>> tokenDefaultAudiences() {
+        return Codegen.optional(this.tokenDefaultAudiences);
     }
     /**
      * The default TTL for generated Kubernetes tokens in seconds.

@@ -282,14 +282,14 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
      * 
      */
     @Import(name="keyUsages")
     private @Nullable Output<List<String>> keyUsages;
 
     /**
-     * @return Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * @return Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
      * 
      */
     public Optional<Output<List<String>>> keyUsages() {
@@ -1151,7 +1151,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
          * 
          * @return builder
          * 
@@ -1162,7 +1162,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
          * 
          * @return builder
          * 
@@ -1172,7 +1172,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+         * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
          * 
          * @return builder
          * 

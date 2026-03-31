@@ -251,6 +251,21 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     * 
+     */
+    @Import(name="removeRootsFromChain")
+    private @Nullable Output<Boolean> removeRootsFromChain;
+
+    /**
+     * @return If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> removeRootsFromChain() {
+        return Optional.ofNullable(this.removeRootsFromChain);
+    }
+
+    /**
      * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      * 
      */
@@ -343,6 +358,7 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
         this.notAfter = $.notAfter;
         this.otherSans = $.otherSans;
         this.privateKeyFormat = $.privateKeyFormat;
+        this.removeRootsFromChain = $.removeRootsFromChain;
         this.revoke = $.revoke;
         this.revokeWithKey = $.revokeWithKey;
         this.ttl = $.ttl;
@@ -717,6 +733,27 @@ public final class SecretBackendCertArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder privateKeyFormat(String privateKeyFormat) {
             return privateKeyFormat(Output.of(privateKeyFormat));
+        }
+
+        /**
+         * @param removeRootsFromChain If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder removeRootsFromChain(@Nullable Output<Boolean> removeRootsFromChain) {
+            $.removeRootsFromChain = removeRootsFromChain;
+            return this;
+        }
+
+        /**
+         * @param removeRootsFromChain If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder removeRootsFromChain(Boolean removeRootsFromChain) {
+            return removeRootsFromChain(Output.of(removeRootsFromChain));
         }
 
         /**

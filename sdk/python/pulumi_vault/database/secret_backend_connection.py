@@ -40,7 +40,9 @@ class SecretBackendConnectionArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
                  redis: Optional[pulumi.Input['SecretBackendConnectionRedisArgs']] = None,
                  redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
@@ -49,6 +51,7 @@ class SecretBackendConnectionArgs:
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -77,7 +80,9 @@ class SecretBackendConnectionArgs:
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input['SecretBackendConnectionRedisArgs'] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
@@ -92,6 +97,7 @@ class SecretBackendConnectionArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -133,8 +139,12 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "namespace", namespace)
         if oracle is not None:
             pulumi.set(__self__, "oracle", oracle)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
         if redis is not None:
@@ -151,6 +161,8 @@ class SecretBackendConnectionArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
         if verify_connection is not None:
@@ -389,6 +401,18 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "oracle", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -399,6 +423,18 @@ class SecretBackendConnectionArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -503,6 +539,18 @@ class SecretBackendConnectionArgs:
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
+
+    @_builtins.property
     @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]:
         """
@@ -550,7 +598,9 @@ class _SecretBackendConnectionState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  oracle: Optional[pulumi.Input['SecretBackendConnectionOracleArgs']] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  postgresql: Optional[pulumi.Input['SecretBackendConnectionPostgresqlArgs']] = None,
                  redis: Optional[pulumi.Input['SecretBackendConnectionRedisArgs']] = None,
                  redis_elasticache: Optional[pulumi.Input['SecretBackendConnectionRedisElasticacheArgs']] = None,
@@ -559,6 +609,7 @@ class _SecretBackendConnectionState:
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  snowflake: Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -587,7 +638,9 @@ class _SecretBackendConnectionState:
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input['SecretBackendConnectionOracleArgs'] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input['SecretBackendConnectionPostgresqlArgs'] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input['SecretBackendConnectionRedisArgs'] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input['SecretBackendConnectionRedisElasticacheArgs'] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
@@ -602,6 +655,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input['SecretBackendConnectionSnowflakeArgs'] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -644,8 +698,12 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "namespace", namespace)
         if oracle is not None:
             pulumi.set(__self__, "oracle", oracle)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if postgresql is not None:
             pulumi.set(__self__, "postgresql", postgresql)
         if redis is not None:
@@ -662,6 +720,8 @@ class _SecretBackendConnectionState:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if snowflake is not None:
             pulumi.set(__self__, "snowflake", snowflake)
         if verify_connection is not None:
@@ -900,6 +960,18 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "oracle", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -910,6 +982,18 @@ class _SecretBackendConnectionState:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1014,6 +1098,18 @@ class _SecretBackendConnectionState:
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
+
+    @_builtins.property
     @pulumi.getter
     def snowflake(self) -> Optional[pulumi.Input['SecretBackendConnectionSnowflakeArgs']]:
         """
@@ -1064,7 +1160,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  oracle: Optional[pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  postgresql: Optional[pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']]] = None,
                  redis: Optional[pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']]] = None,
                  redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
@@ -1073,6 +1171,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
@@ -1112,49 +1211,6 @@ class SecretBackendConnection(pulumi.CustomResource):
             })
         ```
 
-        ### Oracle Connection with Self-Managed Mode (Rootless)
-
-        For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
-        which allows a static role to manage its own database credentials without requiring root access:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        db = vault.Mount("db",
-            path="database",
-            type="database")
-        oracle = vault.database.SecretBackendConnection("oracle",
-            backend=db.path,
-            name="oracle",
-            allowed_roles=["my-role"],
-            oracle={
-                "connection_url": "{{username}}/{{password}}@//host:port/service",
-                "self_managed": True,
-                "plugin_name": "vault-plugin-database-oracle",
-            })
-        oracle_role = vault.database.SecretBackendStaticRole("oracle_role",
-            backend=db.path,
-            name="my-role",
-            db_name=oracle.name,
-            username="vault_user",
-            password_wo="initial-password",
-            password_wo_version=1,
-            rotation_period=3600)
-        ```
-
-        ## Ephemeral Attributes Reference
-
-        The following write-only attributes are supported for all DBs that support username/password:
-
-        * `password_wo` - (Optional) The password for the user. Can be updated.
-          **Note**: This property is write-only and will not be read from the API.
-
-        The following write-only attribute is supported only for Snowflake DB:
-
-        * `private_key_wo` - (Optional) The private key associated with the Snowflake user.
-          **Note**: This property is write-only and will not be read from the API.
-
         ## Import
 
         Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
@@ -1189,7 +1245,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
@@ -1204,6 +1262,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -1250,49 +1309,6 @@ class SecretBackendConnection(pulumi.CustomResource):
             })
         ```
 
-        ### Oracle Connection with Self-Managed Mode (Rootless)
-
-        For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
-        which allows a static role to manage its own database credentials without requiring root access:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        db = vault.Mount("db",
-            path="database",
-            type="database")
-        oracle = vault.database.SecretBackendConnection("oracle",
-            backend=db.path,
-            name="oracle",
-            allowed_roles=["my-role"],
-            oracle={
-                "connection_url": "{{username}}/{{password}}@//host:port/service",
-                "self_managed": True,
-                "plugin_name": "vault-plugin-database-oracle",
-            })
-        oracle_role = vault.database.SecretBackendStaticRole("oracle_role",
-            backend=db.path,
-            name="my-role",
-            db_name=oracle.name,
-            username="vault_user",
-            password_wo="initial-password",
-            password_wo_version=1,
-            rotation_period=3600)
-        ```
-
-        ## Ephemeral Attributes Reference
-
-        The following write-only attributes are supported for all DBs that support username/password:
-
-        * `password_wo` - (Optional) The password for the user. Can be updated.
-          **Note**: This property is write-only and will not be read from the API.
-
-        The following write-only attribute is supported only for Snowflake DB:
-
-        * `private_key_wo` - (Optional) The private key associated with the Snowflake user.
-          **Note**: This property is write-only and will not be read from the API.
-
         ## Import
 
         Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
@@ -1336,7 +1352,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  oracle: Optional[pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  postgresql: Optional[pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']]] = None,
                  redis: Optional[pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']]] = None,
                  redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
@@ -1345,6 +1363,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
@@ -1377,7 +1396,9 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["oracle"] = oracle
+            __props__.__dict__["password_policy"] = password_policy
             __props__.__dict__["plugin_name"] = plugin_name
+            __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["postgresql"] = postgresql
             __props__.__dict__["redis"] = redis
             __props__.__dict__["redis_elasticache"] = redis_elasticache
@@ -1386,6 +1407,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
+            __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
             __props__.__dict__["snowflake"] = snowflake
             __props__.__dict__["verify_connection"] = verify_connection
         super(SecretBackendConnection, __self__).__init__(
@@ -1417,7 +1439,9 @@ class SecretBackendConnection(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             oracle: Optional[pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']]] = None,
+            password_policy: Optional[pulumi.Input[_builtins.str]] = None,
             plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+            plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
             postgresql: Optional[pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']]] = None,
             redis: Optional[pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']]] = None,
             redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
@@ -1426,6 +1450,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
             rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
             rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+            skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
             snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
             verify_connection: Optional[pulumi.Input[_builtins.bool]] = None) -> 'SecretBackendConnection':
         """
@@ -1458,7 +1483,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']] postgresql: A nested block containing configuration options for PostgreSQL connections.
         :param pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']] redis: A nested block containing configuration options for Redis connections.
         :param pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
@@ -1473,6 +1500,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -1500,7 +1528,9 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["oracle"] = oracle
+        __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["plugin_name"] = plugin_name
+        __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["postgresql"] = postgresql
         __props__.__dict__["redis"] = redis
         __props__.__dict__["redis_elasticache"] = redis_elasticache
@@ -1509,6 +1539,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
+        __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
         __props__.__dict__["snowflake"] = snowflake
         __props__.__dict__["verify_connection"] = verify_connection
         return SecretBackendConnection(resource_name, opts=opts, __props__=__props__)
@@ -1670,12 +1701,28 @@ class SecretBackendConnection(pulumi.CustomResource):
         return pulumi.get(self, "oracle")
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
 
     @_builtins.property
     @pulumi.getter
@@ -1746,6 +1793,14 @@ class SecretBackendConnection(pulumi.CustomResource):
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "rotation_window")
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
 
     @_builtins.property
     @pulumi.getter

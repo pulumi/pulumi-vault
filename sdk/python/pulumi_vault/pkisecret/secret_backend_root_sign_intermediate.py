@@ -74,7 +74,7 @@ class SecretBackendRootSignIntermediateArgs:
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -336,7 +336,7 @@ class SecretBackendRootSignIntermediateArgs:
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         """
         return pulumi.get(self, "key_usages")
 
@@ -682,7 +682,7 @@ class _SecretBackendRootSignIntermediateState:
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA certificate in the `format` specified.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1007,7 +1007,7 @@ class _SecretBackendRootSignIntermediateState:
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         """
         return pulumi.get(self, "key_usages")
 
@@ -1378,7 +1378,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1619,7 +1619,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA certificate in the `format` specified.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1840,7 +1840,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         """
         return pulumi.get(self, "key_usages")
 

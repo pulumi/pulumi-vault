@@ -90,7 +90,7 @@ namespace Pulumi.Vault.Ldap
         /// Password to use with `Binddn` when performing user search. Conflicts with `BindpassWo`.
         /// </summary>
         [Output("bindpass")]
-        public Output<string> Bindpass { get; private set; } = null!;
+        public Output<string?> Bindpass { get; private set; } = null!;
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.

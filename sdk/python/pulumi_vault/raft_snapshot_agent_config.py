@@ -22,6 +22,7 @@ class RaftSnapshotAgentConfigArgs:
                  interval_seconds: pulumi.Input[_builtins.int],
                  path_prefix: pulumi.Input[_builtins.str],
                  storage_type: pulumi.Input[_builtins.str],
+                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -35,7 +36,9 @@ class RaftSnapshotAgentConfigArgs:
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
@@ -58,6 +61,10 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[_builtins.str] storage_type: `<required>` - One of "local", "azure-blob", "aws-s3",
                or "google-gcs". The remaining parameters described below are all specific to
                the selected `storage_type` and prefixed accordingly.
+        :param pulumi.Input[_builtins.bool] autoload_enabled: Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+               **Note:** Not supported with `storage_type = "local"`.
+               
+               *Requires Vault Enterprise 1.21.0+*.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID.
         :param pulumi.Input[_builtins.str] aws_s3_bucket: S3 bucket to write snapshots to.
         :param pulumi.Input[_builtins.bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
@@ -69,9 +76,11 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
-        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key.
+        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
+        :param pulumi.Input[_builtins.str] azure_auth_mode: Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_blob_environment: Azure blob environment.
+        :param pulumi.Input[_builtins.str] azure_client_id: Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_container_name: Azure container name to write snapshots to.
         :param pulumi.Input[_builtins.str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[_builtins.str] file_prefix: Within the directory or bucket
@@ -94,6 +103,8 @@ class RaftSnapshotAgentConfigArgs:
         pulumi.set(__self__, "interval_seconds", interval_seconds)
         pulumi.set(__self__, "path_prefix", path_prefix)
         pulumi.set(__self__, "storage_type", storage_type)
+        if autoload_enabled is not None:
+            pulumi.set(__self__, "autoload_enabled", autoload_enabled)
         if aws_access_key_id is not None:
             pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
         if aws_s3_bucket is not None:
@@ -120,8 +131,12 @@ class RaftSnapshotAgentConfigArgs:
             pulumi.set(__self__, "azure_account_key", azure_account_key)
         if azure_account_name is not None:
             pulumi.set(__self__, "azure_account_name", azure_account_name)
+        if azure_auth_mode is not None:
+            pulumi.set(__self__, "azure_auth_mode", azure_auth_mode)
         if azure_blob_environment is not None:
             pulumi.set(__self__, "azure_blob_environment", azure_blob_environment)
+        if azure_client_id is not None:
+            pulumi.set(__self__, "azure_client_id", azure_client_id)
         if azure_container_name is not None:
             pulumi.set(__self__, "azure_container_name", azure_container_name)
         if azure_endpoint is not None:
@@ -185,6 +200,21 @@ class RaftSnapshotAgentConfigArgs:
     @storage_type.setter
     def storage_type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "storage_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoloadEnabled")
+    def autoload_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+        **Note:** Not supported with `storage_type = "local"`.
+
+        *Requires Vault Enterprise 1.21.0+*.
+        """
+        return pulumi.get(self, "autoload_enabled")
+
+    @autoload_enabled.setter
+    def autoload_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "autoload_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
@@ -322,7 +352,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="azureAccountKey")
     def azure_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Azure account key.
+        Azure account key. Required when azure_auth_mode is 'shared'.
         """
         return pulumi.get(self, "azure_account_key")
 
@@ -343,6 +373,18 @@ class RaftSnapshotAgentConfigArgs:
         pulumi.set(self, "azure_account_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="azureAuthMode")
+    def azure_auth_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+        """
+        return pulumi.get(self, "azure_auth_mode")
+
+    @azure_auth_mode.setter
+    def azure_auth_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "azure_auth_mode", value)
+
+    @_builtins.property
     @pulumi.getter(name="azureBlobEnvironment")
     def azure_blob_environment(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -353,6 +395,18 @@ class RaftSnapshotAgentConfigArgs:
     @azure_blob_environment.setter
     def azure_blob_environment(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "azure_blob_environment", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azureClientId")
+    def azure_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
+        """
+        return pulumi.get(self, "azure_client_id")
+
+    @azure_client_id.setter
+    def azure_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "azure_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureContainerName")
@@ -497,6 +551,7 @@ class RaftSnapshotAgentConfigArgs:
 @pulumi.input_type
 class _RaftSnapshotAgentConfigState:
     def __init__(__self__, *,
+                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -510,7 +565,9 @@ class _RaftSnapshotAgentConfigState:
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
@@ -528,6 +585,10 @@ class _RaftSnapshotAgentConfigState:
         """
         Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
 
+        :param pulumi.Input[_builtins.bool] autoload_enabled: Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+               **Note:** Not supported with `storage_type = "local"`.
+               
+               *Requires Vault Enterprise 1.21.0+*.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID.
         :param pulumi.Input[_builtins.str] aws_s3_bucket: S3 bucket to write snapshots to.
         :param pulumi.Input[_builtins.bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
@@ -539,9 +600,11 @@ class _RaftSnapshotAgentConfigState:
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
-        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key.
+        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
+        :param pulumi.Input[_builtins.str] azure_auth_mode: Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_blob_environment: Azure blob environment.
+        :param pulumi.Input[_builtins.str] azure_client_id: Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_container_name: Azure container name to write snapshots to.
         :param pulumi.Input[_builtins.str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[_builtins.str] file_prefix: Within the directory or bucket
@@ -569,6 +632,8 @@ class _RaftSnapshotAgentConfigState:
                or "google-gcs". The remaining parameters described below are all specific to
                the selected `storage_type` and prefixed accordingly.
         """
+        if autoload_enabled is not None:
+            pulumi.set(__self__, "autoload_enabled", autoload_enabled)
         if aws_access_key_id is not None:
             pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
         if aws_s3_bucket is not None:
@@ -595,8 +660,12 @@ class _RaftSnapshotAgentConfigState:
             pulumi.set(__self__, "azure_account_key", azure_account_key)
         if azure_account_name is not None:
             pulumi.set(__self__, "azure_account_name", azure_account_name)
+        if azure_auth_mode is not None:
+            pulumi.set(__self__, "azure_auth_mode", azure_auth_mode)
         if azure_blob_environment is not None:
             pulumi.set(__self__, "azure_blob_environment", azure_blob_environment)
+        if azure_client_id is not None:
+            pulumi.set(__self__, "azure_client_id", azure_client_id)
         if azure_container_name is not None:
             pulumi.set(__self__, "azure_container_name", azure_container_name)
         if azure_endpoint is not None:
@@ -625,6 +694,21 @@ class _RaftSnapshotAgentConfigState:
             pulumi.set(__self__, "retain", retain)
         if storage_type is not None:
             pulumi.set(__self__, "storage_type", storage_type)
+
+    @_builtins.property
+    @pulumi.getter(name="autoloadEnabled")
+    def autoload_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+        **Note:** Not supported with `storage_type = "local"`.
+
+        *Requires Vault Enterprise 1.21.0+*.
+        """
+        return pulumi.get(self, "autoload_enabled")
+
+    @autoload_enabled.setter
+    def autoload_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "autoload_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
@@ -762,7 +846,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="azureAccountKey")
     def azure_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Azure account key.
+        Azure account key. Required when azure_auth_mode is 'shared'.
         """
         return pulumi.get(self, "azure_account_key")
 
@@ -783,6 +867,18 @@ class _RaftSnapshotAgentConfigState:
         pulumi.set(self, "azure_account_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="azureAuthMode")
+    def azure_auth_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+        """
+        return pulumi.get(self, "azure_auth_mode")
+
+    @azure_auth_mode.setter
+    def azure_auth_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "azure_auth_mode", value)
+
+    @_builtins.property
     @pulumi.getter(name="azureBlobEnvironment")
     def azure_blob_environment(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -793,6 +889,18 @@ class _RaftSnapshotAgentConfigState:
     @azure_blob_environment.setter
     def azure_blob_environment(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "azure_blob_environment", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azureClientId")
+    def azure_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
+        """
+        return pulumi.get(self, "azure_client_id")
+
+    @azure_client_id.setter
+    def azure_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "azure_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureContainerName")
@@ -981,6 +1089,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -994,7 +1103,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1040,7 +1151,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             local_max_space=10000000)
         ```
 
-        ### Azure BLOB
+        ### Azure BLOB (Shared Key Authentication)
 
         ```python
         import pulumi
@@ -1055,9 +1166,33 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             retain=7,
             path_prefix="/",
             storage_type="azure-blob",
+            autoload_enabled=True,
             azure_container_name="vault-blob",
             azure_account_name=azure_account_name,
-            azure_account_key=azure_account_key)
+            azure_account_key=azure_account_key,
+            azure_auth_mode="shared")
+        ```
+
+        ### Azure BLOB (Managed Identity Authentication)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        azure_account_name = config.require_object("azureAccountName")
+        azure_client_id = config.require_object("azureClientId")
+        azure_managed_identity = vault.RaftSnapshotAgentConfig("azure_managed_identity",
+            name="azure_managed",
+            interval_seconds=86400,
+            retain=7,
+            path_prefix="/",
+            storage_type="azure-blob",
+            autoload_enabled=True,
+            azure_container_name="vault-blob",
+            azure_account_name=azure_account_name,
+            azure_auth_mode="managed",
+            azure_client_id=azure_client_id)
         ```
 
         ## Import
@@ -1071,6 +1206,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] autoload_enabled: Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+               **Note:** Not supported with `storage_type = "local"`.
+               
+               *Requires Vault Enterprise 1.21.0+*.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID.
         :param pulumi.Input[_builtins.str] aws_s3_bucket: S3 bucket to write snapshots to.
         :param pulumi.Input[_builtins.bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
@@ -1082,9 +1221,11 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
-        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key.
+        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
+        :param pulumi.Input[_builtins.str] azure_auth_mode: Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_blob_environment: Azure blob environment.
+        :param pulumi.Input[_builtins.str] azure_client_id: Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_container_name: Azure container name to write snapshots to.
         :param pulumi.Input[_builtins.str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[_builtins.str] file_prefix: Within the directory or bucket
@@ -1148,7 +1289,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             local_max_space=10000000)
         ```
 
-        ### Azure BLOB
+        ### Azure BLOB (Shared Key Authentication)
 
         ```python
         import pulumi
@@ -1163,9 +1304,33 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             retain=7,
             path_prefix="/",
             storage_type="azure-blob",
+            autoload_enabled=True,
             azure_container_name="vault-blob",
             azure_account_name=azure_account_name,
-            azure_account_key=azure_account_key)
+            azure_account_key=azure_account_key,
+            azure_auth_mode="shared")
+        ```
+
+        ### Azure BLOB (Managed Identity Authentication)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        config = pulumi.Config()
+        azure_account_name = config.require_object("azureAccountName")
+        azure_client_id = config.require_object("azureClientId")
+        azure_managed_identity = vault.RaftSnapshotAgentConfig("azure_managed_identity",
+            name="azure_managed",
+            interval_seconds=86400,
+            retain=7,
+            path_prefix="/",
+            storage_type="azure-blob",
+            autoload_enabled=True,
+            azure_container_name="vault-blob",
+            azure_account_name=azure_account_name,
+            azure_auth_mode="managed",
+            azure_client_id=azure_client_id)
         ```
 
         ## Import
@@ -1192,6 +1357,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1205,7 +1371,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
+                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
                  file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1229,6 +1397,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RaftSnapshotAgentConfigArgs.__new__(RaftSnapshotAgentConfigArgs)
 
+            __props__.__dict__["autoload_enabled"] = autoload_enabled
             __props__.__dict__["aws_access_key_id"] = aws_access_key_id
             __props__.__dict__["aws_s3_bucket"] = aws_s3_bucket
             __props__.__dict__["aws_s3_disable_tls"] = aws_s3_disable_tls
@@ -1242,7 +1411,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             __props__.__dict__["aws_session_token"] = aws_session_token
             __props__.__dict__["azure_account_key"] = azure_account_key
             __props__.__dict__["azure_account_name"] = azure_account_name
+            __props__.__dict__["azure_auth_mode"] = azure_auth_mode
             __props__.__dict__["azure_blob_environment"] = azure_blob_environment
+            __props__.__dict__["azure_client_id"] = azure_client_id
             __props__.__dict__["azure_container_name"] = azure_container_name
             __props__.__dict__["azure_endpoint"] = azure_endpoint
             __props__.__dict__["file_prefix"] = file_prefix
@@ -1273,6 +1444,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
             aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1286,7 +1458,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
             azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
             azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+            azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
             azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
+            azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
             azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
             azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
             file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1308,6 +1482,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] autoload_enabled: Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+               **Note:** Not supported with `storage_type = "local"`.
+               
+               *Requires Vault Enterprise 1.21.0+*.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS access key ID.
         :param pulumi.Input[_builtins.str] aws_s3_bucket: S3 bucket to write snapshots to.
         :param pulumi.Input[_builtins.bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
@@ -1319,9 +1497,11 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
-        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key.
+        :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
+        :param pulumi.Input[_builtins.str] azure_auth_mode: Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_blob_environment: Azure blob environment.
+        :param pulumi.Input[_builtins.str] azure_client_id: Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
         :param pulumi.Input[_builtins.str] azure_container_name: Azure container name to write snapshots to.
         :param pulumi.Input[_builtins.str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[_builtins.str] file_prefix: Within the directory or bucket
@@ -1353,6 +1533,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
 
         __props__ = _RaftSnapshotAgentConfigState.__new__(_RaftSnapshotAgentConfigState)
 
+        __props__.__dict__["autoload_enabled"] = autoload_enabled
         __props__.__dict__["aws_access_key_id"] = aws_access_key_id
         __props__.__dict__["aws_s3_bucket"] = aws_s3_bucket
         __props__.__dict__["aws_s3_disable_tls"] = aws_s3_disable_tls
@@ -1366,7 +1547,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         __props__.__dict__["aws_session_token"] = aws_session_token
         __props__.__dict__["azure_account_key"] = azure_account_key
         __props__.__dict__["azure_account_name"] = azure_account_name
+        __props__.__dict__["azure_auth_mode"] = azure_auth_mode
         __props__.__dict__["azure_blob_environment"] = azure_blob_environment
+        __props__.__dict__["azure_client_id"] = azure_client_id
         __props__.__dict__["azure_container_name"] = azure_container_name
         __props__.__dict__["azure_endpoint"] = azure_endpoint
         __props__.__dict__["file_prefix"] = file_prefix
@@ -1382,6 +1565,17 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         __props__.__dict__["retain"] = retain
         __props__.__dict__["storage_type"] = storage_type
         return RaftSnapshotAgentConfig(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="autoloadEnabled")
+    def autoload_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+        **Note:** Not supported with `storage_type = "local"`.
+
+        *Requires Vault Enterprise 1.21.0+*.
+        """
+        return pulumi.get(self, "autoload_enabled")
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
@@ -1475,7 +1669,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="azureAccountKey")
     def azure_account_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Azure account key.
+        Azure account key. Required when azure_auth_mode is 'shared'.
         """
         return pulumi.get(self, "azure_account_key")
 
@@ -1488,12 +1682,28 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         return pulumi.get(self, "azure_account_name")
 
     @_builtins.property
+    @pulumi.getter(name="azureAuthMode")
+    def azure_auth_mode(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+        """
+        return pulumi.get(self, "azure_auth_mode")
+
+    @_builtins.property
     @pulumi.getter(name="azureBlobEnvironment")
     def azure_blob_environment(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Azure blob environment.
         """
         return pulumi.get(self, "azure_blob_environment")
+
+    @_builtins.property
+    @pulumi.getter(name="azureClientId")
+    def azure_client_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
+        """
+        return pulumi.get(self, "azure_client_id")
 
     @_builtins.property
     @pulumi.getter(name="azureContainerName")

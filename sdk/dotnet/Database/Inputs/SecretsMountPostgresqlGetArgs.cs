@@ -109,6 +109,12 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("passwordAuthentication")]
         public Input<string>? PasswordAuthentication { get; set; }
 
+        /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
         [Input("passwordWo")]
         private Input<string>? _passwordWo;
 
@@ -137,6 +143,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         [Input("privateKey")]
         private Input<string>? _privateKey;
@@ -209,6 +221,12 @@ namespace Pulumi.Vault.Database.Inputs
                 _serviceAccountJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("skipStaticRoleImportRotation")]
+        public Input<bool>? SkipStaticRoleImportRotation { get; set; }
 
         /// <summary>
         /// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.

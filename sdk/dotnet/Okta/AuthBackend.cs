@@ -56,6 +56,14 @@ namespace Pulumi.Vault.Okta
     /// });
     /// ```
     /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `ApiTokenWo` - (Optional) Write-only Okta API token. This is required to query Okta for user group membership.
+    ///   Use this for enhanced security when you don't want the token to appear in state files. Requires `ApiTokenWoVersion`. Conflicts with `Token` and `ApiToken`.
+    ///   **Note**: This property is write-only and will not be read from the API.
+    /// 
     /// ## Import
     /// 
     /// Okta authentication backends can be imported using its `Path`, e.g.
@@ -79,6 +87,28 @@ namespace Pulumi.Vault.Okta
         /// </summary>
         [Output("aliasMetadata")]
         public Output<ImmutableDictionary<string, string>?> AliasMetadata { get; private set; } = null!;
+
+        /// <summary>
+        /// The Okta API token. This is required to query Okta for user group membership.
+        /// If this is not supplied only locally configured groups will be enabled.
+        /// Conflicts with `Token` and `ApiTokenWo`.
+        /// </summary>
+        [Output("apiToken")]
+        public Output<string?> ApiToken { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        /// </summary>
+        [Output("apiTokenWo")]
+        public Output<string?> ApiTokenWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only `ApiTokenWo`.
+        /// Increment this value to trigger an update of the write-only token. Required when using `ApiTokenWo`.
+        /// </summary>
+        [Output("apiTokenWoVersion")]
+        public Output<int?> ApiTokenWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com
@@ -122,7 +152,15 @@ namespace Pulumi.Vault.Okta
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        /// Exactly one of `OrgName` or `Organization` must be specified.
+        /// </summary>
+        [Output("orgName")]
+        public Output<string> OrgName { get; private set; } = null!;
+
+        /// <summary>
+        /// **Deprecated: Use `OrgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        /// Exactly one of `OrgName` or `Organization` must be specified.
         /// </summary>
         [Output("organization")]
         public Output<string> Organization { get; private set; } = null!;
@@ -134,8 +172,9 @@ namespace Pulumi.Vault.Okta
         public Output<string?> Path { get; private set; } = null!;
 
         /// <summary>
-        /// The Okta API token. This is required to query Okta for user group membership.
+        /// **Deprecated: Use `ApiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
         /// If this is not supplied only locally configured groups will be enabled.
+        /// Conflicts with `ApiToken` and `ApiTokenWo`.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
@@ -212,7 +251,7 @@ namespace Pulumi.Vault.Okta
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public AuthBackend(string name, AuthBackendArgs args, CustomResourceOptions? options = null)
+        public AuthBackend(string name, AuthBackendArgs? args = null, CustomResourceOptions? options = null)
             : base("vault:okta/authBackend:AuthBackend", name, args ?? new AuthBackendArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -229,6 +268,8 @@ namespace Pulumi.Vault.Okta
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
+                    "apiToken",
+                    "apiTokenWo",
                     "token",
                 },
             };
@@ -266,6 +307,48 @@ namespace Pulumi.Vault.Okta
             get => _aliasMetadata ?? (_aliasMetadata = new InputMap<string>());
             set => _aliasMetadata = value;
         }
+
+        [Input("apiToken")]
+        private Input<string>? _apiToken;
+
+        /// <summary>
+        /// The Okta API token. This is required to query Okta for user group membership.
+        /// If this is not supplied only locally configured groups will be enabled.
+        /// Conflicts with `Token` and `ApiTokenWo`.
+        /// </summary>
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("apiTokenWo")]
+        private Input<string>? _apiTokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        /// </summary>
+        public Input<string>? ApiTokenWo
+        {
+            get => _apiTokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiTokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `ApiTokenWo`.
+        /// Increment this value to trigger an update of the write-only token. Required when using `ApiTokenWo`.
+        /// </summary>
+        [Input("apiTokenWoVersion")]
+        public Input<int>? ApiTokenWoVersion { get; set; }
 
         /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com
@@ -315,10 +398,18 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        /// Exactly one of `OrgName` or `Organization` must be specified.
         /// </summary>
-        [Input("organization", required: true)]
-        public Input<string> Organization { get; set; } = null!;
+        [Input("orgName")]
+        public Input<string>? OrgName { get; set; }
+
+        /// <summary>
+        /// **Deprecated: Use `OrgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        /// Exactly one of `OrgName` or `Organization` must be specified.
+        /// </summary>
+        [Input("organization")]
+        public Input<string>? Organization { get; set; }
 
         /// <summary>
         /// Path to mount the Okta auth backend. Default to path `Okta`.
@@ -330,9 +421,11 @@ namespace Pulumi.Vault.Okta
         private Input<string>? _token;
 
         /// <summary>
-        /// The Okta API token. This is required to query Okta for user group membership.
+        /// **Deprecated: Use `ApiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
         /// If this is not supplied only locally configured groups will be enabled.
+        /// Conflicts with `ApiToken` and `ApiTokenWo`.
         /// </summary>
+        [Obsolete(@"Use ApiToken instead")]
         public Input<string>? Token
         {
             get => _token;
@@ -452,6 +545,48 @@ namespace Pulumi.Vault.Okta
             set => _aliasMetadata = value;
         }
 
+        [Input("apiToken")]
+        private Input<string>? _apiToken;
+
+        /// <summary>
+        /// The Okta API token. This is required to query Okta for user group membership.
+        /// If this is not supplied only locally configured groups will be enabled.
+        /// Conflicts with `Token` and `ApiTokenWo`.
+        /// </summary>
+        public Input<string>? ApiToken
+        {
+            get => _apiToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("apiTokenWo")]
+        private Input<string>? _apiTokenWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        /// </summary>
+        public Input<string>? ApiTokenWo
+        {
+            get => _apiTokenWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _apiTokenWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `ApiTokenWo`.
+        /// Increment this value to trigger an update of the write-only token. Required when using `ApiTokenWo`.
+        /// </summary>
+        [Input("apiTokenWoVersion")]
+        public Input<int>? ApiTokenWoVersion { get; set; }
+
         /// <summary>
         /// The Okta url. Examples: oktapreview.com, okta.com
         /// </summary>
@@ -500,7 +635,15 @@ namespace Pulumi.Vault.Okta
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        /// The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        /// Exactly one of `OrgName` or `Organization` must be specified.
+        /// </summary>
+        [Input("orgName")]
+        public Input<string>? OrgName { get; set; }
+
+        /// <summary>
+        /// **Deprecated: Use `OrgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        /// Exactly one of `OrgName` or `Organization` must be specified.
         /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
@@ -515,9 +658,11 @@ namespace Pulumi.Vault.Okta
         private Input<string>? _token;
 
         /// <summary>
-        /// The Okta API token. This is required to query Okta for user group membership.
+        /// **Deprecated: Use `ApiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
         /// If this is not supplied only locally configured groups will be enabled.
+        /// Conflicts with `ApiToken` and `ApiTokenWo`.
         /// </summary>
+        [Obsolete(@"Use ApiToken instead")]
         public Input<string>? Token
         {
             get => _token;

@@ -154,6 +154,31 @@ namespace Pulumi.Vault.Secrets
     /// });
     /// ```
     /// 
+    /// ### Using Workload Identity Federation (Vault 2.0.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpWif = new Vault.Secrets.SyncGcpDestination("gcp_wif", new()
+    ///     {
+    ///         Name = "gcp-dest-wif",
+    ///         ServiceAccountEmail = serviceAccountEmail,
+    ///         IdentityTokenAudienceWo = identityTokenAudience,
+    ///         IdentityTokenAudienceWoVersion = 1,
+    ///         IdentityTokenTtl = 3600,
+    ///         IdentityTokenKeyWo = "my-key",
+    ///         IdentityTokenKeyWoVersion = 1,
+    ///         Granularity = "secret-path",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// GCP Secrets sync destinations can be imported using the `Name`, e.g.
@@ -217,6 +242,38 @@ namespace Pulumi.Vault.Secrets
         public Output<string?> Granularity { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("identityTokenAudienceWo")]
+        public Output<string?> IdentityTokenAudienceWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Output("identityTokenAudienceWoVersion")]
+        public Output<int?> IdentityTokenAudienceWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("identityTokenKeyWo")]
+        public Output<string?> IdentityTokenKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Output("identityTokenKeyWoVersion")]
+        public Output<int?> IdentityTokenKeyWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int> IdentityTokenTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Locational KMS keys for encryption.
         /// </summary>
         [Output("locationalKmsKeys")]
@@ -259,6 +316,12 @@ namespace Pulumi.Vault.Secrets
         public Output<string> SecretNameTemplate { get; private set; } = null!;
 
         /// <summary>
+        /// Service Account to impersonate for workload identity federation.
+        /// </summary>
+        [Output("serviceAccountEmail")]
+        public Output<string?> ServiceAccountEmail { get; private set; } = null!;
+
+        /// <summary>
         /// The type of the secrets destination (`gcp-sm`).
         /// </summary>
         [Output("type")]
@@ -290,6 +353,8 @@ namespace Pulumi.Vault.Secrets
                 AdditionalSecretOutputs =
                 {
                     "credentials",
+                    "identityTokenAudienceWo",
+                    "identityTokenKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -399,6 +464,58 @@ namespace Pulumi.Vault.Secrets
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
 
+        [Input("identityTokenAudienceWo")]
+        private Input<string>? _identityTokenAudienceWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenAudienceWo
+        {
+            get => _identityTokenAudienceWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenAudienceWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenAudienceWoVersion")]
+        public Input<int>? IdentityTokenAudienceWoVersion { get; set; }
+
+        [Input("identityTokenKeyWo")]
+        private Input<string>? _identityTokenKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenKeyWo
+        {
+            get => _identityTokenKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenKeyWoVersion")]
+        public Input<int>? IdentityTokenKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
         [Input("locationalKmsKeys")]
         private InputMap<string>? _locationalKmsKeys;
 
@@ -452,6 +569,12 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("secretNameTemplate")]
         public Input<string>? SecretNameTemplate { get; set; }
+
+        /// <summary>
+        /// Service Account to impersonate for workload identity federation.
+        /// </summary>
+        [Input("serviceAccountEmail")]
+        public Input<string>? ServiceAccountEmail { get; set; }
 
         public SyncGcpDestinationArgs()
         {
@@ -546,6 +669,58 @@ namespace Pulumi.Vault.Secrets
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
 
+        [Input("identityTokenAudienceWo")]
+        private Input<string>? _identityTokenAudienceWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenAudienceWo
+        {
+            get => _identityTokenAudienceWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenAudienceWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenAudienceWoVersion")]
+        public Input<int>? IdentityTokenAudienceWoVersion { get; set; }
+
+        [Input("identityTokenKeyWo")]
+        private Input<string>? _identityTokenKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenKeyWo
+        {
+            get => _identityTokenKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenKeyWoVersion")]
+        public Input<int>? IdentityTokenKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
         [Input("locationalKmsKeys")]
         private InputMap<string>? _locationalKmsKeys;
 
@@ -599,6 +774,12 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("secretNameTemplate")]
         public Input<string>? SecretNameTemplate { get; set; }
+
+        /// <summary>
+        /// Service Account to impersonate for workload identity federation.
+        /// </summary>
+        [Input("serviceAccountEmail")]
+        public Input<string>? ServiceAccountEmail { get; set; }
 
         /// <summary>
         /// The type of the secrets destination (`gcp-sm`).

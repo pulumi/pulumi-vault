@@ -65,6 +65,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? PasswordAuthentication;
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        public readonly string? PasswordPolicy;
+        /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         /// Write-only field for the root credential password used in the connection URL
         /// </summary>
@@ -77,6 +81,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        public readonly string? PluginVersion;
         /// <summary>
         /// The secret key used for the x509 client certificate. Must be PEM encoded.
         /// </summary>
@@ -109,6 +117,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// A JSON encoded credential for use with IAM authorization
         /// </summary>
         public readonly string? ServiceAccountJson;
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly bool? SkipStaticRoleImportRotation;
         /// <summary>
         /// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
         /// </summary>
@@ -157,11 +169,15 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? passwordAuthentication,
 
+            string? passwordPolicy,
+
             string? passwordWo,
 
             int? passwordWoVersion,
 
             string? pluginName,
+
+            string? pluginVersion,
 
             string? privateKey,
 
@@ -176,6 +192,8 @@ namespace Pulumi.Vault.Database.Outputs
             bool? selfManaged,
 
             string? serviceAccountJson,
+
+            bool? skipStaticRoleImportRotation,
 
             string? tlsCa,
 
@@ -199,9 +217,11 @@ namespace Pulumi.Vault.Database.Outputs
             Name = name;
             Password = password;
             PasswordAuthentication = passwordAuthentication;
+            PasswordPolicy = passwordPolicy;
             PasswordWo = passwordWo;
             PasswordWoVersion = passwordWoVersion;
             PluginName = pluginName;
+            PluginVersion = pluginVersion;
             PrivateKey = privateKey;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;
@@ -209,6 +229,7 @@ namespace Pulumi.Vault.Database.Outputs
             RotationWindow = rotationWindow;
             SelfManaged = selfManaged;
             ServiceAccountJson = serviceAccountJson;
+            SkipStaticRoleImportRotation = skipStaticRoleImportRotation;
             TlsCa = tlsCa;
             TlsCertificate = tlsCertificate;
             Username = username;

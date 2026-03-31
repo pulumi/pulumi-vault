@@ -13,6 +13,8 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * ### AWS
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -45,6 +47,34 @@ import * as utilities from "../utilities";
  *         keys.aws.apply(aws => aws?.[0]?.name),
  *         keys.aws.apply(aws => aws?.[1]?.name),
  *     ],
+ * });
+ * ```
+ *
+ * ### GCP Cloud KMS
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpKeys = new vault.managed.Keys("gcp_keys", {gcps: [{
+ *     name: "gcp-key-1",
+ *     credentials: std.file({
+ *         input: "sa-credentials.json",
+ *     }).then(invoke => invoke.result),
+ *     project: gcpProject,
+ *     region: "us-east1",
+ *     keyRing: "vault-keyring",
+ *     cryptoKey: "vault-key",
+ *     algorithm: "rsa_sign_pkcs1_2048_sha256",
+ * }]});
+ * const pki = new vault.Mount("pki", {
+ *     path: "pki",
+ *     type: "pki",
+ *     description: "Example PKI mount using GCP Cloud KMS managed key",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     maxLeaseTtlSeconds: 36000,
+ *     allowedManagedKeys: [gcpKeys.gcps.apply(gcps => gcps?.[0]?.name)],
  * });
  * ```
  *
@@ -99,6 +129,10 @@ export class Keys extends pulumi.CustomResource {
      */
     declare public readonly azures: pulumi.Output<outputs.managed.KeysAzure[] | undefined>;
     /**
+     * Configuration block for GCP Cloud KMS Managed Keys
+     */
+    declare public readonly gcps: pulumi.Output<outputs.managed.KeysGcp[] | undefined>;
+    /**
      * Target namespace. (requires Enterprise)
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
@@ -122,12 +156,14 @@ export class Keys extends pulumi.CustomResource {
             const state = argsOrState as KeysState | undefined;
             resourceInputs["aws"] = state?.aws;
             resourceInputs["azures"] = state?.azures;
+            resourceInputs["gcps"] = state?.gcps;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["pkcs"] = state?.pkcs;
         } else {
             const args = argsOrState as KeysArgs | undefined;
             resourceInputs["aws"] = args?.aws;
             resourceInputs["azures"] = args?.azures;
+            resourceInputs["gcps"] = args?.gcps;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["pkcs"] = args?.pkcs;
         }
@@ -148,6 +184,10 @@ export interface KeysState {
      * Configuration block for Azure Managed Keys
      */
     azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[]>;
+    /**
+     * Configuration block for GCP Cloud KMS Managed Keys
+     */
+    gcps?: pulumi.Input<pulumi.Input<inputs.managed.KeysGcp>[]>;
     /**
      * Target namespace. (requires Enterprise)
      */
@@ -170,6 +210,10 @@ export interface KeysArgs {
      * Configuration block for Azure Managed Keys
      */
     azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[]>;
+    /**
+     * Configuration block for GCP Cloud KMS Managed Keys
+     */
+    gcps?: pulumi.Input<pulumi.Input<inputs.managed.KeysGcp>[]>;
     /**
      * Target namespace. (requires Enterprise)
      */

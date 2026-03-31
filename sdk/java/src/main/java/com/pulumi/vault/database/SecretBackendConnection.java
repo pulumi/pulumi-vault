@@ -99,81 +99,6 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * ### Oracle Connection with Self-Managed Mode (Rootless)
- * 
- * For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
- * which allows a static role to manage its own database credentials without requiring root access:
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.Mount;
- * import com.pulumi.vault.MountArgs;
- * import com.pulumi.vault.database.SecretBackendConnection;
- * import com.pulumi.vault.database.SecretBackendConnectionArgs;
- * import com.pulumi.vault.database.inputs.SecretBackendConnectionOracleArgs;
- * import com.pulumi.vault.database.SecretBackendStaticRole;
- * import com.pulumi.vault.database.SecretBackendStaticRoleArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App }{{@code
- *     public static void main(String[] args) }{{@code
- *         Pulumi.run(App::stack);
- *     }}{@code
- * 
- *     public static void stack(Context ctx) }{{@code
- *         var db = new Mount("db", MountArgs.builder()
- *             .path("database")
- *             .type("database")
- *             .build());
- * 
- *         var oracle = new SecretBackendConnection("oracle", SecretBackendConnectionArgs.builder()
- *             .backend(db.path())
- *             .name("oracle")
- *             .allowedRoles("my-role")
- *             .oracle(SecretBackendConnectionOracleArgs.builder()
- *                 .connectionUrl("}{{{@code username}}}{@code /}{{{@code password}}}{@literal @}{@code //host:port/service")
- *                 .selfManaged(true)
- *                 .pluginName("vault-plugin-database-oracle")
- *                 .build())
- *             .build());
- * 
- *         var oracleRole = new SecretBackendStaticRole("oracleRole", SecretBackendStaticRoleArgs.builder()
- *             .backend(db.path())
- *             .name("my-role")
- *             .dbName(oracle.name())
- *             .username("vault_user")
- *             .passwordWo("initial-password")
- *             .passwordWoVersion(1)
- *             .rotationPeriod(3600)
- *             .build());
- * 
- *     }}{@code
- * }}{@code
- * }
- * </pre>
- * 
- * ## Ephemeral Attributes Reference
- * 
- * The following write-only attributes are supported for all DBs that support username/password:
- * 
- * * `passwordWo` - (Optional) The password for the user. Can be updated.
- *   **Note**: This property is write-only and will not be read from the API.
- * 
- * The following write-only attribute is supported only for Snowflake DB:
- * 
- * * `privateKeyWo` - (Optional) The private key associated with the Snowflake user.
- *   **Note**: This property is write-only and will not be read from the API.
- * 
  * ## Import
  * 
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
@@ -460,6 +385,20 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.oracle);
     }
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    @Export(name="passwordPolicy", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordPolicy;
+
+    /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Output<Optional<String>> passwordPolicy() {
+        return Codegen.optional(this.passwordPolicy);
+    }
+    /**
      * Specifies the name of the plugin to use.
      * 
      */
@@ -472,6 +411,20 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      */
     public Output<String> pluginName() {
         return this.pluginName;
+    }
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    @Export(name="pluginVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Output<Optional<String>> pluginVersion() {
+        return Codegen.optional(this.pluginVersion);
     }
     /**
      * A nested block containing configuration options for PostgreSQL connections.
@@ -596,6 +549,20 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<Integer>> rotationWindow() {
         return Codegen.optional(this.rotationWindow);
+    }
+    /**
+     * Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="skipStaticRoleImportRotation", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> skipStaticRoleImportRotation;
+
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Boolean> skipStaticRoleImportRotation() {
+        return this.skipStaticRoleImportRotation;
     }
     /**
      * A nested block containing configuration options for Snowflake connections.

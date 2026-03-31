@@ -146,6 +146,85 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="identityTokenAudienceWo")
+    private @Nullable Output<String> identityTokenAudienceWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudienceWo() {
+        return Optional.ofNullable(this.identityTokenAudienceWo);
+    }
+
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Import(name="identityTokenAudienceWoVersion")
+    private @Nullable Output<Integer> identityTokenAudienceWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenAudienceWoVersion() {
+        return Optional.ofNullable(this.identityTokenAudienceWoVersion);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="identityTokenKeyWo")
+    private @Nullable Output<String> identityTokenKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> identityTokenKeyWo() {
+        return Optional.ofNullable(this.identityTokenKeyWo);
+    }
+
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Import(name="identityTokenKeyWoVersion")
+    private @Nullable Output<Integer> identityTokenKeyWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenKeyWoVersion() {
+        return Optional.ofNullable(this.identityTokenKeyWoVersion);
+    }
+
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
+    }
+
+    /**
      * Locational KMS keys for encryption.
      * 
      */
@@ -248,6 +327,21 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     }
 
     /**
+     * Service Account to impersonate for workload identity federation.
+     * 
+     */
+    @Import(name="serviceAccountEmail")
+    private @Nullable Output<String> serviceAccountEmail;
+
+    /**
+     * @return Service Account to impersonate for workload identity federation.
+     * 
+     */
+    public Optional<Output<String>> serviceAccountEmail() {
+        return Optional.ofNullable(this.serviceAccountEmail);
+    }
+
+    /**
      * The type of the secrets destination (`gcp-sm`).
      * 
      */
@@ -273,12 +367,18 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
         this.disableStrictNetworking = $.disableStrictNetworking;
         this.globalKmsKey = $.globalKmsKey;
         this.granularity = $.granularity;
+        this.identityTokenAudienceWo = $.identityTokenAudienceWo;
+        this.identityTokenAudienceWoVersion = $.identityTokenAudienceWoVersion;
+        this.identityTokenKeyWo = $.identityTokenKeyWo;
+        this.identityTokenKeyWoVersion = $.identityTokenKeyWoVersion;
+        this.identityTokenTtl = $.identityTokenTtl;
         this.locationalKmsKeys = $.locationalKmsKeys;
         this.name = $.name;
         this.namespace = $.namespace;
         this.projectId = $.projectId;
         this.replicationLocations = $.replicationLocations;
         this.secretNameTemplate = $.secretNameTemplate;
+        this.serviceAccountEmail = $.serviceAccountEmail;
         this.type = $.type;
     }
 
@@ -505,6 +605,115 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param identityTokenAudienceWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWo(@Nullable Output<String> identityTokenAudienceWo) {
+            $.identityTokenAudienceWo = identityTokenAudienceWo;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudienceWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWo(String identityTokenAudienceWo) {
+            return identityTokenAudienceWo(Output.of(identityTokenAudienceWo));
+        }
+
+        /**
+         * @param identityTokenAudienceWoVersion A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWoVersion(@Nullable Output<Integer> identityTokenAudienceWoVersion) {
+            $.identityTokenAudienceWoVersion = identityTokenAudienceWoVersion;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudienceWoVersion A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWoVersion(Integer identityTokenAudienceWoVersion) {
+            return identityTokenAudienceWoVersion(Output.of(identityTokenAudienceWoVersion));
+        }
+
+        /**
+         * @param identityTokenKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWo(@Nullable Output<String> identityTokenKeyWo) {
+            $.identityTokenKeyWo = identityTokenKeyWo;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWo(String identityTokenKeyWo) {
+            return identityTokenKeyWo(Output.of(identityTokenKeyWo));
+        }
+
+        /**
+         * @param identityTokenKeyWoVersion A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWoVersion(@Nullable Output<Integer> identityTokenKeyWoVersion) {
+            $.identityTokenKeyWoVersion = identityTokenKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKeyWoVersion A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWoVersion(Integer identityTokenKeyWoVersion) {
+            return identityTokenKeyWoVersion(Output.of(identityTokenKeyWoVersion));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
+        }
+
+        /**
          * @param locationalKmsKeys Locational KMS keys for encryption.
          * 
          * @return builder
@@ -650,6 +859,27 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          */
         public Builder secretNameTemplate(String secretNameTemplate) {
             return secretNameTemplate(Output.of(secretNameTemplate));
+        }
+
+        /**
+         * @param serviceAccountEmail Service Account to impersonate for workload identity federation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountEmail(@Nullable Output<String> serviceAccountEmail) {
+            $.serviceAccountEmail = serviceAccountEmail;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountEmail Service Account to impersonate for workload identity federation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountEmail(String serviceAccountEmail) {
+            return serviceAccountEmail(Output.of(serviceAccountEmail));
         }
 
         /**

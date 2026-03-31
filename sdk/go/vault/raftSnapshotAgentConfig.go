@@ -57,7 +57,7 @@ import (
 //
 // ```
 //
-// ### Azure BLOB
+// ### Azure BLOB (Shared Key Authentication)
 //
 // ```go
 // package main
@@ -81,9 +81,50 @@ import (
 //				Retain:             pulumi.Int(7),
 //				PathPrefix:         pulumi.String("/"),
 //				StorageType:        pulumi.String("azure-blob"),
+//				AutoloadEnabled:    pulumi.Bool(true),
 //				AzureContainerName: pulumi.String("vault-blob"),
 //				AzureAccountName:   pulumi.Any(azureAccountName),
 //				AzureAccountKey:    pulumi.Any(azureAccountKey),
+//				AzureAuthMode:      pulumi.String("shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Azure BLOB (Managed Identity Authentication)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			azureAccountName := cfg.RequireObject("azureAccountName")
+//			azureClientId := cfg.RequireObject("azureClientId")
+//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "azure_managed_identity", &vault.RaftSnapshotAgentConfigArgs{
+//				Name:               pulumi.String("azure_managed"),
+//				IntervalSeconds:    pulumi.Int(86400),
+//				Retain:             pulumi.Int(7),
+//				PathPrefix:         pulumi.String("/"),
+//				StorageType:        pulumi.String("azure-blob"),
+//				AutoloadEnabled:    pulumi.Bool(true),
+//				AzureContainerName: pulumi.String("vault-blob"),
+//				AzureAccountName:   pulumi.Any(azureAccountName),
+//				AzureAuthMode:      pulumi.String("managed"),
+//				AzureClientId:      pulumi.Any(azureClientId),
 //			})
 //			if err != nil {
 //				return err
@@ -104,6 +145,11 @@ import (
 type RaftSnapshotAgentConfig struct {
 	pulumi.CustomResourceState
 
+	// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+	// **Note:** Not supported with `storageType = "local"`.
+	//
+	// *Requires Vault Enterprise 1.21.0+*.
+	AutoloadEnabled pulumi.BoolPtrOutput `pulumi:"autoloadEnabled"`
 	// AWS access key ID.
 	AwsAccessKeyId pulumi.StringPtrOutput `pulumi:"awsAccessKeyId"`
 	// S3 bucket to write snapshots to.
@@ -126,12 +172,16 @@ type RaftSnapshotAgentConfig struct {
 	AwsSecretAccessKey pulumi.StringPtrOutput `pulumi:"awsSecretAccessKey"`
 	// AWS session token.
 	AwsSessionToken pulumi.StringPtrOutput `pulumi:"awsSessionToken"`
-	// Azure account key.
+	// Azure account key. Required when azureAuthMode is 'shared'.
 	AzureAccountKey pulumi.StringPtrOutput `pulumi:"azureAccountKey"`
 	// Azure account name.
 	AzureAccountName pulumi.StringPtrOutput `pulumi:"azureAccountName"`
+	// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+	AzureAuthMode pulumi.StringPtrOutput `pulumi:"azureAuthMode"`
 	// Azure blob environment.
 	AzureBlobEnvironment pulumi.StringPtrOutput `pulumi:"azureBlobEnvironment"`
+	// Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+	AzureClientId pulumi.StringPtrOutput `pulumi:"azureClientId"`
 	// Azure container name to write snapshots to.
 	AzureContainerName pulumi.StringPtrOutput `pulumi:"azureContainerName"`
 	// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
@@ -213,6 +263,11 @@ func GetRaftSnapshotAgentConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
 type raftSnapshotAgentConfigState struct {
+	// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+	// **Note:** Not supported with `storageType = "local"`.
+	//
+	// *Requires Vault Enterprise 1.21.0+*.
+	AutoloadEnabled *bool `pulumi:"autoloadEnabled"`
 	// AWS access key ID.
 	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`
 	// S3 bucket to write snapshots to.
@@ -235,12 +290,16 @@ type raftSnapshotAgentConfigState struct {
 	AwsSecretAccessKey *string `pulumi:"awsSecretAccessKey"`
 	// AWS session token.
 	AwsSessionToken *string `pulumi:"awsSessionToken"`
-	// Azure account key.
+	// Azure account key. Required when azureAuthMode is 'shared'.
 	AzureAccountKey *string `pulumi:"azureAccountKey"`
 	// Azure account name.
 	AzureAccountName *string `pulumi:"azureAccountName"`
+	// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+	AzureAuthMode *string `pulumi:"azureAuthMode"`
 	// Azure blob environment.
 	AzureBlobEnvironment *string `pulumi:"azureBlobEnvironment"`
+	// Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+	AzureClientId *string `pulumi:"azureClientId"`
 	// Azure container name to write snapshots to.
 	AzureContainerName *string `pulumi:"azureContainerName"`
 	// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
@@ -284,6 +343,11 @@ type raftSnapshotAgentConfigState struct {
 }
 
 type RaftSnapshotAgentConfigState struct {
+	// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+	// **Note:** Not supported with `storageType = "local"`.
+	//
+	// *Requires Vault Enterprise 1.21.0+*.
+	AutoloadEnabled pulumi.BoolPtrInput
 	// AWS access key ID.
 	AwsAccessKeyId pulumi.StringPtrInput
 	// S3 bucket to write snapshots to.
@@ -306,12 +370,16 @@ type RaftSnapshotAgentConfigState struct {
 	AwsSecretAccessKey pulumi.StringPtrInput
 	// AWS session token.
 	AwsSessionToken pulumi.StringPtrInput
-	// Azure account key.
+	// Azure account key. Required when azureAuthMode is 'shared'.
 	AzureAccountKey pulumi.StringPtrInput
 	// Azure account name.
 	AzureAccountName pulumi.StringPtrInput
+	// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+	AzureAuthMode pulumi.StringPtrInput
 	// Azure blob environment.
 	AzureBlobEnvironment pulumi.StringPtrInput
+	// Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+	AzureClientId pulumi.StringPtrInput
 	// Azure container name to write snapshots to.
 	AzureContainerName pulumi.StringPtrInput
 	// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
@@ -359,6 +427,11 @@ func (RaftSnapshotAgentConfigState) ElementType() reflect.Type {
 }
 
 type raftSnapshotAgentConfigArgs struct {
+	// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+	// **Note:** Not supported with `storageType = "local"`.
+	//
+	// *Requires Vault Enterprise 1.21.0+*.
+	AutoloadEnabled *bool `pulumi:"autoloadEnabled"`
 	// AWS access key ID.
 	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`
 	// S3 bucket to write snapshots to.
@@ -381,12 +454,16 @@ type raftSnapshotAgentConfigArgs struct {
 	AwsSecretAccessKey *string `pulumi:"awsSecretAccessKey"`
 	// AWS session token.
 	AwsSessionToken *string `pulumi:"awsSessionToken"`
-	// Azure account key.
+	// Azure account key. Required when azureAuthMode is 'shared'.
 	AzureAccountKey *string `pulumi:"azureAccountKey"`
 	// Azure account name.
 	AzureAccountName *string `pulumi:"azureAccountName"`
+	// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+	AzureAuthMode *string `pulumi:"azureAuthMode"`
 	// Azure blob environment.
 	AzureBlobEnvironment *string `pulumi:"azureBlobEnvironment"`
+	// Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+	AzureClientId *string `pulumi:"azureClientId"`
 	// Azure container name to write snapshots to.
 	AzureContainerName *string `pulumi:"azureContainerName"`
 	// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
@@ -431,6 +508,11 @@ type raftSnapshotAgentConfigArgs struct {
 
 // The set of arguments for constructing a RaftSnapshotAgentConfig resource.
 type RaftSnapshotAgentConfigArgs struct {
+	// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+	// **Note:** Not supported with `storageType = "local"`.
+	//
+	// *Requires Vault Enterprise 1.21.0+*.
+	AutoloadEnabled pulumi.BoolPtrInput
 	// AWS access key ID.
 	AwsAccessKeyId pulumi.StringPtrInput
 	// S3 bucket to write snapshots to.
@@ -453,12 +535,16 @@ type RaftSnapshotAgentConfigArgs struct {
 	AwsSecretAccessKey pulumi.StringPtrInput
 	// AWS session token.
 	AwsSessionToken pulumi.StringPtrInput
-	// Azure account key.
+	// Azure account key. Required when azureAuthMode is 'shared'.
 	AzureAccountKey pulumi.StringPtrInput
 	// Azure account name.
 	AzureAccountName pulumi.StringPtrInput
+	// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+	AzureAuthMode pulumi.StringPtrInput
 	// Azure blob environment.
 	AzureBlobEnvironment pulumi.StringPtrInput
+	// Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+	AzureClientId pulumi.StringPtrInput
 	// Azure container name to write snapshots to.
 	AzureContainerName pulumi.StringPtrInput
 	// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
@@ -588,6 +674,14 @@ func (o RaftSnapshotAgentConfigOutput) ToRaftSnapshotAgentConfigOutputWithContex
 	return o
 }
 
+// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+// **Note:** Not supported with `storageType = "local"`.
+//
+// *Requires Vault Enterprise 1.21.0+*.
+func (o RaftSnapshotAgentConfigOutput) AutoloadEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.BoolPtrOutput { return v.AutoloadEnabled }).(pulumi.BoolPtrOutput)
+}
+
 // AWS access key ID.
 func (o RaftSnapshotAgentConfigOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsAccessKeyId }).(pulumi.StringPtrOutput)
@@ -643,7 +737,7 @@ func (o RaftSnapshotAgentConfigOutput) AwsSessionToken() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AwsSessionToken }).(pulumi.StringPtrOutput)
 }
 
-// Azure account key.
+// Azure account key. Required when azureAuthMode is 'shared'.
 func (o RaftSnapshotAgentConfigOutput) AzureAccountKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureAccountKey }).(pulumi.StringPtrOutput)
 }
@@ -653,9 +747,19 @@ func (o RaftSnapshotAgentConfigOutput) AzureAccountName() pulumi.StringPtrOutput
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureAccountName }).(pulumi.StringPtrOutput)
 }
 
+// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+func (o RaftSnapshotAgentConfigOutput) AzureAuthMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureAuthMode }).(pulumi.StringPtrOutput)
+}
+
 // Azure blob environment.
 func (o RaftSnapshotAgentConfigOutput) AzureBlobEnvironment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureBlobEnvironment }).(pulumi.StringPtrOutput)
+}
+
+// Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+func (o RaftSnapshotAgentConfigOutput) AzureClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.AzureClientId }).(pulumi.StringPtrOutput)
 }
 
 // Azure container name to write snapshots to.

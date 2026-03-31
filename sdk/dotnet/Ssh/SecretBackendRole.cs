@@ -174,6 +174,13 @@ namespace Pulumi.Vault.Ssh
         public Output<ImmutableDictionary<string, string>?> DefaultExtensions { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies if the `DefaultExtensions` field supports templating.
+        /// When set to `True`, the extension values can use identity template policies. Defaults to `False`.
+        /// </summary>
+        [Output("defaultExtensionsTemplate")]
+        public Output<bool?> DefaultExtensionsTemplate { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the default username for which a credential will be generated.
         /// </summary>
         [Output("defaultUser")]
@@ -184,6 +191,13 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Output("defaultUserTemplate")]
         public Output<bool?> DefaultUserTemplate { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+        /// This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+        /// </summary>
+        [Output("excludeCidrLists")]
+        public Output<ImmutableArray<string>> ExcludeCidrLists { get; private set; } = null!;
 
         /// <summary>
         /// Specifies a custom format for the key id of a signed certificate.
@@ -224,6 +238,13 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Output("notBeforeDuration")]
         public Output<string> NotBeforeDuration { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the port number for SSH connections. Defaults to `22`.
+        /// This is primarily used with OTP key types to specify the SSH port on target hosts.
+        /// </summary>
+        [Output("port")]
+        public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the Time To Live value.
@@ -409,6 +430,13 @@ namespace Pulumi.Vault.Ssh
         }
 
         /// <summary>
+        /// Specifies if the `DefaultExtensions` field supports templating.
+        /// When set to `True`, the extension values can use identity template policies. Defaults to `False`.
+        /// </summary>
+        [Input("defaultExtensionsTemplate")]
+        public Input<bool>? DefaultExtensionsTemplate { get; set; }
+
+        /// <summary>
         /// Specifies the default username for which a credential will be generated.
         /// </summary>
         [Input("defaultUser")]
@@ -419,6 +447,19 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("defaultUserTemplate")]
         public Input<bool>? DefaultUserTemplate { get; set; }
+
+        [Input("excludeCidrLists")]
+        private InputList<string>? _excludeCidrLists;
+
+        /// <summary>
+        /// Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+        /// This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+        /// </summary>
+        public InputList<string> ExcludeCidrLists
+        {
+            get => _excludeCidrLists ?? (_excludeCidrLists = new InputList<string>());
+            set => _excludeCidrLists = value;
+        }
 
         /// <summary>
         /// Specifies a custom format for the key id of a signed certificate.
@@ -459,6 +500,13 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }
+
+        /// <summary>
+        /// Specifies the port number for SSH connections. Defaults to `22`.
+        /// This is primarily used with OTP key types to specify the SSH port on target hosts.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
 
         /// <summary>
         /// Specifies the Time To Live value.
@@ -606,6 +654,13 @@ namespace Pulumi.Vault.Ssh
         }
 
         /// <summary>
+        /// Specifies if the `DefaultExtensions` field supports templating.
+        /// When set to `True`, the extension values can use identity template policies. Defaults to `False`.
+        /// </summary>
+        [Input("defaultExtensionsTemplate")]
+        public Input<bool>? DefaultExtensionsTemplate { get; set; }
+
+        /// <summary>
         /// Specifies the default username for which a credential will be generated.
         /// </summary>
         [Input("defaultUser")]
@@ -616,6 +671,19 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("defaultUserTemplate")]
         public Input<bool>? DefaultUserTemplate { get; set; }
+
+        [Input("excludeCidrLists")]
+        private InputList<string>? _excludeCidrLists;
+
+        /// <summary>
+        /// Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+        /// This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+        /// </summary>
+        public InputList<string> ExcludeCidrLists
+        {
+            get => _excludeCidrLists ?? (_excludeCidrLists = new InputList<string>());
+            set => _excludeCidrLists = value;
+        }
 
         /// <summary>
         /// Specifies a custom format for the key id of a signed certificate.
@@ -656,6 +724,13 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("notBeforeDuration")]
         public Input<string>? NotBeforeDuration { get; set; }
+
+        /// <summary>
+        /// Specifies the port number for SSH connections. Defaults to `22`.
+        /// This is primarily used with OTP key types to specify the SSH port on target hosts.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
 
         /// <summary>
         /// Specifies the Time To Live value.

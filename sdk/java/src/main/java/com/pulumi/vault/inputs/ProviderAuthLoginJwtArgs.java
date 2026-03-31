@@ -18,6 +18,21 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
     public static final ProviderAuthLoginJwtArgs Empty = new ProviderAuthLoginJwtArgs();
 
     /**
+     * An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+     * 
+     */
+    @Import(name="distributedClaimAccessToken")
+    private @Nullable Output<String> distributedClaimAccessToken;
+
+    /**
+     * @return An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+     * 
+     */
+    public Optional<Output<String>> distributedClaimAccessToken() {
+        return Optional.ofNullable(this.distributedClaimAccessToken);
+    }
+
+    /**
      * A signed JSON Web Token.
      * 
      */
@@ -95,6 +110,7 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
     private ProviderAuthLoginJwtArgs() {}
 
     private ProviderAuthLoginJwtArgs(ProviderAuthLoginJwtArgs $) {
+        this.distributedClaimAccessToken = $.distributedClaimAccessToken;
         this.jwt = $.jwt;
         this.mount = $.mount;
         this.namespace = $.namespace;
@@ -118,6 +134,27 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
 
         public Builder(ProviderAuthLoginJwtArgs defaults) {
             $ = new ProviderAuthLoginJwtArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param distributedClaimAccessToken An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder distributedClaimAccessToken(@Nullable Output<String> distributedClaimAccessToken) {
+            $.distributedClaimAccessToken = distributedClaimAccessToken;
+            return this;
+        }
+
+        /**
+         * @param distributedClaimAccessToken An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder distributedClaimAccessToken(String distributedClaimAccessToken) {
+            return distributedClaimAccessToken(Output.of(distributedClaimAccessToken));
         }
 
         /**

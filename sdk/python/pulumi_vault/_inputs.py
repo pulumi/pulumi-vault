@@ -1403,6 +1403,10 @@ class ProviderAuthLoginJwtArgsDict(TypedDict):
     """
     Name of the login role.
     """
+    distributed_claim_access_token: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+    """
     jwt: NotRequired[pulumi.Input[_builtins.str]]
     """
     A signed JSON Web Token.
@@ -1424,18 +1428,22 @@ class ProviderAuthLoginJwtArgsDict(TypedDict):
 class ProviderAuthLoginJwtArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
+                 distributed_claim_access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt: Optional[pulumi.Input[_builtins.str]] = None,
                  mount: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Name of the login role.
+        :param pulumi.Input[_builtins.str] distributed_claim_access_token: An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
         :param pulumi.Input[_builtins.str] jwt: A signed JSON Web Token.
         :param pulumi.Input[_builtins.str] mount: The path where the authentication engine is mounted.
         :param pulumi.Input[_builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param pulumi.Input[_builtins.bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
         """
         pulumi.set(__self__, "role", role)
+        if distributed_claim_access_token is not None:
+            pulumi.set(__self__, "distributed_claim_access_token", distributed_claim_access_token)
         if jwt is not None:
             pulumi.set(__self__, "jwt", jwt)
         if mount is not None:
@@ -1456,6 +1464,18 @@ class ProviderAuthLoginJwtArgs:
     @role.setter
     def role(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter(name="distributedClaimAccessToken")
+    def distributed_claim_access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+        """
+        return pulumi.get(self, "distributed_claim_access_token")
+
+    @distributed_claim_access_token.setter
+    def distributed_claim_access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "distributed_claim_access_token", value)
 
     @_builtins.property
     @pulumi.getter

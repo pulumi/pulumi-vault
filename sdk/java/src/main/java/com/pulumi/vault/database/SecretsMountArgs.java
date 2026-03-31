@@ -519,14 +519,14 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * Specifies the semantic version of the plugin to use for this connection.
      * 
      */
     @Import(name="pluginVersion")
     private @Nullable Output<String> pluginVersion;
 
     /**
-     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * @return Specifies the semantic version of the plugin to use for this connection.
      * 
      */
     public Optional<Output<String>> pluginVersion() {
@@ -1559,7 +1559,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pluginVersion Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
          * 
          * @return builder
          * 
@@ -1570,7 +1570,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pluginVersion Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
          * 
          * @return builder
          * 

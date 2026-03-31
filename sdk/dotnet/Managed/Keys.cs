@@ -16,6 +16,8 @@ namespace Pulumi.Vault.Managed
     /// 
     /// ## Example Usage
     /// 
+    /// ### AWS
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -66,6 +68,53 @@ namespace Pulumi.Vault.Managed
     /// });
     /// ```
     /// 
+    /// ### GCP Cloud KMS
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpKeys = new Vault.Managed.Keys("gcp_keys", new()
+    ///     {
+    ///         Gcps = new[]
+    ///         {
+    ///             new Vault.Managed.Inputs.KeysGcpArgs
+    ///             {
+    ///                 Name = "gcp-key-1",
+    ///                 Credentials = Std.File.Invoke(new()
+    ///                 {
+    ///                     Input = "sa-credentials.json",
+    ///                 }).Apply(invoke =&gt; invoke.Result),
+    ///                 Project = gcpProject,
+    ///                 Region = "us-east1",
+    ///                 KeyRing = "vault-keyring",
+    ///                 CryptoKey = "vault-key",
+    ///                 Algorithm = "rsa_sign_pkcs1_2048_sha256",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var pki = new Vault.Mount("pki", new()
+    ///     {
+    ///         Path = "pki",
+    ///         Type = "pki",
+    ///         Description = "Example PKI mount using GCP Cloud KMS managed key",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 36000,
+    ///         AllowedManagedKeys = new[]
+    ///         {
+    ///             gcpKeys.Gcps.Apply(gcps =&gt; gcps[0]?.Name),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Caveats
     /// 
     /// This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
@@ -94,6 +143,12 @@ namespace Pulumi.Vault.Managed
         /// </summary>
         [Output("azures")]
         public Output<ImmutableArray<Outputs.KeysAzure>> Azures { get; private set; } = null!;
+
+        /// <summary>
+        /// Configuration block for GCP Cloud KMS Managed Keys
+        /// </summary>
+        [Output("gcps")]
+        public Output<ImmutableArray<Outputs.KeysGcp>> Gcps { get; private set; } = null!;
 
         /// <summary>
         /// Target namespace. (requires Enterprise)
@@ -177,6 +232,18 @@ namespace Pulumi.Vault.Managed
             set => _azures = value;
         }
 
+        [Input("gcps")]
+        private InputList<Inputs.KeysGcpArgs>? _gcps;
+
+        /// <summary>
+        /// Configuration block for GCP Cloud KMS Managed Keys
+        /// </summary>
+        public InputList<Inputs.KeysGcpArgs> Gcps
+        {
+            get => _gcps ?? (_gcps = new InputList<Inputs.KeysGcpArgs>());
+            set => _gcps = value;
+        }
+
         /// <summary>
         /// Target namespace. (requires Enterprise)
         /// </summary>
@@ -225,6 +292,18 @@ namespace Pulumi.Vault.Managed
         {
             get => _azures ?? (_azures = new InputList<Inputs.KeysAzureGetArgs>());
             set => _azures = value;
+        }
+
+        [Input("gcps")]
+        private InputList<Inputs.KeysGcpGetArgs>? _gcps;
+
+        /// <summary>
+        /// Configuration block for GCP Cloud KMS Managed Keys
+        /// </summary>
+        public InputList<Inputs.KeysGcpGetArgs> Gcps
+        {
+            get => _gcps ?? (_gcps = new InputList<Inputs.KeysGcpGetArgs>());
+            set => _gcps = value;
         }
 
         /// <summary>

@@ -45,21 +45,84 @@ import (
 //				ClientSecret:       pulumi.Any(clientSecret),
 //				TenantId:           pulumi.Any(tenantId),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
-//				AllowedIpv4Addresses: pulumi.StringArray{
-//					pulumi.String("192.168.1.1/24"),
-//					pulumi.String("10.0.0.1/8"),
-//				},
-//				AllowedIpv6Addresses: pulumi.StringArray{
-//					pulumi.String("2001:db9::/32"),
-//				},
-//				AllowedPorts: pulumi.IntArray{
-//					pulumi.Int(443),
-//					pulumi.Int(9443),
-//				},
-//				DisableStrictNetworking: pulumi.Bool(false),
 //				CustomTags: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Networking Configuration (Vault 1.19+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSyncAzureDestination(ctx, "az_networking", &secrets.SyncAzureDestinationArgs{
+//				Name:         pulumi.String("az-dest-networking"),
+//				KeyVaultUri:  pulumi.Any(keyVaultUri),
+//				ClientId:     pulumi.Any(clientId),
+//				ClientSecret: pulumi.Any(clientSecret),
+//				TenantId:     pulumi.Any(tenantId),
+//				AllowedIpv4Addresses: pulumi.StringArray{
+//					pulumi.String("10.0.0.0/8"),
+//					pulumi.String("192.168.0.0/16"),
+//				},
+//				AllowedIpv6Addresses: pulumi.StringArray{
+//					pulumi.String("2001:db8::/32"),
+//				},
+//				AllowedPorts: pulumi.IntArray{
+//					pulumi.Int(443),
+//					pulumi.Int(8443),
+//				},
+//				DisableStrictNetworking: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Using Workload Identity Federation (Vault 2.0.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSyncAzureDestination(ctx, "az_wif", &secrets.SyncAzureDestinationArgs{
+//				Name:                  pulumi.String("az-dest-wif"),
+//				KeyVaultUri:           pulumi.Any(keyVaultUri),
+//				ClientId:              pulumi.Any(clientId),
+//				TenantId:              pulumi.Any(tenantId),
+//				IdentityTokenAudience: identityTokenAudience,
+//				IdentityTokenTtl:      pulumi.Int(3600),
+//				IdentityTokenKey:      "my-key",
+//				Granularity:           pulumi.String("secret-path"),
 //			})
 //			if err != nil {
 //				return err
@@ -80,14 +143,11 @@ import (
 type SyncAzureDestination struct {
 	pulumi.CustomResourceState
 
-	// List of IPv4 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv4Addresses pulumi.StringArrayOutput `pulumi:"allowedIpv4Addresses"`
-	// List of IPv6 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv6Addresses pulumi.StringArrayOutput `pulumi:"allowedIpv6Addresses"`
-	// List of port numbers allowed for outbound connections from Vault to the
-	// destination. Requires Vault 1.19+.
+	// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
 	AllowedPorts pulumi.IntArrayOutput `pulumi:"allowedPorts"`
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -101,12 +161,23 @@ type SyncAzureDestination struct {
 	Cloud pulumi.StringPtrOutput `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.StringMapOutput `pulumi:"customTags"`
-	// When set to `true`, disables strict enforcement of networking
-	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
 	DisableStrictNetworking pulumi.BoolPtrOutput `pulumi:"disableStrictNetworking"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrOutput `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrOutput `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -138,8 +209,16 @@ func NewSyncAzureDestination(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.IdentityTokenAudienceWo != nil {
+		args.IdentityTokenAudienceWo = pulumi.ToSecret(args.IdentityTokenAudienceWo).(pulumi.StringPtrInput)
+	}
+	if args.IdentityTokenKeyWo != nil {
+		args.IdentityTokenKeyWo = pulumi.ToSecret(args.IdentityTokenKeyWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientSecret",
+		"identityTokenAudienceWo",
+		"identityTokenKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -165,14 +244,11 @@ func GetSyncAzureDestination(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyncAzureDestination resources.
 type syncAzureDestinationState struct {
-	// List of IPv4 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv4Addresses []string `pulumi:"allowedIpv4Addresses"`
-	// List of IPv6 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv6Addresses []string `pulumi:"allowedIpv6Addresses"`
-	// List of port numbers allowed for outbound connections from Vault to the
-	// destination. Requires Vault 1.19+.
+	// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
 	AllowedPorts []int `pulumi:"allowedPorts"`
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -186,12 +262,23 @@ type syncAzureDestinationState struct {
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags map[string]string `pulumi:"customTags"`
-	// When set to `true`, disables strict enforcement of networking
-	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
 	DisableStrictNetworking *bool `pulumi:"disableStrictNetworking"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo *string `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion *int `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo *string `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -214,14 +301,11 @@ type syncAzureDestinationState struct {
 }
 
 type SyncAzureDestinationState struct {
-	// List of IPv4 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv4Addresses pulumi.StringArrayInput
-	// List of IPv6 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv6Addresses pulumi.StringArrayInput
-	// List of port numbers allowed for outbound connections from Vault to the
-	// destination. Requires Vault 1.19+.
+	// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
 	AllowedPorts pulumi.IntArrayInput
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -235,12 +319,23 @@ type SyncAzureDestinationState struct {
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.StringMapInput
-	// When set to `true`, disables strict enforcement of networking
-	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
 	DisableStrictNetworking pulumi.BoolPtrInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -267,14 +362,11 @@ func (SyncAzureDestinationState) ElementType() reflect.Type {
 }
 
 type syncAzureDestinationArgs struct {
-	// List of IPv4 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv4Addresses []string `pulumi:"allowedIpv4Addresses"`
-	// List of IPv6 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv6Addresses []string `pulumi:"allowedIpv6Addresses"`
-	// List of port numbers allowed for outbound connections from Vault to the
-	// destination. Requires Vault 1.19+.
+	// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
 	AllowedPorts []int `pulumi:"allowedPorts"`
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -288,12 +380,23 @@ type syncAzureDestinationArgs struct {
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags map[string]string `pulumi:"customTags"`
-	// When set to `true`, disables strict enforcement of networking
-	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
 	DisableStrictNetworking *bool `pulumi:"disableStrictNetworking"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo *string `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion *int `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo *string `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -315,14 +418,11 @@ type syncAzureDestinationArgs struct {
 
 // The set of arguments for constructing a SyncAzureDestination resource.
 type SyncAzureDestinationArgs struct {
-	// List of IPv4 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv4Addresses pulumi.StringArrayInput
-	// List of IPv6 addresses or CIDR blocks allowed to make outbound
-	// connections from Vault to the destination. Requires Vault 1.19+.
+	// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv6Addresses pulumi.StringArrayInput
-	// List of port numbers allowed for outbound connections from Vault to the
-	// destination. Requires Vault 1.19+.
+	// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
 	AllowedPorts pulumi.IntArrayInput
 	// Client ID of an Azure app registration.
 	// Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
@@ -336,12 +436,23 @@ type SyncAzureDestinationArgs struct {
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.StringMapInput
-	// When set to `true`, disables strict enforcement of networking
-	// restrictions. Defaults to `false`. Requires Vault 1.19+.
+	// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
 	DisableStrictNetworking pulumi.BoolPtrInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -448,20 +559,17 @@ func (o SyncAzureDestinationOutput) ToSyncAzureDestinationOutputWithContext(ctx 
 	return o
 }
 
-// List of IPv4 addresses or CIDR blocks allowed to make outbound
-// connections from Vault to the destination. Requires Vault 1.19+.
+// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 func (o SyncAzureDestinationOutput) AllowedIpv4Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringArrayOutput { return v.AllowedIpv4Addresses }).(pulumi.StringArrayOutput)
 }
 
-// List of IPv6 addresses or CIDR blocks allowed to make outbound
-// connections from Vault to the destination. Requires Vault 1.19+.
+// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
 func (o SyncAzureDestinationOutput) AllowedIpv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringArrayOutput { return v.AllowedIpv6Addresses }).(pulumi.StringArrayOutput)
 }
 
-// List of port numbers allowed for outbound connections from Vault to the
-// destination. Requires Vault 1.19+.
+// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
 func (o SyncAzureDestinationOutput) AllowedPorts() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.IntArrayOutput { return v.AllowedPorts }).(pulumi.IntArrayOutput)
 }
@@ -490,8 +598,7 @@ func (o SyncAzureDestinationOutput) CustomTags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringMapOutput { return v.CustomTags }).(pulumi.StringMapOutput)
 }
 
-// When set to `true`, disables strict enforcement of networking
-// restrictions. Defaults to `false`. Requires Vault 1.19+.
+// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
 func (o SyncAzureDestinationOutput) DisableStrictNetworking() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.BoolPtrOutput { return v.DisableStrictNetworking }).(pulumi.BoolPtrOutput)
 }
@@ -500,6 +607,33 @@ func (o SyncAzureDestinationOutput) DisableStrictNetworking() pulumi.BoolPtrOutp
 // at the destination. Supports `secret-path` and `secret-key`.
 func (o SyncAzureDestinationOutput) Granularity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringPtrOutput { return v.Granularity }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+func (o SyncAzureDestinationOutput) IdentityTokenAudienceWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringPtrOutput { return v.IdentityTokenAudienceWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+func (o SyncAzureDestinationOutput) IdentityTokenAudienceWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.IntPtrOutput { return v.IdentityTokenAudienceWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+func (o SyncAzureDestinationOutput) IdentityTokenKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringPtrOutput { return v.IdentityTokenKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+func (o SyncAzureDestinationOutput) IdentityTokenKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.IntPtrOutput { return v.IdentityTokenKeyWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The TTL of generated tokens.
+func (o SyncAzureDestinationOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
 // URI of an existing Azure Key Vault instance.

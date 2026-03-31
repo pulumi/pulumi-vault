@@ -533,6 +533,10 @@ namespace Pulumi.Vault
              public class AuthLoginJwt
              {
             /// <summary>
+            /// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+            /// </summary>
+                public string? DistributedClaimAccessToken { get; set; } = null!;
+            /// <summary>
             /// A signed JSON Web Token.
             /// </summary>
                 public string? Jwt { get; set; } = null!;

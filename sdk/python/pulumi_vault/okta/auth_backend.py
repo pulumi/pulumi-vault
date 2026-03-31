@@ -21,14 +21,18 @@ __all__ = ['AuthBackendArgs', 'AuthBackend']
 @pulumi.input_type
 class AuthBackendArgs:
     def __init__(__self__, *,
-                 organization: pulumi.Input[_builtins.str],
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 organization: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
                  token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -45,9 +49,15 @@ class AuthBackendArgs:
         """
         The set of arguments for constructing a AuthBackend resource.
 
-        :param pulumi.Input[_builtins.str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
+        :param pulumi.Input[_builtins.str] api_token: The Okta API token. This is required to query Okta for user group membership.
+               If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `token` and `api_token_wo`.
+        :param pulumi.Input[_builtins.str] api_token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[_builtins.int] api_token_wo_version: Version counter for the write-only `api_token_wo`.
+               Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -59,9 +69,14 @@ class AuthBackendArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] org_name: The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
+        :param pulumi.Input[_builtins.str] organization: **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
         :param pulumi.Input[_builtins.str] path: Path to mount the Okta auth backend. Default to path `okta`.
-        :param pulumi.Input[_builtins.str] token: The Okta API token. This is required to query Okta for user group membership.
+        :param pulumi.Input[_builtins.str] token: **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `api_token` and `api_token_wo`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[_builtins.int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum lifetime of the generated token
@@ -74,9 +89,14 @@ class AuthBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
-        pulumi.set(__self__, "organization", organization)
         if alias_metadata is not None:
             pulumi.set(__self__, "alias_metadata", alias_metadata)
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if api_token_wo is not None:
+            pulumi.set(__self__, "api_token_wo", api_token_wo)
+        if api_token_wo_version is not None:
+            pulumi.set(__self__, "api_token_wo_version", api_token_wo_version)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
         if bypass_okta_mfa is not None:
@@ -89,8 +109,18 @@ class AuthBackendArgs:
             pulumi.set(__self__, "groups", groups)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if org_name is not None:
+            pulumi.set(__self__, "org_name", org_name)
+        if organization is not None:
+            warnings.warn("""Use org_name instead""", DeprecationWarning)
+            pulumi.log.warn("""organization is deprecated: Use org_name instead""")
+        if organization is not None:
+            pulumi.set(__self__, "organization", organization)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if token is not None:
+            warnings.warn("""Use api_token instead""", DeprecationWarning)
+            pulumi.log.warn("""token is deprecated: Use api_token instead""")
         if token is not None:
             pulumi.set(__self__, "token", token)
         if token_bound_cidrs is not None:
@@ -117,18 +147,6 @@ class AuthBackendArgs:
             pulumi.set(__self__, "users", users)
 
     @_builtins.property
-    @pulumi.getter
-    def organization(self) -> pulumi.Input[_builtins.str]:
-        """
-        The Okta organization. This will be the first part of the url `https://XXX.okta.com`
-        """
-        return pulumi.get(self, "organization")
-
-    @organization.setter
-    def organization(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "organization", value)
-
-    @_builtins.property
     @pulumi.getter(name="aliasMetadata")
     def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -140,6 +158,46 @@ class AuthBackendArgs:
     @alias_metadata.setter
     def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Okta API token. This is required to query Okta for user group membership.
+        If this is not supplied only locally configured groups will be enabled.
+        Conflicts with `token` and `api_token_wo`.
+        """
+        return pulumi.get(self, "api_token")
+
+    @api_token.setter
+    def api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenWo")
+    def api_token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        """
+        return pulumi.get(self, "api_token_wo")
+
+    @api_token_wo.setter
+    def api_token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenWoVersion")
+    def api_token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only `api_token_wo`.
+        Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
+        """
+        return pulumi.get(self, "api_token_wo_version")
+
+    @api_token_wo_version.setter
+    def api_token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "api_token_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
@@ -219,6 +277,33 @@ class AuthBackendArgs:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="orgName")
+    def org_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        Exactly one of `org_name` or `organization` must be specified.
+        """
+        return pulumi.get(self, "org_name")
+
+    @org_name.setter
+    def org_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "org_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""Use org_name instead""")
+    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        Exactly one of `org_name` or `organization` must be specified.
+        """
+        return pulumi.get(self, "organization")
+
+    @organization.setter
+    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "organization", value)
+
+    @_builtins.property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -232,10 +317,12 @@ class AuthBackendArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Use api_token instead""")
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Okta API token. This is required to query Okta for user group membership.
+        **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
+        Conflicts with `api_token` and `api_token_wo`.
         """
         return pulumi.get(self, "token")
 
@@ -379,12 +466,16 @@ class _AuthBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -405,6 +496,13 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
+        :param pulumi.Input[_builtins.str] api_token: The Okta API token. This is required to query Okta for user group membership.
+               If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `token` and `api_token_wo`.
+        :param pulumi.Input[_builtins.str] api_token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[_builtins.int] api_token_wo_version: Version counter for the write-only `api_token_wo`.
+               Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -416,10 +514,14 @@ class _AuthBackendState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        :param pulumi.Input[_builtins.str] org_name: The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
+        :param pulumi.Input[_builtins.str] organization: **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
         :param pulumi.Input[_builtins.str] path: Path to mount the Okta auth backend. Default to path `okta`.
-        :param pulumi.Input[_builtins.str] token: The Okta API token. This is required to query Okta for user group membership.
+        :param pulumi.Input[_builtins.str] token: **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `api_token` and `api_token_wo`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[_builtins.int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum lifetime of the generated token
@@ -436,6 +538,12 @@ class _AuthBackendState:
             pulumi.set(__self__, "accessor", accessor)
         if alias_metadata is not None:
             pulumi.set(__self__, "alias_metadata", alias_metadata)
+        if api_token is not None:
+            pulumi.set(__self__, "api_token", api_token)
+        if api_token_wo is not None:
+            pulumi.set(__self__, "api_token_wo", api_token_wo)
+        if api_token_wo_version is not None:
+            pulumi.set(__self__, "api_token_wo_version", api_token_wo_version)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
         if bypass_okta_mfa is not None:
@@ -448,10 +556,18 @@ class _AuthBackendState:
             pulumi.set(__self__, "groups", groups)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if org_name is not None:
+            pulumi.set(__self__, "org_name", org_name)
+        if organization is not None:
+            warnings.warn("""Use org_name instead""", DeprecationWarning)
+            pulumi.log.warn("""organization is deprecated: Use org_name instead""")
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if token is not None:
+            warnings.warn("""Use api_token instead""", DeprecationWarning)
+            pulumi.log.warn("""token is deprecated: Use api_token instead""")
         if token is not None:
             pulumi.set(__self__, "token", token)
         if token_bound_cidrs is not None:
@@ -501,6 +617,46 @@ class _AuthBackendState:
     @alias_metadata.setter
     def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Okta API token. This is required to query Okta for user group membership.
+        If this is not supplied only locally configured groups will be enabled.
+        Conflicts with `token` and `api_token_wo`.
+        """
+        return pulumi.get(self, "api_token")
+
+    @api_token.setter
+    def api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenWo")
+    def api_token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        """
+        return pulumi.get(self, "api_token_wo")
+
+    @api_token_wo.setter
+    def api_token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_token_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenWoVersion")
+    def api_token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Version counter for the write-only `api_token_wo`.
+        Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
+        """
+        return pulumi.get(self, "api_token_wo_version")
+
+    @api_token_wo_version.setter
+    def api_token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "api_token_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
@@ -580,10 +736,25 @@ class _AuthBackendState:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="orgName")
+    def org_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        Exactly one of `org_name` or `organization` must be specified.
+        """
+        return pulumi.get(self, "org_name")
+
+    @org_name.setter
+    def org_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "org_name", value)
+
+    @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Use org_name instead""")
     def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        Exactly one of `org_name` or `organization` must be specified.
         """
         return pulumi.get(self, "organization")
 
@@ -605,10 +776,12 @@ class _AuthBackendState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Use api_token instead""")
     def token(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The Okta API token. This is required to query Okta for user group membership.
+        **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
+        Conflicts with `api_token` and `api_token_wo`.
         """
         return pulumi.get(self, "token")
 
@@ -754,12 +927,16 @@ class AuthBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -802,6 +979,14 @@ class AuthBackend(pulumi.CustomResource):
             }])
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `api_token_wo` - (Optional) Write-only Okta API token. This is required to query Okta for user group membership.
+          Use this for enhanced security when you don't want the token to appear in state files. Requires `api_token_wo_version`. Conflicts with `token` and `api_token`.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         Okta authentication backends can be imported using its `path`, e.g.
@@ -815,6 +1000,13 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
+        :param pulumi.Input[_builtins.str] api_token: The Okta API token. This is required to query Okta for user group membership.
+               If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `token` and `api_token_wo`.
+        :param pulumi.Input[_builtins.str] api_token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[_builtins.int] api_token_wo_version: Version counter for the write-only `api_token_wo`.
+               Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -826,10 +1018,14 @@ class AuthBackend(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        :param pulumi.Input[_builtins.str] org_name: The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
+        :param pulumi.Input[_builtins.str] organization: **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
         :param pulumi.Input[_builtins.str] path: Path to mount the Okta auth backend. Default to path `okta`.
-        :param pulumi.Input[_builtins.str] token: The Okta API token. This is required to query Okta for user group membership.
+        :param pulumi.Input[_builtins.str] token: **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `api_token` and `api_token_wo`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[_builtins.int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum lifetime of the generated token
@@ -846,7 +1042,7 @@ class AuthBackend(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: AuthBackendArgs,
+                 args: Optional[AuthBackendArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource for managing an
@@ -875,6 +1071,14 @@ class AuthBackend(pulumi.CustomResource):
             }])
         ```
 
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `api_token_wo` - (Optional) Write-only Okta API token. This is required to query Okta for user group membership.
+          Use this for enhanced security when you don't want the token to appear in state files. Requires `api_token_wo_version`. Conflicts with `token` and `api_token`.
+          **Note**: This property is write-only and will not be read from the API.
+
         ## Import
 
         Okta authentication backends can be imported using its `path`, e.g.
@@ -900,12 +1104,16 @@ class AuthBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
                  bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
                  organization: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -930,14 +1138,16 @@ class AuthBackend(pulumi.CustomResource):
             __props__ = AuthBackendArgs.__new__(AuthBackendArgs)
 
             __props__.__dict__["alias_metadata"] = alias_metadata
+            __props__.__dict__["api_token"] = None if api_token is None else pulumi.Output.secret(api_token)
+            __props__.__dict__["api_token_wo"] = None if api_token_wo is None else pulumi.Output.secret(api_token_wo)
+            __props__.__dict__["api_token_wo_version"] = api_token_wo_version
             __props__.__dict__["base_url"] = base_url
             __props__.__dict__["bypass_okta_mfa"] = bypass_okta_mfa
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["groups"] = groups
             __props__.__dict__["namespace"] = namespace
-            if organization is None and not opts.urn:
-                raise TypeError("Missing required property 'organization'")
+            __props__.__dict__["org_name"] = org_name
             __props__.__dict__["organization"] = organization
             __props__.__dict__["path"] = path
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
@@ -953,7 +1163,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["tune"] = tune
             __props__.__dict__["users"] = users
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiToken", "apiTokenWo", "token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:okta/authBackend:AuthBackend',
@@ -967,12 +1177,16 @@ class AuthBackend(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[_builtins.str]] = None,
             alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            api_token: Optional[pulumi.Input[_builtins.str]] = None,
+            api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             base_url: Optional[pulumi.Input[_builtins.str]] = None,
             bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
+            org_name: Optional[pulumi.Input[_builtins.str]] = None,
             organization: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
             token: Optional[pulumi.Input[_builtins.str]] = None,
@@ -997,6 +1211,13 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
+        :param pulumi.Input[_builtins.str] api_token: The Okta API token. This is required to query Okta for user group membership.
+               If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `token` and `api_token_wo`.
+        :param pulumi.Input[_builtins.str] api_token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[_builtins.int] api_token_wo_version: Version counter for the write-only `api_token_wo`.
+               Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
         :param pulumi.Input[_builtins.str] base_url: The Okta url. Examples: oktapreview.com, okta.com
         :param pulumi.Input[_builtins.bool] bypass_okta_mfa: When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
@@ -1008,10 +1229,14 @@ class AuthBackend(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        :param pulumi.Input[_builtins.str] org_name: The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
+        :param pulumi.Input[_builtins.str] organization: **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+               Exactly one of `org_name` or `organization` must be specified.
         :param pulumi.Input[_builtins.str] path: Path to mount the Okta auth backend. Default to path `okta`.
-        :param pulumi.Input[_builtins.str] token: The Okta API token. This is required to query Okta for user group membership.
+        :param pulumi.Input[_builtins.str] token: **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+               Conflicts with `api_token` and `api_token_wo`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
         :param pulumi.Input[_builtins.int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum lifetime of the generated token
@@ -1030,12 +1255,16 @@ class AuthBackend(pulumi.CustomResource):
 
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["alias_metadata"] = alias_metadata
+        __props__.__dict__["api_token"] = api_token
+        __props__.__dict__["api_token_wo"] = api_token_wo
+        __props__.__dict__["api_token_wo_version"] = api_token_wo_version
         __props__.__dict__["base_url"] = base_url
         __props__.__dict__["bypass_okta_mfa"] = bypass_okta_mfa
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["groups"] = groups
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["org_name"] = org_name
         __props__.__dict__["organization"] = organization
         __props__.__dict__["path"] = path
         __props__.__dict__["token"] = token
@@ -1068,6 +1297,34 @@ class AuthBackend(pulumi.CustomResource):
           This should be a list or map containing the metadata in key value pairs.
         """
         return pulumi.get(self, "alias_metadata")
+
+    @_builtins.property
+    @pulumi.getter(name="apiToken")
+    def api_token(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The Okta API token. This is required to query Okta for user group membership.
+        If this is not supplied only locally configured groups will be enabled.
+        Conflicts with `token` and `api_token_wo`.
+        """
+        return pulumi.get(self, "api_token")
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenWo")
+    def api_token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+        """
+        return pulumi.get(self, "api_token_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="apiTokenWoVersion")
+    def api_token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only `api_token_wo`.
+        Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
+        """
+        return pulumi.get(self, "api_token_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
@@ -1123,10 +1380,21 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @_builtins.property
+    @pulumi.getter(name="orgName")
+    def org_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        Exactly one of `org_name` or `organization` must be specified.
+        """
+        return pulumi.get(self, "org_name")
+
+    @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Use org_name instead""")
     def organization(self) -> pulumi.Output[_builtins.str]:
         """
-        The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+        **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+        Exactly one of `org_name` or `organization` must be specified.
         """
         return pulumi.get(self, "organization")
 
@@ -1140,10 +1408,12 @@ class AuthBackend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""Use api_token instead""")
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Okta API token. This is required to query Okta for user group membership.
+        **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
+        Conflicts with `api_token` and `api_token_wo`.
         """
         return pulumi.get(self, "token")
 

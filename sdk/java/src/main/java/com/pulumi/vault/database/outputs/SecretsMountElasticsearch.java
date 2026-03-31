@@ -58,7 +58,7 @@ public final class SecretsMountElasticsearch {
      * @return Whether to disable certificate verification
      * 
      */
-    private @Nullable Boolean insecure;
+    private @Nullable Boolean insecureTls;
     /**
      * @return Name of the database connection.
      * 
@@ -70,10 +70,20 @@ public final class SecretsMountElasticsearch {
      */
     private String password;
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    private @Nullable String passwordPolicy;
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    private @Nullable String pluginVersion;
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
@@ -98,6 +108,11 @@ public final class SecretsMountElasticsearch {
      * 
      */
     private @Nullable Integer rotationWindow;
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Boolean skipStaticRoleImportRotation;
     /**
      * @return This, if set, is used to set the SNI host when connecting via TLS
      * 
@@ -182,8 +197,8 @@ public final class SecretsMountElasticsearch {
      * @return Whether to disable certificate verification
      * 
      */
-    public Optional<Boolean> insecure() {
-        return Optional.ofNullable(this.insecure);
+    public Optional<Boolean> insecureTls() {
+        return Optional.ofNullable(this.insecureTls);
     }
     /**
      * @return Name of the database connection.
@@ -200,11 +215,25 @@ public final class SecretsMountElasticsearch {
         return this.password;
     }
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<String> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<String> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
     /**
      * @return A list of database statements to be executed to rotate the root user&#39;s credentials.
@@ -237,6 +266,13 @@ public final class SecretsMountElasticsearch {
      */
     public Optional<Integer> rotationWindow() {
         return Optional.ofNullable(this.rotationWindow);
+    }
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Boolean> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
     }
     /**
      * @return This, if set, is used to set the SNI host when connecting via TLS
@@ -291,14 +327,17 @@ public final class SecretsMountElasticsearch {
         private @Nullable String clientKey;
         private @Nullable Map<String,String> data;
         private @Nullable Boolean disableAutomatedRotation;
-        private @Nullable Boolean insecure;
+        private @Nullable Boolean insecureTls;
         private String name;
         private String password;
+        private @Nullable String passwordPolicy;
         private @Nullable String pluginName;
+        private @Nullable String pluginVersion;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable Boolean skipStaticRoleImportRotation;
         private @Nullable String tlsServerName;
         private String url;
         private String username;
@@ -314,14 +353,17 @@ public final class SecretsMountElasticsearch {
     	      this.clientKey = defaults.clientKey;
     	      this.data = defaults.data;
     	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
-    	      this.insecure = defaults.insecure;
+    	      this.insecureTls = defaults.insecureTls;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordPolicy = defaults.passwordPolicy;
     	      this.pluginName = defaults.pluginName;
+    	      this.pluginVersion = defaults.pluginVersion;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.skipStaticRoleImportRotation = defaults.skipStaticRoleImportRotation;
     	      this.tlsServerName = defaults.tlsServerName;
     	      this.url = defaults.url;
     	      this.username = defaults.username;
@@ -375,9 +417,9 @@ public final class SecretsMountElasticsearch {
             return this;
         }
         @CustomType.Setter
-        public Builder insecure(@Nullable Boolean insecure) {
+        public Builder insecureTls(@Nullable Boolean insecureTls) {
 
-            this.insecure = insecure;
+            this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
@@ -397,9 +439,21 @@ public final class SecretsMountElasticsearch {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordPolicy(@Nullable String passwordPolicy) {
+
+            this.passwordPolicy = passwordPolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder pluginVersion(@Nullable String pluginVersion) {
+
+            this.pluginVersion = pluginVersion;
             return this;
         }
         @CustomType.Setter
@@ -427,6 +481,12 @@ public final class SecretsMountElasticsearch {
         public Builder rotationWindow(@Nullable Integer rotationWindow) {
 
             this.rotationWindow = rotationWindow;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder skipStaticRoleImportRotation(@Nullable Boolean skipStaticRoleImportRotation) {
+
+            this.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             return this;
         }
         @CustomType.Setter
@@ -472,14 +532,17 @@ public final class SecretsMountElasticsearch {
             _resultValue.clientKey = clientKey;
             _resultValue.data = data;
             _resultValue.disableAutomatedRotation = disableAutomatedRotation;
-            _resultValue.insecure = insecure;
+            _resultValue.insecureTls = insecureTls;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordPolicy = passwordPolicy;
             _resultValue.pluginName = pluginName;
+            _resultValue.pluginVersion = pluginVersion;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             _resultValue.tlsServerName = tlsServerName;
             _resultValue.url = url;
             _resultValue.username = username;

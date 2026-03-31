@@ -266,6 +266,21 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+     * 
+     */
+    @Import(name="keyUsages")
+    private @Nullable Output<List<String>> keyUsages;
+
+    /**
+     * @return Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+     * 
+     */
+    public Optional<Output<List<String>>> keyUsages() {
+        return Optional.ofNullable(this.keyUsages);
+    }
+
+    /**
      * The locality
      * 
      */
@@ -607,6 +622,21 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.uriSans);
     }
 
+    /**
+     * When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+     * 
+     */
+    @Import(name="usePss")
+    private @Nullable Output<Boolean> usePss;
+
+    /**
+     * @return When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+     * 
+     */
+    public Optional<Output<Boolean>> usePss() {
+        return Optional.ofNullable(this.usePss);
+    }
+
     private SecretBackendRootCertArgs() {}
 
     private SecretBackendRootCertArgs(SecretBackendRootCertArgs $) {
@@ -626,6 +656,7 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
         this.keyName = $.keyName;
         this.keyRef = $.keyRef;
         this.keyType = $.keyType;
+        this.keyUsages = $.keyUsages;
         this.locality = $.locality;
         this.managedKeyId = $.managedKeyId;
         this.managedKeyName = $.managedKeyName;
@@ -648,6 +679,7 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
         this.ttl = $.ttl;
         this.type = $.type;
         this.uriSans = $.uriSans;
+        this.usePss = $.usePss;
     }
 
     public static Builder builder() {
@@ -1068,6 +1100,37 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
          */
         public Builder keyType(String keyType) {
             return keyType(Output.of(keyType));
+        }
+
+        /**
+         * @param keyUsages Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(@Nullable Output<List<String>> keyUsages) {
+            $.keyUsages = keyUsages;
+            return this;
+        }
+
+        /**
+         * @param keyUsages Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(List<String> keyUsages) {
+            return keyUsages(Output.of(keyUsages));
+        }
+
+        /**
+         * @param keyUsages Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(String... keyUsages) {
+            return keyUsages(List.of(keyUsages));
         }
 
         /**
@@ -1602,6 +1665,27 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
          */
         public Builder uriSans(String... uriSans) {
             return uriSans(List.of(uriSans));
+        }
+
+        /**
+         * @param usePss When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usePss(@Nullable Output<Boolean> usePss) {
+            $.usePss = usePss;
+            return this;
+        }
+
+        /**
+         * @param usePss When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usePss(Boolean usePss) {
+            return usePss(Output.of(usePss));
         }
 
         public SecretBackendRootCertArgs build() {

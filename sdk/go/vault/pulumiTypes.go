@@ -2094,6 +2094,8 @@ func (o ProviderAuthLoginGcpPtrOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 }
 
 type ProviderAuthLoginJwt struct {
+	// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+	DistributedClaimAccessToken *string `pulumi:"distributedClaimAccessToken"`
 	// A signed JSON Web Token.
 	Jwt *string `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
@@ -2118,6 +2120,8 @@ type ProviderAuthLoginJwtInput interface {
 }
 
 type ProviderAuthLoginJwtArgs struct {
+	// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+	DistributedClaimAccessToken pulumi.StringPtrInput `pulumi:"distributedClaimAccessToken"`
 	// A signed JSON Web Token.
 	Jwt pulumi.StringPtrInput `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
@@ -2207,6 +2211,11 @@ func (o ProviderAuthLoginJwtOutput) ToProviderAuthLoginJwtPtrOutputWithContext(c
 	}).(ProviderAuthLoginJwtPtrOutput)
 }
 
+// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+func (o ProviderAuthLoginJwtOutput) DistributedClaimAccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProviderAuthLoginJwt) *string { return v.DistributedClaimAccessToken }).(pulumi.StringPtrOutput)
+}
+
 // A signed JSON Web Token.
 func (o ProviderAuthLoginJwtOutput) Jwt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProviderAuthLoginJwt) *string { return v.Jwt }).(pulumi.StringPtrOutput)
@@ -2254,6 +2263,16 @@ func (o ProviderAuthLoginJwtPtrOutput) Elem() ProviderAuthLoginJwtOutput {
 		var ret ProviderAuthLoginJwt
 		return ret
 	}).(ProviderAuthLoginJwtOutput)
+}
+
+// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+func (o ProviderAuthLoginJwtPtrOutput) DistributedClaimAccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthLoginJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DistributedClaimAccessToken
+	}).(pulumi.StringPtrOutput)
 }
 
 // A signed JSON Web Token.

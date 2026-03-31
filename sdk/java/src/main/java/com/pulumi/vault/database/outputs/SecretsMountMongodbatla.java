@@ -40,10 +40,20 @@ public final class SecretsMountMongodbatla {
      */
     private String name;
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    private @Nullable String passwordPolicy;
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    private @Nullable String pluginVersion;
     /**
      * @return The Private Programmatic API Key used to connect with MongoDB Atlas API.
      * 
@@ -83,6 +93,11 @@ public final class SecretsMountMongodbatla {
      * 
      */
     private @Nullable Integer rotationWindow;
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Boolean skipStaticRoleImportRotation;
     /**
      * @return Template describing how dynamic usernames are generated.
      * 
@@ -128,11 +143,25 @@ public final class SecretsMountMongodbatla {
         return this.name;
     }
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<String> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<String> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
     /**
      * @return The Private Programmatic API Key used to connect with MongoDB Atlas API.
@@ -188,6 +217,13 @@ public final class SecretsMountMongodbatla {
         return Optional.ofNullable(this.rotationWindow);
     }
     /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Boolean> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
+    }
+    /**
      * @return Template describing how dynamic usernames are generated.
      * 
      */
@@ -216,7 +252,9 @@ public final class SecretsMountMongodbatla {
         private @Nullable Map<String,String> data;
         private @Nullable Boolean disableAutomatedRotation;
         private String name;
+        private @Nullable String passwordPolicy;
         private @Nullable String pluginName;
+        private @Nullable String pluginVersion;
         private String privateKey;
         private String projectId;
         private String publicKey;
@@ -224,6 +262,7 @@ public final class SecretsMountMongodbatla {
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable Boolean skipStaticRoleImportRotation;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
         public Builder() {}
@@ -233,7 +272,9 @@ public final class SecretsMountMongodbatla {
     	      this.data = defaults.data;
     	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
     	      this.name = defaults.name;
+    	      this.passwordPolicy = defaults.passwordPolicy;
     	      this.pluginName = defaults.pluginName;
+    	      this.pluginVersion = defaults.pluginVersion;
     	      this.privateKey = defaults.privateKey;
     	      this.projectId = defaults.projectId;
     	      this.publicKey = defaults.publicKey;
@@ -241,6 +282,7 @@ public final class SecretsMountMongodbatla {
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.skipStaticRoleImportRotation = defaults.skipStaticRoleImportRotation;
     	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
         }
@@ -275,9 +317,21 @@ public final class SecretsMountMongodbatla {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordPolicy(@Nullable String passwordPolicy) {
+
+            this.passwordPolicy = passwordPolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder pluginVersion(@Nullable String pluginVersion) {
+
+            this.pluginVersion = pluginVersion;
             return this;
         }
         @CustomType.Setter
@@ -332,6 +386,12 @@ public final class SecretsMountMongodbatla {
             return this;
         }
         @CustomType.Setter
+        public Builder skipStaticRoleImportRotation(@Nullable Boolean skipStaticRoleImportRotation) {
+
+            this.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
+            return this;
+        }
+        @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
 
             this.usernameTemplate = usernameTemplate;
@@ -349,7 +409,9 @@ public final class SecretsMountMongodbatla {
             _resultValue.data = data;
             _resultValue.disableAutomatedRotation = disableAutomatedRotation;
             _resultValue.name = name;
+            _resultValue.passwordPolicy = passwordPolicy;
             _resultValue.pluginName = pluginName;
+            _resultValue.pluginVersion = pluginVersion;
             _resultValue.privateKey = privateKey;
             _resultValue.projectId = projectId;
             _resultValue.publicKey = publicKey;
@@ -357,6 +419,7 @@ public final class SecretsMountMongodbatla {
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;
             return _resultValue;

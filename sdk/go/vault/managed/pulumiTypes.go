@@ -450,6 +450,211 @@ func (o KeysAzureArrayOutput) Index(i pulumi.IntInput) KeysAzureOutput {
 	}).(KeysAzureOutput)
 }
 
+type KeysGcp struct {
+	// The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+	Algorithm string `pulumi:"algorithm"`
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+	AllowGenerateKey *bool `pulumi:"allowGenerateKey"`
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+	AllowReplaceKey *bool `pulumi:"allowReplaceKey"`
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+	AllowStoreKey *bool `pulumi:"allowStoreKey"`
+	// Allow usage from any mount point within the namespace if 'true'
+	AnyMount *bool `pulumi:"anyMount"`
+	// The GCP service account credentials JSON to use for authenticating to GCP.
+	Credentials string `pulumi:"credentials"`
+	// The name of the GCP Cloud KMS key. If no existing key exists and allowGenerateKey is true, Vault will generate a key with this name
+	CryptoKey string `pulumi:"cryptoKey"`
+	// The version of the key to use. (Default: 1)
+	CryptoKeyVersion *string `pulumi:"cryptoKeyVersion"`
+	// The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+	KeyRing string `pulumi:"keyRing"`
+	// A unique lowercase name that serves as identifying the key
+	Name string `pulumi:"name"`
+	// The GCP project ID.
+	Project string `pulumi:"project"`
+	// The GCP region where the key ring was created.
+	Region string `pulumi:"region"`
+	// ID of the managed key read from Vault
+	Uuid *string `pulumi:"uuid"`
+}
+
+// KeysGcpInput is an input type that accepts KeysGcpArgs and KeysGcpOutput values.
+// You can construct a concrete instance of `KeysGcpInput` via:
+//
+//	KeysGcpArgs{...}
+type KeysGcpInput interface {
+	pulumi.Input
+
+	ToKeysGcpOutput() KeysGcpOutput
+	ToKeysGcpOutputWithContext(context.Context) KeysGcpOutput
+}
+
+type KeysGcpArgs struct {
+	// The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+	AllowGenerateKey pulumi.BoolPtrInput `pulumi:"allowGenerateKey"`
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+	AllowReplaceKey pulumi.BoolPtrInput `pulumi:"allowReplaceKey"`
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+	AllowStoreKey pulumi.BoolPtrInput `pulumi:"allowStoreKey"`
+	// Allow usage from any mount point within the namespace if 'true'
+	AnyMount pulumi.BoolPtrInput `pulumi:"anyMount"`
+	// The GCP service account credentials JSON to use for authenticating to GCP.
+	Credentials pulumi.StringInput `pulumi:"credentials"`
+	// The name of the GCP Cloud KMS key. If no existing key exists and allowGenerateKey is true, Vault will generate a key with this name
+	CryptoKey pulumi.StringInput `pulumi:"cryptoKey"`
+	// The version of the key to use. (Default: 1)
+	CryptoKeyVersion pulumi.StringPtrInput `pulumi:"cryptoKeyVersion"`
+	// The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+	KeyRing pulumi.StringInput `pulumi:"keyRing"`
+	// A unique lowercase name that serves as identifying the key
+	Name pulumi.StringInput `pulumi:"name"`
+	// The GCP project ID.
+	Project pulumi.StringInput `pulumi:"project"`
+	// The GCP region where the key ring was created.
+	Region pulumi.StringInput `pulumi:"region"`
+	// ID of the managed key read from Vault
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+}
+
+func (KeysGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeysGcp)(nil)).Elem()
+}
+
+func (i KeysGcpArgs) ToKeysGcpOutput() KeysGcpOutput {
+	return i.ToKeysGcpOutputWithContext(context.Background())
+}
+
+func (i KeysGcpArgs) ToKeysGcpOutputWithContext(ctx context.Context) KeysGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeysGcpOutput)
+}
+
+// KeysGcpArrayInput is an input type that accepts KeysGcpArray and KeysGcpArrayOutput values.
+// You can construct a concrete instance of `KeysGcpArrayInput` via:
+//
+//	KeysGcpArray{ KeysGcpArgs{...} }
+type KeysGcpArrayInput interface {
+	pulumi.Input
+
+	ToKeysGcpArrayOutput() KeysGcpArrayOutput
+	ToKeysGcpArrayOutputWithContext(context.Context) KeysGcpArrayOutput
+}
+
+type KeysGcpArray []KeysGcpInput
+
+func (KeysGcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeysGcp)(nil)).Elem()
+}
+
+func (i KeysGcpArray) ToKeysGcpArrayOutput() KeysGcpArrayOutput {
+	return i.ToKeysGcpArrayOutputWithContext(context.Background())
+}
+
+func (i KeysGcpArray) ToKeysGcpArrayOutputWithContext(ctx context.Context) KeysGcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeysGcpArrayOutput)
+}
+
+type KeysGcpOutput struct{ *pulumi.OutputState }
+
+func (KeysGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeysGcp)(nil)).Elem()
+}
+
+func (o KeysGcpOutput) ToKeysGcpOutput() KeysGcpOutput {
+	return o
+}
+
+func (o KeysGcpOutput) ToKeysGcpOutputWithContext(ctx context.Context) KeysGcpOutput {
+	return o
+}
+
+// The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+func (o KeysGcpOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+func (o KeysGcpOutput) AllowGenerateKey() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v KeysGcp) *bool { return v.AllowGenerateKey }).(pulumi.BoolPtrOutput)
+}
+
+// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+func (o KeysGcpOutput) AllowReplaceKey() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v KeysGcp) *bool { return v.AllowReplaceKey }).(pulumi.BoolPtrOutput)
+}
+
+// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+func (o KeysGcpOutput) AllowStoreKey() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v KeysGcp) *bool { return v.AllowStoreKey }).(pulumi.BoolPtrOutput)
+}
+
+// Allow usage from any mount point within the namespace if 'true'
+func (o KeysGcpOutput) AnyMount() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v KeysGcp) *bool { return v.AnyMount }).(pulumi.BoolPtrOutput)
+}
+
+// The GCP service account credentials JSON to use for authenticating to GCP.
+func (o KeysGcpOutput) Credentials() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.Credentials }).(pulumi.StringOutput)
+}
+
+// The name of the GCP Cloud KMS key. If no existing key exists and allowGenerateKey is true, Vault will generate a key with this name
+func (o KeysGcpOutput) CryptoKey() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.CryptoKey }).(pulumi.StringOutput)
+}
+
+// The version of the key to use. (Default: 1)
+func (o KeysGcpOutput) CryptoKeyVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeysGcp) *string { return v.CryptoKeyVersion }).(pulumi.StringPtrOutput)
+}
+
+// The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+func (o KeysGcpOutput) KeyRing() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.KeyRing }).(pulumi.StringOutput)
+}
+
+// A unique lowercase name that serves as identifying the key
+func (o KeysGcpOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The GCP project ID.
+func (o KeysGcpOutput) Project() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.Project }).(pulumi.StringOutput)
+}
+
+// The GCP region where the key ring was created.
+func (o KeysGcpOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v KeysGcp) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// ID of the managed key read from Vault
+func (o KeysGcpOutput) Uuid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeysGcp) *string { return v.Uuid }).(pulumi.StringPtrOutput)
+}
+
+type KeysGcpArrayOutput struct{ *pulumi.OutputState }
+
+func (KeysGcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KeysGcp)(nil)).Elem()
+}
+
+func (o KeysGcpArrayOutput) ToKeysGcpArrayOutput() KeysGcpArrayOutput {
+	return o
+}
+
+func (o KeysGcpArrayOutput) ToKeysGcpArrayOutputWithContext(ctx context.Context) KeysGcpArrayOutput {
+	return o
+}
+
+func (o KeysGcpArrayOutput) Index(i pulumi.IntInput) KeysGcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KeysGcp {
+		return vs[0].([]KeysGcp)[vs[1].(int)]
+	}).(KeysGcpOutput)
+}
+
 type KeysPkc struct {
 	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey *bool `pulumi:"allowGenerateKey"`
@@ -687,12 +892,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysAwArrayInput)(nil)).Elem(), KeysAwArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysAzureInput)(nil)).Elem(), KeysAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysAzureArrayInput)(nil)).Elem(), KeysAzureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeysGcpInput)(nil)).Elem(), KeysGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeysGcpArrayInput)(nil)).Elem(), KeysGcpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysPkcInput)(nil)).Elem(), KeysPkcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeysPkcArrayInput)(nil)).Elem(), KeysPkcArray{})
 	pulumi.RegisterOutputType(KeysAwOutput{})
 	pulumi.RegisterOutputType(KeysAwArrayOutput{})
 	pulumi.RegisterOutputType(KeysAzureOutput{})
 	pulumi.RegisterOutputType(KeysAzureArrayOutput{})
+	pulumi.RegisterOutputType(KeysGcpOutput{})
+	pulumi.RegisterOutputType(KeysGcpArrayOutput{})
 	pulumi.RegisterOutputType(KeysPkcOutput{})
 	pulumi.RegisterOutputType(KeysPkcArrayOutput{})
 }

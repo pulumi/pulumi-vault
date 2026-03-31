@@ -130,7 +130,7 @@ export class SecretBackend extends pulumi.CustomResource {
     /**
      * Addresses the KMIP server should listen on (`host:port`).
      */
-    declare public readonly listenAddrs: pulumi.Output<string[]>;
+    declare public readonly listenAddrs: pulumi.Output<string[] | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */

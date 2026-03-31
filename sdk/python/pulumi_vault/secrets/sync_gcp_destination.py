@@ -27,12 +27,18 @@ class SyncGcpDestinationArgs:
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncGcpDestination resource.
 
@@ -47,6 +53,13 @@ class SyncGcpDestinationArgs:
         :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -59,6 +72,7 @@ class SyncGcpDestinationArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
+        :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for workload identity federation.
         """
         if allowed_ipv4_addresses is not None:
             pulumi.set(__self__, "allowed_ipv4_addresses", allowed_ipv4_addresses)
@@ -76,6 +90,16 @@ class SyncGcpDestinationArgs:
             pulumi.set(__self__, "global_kms_key", global_kms_key)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if identity_token_audience_wo is not None:
+            pulumi.set(__self__, "identity_token_audience_wo", identity_token_audience_wo)
+        if identity_token_audience_wo_version is not None:
+            pulumi.set(__self__, "identity_token_audience_wo_version", identity_token_audience_wo_version)
+        if identity_token_key_wo is not None:
+            pulumi.set(__self__, "identity_token_key_wo", identity_token_key_wo)
+        if identity_token_key_wo_version is not None:
+            pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if locational_kms_keys is not None:
             pulumi.set(__self__, "locational_kms_keys", locational_kms_keys)
         if name is not None:
@@ -88,6 +112,8 @@ class SyncGcpDestinationArgs:
             pulumi.set(__self__, "replication_locations", replication_locations)
         if secret_name_template is not None:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
+        if service_account_email is not None:
+            pulumi.set(__self__, "service_account_email", service_account_email)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv4Addresses")
@@ -189,6 +215,68 @@ class SyncGcpDestinationArgs:
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @identity_token_audience_wo.setter
+    def identity_token_audience_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_audience_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @identity_token_audience_wo_version.setter
+    def identity_token_audience_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_audience_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @identity_token_key_wo.setter
+    def identity_token_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @identity_token_key_wo_version.setter
+    def identity_token_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @_builtins.property
     @pulumi.getter(name="locationalKmsKeys")
     def locational_kms_keys(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -266,6 +354,18 @@ class SyncGcpDestinationArgs:
     def secret_name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret_name_template", value)
 
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Service Account to impersonate for workload identity federation.
+        """
+        return pulumi.get(self, "service_account_email")
+
+    @service_account_email.setter
+    def service_account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_account_email", value)
+
 
 @pulumi.input_type
 class _SyncGcpDestinationState:
@@ -278,12 +378,18 @@ class _SyncGcpDestinationState:
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncGcpDestination resources.
@@ -299,6 +405,13 @@ class _SyncGcpDestinationState:
         :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -311,6 +424,7 @@ class _SyncGcpDestinationState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
+        :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for workload identity federation.
         :param pulumi.Input[_builtins.str] type: The type of the secrets destination (`gcp-sm`).
         """
         if allowed_ipv4_addresses is not None:
@@ -329,6 +443,16 @@ class _SyncGcpDestinationState:
             pulumi.set(__self__, "global_kms_key", global_kms_key)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if identity_token_audience_wo is not None:
+            pulumi.set(__self__, "identity_token_audience_wo", identity_token_audience_wo)
+        if identity_token_audience_wo_version is not None:
+            pulumi.set(__self__, "identity_token_audience_wo_version", identity_token_audience_wo_version)
+        if identity_token_key_wo is not None:
+            pulumi.set(__self__, "identity_token_key_wo", identity_token_key_wo)
+        if identity_token_key_wo_version is not None:
+            pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if locational_kms_keys is not None:
             pulumi.set(__self__, "locational_kms_keys", locational_kms_keys)
         if name is not None:
@@ -341,6 +465,8 @@ class _SyncGcpDestinationState:
             pulumi.set(__self__, "replication_locations", replication_locations)
         if secret_name_template is not None:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
+        if service_account_email is not None:
+            pulumi.set(__self__, "service_account_email", service_account_email)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -444,6 +570,68 @@ class _SyncGcpDestinationState:
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @identity_token_audience_wo.setter
+    def identity_token_audience_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_audience_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @identity_token_audience_wo_version.setter
+    def identity_token_audience_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_audience_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @identity_token_key_wo.setter
+    def identity_token_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @identity_token_key_wo_version.setter
+    def identity_token_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @_builtins.property
     @pulumi.getter(name="locationalKmsKeys")
     def locational_kms_keys(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
@@ -522,6 +710,18 @@ class _SyncGcpDestinationState:
         pulumi.set(self, "secret_name_template", value)
 
     @_builtins.property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Service Account to impersonate for workload identity federation.
+        """
+        return pulumi.get(self, "service_account_email")
+
+    @service_account_email.setter
+    def service_account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_account_email", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -548,12 +748,18 @@ class SyncGcpDestination(pulumi.CustomResource):
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a GCP destination to synchronize secrets in Vault. Requires Vault 1.16+.
@@ -648,6 +854,23 @@ class SyncGcpDestination(pulumi.CustomResource):
             ])
         ```
 
+        ### Using Workload Identity Federation (Vault 2.0.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp_wif = vault.secrets.SyncGcpDestination("gcp_wif",
+            name="gcp-dest-wif",
+            service_account_email=service_account_email,
+            identity_token_audience_wo=identity_token_audience,
+            identity_token_audience_wo_version=1,
+            identity_token_ttl=3600,
+            identity_token_key_wo="my-key",
+            identity_token_key_wo_version=1,
+            granularity="secret-path")
+        ```
+
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -670,6 +893,13 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -682,6 +912,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
+        :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for workload identity federation.
         """
         ...
     @overload
@@ -782,6 +1013,23 @@ class SyncGcpDestination(pulumi.CustomResource):
             ])
         ```
 
+        ### Using Workload Identity Federation (Vault 2.0.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp_wif = vault.secrets.SyncGcpDestination("gcp_wif",
+            name="gcp-dest-wif",
+            service_account_email=service_account_email,
+            identity_token_audience_wo=identity_token_audience,
+            identity_token_audience_wo_version=1,
+            identity_token_ttl=3600,
+            identity_token_key_wo="my-key",
+            identity_token_key_wo_version=1,
+            granularity="secret-path")
+        ```
+
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -814,12 +1062,18 @@ class SyncGcpDestination(pulumi.CustomResource):
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -837,14 +1091,20 @@ class SyncGcpDestination(pulumi.CustomResource):
             __props__.__dict__["disable_strict_networking"] = disable_strict_networking
             __props__.__dict__["global_kms_key"] = global_kms_key
             __props__.__dict__["granularity"] = granularity
+            __props__.__dict__["identity_token_audience_wo"] = None if identity_token_audience_wo is None else pulumi.Output.secret(identity_token_audience_wo)
+            __props__.__dict__["identity_token_audience_wo_version"] = identity_token_audience_wo_version
+            __props__.__dict__["identity_token_key_wo"] = None if identity_token_key_wo is None else pulumi.Output.secret(identity_token_key_wo)
+            __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["locational_kms_keys"] = locational_kms_keys
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["replication_locations"] = replication_locations
             __props__.__dict__["secret_name_template"] = secret_name_template
+            __props__.__dict__["service_account_email"] = service_account_email
             __props__.__dict__["type"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials", "identityTokenAudienceWo", "identityTokenKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SyncGcpDestination, __self__).__init__(
             'vault:secrets/syncGcpDestination:SyncGcpDestination',
@@ -864,12 +1124,18 @@ class SyncGcpDestination(pulumi.CustomResource):
             disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
             global_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
             granularity: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             locational_kms_keys: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             replication_locations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
+            service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SyncGcpDestination':
         """
         Get an existing SyncGcpDestination resource's state with the given name, id, and optional extra
@@ -889,6 +1155,13 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] global_kms_key: Global KMS key for encryption.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -901,6 +1174,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
+        :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for workload identity federation.
         :param pulumi.Input[_builtins.str] type: The type of the secrets destination (`gcp-sm`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -915,12 +1189,18 @@ class SyncGcpDestination(pulumi.CustomResource):
         __props__.__dict__["disable_strict_networking"] = disable_strict_networking
         __props__.__dict__["global_kms_key"] = global_kms_key
         __props__.__dict__["granularity"] = granularity
+        __props__.__dict__["identity_token_audience_wo"] = identity_token_audience_wo
+        __props__.__dict__["identity_token_audience_wo_version"] = identity_token_audience_wo_version
+        __props__.__dict__["identity_token_key_wo"] = identity_token_key_wo
+        __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["locational_kms_keys"] = locational_kms_keys
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["replication_locations"] = replication_locations
         __props__.__dict__["secret_name_template"] = secret_name_template
+        __props__.__dict__["service_account_email"] = service_account_email
         __props__.__dict__["type"] = type
         return SyncGcpDestination(resource_name, opts=opts, __props__=__props__)
 
@@ -992,6 +1272,48 @@ class SyncGcpDestination(pulumi.CustomResource):
         return pulumi.get(self, "granularity")
 
     @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[_builtins.int]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @_builtins.property
     @pulumi.getter(name="locationalKmsKeys")
     def locational_kms_keys(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
@@ -1044,6 +1366,14 @@ class SyncGcpDestination(pulumi.CustomResource):
         Supports a subset of the Go Template syntax.
         """
         return pulumi.get(self, "secret_name_template")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Service Account to impersonate for workload identity federation.
+        """
+        return pulumi.get(self, "service_account_email")
 
     @_builtins.property
     @pulumi.getter

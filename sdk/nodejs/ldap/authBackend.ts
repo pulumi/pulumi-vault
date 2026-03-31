@@ -96,7 +96,7 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      */
-    declare public readonly bindpass: pulumi.Output<string>;
+    declare public readonly bindpass: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only bind password to use for LDAP authentication.

@@ -36,6 +36,7 @@ class SecretBackendRootCertArgs:
                  key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  key_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -56,7 +57,8 @@ class SecretBackendRootCertArgs:
                  signature_bits: Optional[pulumi.Input[_builtins.int]] = None,
                  street_address: Optional[pulumi.Input[_builtins.str]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendRootCert resource.
 
@@ -81,6 +83,7 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -107,6 +110,7 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "common_name", common_name)
@@ -139,6 +143,8 @@ class SecretBackendRootCertArgs:
             pulumi.set(__self__, "key_ref", key_ref)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if managed_key_id is not None:
@@ -181,6 +187,8 @@ class SecretBackendRootCertArgs:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
             pulumi.set(__self__, "uri_sans", uri_sans)
+        if use_pss is not None:
+            pulumi.set(__self__, "use_pss", use_pss)
 
     @_builtins.property
     @pulumi.getter
@@ -389,6 +397,18 @@ class SecretBackendRootCertArgs:
     @key_type.setter
     def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "key_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "key_usages", value)
 
     @_builtins.property
     @pulumi.getter
@@ -647,6 +667,18 @@ class SecretBackendRootCertArgs:
     def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "uri_sans", value)
 
+    @_builtins.property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+        """
+        return pulumi.get(self, "use_pss")
+
+    @use_pss.setter
+    def use_pss(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_pss", value)
+
 
 @pulumi.input_type
 class _SecretBackendRootCertState:
@@ -671,6 +703,7 @@ class _SecretBackendRootCertState:
                  key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  key_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -693,7 +726,8 @@ class _SecretBackendRootCertState:
                  street_address: Optional[pulumi.Input[_builtins.str]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRootCert resources.
 
@@ -720,6 +754,7 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -749,6 +784,7 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
                or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
@@ -790,6 +826,8 @@ class _SecretBackendRootCertState:
             pulumi.set(__self__, "key_ref", key_ref)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if managed_key_id is not None:
@@ -836,6 +874,8 @@ class _SecretBackendRootCertState:
             pulumi.set(__self__, "type", type)
         if uri_sans is not None:
             pulumi.set(__self__, "uri_sans", uri_sans)
+        if use_pss is not None:
+            pulumi.set(__self__, "use_pss", use_pss)
 
     @_builtins.property
     @pulumi.getter(name="altNames")
@@ -1079,6 +1119,18 @@ class _SecretBackendRootCertState:
     @key_type.setter
     def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "key_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "key_usages", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1362,6 +1414,18 @@ class _SecretBackendRootCertState:
     def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "uri_sans", value)
 
+    @_builtins.property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+        """
+        return pulumi.get(self, "use_pss")
+
+    @use_pss.setter
+    def use_pss(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_pss", value)
+
 
 @pulumi.type_token("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert")
 class SecretBackendRootCert(pulumi.CustomResource):
@@ -1385,6 +1449,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  key_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1407,6 +1472,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
         Generates a new self-signed CA certificate and private keys for the PKI Secret Backend.
@@ -1465,6 +1531,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -1493,6 +1560,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
                or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
         ...
     @overload
@@ -1567,6 +1635,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  key_name: Optional[pulumi.Input[_builtins.str]] = None,
                  key_ref: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1589,6 +1658,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1618,6 +1688,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__.__dict__["key_name"] = key_name
             __props__.__dict__["key_ref"] = key_ref
             __props__.__dict__["key_type"] = key_type
+            __props__.__dict__["key_usages"] = key_usages
             __props__.__dict__["locality"] = locality
             __props__.__dict__["managed_key_id"] = managed_key_id
             __props__.__dict__["managed_key_name"] = managed_key_name
@@ -1642,6 +1713,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["uri_sans"] = uri_sans
+            __props__.__dict__["use_pss"] = use_pss
             __props__.__dict__["certificate"] = None
             __props__.__dict__["issuer_id"] = None
             __props__.__dict__["issuing_ca"] = None
@@ -1677,6 +1749,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             key_name: Optional[pulumi.Input[_builtins.str]] = None,
             key_ref: Optional[pulumi.Input[_builtins.str]] = None,
             key_type: Optional[pulumi.Input[_builtins.str]] = None,
+            key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             locality: Optional[pulumi.Input[_builtins.str]] = None,
             managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1699,7 +1772,8 @@ class SecretBackendRootCert(pulumi.CustomResource):
             street_address: Optional[pulumi.Input[_builtins.str]] = None,
             ttl: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
-            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'SecretBackendRootCert':
+            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            use_pss: Optional[pulumi.Input[_builtins.bool]] = None) -> 'SecretBackendRootCert':
         """
         Get an existing SecretBackendRootCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1730,6 +1804,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -1759,6 +1834,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
                or \\"kms\\"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
+        :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1784,6 +1860,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["key_name"] = key_name
         __props__.__dict__["key_ref"] = key_ref
         __props__.__dict__["key_type"] = key_type
+        __props__.__dict__["key_usages"] = key_usages
         __props__.__dict__["locality"] = locality
         __props__.__dict__["managed_key_id"] = managed_key_id
         __props__.__dict__["managed_key_name"] = managed_key_name
@@ -1807,6 +1884,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["type"] = type
         __props__.__dict__["uri_sans"] = uri_sans
+        __props__.__dict__["use_pss"] = use_pss
         return SecretBackendRootCert(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1971,6 +2049,14 @@ class SecretBackendRootCert(pulumi.CustomResource):
         The desired key type
         """
         return pulumi.get(self, "key_type")
+
+    @_builtins.property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+        """
+        return pulumi.get(self, "key_usages")
 
     @_builtins.property
     @pulumi.getter
@@ -2161,4 +2247,12 @@ class SecretBackendRootCert(pulumi.CustomResource):
         List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
+
+    @_builtins.property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+        """
+        return pulumi.get(self, "use_pss")
 

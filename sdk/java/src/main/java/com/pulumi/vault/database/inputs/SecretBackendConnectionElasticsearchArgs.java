@@ -81,15 +81,15 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
      * Whether to disable certificate verification
      * 
      */
-    @Import(name="insecure")
-    private @Nullable Output<Boolean> insecure;
+    @Import(name="insecureTls")
+    private @Nullable Output<Boolean> insecureTls;
 
     /**
      * @return Whether to disable certificate verification
      * 
      */
-    public Optional<Output<Boolean>> insecure() {
-        return Optional.ofNullable(this.insecure);
+    public Optional<Output<Boolean>> insecureTls() {
+        return Optional.ofNullable(this.insecureTls);
     }
 
     /**
@@ -174,7 +174,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         this.caPath = $.caPath;
         this.clientCert = $.clientCert;
         this.clientKey = $.clientKey;
-        this.insecure = $.insecure;
+        this.insecureTls = $.insecureTls;
         this.password = $.password;
         this.tlsServerName = $.tlsServerName;
         this.url = $.url;
@@ -285,24 +285,24 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param insecure Whether to disable certificate verification
+         * @param insecureTls Whether to disable certificate verification
          * 
          * @return builder
          * 
          */
-        public Builder insecure(@Nullable Output<Boolean> insecure) {
-            $.insecure = insecure;
+        public Builder insecureTls(@Nullable Output<Boolean> insecureTls) {
+            $.insecureTls = insecureTls;
             return this;
         }
 
         /**
-         * @param insecure Whether to disable certificate verification
+         * @param insecureTls Whether to disable certificate verification
          * 
          * @return builder
          * 
          */
-        public Builder insecure(Boolean insecure) {
-            return insecure(Output.of(insecure));
+        public Builder insecureTls(Boolean insecureTls) {
+            return insecureTls(Output.of(insecureTls));
         }
 
         /**

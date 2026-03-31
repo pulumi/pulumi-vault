@@ -53,9 +53,17 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string Password;
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        public readonly string? PasswordPolicy;
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        public readonly string? PluginVersion;
         /// <summary>
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
@@ -76,6 +84,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         /// </summary>
         public readonly int? RotationWindow;
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly bool? SkipStaticRoleImportRotation;
         /// <summary>
         /// Specifies whether to use TLS when connecting to Couchbase.
         /// </summary>
@@ -114,7 +126,11 @@ namespace Pulumi.Vault.Database.Outputs
 
             string password,
 
+            string? passwordPolicy,
+
             string? pluginName,
+
+            string? pluginVersion,
 
             ImmutableArray<string> rootRotationStatements,
 
@@ -123,6 +139,8 @@ namespace Pulumi.Vault.Database.Outputs
             string? rotationSchedule,
 
             int? rotationWindow,
+
+            bool? skipStaticRoleImportRotation,
 
             bool? tls,
 
@@ -141,11 +159,14 @@ namespace Pulumi.Vault.Database.Outputs
             InsecureTls = insecureTls;
             Name = name;
             Password = password;
+            PasswordPolicy = passwordPolicy;
             PluginName = pluginName;
+            PluginVersion = pluginVersion;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
+            SkipStaticRoleImportRotation = skipStaticRoleImportRotation;
             Tls = tls;
             Username = username;
             UsernameTemplate = usernameTemplate;

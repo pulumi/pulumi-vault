@@ -149,14 +149,14 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="bindpass", refs={String.class}, tree="[0]")
-    private Output<String> bindpass;
+    private Output</* @Nullable */ String> bindpass;
 
     /**
      * @return Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      * 
      */
-    public Output<String> bindpass() {
-        return this.bindpass;
+    public Output<Optional<String>> bindpass() {
+        return Codegen.optional(this.bindpass);
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.

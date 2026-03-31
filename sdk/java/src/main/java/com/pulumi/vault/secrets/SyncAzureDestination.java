@@ -63,15 +63,92 @@ import javax.annotation.Nullable;
  *             .clientSecret(clientSecret)
  *             .tenantId(tenantId)
  *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .customTags(Map.of("foo", "bar"))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Networking Configuration (Vault 1.19+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncAzureDestination;
+ * import com.pulumi.vault.secrets.SyncAzureDestinationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var azNetworking = new SyncAzureDestination("azNetworking", SyncAzureDestinationArgs.builder()
+ *             .name("az-dest-networking")
+ *             .keyVaultUri(keyVaultUri)
+ *             .clientId(clientId)
+ *             .clientSecret(clientSecret)
+ *             .tenantId(tenantId)
  *             .allowedIpv4Addresses(            
- *                 "192.168.1.1/24",
- *                 "10.0.0.1/8")
- *             .allowedIpv6Addresses("2001:db9::/32")
+ *                 "10.0.0.0/8",
+ *                 "192.168.0.0/16")
+ *             .allowedIpv6Addresses("2001:db8::/32")
  *             .allowedPorts(            
  *                 443,
- *                 9443)
+ *                 8443)
  *             .disableStrictNetworking(false)
- *             .customTags(Map.of("foo", "bar"))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Using Workload Identity Federation (Vault 2.0.0+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncAzureDestination;
+ * import com.pulumi.vault.secrets.SyncAzureDestinationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var azWif = new SyncAzureDestination("azWif", SyncAzureDestinationArgs.builder()
+ *             .name("az-dest-wif")
+ *             .keyVaultUri(keyVaultUri)
+ *             .clientId(clientId)
+ *             .tenantId(tenantId)
+ *             .identityTokenAudience(identityTokenAudience)
+ *             .identityTokenTtl(3600)
+ *             .identityTokenKey("my-key")
+ *             .granularity("secret-path")
  *             .build());
  * 
  *     }
@@ -91,48 +168,42 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:secrets/syncAzureDestination:SyncAzureDestination")
 public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
     /**
-     * List of IPv4 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     @Export(name="allowedIpv4Addresses", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedIpv4Addresses;
 
     /**
-     * @return List of IPv4 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * @return Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     public Output<Optional<List<String>>> allowedIpv4Addresses() {
         return Codegen.optional(this.allowedIpv4Addresses);
     }
     /**
-     * List of IPv6 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     @Export(name="allowedIpv6Addresses", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedIpv6Addresses;
 
     /**
-     * @return List of IPv6 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * @return Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     public Output<Optional<List<String>>> allowedIpv6Addresses() {
         return Codegen.optional(this.allowedIpv6Addresses);
     }
     /**
-     * List of port numbers allowed for outbound connections from Vault to the
-     * destination. Requires Vault 1.19+.
+     * Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
      * 
      */
     @Export(name="allowedPorts", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> allowedPorts;
 
     /**
-     * @return List of port numbers allowed for outbound connections from Vault to the
-     * destination. Requires Vault 1.19+.
+     * @return Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
      * 
      */
     public Output<Optional<List<Integer>>> allowedPorts() {
@@ -203,16 +274,14 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customTags);
     }
     /**
-     * When set to `true`, disables strict enforcement of networking
-     * restrictions. Defaults to `false`. Requires Vault 1.19+.
+     * If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
      * 
      */
     @Export(name="disableStrictNetworking", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disableStrictNetworking;
 
     /**
-     * @return When set to `true`, disables strict enforcement of networking
-     * restrictions. Defaults to `false`. Requires Vault 1.19+.
+     * @return If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
      * 
      */
     public Output<Optional<Boolean>> disableStrictNetworking() {
@@ -233,6 +302,80 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> granularity() {
         return Codegen.optional(this.granularity);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="identityTokenAudienceWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudienceWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudienceWo() {
+        return Codegen.optional(this.identityTokenAudienceWo);
+    }
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Export(name="identityTokenAudienceWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> identityTokenAudienceWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Output<Optional<Integer>> identityTokenAudienceWoVersion() {
+        return Codegen.optional(this.identityTokenAudienceWoVersion);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="identityTokenKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKeyWo() {
+        return Codegen.optional(this.identityTokenKeyWo);
+    }
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Export(name="identityTokenKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> identityTokenKeyWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Output<Optional<Integer>> identityTokenKeyWoVersion() {
+        return Codegen.optional(this.identityTokenKeyWoVersion);
+    }
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Output<Integer> identityTokenTtl() {
+        return this.identityTokenTtl;
     }
     /**
      * URI of an existing Azure Key Vault instance.
@@ -373,7 +516,9 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "clientSecret"
+                "clientSecret",
+                "identityTokenAudienceWo",
+                "identityTokenKeyWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

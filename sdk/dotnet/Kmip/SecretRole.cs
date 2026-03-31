@@ -66,6 +66,12 @@ namespace Pulumi.Vault.Kmip
     public partial class SecretRole : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Name of the ca to use, if absent use legacy ca
+        /// </summary>
+        [Output("ca")]
+        public Output<string?> Ca { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -326,6 +332,12 @@ namespace Pulumi.Vault.Kmip
     public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Name of the ca to use, if absent use legacy ca
+        /// </summary>
+        [Input("ca")]
+        public Input<string>? Ca { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `Namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -547,6 +559,12 @@ namespace Pulumi.Vault.Kmip
 
     public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the ca to use, if absent use legacy ca
+        /// </summary>
+        [Input("ca")]
+        public Input<string>? Ca { get; set; }
+
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.

@@ -613,7 +613,7 @@ class SecretBackendConnectionElasticsearchArgsDict(TypedDict):
     """
     The path to the key for the Elasticsearch client to use for communication
     """
-    insecure: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Whether to disable certificate verification
     """
@@ -636,7 +636,7 @@ class SecretBackendConnectionElasticsearchArgs:
                  ca_path: Optional[pulumi.Input[_builtins.str]] = None,
                  client_cert: Optional[pulumi.Input[_builtins.str]] = None,
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -647,7 +647,7 @@ class SecretBackendConnectionElasticsearchArgs:
         :param pulumi.Input[_builtins.str] ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         :param pulumi.Input[_builtins.str] client_cert: The path to the certificate for the Elasticsearch client to present for communication
         :param pulumi.Input[_builtins.str] client_key: The path to the key for the Elasticsearch client to use for communication
-        :param pulumi.Input[_builtins.bool] insecure: Whether to disable certificate verification
+        :param pulumi.Input[_builtins.bool] insecure_tls: Whether to disable certificate verification
         :param pulumi.Input[_builtins.str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS
         :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         """
@@ -662,8 +662,8 @@ class SecretBackendConnectionElasticsearchArgs:
             pulumi.set(__self__, "client_cert", client_cert)
         if client_key is not None:
             pulumi.set(__self__, "client_key", client_key)
-        if insecure is not None:
-            pulumi.set(__self__, "insecure", insecure)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
         if tls_server_name is not None:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
         if username_template is not None:
@@ -754,16 +754,16 @@ class SecretBackendConnectionElasticsearchArgs:
         pulumi.set(self, "client_key", value)
 
     @_builtins.property
-    @pulumi.getter
-    def insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Whether to disable certificate verification
         """
-        return pulumi.get(self, "insecure")
+        return pulumi.get(self, "insecure_tls")
 
-    @insecure.setter
-    def insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
-        pulumi.set(self, "insecure", value)
+    @insecure_tls.setter
+    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
@@ -4199,6 +4199,10 @@ class SecretsMountCassandraArgsDict(TypedDict):
     """
     The password to use when authenticating with Cassandra.
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
     """
     Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
@@ -4210,6 +4214,10 @@ class SecretsMountCassandraArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     port: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -4238,6 +4246,10 @@ class SecretsMountCassandraArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -4282,15 +4294,18 @@ class SecretsMountCassandraArgs:
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  local_datacenter: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_json: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  protocol_version: Optional[pulumi.Input[_builtins.int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  skip_verification: Optional[pulumi.Input[_builtins.bool]] = None,
                  socket_keep_alive: Optional[pulumi.Input[_builtins.str]] = None,
                  tls: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -4312,9 +4327,11 @@ class SecretsMountCassandraArgs:
         :param pulumi.Input[_builtins.bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
         :param pulumi.Input[_builtins.str] local_datacenter: Cassandra local datacenter name.
         :param pulumi.Input[_builtins.str] password: The password to use when authenticating with Cassandra.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[_builtins.int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[_builtins.int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -4325,6 +4342,7 @@ class SecretsMountCassandraArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         :param pulumi.Input[_builtins.str] socket_keep_alive: Enable TCP keepalive for Cassandra connections.
         :param pulumi.Input[_builtins.bool] tls: Whether to use TLS when connecting to Cassandra.
@@ -4353,12 +4371,16 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "local_datacenter", local_datacenter)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if pem_bundle is not None:
             pulumi.set(__self__, "pem_bundle", pem_bundle)
         if pem_json is not None:
             pulumi.set(__self__, "pem_json", pem_json)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if protocol_version is not None:
@@ -4371,6 +4393,8 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if skip_verification is not None:
             pulumi.set(__self__, "skip_verification", skip_verification)
         if socket_keep_alive is not None:
@@ -4510,6 +4534,18 @@ class SecretsMountCassandraArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pemBundle")
     def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -4544,6 +4580,18 @@ class SecretsMountCassandraArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4620,6 +4668,18 @@ class SecretsMountCassandraArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="skipVerification")
@@ -4751,9 +4811,17 @@ class SecretsMountCouchbaseArgsDict(TypedDict):
     """
     Specifies whether to skip verification of the server certificate when using TLS.
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -4774,6 +4842,10 @@ class SecretsMountCouchbaseArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -4802,11 +4874,14 @@ class SecretsMountCouchbaseArgs:
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -4824,7 +4899,9 @@ class SecretsMountCouchbaseArgs:
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[_builtins.bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -4833,6 +4910,7 @@ class SecretsMountCouchbaseArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] tls: Specifies whether to use TLS when connecting to Couchbase.
         :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -4854,8 +4932,12 @@ class SecretsMountCouchbaseArgs:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -4864,6 +4946,8 @@ class SecretsMountCouchbaseArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username_template is not None:
@@ -4995,6 +5079,18 @@ class SecretsMountCouchbaseArgs:
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -5005,6 +5101,18 @@ class SecretsMountCouchbaseArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -5057,6 +5165,18 @@ class SecretsMountCouchbaseArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -5144,13 +5264,21 @@ class SecretsMountElasticsearchArgsDict(TypedDict):
 
     Supported list of database secrets engines that can be configured:
     """
-    insecure: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Whether to disable certificate verification
+    """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -5171,6 +5299,10 @@ class SecretsMountElasticsearchArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -5200,12 +5332,15 @@ class SecretsMountElasticsearchArgs:
                  client_key: Optional[pulumi.Input[_builtins.str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 insecure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -5224,8 +5359,10 @@ class SecretsMountElasticsearchArgs:
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[_builtins.bool] insecure: Whether to disable certificate verification
+        :param pulumi.Input[_builtins.bool] insecure_tls: Whether to disable certificate verification
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -5234,6 +5371,7 @@ class SecretsMountElasticsearchArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS
         :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -5257,10 +5395,14 @@ class SecretsMountElasticsearchArgs:
             pulumi.set(__self__, "data", data)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
-        if insecure is not None:
-            pulumi.set(__self__, "insecure", insecure)
+        if insecure_tls is not None:
+            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -5269,6 +5411,8 @@ class SecretsMountElasticsearchArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_server_name is not None:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
         if username_template is not None:
@@ -5412,16 +5556,28 @@ class SecretsMountElasticsearchArgs:
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
-    @pulumi.getter
-    def insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    @pulumi.getter(name="insecureTls")
+    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Whether to disable certificate verification
         """
-        return pulumi.get(self, "insecure")
+        return pulumi.get(self, "insecure_tls")
 
-    @insecure.setter
-    def insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
-        pulumi.set(self, "insecure", value)
+    @insecure_tls.setter
+    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "insecure_tls", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
@@ -5434,6 +5590,18 @@ class SecretsMountElasticsearchArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -5486,6 +5654,18 @@ class SecretsMountElasticsearchArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
@@ -5569,6 +5749,10 @@ class SecretsMountHanaArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -5581,6 +5765,10 @@ class SecretsMountHanaArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -5601,6 +5789,10 @@ class SecretsMountHanaArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     username: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -5629,13 +5821,16 @@ class SecretsMountHanaArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -5653,10 +5848,12 @@ class SecretsMountHanaArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -5665,6 +5862,7 @@ class SecretsMountHanaArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -5689,12 +5887,16 @@ class SecretsMountHanaArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -5703,6 +5905,8 @@ class SecretsMountHanaArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -5834,6 +6038,18 @@ class SecretsMountHanaArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -5869,6 +6085,18 @@ class SecretsMountHanaArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -5921,6 +6149,18 @@ class SecretsMountHanaArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -6000,6 +6240,10 @@ class SecretsMountInfluxdbArgsDict(TypedDict):
     """
     Whether to skip verification of the server certificate when using TLS.
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
     """
     Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
@@ -6011,6 +6255,10 @@ class SecretsMountInfluxdbArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     port: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -6035,6 +6283,10 @@ class SecretsMountInfluxdbArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -6062,14 +6314,17 @@ class SecretsMountInfluxdbArgs:
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
                  pem_json: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -6086,9 +6341,11 @@ class SecretsMountInfluxdbArgs:
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[_builtins.bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[_builtins.int] port: The transport port to use to connect to Influxdb.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -6098,6 +6355,7 @@ class SecretsMountInfluxdbArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] tls: Whether to use TLS when connecting to Influxdb.
         :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -6117,12 +6375,16 @@ class SecretsMountInfluxdbArgs:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if pem_bundle is not None:
             pulumi.set(__self__, "pem_bundle", pem_bundle)
         if pem_json is not None:
             pulumi.set(__self__, "pem_json", pem_json)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if root_rotation_statements is not None:
@@ -6133,6 +6395,8 @@ class SecretsMountInfluxdbArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username_template is not None:
@@ -6252,6 +6516,18 @@ class SecretsMountInfluxdbArgs:
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pemBundle")
     def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -6286,6 +6562,18 @@ class SecretsMountInfluxdbArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -6350,6 +6638,18 @@ class SecretsMountInfluxdbArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -6429,6 +6729,10 @@ class SecretsMountMongodbArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -6441,6 +6745,10 @@ class SecretsMountMongodbArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -6461,6 +6769,10 @@ class SecretsMountMongodbArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_ca: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -6500,13 +6812,16 @@ class SecretsMountMongodbArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -6526,10 +6841,12 @@ class SecretsMountMongodbArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -6538,6 +6855,7 @@ class SecretsMountMongodbArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_ca: The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] tls_certificate_key: The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
@@ -6563,12 +6881,16 @@ class SecretsMountMongodbArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -6577,6 +6899,8 @@ class SecretsMountMongodbArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -6702,6 +7026,18 @@ class SecretsMountMongodbArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -6737,6 +7073,18 @@ class SecretsMountMongodbArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -6789,6 +7137,18 @@ class SecretsMountMongodbArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
@@ -6896,9 +7256,17 @@ class SecretsMountMongodbatlaArgsDict(TypedDict):
 
     Supported list of database secrets engines that can be configured:
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -6920,6 +7288,10 @@ class SecretsMountMongodbatlaArgsDict(TypedDict):
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+    """
     username_template: NotRequired[pulumi.Input[_builtins.str]]
     """
     Template describing how dynamic usernames are generated.
@@ -6940,11 +7312,14 @@ class SecretsMountMongodbatlaArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -6958,7 +7333,9 @@ class SecretsMountMongodbatlaArgs:
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -6967,6 +7344,7 @@ class SecretsMountMongodbatlaArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -6981,8 +7359,12 @@ class SecretsMountMongodbatlaArgs:
             pulumi.set(__self__, "data", data)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -6991,6 +7373,8 @@ class SecretsMountMongodbatlaArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
         if verify_connection is not None:
@@ -7084,6 +7468,18 @@ class SecretsMountMongodbatlaArgs:
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -7094,6 +7490,18 @@ class SecretsMountMongodbatlaArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -7146,6 +7554,18 @@ class SecretsMountMongodbatlaArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
@@ -7221,6 +7641,10 @@ class SecretsMountMssqlArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -7233,6 +7657,10 @@ class SecretsMountMssqlArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -7253,6 +7681,10 @@ class SecretsMountMssqlArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     username: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -7282,13 +7714,16 @@ class SecretsMountMssqlArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -7307,10 +7742,12 @@ class SecretsMountMssqlArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -7319,6 +7756,7 @@ class SecretsMountMssqlArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -7345,12 +7783,16 @@ class SecretsMountMssqlArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -7359,6 +7801,8 @@ class SecretsMountMssqlArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -7502,6 +7946,18 @@ class SecretsMountMssqlArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -7537,6 +7993,18 @@ class SecretsMountMssqlArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -7589,6 +8057,18 @@ class SecretsMountMssqlArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -7672,6 +8152,10 @@ class SecretsMountMysqlArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -7684,6 +8168,10 @@ class SecretsMountMysqlArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -7708,6 +8196,10 @@ class SecretsMountMysqlArgsDict(TypedDict):
     service_account_json: NotRequired[pulumi.Input[_builtins.str]]
     """
     A JSON encoded credential for use with IAM authorization
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_ca: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -7744,14 +8236,17 @@ class SecretsMountMysqlArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -7771,10 +8266,12 @@ class SecretsMountMysqlArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -7784,6 +8281,7 @@ class SecretsMountMysqlArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
@@ -7810,12 +8308,16 @@ class SecretsMountMysqlArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -7826,6 +8328,8 @@ class SecretsMountMysqlArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -7961,6 +8465,18 @@ class SecretsMountMysqlArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -7996,6 +8512,18 @@ class SecretsMountMysqlArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -8060,6 +8588,18 @@ class SecretsMountMysqlArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
@@ -8167,6 +8707,10 @@ class SecretsMountMysqlAuroraArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -8179,6 +8723,10 @@ class SecretsMountMysqlAuroraArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -8203,6 +8751,10 @@ class SecretsMountMysqlAuroraArgsDict(TypedDict):
     service_account_json: NotRequired[pulumi.Input[_builtins.str]]
     """
     A JSON encoded credential for use with IAM authorization
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_ca: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -8239,14 +8791,17 @@ class SecretsMountMysqlAuroraArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -8266,10 +8821,12 @@ class SecretsMountMysqlAuroraArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -8279,6 +8836,7 @@ class SecretsMountMysqlAuroraArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
@@ -8305,12 +8863,16 @@ class SecretsMountMysqlAuroraArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -8321,6 +8883,8 @@ class SecretsMountMysqlAuroraArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -8456,6 +9020,18 @@ class SecretsMountMysqlAuroraArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -8491,6 +9067,18 @@ class SecretsMountMysqlAuroraArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -8555,6 +9143,18 @@ class SecretsMountMysqlAuroraArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
@@ -8662,6 +9262,10 @@ class SecretsMountMysqlLegacyArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -8674,6 +9278,10 @@ class SecretsMountMysqlLegacyArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -8698,6 +9306,10 @@ class SecretsMountMysqlLegacyArgsDict(TypedDict):
     service_account_json: NotRequired[pulumi.Input[_builtins.str]]
     """
     A JSON encoded credential for use with IAM authorization
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_ca: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -8734,14 +9346,17 @@ class SecretsMountMysqlLegacyArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -8761,10 +9376,12 @@ class SecretsMountMysqlLegacyArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -8774,6 +9391,7 @@ class SecretsMountMysqlLegacyArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
@@ -8800,12 +9418,16 @@ class SecretsMountMysqlLegacyArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -8816,6 +9438,8 @@ class SecretsMountMysqlLegacyArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -8951,6 +9575,18 @@ class SecretsMountMysqlLegacyArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -8986,6 +9622,18 @@ class SecretsMountMysqlLegacyArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -9050,6 +9698,18 @@ class SecretsMountMysqlLegacyArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
@@ -9157,6 +9817,10 @@ class SecretsMountMysqlRdArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -9169,6 +9833,10 @@ class SecretsMountMysqlRdArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -9193,6 +9861,10 @@ class SecretsMountMysqlRdArgsDict(TypedDict):
     service_account_json: NotRequired[pulumi.Input[_builtins.str]]
     """
     A JSON encoded credential for use with IAM authorization
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_ca: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -9229,14 +9901,17 @@ class SecretsMountMysqlRdArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -9256,10 +9931,12 @@ class SecretsMountMysqlRdArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -9269,6 +9946,7 @@ class SecretsMountMysqlRdArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
@@ -9295,12 +9973,16 @@ class SecretsMountMysqlRdArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -9311,6 +9993,8 @@ class SecretsMountMysqlRdArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate_key is not None:
@@ -9446,6 +10130,18 @@ class SecretsMountMysqlRdArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -9481,6 +10177,18 @@ class SecretsMountMysqlRdArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -9545,6 +10253,18 @@ class SecretsMountMysqlRdArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
@@ -9652,6 +10372,10 @@ class SecretsMountOracleArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -9664,6 +10388,10 @@ class SecretsMountOracleArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -9688,6 +10416,10 @@ class SecretsMountOracleArgsDict(TypedDict):
     self_managed: NotRequired[pulumi.Input[_builtins.bool]]
     """
     If set, allows onboarding static roles with a rootless connection configuration.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     split_statements: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -9720,14 +10452,17 @@ class SecretsMountOracleArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  split_statements: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
@@ -9746,10 +10481,12 @@ class SecretsMountOracleArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -9759,6 +10496,7 @@ class SecretsMountOracleArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] split_statements: Set to true in order to split statements after semi-colons.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
@@ -9784,12 +10522,16 @@ class SecretsMountOracleArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -9800,6 +10542,8 @@ class SecretsMountOracleArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if self_managed is not None:
             pulumi.set(__self__, "self_managed", self_managed)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -9933,6 +10677,18 @@ class SecretsMountOracleArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -9968,6 +10724,18 @@ class SecretsMountOracleArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -10032,6 +10800,18 @@ class SecretsMountOracleArgs:
     @self_managed.setter
     def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "self_managed", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")
@@ -10135,6 +10915,10 @@ class SecretsMountPostgresqlArgsDict(TypedDict):
     """
     When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -10147,6 +10931,10 @@ class SecretsMountPostgresqlArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     private_key: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -10179,6 +10967,10 @@ class SecretsMountPostgresqlArgsDict(TypedDict):
     service_account_json: NotRequired[pulumi.Input[_builtins.str]]
     """
     A JSON encoded credential for use with IAM authorization
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     tls_ca: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -10217,9 +11009,11 @@ class SecretsMountPostgresqlArgs:
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  password_authentication: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
@@ -10227,6 +11021,7 @@ class SecretsMountPostgresqlArgs:
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
                  self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -10248,10 +11043,12 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
         :param pulumi.Input[_builtins.str] password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[_builtins.str] private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -10263,6 +11060,7 @@ class SecretsMountPostgresqlArgs:
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[_builtins.str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] tls_ca: The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] tls_certificate: The x509 client certificate for connecting to the database. Must be PEM encoded.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
@@ -10293,12 +11091,16 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "password", password)
         if password_authentication is not None:
             pulumi.set(__self__, "password_authentication", password_authentication)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if root_rotation_statements is not None:
@@ -10313,6 +11115,8 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "self_managed", self_managed)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls_ca is not None:
             pulumi.set(__self__, "tls_ca", tls_ca)
         if tls_certificate is not None:
@@ -10472,6 +11276,18 @@ class SecretsMountPostgresqlArgs:
         pulumi.set(self, "password_authentication", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -10507,6 +11323,18 @@ class SecretsMountPostgresqlArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
@@ -10595,6 +11423,18 @@ class SecretsMountPostgresqlArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
@@ -10698,9 +11538,17 @@ class SecretsMountRediArgsDict(TypedDict):
     """
     Specifies whether to skip verification of the server certificate when using TLS.
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     port: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -10726,6 +11574,10 @@ class SecretsMountRediArgsDict(TypedDict):
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+    """
     tls: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Specifies whether to use TLS when connecting to Redis.
@@ -10748,12 +11600,15 @@ class SecretsMountRediArgs:
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  port: Optional[pulumi.Input[_builtins.int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  tls: Optional[pulumi.Input[_builtins.bool]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -10769,7 +11624,9 @@ class SecretsMountRediArgs:
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[_builtins.bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[_builtins.int] port: The transport port to use to connect to Redis.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -10779,6 +11636,7 @@ class SecretsMountRediArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.bool] tls: Specifies whether to use TLS when connecting to Redis.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -10797,8 +11655,12 @@ class SecretsMountRediArgs:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if root_rotation_statements is not None:
@@ -10809,6 +11671,8 @@ class SecretsMountRediArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if verify_connection is not None:
@@ -10926,6 +11790,18 @@ class SecretsMountRediArgs:
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -10936,6 +11812,18 @@ class SecretsMountRediArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11002,6 +11890,18 @@ class SecretsMountRediArgs:
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
+
+    @_builtins.property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -11055,9 +11955,17 @@ class SecretsMountRedisElasticacheArgsDict(TypedDict):
     """
     The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     region: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -11083,6 +11991,10 @@ class SecretsMountRedisElasticacheArgsDict(TypedDict):
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+    """
     username: NotRequired[pulumi.Input[_builtins.str]]
     """
     The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -11102,12 +12014,15 @@ class SecretsMountRedisElasticacheArgs:
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -11120,7 +12035,9 @@ class SecretsMountRedisElasticacheArgs:
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[_builtins.str] password: The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[_builtins.str] region: The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
@@ -11130,6 +12047,7 @@ class SecretsMountRedisElasticacheArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username: The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -11144,8 +12062,12 @@ class SecretsMountRedisElasticacheArgs:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if root_rotation_statements is not None:
@@ -11156,6 +12078,8 @@ class SecretsMountRedisElasticacheArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if verify_connection is not None:
@@ -11237,6 +12161,18 @@ class SecretsMountRedisElasticacheArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="pluginName")
     def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -11247,6 +12183,18 @@ class SecretsMountRedisElasticacheArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11311,6 +12259,18 @@ class SecretsMountRedisElasticacheArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11382,6 +12342,10 @@ class SecretsMountRedshiftArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -11394,6 +12358,10 @@ class SecretsMountRedshiftArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -11414,6 +12382,10 @@ class SecretsMountRedshiftArgsDict(TypedDict):
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+    """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
     username: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -11442,13 +12414,16 @@ class SecretsMountRedshiftArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -11466,10 +12441,12 @@ class SecretsMountRedshiftArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -11478,6 +12455,7 @@ class SecretsMountRedshiftArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -11502,12 +12480,16 @@ class SecretsMountRedshiftArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
         if rotation_period is not None:
@@ -11516,6 +12498,8 @@ class SecretsMountRedshiftArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -11647,6 +12631,18 @@ class SecretsMountRedshiftArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -11682,6 +12678,18 @@ class SecretsMountRedshiftArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
@@ -11734,6 +12742,18 @@ class SecretsMountRedshiftArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11813,6 +12833,10 @@ class SecretsMountSnowflakeArgsDict(TypedDict):
     """
     The root credential password used in the connection URL
     """
+    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+    """
     password_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -11825,6 +12849,10 @@ class SecretsMountSnowflakeArgsDict(TypedDict):
     plugin_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Specifies the name of the plugin to use.
+    """
+    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Specifies the semantic version of the plugin to use for this connection.
     """
     private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -11855,6 +12883,10 @@ class SecretsMountSnowflakeArgsDict(TypedDict):
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+    """
     username: NotRequired[pulumi.Input[_builtins.str]]
     """
     The root credential username used in the connection URL
@@ -11881,15 +12913,18 @@ class SecretsMountSnowflakeArgs:
                  max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
                  rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
                  rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  username_template: Optional[pulumi.Input[_builtins.str]] = None,
                  verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -11906,10 +12941,12 @@ class SecretsMountSnowflakeArgs:
         :param pulumi.Input[_builtins.int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[_builtins.int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[_builtins.str] password: The root credential password used in the connection URL
+        :param pulumi.Input[_builtins.str] password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only field for the root credential password used in the connection URL
         :param pulumi.Input[_builtins.int] password_wo_version: Version counter for root credential password write-only field
         :param pulumi.Input[_builtins.str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The private key configured for the admin user in Snowflake.
         :param pulumi.Input[_builtins.int] private_key_wo_version: Version counter for the private key key-pair credentials write-only field
@@ -11921,6 +12958,7 @@ class SecretsMountSnowflakeArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] username: The root credential username used in the connection URL
         :param pulumi.Input[_builtins.str] username_template: Username generation template.
         :param pulumi.Input[_builtins.bool] verify_connection: Whether the connection should be verified on
@@ -11946,12 +12984,16 @@ class SecretsMountSnowflakeArgs:
             pulumi.log.warn("""password is deprecated: Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if private_key_wo is not None:
             pulumi.set(__self__, "private_key_wo", private_key_wo)
         if private_key_wo_version is not None:
@@ -11964,6 +13006,8 @@ class SecretsMountSnowflakeArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -12084,6 +13128,18 @@ class SecretsMountSnowflakeArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -12119,6 +13175,18 @@ class SecretsMountSnowflakeArgs:
     @plugin_name.setter
     def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Specifies the semantic version of the plugin to use for this connection.
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
@@ -12196,6 +13264,18 @@ class SecretsMountSnowflakeArgs:
     @rotation_window.setter
     def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter

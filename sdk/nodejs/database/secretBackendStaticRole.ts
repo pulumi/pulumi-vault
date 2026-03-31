@@ -168,7 +168,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * If set to true, Vault will skip the
      * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
      */
-    declare public readonly skipImportRotation: pulumi.Output<boolean | undefined>;
+    declare public readonly skipImportRotation: pulumi.Output<boolean>;
     /**
      * The database username that this static role corresponds to.
      */

@@ -197,6 +197,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> OtherSans { get; private set; } = null!;
 
         /// <summary>
+        /// If set to `True`, the returned `CaChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `False`.
+        /// </summary>
+        [Output("removeRootsFromChain")]
+        public Output<bool?> RemoveRootsFromChain { get; private set; } = null!;
+
+        /// <summary>
         /// `True` if the current time (during refresh) is after the start of the early renewal window declared by `MinSecondsRemaining`, and `False` otherwise; if `AutoRenew` is set to `True` then the provider will plan to replace the certificate once renewal is pending.
         /// </summary>
         [Output("renewPending")]
@@ -381,6 +387,12 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
+        /// If set to `True`, the returned `CaChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `False`.
+        /// </summary>
+        [Input("removeRootsFromChain")]
+        public Input<bool>? RemoveRootsFromChain { get; set; }
+
+        /// <summary>
         /// Time to live
         /// </summary>
         [Input("ttl")]
@@ -549,6 +561,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _otherSans ?? (_otherSans = new InputList<string>());
             set => _otherSans = value;
         }
+
+        /// <summary>
+        /// If set to `True`, the returned `CaChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `False`.
+        /// </summary>
+        [Input("removeRootsFromChain")]
+        public Input<bool>? RemoveRootsFromChain { get; set; }
 
         /// <summary>
         /// `True` if the current time (during refresh) is after the start of the early renewal window declared by `MinSecondsRemaining`, and `False` otherwise; if `AutoRenew` is set to `True` then the provider will plan to replace the certificate once renewal is pending.

@@ -1304,6 +1304,9 @@
                 "fields": {
                     "allowed_kubernetes_namespaces": {
                         "maxItemsOne": false
+                    },
+                    "token_default_audiences": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1425,6 +1428,9 @@
                         "maxItemsOne": false
                     },
                     "azure": {
+                        "maxItemsOne": false
+                    },
+                    "gcp": {
                         "maxItemsOne": false
                     },
                     "pkcs": {
@@ -1900,6 +1906,9 @@
                     "ip_sans": {
                         "maxItemsOne": false
                     },
+                    "key_usage": {
+                        "maxItemsOne": false
+                    },
                     "other_sans": {
                         "maxItemsOne": false
                     },
@@ -2242,6 +2251,9 @@
                                 }
                             }
                         }
+                    },
+                    "exclude_cidr_list": {
+                        "maxItemsOne": false
                     }
                 }
             },

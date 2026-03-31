@@ -170,6 +170,21 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    @Import(name="passwordPolicy")
+    private @Nullable Output<String> passwordPolicy;
+
+    /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<Output<String>> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only field for the root credential password used in the connection URL
      * 
@@ -214,6 +229,21 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    @Import(name="pluginVersion")
+    private @Nullable Output<String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<Output<String>> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
 
     /**
@@ -317,6 +347,21 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Import(name="skipStaticRoleImportRotation")
+    private @Nullable Output<Boolean> skipStaticRoleImportRotation;
+
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Output<Boolean>> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
+    }
+
+    /**
      * The root credential username used in the connection URL
      * 
      */
@@ -375,15 +420,18 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
         this.maxOpenConnections = $.maxOpenConnections;
         this.name = $.name;
         this.password = $.password;
+        this.passwordPolicy = $.passwordPolicy;
         this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
         this.pluginName = $.pluginName;
+        this.pluginVersion = $.pluginVersion;
         this.privateKeyWo = $.privateKeyWo;
         this.privateKeyWoVersion = $.privateKeyWoVersion;
         this.rootRotationStatements = $.rootRotationStatements;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
+        this.skipStaticRoleImportRotation = $.skipStaticRoleImportRotation;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
@@ -622,6 +670,27 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
         }
 
         /**
+         * @param passwordPolicy The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(@Nullable Output<String> passwordPolicy) {
+            $.passwordPolicy = passwordPolicy;
+            return this;
+        }
+
+        /**
+         * @param passwordPolicy The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(String passwordPolicy) {
+            return passwordPolicy(Output.of(passwordPolicy));
+        }
+
+        /**
          * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          * 
@@ -684,6 +753,27 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
          */
         public Builder pluginName(String pluginName) {
             return pluginName(Output.of(pluginName));
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(@Nullable Output<String> pluginVersion) {
+            $.pluginVersion = pluginVersion;
+            return this;
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(String pluginVersion) {
+            return pluginVersion(Output.of(pluginVersion));
         }
 
         /**
@@ -830,6 +920,27 @@ public final class SecretsMountSnowflakeArgs extends com.pulumi.resources.Resour
          */
         public Builder rotationWindow(Integer rotationWindow) {
             return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
+         * @param skipStaticRoleImportRotation Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipStaticRoleImportRotation(@Nullable Output<Boolean> skipStaticRoleImportRotation) {
+            $.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
+            return this;
+        }
+
+        /**
+         * @param skipStaticRoleImportRotation Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipStaticRoleImportRotation(Boolean skipStaticRoleImportRotation) {
+            return skipStaticRoleImportRotation(Output.of(skipStaticRoleImportRotation));
         }
 
         /**

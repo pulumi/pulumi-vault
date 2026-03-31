@@ -75,6 +75,10 @@ export class SecretRole extends pulumi.CustomResource {
     }
 
     /**
+     * Name of the ca to use, if absent use legacy ca
+     */
+    declare public readonly ca: pulumi.Output<string | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -232,6 +236,7 @@ export class SecretRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretRoleState | undefined;
+            resourceInputs["ca"] = state?.ca;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["operationActivate"] = state?.operationActivate;
             resourceInputs["operationAddAttribute"] = state?.operationAddAttribute;
@@ -278,6 +283,7 @@ export class SecretRole extends pulumi.CustomResource {
             if (args?.scope === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
+            resourceInputs["ca"] = args?.ca;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["operationActivate"] = args?.operationActivate;
             resourceInputs["operationAddAttribute"] = args?.operationAddAttribute;
@@ -323,6 +329,10 @@ export class SecretRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretRole resources.
  */
 export interface SecretRoleState {
+    /**
+     * Name of the ca to use, if absent use legacy ca
+     */
+    ca?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -473,6 +483,10 @@ export interface SecretRoleState {
  * The set of arguments for constructing a SecretRole resource.
  */
 export interface SecretRoleArgs {
+    /**
+     * Name of the ca to use, if absent use legacy ca
+     */
+    ca?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

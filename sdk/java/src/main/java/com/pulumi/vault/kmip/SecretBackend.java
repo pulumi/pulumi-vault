@@ -293,14 +293,14 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="listenAddrs", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> listenAddrs;
+    private Output</* @Nullable */ List<String>> listenAddrs;
 
     /**
      * @return Addresses the KMIP server should listen on (`host:port`).
      * 
      */
-    public Output<List<String>> listenAddrs() {
-        return this.listenAddrs;
+    public Output<Optional<List<String>>> listenAddrs() {
+        return Codegen.optional(this.listenAddrs);
     }
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint

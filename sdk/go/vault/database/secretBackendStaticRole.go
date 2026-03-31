@@ -157,7 +157,7 @@ type SecretBackendStaticRole struct {
 	SelfManagedPassword pulumi.StringPtrOutput `pulumi:"selfManagedPassword"`
 	// If set to true, Vault will skip the
 	// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
-	SkipImportRotation pulumi.BoolPtrOutput `pulumi:"skipImportRotation"`
+	SkipImportRotation pulumi.BoolOutput `pulumi:"skipImportRotation"`
 	// The database username that this static role corresponds to.
 	Username pulumi.StringOutput `pulumi:"username"`
 }
@@ -591,8 +591,8 @@ func (o SecretBackendStaticRoleOutput) SelfManagedPassword() pulumi.StringPtrOut
 
 // If set to true, Vault will skip the
 // initial secret rotation on import. Requires Vault 1.18+ Enterprise.
-func (o SecretBackendStaticRoleOutput) SkipImportRotation() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.BoolPtrOutput { return v.SkipImportRotation }).(pulumi.BoolPtrOutput)
+func (o SecretBackendStaticRoleOutput) SkipImportRotation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.BoolOutput { return v.SkipImportRotation }).(pulumi.BoolOutput)
 }
 
 // The database username that this static role corresponds to.

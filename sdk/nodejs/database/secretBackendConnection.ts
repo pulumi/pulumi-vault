@@ -44,52 +44,6 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### Oracle Connection with Self-Managed Mode (Rootless)
- *
- * For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
- * which allows a static role to manage its own database credentials without requiring root access:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const db = new vault.Mount("db", {
- *     path: "database",
- *     type: "database",
- * });
- * const oracle = new vault.database.SecretBackendConnection("oracle", {
- *     backend: db.path,
- *     name: "oracle",
- *     allowedRoles: ["my-role"],
- *     oracle: {
- *         connectionUrl: "{{username}}/{{password}}@//host:port/service",
- *         selfManaged: true,
- *         pluginName: "vault-plugin-database-oracle",
- *     },
- * });
- * const oracleRole = new vault.database.SecretBackendStaticRole("oracle_role", {
- *     backend: db.path,
- *     name: "my-role",
- *     dbName: oracle.name,
- *     username: "vault_user",
- *     passwordWo: "initial-password",
- *     passwordWoVersion: 1,
- *     rotationPeriod: 3600,
- * });
- * ```
- *
- * ## Ephemeral Attributes Reference
- *
- * The following write-only attributes are supported for all DBs that support username/password:
- *
- * * `passwordWo` - (Optional) The password for the user. Can be updated.
- *   **Note**: This property is write-only and will not be read from the API.
- *
- * The following write-only attribute is supported only for Snowflake DB:
- *
- * * `privateKeyWo` - (Optional) The private key associated with the Snowflake user.
- *   **Note**: This property is write-only and will not be read from the API.
- *
  * ## Import
  *
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
@@ -207,9 +161,17 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      */
     declare public readonly oracle: pulumi.Output<outputs.database.SecretBackendConnectionOracle | undefined>;
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     */
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
+    /**
      * Specifies the name of the plugin to use.
      */
     declare public readonly pluginName: pulumi.Output<string>;
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     */
+    declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
@@ -248,6 +210,10 @@ export class SecretBackendConnection extends pulumi.CustomResource {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
     declare public readonly rotationWindow: pulumi.Output<number | undefined>;
+    /**
+     * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     */
+    declare public readonly skipStaticRoleImportRotation: pulumi.Output<boolean>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
@@ -290,7 +256,9 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["oracle"] = state?.oracle;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
             resourceInputs["pluginName"] = state?.pluginName;
+            resourceInputs["pluginVersion"] = state?.pluginVersion;
             resourceInputs["postgresql"] = state?.postgresql;
             resourceInputs["redis"] = state?.redis;
             resourceInputs["redisElasticache"] = state?.redisElasticache;
@@ -299,6 +267,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["rotationPeriod"] = state?.rotationPeriod;
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
             resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["skipStaticRoleImportRotation"] = state?.skipStaticRoleImportRotation;
             resourceInputs["snowflake"] = state?.snowflake;
             resourceInputs["verifyConnection"] = state?.verifyConnection;
         } else {
@@ -325,7 +294,9 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["oracle"] = args?.oracle;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
             resourceInputs["pluginName"] = args?.pluginName;
+            resourceInputs["pluginVersion"] = args?.pluginVersion;
             resourceInputs["postgresql"] = args?.postgresql;
             resourceInputs["redis"] = args?.redis;
             resourceInputs["redisElasticache"] = args?.redisElasticache;
@@ -334,6 +305,7 @@ export class SecretBackendConnection extends pulumi.CustomResource {
             resourceInputs["rotationPeriod"] = args?.rotationPeriod;
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
             resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["skipStaticRoleImportRotation"] = args?.skipStaticRoleImportRotation;
             resourceInputs["snowflake"] = args?.snowflake;
             resourceInputs["verifyConnection"] = args?.verifyConnection;
         }
@@ -427,9 +399,17 @@ export interface SecretBackendConnectionState {
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     */
+    passwordPolicy?: pulumi.Input<string>;
+    /**
      * Specifies the name of the plugin to use.
      */
     pluginName?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
@@ -468,6 +448,10 @@ export interface SecretBackendConnectionState {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
     rotationWindow?: pulumi.Input<number>;
+    /**
+     * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     */
+    skipStaticRoleImportRotation?: pulumi.Input<boolean>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
@@ -564,9 +548,17 @@ export interface SecretBackendConnectionArgs {
      */
     oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     */
+    passwordPolicy?: pulumi.Input<string>;
+    /**
      * Specifies the name of the plugin to use.
      */
     pluginName?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
@@ -605,6 +597,10 @@ export interface SecretBackendConnectionArgs {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
     rotationWindow?: pulumi.Input<number>;
+    /**
+     * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     */
+    skipStaticRoleImportRotation?: pulumi.Input<boolean>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */

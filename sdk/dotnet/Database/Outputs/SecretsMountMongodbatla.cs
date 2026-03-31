@@ -33,9 +33,17 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        public readonly string? PasswordPolicy;
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        public readonly string? PluginVersion;
         /// <summary>
         /// The Private Programmatic API Key used to connect with MongoDB Atlas API.
         /// </summary>
@@ -69,6 +77,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? RotationWindow;
         /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly bool? SkipStaticRoleImportRotation;
+        /// <summary>
         /// Template describing how dynamic usernames are generated.
         /// </summary>
         public readonly string? UsernameTemplate;
@@ -88,7 +100,11 @@ namespace Pulumi.Vault.Database.Outputs
 
             string name,
 
+            string? passwordPolicy,
+
             string? pluginName,
+
+            string? pluginVersion,
 
             string privateKey,
 
@@ -104,6 +120,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? rotationWindow,
 
+            bool? skipStaticRoleImportRotation,
+
             string? usernameTemplate,
 
             bool? verifyConnection)
@@ -112,7 +130,9 @@ namespace Pulumi.Vault.Database.Outputs
             Data = data;
             DisableAutomatedRotation = disableAutomatedRotation;
             Name = name;
+            PasswordPolicy = passwordPolicy;
             PluginName = pluginName;
+            PluginVersion = pluginVersion;
             PrivateKey = privateKey;
             ProjectId = projectId;
             PublicKey = publicKey;
@@ -120,6 +140,7 @@ namespace Pulumi.Vault.Database.Outputs
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
+            SkipStaticRoleImportRotation = skipStaticRoleImportRotation;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;
         }

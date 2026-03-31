@@ -19,6 +19,27 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     public static final RaftSnapshotAgentConfigArgs Empty = new RaftSnapshotAgentConfigArgs();
 
     /**
+     * Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = &#34;local&#34;`.
+     * 
+     * *Requires Vault Enterprise 1.21.0+*.
+     * 
+     */
+    @Import(name="autoloadEnabled")
+    private @Nullable Output<Boolean> autoloadEnabled;
+
+    /**
+     * @return Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = &#34;local&#34;`.
+     * 
+     * *Requires Vault Enterprise 1.21.0+*.
+     * 
+     */
+    public Optional<Output<Boolean>> autoloadEnabled() {
+        return Optional.ofNullable(this.autoloadEnabled);
+    }
+
+    /**
      * AWS access key ID.
      * 
      */
@@ -184,14 +205,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Azure account key.
+     * Azure account key. Required when azureAuthMode is &#39;shared&#39;.
      * 
      */
     @Import(name="azureAccountKey")
     private @Nullable Output<String> azureAccountKey;
 
     /**
-     * @return Azure account key.
+     * @return Azure account key. Required when azureAuthMode is &#39;shared&#39;.
      * 
      */
     public Optional<Output<String>> azureAccountKey() {
@@ -214,6 +235,21 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * Azure authentication mode. Required for azure-blob storage. Possible values are &#39;shared&#39;, &#39;managed&#39;, or &#39;environment&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    @Import(name="azureAuthMode")
+    private @Nullable Output<String> azureAuthMode;
+
+    /**
+     * @return Azure authentication mode. Required for azure-blob storage. Possible values are &#39;shared&#39;, &#39;managed&#39;, or &#39;environment&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    public Optional<Output<String>> azureAuthMode() {
+        return Optional.ofNullable(this.azureAuthMode);
+    }
+
+    /**
      * Azure blob environment.
      * 
      */
@@ -226,6 +262,21 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
      */
     public Optional<Output<String>> azureBlobEnvironment() {
         return Optional.ofNullable(this.azureBlobEnvironment);
+    }
+
+    /**
+     * Azure client ID for authentication. Required when azureAuthMode is &#39;managed&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    @Import(name="azureClientId")
+    private @Nullable Output<String> azureClientId;
+
+    /**
+     * @return Azure client ID for authentication. Required when azureAuthMode is &#39;managed&#39;. Requires Vault Enterprise 1.18.0+.
+     * 
+     */
+    public Optional<Output<String>> azureClientId() {
+        return Optional.ofNullable(this.azureClientId);
     }
 
     /**
@@ -465,6 +516,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     private RaftSnapshotAgentConfigArgs() {}
 
     private RaftSnapshotAgentConfigArgs(RaftSnapshotAgentConfigArgs $) {
+        this.autoloadEnabled = $.autoloadEnabled;
         this.awsAccessKeyId = $.awsAccessKeyId;
         this.awsS3Bucket = $.awsS3Bucket;
         this.awsS3DisableTls = $.awsS3DisableTls;
@@ -478,7 +530,9 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         this.awsSessionToken = $.awsSessionToken;
         this.azureAccountKey = $.azureAccountKey;
         this.azureAccountName = $.azureAccountName;
+        this.azureAuthMode = $.azureAuthMode;
         this.azureBlobEnvironment = $.azureBlobEnvironment;
+        this.azureClientId = $.azureClientId;
         this.azureContainerName = $.azureContainerName;
         this.azureEndpoint = $.azureEndpoint;
         this.filePrefix = $.filePrefix;
@@ -511,6 +565,33 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
 
         public Builder(RaftSnapshotAgentConfigArgs defaults) {
             $ = new RaftSnapshotAgentConfigArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoloadEnabled Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+         * **Note:** Not supported with `storageType = &#34;local&#34;`.
+         * 
+         * *Requires Vault Enterprise 1.21.0+*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoloadEnabled(@Nullable Output<Boolean> autoloadEnabled) {
+            $.autoloadEnabled = autoloadEnabled;
+            return this;
+        }
+
+        /**
+         * @param autoloadEnabled Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+         * **Note:** Not supported with `storageType = &#34;local&#34;`.
+         * 
+         * *Requires Vault Enterprise 1.21.0+*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoloadEnabled(Boolean autoloadEnabled) {
+            return autoloadEnabled(Output.of(autoloadEnabled));
         }
 
         /**
@@ -745,7 +826,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureAccountKey Azure account key.
+         * @param azureAccountKey Azure account key. Required when azureAuthMode is &#39;shared&#39;.
          * 
          * @return builder
          * 
@@ -756,7 +837,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureAccountKey Azure account key.
+         * @param azureAccountKey Azure account key. Required when azureAuthMode is &#39;shared&#39;.
          * 
          * @return builder
          * 
@@ -787,6 +868,27 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param azureAuthMode Azure authentication mode. Required for azure-blob storage. Possible values are &#39;shared&#39;, &#39;managed&#39;, or &#39;environment&#39;. Requires Vault Enterprise 1.18.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureAuthMode(@Nullable Output<String> azureAuthMode) {
+            $.azureAuthMode = azureAuthMode;
+            return this;
+        }
+
+        /**
+         * @param azureAuthMode Azure authentication mode. Required for azure-blob storage. Possible values are &#39;shared&#39;, &#39;managed&#39;, or &#39;environment&#39;. Requires Vault Enterprise 1.18.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureAuthMode(String azureAuthMode) {
+            return azureAuthMode(Output.of(azureAuthMode));
+        }
+
+        /**
          * @param azureBlobEnvironment Azure blob environment.
          * 
          * @return builder
@@ -805,6 +907,27 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
          */
         public Builder azureBlobEnvironment(String azureBlobEnvironment) {
             return azureBlobEnvironment(Output.of(azureBlobEnvironment));
+        }
+
+        /**
+         * @param azureClientId Azure client ID for authentication. Required when azureAuthMode is &#39;managed&#39;. Requires Vault Enterprise 1.18.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureClientId(@Nullable Output<String> azureClientId) {
+            $.azureClientId = azureClientId;
+            return this;
+        }
+
+        /**
+         * @param azureClientId Azure client ID for authentication. Required when azureAuthMode is &#39;managed&#39;. Requires Vault Enterprise 1.18.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureClientId(String azureClientId) {
+            return azureClientId(Output.of(azureClientId));
         }
 
         /**

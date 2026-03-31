@@ -20,16 +20,14 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
     public static final SyncAzureDestinationState Empty = new SyncAzureDestinationState();
 
     /**
-     * List of IPv4 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     @Import(name="allowedIpv4Addresses")
     private @Nullable Output<List<String>> allowedIpv4Addresses;
 
     /**
-     * @return List of IPv4 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * @return Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     public Optional<Output<List<String>>> allowedIpv4Addresses() {
@@ -37,16 +35,14 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * List of IPv6 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     @Import(name="allowedIpv6Addresses")
     private @Nullable Output<List<String>> allowedIpv6Addresses;
 
     /**
-     * @return List of IPv6 addresses or CIDR blocks allowed to make outbound
-     * connections from Vault to the destination. Requires Vault 1.19+.
+     * @return Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
      * 
      */
     public Optional<Output<List<String>>> allowedIpv6Addresses() {
@@ -54,16 +50,14 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * List of port numbers allowed for outbound connections from Vault to the
-     * destination. Requires Vault 1.19+.
+     * Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
      * 
      */
     @Import(name="allowedPorts")
     private @Nullable Output<List<Integer>> allowedPorts;
 
     /**
-     * @return List of port numbers allowed for outbound connections from Vault to the
-     * destination. Requires Vault 1.19+.
+     * @return Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
      * 
      */
     public Optional<Output<List<Integer>>> allowedPorts() {
@@ -139,16 +133,14 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * When set to `true`, disables strict enforcement of networking
-     * restrictions. Defaults to `false`. Requires Vault 1.19+.
+     * If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
      * 
      */
     @Import(name="disableStrictNetworking")
     private @Nullable Output<Boolean> disableStrictNetworking;
 
     /**
-     * @return When set to `true`, disables strict enforcement of networking
-     * restrictions. Defaults to `false`. Requires Vault 1.19+.
+     * @return If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
      * 
      */
     public Optional<Output<Boolean>> disableStrictNetworking() {
@@ -170,6 +162,85 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
      */
     public Optional<Output<String>> granularity() {
         return Optional.ofNullable(this.granularity);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="identityTokenAudienceWo")
+    private @Nullable Output<String> identityTokenAudienceWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudienceWo() {
+        return Optional.ofNullable(this.identityTokenAudienceWo);
+    }
+
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Import(name="identityTokenAudienceWoVersion")
+    private @Nullable Output<Integer> identityTokenAudienceWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenAudienceWoVersion() {
+        return Optional.ofNullable(this.identityTokenAudienceWoVersion);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Import(name="identityTokenKeyWo")
+    private @Nullable Output<String> identityTokenKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Optional<Output<String>> identityTokenKeyWo() {
+        return Optional.ofNullable(this.identityTokenKeyWo);
+    }
+
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Import(name="identityTokenKeyWoVersion")
+    private @Nullable Output<Integer> identityTokenKeyWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenKeyWoVersion() {
+        return Optional.ofNullable(this.identityTokenKeyWoVersion);
+    }
+
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
     }
 
     /**
@@ -288,6 +359,11 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         this.customTags = $.customTags;
         this.disableStrictNetworking = $.disableStrictNetworking;
         this.granularity = $.granularity;
+        this.identityTokenAudienceWo = $.identityTokenAudienceWo;
+        this.identityTokenAudienceWoVersion = $.identityTokenAudienceWoVersion;
+        this.identityTokenKeyWo = $.identityTokenKeyWo;
+        this.identityTokenKeyWoVersion = $.identityTokenKeyWoVersion;
+        this.identityTokenTtl = $.identityTokenTtl;
         this.keyVaultUri = $.keyVaultUri;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -315,8 +391,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedIpv4Addresses List of IPv4 addresses or CIDR blocks allowed to make outbound
-         * connections from Vault to the destination. Requires Vault 1.19+.
+         * @param allowedIpv4Addresses Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -327,8 +402,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedIpv4Addresses List of IPv4 addresses or CIDR blocks allowed to make outbound
-         * connections from Vault to the destination. Requires Vault 1.19+.
+         * @param allowedIpv4Addresses Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -338,8 +412,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedIpv4Addresses List of IPv4 addresses or CIDR blocks allowed to make outbound
-         * connections from Vault to the destination. Requires Vault 1.19+.
+         * @param allowedIpv4Addresses Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -349,8 +422,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedIpv6Addresses List of IPv6 addresses or CIDR blocks allowed to make outbound
-         * connections from Vault to the destination. Requires Vault 1.19+.
+         * @param allowedIpv6Addresses Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -361,8 +433,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedIpv6Addresses List of IPv6 addresses or CIDR blocks allowed to make outbound
-         * connections from Vault to the destination. Requires Vault 1.19+.
+         * @param allowedIpv6Addresses Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -372,8 +443,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedIpv6Addresses List of IPv6 addresses or CIDR blocks allowed to make outbound
-         * connections from Vault to the destination. Requires Vault 1.19+.
+         * @param allowedIpv6Addresses Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -383,8 +453,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedPorts List of port numbers allowed for outbound connections from Vault to the
-         * destination. Requires Vault 1.19+.
+         * @param allowedPorts Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -395,8 +464,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedPorts List of port numbers allowed for outbound connections from Vault to the
-         * destination. Requires Vault 1.19+.
+         * @param allowedPorts Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -406,8 +474,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param allowedPorts List of port numbers allowed for outbound connections from Vault to the
-         * destination. Requires Vault 1.19+.
+         * @param allowedPorts Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -509,8 +576,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param disableStrictNetworking When set to `true`, disables strict enforcement of networking
-         * restrictions. Defaults to `false`. Requires Vault 1.19+.
+         * @param disableStrictNetworking If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -521,8 +587,7 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param disableStrictNetworking When set to `true`, disables strict enforcement of networking
-         * restrictions. Defaults to `false`. Requires Vault 1.19+.
+         * @param disableStrictNetworking If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
          * 
          * @return builder
          * 
@@ -552,6 +617,115 @@ public final class SyncAzureDestinationState extends com.pulumi.resources.Resour
          */
         public Builder granularity(String granularity) {
             return granularity(Output.of(granularity));
+        }
+
+        /**
+         * @param identityTokenAudienceWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWo(@Nullable Output<String> identityTokenAudienceWo) {
+            $.identityTokenAudienceWo = identityTokenAudienceWo;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudienceWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWo(String identityTokenAudienceWo) {
+            return identityTokenAudienceWo(Output.of(identityTokenAudienceWo));
+        }
+
+        /**
+         * @param identityTokenAudienceWoVersion A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWoVersion(@Nullable Output<Integer> identityTokenAudienceWoVersion) {
+            $.identityTokenAudienceWoVersion = identityTokenAudienceWoVersion;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudienceWoVersion A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudienceWoVersion(Integer identityTokenAudienceWoVersion) {
+            return identityTokenAudienceWoVersion(Output.of(identityTokenAudienceWoVersion));
+        }
+
+        /**
+         * @param identityTokenKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWo(@Nullable Output<String> identityTokenKeyWo) {
+            $.identityTokenKeyWo = identityTokenKeyWo;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWo(String identityTokenKeyWo) {
+            return identityTokenKeyWo(Output.of(identityTokenKeyWo));
+        }
+
+        /**
+         * @param identityTokenKeyWoVersion A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWoVersion(@Nullable Output<Integer> identityTokenKeyWoVersion) {
+            $.identityTokenKeyWoVersion = identityTokenKeyWoVersion;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKeyWoVersion A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKeyWoVersion(Integer identityTokenKeyWoVersion) {
+            return identityTokenKeyWoVersion(Output.of(identityTokenKeyWoVersion));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
         }
 
         /**

@@ -412,6 +412,10 @@ export interface ProviderAuthLoginGcp {
 
 export interface ProviderAuthLoginJwt {
     /**
+     * An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+     */
+    distributedClaimAccessToken?: pulumi.Input<string>;
+    /**
      * A signed JSON Web Token.
      */
     jwt?: pulumi.Input<string>;
@@ -765,7 +769,7 @@ export namespace database {
         /**
          * Whether to disable certificate verification
          */
-        insecure?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean>;
         /**
          * The password to be used in the connection URL
          */
@@ -1532,6 +1536,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemBundle?: pulumi.Input<string>;
@@ -1543,6 +1551,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * The transport port to use to connect to Cassandra.
          */
@@ -1571,6 +1583,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
          */
@@ -1643,9 +1659,17 @@ export namespace database {
          */
         password: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -1666,6 +1690,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * Specifies whether to use TLS when connecting to Couchbase.
          */
@@ -1720,7 +1748,7 @@ export namespace database {
         /**
          * Whether to disable certificate verification
          */
-        insecure?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean>;
         /**
          * Name of the database connection.
          */
@@ -1730,9 +1758,17 @@ export namespace database {
          */
         password: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -1753,6 +1789,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * This, if set, is used to set the SNI host when connecting via TLS
          */
@@ -1821,6 +1861,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -1833,6 +1877,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -1853,6 +1901,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The root credential username used in the connection URL
          */
@@ -1905,6 +1957,10 @@ export namespace database {
          */
         password: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemBundle?: pulumi.Input<string>;
@@ -1916,6 +1972,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * The transport port to use to connect to Influxdb.
          */
@@ -1940,6 +2000,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * Whether to use TLS when connecting to Influxdb.
          */
@@ -2000,6 +2064,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2012,6 +2080,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2032,6 +2104,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
          */
@@ -2080,9 +2156,17 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * The Private Programmatic API Key used to connect with MongoDB Atlas API.
          */
@@ -2115,6 +2199,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * Template describing how dynamic usernames are generated.
          */
@@ -2175,6 +2263,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2187,6 +2279,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2207,6 +2303,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The root credential username used in the connection URL
          */
@@ -2267,6 +2367,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2279,6 +2383,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2303,6 +2411,10 @@ export namespace database {
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
@@ -2371,6 +2483,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2383,6 +2499,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2407,6 +2527,10 @@ export namespace database {
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
@@ -2475,6 +2599,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2487,6 +2615,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2511,6 +2643,10 @@ export namespace database {
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
@@ -2579,6 +2715,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2591,6 +2731,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2615,6 +2759,10 @@ export namespace database {
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
@@ -2683,6 +2831,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2695,6 +2847,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -2719,6 +2875,10 @@ export namespace database {
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
         selfManaged?: pulumi.Input<boolean>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * Set to true in order to split statements after semi-colons.
          */
@@ -2791,6 +2951,10 @@ export namespace database {
          */
         passwordAuthentication?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -2803,6 +2967,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
@@ -2835,6 +3003,10 @@ export namespace database {
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
          */
@@ -2895,9 +3067,17 @@ export namespace database {
          */
         password: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * The transport port to use to connect to Redis.
          */
@@ -2922,6 +3102,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * Specifies whether to use TLS when connecting to Redis.
          */
@@ -2962,9 +3146,17 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          */
@@ -2989,6 +3181,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The configuration endpoint for the ElastiCache cluster to connect to.
          */
@@ -3049,6 +3245,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -3061,6 +3261,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
@@ -3081,6 +3285,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The root credential username used in the connection URL
          */
@@ -3139,6 +3347,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         */
+        passwordPolicy?: pulumi.Input<string>;
+        /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
@@ -3151,6 +3363,10 @@ export namespace database {
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
+        /**
+         * Specifies the semantic version of the plugin to use for this connection.
+         */
+        pluginVersion?: pulumi.Input<string>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The private key configured for the admin user in Snowflake.
@@ -3180,6 +3396,10 @@ export namespace database {
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
         rotationWindow?: pulumi.Input<number>;
+        /**
+         * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         */
+        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
         /**
          * The root credential username used in the connection URL
          */
@@ -3579,6 +3799,61 @@ export namespace managed {
          * The Key Vault vault to use the encryption keys for encryption and decryption
          */
         vaultName: pulumi.Input<string>;
+    }
+
+    export interface KeysGcp {
+        /**
+         * The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+         */
+        algorithm: pulumi.Input<string>;
+        /**
+         * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+         */
+        allowGenerateKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+         */
+        allowReplaceKey?: pulumi.Input<boolean>;
+        /**
+         * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+         */
+        allowStoreKey?: pulumi.Input<boolean>;
+        /**
+         * Allow usage from any mount point within the namespace if 'true'
+         */
+        anyMount?: pulumi.Input<boolean>;
+        /**
+         * The GCP service account credentials JSON to use for authenticating to GCP.
+         */
+        credentials: pulumi.Input<string>;
+        /**
+         * The name of the GCP Cloud KMS key. If no existing key exists and allowGenerateKey is true, Vault will generate a key with this name
+         */
+        cryptoKey: pulumi.Input<string>;
+        /**
+         * The version of the key to use. (Default: 1)
+         */
+        cryptoKeyVersion?: pulumi.Input<string>;
+        /**
+         * The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+         */
+        keyRing: pulumi.Input<string>;
+        /**
+         * A unique lowercase name that serves as identifying the key
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The GCP project ID.
+         */
+        project: pulumi.Input<string>;
+        /**
+         * The GCP region where the key ring was created.
+         */
+        region: pulumi.Input<string>;
+        /**
+         * ID of the managed key read from Vault
+         */
+        uuid?: pulumi.Input<string>;
     }
 
     export interface KeysPkc {

@@ -367,6 +367,20 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyType);
     }
     /**
+     * Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+     * 
+     */
+    @Export(name="keyUsages", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> keyUsages;
+
+    /**
+     * @return Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `[&#34;CRLSign&#34;, &#34;CertSign&#34;]` for root CA certificates. Requires Vault 1.19.2+.
+     * 
+     */
+    public Output<Optional<List<String>>> keyUsages() {
+        return Codegen.optional(this.keyUsages);
+    }
+    /**
      * The locality
      * 
      */
@@ -699,6 +713,20 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> uriSans() {
         return Codegen.optional(this.uriSans);
+    }
+    /**
+     * When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+     * 
+     */
+    @Export(name="usePss", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> usePss;
+
+    /**
+     * @return When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+     * 
+     */
+    public Output<Optional<Boolean>> usePss() {
+        return Codegen.optional(this.usePss);
     }
 
     /**

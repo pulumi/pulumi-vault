@@ -87,7 +87,7 @@ type SecretBackendRootSignIntermediate struct {
 	IssuerRef pulumi.StringPtrOutput `pulumi:"issuerRef"`
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
-	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
 	KeyUsages pulumi.StringArrayOutput `pulumi:"keyUsages"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
@@ -219,7 +219,7 @@ type secretBackendRootSignIntermediateState struct {
 	IssuerRef *string `pulumi:"issuerRef"`
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa *string `pulumi:"issuingCa"`
-	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
 	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
@@ -313,7 +313,7 @@ type SecretBackendRootSignIntermediateState struct {
 	IssuerRef pulumi.StringPtrInput
 	// The issuing CA certificate in the `format` specified.
 	IssuingCa pulumi.StringPtrInput
-	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
 	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
@@ -402,7 +402,7 @@ type secretBackendRootSignIntermediateArgs struct {
 	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
 	// overriding the role's `issuerRef` value.
 	IssuerRef *string `pulumi:"issuerRef"`
-	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
 	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
@@ -486,7 +486,7 @@ type SecretBackendRootSignIntermediateArgs struct {
 	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
 	// overriding the role's `issuerRef` value.
 	IssuerRef pulumi.StringPtrInput
-	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+	// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
 	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
@@ -715,7 +715,7 @@ func (o SecretBackendRootSignIntermediateOutput) IssuingCa() pulumi.StringOutput
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
 }
 
-// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
 func (o SecretBackendRootSignIntermediateOutput) KeyUsages() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.KeyUsages }).(pulumi.StringArrayOutput)
 }

@@ -62,6 +62,25 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Using Workload Identity Federation (Vault 2.0.0+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const awsWif = new vault.secrets.SyncAwsDestination("aws_wif", {
+ *     name: "aws-dest-wif",
+ *     region: "us-east-1",
+ *     roleArn: roleArn,
+ *     identityTokenAudienceWo: identityTokenAudience,
+ *     identityTokenAudienceWoVersion: 1,
+ *     identityTokenTtl: 3600,
+ *     identityTokenKeyWo: "my-key",
+ *     identityTokenKeyWoVersion: 1,
+ *     granularity: "secret-path",
+ * });
+ * ```
+ *
  * ## Import
  *
  * AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -146,6 +165,28 @@ export class SyncAwsDestination extends pulumi.CustomResource {
      */
     declare public readonly granularity: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly identityTokenAudienceWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     */
+    declare public readonly identityTokenAudienceWoVersion: pulumi.Output<number | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly identityTokenKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     */
+    declare public readonly identityTokenKeyWoVersion: pulumi.Output<number | undefined>;
+    /**
+     * The TTL of generated tokens.
+     */
+    declare public readonly identityTokenTtl: pulumi.Output<number>;
+    /**
      * Unique name of the AWS destination.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -206,6 +247,11 @@ export class SyncAwsDestination extends pulumi.CustomResource {
             resourceInputs["disableStrictNetworking"] = state?.disableStrictNetworking;
             resourceInputs["externalId"] = state?.externalId;
             resourceInputs["granularity"] = state?.granularity;
+            resourceInputs["identityTokenAudienceWo"] = state?.identityTokenAudienceWo;
+            resourceInputs["identityTokenAudienceWoVersion"] = state?.identityTokenAudienceWoVersion;
+            resourceInputs["identityTokenKeyWo"] = state?.identityTokenKeyWo;
+            resourceInputs["identityTokenKeyWoVersion"] = state?.identityTokenKeyWoVersion;
+            resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["region"] = state?.region;
@@ -223,6 +269,11 @@ export class SyncAwsDestination extends pulumi.CustomResource {
             resourceInputs["disableStrictNetworking"] = args?.disableStrictNetworking;
             resourceInputs["externalId"] = args?.externalId;
             resourceInputs["granularity"] = args?.granularity;
+            resourceInputs["identityTokenAudienceWo"] = args?.identityTokenAudienceWo ? pulumi.secret(args.identityTokenAudienceWo) : undefined;
+            resourceInputs["identityTokenAudienceWoVersion"] = args?.identityTokenAudienceWoVersion;
+            resourceInputs["identityTokenKeyWo"] = args?.identityTokenKeyWo ? pulumi.secret(args.identityTokenKeyWo) : undefined;
+            resourceInputs["identityTokenKeyWoVersion"] = args?.identityTokenKeyWoVersion;
+            resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["region"] = args?.region;
@@ -232,7 +283,7 @@ export class SyncAwsDestination extends pulumi.CustomResource {
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["secretAccessKey"] };
+        const secretOpts = { additionalSecretOutputs: ["identityTokenAudienceWo", "identityTokenKeyWo", "secretAccessKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SyncAwsDestination.__pulumiType, name, resourceInputs, opts);
     }
@@ -289,6 +340,28 @@ export interface SyncAwsDestinationState {
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     granularity?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenAudienceWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenKeyWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
     /**
      * Unique name of the AWS destination.
      */
@@ -381,6 +454,28 @@ export interface SyncAwsDestinationArgs {
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     granularity?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenAudienceWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenKeyWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
     /**
      * Unique name of the AWS destination.
      */
