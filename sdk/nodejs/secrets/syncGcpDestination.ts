@@ -109,6 +109,24 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Using Workload Identity Federation (Vault 2.0.0+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpWif = new vault.secrets.SyncGcpDestination("gcp_wif", {
+ *     name: "gcp-dest-wif",
+ *     serviceAccountEmail: serviceAccountEmail,
+ *     identityTokenAudienceWo: identityTokenAudience,
+ *     identityTokenAudienceWoVersion: 1,
+ *     identityTokenTtl: 3600,
+ *     identityTokenKeyWo: "my-key",
+ *     identityTokenKeyWoVersion: 1,
+ *     granularity: "secret-path",
+ * });
+ * ```
+ *
  * ## Import
  *
  * GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -181,6 +199,28 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      */
     declare public readonly granularity: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly identityTokenAudienceWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     */
+    declare public readonly identityTokenAudienceWoVersion: pulumi.Output<number | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    declare public readonly identityTokenKeyWo: pulumi.Output<string | undefined>;
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     */
+    declare public readonly identityTokenKeyWoVersion: pulumi.Output<number | undefined>;
+    /**
+     * The TTL of generated tokens.
+     */
+    declare public readonly identityTokenTtl: pulumi.Output<number>;
+    /**
      * Locational KMS keys for encryption.
      */
     declare public readonly locationalKmsKeys: pulumi.Output<{[key: string]: string} | undefined>;
@@ -211,6 +251,10 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      */
     declare public readonly secretNameTemplate: pulumi.Output<string>;
     /**
+     * Service Account to impersonate for workload identity federation.
+     */
+    declare public readonly serviceAccountEmail: pulumi.Output<string | undefined>;
+    /**
      * The type of the secrets destination (`gcp-sm`).
      */
     declare public /*out*/ readonly type: pulumi.Output<string>;
@@ -236,12 +280,18 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             resourceInputs["disableStrictNetworking"] = state?.disableStrictNetworking;
             resourceInputs["globalKmsKey"] = state?.globalKmsKey;
             resourceInputs["granularity"] = state?.granularity;
+            resourceInputs["identityTokenAudienceWo"] = state?.identityTokenAudienceWo;
+            resourceInputs["identityTokenAudienceWoVersion"] = state?.identityTokenAudienceWoVersion;
+            resourceInputs["identityTokenKeyWo"] = state?.identityTokenKeyWo;
+            resourceInputs["identityTokenKeyWoVersion"] = state?.identityTokenKeyWoVersion;
+            resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
             resourceInputs["locationalKmsKeys"] = state?.locationalKmsKeys;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["replicationLocations"] = state?.replicationLocations;
             resourceInputs["secretNameTemplate"] = state?.secretNameTemplate;
+            resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SyncGcpDestinationArgs | undefined;
@@ -253,16 +303,22 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             resourceInputs["disableStrictNetworking"] = args?.disableStrictNetworking;
             resourceInputs["globalKmsKey"] = args?.globalKmsKey;
             resourceInputs["granularity"] = args?.granularity;
+            resourceInputs["identityTokenAudienceWo"] = args?.identityTokenAudienceWo ? pulumi.secret(args.identityTokenAudienceWo) : undefined;
+            resourceInputs["identityTokenAudienceWoVersion"] = args?.identityTokenAudienceWoVersion;
+            resourceInputs["identityTokenKeyWo"] = args?.identityTokenKeyWo ? pulumi.secret(args.identityTokenKeyWo) : undefined;
+            resourceInputs["identityTokenKeyWoVersion"] = args?.identityTokenKeyWoVersion;
+            resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
             resourceInputs["locationalKmsKeys"] = args?.locationalKmsKeys;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["replicationLocations"] = args?.replicationLocations;
             resourceInputs["secretNameTemplate"] = args?.secretNameTemplate;
+            resourceInputs["serviceAccountEmail"] = args?.serviceAccountEmail;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["credentials"] };
+        const secretOpts = { additionalSecretOutputs: ["credentials", "identityTokenAudienceWo", "identityTokenKeyWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(SyncGcpDestination.__pulumiType, name, resourceInputs, opts);
     }
@@ -308,6 +364,28 @@ export interface SyncGcpDestinationState {
      */
     granularity?: pulumi.Input<string>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenAudienceWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenKeyWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Locational KMS keys for encryption.
      */
     locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -337,6 +415,10 @@ export interface SyncGcpDestinationState {
      * Supports a subset of the Go Template syntax.
      */
     secretNameTemplate?: pulumi.Input<string>;
+    /**
+     * Service Account to impersonate for workload identity federation.
+     */
+    serviceAccountEmail?: pulumi.Input<string>;
     /**
      * The type of the secrets destination (`gcp-sm`).
      */
@@ -383,6 +465,28 @@ export interface SyncGcpDestinationArgs {
      */
     granularity?: pulumi.Input<string>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenAudienceWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     */
+    identityTokenKeyWo?: pulumi.Input<string>;
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     */
+    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Locational KMS keys for encryption.
      */
     locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -412,4 +516,8 @@ export interface SyncGcpDestinationArgs {
      * Supports a subset of the Go Template syntax.
      */
     secretNameTemplate?: pulumi.Input<string>;
+    /**
+     * Service Account to impersonate for workload identity federation.
+     */
+    serviceAccountEmail?: pulumi.Input<string>;
 }

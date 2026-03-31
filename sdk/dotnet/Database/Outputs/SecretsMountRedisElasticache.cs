@@ -37,9 +37,17 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        public readonly string? PasswordPolicy;
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        public readonly string? PluginVersion;
         /// <summary>
         /// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         /// </summary>
@@ -64,6 +72,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         /// </summary>
         public readonly int? RotationWindow;
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly bool? SkipStaticRoleImportRotation;
         /// <summary>
         /// The configuration endpoint for the ElastiCache cluster to connect to.
         /// </summary>
@@ -90,7 +102,11 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? passwordPolicy,
+
             string? pluginName,
+
+            string? pluginVersion,
 
             string? region,
 
@@ -101,6 +117,8 @@ namespace Pulumi.Vault.Database.Outputs
             string? rotationSchedule,
 
             int? rotationWindow,
+
+            bool? skipStaticRoleImportRotation,
 
             string url,
 
@@ -113,12 +131,15 @@ namespace Pulumi.Vault.Database.Outputs
             DisableAutomatedRotation = disableAutomatedRotation;
             Name = name;
             Password = password;
+            PasswordPolicy = passwordPolicy;
             PluginName = pluginName;
+            PluginVersion = pluginVersion;
             Region = region;
             RootRotationStatements = rootRotationStatements;
             RotationPeriod = rotationPeriod;
             RotationSchedule = rotationSchedule;
             RotationWindow = rotationWindow;
+            SkipStaticRoleImportRotation = skipStaticRoleImportRotation;
             Url = url;
             Username = username;
             VerifyConnection = verifyConnection;

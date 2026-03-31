@@ -47,7 +47,7 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
-    /// ### Azure BLOB
+    /// ### Azure BLOB (Shared Key Authentication)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -67,9 +67,41 @@ namespace Pulumi.Vault
     ///         Retain = 7,
     ///         PathPrefix = "/",
     ///         StorageType = "azure-blob",
+    ///         AutoloadEnabled = true,
     ///         AzureContainerName = "vault-blob",
     ///         AzureAccountName = azureAccountName,
     ///         AzureAccountKey = azureAccountKey,
+    ///         AzureAuthMode = "shared",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Azure BLOB (Managed Identity Authentication)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var azureAccountName = config.RequireObject&lt;dynamic&gt;("azureAccountName");
+    ///     var azureClientId = config.RequireObject&lt;dynamic&gt;("azureClientId");
+    ///     var azureManagedIdentity = new Vault.RaftSnapshotAgentConfig("azure_managed_identity", new()
+    ///     {
+    ///         Name = "azure_managed",
+    ///         IntervalSeconds = 86400,
+    ///         Retain = 7,
+    ///         PathPrefix = "/",
+    ///         StorageType = "azure-blob",
+    ///         AutoloadEnabled = true,
+    ///         AzureContainerName = "vault-blob",
+    ///         AzureAccountName = azureAccountName,
+    ///         AzureAuthMode = "managed",
+    ///         AzureClientId = azureClientId,
     ///     });
     /// 
     /// });
@@ -86,6 +118,15 @@ namespace Pulumi.Vault
     [VaultResourceType("vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig")]
     public partial class RaftSnapshotAgentConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+        /// **Note:** Not supported with `StorageType = "local"`.
+        /// 
+        /// *Requires Vault Enterprise 1.21.0+*.
+        /// </summary>
+        [Output("autoloadEnabled")]
+        public Output<bool?> AutoloadEnabled { get; private set; } = null!;
+
         /// <summary>
         /// AWS access key ID.
         /// </summary>
@@ -153,7 +194,7 @@ namespace Pulumi.Vault
         public Output<string?> AwsSessionToken { get; private set; } = null!;
 
         /// <summary>
-        /// Azure account key.
+        /// Azure account key. Required when AzureAuthMode is 'shared'.
         /// </summary>
         [Output("azureAccountKey")]
         public Output<string?> AzureAccountKey { get; private set; } = null!;
@@ -165,10 +206,22 @@ namespace Pulumi.Vault
         public Output<string?> AzureAccountName { get; private set; } = null!;
 
         /// <summary>
+        /// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+        /// </summary>
+        [Output("azureAuthMode")]
+        public Output<string?> AzureAuthMode { get; private set; } = null!;
+
+        /// <summary>
         /// Azure blob environment.
         /// </summary>
         [Output("azureBlobEnvironment")]
         public Output<string?> AzureBlobEnvironment { get; private set; } = null!;
+
+        /// <summary>
+        /// Azure client ID for authentication. Required when AzureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+        /// </summary>
+        [Output("azureClientId")]
+        public Output<string?> AzureClientId { get; private set; } = null!;
 
         /// <summary>
         /// Azure container name to write snapshots to.
@@ -313,6 +366,15 @@ namespace Pulumi.Vault
     public sealed class RaftSnapshotAgentConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+        /// **Note:** Not supported with `StorageType = "local"`.
+        /// 
+        /// *Requires Vault Enterprise 1.21.0+*.
+        /// </summary>
+        [Input("autoloadEnabled")]
+        public Input<bool>? AutoloadEnabled { get; set; }
+
+        /// <summary>
         /// AWS access key ID.
         /// </summary>
         [Input("awsAccessKeyId")]
@@ -379,7 +441,7 @@ namespace Pulumi.Vault
         public Input<string>? AwsSessionToken { get; set; }
 
         /// <summary>
-        /// Azure account key.
+        /// Azure account key. Required when AzureAuthMode is 'shared'.
         /// </summary>
         [Input("azureAccountKey")]
         public Input<string>? AzureAccountKey { get; set; }
@@ -391,10 +453,22 @@ namespace Pulumi.Vault
         public Input<string>? AzureAccountName { get; set; }
 
         /// <summary>
+        /// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+        /// </summary>
+        [Input("azureAuthMode")]
+        public Input<string>? AzureAuthMode { get; set; }
+
+        /// <summary>
         /// Azure blob environment.
         /// </summary>
         [Input("azureBlobEnvironment")]
         public Input<string>? AzureBlobEnvironment { get; set; }
+
+        /// <summary>
+        /// Azure client ID for authentication. Required when AzureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+        /// </summary>
+        [Input("azureClientId")]
+        public Input<string>? AzureClientId { get; set; }
 
         /// <summary>
         /// Azure container name to write snapshots to.
@@ -501,6 +575,15 @@ namespace Pulumi.Vault
     public sealed class RaftSnapshotAgentConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+        /// **Note:** Not supported with `StorageType = "local"`.
+        /// 
+        /// *Requires Vault Enterprise 1.21.0+*.
+        /// </summary>
+        [Input("autoloadEnabled")]
+        public Input<bool>? AutoloadEnabled { get; set; }
+
+        /// <summary>
         /// AWS access key ID.
         /// </summary>
         [Input("awsAccessKeyId")]
@@ -567,7 +650,7 @@ namespace Pulumi.Vault
         public Input<string>? AwsSessionToken { get; set; }
 
         /// <summary>
-        /// Azure account key.
+        /// Azure account key. Required when AzureAuthMode is 'shared'.
         /// </summary>
         [Input("azureAccountKey")]
         public Input<string>? AzureAccountKey { get; set; }
@@ -579,10 +662,22 @@ namespace Pulumi.Vault
         public Input<string>? AzureAccountName { get; set; }
 
         /// <summary>
+        /// Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+        /// </summary>
+        [Input("azureAuthMode")]
+        public Input<string>? AzureAuthMode { get; set; }
+
+        /// <summary>
         /// Azure blob environment.
         /// </summary>
         [Input("azureBlobEnvironment")]
         public Input<string>? AzureBlobEnvironment { get; set; }
+
+        /// <summary>
+        /// Azure client ID for authentication. Required when AzureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+        /// </summary>
+        [Input("azureClientId")]
+        public Input<string>? AzureClientId { get; set; }
 
         /// <summary>
         /// Azure container name to write snapshots to.

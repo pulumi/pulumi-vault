@@ -257,6 +257,21 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     * 
+     */
+    @Import(name="removeRootsFromChain")
+    private @Nullable Output<Boolean> removeRootsFromChain;
+
+    /**
+     * @return If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> removeRootsFromChain() {
+        return Optional.ofNullable(this.removeRootsFromChain);
+    }
+
+    /**
      * Time to live
      * 
      */
@@ -304,6 +319,7 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
         this.namespace = $.namespace;
         this.notAfter = $.notAfter;
         this.otherSans = $.otherSans;
+        this.removeRootsFromChain = $.removeRootsFromChain;
         this.ttl = $.ttl;
         this.uriSans = $.uriSans;
     }
@@ -681,6 +697,27 @@ public final class SecretBackendSignArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder otherSans(String... otherSans) {
             return otherSans(List.of(otherSans));
+        }
+
+        /**
+         * @param removeRootsFromChain If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder removeRootsFromChain(@Nullable Output<Boolean> removeRootsFromChain) {
+            $.removeRootsFromChain = removeRootsFromChain;
+            return this;
+        }
+
+        /**
+         * @param removeRootsFromChain If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder removeRootsFromChain(Boolean removeRootsFromChain) {
+            return removeRootsFromChain(Output.of(removeRootsFromChain));
         }
 
         /**

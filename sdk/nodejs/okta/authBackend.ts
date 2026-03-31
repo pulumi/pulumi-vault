@@ -34,6 +34,14 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `apiTokenWo` - (Optional) Write-only Okta API token. This is required to query Okta for user group membership.
+ *   Use this for enhanced security when you don't want the token to appear in state files. Requires `apiTokenWoVersion`. Conflicts with `token` and `apiToken`.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *
  * ## Import
  *
  * Okta authentication backends can be imported using its `path`, e.g.
@@ -80,6 +88,22 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly aliasMetadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * The Okta API token. This is required to query Okta for user group membership.
+     * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `token` and `apiTokenWo`.
+     */
+    declare public readonly apiToken: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+     */
+    declare public readonly apiTokenWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only `apiTokenWo`.
+     * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+     */
+    declare public readonly apiTokenWoVersion: pulumi.Output<number | undefined>;
+    /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
     declare public readonly baseUrl: pulumi.Output<string | undefined>;
@@ -109,7 +133,15 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
-     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     */
+    declare public readonly orgName: pulumi.Output<string>;
+    /**
+     * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     *
+     * @deprecated Use orgName instead
      */
     declare public readonly organization: pulumi.Output<string>;
     /**
@@ -117,8 +149,11 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly path: pulumi.Output<string | undefined>;
     /**
-     * The Okta API token. This is required to query Okta for user group membership.
+     * **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `apiToken` and `apiTokenWo`.
+     *
+     * @deprecated Use apiToken instead
      */
     declare public readonly token: pulumi.Output<string | undefined>;
     /**
@@ -171,7 +206,7 @@ export class AuthBackend extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: AuthBackendArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: AuthBackendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthBackendArgs | AuthBackendState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -179,12 +214,16 @@ export class AuthBackend extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendState | undefined;
             resourceInputs["accessor"] = state?.accessor;
             resourceInputs["aliasMetadata"] = state?.aliasMetadata;
+            resourceInputs["apiToken"] = state?.apiToken;
+            resourceInputs["apiTokenWo"] = state?.apiTokenWo;
+            resourceInputs["apiTokenWoVersion"] = state?.apiTokenWoVersion;
             resourceInputs["baseUrl"] = state?.baseUrl;
             resourceInputs["bypassOktaMfa"] = state?.bypassOktaMfa;
             resourceInputs["description"] = state?.description;
             resourceInputs["disableRemount"] = state?.disableRemount;
             resourceInputs["groups"] = state?.groups;
             resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["orgName"] = state?.orgName;
             resourceInputs["organization"] = state?.organization;
             resourceInputs["path"] = state?.path;
             resourceInputs["token"] = state?.token;
@@ -201,16 +240,17 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["users"] = state?.users;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
-            if (args?.organization === undefined && !opts.urn) {
-                throw new Error("Missing required property 'organization'");
-            }
             resourceInputs["aliasMetadata"] = args?.aliasMetadata;
+            resourceInputs["apiToken"] = args?.apiToken ? pulumi.secret(args.apiToken) : undefined;
+            resourceInputs["apiTokenWo"] = args?.apiTokenWo ? pulumi.secret(args.apiTokenWo) : undefined;
+            resourceInputs["apiTokenWoVersion"] = args?.apiTokenWoVersion;
             resourceInputs["baseUrl"] = args?.baseUrl;
             resourceInputs["bypassOktaMfa"] = args?.bypassOktaMfa;
             resourceInputs["description"] = args?.description;
             resourceInputs["disableRemount"] = args?.disableRemount;
             resourceInputs["groups"] = args?.groups;
             resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["orgName"] = args?.orgName;
             resourceInputs["organization"] = args?.organization;
             resourceInputs["path"] = args?.path;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
@@ -228,7 +268,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["apiToken", "apiTokenWo", "token"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -247,6 +287,22 @@ export interface AuthBackendState {
      *   This should be a list or map containing the metadata in key value pairs.
      */
     aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The Okta API token. This is required to query Okta for user group membership.
+     * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `token` and `apiTokenWo`.
+     */
+    apiToken?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+     */
+    apiTokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only `apiTokenWo`.
+     * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+     */
+    apiTokenWoVersion?: pulumi.Input<number>;
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
@@ -277,7 +333,15 @@ export interface AuthBackendState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     */
+    orgName?: pulumi.Input<string>;
+    /**
+     * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     *
+     * @deprecated Use orgName instead
      */
     organization?: pulumi.Input<string>;
     /**
@@ -285,8 +349,11 @@ export interface AuthBackendState {
      */
     path?: pulumi.Input<string>;
     /**
-     * The Okta API token. This is required to query Okta for user group membership.
+     * **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `apiToken` and `apiTokenWo`.
+     *
+     * @deprecated Use apiToken instead
      */
     token?: pulumi.Input<string>;
     /**
@@ -343,6 +410,22 @@ export interface AuthBackendArgs {
      */
     aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * The Okta API token. This is required to query Okta for user group membership.
+     * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `token` and `apiTokenWo`.
+     */
+    apiToken?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+     */
+    apiTokenWo?: pulumi.Input<string>;
+    /**
+     * Version counter for the write-only `apiTokenWo`.
+     * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+     */
+    apiTokenWoVersion?: pulumi.Input<number>;
+    /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
     baseUrl?: pulumi.Input<string>;
@@ -372,16 +455,27 @@ export interface AuthBackendArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
      */
-    organization: pulumi.Input<string>;
+    orgName?: pulumi.Input<string>;
+    /**
+     * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     *
+     * @deprecated Use orgName instead
+     */
+    organization?: pulumi.Input<string>;
     /**
      * Path to mount the Okta auth backend. Default to path `okta`.
      */
     path?: pulumi.Input<string>;
     /**
-     * The Okta API token. This is required to query Okta for user group membership.
+     * **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `apiToken` and `apiTokenWo`.
+     *
+     * @deprecated Use apiToken instead
      */
     token?: pulumi.Input<string>;
     /**

@@ -1037,7 +1037,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="skipImportRotation")
-    def skip_import_rotation(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def skip_import_rotation(self) -> pulumi.Output[_builtins.bool]:
         """
         If set to true, Vault will skip the
         initial secret rotation on import. Requires Vault 1.18+ Enterprise.

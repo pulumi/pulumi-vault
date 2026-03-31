@@ -17,6 +17,7 @@ from .. import _utilities
 __all__ = [
     'KeysAw',
     'KeysAzure',
+    'KeysGcp',
     'KeysPkc',
 ]
 
@@ -429,6 +430,191 @@ class KeysAzure(dict):
         The Azure Key Vault resource's DNS Suffix to connect to
         """
         return pulumi.get(self, "resource")
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[_builtins.str]:
+        """
+        ID of the managed key read from Vault
+        """
+        return pulumi.get(self, "uuid")
+
+
+@pulumi.output_type
+class KeysGcp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cryptoKey":
+            suggest = "crypto_key"
+        elif key == "keyRing":
+            suggest = "key_ring"
+        elif key == "allowGenerateKey":
+            suggest = "allow_generate_key"
+        elif key == "allowReplaceKey":
+            suggest = "allow_replace_key"
+        elif key == "allowStoreKey":
+            suggest = "allow_store_key"
+        elif key == "anyMount":
+            suggest = "any_mount"
+        elif key == "cryptoKeyVersion":
+            suggest = "crypto_key_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KeysGcp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KeysGcp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KeysGcp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 algorithm: _builtins.str,
+                 credentials: _builtins.str,
+                 crypto_key: _builtins.str,
+                 key_ring: _builtins.str,
+                 name: _builtins.str,
+                 project: _builtins.str,
+                 region: _builtins.str,
+                 allow_generate_key: Optional[_builtins.bool] = None,
+                 allow_replace_key: Optional[_builtins.bool] = None,
+                 allow_store_key: Optional[_builtins.bool] = None,
+                 any_mount: Optional[_builtins.bool] = None,
+                 crypto_key_version: Optional[_builtins.str] = None,
+                 uuid: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str algorithm: The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+        :param _builtins.str credentials: The GCP service account credentials JSON to use for authenticating to GCP.
+        :param _builtins.str crypto_key: The name of the GCP Cloud KMS key. If no existing key exists and allow_generate_key is true, Vault will generate a key with this name
+        :param _builtins.str key_ring: The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+        :param _builtins.str name: A unique lowercase name that serves as identifying the key
+        :param _builtins.str project: The GCP project ID.
+        :param _builtins.str region: The GCP region where the key ring was created.
+        :param _builtins.bool allow_generate_key: If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        :param _builtins.bool allow_replace_key: Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        :param _builtins.bool allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        :param _builtins.bool any_mount: Allow usage from any mount point within the namespace if 'true'
+        :param _builtins.str crypto_key_version: The version of the key to use. (Default: 1)
+        :param _builtins.str uuid: ID of the managed key read from Vault
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "credentials", credentials)
+        pulumi.set(__self__, "crypto_key", crypto_key)
+        pulumi.set(__self__, "key_ring", key_ring)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "region", region)
+        if allow_generate_key is not None:
+            pulumi.set(__self__, "allow_generate_key", allow_generate_key)
+        if allow_replace_key is not None:
+            pulumi.set(__self__, "allow_replace_key", allow_replace_key)
+        if allow_store_key is not None:
+            pulumi.set(__self__, "allow_store_key", allow_store_key)
+        if any_mount is not None:
+            pulumi.set(__self__, "any_mount", any_mount)
+        if crypto_key_version is not None:
+            pulumi.set(__self__, "crypto_key_version", crypto_key_version)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> _builtins.str:
+        """
+        The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> _builtins.str:
+        """
+        The GCP service account credentials JSON to use for authenticating to GCP.
+        """
+        return pulumi.get(self, "credentials")
+
+    @_builtins.property
+    @pulumi.getter(name="cryptoKey")
+    def crypto_key(self) -> _builtins.str:
+        """
+        The name of the GCP Cloud KMS key. If no existing key exists and allow_generate_key is true, Vault will generate a key with this name
+        """
+        return pulumi.get(self, "crypto_key")
+
+    @_builtins.property
+    @pulumi.getter(name="keyRing")
+    def key_ring(self) -> _builtins.str:
+        """
+        The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+        """
+        return pulumi.get(self, "key_ring")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        A unique lowercase name that serves as identifying the key
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def project(self) -> _builtins.str:
+        """
+        The GCP project ID.
+        """
+        return pulumi.get(self, "project")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The GCP region where the key ring was created.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="allowGenerateKey")
+    def allow_generate_key(self) -> Optional[_builtins.bool]:
+        """
+        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        """
+        return pulumi.get(self, "allow_generate_key")
+
+    @_builtins.property
+    @pulumi.getter(name="allowReplaceKey")
+    def allow_replace_key(self) -> Optional[_builtins.bool]:
+        """
+        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        """
+        return pulumi.get(self, "allow_replace_key")
+
+    @_builtins.property
+    @pulumi.getter(name="allowStoreKey")
+    def allow_store_key(self) -> Optional[_builtins.bool]:
+        """
+        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        """
+        return pulumi.get(self, "allow_store_key")
+
+    @_builtins.property
+    @pulumi.getter(name="anyMount")
+    def any_mount(self) -> Optional[_builtins.bool]:
+        """
+        Allow usage from any mount point within the namespace if 'true'
+        """
+        return pulumi.get(self, "any_mount")
+
+    @_builtins.property
+    @pulumi.getter(name="cryptoKeyVersion")
+    def crypto_key_version(self) -> Optional[_builtins.str]:
+        """
+        The version of the key to use. (Default: 1)
+        """
+        return pulumi.get(self, "crypto_key_version")
 
     @_builtins.property
     @pulumi.getter

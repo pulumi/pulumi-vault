@@ -193,6 +193,39 @@ import (
 //
 // ```
 //
+// ### Using Workload Identity Federation (Vault 2.0.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSyncGcpDestination(ctx, "gcp_wif", &secrets.SyncGcpDestinationArgs{
+//				Name:                           pulumi.String("gcp-dest-wif"),
+//				ServiceAccountEmail:            pulumi.Any(serviceAccountEmail),
+//				IdentityTokenAudienceWo:        pulumi.Any(identityTokenAudience),
+//				IdentityTokenAudienceWoVersion: pulumi.Int(1),
+//				IdentityTokenTtl:               pulumi.Int(3600),
+//				IdentityTokenKeyWo:             pulumi.String("my-key"),
+//				IdentityTokenKeyWoVersion:      pulumi.Int(1),
+//				Granularity:                    pulumi.String("secret-path"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -222,6 +255,18 @@ type SyncGcpDestination struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrOutput `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrOutput `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
 	// Locational KMS keys for encryption.
 	LocationalKmsKeys pulumi.StringMapOutput `pulumi:"locationalKmsKeys"`
 	// Unique name of the GCP destination.
@@ -240,6 +285,8 @@ type SyncGcpDestination struct {
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
 	SecretNameTemplate pulumi.StringOutput `pulumi:"secretNameTemplate"`
+	// Service Account to impersonate for workload identity federation.
+	ServiceAccountEmail pulumi.StringPtrOutput `pulumi:"serviceAccountEmail"`
 	// The type of the secrets destination (`gcp-sm`).
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -254,8 +301,16 @@ func NewSyncGcpDestination(ctx *pulumi.Context,
 	if args.Credentials != nil {
 		args.Credentials = pulumi.ToSecret(args.Credentials).(pulumi.StringPtrInput)
 	}
+	if args.IdentityTokenAudienceWo != nil {
+		args.IdentityTokenAudienceWo = pulumi.ToSecret(args.IdentityTokenAudienceWo).(pulumi.StringPtrInput)
+	}
+	if args.IdentityTokenKeyWo != nil {
+		args.IdentityTokenKeyWo = pulumi.ToSecret(args.IdentityTokenKeyWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"credentials",
+		"identityTokenAudienceWo",
+		"identityTokenKeyWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -300,6 +355,18 @@ type syncGcpDestinationState struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo *string `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion *int `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo *string `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Locational KMS keys for encryption.
 	LocationalKmsKeys map[string]string `pulumi:"locationalKmsKeys"`
 	// Unique name of the GCP destination.
@@ -318,6 +385,8 @@ type syncGcpDestinationState struct {
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
 	SecretNameTemplate *string `pulumi:"secretNameTemplate"`
+	// Service Account to impersonate for workload identity federation.
+	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 	// The type of the secrets destination (`gcp-sm`).
 	Type *string `pulumi:"type"`
 }
@@ -342,6 +411,18 @@ type SyncGcpDestinationState struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Locational KMS keys for encryption.
 	LocationalKmsKeys pulumi.StringMapInput
 	// Unique name of the GCP destination.
@@ -360,6 +441,8 @@ type SyncGcpDestinationState struct {
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
 	SecretNameTemplate pulumi.StringPtrInput
+	// Service Account to impersonate for workload identity federation.
+	ServiceAccountEmail pulumi.StringPtrInput
 	// The type of the secrets destination (`gcp-sm`).
 	Type pulumi.StringPtrInput
 }
@@ -388,6 +471,18 @@ type syncGcpDestinationArgs struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo *string `pulumi:"identityTokenAudienceWo"`
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion *int `pulumi:"identityTokenAudienceWoVersion"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo *string `pulumi:"identityTokenKeyWo"`
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Locational KMS keys for encryption.
 	LocationalKmsKeys map[string]string `pulumi:"locationalKmsKeys"`
 	// Unique name of the GCP destination.
@@ -406,6 +501,8 @@ type syncGcpDestinationArgs struct {
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
 	SecretNameTemplate *string `pulumi:"secretNameTemplate"`
+	// Service Account to impersonate for workload identity federation.
+	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 }
 
 // The set of arguments for constructing a SyncGcpDestination resource.
@@ -429,6 +526,18 @@ type SyncGcpDestinationArgs struct {
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenAudienceWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+	IdentityTokenAudienceWoVersion pulumi.IntPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+	IdentityTokenKeyWo pulumi.StringPtrInput
+	// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+	IdentityTokenKeyWoVersion pulumi.IntPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Locational KMS keys for encryption.
 	LocationalKmsKeys pulumi.StringMapInput
 	// Unique name of the GCP destination.
@@ -447,6 +556,8 @@ type SyncGcpDestinationArgs struct {
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
 	SecretNameTemplate pulumi.StringPtrInput
+	// Service Account to impersonate for workload identity federation.
+	ServiceAccountEmail pulumi.StringPtrInput
 }
 
 func (SyncGcpDestinationArgs) ElementType() reflect.Type {
@@ -579,6 +690,33 @@ func (o SyncGcpDestinationOutput) Granularity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.Granularity }).(pulumi.StringPtrOutput)
 }
 
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+func (o SyncGcpDestinationOutput) IdentityTokenAudienceWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.IdentityTokenAudienceWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+func (o SyncGcpDestinationOutput) IdentityTokenAudienceWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.IntPtrOutput { return v.IdentityTokenAudienceWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+func (o SyncGcpDestinationOutput) IdentityTokenKeyWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.IdentityTokenKeyWo }).(pulumi.StringPtrOutput)
+}
+
+// A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+func (o SyncGcpDestinationOutput) IdentityTokenKeyWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.IntPtrOutput { return v.IdentityTokenKeyWoVersion }).(pulumi.IntPtrOutput)
+}
+
+// The TTL of generated tokens.
+func (o SyncGcpDestinationOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
+}
+
 // Locational KMS keys for encryption.
 func (o SyncGcpDestinationOutput) LocationalKmsKeys() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringMapOutput { return v.LocationalKmsKeys }).(pulumi.StringMapOutput)
@@ -613,6 +751,11 @@ func (o SyncGcpDestinationOutput) ReplicationLocations() pulumi.StringArrayOutpu
 // Supports a subset of the Go Template syntax.
 func (o SyncGcpDestinationOutput) SecretNameTemplate() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringOutput { return v.SecretNameTemplate }).(pulumi.StringOutput)
+}
+
+// Service Account to impersonate for workload identity federation.
+func (o SyncGcpDestinationOutput) ServiceAccountEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.ServiceAccountEmail }).(pulumi.StringPtrOutput)
 }
 
 // The type of the secrets destination (`gcp-sm`).

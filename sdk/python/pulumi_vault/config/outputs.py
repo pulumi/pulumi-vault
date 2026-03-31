@@ -632,18 +632,22 @@ class AuthLoginGcp(dict):
 class AuthLoginJwt(dict):
     def __init__(__self__, *,
                  role: _builtins.str,
+                 distributed_claim_access_token: Optional[_builtins.str] = None,
                  jwt: Optional[_builtins.str] = None,
                  mount: Optional[_builtins.str] = None,
                  namespace: Optional[_builtins.str] = None,
                  use_root_namespace: Optional[_builtins.bool] = None):
         """
         :param _builtins.str role: Name of the login role.
+        :param _builtins.str distributed_claim_access_token: An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
         :param _builtins.str jwt: A signed JSON Web Token.
         :param _builtins.str mount: The path where the authentication engine is mounted.
         :param _builtins.str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param _builtins.bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
         """
         pulumi.set(__self__, "role", role)
+        if distributed_claim_access_token is not None:
+            pulumi.set(__self__, "distributed_claim_access_token", distributed_claim_access_token)
         if jwt is not None:
             pulumi.set(__self__, "jwt", jwt)
         if mount is not None:
@@ -660,6 +664,14 @@ class AuthLoginJwt(dict):
         Name of the login role.
         """
         return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter(name="distributedClaimAccessToken")
+    def distributed_claim_access_token(self) -> Optional[_builtins.str]:
+        """
+        An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+        """
+        return pulumi.get(self, "distributed_claim_access_token")
 
     @_builtins.property
     @pulumi.getter

@@ -19,6 +19,8 @@ __all__ = [
     'KeysAwArgsDict',
     'KeysAzureArgs',
     'KeysAzureArgsDict',
+    'KeysGcpArgs',
+    'KeysGcpArgsDict',
     'KeysPkcArgs',
     'KeysPkcArgsDict',
 ]
@@ -594,6 +596,268 @@ class KeysAzureArgs:
     @resource.setter
     def resource(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "resource", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ID of the managed key read from Vault
+        """
+        return pulumi.get(self, "uuid")
+
+    @uuid.setter
+    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "uuid", value)
+
+
+class KeysGcpArgsDict(TypedDict):
+    algorithm: pulumi.Input[_builtins.str]
+    """
+    The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+    """
+    credentials: pulumi.Input[_builtins.str]
+    """
+    The GCP service account credentials JSON to use for authenticating to GCP.
+    """
+    crypto_key: pulumi.Input[_builtins.str]
+    """
+    The name of the GCP Cloud KMS key. If no existing key exists and allow_generate_key is true, Vault will generate a key with this name
+    """
+    key_ring: pulumi.Input[_builtins.str]
+    """
+    The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+    """
+    name: pulumi.Input[_builtins.str]
+    """
+    A unique lowercase name that serves as identifying the key
+    """
+    project: pulumi.Input[_builtins.str]
+    """
+    The GCP project ID.
+    """
+    region: pulumi.Input[_builtins.str]
+    """
+    The GCP region where the key ring was created.
+    """
+    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+    """
+    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+    """
+    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+    """
+    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Allow usage from any mount point within the namespace if 'true'
+    """
+    crypto_key_version: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The version of the key to use. (Default: 1)
+    """
+    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    ID of the managed key read from Vault
+    """
+
+@pulumi.input_type
+class KeysGcpArgs:
+    def __init__(__self__, *,
+                 algorithm: pulumi.Input[_builtins.str],
+                 credentials: pulumi.Input[_builtins.str],
+                 crypto_key: pulumi.Input[_builtins.str],
+                 key_ring: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 project: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[_builtins.str],
+                 allow_generate_key: Optional[pulumi.Input[_builtins.bool]] = None,
+                 allow_replace_key: Optional[pulumi.Input[_builtins.bool]] = None,
+                 allow_store_key: Optional[pulumi.Input[_builtins.bool]] = None,
+                 any_mount: Optional[pulumi.Input[_builtins.bool]] = None,
+                 crypto_key_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] algorithm: The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+        :param pulumi.Input[_builtins.str] credentials: The GCP service account credentials JSON to use for authenticating to GCP.
+        :param pulumi.Input[_builtins.str] crypto_key: The name of the GCP Cloud KMS key. If no existing key exists and allow_generate_key is true, Vault will generate a key with this name
+        :param pulumi.Input[_builtins.str] key_ring: The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+        :param pulumi.Input[_builtins.str] name: A unique lowercase name that serves as identifying the key
+        :param pulumi.Input[_builtins.str] project: The GCP project ID.
+        :param pulumi.Input[_builtins.str] region: The GCP region where the key ring was created.
+        :param pulumi.Input[_builtins.bool] allow_generate_key: If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        :param pulumi.Input[_builtins.bool] allow_replace_key: Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        :param pulumi.Input[_builtins.bool] allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        :param pulumi.Input[_builtins.bool] any_mount: Allow usage from any mount point within the namespace if 'true'
+        :param pulumi.Input[_builtins.str] crypto_key_version: The version of the key to use. (Default: 1)
+        :param pulumi.Input[_builtins.str] uuid: ID of the managed key read from Vault
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "credentials", credentials)
+        pulumi.set(__self__, "crypto_key", crypto_key)
+        pulumi.set(__self__, "key_ring", key_ring)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project", project)
+        pulumi.set(__self__, "region", region)
+        if allow_generate_key is not None:
+            pulumi.set(__self__, "allow_generate_key", allow_generate_key)
+        if allow_replace_key is not None:
+            pulumi.set(__self__, "allow_replace_key", allow_replace_key)
+        if allow_store_key is not None:
+            pulumi.set(__self__, "allow_store_key", allow_store_key)
+        if any_mount is not None:
+            pulumi.set(__self__, "any_mount", any_mount)
+        if crypto_key_version is not None:
+            pulumi.set(__self__, "crypto_key_version", crypto_key_version)
+        if uuid is not None:
+            pulumi.set(__self__, "uuid", uuid)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Input[_builtins.str]:
+        """
+        The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> pulumi.Input[_builtins.str]:
+        """
+        The GCP service account credentials JSON to use for authenticating to GCP.
+        """
+        return pulumi.get(self, "credentials")
+
+    @credentials.setter
+    def credentials(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cryptoKey")
+    def crypto_key(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the GCP Cloud KMS key. If no existing key exists and allow_generate_key is true, Vault will generate a key with this name
+        """
+        return pulumi.get(self, "crypto_key")
+
+    @crypto_key.setter
+    def crypto_key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "crypto_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="keyRing")
+    def key_ring(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
+        """
+        return pulumi.get(self, "key_ring")
+
+    @key_ring.setter
+    def key_ring(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key_ring", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        A unique lowercase name that serves as identifying the key
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def project(self) -> pulumi.Input[_builtins.str]:
+        """
+        The GCP project ID.
+        """
+        return pulumi.get(self, "project")
+
+    @project.setter
+    def project(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "project", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[_builtins.str]:
+        """
+        The GCP region where the key ring was created.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowGenerateKey")
+    def allow_generate_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        """
+        return pulumi.get(self, "allow_generate_key")
+
+    @allow_generate_key.setter
+    def allow_generate_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_generate_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowReplaceKey")
+    def allow_replace_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        """
+        return pulumi.get(self, "allow_replace_key")
+
+    @allow_replace_key.setter
+    def allow_replace_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_replace_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowStoreKey")
+    def allow_store_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        """
+        return pulumi.get(self, "allow_store_key")
+
+    @allow_store_key.setter
+    def allow_store_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_store_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="anyMount")
+    def any_mount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Allow usage from any mount point within the namespace if 'true'
+        """
+        return pulumi.get(self, "any_mount")
+
+    @any_mount.setter
+    def any_mount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "any_mount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cryptoKeyVersion")
+    def crypto_key_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The version of the key to use. (Default: 1)
+        """
+        return pulumi.get(self, "crypto_key_version")
+
+    @crypto_key_version.setter
+    def crypto_key_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "crypto_key_version", value)
 
     @_builtins.property
     @pulumi.getter

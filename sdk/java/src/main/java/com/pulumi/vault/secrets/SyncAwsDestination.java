@@ -116,6 +116,47 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Using Workload Identity Federation (Vault 2.0.0+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncAwsDestination;
+ * import com.pulumi.vault.secrets.SyncAwsDestinationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var awsWif = new SyncAwsDestination("awsWif", SyncAwsDestinationArgs.builder()
+ *             .name("aws-dest-wif")
+ *             .region("us-east-1")
+ *             .roleArn(roleArn)
+ *             .identityTokenAudienceWo(identityTokenAudience)
+ *             .identityTokenAudienceWoVersion(1)
+ *             .identityTokenTtl(3600)
+ *             .identityTokenKeyWo("my-key")
+ *             .identityTokenKeyWoVersion(1)
+ *             .granularity("secret-path")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -268,6 +309,80 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> granularity() {
         return Codegen.optional(this.granularity);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="identityTokenAudienceWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudienceWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudienceWo() {
+        return Codegen.optional(this.identityTokenAudienceWo);
+    }
+    /**
+     * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Export(name="identityTokenAudienceWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> identityTokenAudienceWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Output<Optional<Integer>> identityTokenAudienceWoVersion() {
+        return Codegen.optional(this.identityTokenAudienceWoVersion);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    @Export(name="identityTokenKeyWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKeyWo() {
+        return Codegen.optional(this.identityTokenKeyWo);
+    }
+    /**
+     * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    @Export(name="identityTokenKeyWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> identityTokenKeyWoVersion;
+
+    /**
+     * @return A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
+     * 
+     */
+    public Output<Optional<Integer>> identityTokenKeyWoVersion() {
+        return Codegen.optional(this.identityTokenKeyWoVersion);
+    }
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Output<Integer> identityTokenTtl() {
+        return this.identityTokenTtl;
     }
     /**
      * Unique name of the AWS destination.
@@ -430,6 +545,8 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
+                "identityTokenAudienceWo",
+                "identityTokenKeyWo",
                 "secretAccessKey"
             ))
             .build();

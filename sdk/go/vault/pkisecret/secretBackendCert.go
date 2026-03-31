@@ -98,6 +98,8 @@ type SecretBackendCert struct {
 	PrivateKeyFormat pulumi.StringPtrOutput `pulumi:"privateKeyFormat"`
 	// The private key type
 	PrivateKeyType pulumi.StringOutput `pulumi:"privateKeyType"`
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain pulumi.BoolPtrOutput `pulumi:"removeRootsFromChain"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolOutput `pulumi:"renewPending"`
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
@@ -199,6 +201,8 @@ type secretBackendCertState struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The private key type
 	PrivateKeyType *string `pulumi:"privateKeyType"`
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain *bool `pulumi:"removeRootsFromChain"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending *bool `pulumi:"renewPending"`
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
@@ -261,6 +265,8 @@ type SecretBackendCertState struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The private key type
 	PrivateKeyType pulumi.StringPtrInput
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain pulumi.BoolPtrInput
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolPtrInput
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
@@ -315,6 +321,8 @@ type secretBackendCertArgs struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// The private key format
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain *bool `pulumi:"removeRootsFromChain"`
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke *bool `pulumi:"revoke"`
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
@@ -362,6 +370,8 @@ type SecretBackendCertArgs struct {
 	OtherSans pulumi.StringArrayInput
 	// The private key format
 	PrivateKeyFormat pulumi.StringPtrInput
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain pulumi.BoolPtrInput
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
 	Revoke pulumi.BoolPtrInput
 	// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
@@ -567,6 +577,11 @@ func (o SecretBackendCertOutput) PrivateKeyFormat() pulumi.StringPtrOutput {
 // The private key type
 func (o SecretBackendCertOutput) PrivateKeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.PrivateKeyType }).(pulumi.StringOutput)
+}
+
+// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+func (o SecretBackendCertOutput) RemoveRootsFromChain() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.BoolPtrOutput { return v.RemoveRootsFromChain }).(pulumi.BoolPtrOutput)
 }
 
 // `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.

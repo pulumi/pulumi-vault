@@ -34,6 +34,7 @@ class SecretBackendSignArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
@@ -60,6 +61,7 @@ class SecretBackendSignArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         """
@@ -90,6 +92,8 @@ class SecretBackendSignArgs:
             pulumi.set(__self__, "not_after", not_after)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
+        if remove_roots_from_chain is not None:
+            pulumi.set(__self__, "remove_roots_from_chain", remove_roots_from_chain)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if uri_sans is not None:
@@ -282,6 +286,18 @@ class SecretBackendSignArgs:
         pulumi.set(self, "other_sans", value)
 
     @_builtins.property
+    @pulumi.getter(name="removeRootsFromChain")
+    def remove_roots_from_chain(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+        """
+        return pulumi.get(self, "remove_roots_from_chain")
+
+    @remove_roots_from_chain.setter
+    def remove_roots_from_chain(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "remove_roots_from_chain", value)
+
+    @_builtins.property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -328,6 +344,7 @@ class _SecretBackendSignState:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  renew_pending: Optional[pulumi.Input[_builtins.bool]] = None,
                  serial_number: Optional[pulumi.Input[_builtins.str]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
@@ -360,6 +377,7 @@ class _SecretBackendSignState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[_builtins.str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[_builtins.str] ttl: Time to live
@@ -403,6 +421,8 @@ class _SecretBackendSignState:
             pulumi.set(__self__, "not_after", not_after)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
+        if remove_roots_from_chain is not None:
+            pulumi.set(__self__, "remove_roots_from_chain", remove_roots_from_chain)
         if renew_pending is not None:
             pulumi.set(__self__, "renew_pending", renew_pending)
         if serial_number is not None:
@@ -647,6 +667,18 @@ class _SecretBackendSignState:
         pulumi.set(self, "other_sans", value)
 
     @_builtins.property
+    @pulumi.getter(name="removeRootsFromChain")
+    def remove_roots_from_chain(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+        """
+        return pulumi.get(self, "remove_roots_from_chain")
+
+    @remove_roots_from_chain.setter
+    def remove_roots_from_chain(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "remove_roots_from_chain", value)
+
+    @_builtins.property
     @pulumi.getter(name="renewPending")
     def renew_pending(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -716,6 +748,7 @@ class SecretBackendSign(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -794,6 +827,7 @@ class SecretBackendSign(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         """
@@ -885,6 +919,7 @@ class SecretBackendSign(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_after: Optional[pulumi.Input[_builtins.str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -917,6 +952,7 @@ class SecretBackendSign(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["not_after"] = not_after
             __props__.__dict__["other_sans"] = other_sans
+            __props__.__dict__["remove_roots_from_chain"] = remove_roots_from_chain
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
             __props__.__dict__["ca_chains"] = None
@@ -954,6 +990,7 @@ class SecretBackendSign(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             not_after: Optional[pulumi.Input[_builtins.str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            remove_roots_from_chain: Optional[pulumi.Input[_builtins.bool]] = None,
             renew_pending: Optional[pulumi.Input[_builtins.bool]] = None,
             serial_number: Optional[pulumi.Input[_builtins.str]] = None,
             ttl: Optional[pulumi.Input[_builtins.str]] = None,
@@ -990,6 +1027,7 @@ class SecretBackendSign(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[_builtins.str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[_builtins.str] ttl: Time to live
@@ -1018,6 +1056,7 @@ class SecretBackendSign(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["not_after"] = not_after
         __props__.__dict__["other_sans"] = other_sans
+        __props__.__dict__["remove_roots_from_chain"] = remove_roots_from_chain
         __props__.__dict__["renew_pending"] = renew_pending
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
@@ -1181,6 +1220,14 @@ class SecretBackendSign(pulumi.CustomResource):
         List of other SANs
         """
         return pulumi.get(self, "other_sans")
+
+    @_builtins.property
+    @pulumi.getter(name="removeRootsFromChain")
+    def remove_roots_from_chain(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+        """
+        return pulumi.get(self, "remove_roots_from_chain")
 
     @_builtins.property
     @pulumi.getter(name="renewPending")

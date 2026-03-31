@@ -147,6 +147,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly defaultExtensions: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     */
+    declare public readonly defaultExtensionsTemplate: pulumi.Output<boolean | undefined>;
+    /**
      * Specifies the default username for which a credential will be generated.
      */
     declare public readonly defaultUser: pulumi.Output<string | undefined>;
@@ -154,6 +159,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      */
     declare public readonly defaultUserTemplate: pulumi.Output<boolean | undefined>;
+    /**
+     * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     */
+    declare public readonly excludeCidrLists: pulumi.Output<string[] | undefined>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
@@ -182,6 +192,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
     declare public readonly notBeforeDuration: pulumi.Output<string>;
+    /**
+     * Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     */
+    declare public readonly port: pulumi.Output<number>;
     /**
      * Specifies the Time To Live value.
      */
@@ -218,14 +233,17 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["cidrList"] = state?.cidrList;
             resourceInputs["defaultCriticalOptions"] = state?.defaultCriticalOptions;
             resourceInputs["defaultExtensions"] = state?.defaultExtensions;
+            resourceInputs["defaultExtensionsTemplate"] = state?.defaultExtensionsTemplate;
             resourceInputs["defaultUser"] = state?.defaultUser;
             resourceInputs["defaultUserTemplate"] = state?.defaultUserTemplate;
+            resourceInputs["excludeCidrLists"] = state?.excludeCidrLists;
             resourceInputs["keyIdFormat"] = state?.keyIdFormat;
             resourceInputs["keyType"] = state?.keyType;
             resourceInputs["maxTtl"] = state?.maxTtl;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["notBeforeDuration"] = state?.notBeforeDuration;
+            resourceInputs["port"] = state?.port;
             resourceInputs["ttl"] = state?.ttl;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
@@ -253,14 +271,17 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["cidrList"] = args?.cidrList;
             resourceInputs["defaultCriticalOptions"] = args?.defaultCriticalOptions;
             resourceInputs["defaultExtensions"] = args?.defaultExtensions;
+            resourceInputs["defaultExtensionsTemplate"] = args?.defaultExtensionsTemplate;
             resourceInputs["defaultUser"] = args?.defaultUser;
             resourceInputs["defaultUserTemplate"] = args?.defaultUserTemplate;
+            resourceInputs["excludeCidrLists"] = args?.excludeCidrLists;
             resourceInputs["keyIdFormat"] = args?.keyIdFormat;
             resourceInputs["keyType"] = args?.keyType;
             resourceInputs["maxTtl"] = args?.maxTtl;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["notBeforeDuration"] = args?.notBeforeDuration;
+            resourceInputs["port"] = args?.port;
             resourceInputs["ttl"] = args?.ttl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -350,6 +371,11 @@ export interface SecretBackendRoleState {
      */
     defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     */
+    defaultExtensionsTemplate?: pulumi.Input<boolean>;
+    /**
      * Specifies the default username for which a credential will be generated.
      */
     defaultUser?: pulumi.Input<string>;
@@ -357,6 +383,11 @@ export interface SecretBackendRoleState {
      * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      */
     defaultUserTemplate?: pulumi.Input<boolean>;
+    /**
+     * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     */
+    excludeCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
@@ -385,6 +416,11 @@ export interface SecretBackendRoleState {
      * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
     notBeforeDuration?: pulumi.Input<string>;
+    /**
+     * Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     */
+    port?: pulumi.Input<number>;
     /**
      * Specifies the Time To Live value.
      */
@@ -473,6 +509,11 @@ export interface SecretBackendRoleArgs {
      */
     defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     */
+    defaultExtensionsTemplate?: pulumi.Input<boolean>;
+    /**
      * Specifies the default username for which a credential will be generated.
      */
     defaultUser?: pulumi.Input<string>;
@@ -480,6 +521,11 @@ export interface SecretBackendRoleArgs {
      * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      */
     defaultUserTemplate?: pulumi.Input<boolean>;
+    /**
+     * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     */
+    excludeCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
@@ -508,6 +554,11 @@ export interface SecretBackendRoleArgs {
      * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
     notBeforeDuration?: pulumi.Input<string>;
+    /**
+     * Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     */
+    port?: pulumi.Input<number>;
     /**
      * Specifies the Time To Live value.
      */

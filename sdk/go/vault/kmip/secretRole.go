@@ -76,6 +76,8 @@ import (
 type SecretRole struct {
 	pulumi.CustomResourceState
 
+	// Name of the ca to use, if absent use legacy ca
+	Ca pulumi.StringPtrOutput `pulumi:"ca"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -191,6 +193,8 @@ func GetSecretRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretRole resources.
 type secretRoleState struct {
+	// Name of the ca to use, if absent use legacy ca
+	Ca *string `pulumi:"ca"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -268,6 +272,8 @@ type secretRoleState struct {
 }
 
 type SecretRoleState struct {
+	// Name of the ca to use, if absent use legacy ca
+	Ca pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -349,6 +355,8 @@ func (SecretRoleState) ElementType() reflect.Type {
 }
 
 type secretRoleArgs struct {
+	// Name of the ca to use, if absent use legacy ca
+	Ca *string `pulumi:"ca"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -427,6 +435,8 @@ type secretRoleArgs struct {
 
 // The set of arguments for constructing a SecretRole resource.
 type SecretRoleArgs struct {
+	// Name of the ca to use, if absent use legacy ca
+	Ca pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -588,6 +598,11 @@ func (o SecretRoleOutput) ToSecretRoleOutput() SecretRoleOutput {
 
 func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) SecretRoleOutput {
 	return o
+}
+
+// Name of the ca to use, if absent use legacy ca
+func (o SecretRoleOutput) Ca() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Ca }).(pulumi.StringPtrOutput)
 }
 
 // The namespace to provision the resource in.

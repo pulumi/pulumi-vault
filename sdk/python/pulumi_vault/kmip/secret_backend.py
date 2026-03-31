@@ -1471,7 +1471,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="listenAddrs")
-    def listen_addrs(self) -> pulumi.Output[Sequence[_builtins.str]]:
+    def listen_addrs(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         Addresses the KMIP server should listen on (`host:port`).
         """

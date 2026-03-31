@@ -106,7 +106,7 @@ class SecretsMountArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
-        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
@@ -572,7 +572,7 @@ class SecretsMountArgs:
     @pulumi.getter(name="pluginVersion")
     def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
@@ -750,7 +750,7 @@ class _SecretsMountState:
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
-        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
@@ -1245,7 +1245,7 @@ class _SecretsMountState:
     @pulumi.getter(name="pluginVersion")
     def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
@@ -1406,6 +1406,9 @@ class SecretsMount(pulumi.CustomResource):
                 "password": "super_secret_1",
                 "connection_url": "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
                 "allowed_roles": ["dev1"],
+                "plugin_version": "v0.20.0",
+                "skip_static_role_import_rotation": True,
+                "password_policy": "default",
                 "rotation_schedule": "0 * * * SAT",
                 "rotation_window": 3600,
             }],
@@ -1416,6 +1419,9 @@ class SecretsMount(pulumi.CustomResource):
                 "connection_url": "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
                 "verify_connection": True,
                 "allowed_roles": ["dev2"],
+                "plugin_version": "v0.19.0",
+                "skip_static_role_import_rotation": True,
+                "password_policy": "default",
                 "rotation_schedule": "0 * * * SAT",
                 "rotation_window": 3600,
             }])
@@ -1501,7 +1507,7 @@ class SecretsMount(pulumi.CustomResource):
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
-        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.  
@@ -1551,6 +1557,9 @@ class SecretsMount(pulumi.CustomResource):
                 "password": "super_secret_1",
                 "connection_url": "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
                 "allowed_roles": ["dev1"],
+                "plugin_version": "v0.20.0",
+                "skip_static_role_import_rotation": True,
+                "password_policy": "default",
                 "rotation_schedule": "0 * * * SAT",
                 "rotation_window": 3600,
             }],
@@ -1561,6 +1570,9 @@ class SecretsMount(pulumi.CustomResource):
                 "connection_url": "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
                 "verify_connection": True,
                 "allowed_roles": ["dev2"],
+                "plugin_version": "v0.19.0",
+                "skip_static_role_import_rotation": True,
+                "password_policy": "default",
                 "rotation_schedule": "0 * * * SAT",
                 "rotation_window": 3600,
             }])
@@ -1804,7 +1816,7 @@ class SecretsMount(pulumi.CustomResource):
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
-        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.  
@@ -2137,7 +2149,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter(name="pluginVersion")
     def plugin_version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 

@@ -376,6 +376,20 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.otherSans);
     }
     /**
+     * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     * 
+     */
+    @Export(name="removeRootsFromChain", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> removeRootsFromChain;
+
+    /**
+     * @return If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> removeRootsFromChain() {
+        return Codegen.optional(this.removeRootsFromChain);
+    }
+    /**
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      * 
      */

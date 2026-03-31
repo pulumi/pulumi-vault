@@ -28,6 +28,11 @@ class SyncAzureDestinationArgs:
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -36,12 +41,9 @@ class SyncAzureDestinationArgs:
         """
         The set of arguments for constructing a SyncAzureDestination resource.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
-               destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -50,10 +52,16 @@ class SyncAzureDestinationArgs:
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
-        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
-               restrictions. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -85,6 +93,16 @@ class SyncAzureDestinationArgs:
             pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if identity_token_audience_wo is not None:
+            pulumi.set(__self__, "identity_token_audience_wo", identity_token_audience_wo)
+        if identity_token_audience_wo_version is not None:
+            pulumi.set(__self__, "identity_token_audience_wo_version", identity_token_audience_wo_version)
+        if identity_token_key_wo is not None:
+            pulumi.set(__self__, "identity_token_key_wo", identity_token_key_wo)
+        if identity_token_key_wo_version is not None:
+            pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if key_vault_uri is not None:
             pulumi.set(__self__, "key_vault_uri", key_vault_uri)
         if name is not None:
@@ -100,8 +118,7 @@ class SyncAzureDestinationArgs:
     @pulumi.getter(name="allowedIpv4Addresses")
     def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List of IPv4 addresses or CIDR blocks allowed to make outbound
-        connections from Vault to the destination. Requires Vault 1.19+.
+        Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ipv4_addresses")
 
@@ -113,8 +130,7 @@ class SyncAzureDestinationArgs:
     @pulumi.getter(name="allowedIpv6Addresses")
     def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List of IPv6 addresses or CIDR blocks allowed to make outbound
-        connections from Vault to the destination. Requires Vault 1.19+.
+        Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ipv6_addresses")
 
@@ -126,8 +142,7 @@ class SyncAzureDestinationArgs:
     @pulumi.getter(name="allowedPorts")
     def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
         """
-        List of port numbers allowed for outbound connections from Vault to the
-        destination. Requires Vault 1.19+.
+        Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ports")
 
@@ -191,8 +206,7 @@ class SyncAzureDestinationArgs:
     @pulumi.getter(name="disableStrictNetworking")
     def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When set to `true`, disables strict enforcement of networking
-        restrictions. Defaults to `false`. Requires Vault 1.19+.
+        If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         """
         return pulumi.get(self, "disable_strict_networking")
 
@@ -212,6 +226,68 @@ class SyncAzureDestinationArgs:
     @granularity.setter
     def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "granularity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @identity_token_audience_wo.setter
+    def identity_token_audience_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_audience_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @identity_token_audience_wo_version.setter
+    def identity_token_audience_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_audience_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @identity_token_key_wo.setter
+    def identity_token_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @identity_token_key_wo_version.setter
+    def identity_token_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="keyVaultUri")
@@ -293,6 +369,11 @@ class _SyncAzureDestinationState:
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -302,12 +383,9 @@ class _SyncAzureDestinationState:
         """
         Input properties used for looking up and filtering SyncAzureDestination resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
-               destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -316,10 +394,16 @@ class _SyncAzureDestinationState:
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
-        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
-               restrictions. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -352,6 +436,16 @@ class _SyncAzureDestinationState:
             pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if identity_token_audience_wo is not None:
+            pulumi.set(__self__, "identity_token_audience_wo", identity_token_audience_wo)
+        if identity_token_audience_wo_version is not None:
+            pulumi.set(__self__, "identity_token_audience_wo_version", identity_token_audience_wo_version)
+        if identity_token_key_wo is not None:
+            pulumi.set(__self__, "identity_token_key_wo", identity_token_key_wo)
+        if identity_token_key_wo_version is not None:
+            pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if key_vault_uri is not None:
             pulumi.set(__self__, "key_vault_uri", key_vault_uri)
         if name is not None:
@@ -369,8 +463,7 @@ class _SyncAzureDestinationState:
     @pulumi.getter(name="allowedIpv4Addresses")
     def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List of IPv4 addresses or CIDR blocks allowed to make outbound
-        connections from Vault to the destination. Requires Vault 1.19+.
+        Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ipv4_addresses")
 
@@ -382,8 +475,7 @@ class _SyncAzureDestinationState:
     @pulumi.getter(name="allowedIpv6Addresses")
     def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List of IPv6 addresses or CIDR blocks allowed to make outbound
-        connections from Vault to the destination. Requires Vault 1.19+.
+        Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ipv6_addresses")
 
@@ -395,8 +487,7 @@ class _SyncAzureDestinationState:
     @pulumi.getter(name="allowedPorts")
     def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
         """
-        List of port numbers allowed for outbound connections from Vault to the
-        destination. Requires Vault 1.19+.
+        Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ports")
 
@@ -460,8 +551,7 @@ class _SyncAzureDestinationState:
     @pulumi.getter(name="disableStrictNetworking")
     def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When set to `true`, disables strict enforcement of networking
-        restrictions. Defaults to `false`. Requires Vault 1.19+.
+        If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         """
         return pulumi.get(self, "disable_strict_networking")
 
@@ -481,6 +571,68 @@ class _SyncAzureDestinationState:
     @granularity.setter
     def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "granularity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @identity_token_audience_wo.setter
+    def identity_token_audience_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_audience_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @identity_token_audience_wo_version.setter
+    def identity_token_audience_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_audience_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @identity_token_key_wo.setter
+    def identity_token_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @identity_token_key_wo_version.setter
+    def identity_token_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="keyVaultUri")
@@ -577,6 +729,11 @@ class SyncAzureDestination(pulumi.CustomResource):
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -610,19 +767,50 @@ class SyncAzureDestination(pulumi.CustomResource):
             client_secret=client_secret,
             tenant_id=tenant_id,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
-            allowed_ipv4_addresses=[
-                "192.168.1.1/24",
-                "10.0.0.1/8",
-            ],
-            allowed_ipv6_addresses=["2001:db9::/32"],
-            allowed_ports=[
-                443,
-                9443,
-            ],
-            disable_strict_networking=False,
             custom_tags={
                 "foo": "bar",
             })
+        ```
+
+        ### With Networking Configuration (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        az_networking = vault.secrets.SyncAzureDestination("az_networking",
+            name="az-dest-networking",
+            key_vault_uri=key_vault_uri,
+            client_id=client_id,
+            client_secret=client_secret,
+            tenant_id=tenant_id,
+            allowed_ipv4_addresses=[
+                "10.0.0.0/8",
+                "192.168.0.0/16",
+            ],
+            allowed_ipv6_addresses=["2001:db8::/32"],
+            allowed_ports=[
+                443,
+                8443,
+            ],
+            disable_strict_networking=False)
+        ```
+
+        ### Using Workload Identity Federation (Vault 2.0.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        az_wif = vault.secrets.SyncAzureDestination("az_wif",
+            name="az-dest-wif",
+            key_vault_uri=key_vault_uri,
+            client_id=client_id,
+            tenant_id=tenant_id,
+            identity_token_audience=identity_token_audience,
+            identity_token_ttl=3600,
+            identity_token_key="my-key",
+            granularity="secret-path")
         ```
 
         ## Import
@@ -636,12 +824,9 @@ class SyncAzureDestination(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
-               destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -650,10 +835,16 @@ class SyncAzureDestination(pulumi.CustomResource):
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
-        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
-               restrictions. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -700,19 +891,50 @@ class SyncAzureDestination(pulumi.CustomResource):
             client_secret=client_secret,
             tenant_id=tenant_id,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
-            allowed_ipv4_addresses=[
-                "192.168.1.1/24",
-                "10.0.0.1/8",
-            ],
-            allowed_ipv6_addresses=["2001:db9::/32"],
-            allowed_ports=[
-                443,
-                9443,
-            ],
-            disable_strict_networking=False,
             custom_tags={
                 "foo": "bar",
             })
+        ```
+
+        ### With Networking Configuration (Vault 1.19+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        az_networking = vault.secrets.SyncAzureDestination("az_networking",
+            name="az-dest-networking",
+            key_vault_uri=key_vault_uri,
+            client_id=client_id,
+            client_secret=client_secret,
+            tenant_id=tenant_id,
+            allowed_ipv4_addresses=[
+                "10.0.0.0/8",
+                "192.168.0.0/16",
+            ],
+            allowed_ipv6_addresses=["2001:db8::/32"],
+            allowed_ports=[
+                443,
+                8443,
+            ],
+            disable_strict_networking=False)
+        ```
+
+        ### Using Workload Identity Federation (Vault 2.0.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        az_wif = vault.secrets.SyncAzureDestination("az_wif",
+            name="az-dest-wif",
+            key_vault_uri=key_vault_uri,
+            client_id=client_id,
+            tenant_id=tenant_id,
+            identity_token_audience=identity_token_audience,
+            identity_token_ttl=3600,
+            identity_token_key="my-key",
+            granularity="secret-path")
         ```
 
         ## Import
@@ -748,6 +970,11 @@ class SyncAzureDestination(pulumi.CustomResource):
                  custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -771,13 +998,18 @@ class SyncAzureDestination(pulumi.CustomResource):
             __props__.__dict__["custom_tags"] = custom_tags
             __props__.__dict__["disable_strict_networking"] = disable_strict_networking
             __props__.__dict__["granularity"] = granularity
+            __props__.__dict__["identity_token_audience_wo"] = None if identity_token_audience_wo is None else pulumi.Output.secret(identity_token_audience_wo)
+            __props__.__dict__["identity_token_audience_wo_version"] = identity_token_audience_wo_version
+            __props__.__dict__["identity_token_key_wo"] = None if identity_token_key_wo is None else pulumi.Output.secret(identity_token_key_wo)
+            __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["key_vault_uri"] = key_vault_uri
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["secret_name_template"] = secret_name_template
             __props__.__dict__["tenant_id"] = tenant_id
             __props__.__dict__["type"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret", "identityTokenAudienceWo", "identityTokenKeyWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SyncAzureDestination, __self__).__init__(
             'vault:secrets/syncAzureDestination:SyncAzureDestination',
@@ -798,6 +1030,11 @@ class SyncAzureDestination(pulumi.CustomResource):
             custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
             granularity: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             key_vault_uri: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -811,12 +1048,9 @@ class SyncAzureDestination(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: List of IPv4 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: List of IPv6 addresses or CIDR blocks allowed to make outbound
-               connections from Vault to the destination. Requires Vault 1.19+.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: List of port numbers allowed for outbound connections from Vault to the
-               destination. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv4_addresses: Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_ipv6_addresses: Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.int]]] allowed_ports: Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] client_id: Client ID of an Azure app registration.
                Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
                variable.
@@ -825,10 +1059,16 @@ class SyncAzureDestination(pulumi.CustomResource):
                variable.
         :param pulumi.Input[_builtins.str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_tags: Custom tags to set on the secret managed at the destination.
-        :param pulumi.Input[_builtins.bool] disable_strict_networking: When set to `true`, disables strict enforcement of networking
-               restrictions. Defaults to `false`. Requires Vault 1.19+.
+        :param pulumi.Input[_builtins.bool] disable_strict_networking: If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -856,6 +1096,11 @@ class SyncAzureDestination(pulumi.CustomResource):
         __props__.__dict__["custom_tags"] = custom_tags
         __props__.__dict__["disable_strict_networking"] = disable_strict_networking
         __props__.__dict__["granularity"] = granularity
+        __props__.__dict__["identity_token_audience_wo"] = identity_token_audience_wo
+        __props__.__dict__["identity_token_audience_wo_version"] = identity_token_audience_wo_version
+        __props__.__dict__["identity_token_key_wo"] = identity_token_key_wo
+        __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["key_vault_uri"] = key_vault_uri
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -868,8 +1113,7 @@ class SyncAzureDestination(pulumi.CustomResource):
     @pulumi.getter(name="allowedIpv4Addresses")
     def allowed_ipv4_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        List of IPv4 addresses or CIDR blocks allowed to make outbound
-        connections from Vault to the destination. Requires Vault 1.19+.
+        Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ipv4_addresses")
 
@@ -877,8 +1121,7 @@ class SyncAzureDestination(pulumi.CustomResource):
     @pulumi.getter(name="allowedIpv6Addresses")
     def allowed_ipv6_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
-        List of IPv6 addresses or CIDR blocks allowed to make outbound
-        connections from Vault to the destination. Requires Vault 1.19+.
+        Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ipv6_addresses")
 
@@ -886,8 +1129,7 @@ class SyncAzureDestination(pulumi.CustomResource):
     @pulumi.getter(name="allowedPorts")
     def allowed_ports(self) -> pulumi.Output[Optional[Sequence[_builtins.int]]]:
         """
-        List of port numbers allowed for outbound connections from Vault to the
-        destination. Requires Vault 1.19+.
+        Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         """
         return pulumi.get(self, "allowed_ports")
 
@@ -931,8 +1173,7 @@ class SyncAzureDestination(pulumi.CustomResource):
     @pulumi.getter(name="disableStrictNetworking")
     def disable_strict_networking(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When set to `true`, disables strict enforcement of networking
-        restrictions. Defaults to `false`. Requires Vault 1.19+.
+        If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         """
         return pulumi.get(self, "disable_strict_networking")
 
@@ -944,6 +1185,48 @@ class SyncAzureDestination(pulumi.CustomResource):
         at the destination. Supports `secret-path` and `secret-key`.
         """
         return pulumi.get(self, "granularity")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[_builtins.int]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
 
     @_builtins.property
     @pulumi.getter(name="keyVaultUri")

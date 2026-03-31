@@ -246,6 +246,25 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+     * Vault 1.15 or later.
+     * 
+     */
+    @Import(name="tokenDefaultAudiences")
+    private @Nullable Output<List<String>> tokenDefaultAudiences;
+
+    /**
+     * @return The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+     * Vault 1.15 or later.
+     * 
+     */
+    public Optional<Output<List<String>>> tokenDefaultAudiences() {
+        return Optional.ofNullable(this.tokenDefaultAudiences);
+    }
+
+    /**
      * The default TTL for generated Kubernetes tokens in seconds.
      * 
      */
@@ -290,6 +309,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.nameTemplate = $.nameTemplate;
         this.namespace = $.namespace;
         this.serviceAccountName = $.serviceAccountName;
+        this.tokenDefaultAudiences = $.tokenDefaultAudiences;
         this.tokenDefaultTtl = $.tokenDefaultTtl;
         this.tokenMaxTtl = $.tokenMaxTtl;
     }
@@ -620,6 +640,43 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder serviceAccountName(String serviceAccountName) {
             return serviceAccountName(Output.of(serviceAccountName));
+        }
+
+        /**
+         * @param tokenDefaultAudiences The default audiences for generated Kubernetes tokens.
+         * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+         * Vault 1.15 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenDefaultAudiences(@Nullable Output<List<String>> tokenDefaultAudiences) {
+            $.tokenDefaultAudiences = tokenDefaultAudiences;
+            return this;
+        }
+
+        /**
+         * @param tokenDefaultAudiences The default audiences for generated Kubernetes tokens.
+         * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+         * Vault 1.15 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenDefaultAudiences(List<String> tokenDefaultAudiences) {
+            return tokenDefaultAudiences(Output.of(tokenDefaultAudiences));
+        }
+
+        /**
+         * @param tokenDefaultAudiences The default audiences for generated Kubernetes tokens.
+         * If not set, defaults to the Kubernetes cluster&#39;s default audiences. This field requires
+         * Vault 1.15 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenDefaultAudiences(String... tokenDefaultAudiences) {
+            return tokenDefaultAudiences(List.of(tokenDefaultAudiences));
         }
 
         /**

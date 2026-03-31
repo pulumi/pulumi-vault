@@ -135,15 +135,15 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
      * Whether to disable certificate verification
      * 
      */
-    @Import(name="insecure")
-    private @Nullable Output<Boolean> insecure;
+    @Import(name="insecureTls")
+    private @Nullable Output<Boolean> insecureTls;
 
     /**
      * @return Whether to disable certificate verification
      * 
      */
-    public Optional<Output<Boolean>> insecure() {
-        return Optional.ofNullable(this.insecure);
+    public Optional<Output<Boolean>> insecureTls() {
+        return Optional.ofNullable(this.insecureTls);
     }
 
     /**
@@ -177,6 +177,21 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
     }
 
     /**
+     * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    @Import(name="passwordPolicy")
+    private @Nullable Output<String> passwordPolicy;
+
+    /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<Output<String>> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+
+    /**
      * Specifies the name of the plugin to use.
      * 
      */
@@ -189,6 +204,21 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
      */
     public Optional<Output<String>> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+
+    /**
+     * Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    @Import(name="pluginVersion")
+    private @Nullable Output<String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<Output<String>> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
 
     /**
@@ -257,6 +287,21 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
      */
     public Optional<Output<Integer>> rotationWindow() {
         return Optional.ofNullable(this.rotationWindow);
+    }
+
+    /**
+     * Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Import(name="skipStaticRoleImportRotation")
+    private @Nullable Output<Boolean> skipStaticRoleImportRotation;
+
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Output<Boolean>> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
     }
 
     /**
@@ -346,14 +391,17 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         this.clientKey = $.clientKey;
         this.data = $.data;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
-        this.insecure = $.insecure;
+        this.insecureTls = $.insecureTls;
         this.name = $.name;
         this.password = $.password;
+        this.passwordPolicy = $.passwordPolicy;
         this.pluginName = $.pluginName;
+        this.pluginVersion = $.pluginVersion;
         this.rootRotationStatements = $.rootRotationStatements;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
+        this.skipStaticRoleImportRotation = $.skipStaticRoleImportRotation;
         this.tlsServerName = $.tlsServerName;
         this.url = $.url;
         this.username = $.username;
@@ -544,24 +592,24 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param insecure Whether to disable certificate verification
+         * @param insecureTls Whether to disable certificate verification
          * 
          * @return builder
          * 
          */
-        public Builder insecure(@Nullable Output<Boolean> insecure) {
-            $.insecure = insecure;
+        public Builder insecureTls(@Nullable Output<Boolean> insecureTls) {
+            $.insecureTls = insecureTls;
             return this;
         }
 
         /**
-         * @param insecure Whether to disable certificate verification
+         * @param insecureTls Whether to disable certificate verification
          * 
          * @return builder
          * 
          */
-        public Builder insecure(Boolean insecure) {
-            return insecure(Output.of(insecure));
+        public Builder insecureTls(Boolean insecureTls) {
+            return insecureTls(Output.of(insecureTls));
         }
 
         /**
@@ -607,6 +655,27 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
+         * @param passwordPolicy The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(@Nullable Output<String> passwordPolicy) {
+            $.passwordPolicy = passwordPolicy;
+            return this;
+        }
+
+        /**
+         * @param passwordPolicy The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(String passwordPolicy) {
+            return passwordPolicy(Output.of(passwordPolicy));
+        }
+
+        /**
          * @param pluginName Specifies the name of the plugin to use.
          * 
          * @return builder
@@ -625,6 +694,27 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
          */
         public Builder pluginName(String pluginName) {
             return pluginName(Output.of(pluginName));
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(@Nullable Output<String> pluginVersion) {
+            $.pluginVersion = pluginVersion;
+            return this;
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use for this connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(String pluginVersion) {
+            return pluginVersion(Output.of(pluginVersion));
         }
 
         /**
@@ -727,6 +817,27 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
          */
         public Builder rotationWindow(Integer rotationWindow) {
             return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
+         * @param skipStaticRoleImportRotation Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipStaticRoleImportRotation(@Nullable Output<Boolean> skipStaticRoleImportRotation) {
+            $.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
+            return this;
+        }
+
+        /**
+         * @param skipStaticRoleImportRotation Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipStaticRoleImportRotation(Boolean skipStaticRoleImportRotation) {
+            return skipStaticRoleImportRotation(Output.of(skipStaticRoleImportRotation));
         }
 
         /**

@@ -311,14 +311,14 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
         return this.issuingCa;
     }
     /**
-     * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
      * 
      */
     @Export(name="keyUsages", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> keyUsages;
 
     /**
-     * @return Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate.
+     * @return Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
      * 
      */
     public Output<Optional<List<String>>> keyUsages() {

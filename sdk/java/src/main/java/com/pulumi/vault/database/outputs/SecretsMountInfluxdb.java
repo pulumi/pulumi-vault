@@ -60,6 +60,11 @@ public final class SecretsMountInfluxdb {
      */
     private String password;
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    private @Nullable String passwordPolicy;
+    /**
      * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
@@ -74,6 +79,11 @@ public final class SecretsMountInfluxdb {
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    private @Nullable String pluginVersion;
     /**
      * @return The transport port to use to connect to Influxdb.
      * 
@@ -103,6 +113,11 @@ public final class SecretsMountInfluxdb {
      * 
      */
     private @Nullable Integer rotationWindow;
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Boolean skipStaticRoleImportRotation;
     /**
      * @return Whether to use TLS when connecting to Influxdb.
      * 
@@ -186,6 +201,13 @@ public final class SecretsMountInfluxdb {
         return this.password;
     }
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<String> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+    /**
      * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
@@ -205,6 +227,13 @@ public final class SecretsMountInfluxdb {
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<String> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
     /**
      * @return The transport port to use to connect to Influxdb.
@@ -244,6 +273,13 @@ public final class SecretsMountInfluxdb {
      */
     public Optional<Integer> rotationWindow() {
         return Optional.ofNullable(this.rotationWindow);
+    }
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Boolean> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
     }
     /**
      * @return Whether to use TLS when connecting to Influxdb.
@@ -292,14 +328,17 @@ public final class SecretsMountInfluxdb {
         private @Nullable Boolean insecureTls;
         private String name;
         private String password;
+        private @Nullable String passwordPolicy;
         private @Nullable String pemBundle;
         private @Nullable String pemJson;
         private @Nullable String pluginName;
+        private @Nullable String pluginVersion;
         private @Nullable Integer port;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable Boolean skipStaticRoleImportRotation;
         private @Nullable Boolean tls;
         private String username;
         private @Nullable String usernameTemplate;
@@ -315,14 +354,17 @@ public final class SecretsMountInfluxdb {
     	      this.insecureTls = defaults.insecureTls;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordPolicy = defaults.passwordPolicy;
     	      this.pemBundle = defaults.pemBundle;
     	      this.pemJson = defaults.pemJson;
     	      this.pluginName = defaults.pluginName;
+    	      this.pluginVersion = defaults.pluginVersion;
     	      this.port = defaults.port;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.skipStaticRoleImportRotation = defaults.skipStaticRoleImportRotation;
     	      this.tls = defaults.tls;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
@@ -387,6 +429,12 @@ public final class SecretsMountInfluxdb {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordPolicy(@Nullable String passwordPolicy) {
+
+            this.passwordPolicy = passwordPolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pemBundle(@Nullable String pemBundle) {
 
             this.pemBundle = pemBundle;
@@ -402,6 +450,12 @@ public final class SecretsMountInfluxdb {
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder pluginVersion(@Nullable String pluginVersion) {
+
+            this.pluginVersion = pluginVersion;
             return this;
         }
         @CustomType.Setter
@@ -435,6 +489,12 @@ public final class SecretsMountInfluxdb {
         public Builder rotationWindow(@Nullable Integer rotationWindow) {
 
             this.rotationWindow = rotationWindow;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder skipStaticRoleImportRotation(@Nullable Boolean skipStaticRoleImportRotation) {
+
+            this.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             return this;
         }
         @CustomType.Setter
@@ -473,14 +533,17 @@ public final class SecretsMountInfluxdb {
             _resultValue.insecureTls = insecureTls;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordPolicy = passwordPolicy;
             _resultValue.pemBundle = pemBundle;
             _resultValue.pemJson = pemJson;
             _resultValue.pluginName = pluginName;
+            _resultValue.pluginVersion = pluginVersion;
             _resultValue.port = port;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             _resultValue.tls = tls;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;

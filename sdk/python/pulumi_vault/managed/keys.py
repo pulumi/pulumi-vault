@@ -23,6 +23,7 @@ class KeysArgs:
     def __init__(__self__, *,
                  aws: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]] = None,
                  azures: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]] = None,
+                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pkcs: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
         """
@@ -30,6 +31,7 @@ class KeysArgs:
 
         :param pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]] azures: Configuration block for Azure Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]] gcps: Configuration block for GCP Cloud KMS Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]] pkcs: Configuration block for PKCS Managed Keys
         """
@@ -37,6 +39,8 @@ class KeysArgs:
             pulumi.set(__self__, "aws", aws)
         if azures is not None:
             pulumi.set(__self__, "azures", azures)
+        if gcps is not None:
+            pulumi.set(__self__, "gcps", gcps)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if pkcs is not None:
@@ -65,6 +69,18 @@ class KeysArgs:
     @azures.setter
     def azures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]]):
         pulumi.set(self, "azures", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def gcps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]:
+        """
+        Configuration block for GCP Cloud KMS Managed Keys
+        """
+        return pulumi.get(self, "gcps")
+
+    @gcps.setter
+    def gcps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]):
+        pulumi.set(self, "gcps", value)
 
     @_builtins.property
     @pulumi.getter
@@ -96,6 +112,7 @@ class _KeysState:
     def __init__(__self__, *,
                  aws: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]] = None,
                  azures: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]] = None,
+                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pkcs: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
         """
@@ -103,6 +120,7 @@ class _KeysState:
 
         :param pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]] azures: Configuration block for Azure Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]] gcps: Configuration block for GCP Cloud KMS Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]] pkcs: Configuration block for PKCS Managed Keys
         """
@@ -110,6 +128,8 @@ class _KeysState:
             pulumi.set(__self__, "aws", aws)
         if azures is not None:
             pulumi.set(__self__, "azures", azures)
+        if gcps is not None:
+            pulumi.set(__self__, "gcps", gcps)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if pkcs is not None:
@@ -138,6 +158,18 @@ class _KeysState:
     @azures.setter
     def azures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]]):
         pulumi.set(self, "azures", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def gcps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]:
+        """
+        Configuration block for GCP Cloud KMS Managed Keys
+        """
+        return pulumi.get(self, "gcps")
+
+    @gcps.setter
+    def gcps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]):
+        pulumi.set(self, "gcps", value)
 
     @_builtins.property
     @pulumi.getter
@@ -172,6 +204,7 @@ class Keys(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
                  azures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
+                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pkcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
                  __props__=None):
@@ -181,6 +214,8 @@ class Keys(pulumi.CustomResource):
         **Note** this feature is available only with Vault Enterprise.
 
         ## Example Usage
+
+        ### AWS
 
         ```python
         import pulumi
@@ -214,6 +249,31 @@ class Keys(pulumi.CustomResource):
                 keys.aws[0].name,
                 keys.aws[1].name,
             ])
+        ```
+
+        ### GCP Cloud KMS
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_keys = vault.managed.Keys("gcp_keys", gcps=[{
+            "name": "gcp-key-1",
+            "credentials": std.file(input="sa-credentials.json").result,
+            "project": gcp_project,
+            "region": "us-east1",
+            "key_ring": "vault-keyring",
+            "crypto_key": "vault-key",
+            "algorithm": "rsa_sign_pkcs1_2048_sha256",
+        }])
+        pki = vault.Mount("pki",
+            path="pki",
+            type="pki",
+            description="Example PKI mount using GCP Cloud KMS managed key",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=36000,
+            allowed_managed_keys=[gcp_keys.gcps[0].name])
         ```
 
         ## Caveats
@@ -235,6 +295,7 @@ class Keys(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]] azures: Configuration block for Azure Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]] gcps: Configuration block for GCP Cloud KMS Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]] pkcs: Configuration block for PKCS Managed Keys
         """
@@ -250,6 +311,8 @@ class Keys(pulumi.CustomResource):
         **Note** this feature is available only with Vault Enterprise.
 
         ## Example Usage
+
+        ### AWS
 
         ```python
         import pulumi
@@ -283,6 +346,31 @@ class Keys(pulumi.CustomResource):
                 keys.aws[0].name,
                 keys.aws[1].name,
             ])
+        ```
+
+        ### GCP Cloud KMS
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_keys = vault.managed.Keys("gcp_keys", gcps=[{
+            "name": "gcp-key-1",
+            "credentials": std.file(input="sa-credentials.json").result,
+            "project": gcp_project,
+            "region": "us-east1",
+            "key_ring": "vault-keyring",
+            "crypto_key": "vault-key",
+            "algorithm": "rsa_sign_pkcs1_2048_sha256",
+        }])
+        pki = vault.Mount("pki",
+            path="pki",
+            type="pki",
+            description="Example PKI mount using GCP Cloud KMS managed key",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=36000,
+            allowed_managed_keys=[gcp_keys.gcps[0].name])
         ```
 
         ## Caveats
@@ -317,6 +405,7 @@ class Keys(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  aws: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
                  azures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
+                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  pkcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
                  __props__=None):
@@ -330,6 +419,7 @@ class Keys(pulumi.CustomResource):
 
             __props__.__dict__["aws"] = aws
             __props__.__dict__["azures"] = azures
+            __props__.__dict__["gcps"] = gcps
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["pkcs"] = pkcs
         super(Keys, __self__).__init__(
@@ -344,6 +434,7 @@ class Keys(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             aws: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
             azures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
+            gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             pkcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None) -> 'Keys':
         """
@@ -355,6 +446,7 @@ class Keys(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]] azures: Configuration block for Azure Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]] gcps: Configuration block for GCP Cloud KMS Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]] pkcs: Configuration block for PKCS Managed Keys
         """
@@ -364,6 +456,7 @@ class Keys(pulumi.CustomResource):
 
         __props__.__dict__["aws"] = aws
         __props__.__dict__["azures"] = azures
+        __props__.__dict__["gcps"] = gcps
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["pkcs"] = pkcs
         return Keys(resource_name, opts=opts, __props__=__props__)
@@ -383,6 +476,14 @@ class Keys(pulumi.CustomResource):
         Configuration block for Azure Managed Keys
         """
         return pulumi.get(self, "azures")
+
+    @_builtins.property
+    @pulumi.getter
+    def gcps(self) -> pulumi.Output[Optional[Sequence['outputs.KeysGcp']]]:
+        """
+        Configuration block for GCP Cloud KMS Managed Keys
+        """
+        return pulumi.get(self, "gcps")
 
     @_builtins.property
     @pulumi.getter

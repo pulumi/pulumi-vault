@@ -127,6 +127,8 @@ type SecretBackendSign struct {
 	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain pulumi.BoolPtrOutput `pulumi:"removeRootsFromChain"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolOutput `pulumi:"renewPending"`
 	// The certificate's serial number, hex formatted.
@@ -220,6 +222,8 @@ type secretBackendSignState struct {
 	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain *bool `pulumi:"removeRootsFromChain"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending *bool `pulumi:"renewPending"`
 	// The certificate's serial number, hex formatted.
@@ -275,6 +279,8 @@ type SecretBackendSignState struct {
 	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain pulumi.BoolPtrInput
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolPtrInput
 	// The certificate's serial number, hex formatted.
@@ -326,6 +332,8 @@ type secretBackendSignArgs struct {
 	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain *bool `pulumi:"removeRootsFromChain"`
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
 	// List of alternative URIs
@@ -370,6 +378,8 @@ type SecretBackendSignArgs struct {
 	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
+	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+	RemoveRootsFromChain pulumi.BoolPtrInput
 	// Time to live
 	Ttl pulumi.StringPtrInput
 	// List of alternative URIs
@@ -562,6 +572,11 @@ func (o SecretBackendSignOutput) NotAfter() pulumi.StringPtrOutput {
 // List of other SANs
 func (o SecretBackendSignOutput) OtherSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
+}
+
+// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+func (o SecretBackendSignOutput) RemoveRootsFromChain() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.BoolPtrOutput { return v.RemoveRootsFromChain }).(pulumi.BoolPtrOutput)
 }
 
 // `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.

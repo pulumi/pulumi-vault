@@ -790,6 +790,8 @@ func (o AuthLoginGcpOutput) UseRootNamespace() pulumi.BoolPtrOutput {
 }
 
 type AuthLoginJwt struct {
+	// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+	DistributedClaimAccessToken *string `pulumi:"distributedClaimAccessToken"`
 	// A signed JSON Web Token.
 	Jwt *string `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
@@ -814,6 +816,8 @@ type AuthLoginJwtInput interface {
 }
 
 type AuthLoginJwtArgs struct {
+	// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+	DistributedClaimAccessToken pulumi.StringPtrInput `pulumi:"distributedClaimAccessToken"`
 	// A signed JSON Web Token.
 	Jwt pulumi.StringPtrInput `pulumi:"jwt"`
 	// The path where the authentication engine is mounted.
@@ -850,6 +854,11 @@ func (o AuthLoginJwtOutput) ToAuthLoginJwtOutput() AuthLoginJwtOutput {
 
 func (o AuthLoginJwtOutput) ToAuthLoginJwtOutputWithContext(ctx context.Context) AuthLoginJwtOutput {
 	return o
+}
+
+// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+func (o AuthLoginJwtOutput) DistributedClaimAccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AuthLoginJwt) *string { return v.DistributedClaimAccessToken }).(pulumi.StringPtrOutput)
 }
 
 // A signed JSON Web Token.

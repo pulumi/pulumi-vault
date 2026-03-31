@@ -68,76 +68,6 @@ import (
 //
 // ```
 //
-// ### Oracle Connection with Self-Managed Mode (Rootless)
-//
-// For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
-// which allows a static role to manage its own database credentials without requiring root access:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/database"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			db, err := vault.NewMount(ctx, "db", &vault.MountArgs{
-//				Path: pulumi.String("database"),
-//				Type: pulumi.String("database"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			oracle, err := database.NewSecretBackendConnection(ctx, "oracle", &database.SecretBackendConnectionArgs{
-//				Backend: db.Path,
-//				Name:    pulumi.String("oracle"),
-//				AllowedRoles: pulumi.StringArray{
-//					pulumi.String("my-role"),
-//				},
-//				Oracle: &database.SecretBackendConnectionOracleArgs{
-//					ConnectionUrl: pulumi.String("{{username}}/{{password}}@//host:port/service"),
-//					SelfManaged:   pulumi.Bool(true),
-//					PluginName:    "vault-plugin-database-oracle",
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = database.NewSecretBackendStaticRole(ctx, "oracle_role", &database.SecretBackendStaticRoleArgs{
-//				Backend:           db.Path,
-//				Name:              pulumi.String("my-role"),
-//				DbName:            oracle.Name,
-//				Username:          pulumi.String("vault_user"),
-//				PasswordWo:        pulumi.String("initial-password"),
-//				PasswordWoVersion: pulumi.Int(1),
-//				RotationPeriod:    pulumi.Int(3600),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Ephemeral Attributes Reference
-//
-// The following write-only attributes are supported for all DBs that support username/password:
-//
-//   - `passwordWo` - (Optional) The password for the user. Can be updated.
-//     **Note**: This property is write-only and will not be read from the API.
-//
-// The following write-only attribute is supported only for Snowflake DB:
-//
-//   - `privateKeyWo` - (Optional) The private key associated with the Snowflake user.
-//     **Note**: This property is write-only and will not be read from the API.
-//
 // ## Import
 //
 // Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
@@ -190,8 +120,12 @@ type SecretBackendConnection struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrOutput `pulumi:"oracle"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringOutput `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrOutput `pulumi:"postgresql"`
 	// A nested block containing configuration options for Redis connections.
@@ -214,6 +148,8 @@ type SecretBackendConnection struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolOutput `pulumi:"skipStaticRoleImportRotation"`
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake SecretBackendConnectionSnowflakePtrOutput `pulumi:"snowflake"`
 	// Whether the connection should be verified on
@@ -296,8 +232,12 @@ type secretBackendConnectionState struct {
 	Namespace *string `pulumi:"namespace"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
 	// A nested block containing configuration options for Redis connections.
@@ -320,6 +260,8 @@ type secretBackendConnectionState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake *SecretBackendConnectionSnowflake `pulumi:"snowflake"`
 	// Whether the connection should be verified on
@@ -370,8 +312,12 @@ type SecretBackendConnectionState struct {
 	Namespace pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
 	// A nested block containing configuration options for Redis connections.
@@ -394,6 +340,8 @@ type SecretBackendConnectionState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake SecretBackendConnectionSnowflakePtrInput
 	// Whether the connection should be verified on
@@ -448,8 +396,12 @@ type secretBackendConnectionArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// A nested block containing configuration options for Oracle connections.
 	Oracle *SecretBackendConnectionOracle `pulumi:"oracle"`
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql *SecretBackendConnectionPostgresql `pulumi:"postgresql"`
 	// A nested block containing configuration options for Redis connections.
@@ -472,6 +424,8 @@ type secretBackendConnectionArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake *SecretBackendConnectionSnowflake `pulumi:"snowflake"`
 	// Whether the connection should be verified on
@@ -523,8 +477,12 @@ type SecretBackendConnectionArgs struct {
 	Namespace pulumi.StringPtrInput
 	// A nested block containing configuration options for Oracle connections.
 	Oracle SecretBackendConnectionOraclePtrInput
+	// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+	PasswordPolicy pulumi.StringPtrInput
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use for this connection.
+	PluginVersion pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.
 	Postgresql SecretBackendConnectionPostgresqlPtrInput
 	// A nested block containing configuration options for Redis connections.
@@ -547,6 +505,8 @@ type SecretBackendConnectionArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
+	// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput
 	// A nested block containing configuration options for Snowflake connections.
 	Snowflake SecretBackendConnectionSnowflakePtrInput
 	// Whether the connection should be verified on
@@ -740,9 +700,19 @@ func (o SecretBackendConnectionOutput) Oracle() SecretBackendConnectionOraclePtr
 	return o.ApplyT(func(v *SecretBackendConnection) SecretBackendConnectionOraclePtrOutput { return v.Oracle }).(SecretBackendConnectionOraclePtrOutput)
 }
 
+// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+func (o SecretBackendConnectionOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the name of the plugin to use.
 func (o SecretBackendConnectionOutput) PluginName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringOutput { return v.PluginName }).(pulumi.StringOutput)
+}
+
+// Specifies the semantic version of the plugin to use for this connection.
+func (o SecretBackendConnectionOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A nested block containing configuration options for PostgreSQL connections.
@@ -791,6 +761,11 @@ func (o SecretBackendConnectionOutput) RotationSchedule() pulumi.StringPtrOutput
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o SecretBackendConnectionOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnection) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+func (o SecretBackendConnectionOutput) SkipStaticRoleImportRotation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.BoolOutput { return v.SkipStaticRoleImportRotation }).(pulumi.BoolOutput)
 }
 
 // A nested block containing configuration options for Snowflake connections.

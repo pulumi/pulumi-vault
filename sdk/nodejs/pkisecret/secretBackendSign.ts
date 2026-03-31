@@ -168,6 +168,10 @@ export class SecretBackendSign extends pulumi.CustomResource {
      */
     declare public readonly otherSans: pulumi.Output<string[] | undefined>;
     /**
+     * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     */
+    declare public readonly removeRootsFromChain: pulumi.Output<boolean | undefined>;
+    /**
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      */
     declare public /*out*/ readonly renewPending: pulumi.Output<boolean>;
@@ -216,6 +220,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["notAfter"] = state?.notAfter;
             resourceInputs["otherSans"] = state?.otherSans;
+            resourceInputs["removeRootsFromChain"] = state?.removeRootsFromChain;
             resourceInputs["renewPending"] = state?.renewPending;
             resourceInputs["serialNumber"] = state?.serialNumber;
             resourceInputs["ttl"] = state?.ttl;
@@ -246,6 +251,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["notAfter"] = args?.notAfter;
             resourceInputs["otherSans"] = args?.otherSans;
+            resourceInputs["removeRootsFromChain"] = args?.removeRootsFromChain;
             resourceInputs["ttl"] = args?.ttl;
             resourceInputs["uriSans"] = args?.uriSans;
             resourceInputs["caChains"] = undefined /*out*/;
@@ -347,6 +353,10 @@ export interface SecretBackendSignState {
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     */
+    removeRootsFromChain?: pulumi.Input<boolean>;
+    /**
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      */
     renewPending?: pulumi.Input<boolean>;
@@ -434,6 +444,10 @@ export interface SecretBackendSignArgs {
      * List of other SANs
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
+     */
+    removeRootsFromChain?: pulumi.Input<boolean>;
     /**
      * Time to live
      */

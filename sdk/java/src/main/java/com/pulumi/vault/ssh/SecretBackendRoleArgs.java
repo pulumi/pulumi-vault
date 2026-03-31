@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.ssh.inputs.SecretBackendRoleAllowedUserKeyConfigArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -301,6 +302,23 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     * 
+     */
+    @Import(name="defaultExtensionsTemplate")
+    private @Nullable Output<Boolean> defaultExtensionsTemplate;
+
+    /**
+     * @return Specifies if the `defaultExtensions` field supports templating.
+     * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> defaultExtensionsTemplate() {
+        return Optional.ofNullable(this.defaultExtensionsTemplate);
+    }
+
+    /**
      * Specifies the default username for which a credential will be generated.
      * 
      */
@@ -328,6 +346,23 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<Boolean>> defaultUserTemplate() {
         return Optional.ofNullable(this.defaultUserTemplate);
+    }
+
+    /**
+     * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     * 
+     */
+    @Import(name="excludeCidrLists")
+    private @Nullable Output<List<String>> excludeCidrLists;
+
+    /**
+     * @return Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+     * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+     * 
+     */
+    public Optional<Output<List<String>>> excludeCidrLists() {
+        return Optional.ofNullable(this.excludeCidrLists);
     }
 
     /**
@@ -429,6 +464,23 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     * 
+     */
+    @Import(name="port")
+    private @Nullable Output<Integer> port;
+
+    /**
+     * @return Specifies the port number for SSH connections. Defaults to `22`.
+     * This is primarily used with OTP key types to specify the SSH port on target hosts.
+     * 
+     */
+    public Optional<Output<Integer>> port() {
+        return Optional.ofNullable(this.port);
+    }
+
+    /**
      * Specifies the Time To Live value.
      * 
      */
@@ -464,14 +516,17 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.cidrList = $.cidrList;
         this.defaultCriticalOptions = $.defaultCriticalOptions;
         this.defaultExtensions = $.defaultExtensions;
+        this.defaultExtensionsTemplate = $.defaultExtensionsTemplate;
         this.defaultUser = $.defaultUser;
         this.defaultUserTemplate = $.defaultUserTemplate;
+        this.excludeCidrLists = $.excludeCidrLists;
         this.keyIdFormat = $.keyIdFormat;
         this.keyType = $.keyType;
         this.maxTtl = $.maxTtl;
         this.name = $.name;
         this.namespace = $.namespace;
         this.notBeforeDuration = $.notBeforeDuration;
+        this.port = $.port;
         this.ttl = $.ttl;
     }
 
@@ -894,6 +949,29 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param defaultExtensionsTemplate Specifies if the `defaultExtensions` field supports templating.
+         * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultExtensionsTemplate(@Nullable Output<Boolean> defaultExtensionsTemplate) {
+            $.defaultExtensionsTemplate = defaultExtensionsTemplate;
+            return this;
+        }
+
+        /**
+         * @param defaultExtensionsTemplate Specifies if the `defaultExtensions` field supports templating.
+         * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultExtensionsTemplate(Boolean defaultExtensionsTemplate) {
+            return defaultExtensionsTemplate(Output.of(defaultExtensionsTemplate));
+        }
+
+        /**
          * @param defaultUser Specifies the default username for which a credential will be generated.
          * 
          * @return builder
@@ -933,6 +1011,40 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder defaultUserTemplate(Boolean defaultUserTemplate) {
             return defaultUserTemplate(Output.of(defaultUserTemplate));
+        }
+
+        /**
+         * @param excludeCidrLists Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+         * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludeCidrLists(@Nullable Output<List<String>> excludeCidrLists) {
+            $.excludeCidrLists = excludeCidrLists;
+            return this;
+        }
+
+        /**
+         * @param excludeCidrLists Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+         * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludeCidrLists(List<String> excludeCidrLists) {
+            return excludeCidrLists(Output.of(excludeCidrLists));
+        }
+
+        /**
+         * @param excludeCidrLists Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+         * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludeCidrLists(String... excludeCidrLists) {
+            return excludeCidrLists(List.of(excludeCidrLists));
         }
 
         /**
@@ -1067,6 +1179,29 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder notBeforeDuration(String notBeforeDuration) {
             return notBeforeDuration(Output.of(notBeforeDuration));
+        }
+
+        /**
+         * @param port Specifies the port number for SSH connections. Defaults to `22`.
+         * This is primarily used with OTP key types to specify the SSH port on target hosts.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder port(@Nullable Output<Integer> port) {
+            $.port = port;
+            return this;
+        }
+
+        /**
+         * @param port Specifies the port number for SSH connections. Defaults to `22`.
+         * This is primarily used with OTP key types to specify the SSH port on target hosts.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder port(Integer port) {
+            return port(Output.of(port));
         }
 
         /**

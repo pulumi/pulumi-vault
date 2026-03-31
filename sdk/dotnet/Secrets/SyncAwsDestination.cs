@@ -87,6 +87,32 @@ namespace Pulumi.Vault.Secrets
     /// });
     /// ```
     /// 
+    /// ### Using Workload Identity Federation (Vault 2.0.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var awsWif = new Vault.Secrets.SyncAwsDestination("aws_wif", new()
+    ///     {
+    ///         Name = "aws-dest-wif",
+    ///         Region = "us-east-1",
+    ///         RoleArn = roleArn,
+    ///         IdentityTokenAudienceWo = identityTokenAudience,
+    ///         IdentityTokenAudienceWoVersion = 1,
+    ///         IdentityTokenTtl = 3600,
+    ///         IdentityTokenKeyWo = "my-key",
+    ///         IdentityTokenKeyWoVersion = 1,
+    ///         Granularity = "secret-path",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS Secrets sync destinations can be imported using the `Name`, e.g.
@@ -160,6 +186,38 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Output("granularity")]
         public Output<string?> Granularity { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("identityTokenAudienceWo")]
+        public Output<string?> IdentityTokenAudienceWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Output("identityTokenAudienceWoVersion")]
+        public Output<int?> IdentityTokenAudienceWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("identityTokenKeyWo")]
+        public Output<string?> IdentityTokenKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Output("identityTokenKeyWoVersion")]
+        public Output<int?> IdentityTokenKeyWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
         /// Unique name of the AWS destination.
@@ -239,6 +297,8 @@ namespace Pulumi.Vault.Secrets
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
+                    "identityTokenAudienceWo",
+                    "identityTokenKeyWo",
                     "secretAccessKey",
                 },
             };
@@ -350,6 +410,58 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
+
+        [Input("identityTokenAudienceWo")]
+        private Input<string>? _identityTokenAudienceWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenAudienceWo
+        {
+            get => _identityTokenAudienceWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenAudienceWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenAudienceWoVersion")]
+        public Input<int>? IdentityTokenAudienceWoVersion { get; set; }
+
+        [Input("identityTokenKeyWo")]
+        private Input<string>? _identityTokenKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenKeyWo
+        {
+            get => _identityTokenKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenKeyWoVersion")]
+        public Input<int>? IdentityTokenKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
         /// Unique name of the AWS destination.
@@ -502,6 +614,58 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
+
+        [Input("identityTokenAudienceWo")]
+        private Input<string>? _identityTokenAudienceWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenAudienceWo
+        {
+            get => _identityTokenAudienceWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenAudienceWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenAudienceWoVersion")]
+        public Input<int>? IdentityTokenAudienceWoVersion { get; set; }
+
+        [Input("identityTokenKeyWo")]
+        private Input<string>? _identityTokenKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenKeyWo
+        {
+            get => _identityTokenKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenKeyWoVersion")]
+        public Input<int>? IdentityTokenKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
         /// Unique name of the AWS destination.

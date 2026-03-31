@@ -41,25 +41,72 @@ namespace Pulumi.Vault.Secrets
     ///         ClientSecret = clientSecret,
     ///         TenantId = tenantId,
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
-    ///         AllowedIpv4Addresses = new[]
-    ///         {
-    ///             "192.168.1.1/24",
-    ///             "10.0.0.1/8",
-    ///         },
-    ///         AllowedIpv6Addresses = new[]
-    ///         {
-    ///             "2001:db9::/32",
-    ///         },
-    ///         AllowedPorts = new[]
-    ///         {
-    ///             443,
-    ///             9443,
-    ///         },
-    ///         DisableStrictNetworking = false,
     ///         CustomTags = 
     ///         {
     ///             { "foo", "bar" },
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Networking Configuration (Vault 1.19+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var azNetworking = new Vault.Secrets.SyncAzureDestination("az_networking", new()
+    ///     {
+    ///         Name = "az-dest-networking",
+    ///         KeyVaultUri = keyVaultUri,
+    ///         ClientId = clientId,
+    ///         ClientSecret = clientSecret,
+    ///         TenantId = tenantId,
+    ///         AllowedIpv4Addresses = new[]
+    ///         {
+    ///             "10.0.0.0/8",
+    ///             "192.168.0.0/16",
+    ///         },
+    ///         AllowedIpv6Addresses = new[]
+    ///         {
+    ///             "2001:db8::/32",
+    ///         },
+    ///         AllowedPorts = new[]
+    ///         {
+    ///             443,
+    ///             8443,
+    ///         },
+    ///         DisableStrictNetworking = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Using Workload Identity Federation (Vault 2.0.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var azWif = new Vault.Secrets.SyncAzureDestination("az_wif", new()
+    ///     {
+    ///         Name = "az-dest-wif",
+    ///         KeyVaultUri = keyVaultUri,
+    ///         ClientId = clientId,
+    ///         TenantId = tenantId,
+    ///         IdentityTokenAudience = identityTokenAudience,
+    ///         IdentityTokenTtl = 3600,
+    ///         IdentityTokenKey = "my-key",
+    ///         Granularity = "secret-path",
     ///     });
     /// 
     /// });
@@ -77,22 +124,19 @@ namespace Pulumi.Vault.Secrets
     public partial class SyncAzureDestination : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// List of IPv4 addresses or CIDR blocks allowed to make outbound
-        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
         /// </summary>
         [Output("allowedIpv4Addresses")]
         public Output<ImmutableArray<string>> AllowedIpv4Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// List of IPv6 addresses or CIDR blocks allowed to make outbound
-        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
         /// </summary>
         [Output("allowedIpv6Addresses")]
         public Output<ImmutableArray<string>> AllowedIpv6Addresses { get; private set; } = null!;
 
         /// <summary>
-        /// List of port numbers allowed for outbound connections from Vault to the
-        /// destination. Requires Vault 1.19+.
+        /// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         /// </summary>
         [Output("allowedPorts")]
         public Output<ImmutableArray<int>> AllowedPorts { get; private set; } = null!;
@@ -126,8 +170,7 @@ namespace Pulumi.Vault.Secrets
         public Output<ImmutableDictionary<string, string>?> CustomTags { get; private set; } = null!;
 
         /// <summary>
-        /// When set to `True`, disables strict enforcement of networking
-        /// restrictions. Defaults to `False`. Requires Vault 1.19+.
+        /// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         /// </summary>
         [Output("disableStrictNetworking")]
         public Output<bool?> DisableStrictNetworking { get; private set; } = null!;
@@ -138,6 +181,38 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Output("granularity")]
         public Output<string?> Granularity { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("identityTokenAudienceWo")]
+        public Output<string?> IdentityTokenAudienceWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Output("identityTokenAudienceWoVersion")]
+        public Output<int?> IdentityTokenAudienceWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        [Output("identityTokenKeyWo")]
+        public Output<string?> IdentityTokenKeyWo { get; private set; } = null!;
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Output("identityTokenKeyWoVersion")]
+        public Output<int?> IdentityTokenKeyWoVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
         /// URI of an existing Azure Key Vault instance.
@@ -208,6 +283,8 @@ namespace Pulumi.Vault.Secrets
                 AdditionalSecretOutputs =
                 {
                     "clientSecret",
+                    "identityTokenAudienceWo",
+                    "identityTokenKeyWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -236,8 +313,7 @@ namespace Pulumi.Vault.Secrets
         private InputList<string>? _allowedIpv4Addresses;
 
         /// <summary>
-        /// List of IPv4 addresses or CIDR blocks allowed to make outbound
-        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
         /// </summary>
         public InputList<string> AllowedIpv4Addresses
         {
@@ -249,8 +325,7 @@ namespace Pulumi.Vault.Secrets
         private InputList<string>? _allowedIpv6Addresses;
 
         /// <summary>
-        /// List of IPv6 addresses or CIDR blocks allowed to make outbound
-        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
         /// </summary>
         public InputList<string> AllowedIpv6Addresses
         {
@@ -262,8 +337,7 @@ namespace Pulumi.Vault.Secrets
         private InputList<int>? _allowedPorts;
 
         /// <summary>
-        /// List of port numbers allowed for outbound connections from Vault to the
-        /// destination. Requires Vault 1.19+.
+        /// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         /// </summary>
         public InputList<int> AllowedPorts
         {
@@ -316,8 +390,7 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
-        /// When set to `True`, disables strict enforcement of networking
-        /// restrictions. Defaults to `False`. Requires Vault 1.19+.
+        /// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         /// </summary>
         [Input("disableStrictNetworking")]
         public Input<bool>? DisableStrictNetworking { get; set; }
@@ -328,6 +401,58 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
+
+        [Input("identityTokenAudienceWo")]
+        private Input<string>? _identityTokenAudienceWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenAudienceWo
+        {
+            get => _identityTokenAudienceWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenAudienceWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenAudienceWoVersion")]
+        public Input<int>? IdentityTokenAudienceWoVersion { get; set; }
+
+        [Input("identityTokenKeyWo")]
+        private Input<string>? _identityTokenKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenKeyWo
+        {
+            get => _identityTokenKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenKeyWoVersion")]
+        public Input<int>? IdentityTokenKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
         /// URI of an existing Azure Key Vault instance.
@@ -378,8 +503,7 @@ namespace Pulumi.Vault.Secrets
         private InputList<string>? _allowedIpv4Addresses;
 
         /// <summary>
-        /// List of IPv4 addresses or CIDR blocks allowed to make outbound
-        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
         /// </summary>
         public InputList<string> AllowedIpv4Addresses
         {
@@ -391,8 +515,7 @@ namespace Pulumi.Vault.Secrets
         private InputList<string>? _allowedIpv6Addresses;
 
         /// <summary>
-        /// List of IPv6 addresses or CIDR blocks allowed to make outbound
-        /// connections from Vault to the destination. Requires Vault 1.19+.
+        /// Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
         /// </summary>
         public InputList<string> AllowedIpv6Addresses
         {
@@ -404,8 +527,7 @@ namespace Pulumi.Vault.Secrets
         private InputList<int>? _allowedPorts;
 
         /// <summary>
-        /// List of port numbers allowed for outbound connections from Vault to the
-        /// destination. Requires Vault 1.19+.
+        /// Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
         /// </summary>
         public InputList<int> AllowedPorts
         {
@@ -458,8 +580,7 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
-        /// When set to `True`, disables strict enforcement of networking
-        /// restrictions. Defaults to `False`. Requires Vault 1.19+.
+        /// If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
         /// </summary>
         [Input("disableStrictNetworking")]
         public Input<bool>? DisableStrictNetworking { get; set; }
@@ -470,6 +591,58 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("granularity")]
         public Input<string>? Granularity { get; set; }
+
+        [Input("identityTokenAudienceWo")]
+        private Input<string>? _identityTokenAudienceWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenAudienceWo
+        {
+            get => _identityTokenAudienceWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenAudienceWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenAudienceWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenAudienceWoVersion")]
+        public Input<int>? IdentityTokenAudienceWoVersion { get; set; }
+
+        [Input("identityTokenKeyWo")]
+        private Input<string>? _identityTokenKeyWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        /// </summary>
+        public Input<string>? IdentityTokenKeyWo
+        {
+            get => _identityTokenKeyWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityTokenKeyWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A version counter for the write-only IdentityTokenKeyWo field. Incrementing this value will trigger an update.
+        /// </summary>
+        [Input("identityTokenKeyWoVersion")]
+        public Input<int>? IdentityTokenKeyWoVersion { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
         /// URI of an existing Azure Key Vault instance.

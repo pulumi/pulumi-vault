@@ -37,6 +37,9 @@ import * as utilities from "../utilities";
  *         password: "super_secret_1",
  *         connectionUrl: "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
  *         allowedRoles: ["dev1"],
+ *         pluginVersion: "v0.20.0",
+ *         skipStaticRoleImportRotation: true,
+ *         passwordPolicy: "default",
  *         rotationSchedule: "0 * * * SAT",
  *         rotationWindow: 3600,
  *     }],
@@ -47,6 +50,9 @@ import * as utilities from "../utilities";
  *         connectionUrl: "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
  *         verifyConnection: true,
  *         allowedRoles: ["dev2"],
+ *         pluginVersion: "v0.19.0",
+ *         skipStaticRoleImportRotation: true,
+ *         passwordPolicy: "default",
  *         rotationSchedule: "0 * * * SAT",
  *         rotationWindow: 3600,
  *     }],
@@ -259,7 +265,7 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     declare public readonly path: pulumi.Output<string>;
     /**
-     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     * Specifies the semantic version of the plugin to use for this connection.
      */
     declare public readonly pluginVersion: pulumi.Output<string | undefined>;
     /**
@@ -542,7 +548,7 @@ export interface SecretsMountState {
      */
     path?: pulumi.Input<string>;
     /**
-     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     * Specifies the semantic version of the plugin to use for this connection.
      */
     pluginVersion?: pulumi.Input<string>;
     /**
@@ -716,7 +722,7 @@ export interface SecretsMountArgs {
      */
     path: pulumi.Input<string>;
     /**
-     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     * Specifies the semantic version of the plugin to use for this connection.
      */
     pluginVersion?: pulumi.Input<string>;
     /**

@@ -68,10 +68,22 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
         /// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
@@ -112,6 +124,12 @@ namespace Pulumi.Vault.Database.Inputs
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
+
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("skipStaticRoleImportRotation")]
+        public Input<bool>? SkipStaticRoleImportRotation { get; set; }
 
         /// <summary>
         /// The configuration endpoint for the ElastiCache cluster to connect to.

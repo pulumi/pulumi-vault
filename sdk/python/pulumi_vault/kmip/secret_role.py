@@ -22,6 +22,7 @@ class SecretRoleArgs:
                  path: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
                  scope: pulumi.Input[_builtins.str],
+                 ca: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -61,6 +62,7 @@ class SecretRoleArgs:
                not begin or end with a `/`. Defaults to `kmip`.
         :param pulumi.Input[_builtins.str] role: Name of the role.
         :param pulumi.Input[_builtins.str] scope: Name of the scope.
+        :param pulumi.Input[_builtins.str] ca: Name of the ca to use, if absent use legacy ca
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -100,6 +102,8 @@ class SecretRoleArgs:
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "scope", scope)
+        if ca is not None:
+            pulumi.set(__self__, "ca", ca)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if operation_activate is not None:
@@ -201,6 +205,18 @@ class SecretRoleArgs:
     @scope.setter
     def scope(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "scope", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the ca to use, if absent use legacy ca
+        """
+        return pulumi.get(self, "ca")
+
+    @ca.setter
+    def ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ca", value)
 
     @_builtins.property
     @pulumi.getter
@@ -593,6 +609,7 @@ class SecretRoleArgs:
 @pulumi.input_type
 class _SecretRoleState:
     def __init__(__self__, *,
+                 ca: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -631,6 +648,7 @@ class _SecretRoleState:
         """
         Input properties used for looking up and filtering SecretRole resources.
 
+        :param pulumi.Input[_builtins.str] ca: Name of the ca to use, if absent use legacy ca
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -671,6 +689,8 @@ class _SecretRoleState:
         :param pulumi.Input[_builtins.str] tls_client_key_type: Client certificate key type, `rsa` or `ec`.
         :param pulumi.Input[_builtins.int] tls_client_ttl: Client certificate TTL in seconds.
         """
+        if ca is not None:
+            pulumi.set(__self__, "ca", ca)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if operation_activate is not None:
@@ -741,6 +761,18 @@ class _SecretRoleState:
             pulumi.set(__self__, "tls_client_key_type", tls_client_key_type)
         if tls_client_ttl is not None:
             pulumi.set(__self__, "tls_client_ttl", tls_client_ttl)
+
+    @_builtins.property
+    @pulumi.getter
+    def ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the ca to use, if absent use legacy ca
+        """
+        return pulumi.get(self, "ca")
+
+    @ca.setter
+    def ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ca", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1173,6 +1205,7 @@ class SecretRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ca: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1251,6 +1284,7 @@ class SecretRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] ca: Name of the ca to use, if absent use legacy ca
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1352,6 +1386,7 @@ class SecretRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ca: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
                  operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1396,6 +1431,7 @@ class SecretRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretRoleArgs.__new__(SecretRoleArgs)
 
+            __props__.__dict__["ca"] = ca
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["operation_activate"] = operation_activate
             __props__.__dict__["operation_add_attribute"] = operation_add_attribute
@@ -1447,6 +1483,7 @@ class SecretRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            ca: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
             operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1489,6 +1526,7 @@ class SecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] ca: Name of the ca to use, if absent use legacy ca
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1533,6 +1571,7 @@ class SecretRole(pulumi.CustomResource):
 
         __props__ = _SecretRoleState.__new__(_SecretRoleState)
 
+        __props__.__dict__["ca"] = ca
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["operation_activate"] = operation_activate
         __props__.__dict__["operation_add_attribute"] = operation_add_attribute
@@ -1569,6 +1608,14 @@ class SecretRole(pulumi.CustomResource):
         __props__.__dict__["tls_client_key_type"] = tls_client_key_type
         __props__.__dict__["tls_client_ttl"] = tls_client_ttl
         return SecretRole(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def ca(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Name of the ca to use, if absent use legacy ca
+        """
+        return pulumi.get(self, "ca")
 
     @_builtins.property
     @pulumi.getter

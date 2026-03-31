@@ -12,6 +12,7 @@ import com.pulumi.vault.managed.KeysArgs;
 import com.pulumi.vault.managed.inputs.KeysState;
 import com.pulumi.vault.managed.outputs.KeysAw;
 import com.pulumi.vault.managed.outputs.KeysAzure;
+import com.pulumi.vault.managed.outputs.KeysGcp;
 import com.pulumi.vault.managed.outputs.KeysPkc;
 import java.lang.String;
 import java.util.List;
@@ -24,6 +25,8 @@ import javax.annotation.Nullable;
  * **Note** this feature is available only with Vault Enterprise.
  * 
  * ## Example Usage
+ * 
+ * ### AWS
  * 
  * <pre>
  * {@code
@@ -86,6 +89,63 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### GCP Cloud KMS
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.managed.Keys;
+ * import com.pulumi.vault.managed.KeysArgs;
+ * import com.pulumi.vault.managed.inputs.KeysGcpArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpKeys = new Keys("gcpKeys", KeysArgs.builder()
+ *             .gcps(KeysGcpArgs.builder()
+ *                 .name("gcp-key-1")
+ *                 .credentials(StdFunctions.file(FileArgs.builder()
+ *                     .input("sa-credentials.json")
+ *                     .build()).result())
+ *                 .project(gcpProject)
+ *                 .region("us-east1")
+ *                 .keyRing("vault-keyring")
+ *                 .cryptoKey("vault-key")
+ *                 .algorithm("rsa_sign_pkcs1_2048_sha256")
+ *                 .build())
+ *             .build());
+ * 
+ *         var pki = new Mount("pki", MountArgs.builder()
+ *             .path("pki")
+ *             .type("pki")
+ *             .description("Example PKI mount using GCP Cloud KMS managed key")
+ *             .defaultLeaseTtlSeconds(3600)
+ *             .maxLeaseTtlSeconds(36000)
+ *             .allowedManagedKeys(gcpKeys.gcps().applyValue(_gcps -> _gcps[0].name()))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Caveats
  * 
  * This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
@@ -130,6 +190,20 @@ public class Keys extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<KeysAzure>>> azures() {
         return Codegen.optional(this.azures);
+    }
+    /**
+     * Configuration block for GCP Cloud KMS Managed Keys
+     * 
+     */
+    @Export(name="gcps", refs={List.class,KeysGcp.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<KeysGcp>> gcps;
+
+    /**
+     * @return Configuration block for GCP Cloud KMS Managed Keys
+     * 
+     */
+    public Output<Optional<List<KeysGcp>>> gcps() {
+        return Codegen.optional(this.gcps);
     }
     /**
      * Target namespace. (requires Enterprise)

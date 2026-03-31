@@ -13,6 +13,12 @@ namespace Pulumi.Vault.Inputs
     public sealed class ProviderAuthLoginJwtArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+        /// </summary>
+        [Input("distributedClaimAccessToken")]
+        public Input<string>? DistributedClaimAccessToken { get; set; }
+
+        /// <summary>
         /// A signed JSON Web Token.
         /// </summary>
         [Input("jwt")]

@@ -71,8 +71,11 @@ import (
 //				AllowedKubernetesNamespaces: pulumi.StringArray{
 //					pulumi.String("*"),
 //				},
-//				TokenMaxTtl:        pulumi.Int(43200),
-//				TokenDefaultTtl:    pulumi.Int(21600),
+//				TokenMaxTtl:     pulumi.Int(43200),
+//				TokenDefaultTtl: pulumi.Int(21600),
+//				TokenDefaultAudiences: pulumi.StringArray{
+//					pulumi.String("https://kubernetes.default.svc"),
+//				},
 //				ServiceAccountName: pulumi.String("test-service-account-with-generated-token"),
 //				ExtraLabels: pulumi.StringMap{
 //					"id":   pulumi.String("abc123"),
@@ -281,6 +284,10 @@ type SecretBackendRole struct {
 	// Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
 	// Kubernetes token will be created when credentials are requested.
 	ServiceAccountName pulumi.StringPtrOutput `pulumi:"serviceAccountName"`
+	// The default audiences for generated Kubernetes tokens.
+	// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+	// Vault 1.15 or later.
+	TokenDefaultAudiences pulumi.StringArrayOutput `pulumi:"tokenDefaultAudiences"`
 	// The default TTL for generated Kubernetes tokens in seconds.
 	TokenDefaultTtl pulumi.IntPtrOutput `pulumi:"tokenDefaultTtl"`
 	// The maximum TTL for generated Kubernetes tokens in seconds.
@@ -367,6 +374,10 @@ type secretBackendRoleState struct {
 	// Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
 	// Kubernetes token will be created when credentials are requested.
 	ServiceAccountName *string `pulumi:"serviceAccountName"`
+	// The default audiences for generated Kubernetes tokens.
+	// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+	// Vault 1.15 or later.
+	TokenDefaultAudiences []string `pulumi:"tokenDefaultAudiences"`
 	// The default TTL for generated Kubernetes tokens in seconds.
 	TokenDefaultTtl *int `pulumi:"tokenDefaultTtl"`
 	// The maximum TTL for generated Kubernetes tokens in seconds.
@@ -421,6 +432,10 @@ type SecretBackendRoleState struct {
 	// Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
 	// Kubernetes token will be created when credentials are requested.
 	ServiceAccountName pulumi.StringPtrInput
+	// The default audiences for generated Kubernetes tokens.
+	// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+	// Vault 1.15 or later.
+	TokenDefaultAudiences pulumi.StringArrayInput
 	// The default TTL for generated Kubernetes tokens in seconds.
 	TokenDefaultTtl pulumi.IntPtrInput
 	// The maximum TTL for generated Kubernetes tokens in seconds.
@@ -479,6 +494,10 @@ type secretBackendRoleArgs struct {
 	// Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
 	// Kubernetes token will be created when credentials are requested.
 	ServiceAccountName *string `pulumi:"serviceAccountName"`
+	// The default audiences for generated Kubernetes tokens.
+	// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+	// Vault 1.15 or later.
+	TokenDefaultAudiences []string `pulumi:"tokenDefaultAudiences"`
 	// The default TTL for generated Kubernetes tokens in seconds.
 	TokenDefaultTtl *int `pulumi:"tokenDefaultTtl"`
 	// The maximum TTL for generated Kubernetes tokens in seconds.
@@ -534,6 +553,10 @@ type SecretBackendRoleArgs struct {
 	// Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
 	// Kubernetes token will be created when credentials are requested.
 	ServiceAccountName pulumi.StringPtrInput
+	// The default audiences for generated Kubernetes tokens.
+	// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+	// Vault 1.15 or later.
+	TokenDefaultAudiences pulumi.StringArrayInput
 	// The default TTL for generated Kubernetes tokens in seconds.
 	TokenDefaultTtl pulumi.IntPtrInput
 	// The maximum TTL for generated Kubernetes tokens in seconds.
@@ -708,6 +731,13 @@ func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 // Kubernetes token will be created when credentials are requested.
 func (o SecretBackendRoleOutput) ServiceAccountName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.ServiceAccountName }).(pulumi.StringPtrOutput)
+}
+
+// The default audiences for generated Kubernetes tokens.
+// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+// Vault 1.15 or later.
+func (o SecretBackendRoleOutput) TokenDefaultAudiences() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.TokenDefaultAudiences }).(pulumi.StringArrayOutput)
 }
 
 // The default TTL for generated Kubernetes tokens in seconds.

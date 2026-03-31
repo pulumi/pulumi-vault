@@ -151,7 +151,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> IssuingCa { get; private set; } = null!;
 
         /// <summary>
-        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         /// </summary>
         [Output("keyUsages")]
         public Output<ImmutableArray<string>> KeyUsages { get; private set; } = null!;
@@ -466,7 +466,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _keyUsages;
 
         /// <summary>
-        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         /// </summary>
         public InputList<string> KeyUsages
         {
@@ -807,7 +807,7 @@ namespace Pulumi.Vault.PkiSecret
         private InputList<string>? _keyUsages;
 
         /// <summary>
-        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+        /// Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         /// </summary>
         public InputList<string> KeyUsages
         {

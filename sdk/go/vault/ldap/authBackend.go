@@ -80,7 +80,7 @@ type AuthBackend struct {
 	// DN of object to bind when performing user search
 	Binddn pulumi.StringOutput `pulumi:"binddn"`
 	// Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
-	Bindpass pulumi.StringOutput `pulumi:"bindpass"`
+	Bindpass pulumi.StringPtrOutput `pulumi:"bindpass"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Write-only bind password to use for LDAP authentication.
 	BindpassWo pulumi.StringPtrOutput `pulumi:"bindpassWo"`
@@ -822,8 +822,8 @@ func (o AuthBackendOutput) Binddn() pulumi.StringOutput {
 }
 
 // Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
-func (o AuthBackendOutput) Bindpass() pulumi.StringOutput {
-	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Bindpass }).(pulumi.StringOutput)
+func (o AuthBackendOutput) Bindpass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Bindpass }).(pulumi.StringPtrOutput)
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.

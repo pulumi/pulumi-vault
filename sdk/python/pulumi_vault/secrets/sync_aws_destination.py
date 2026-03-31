@@ -27,6 +27,11 @@ class SyncAwsDestinationArgs:
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_id: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -59,6 +64,13 @@ class SyncAwsDestinationArgs:
                denied errors. Ignored if the `role_arn` field is empty.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -93,6 +105,16 @@ class SyncAwsDestinationArgs:
             pulumi.set(__self__, "external_id", external_id)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if identity_token_audience_wo is not None:
+            pulumi.set(__self__, "identity_token_audience_wo", identity_token_audience_wo)
+        if identity_token_audience_wo_version is not None:
+            pulumi.set(__self__, "identity_token_audience_wo_version", identity_token_audience_wo_version)
+        if identity_token_key_wo is not None:
+            pulumi.set(__self__, "identity_token_key_wo", identity_token_key_wo)
+        if identity_token_key_wo_version is not None:
+            pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -218,6 +240,68 @@ class SyncAwsDestinationArgs:
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @identity_token_audience_wo.setter
+    def identity_token_audience_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_audience_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @identity_token_audience_wo_version.setter
+    def identity_token_audience_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_audience_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @identity_token_key_wo.setter
+    def identity_token_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @identity_token_key_wo_version.setter
+    def identity_token_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -312,6 +396,11 @@ class _SyncAwsDestinationState:
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_id: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -345,6 +434,13 @@ class _SyncAwsDestinationState:
                denied errors. Ignored if the `role_arn` field is empty.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -380,6 +476,16 @@ class _SyncAwsDestinationState:
             pulumi.set(__self__, "external_id", external_id)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
+        if identity_token_audience_wo is not None:
+            pulumi.set(__self__, "identity_token_audience_wo", identity_token_audience_wo)
+        if identity_token_audience_wo_version is not None:
+            pulumi.set(__self__, "identity_token_audience_wo_version", identity_token_audience_wo_version)
+        if identity_token_key_wo is not None:
+            pulumi.set(__self__, "identity_token_key_wo", identity_token_key_wo)
+        if identity_token_key_wo_version is not None:
+            pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -507,6 +613,68 @@ class _SyncAwsDestinationState:
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @identity_token_audience_wo.setter
+    def identity_token_audience_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_audience_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @identity_token_audience_wo_version.setter
+    def identity_token_audience_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_audience_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @identity_token_key_wo.setter
+    def identity_token_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "identity_token_key_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @identity_token_key_wo_version.setter
+    def identity_token_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_key_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -616,6 +784,11 @@ class SyncAwsDestination(pulumi.CustomResource):
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_id: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -679,6 +852,24 @@ class SyncAwsDestination(pulumi.CustomResource):
             disable_strict_networking=False)
         ```
 
+        ### Using Workload Identity Federation (Vault 2.0.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws_wif = vault.secrets.SyncAwsDestination("aws_wif",
+            name="aws-dest-wif",
+            region="us-east-1",
+            role_arn=role_arn,
+            identity_token_audience_wo=identity_token_audience,
+            identity_token_audience_wo_version=1,
+            identity_token_ttl=3600,
+            identity_token_key_wo="my-key",
+            identity_token_key_wo_version=1,
+            granularity="secret-path")
+        ```
+
         ## Import
 
         AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -713,6 +904,13 @@ class SyncAwsDestination(pulumi.CustomResource):
                denied errors. Ignored if the `role_arn` field is empty.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -793,6 +991,24 @@ class SyncAwsDestination(pulumi.CustomResource):
             disable_strict_networking=False)
         ```
 
+        ### Using Workload Identity Federation (Vault 2.0.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws_wif = vault.secrets.SyncAwsDestination("aws_wif",
+            name="aws-dest-wif",
+            region="us-east-1",
+            role_arn=role_arn,
+            identity_token_audience_wo=identity_token_audience,
+            identity_token_audience_wo_version=1,
+            identity_token_ttl=3600,
+            identity_token_key_wo="my-key",
+            identity_token_key_wo_version=1,
+            granularity="secret-path")
+        ```
+
         ## Import
 
         AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -825,6 +1041,11 @@ class SyncAwsDestination(pulumi.CustomResource):
                  disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  external_id: Optional[pulumi.Input[_builtins.str]] = None,
                  granularity: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -848,6 +1069,11 @@ class SyncAwsDestination(pulumi.CustomResource):
             __props__.__dict__["disable_strict_networking"] = disable_strict_networking
             __props__.__dict__["external_id"] = external_id
             __props__.__dict__["granularity"] = granularity
+            __props__.__dict__["identity_token_audience_wo"] = None if identity_token_audience_wo is None else pulumi.Output.secret(identity_token_audience_wo)
+            __props__.__dict__["identity_token_audience_wo_version"] = identity_token_audience_wo_version
+            __props__.__dict__["identity_token_key_wo"] = None if identity_token_key_wo is None else pulumi.Output.secret(identity_token_key_wo)
+            __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["region"] = region
@@ -855,7 +1081,7 @@ class SyncAwsDestination(pulumi.CustomResource):
             __props__.__dict__["secret_access_key"] = None if secret_access_key is None else pulumi.Output.secret(secret_access_key)
             __props__.__dict__["secret_name_template"] = secret_name_template
             __props__.__dict__["type"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretAccessKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["identityTokenAudienceWo", "identityTokenKeyWo", "secretAccessKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SyncAwsDestination, __self__).__init__(
             'vault:secrets/syncAwsDestination:SyncAwsDestination',
@@ -875,6 +1101,11 @@ class SyncAwsDestination(pulumi.CustomResource):
             disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
             external_id: Optional[pulumi.Input[_builtins.str]] = None,
             granularity: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_audience_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_audience_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            identity_token_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            identity_token_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -912,6 +1143,13 @@ class SyncAwsDestination(pulumi.CustomResource):
                denied errors. Ignored if the `role_arn` field is empty.
         :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
                at the destination. Supports `secret-path` and `secret-key`.
+        :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_audience_wo_version: A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.str] identity_token_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -943,6 +1181,11 @@ class SyncAwsDestination(pulumi.CustomResource):
         __props__.__dict__["disable_strict_networking"] = disable_strict_networking
         __props__.__dict__["external_id"] = external_id
         __props__.__dict__["granularity"] = granularity
+        __props__.__dict__["identity_token_audience_wo"] = identity_token_audience_wo
+        __props__.__dict__["identity_token_audience_wo_version"] = identity_token_audience_wo_version
+        __props__.__dict__["identity_token_key_wo"] = identity_token_key_wo
+        __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["region"] = region
@@ -1030,6 +1273,48 @@ class SyncAwsDestination(pulumi.CustomResource):
         at the destination. Supports `secret-path` and `secret-key`.
         """
         return pulumi.get(self, "granularity")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWo")
+    def identity_token_audience_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_audience_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenAudienceWoVersion")
+    def identity_token_audience_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_audience_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_audience_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWo")
+    def identity_token_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
+        """
+        return pulumi.get(self, "identity_token_key_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenKeyWoVersion")
+    def identity_token_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
+        """
+        return pulumi.get(self, "identity_token_key_wo_version")
+
+    @_builtins.property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[_builtins.int]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
 
     @_builtins.property
     @pulumi.getter

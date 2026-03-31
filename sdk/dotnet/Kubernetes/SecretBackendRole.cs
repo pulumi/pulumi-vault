@@ -62,6 +62,10 @@ namespace Pulumi.Vault.Kubernetes
     ///         },
     ///         TokenMaxTtl = 43200,
     ///         TokenDefaultTtl = 21600,
+    ///         TokenDefaultAudiences = new[]
+    ///         {
+    ///             "https://kubernetes.default.svc",
+    ///         },
     ///         ServiceAccountName = "test-service-account-with-generated-token",
     ///         ExtraLabels = 
     ///         {
@@ -297,6 +301,14 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> ServiceAccountName { get; private set; } = null!;
 
         /// <summary>
+        /// The default audiences for generated Kubernetes tokens.
+        /// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+        /// Vault 1.15 or later.
+        /// </summary>
+        [Output("tokenDefaultAudiences")]
+        public Output<ImmutableArray<string>> TokenDefaultAudiences { get; private set; } = null!;
+
+        /// <summary>
         /// The default TTL for generated Kubernetes tokens in seconds.
         /// </summary>
         [Output("tokenDefaultTtl")]
@@ -467,6 +479,20 @@ namespace Pulumi.Vault.Kubernetes
         [Input("serviceAccountName")]
         public Input<string>? ServiceAccountName { get; set; }
 
+        [Input("tokenDefaultAudiences")]
+        private InputList<string>? _tokenDefaultAudiences;
+
+        /// <summary>
+        /// The default audiences for generated Kubernetes tokens.
+        /// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+        /// Vault 1.15 or later.
+        /// </summary>
+        public InputList<string> TokenDefaultAudiences
+        {
+            get => _tokenDefaultAudiences ?? (_tokenDefaultAudiences = new InputList<string>());
+            set => _tokenDefaultAudiences = value;
+        }
+
         /// <summary>
         /// The default TTL for generated Kubernetes tokens in seconds.
         /// </summary>
@@ -599,6 +625,20 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         [Input("serviceAccountName")]
         public Input<string>? ServiceAccountName { get; set; }
+
+        [Input("tokenDefaultAudiences")]
+        private InputList<string>? _tokenDefaultAudiences;
+
+        /// <summary>
+        /// The default audiences for generated Kubernetes tokens.
+        /// If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+        /// Vault 1.15 or later.
+        /// </summary>
+        public InputList<string> TokenDefaultAudiences
+        {
+            get => _tokenDefaultAudiences ?? (_tokenDefaultAudiences = new InputList<string>());
+            set => _tokenDefaultAudiences = value;
+        }
 
         /// <summary>
         /// The default TTL for generated Kubernetes tokens in seconds.

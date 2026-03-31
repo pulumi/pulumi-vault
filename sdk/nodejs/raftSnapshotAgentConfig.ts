@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Azure BLOB
+ * ### Azure BLOB (Shared Key Authentication)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,9 +50,34 @@ import * as utilities from "./utilities";
  *     retain: 7,
  *     pathPrefix: "/",
  *     storageType: "azure-blob",
+ *     autoloadEnabled: true,
  *     azureContainerName: "vault-blob",
  *     azureAccountName: azureAccountName,
  *     azureAccountKey: azureAccountKey,
+ *     azureAuthMode: "shared",
+ * });
+ * ```
+ *
+ * ### Azure BLOB (Managed Identity Authentication)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new pulumi.Config();
+ * const azureAccountName = config.requireObject<any>("azureAccountName");
+ * const azureClientId = config.requireObject<any>("azureClientId");
+ * const azureManagedIdentity = new vault.RaftSnapshotAgentConfig("azure_managed_identity", {
+ *     name: "azure_managed",
+ *     intervalSeconds: 86400,
+ *     retain: 7,
+ *     pathPrefix: "/",
+ *     storageType: "azure-blob",
+ *     autoloadEnabled: true,
+ *     azureContainerName: "vault-blob",
+ *     azureAccountName: azureAccountName,
+ *     azureAuthMode: "managed",
+ *     azureClientId: azureClientId,
  * });
  * ```
  *
@@ -92,6 +117,13 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
         return obj['__pulumiType'] === RaftSnapshotAgentConfig.__pulumiType;
     }
 
+    /**
+     * Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = "local"`.
+     *
+     * *Requires Vault Enterprise 1.21.0+*.
+     */
+    declare public readonly autoloadEnabled: pulumi.Output<boolean | undefined>;
     /**
      * AWS access key ID.
      */
@@ -137,7 +169,7 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
      */
     declare public readonly awsSessionToken: pulumi.Output<string | undefined>;
     /**
-     * Azure account key.
+     * Azure account key. Required when azureAuthMode is 'shared'.
      */
     declare public readonly azureAccountKey: pulumi.Output<string | undefined>;
     /**
@@ -145,9 +177,17 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
      */
     declare public readonly azureAccountName: pulumi.Output<string | undefined>;
     /**
+     * Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+     */
+    declare public readonly azureAuthMode: pulumi.Output<string | undefined>;
+    /**
      * Azure blob environment.
      */
     declare public readonly azureBlobEnvironment: pulumi.Output<string | undefined>;
+    /**
+     * Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+     */
+    declare public readonly azureClientId: pulumi.Output<string | undefined>;
     /**
      * Azure container name to write snapshots to.
      */
@@ -230,6 +270,7 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RaftSnapshotAgentConfigState | undefined;
+            resourceInputs["autoloadEnabled"] = state?.autoloadEnabled;
             resourceInputs["awsAccessKeyId"] = state?.awsAccessKeyId;
             resourceInputs["awsS3Bucket"] = state?.awsS3Bucket;
             resourceInputs["awsS3DisableTls"] = state?.awsS3DisableTls;
@@ -243,7 +284,9 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
             resourceInputs["awsSessionToken"] = state?.awsSessionToken;
             resourceInputs["azureAccountKey"] = state?.azureAccountKey;
             resourceInputs["azureAccountName"] = state?.azureAccountName;
+            resourceInputs["azureAuthMode"] = state?.azureAuthMode;
             resourceInputs["azureBlobEnvironment"] = state?.azureBlobEnvironment;
+            resourceInputs["azureClientId"] = state?.azureClientId;
             resourceInputs["azureContainerName"] = state?.azureContainerName;
             resourceInputs["azureEndpoint"] = state?.azureEndpoint;
             resourceInputs["filePrefix"] = state?.filePrefix;
@@ -269,6 +312,7 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
             if (args?.storageType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'storageType'");
             }
+            resourceInputs["autoloadEnabled"] = args?.autoloadEnabled;
             resourceInputs["awsAccessKeyId"] = args?.awsAccessKeyId;
             resourceInputs["awsS3Bucket"] = args?.awsS3Bucket;
             resourceInputs["awsS3DisableTls"] = args?.awsS3DisableTls;
@@ -282,7 +326,9 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
             resourceInputs["awsSessionToken"] = args?.awsSessionToken;
             resourceInputs["azureAccountKey"] = args?.azureAccountKey;
             resourceInputs["azureAccountName"] = args?.azureAccountName;
+            resourceInputs["azureAuthMode"] = args?.azureAuthMode;
             resourceInputs["azureBlobEnvironment"] = args?.azureBlobEnvironment;
+            resourceInputs["azureClientId"] = args?.azureClientId;
             resourceInputs["azureContainerName"] = args?.azureContainerName;
             resourceInputs["azureEndpoint"] = args?.azureEndpoint;
             resourceInputs["filePrefix"] = args?.filePrefix;
@@ -307,6 +353,13 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
  */
 export interface RaftSnapshotAgentConfigState {
+    /**
+     * Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = "local"`.
+     *
+     * *Requires Vault Enterprise 1.21.0+*.
+     */
+    autoloadEnabled?: pulumi.Input<boolean>;
     /**
      * AWS access key ID.
      */
@@ -352,7 +405,7 @@ export interface RaftSnapshotAgentConfigState {
      */
     awsSessionToken?: pulumi.Input<string>;
     /**
-     * Azure account key.
+     * Azure account key. Required when azureAuthMode is 'shared'.
      */
     azureAccountKey?: pulumi.Input<string>;
     /**
@@ -360,9 +413,17 @@ export interface RaftSnapshotAgentConfigState {
      */
     azureAccountName?: pulumi.Input<string>;
     /**
+     * Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+     */
+    azureAuthMode?: pulumi.Input<string>;
+    /**
      * Azure blob environment.
      */
     azureBlobEnvironment?: pulumi.Input<string>;
+    /**
+     * Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+     */
+    azureClientId?: pulumi.Input<string>;
     /**
      * Azure container name to write snapshots to.
      */
@@ -438,6 +499,13 @@ export interface RaftSnapshotAgentConfigState {
  */
 export interface RaftSnapshotAgentConfigArgs {
     /**
+     * Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
+     * **Note:** Not supported with `storageType = "local"`.
+     *
+     * *Requires Vault Enterprise 1.21.0+*.
+     */
+    autoloadEnabled?: pulumi.Input<boolean>;
+    /**
      * AWS access key ID.
      */
     awsAccessKeyId?: pulumi.Input<string>;
@@ -482,7 +550,7 @@ export interface RaftSnapshotAgentConfigArgs {
      */
     awsSessionToken?: pulumi.Input<string>;
     /**
-     * Azure account key.
+     * Azure account key. Required when azureAuthMode is 'shared'.
      */
     azureAccountKey?: pulumi.Input<string>;
     /**
@@ -490,9 +558,17 @@ export interface RaftSnapshotAgentConfigArgs {
      */
     azureAccountName?: pulumi.Input<string>;
     /**
+     * Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
+     */
+    azureAuthMode?: pulumi.Input<string>;
+    /**
      * Azure blob environment.
      */
     azureBlobEnvironment?: pulumi.Input<string>;
+    /**
+     * Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
+     */
+    azureClientId?: pulumi.Input<string>;
     /**
      * Azure container name to write snapshots to.
      */

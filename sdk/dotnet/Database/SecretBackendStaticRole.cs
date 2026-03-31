@@ -203,7 +203,7 @@ namespace Pulumi.Vault.Database
         /// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
         /// </summary>
         [Output("skipImportRotation")]
-        public Output<bool?> SkipImportRotation { get; private set; } = null!;
+        public Output<bool> SkipImportRotation { get; private set; } = null!;
 
         /// <summary>
         /// The database username that this static role corresponds to.

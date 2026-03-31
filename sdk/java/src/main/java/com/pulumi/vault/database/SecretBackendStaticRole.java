@@ -337,15 +337,15 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * 
      */
     @Export(name="skipImportRotation", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> skipImportRotation;
+    private Output<Boolean> skipImportRotation;
 
     /**
      * @return If set to true, Vault will skip the
      * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
      * 
      */
-    public Output<Optional<Boolean>> skipImportRotation() {
-        return Codegen.optional(this.skipImportRotation);
+    public Output<Boolean> skipImportRotation() {
+        return this.skipImportRotation;
     }
     /**
      * The database username that this static role corresponds to.

@@ -40,13 +40,16 @@ class SecretBackendRoleArgs:
                  cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
                  default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
                  default_user: Optional[pulumi.Input[_builtins.str]] = None,
                  default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
@@ -75,8 +78,12 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[_builtins.str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[_builtins.bool] default_extensions_template: Specifies if the `default_extensions` field supports templating.
+               When set to `true`, the extension values can use identity template policies. Defaults to `false`.
         :param pulumi.Input[_builtins.str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[_builtins.bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exclude_cidr_lists: Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+               This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
         :param pulumi.Input[_builtins.str] key_id_format: Specifies a custom format for the key id of a signed certificate.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum Time To Live value.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the role to create.
@@ -86,6 +93,8 @@ class SecretBackendRoleArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
                Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[_builtins.int] port: Specifies the port number for SSH connections. Defaults to `22`.
+               This is primarily used with OTP key types to specify the SSH port on target hosts.
         :param pulumi.Input[_builtins.str] ttl: Specifies the Time To Live value.
         """
         pulumi.set(__self__, "backend", backend)
@@ -124,10 +133,14 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "default_critical_options", default_critical_options)
         if default_extensions is not None:
             pulumi.set(__self__, "default_extensions", default_extensions)
+        if default_extensions_template is not None:
+            pulumi.set(__self__, "default_extensions_template", default_extensions_template)
         if default_user is not None:
             pulumi.set(__self__, "default_user", default_user)
         if default_user_template is not None:
             pulumi.set(__self__, "default_user_template", default_user_template)
+        if exclude_cidr_lists is not None:
+            pulumi.set(__self__, "exclude_cidr_lists", exclude_cidr_lists)
         if key_id_format is not None:
             pulumi.set(__self__, "key_id_format", key_id_format)
         if max_ttl is not None:
@@ -138,6 +151,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "namespace", namespace)
         if not_before_duration is not None:
             pulumi.set(__self__, "not_before_duration", not_before_duration)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -375,6 +390,19 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "default_extensions", value)
 
     @_builtins.property
+    @pulumi.getter(name="defaultExtensionsTemplate")
+    def default_extensions_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if the `default_extensions` field supports templating.
+        When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+        """
+        return pulumi.get(self, "default_extensions_template")
+
+    @default_extensions_template.setter
+    def default_extensions_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "default_extensions_template", value)
+
+    @_builtins.property
     @pulumi.getter(name="defaultUser")
     def default_user(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -397,6 +425,19 @@ class SecretBackendRoleArgs:
     @default_user_template.setter
     def default_user_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "default_user_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeCidrLists")
+    def exclude_cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+        This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+        """
+        return pulumi.get(self, "exclude_cidr_lists")
+
+    @exclude_cidr_lists.setter
+    def exclude_cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "exclude_cidr_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="keyIdFormat")
@@ -464,6 +505,19 @@ class SecretBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the port number for SSH connections. Defaults to `22`.
+        This is primarily used with OTP key types to specify the SSH port on target hosts.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the Time To Live value.
@@ -496,14 +550,17 @@ class _SecretBackendRoleState:
                  cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
                  default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
                  default_user: Optional[pulumi.Input[_builtins.str]] = None,
                  default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
@@ -531,8 +588,12 @@ class _SecretBackendRoleState:
         :param pulumi.Input[_builtins.str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[_builtins.bool] default_extensions_template: Specifies if the `default_extensions` field supports templating.
+               When set to `true`, the extension values can use identity template policies. Defaults to `false`.
         :param pulumi.Input[_builtins.str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[_builtins.bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exclude_cidr_lists: Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+               This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
         :param pulumi.Input[_builtins.str] key_id_format: Specifies a custom format for the key id of a signed certificate.
         :param pulumi.Input[_builtins.str] key_type: Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum Time To Live value.
@@ -543,6 +604,8 @@ class _SecretBackendRoleState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
                Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[_builtins.int] port: Specifies the port number for SSH connections. Defaults to `22`.
+               This is primarily used with OTP key types to specify the SSH port on target hosts.
         :param pulumi.Input[_builtins.str] ttl: Specifies the Time To Live value.
         """
         if algorithm_signer is not None:
@@ -581,10 +644,14 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "default_critical_options", default_critical_options)
         if default_extensions is not None:
             pulumi.set(__self__, "default_extensions", default_extensions)
+        if default_extensions_template is not None:
+            pulumi.set(__self__, "default_extensions_template", default_extensions_template)
         if default_user is not None:
             pulumi.set(__self__, "default_user", default_user)
         if default_user_template is not None:
             pulumi.set(__self__, "default_user_template", default_user_template)
+        if exclude_cidr_lists is not None:
+            pulumi.set(__self__, "exclude_cidr_lists", exclude_cidr_lists)
         if key_id_format is not None:
             pulumi.set(__self__, "key_id_format", key_id_format)
         if key_type is not None:
@@ -597,6 +664,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "namespace", namespace)
         if not_before_duration is not None:
             pulumi.set(__self__, "not_before_duration", not_before_duration)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -822,6 +891,19 @@ class _SecretBackendRoleState:
         pulumi.set(self, "default_extensions", value)
 
     @_builtins.property
+    @pulumi.getter(name="defaultExtensionsTemplate")
+    def default_extensions_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specifies if the `default_extensions` field supports templating.
+        When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+        """
+        return pulumi.get(self, "default_extensions_template")
+
+    @default_extensions_template.setter
+    def default_extensions_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "default_extensions_template", value)
+
+    @_builtins.property
     @pulumi.getter(name="defaultUser")
     def default_user(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -844,6 +926,19 @@ class _SecretBackendRoleState:
     @default_user_template.setter
     def default_user_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "default_user_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="excludeCidrLists")
+    def exclude_cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+        This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+        """
+        return pulumi.get(self, "exclude_cidr_lists")
+
+    @exclude_cidr_lists.setter
+    def exclude_cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "exclude_cidr_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="keyIdFormat")
@@ -923,6 +1018,19 @@ class _SecretBackendRoleState:
 
     @_builtins.property
     @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Specifies the port number for SSH connections. Defaults to `22`.
+        This is primarily used with OTP key types to specify the SSH port on target hosts.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Specifies the Time To Live value.
@@ -958,14 +1066,17 @@ class SecretBackendRole(pulumi.CustomResource):
                  cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
                  default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
                  default_user: Optional[pulumi.Input[_builtins.str]] = None,
                  default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -1027,8 +1138,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[_builtins.bool] default_extensions_template: Specifies if the `default_extensions` field supports templating.
+               When set to `true`, the extension values can use identity template policies. Defaults to `false`.
         :param pulumi.Input[_builtins.str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[_builtins.bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exclude_cidr_lists: Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+               This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
         :param pulumi.Input[_builtins.str] key_id_format: Specifies a custom format for the key id of a signed certificate.
         :param pulumi.Input[_builtins.str] key_type: Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum Time To Live value.
@@ -1039,6 +1154,8 @@ class SecretBackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
                Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[_builtins.int] port: Specifies the port number for SSH connections. Defaults to `22`.
+               This is primarily used with OTP key types to specify the SSH port on target hosts.
         :param pulumi.Input[_builtins.str] ttl: Specifies the Time To Live value.
         """
         ...
@@ -1114,14 +1231,17 @@ class SecretBackendRole(pulumi.CustomResource):
                  cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
                  default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
                  default_user: Optional[pulumi.Input[_builtins.str]] = None,
                  default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
+                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
                  key_type: Optional[pulumi.Input[_builtins.str]] = None,
                  max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
                  ttl: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1152,8 +1272,10 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["cidr_list"] = cidr_list
             __props__.__dict__["default_critical_options"] = default_critical_options
             __props__.__dict__["default_extensions"] = default_extensions
+            __props__.__dict__["default_extensions_template"] = default_extensions_template
             __props__.__dict__["default_user"] = default_user
             __props__.__dict__["default_user_template"] = default_user_template
+            __props__.__dict__["exclude_cidr_lists"] = exclude_cidr_lists
             __props__.__dict__["key_id_format"] = key_id_format
             if key_type is None and not opts.urn:
                 raise TypeError("Missing required property 'key_type'")
@@ -1162,6 +1284,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["not_before_duration"] = not_before_duration
+            __props__.__dict__["port"] = port
             __props__.__dict__["ttl"] = ttl
         super(SecretBackendRole, __self__).__init__(
             'vault:ssh/secretBackendRole:SecretBackendRole',
@@ -1191,14 +1314,17 @@ class SecretBackendRole(pulumi.CustomResource):
             cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
             default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
             default_user: Optional[pulumi.Input[_builtins.str]] = None,
             default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
+            exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
             key_type: Optional[pulumi.Input[_builtins.str]] = None,
             max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
+            port: Optional[pulumi.Input[_builtins.int]] = None,
             ttl: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
@@ -1230,8 +1356,12 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[_builtins.bool] default_extensions_template: Specifies if the `default_extensions` field supports templating.
+               When set to `true`, the extension values can use identity template policies. Defaults to `false`.
         :param pulumi.Input[_builtins.str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[_builtins.bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exclude_cidr_lists: Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+               This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
         :param pulumi.Input[_builtins.str] key_id_format: Specifies a custom format for the key id of a signed certificate.
         :param pulumi.Input[_builtins.str] key_type: Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum Time To Live value.
@@ -1242,6 +1372,8 @@ class SecretBackendRole(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
                Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[_builtins.int] port: Specifies the port number for SSH connections. Defaults to `22`.
+               This is primarily used with OTP key types to specify the SSH port on target hosts.
         :param pulumi.Input[_builtins.str] ttl: Specifies the Time To Live value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1266,14 +1398,17 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["cidr_list"] = cidr_list
         __props__.__dict__["default_critical_options"] = default_critical_options
         __props__.__dict__["default_extensions"] = default_extensions
+        __props__.__dict__["default_extensions_template"] = default_extensions_template
         __props__.__dict__["default_user"] = default_user
         __props__.__dict__["default_user_template"] = default_user_template
+        __props__.__dict__["exclude_cidr_lists"] = exclude_cidr_lists
         __props__.__dict__["key_id_format"] = key_id_format
         __props__.__dict__["key_type"] = key_type
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["not_before_duration"] = not_before_duration
+        __props__.__dict__["port"] = port
         __props__.__dict__["ttl"] = ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
@@ -1427,6 +1562,15 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "default_extensions")
 
     @_builtins.property
+    @pulumi.getter(name="defaultExtensionsTemplate")
+    def default_extensions_template(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Specifies if the `default_extensions` field supports templating.
+        When set to `true`, the extension values can use identity template policies. Defaults to `false`.
+        """
+        return pulumi.get(self, "default_extensions_template")
+
+    @_builtins.property
     @pulumi.getter(name="defaultUser")
     def default_user(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -1441,6 +1585,15 @@ class SecretBackendRole(pulumi.CustomResource):
         If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         """
         return pulumi.get(self, "default_user_template")
+
+    @_builtins.property
+    @pulumi.getter(name="excludeCidrLists")
+    def exclude_cidr_lists(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
+        This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
+        """
+        return pulumi.get(self, "exclude_cidr_lists")
 
     @_builtins.property
     @pulumi.getter(name="keyIdFormat")
@@ -1493,6 +1646,15 @@ class SecretBackendRole(pulumi.CustomResource):
         Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
         """
         return pulumi.get(self, "not_before_duration")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> pulumi.Output[_builtins.int]:
+        """
+        Specifies the port number for SSH connections. Defaults to `22`.
+        This is primarily used with OTP key types to specify the SSH port on target hosts.
+        """
+        return pulumi.get(self, "port")
 
     @_builtins.property
     @pulumi.getter

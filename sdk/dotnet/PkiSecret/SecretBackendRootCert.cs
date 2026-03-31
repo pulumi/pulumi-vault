@@ -184,6 +184,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> KeyType { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+        /// </summary>
+        [Output("keyUsages")]
+        public Output<ImmutableArray<string>> KeyUsages { get; private set; } = null!;
+
+        /// <summary>
         /// The locality
         /// </summary>
         [Output("locality")]
@@ -326,6 +332,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("uriSans")]
         public Output<ImmutableArray<string>> UriSans { get; private set; } = null!;
+
+        /// <summary>
+        /// When `True`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `False`. Requires Vault 1.18.0+.
+        /// </summary>
+        [Output("usePss")]
+        public Output<bool?> UsePss { get; private set; } = null!;
 
 
         /// <summary>
@@ -508,6 +520,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
+        [Input("keyUsages")]
+        private InputList<string>? _keyUsages;
+
+        /// <summary>
+        /// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+        /// </summary>
+        public InputList<string> KeyUsages
+        {
+            get => _keyUsages ?? (_keyUsages = new InputList<string>());
+            set => _keyUsages = value;
+        }
+
         /// <summary>
         /// The locality
         /// </summary>
@@ -682,6 +706,12 @@ namespace Pulumi.Vault.PkiSecret
             set => _uriSans = value;
         }
 
+        /// <summary>
+        /// When `True`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `False`. Requires Vault 1.18.0+.
+        /// </summary>
+        [Input("usePss")]
+        public Input<bool>? UsePss { get; set; }
+
         public SecretBackendRootCertArgs()
         {
         }
@@ -848,6 +878,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
+
+        [Input("keyUsages")]
+        private InputList<string>? _keyUsages;
+
+        /// <summary>
+        /// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+        /// </summary>
+        public InputList<string> KeyUsages
+        {
+            get => _keyUsages ?? (_keyUsages = new InputList<string>());
+            set => _keyUsages = value;
+        }
 
         /// <summary>
         /// The locality
@@ -1028,6 +1070,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _uriSans ?? (_uriSans = new InputList<string>());
             set => _uriSans = value;
         }
+
+        /// <summary>
+        /// When `True`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `False`. Requires Vault 1.18.0+.
+        /// </summary>
+        [Input("usePss")]
+        public Input<bool>? UsePss { get; set; }
 
         public SecretBackendRootCertState()
         {

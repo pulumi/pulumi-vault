@@ -17,6 +17,8 @@ import (
 //
 // ## Example Usage
 //
+// ### AWS
+//
 // ```go
 // package main
 //
@@ -77,6 +79,65 @@ import (
 //
 // ```
 //
+// ### GCP Cloud KMS
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/managed"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "sa-credentials.json",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			gcpKeys, err := managed.NewKeys(ctx, "gcp_keys", &managed.KeysArgs{
+//				Gcps: managed.KeysGcpArray{
+//					&managed.KeysGcpArgs{
+//						Name:        pulumi.String("gcp-key-1"),
+//						Credentials: pulumi.String(invokeFile.Result),
+//						Project:     pulumi.Any(gcpProject),
+//						Region:      pulumi.String("us-east1"),
+//						KeyRing:     pulumi.String("vault-keyring"),
+//						CryptoKey:   pulumi.String("vault-key"),
+//						Algorithm:   pulumi.String("rsa_sign_pkcs1_2048_sha256"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewMount(ctx, "pki", &vault.MountArgs{
+//				Path:                   pulumi.String("pki"),
+//				Type:                   pulumi.String("pki"),
+//				Description:            pulumi.String("Example PKI mount using GCP Cloud KMS managed key"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(36000),
+//				AllowedManagedKeys: pulumi.StringArray{
+//					pulumi.String(gcpKeys.Gcps.ApplyT(func(gcps []managed.KeysGcp) (*string, error) {
+//						return &gcps[0].Name, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Caveats
 //
 // This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
@@ -97,6 +158,8 @@ type Keys struct {
 	Aws KeysAwArrayOutput `pulumi:"aws"`
 	// Configuration block for Azure Managed Keys
 	Azures KeysAzureArrayOutput `pulumi:"azures"`
+	// Configuration block for GCP Cloud KMS Managed Keys
+	Gcps KeysGcpArrayOutput `pulumi:"gcps"`
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Configuration block for PKCS Managed Keys
@@ -137,6 +200,8 @@ type keysState struct {
 	Aws []KeysAw `pulumi:"aws"`
 	// Configuration block for Azure Managed Keys
 	Azures []KeysAzure `pulumi:"azures"`
+	// Configuration block for GCP Cloud KMS Managed Keys
+	Gcps []KeysGcp `pulumi:"gcps"`
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Configuration block for PKCS Managed Keys
@@ -148,6 +213,8 @@ type KeysState struct {
 	Aws KeysAwArrayInput
 	// Configuration block for Azure Managed Keys
 	Azures KeysAzureArrayInput
+	// Configuration block for GCP Cloud KMS Managed Keys
+	Gcps KeysGcpArrayInput
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Configuration block for PKCS Managed Keys
@@ -163,6 +230,8 @@ type keysArgs struct {
 	Aws []KeysAw `pulumi:"aws"`
 	// Configuration block for Azure Managed Keys
 	Azures []KeysAzure `pulumi:"azures"`
+	// Configuration block for GCP Cloud KMS Managed Keys
+	Gcps []KeysGcp `pulumi:"gcps"`
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Configuration block for PKCS Managed Keys
@@ -175,6 +244,8 @@ type KeysArgs struct {
 	Aws KeysAwArrayInput
 	// Configuration block for Azure Managed Keys
 	Azures KeysAzureArrayInput
+	// Configuration block for GCP Cloud KMS Managed Keys
+	Gcps KeysGcpArrayInput
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Configuration block for PKCS Managed Keys
@@ -276,6 +347,11 @@ func (o KeysOutput) Aws() KeysAwArrayOutput {
 // Configuration block for Azure Managed Keys
 func (o KeysOutput) Azures() KeysAzureArrayOutput {
 	return o.ApplyT(func(v *Keys) KeysAzureArrayOutput { return v.Azures }).(KeysAzureArrayOutput)
+}
+
+// Configuration block for GCP Cloud KMS Managed Keys
+func (o KeysOutput) Gcps() KeysGcpArrayOutput {
+	return o.ApplyT(func(v *Keys) KeysGcpArrayOutput { return v.Gcps }).(KeysGcpArrayOutput)
 }
 
 // Target namespace. (requires Enterprise)

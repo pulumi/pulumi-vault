@@ -19,6 +19,21 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     public static final SecretRoleArgs Empty = new SecretRoleArgs();
 
     /**
+     * Name of the ca to use, if absent use legacy ca
+     * 
+     */
+    @Import(name="ca")
+    private @Nullable Output<String> ca;
+
+    /**
+     * @return Name of the ca to use, if absent use legacy ca
+     * 
+     */
+    public Optional<Output<String>> ca() {
+        return Optional.ofNullable(this.ca);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -554,6 +569,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     private SecretRoleArgs() {}
 
     private SecretRoleArgs(SecretRoleArgs $) {
+        this.ca = $.ca;
         this.namespace = $.namespace;
         this.operationActivate = $.operationActivate;
         this.operationAddAttribute = $.operationAddAttribute;
@@ -607,6 +623,27 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(SecretRoleArgs defaults) {
             $ = new SecretRoleArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param ca Name of the ca to use, if absent use legacy ca
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ca(@Nullable Output<String> ca) {
+            $.ca = ca;
+            return this;
+        }
+
+        /**
+         * @param ca Name of the ca to use, if absent use legacy ca
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ca(String ca) {
+            return ca(Output.of(ca));
         }
 
         /**

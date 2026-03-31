@@ -45,6 +45,7 @@ import * as utilities from "../utilities";
  *     allowedKubernetesNamespaces: ["*"],
  *     tokenMaxTtl: 43200,
  *     tokenDefaultTtl: 21600,
+ *     tokenDefaultAudiences: ["https://kubernetes.default.svc"],
  *     serviceAccountName: "test-service-account-with-generated-token",
  *     extraLabels: {
  *         id: "abc123",
@@ -245,6 +246,12 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly serviceAccountName: pulumi.Output<string | undefined>;
     /**
+     * The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+     * Vault 1.15 or later.
+     */
+    declare public readonly tokenDefaultAudiences: pulumi.Output<string[] | undefined>;
+    /**
      * The default TTL for generated Kubernetes tokens in seconds.
      */
     declare public readonly tokenDefaultTtl: pulumi.Output<number | undefined>;
@@ -278,6 +285,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["nameTemplate"] = state?.nameTemplate;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["serviceAccountName"] = state?.serviceAccountName;
+            resourceInputs["tokenDefaultAudiences"] = state?.tokenDefaultAudiences;
             resourceInputs["tokenDefaultTtl"] = state?.tokenDefaultTtl;
             resourceInputs["tokenMaxTtl"] = state?.tokenMaxTtl;
         } else {
@@ -297,6 +305,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["nameTemplate"] = args?.nameTemplate;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["serviceAccountName"] = args?.serviceAccountName;
+            resourceInputs["tokenDefaultAudiences"] = args?.tokenDefaultAudiences;
             resourceInputs["tokenDefaultTtl"] = args?.tokenDefaultTtl;
             resourceInputs["tokenMaxTtl"] = args?.tokenMaxTtl;
         }
@@ -380,6 +389,12 @@ export interface SecretBackendRoleState {
      * Kubernetes token will be created when credentials are requested.
      */
     serviceAccountName?: pulumi.Input<string>;
+    /**
+     * The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+     * Vault 1.15 or later.
+     */
+    tokenDefaultAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The default TTL for generated Kubernetes tokens in seconds.
      */
@@ -465,6 +480,12 @@ export interface SecretBackendRoleArgs {
      * Kubernetes token will be created when credentials are requested.
      */
     serviceAccountName?: pulumi.Input<string>;
+    /**
+     * The default audiences for generated Kubernetes tokens.
+     * If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+     * Vault 1.15 or later.
+     */
+    tokenDefaultAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The default TTL for generated Kubernetes tokens in seconds.
      */

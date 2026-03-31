@@ -69,6 +69,11 @@ public final class SecretsMountSnowflake {
     @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
     private @Nullable String password;
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    private @Nullable String passwordPolicy;
+    /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only field for the root credential password used in the connection URL
      * 
@@ -84,6 +89,11 @@ public final class SecretsMountSnowflake {
      * 
      */
     private @Nullable String pluginName;
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    private @Nullable String pluginVersion;
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The private key configured for the admin user in Snowflake.
@@ -119,6 +129,11 @@ public final class SecretsMountSnowflake {
      * 
      */
     private @Nullable Integer rotationWindow;
+    /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Boolean skipStaticRoleImportRotation;
     /**
      * @return The root credential username used in the connection URL
      * 
@@ -208,6 +223,13 @@ public final class SecretsMountSnowflake {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+     * 
+     */
+    public Optional<String> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+    /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only field for the root credential password used in the connection URL
      * 
@@ -228,6 +250,13 @@ public final class SecretsMountSnowflake {
      */
     public Optional<String> pluginName() {
         return Optional.ofNullable(this.pluginName);
+    }
+    /**
+     * @return Specifies the semantic version of the plugin to use for this connection.
+     * 
+     */
+    public Optional<String> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -277,6 +306,13 @@ public final class SecretsMountSnowflake {
         return Optional.ofNullable(this.rotationWindow);
     }
     /**
+     * @return Specifies if a given static account&#39;s password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role&#39;s skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Boolean> skipStaticRoleImportRotation() {
+        return Optional.ofNullable(this.skipStaticRoleImportRotation);
+    }
+    /**
      * @return The root credential username used in the connection URL
      * 
      */
@@ -317,15 +353,18 @@ public final class SecretsMountSnowflake {
         private @Nullable Integer maxOpenConnections;
         private String name;
         private @Nullable String password;
+        private @Nullable String passwordPolicy;
         private @Nullable String passwordWo;
         private @Nullable Integer passwordWoVersion;
         private @Nullable String pluginName;
+        private @Nullable String pluginVersion;
         private @Nullable String privateKeyWo;
         private @Nullable Integer privateKeyWoVersion;
         private @Nullable List<String> rootRotationStatements;
         private @Nullable Integer rotationPeriod;
         private @Nullable String rotationSchedule;
         private @Nullable Integer rotationWindow;
+        private @Nullable Boolean skipStaticRoleImportRotation;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
@@ -341,15 +380,18 @@ public final class SecretsMountSnowflake {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordPolicy = defaults.passwordPolicy;
     	      this.passwordWo = defaults.passwordWo;
     	      this.passwordWoVersion = defaults.passwordWoVersion;
     	      this.pluginName = defaults.pluginName;
+    	      this.pluginVersion = defaults.pluginVersion;
     	      this.privateKeyWo = defaults.privateKeyWo;
     	      this.privateKeyWoVersion = defaults.privateKeyWoVersion;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.rotationSchedule = defaults.rotationSchedule;
     	      this.rotationWindow = defaults.rotationWindow;
+    	      this.skipStaticRoleImportRotation = defaults.skipStaticRoleImportRotation;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
@@ -415,6 +457,12 @@ public final class SecretsMountSnowflake {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordPolicy(@Nullable String passwordPolicy) {
+
+            this.passwordPolicy = passwordPolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder passwordWo(@Nullable String passwordWo) {
 
             this.passwordWo = passwordWo;
@@ -430,6 +478,12 @@ public final class SecretsMountSnowflake {
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder pluginVersion(@Nullable String pluginVersion) {
+
+            this.pluginVersion = pluginVersion;
             return this;
         }
         @CustomType.Setter
@@ -472,6 +526,12 @@ public final class SecretsMountSnowflake {
             return this;
         }
         @CustomType.Setter
+        public Builder skipStaticRoleImportRotation(@Nullable Boolean skipStaticRoleImportRotation) {
+
+            this.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -500,15 +560,18 @@ public final class SecretsMountSnowflake {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordPolicy = passwordPolicy;
             _resultValue.passwordWo = passwordWo;
             _resultValue.passwordWoVersion = passwordWoVersion;
             _resultValue.pluginName = pluginName;
+            _resultValue.pluginVersion = pluginVersion;
             _resultValue.privateKeyWo = privateKeyWo;
             _resultValue.privateKeyWoVersion = privateKeyWoVersion;
             _resultValue.rootRotationStatements = rootRotationStatements;
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.rotationSchedule = rotationSchedule;
             _resultValue.rotationWindow = rotationWindow;
+            _resultValue.skipStaticRoleImportRotation = skipStaticRoleImportRotation;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;

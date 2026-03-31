@@ -31,6 +31,7 @@ class SecretBackendRoleArgs:
                  name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
@@ -71,6 +72,9 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[_builtins.str] service_account_name: The pre-existing service account to generate tokens for.
                Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
                Kubernetes token will be created when credentials are requested.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_default_audiences: The default audiences for generated Kubernetes tokens.
+               If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+               Vault 1.15 or later.
         :param pulumi.Input[_builtins.int] token_default_ttl: The default TTL for generated Kubernetes tokens in seconds.
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum TTL for generated Kubernetes tokens in seconds.
         """
@@ -97,6 +101,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "namespace", namespace)
         if service_account_name is not None:
             pulumi.set(__self__, "service_account_name", service_account_name)
+        if token_default_audiences is not None:
+            pulumi.set(__self__, "token_default_audiences", token_default_audiences)
         if token_default_ttl is not None:
             pulumi.set(__self__, "token_default_ttl", token_default_ttl)
         if token_max_ttl is not None:
@@ -270,6 +276,20 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "service_account_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="tokenDefaultAudiences")
+    def token_default_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The default audiences for generated Kubernetes tokens.
+        If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+        Vault 1.15 or later.
+        """
+        return pulumi.get(self, "token_default_audiences")
+
+    @token_default_audiences.setter
+    def token_default_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "token_default_audiences", value)
+
+    @_builtins.property
     @pulumi.getter(name="tokenDefaultTtl")
     def token_default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -309,6 +329,7 @@ class _SecretBackendRoleState:
                  name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None):
         """
@@ -349,6 +370,9 @@ class _SecretBackendRoleState:
         :param pulumi.Input[_builtins.str] service_account_name: The pre-existing service account to generate tokens for.
                Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
                Kubernetes token will be created when credentials are requested.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_default_audiences: The default audiences for generated Kubernetes tokens.
+               If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+               Vault 1.15 or later.
         :param pulumi.Input[_builtins.int] token_default_ttl: The default TTL for generated Kubernetes tokens in seconds.
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum TTL for generated Kubernetes tokens in seconds.
         """
@@ -376,6 +400,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "namespace", namespace)
         if service_account_name is not None:
             pulumi.set(__self__, "service_account_name", service_account_name)
+        if token_default_audiences is not None:
+            pulumi.set(__self__, "token_default_audiences", token_default_audiences)
         if token_default_ttl is not None:
             pulumi.set(__self__, "token_default_ttl", token_default_ttl)
         if token_max_ttl is not None:
@@ -549,6 +575,20 @@ class _SecretBackendRoleState:
         pulumi.set(self, "service_account_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="tokenDefaultAudiences")
+    def token_default_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The default audiences for generated Kubernetes tokens.
+        If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+        Vault 1.15 or later.
+        """
+        return pulumi.get(self, "token_default_audiences")
+
+    @token_default_audiences.setter
+    def token_default_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "token_default_audiences", value)
+
+    @_builtins.property
     @pulumi.getter(name="tokenDefaultTtl")
     def token_default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -591,6 +631,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
@@ -630,6 +671,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
+            token_default_audiences=["https://kubernetes.default.svc"],
             service_account_name="test-service-account-with-generated-token",
             extra_labels={
                 "id": "abc123",
@@ -755,6 +797,9 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] service_account_name: The pre-existing service account to generate tokens for.
                Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
                Kubernetes token will be created when credentials are requested.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_default_audiences: The default audiences for generated Kubernetes tokens.
+               If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+               Vault 1.15 or later.
         :param pulumi.Input[_builtins.int] token_default_ttl: The default TTL for generated Kubernetes tokens in seconds.
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum TTL for generated Kubernetes tokens in seconds.
         """
@@ -800,6 +845,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
+            token_default_audiences=["https://kubernetes.default.svc"],
             service_account_name="test-service-account-with-generated-token",
             extra_labels={
                 "id": "abc123",
@@ -915,6 +961,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  name_template: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
@@ -940,6 +987,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["name_template"] = name_template
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["service_account_name"] = service_account_name
+            __props__.__dict__["token_default_audiences"] = token_default_audiences
             __props__.__dict__["token_default_ttl"] = token_default_ttl
             __props__.__dict__["token_max_ttl"] = token_max_ttl
         super(SecretBackendRole, __self__).__init__(
@@ -964,6 +1012,7 @@ class SecretBackendRole(pulumi.CustomResource):
             name_template: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+            token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
             token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackendRole':
         """
@@ -1008,6 +1057,9 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] service_account_name: The pre-existing service account to generate tokens for.
                Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
                Kubernetes token will be created when credentials are requested.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_default_audiences: The default audiences for generated Kubernetes tokens.
+               If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+               Vault 1.15 or later.
         :param pulumi.Input[_builtins.int] token_default_ttl: The default TTL for generated Kubernetes tokens in seconds.
         :param pulumi.Input[_builtins.int] token_max_ttl: The maximum TTL for generated Kubernetes tokens in seconds.
         """
@@ -1027,6 +1079,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["name_template"] = name_template
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["service_account_name"] = service_account_name
+        __props__.__dict__["token_default_audiences"] = token_default_audiences
         __props__.__dict__["token_default_ttl"] = token_default_ttl
         __props__.__dict__["token_max_ttl"] = token_max_ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
@@ -1149,6 +1202,16 @@ class SecretBackendRole(pulumi.CustomResource):
         Kubernetes token will be created when credentials are requested.
         """
         return pulumi.get(self, "service_account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenDefaultAudiences")
+    def token_default_audiences(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        The default audiences for generated Kubernetes tokens.
+        If not set, defaults to the Kubernetes cluster's default audiences. This field requires
+        Vault 1.15 or later.
+        """
+        return pulumi.get(self, "token_default_audiences")
 
     @_builtins.property
     @pulumi.getter(name="tokenDefaultTtl")

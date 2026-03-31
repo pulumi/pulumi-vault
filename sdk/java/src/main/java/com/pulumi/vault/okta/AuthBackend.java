@@ -72,6 +72,14 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `apiTokenWo` - (Optional) Write-only Okta API token. This is required to query Okta for user group membership.
+ *   Use this for enhanced security when you don&#39;t want the token to appear in state files. Requires `apiTokenWoVersion`. Conflicts with `token` and `apiToken`.
+ *   **Note**: This property is write-only and will not be read from the API.
+ * 
  * ## Import
  * 
  * Okta authentication backends can be imported using its `path`, e.g.
@@ -112,6 +120,56 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Map<String,String>>> aliasMetadata() {
         return Codegen.optional(this.aliasMetadata);
+    }
+    /**
+     * The Okta API token. This is required to query Okta for user group membership.
+     * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `token` and `apiTokenWo`.
+     * 
+     */
+    @Export(name="apiToken", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> apiToken;
+
+    /**
+     * @return The Okta API token. This is required to query Okta for user group membership.
+     * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `token` and `apiTokenWo`.
+     * 
+     */
+    public Output<Optional<String>> apiToken() {
+        return Codegen.optional(this.apiToken);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+     * 
+     */
+    @Export(name="apiTokenWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> apiTokenWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
+     * 
+     */
+    public Output<Optional<String>> apiTokenWo() {
+        return Codegen.optional(this.apiTokenWo);
+    }
+    /**
+     * Version counter for the write-only `apiTokenWo`.
+     * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+     * 
+     */
+    @Export(name="apiTokenWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> apiTokenWoVersion;
+
+    /**
+     * @return Version counter for the write-only `apiTokenWo`.
+     * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
+     * 
+     */
+    public Output<Optional<Integer>> apiTokenWoVersion() {
+        return Codegen.optional(this.apiTokenWoVersion);
     }
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
@@ -208,14 +266,36 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+     * The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
      * 
      */
+    @Export(name="orgName", refs={String.class}, tree="[0]")
+    private Output<String> orgName;
+
+    /**
+     * @return The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     * 
+     */
+    public Output<String> orgName() {
+        return this.orgName;
+    }
+    /**
+     * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
+     * 
+     * @deprecated
+     * Use orgName instead
+     * 
+     */
+    @Deprecated /* Use orgName instead */
     @Export(name="organization", refs={String.class}, tree="[0]")
     private Output<String> organization;
 
     /**
-     * @return The Okta organization. This will be the first part of the url `https://XXX.okta.com`
+     * @return **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
+     * Exactly one of `orgName` or `organization` must be specified.
      * 
      */
     public Output<String> organization() {
@@ -236,16 +316,22 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.path);
     }
     /**
-     * The Okta API token. This is required to query Okta for user group membership.
+     * **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `apiToken` and `apiTokenWo`.
+     * 
+     * @deprecated
+     * Use apiToken instead
      * 
      */
+    @Deprecated /* Use apiToken instead */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
-     * @return The Okta API token. This is required to query Okta for user group membership.
+     * @return **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
+     * Conflicts with `apiToken` and `apiTokenWo`.
      * 
      */
     public Output<Optional<String>> token() {
@@ -412,7 +498,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackend(java.lang.String name, AuthBackendArgs args) {
+    public AuthBackend(java.lang.String name, @Nullable AuthBackendArgs args) {
         this(name, args, null);
     }
     /**
@@ -421,7 +507,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackend(java.lang.String name, AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public AuthBackend(java.lang.String name, @Nullable AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:okta/authBackend:AuthBackend", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -429,7 +515,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         super("vault:okta/authBackend:AuthBackend", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static AuthBackendArgs makeArgs(AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static AuthBackendArgs makeArgs(@Nullable AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
@@ -440,6 +526,8 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
+                "apiToken",
+                "apiTokenWo",
                 "token"
             ))
             .build();

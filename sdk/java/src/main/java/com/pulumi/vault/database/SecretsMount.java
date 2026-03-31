@@ -89,6 +89,9 @@ import javax.annotation.Nullable;
  *                 .password("super_secret_1")
  *                 .connectionUrl("sqlserver://}{{{@code username}}}{@code :}{{{@code password}}}{@literal @}{@code 127.0.0.1:1433")
  *                 .allowedRoles("dev1")
+ *                 .pluginVersion("v0.20.0")
+ *                 .skipStaticRoleImportRotation(true)
+ *                 .passwordPolicy("default")
  *                 .rotationSchedule("0 * * * SAT")
  *                 .rotationWindow(3600)
  *                 .build())
@@ -99,6 +102,9 @@ import javax.annotation.Nullable;
  *                 .connectionUrl("postgresql://}{{{@code username}}}{@code :}{{{@code password}}}{@literal @}{@code 127.0.0.1:5432/postgres")
  *                 .verifyConnection(true)
  *                 .allowedRoles("dev2")
+ *                 .pluginVersion("v0.19.0")
+ *                 .skipStaticRoleImportRotation(true)
+ *                 .passwordPolicy("default")
  *                 .rotationSchedule("0 * * * SAT")
  *                 .rotationWindow(3600)
  *                 .build())
@@ -625,14 +631,14 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.path;
     }
     /**
-     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * Specifies the semantic version of the plugin to use for this connection.
      * 
      */
     @Export(name="pluginVersion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pluginVersion;
 
     /**
-     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * @return Specifies the semantic version of the plugin to use for this connection.
      * 
      */
     public Output<Optional<String>> pluginVersion() {

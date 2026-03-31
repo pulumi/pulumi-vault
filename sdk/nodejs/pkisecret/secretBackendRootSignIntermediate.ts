@@ -126,7 +126,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly issuingCa: pulumi.Output<string>;
     /**
-     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
      */
     declare public readonly keyUsages: pulumi.Output<string[] | undefined>;
     /**
@@ -416,7 +416,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     issuingCa?: pulumi.Input<string>;
     /**
-     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -578,7 +578,7 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     issuerRef?: pulumi.Input<string>;
     /**
-     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate.
+     * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
     /**

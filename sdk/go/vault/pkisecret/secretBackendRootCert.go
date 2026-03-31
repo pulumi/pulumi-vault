@@ -108,6 +108,8 @@ type SecretBackendRootCert struct {
 	KeyRef pulumi.StringOutput `pulumi:"keyRef"`
 	// The desired key type
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
+	// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+	KeyUsages pulumi.StringArrayOutput `pulumi:"keyUsages"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
@@ -160,6 +162,8 @@ type SecretBackendRootCert struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// List of alternative URIs
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
+	// When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+	UsePss pulumi.BoolPtrOutput `pulumi:"usePss"`
 }
 
 // NewSecretBackendRootCert registers a new resource with the given unique name, arguments, and options.
@@ -244,6 +248,8 @@ type secretBackendRootCertState struct {
 	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
+	// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
@@ -296,6 +302,8 @@ type secretBackendRootCertState struct {
 	Type *string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
+	// When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+	UsePss *bool `pulumi:"usePss"`
 }
 
 type SecretBackendRootCertState struct {
@@ -342,6 +350,8 @@ type SecretBackendRootCertState struct {
 	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
+	// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The ID of the previously configured managed key. This field is
@@ -394,6 +404,8 @@ type SecretBackendRootCertState struct {
 	Type pulumi.StringPtrInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
+	// When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+	UsePss pulumi.BoolPtrInput
 }
 
 func (SecretBackendRootCertState) ElementType() reflect.Type {
@@ -436,6 +448,8 @@ type secretBackendRootCertArgs struct {
 	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
+	// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
@@ -486,6 +500,8 @@ type secretBackendRootCertArgs struct {
 	Type string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
+	// When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+	UsePss *bool `pulumi:"usePss"`
 }
 
 // The set of arguments for constructing a SecretBackendRootCert resource.
@@ -525,6 +541,8 @@ type SecretBackendRootCertArgs struct {
 	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
+	// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The ID of the previously configured managed key. This field is
@@ -575,6 +593,8 @@ type SecretBackendRootCertArgs struct {
 	Type pulumi.StringInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
+	// When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+	UsePss pulumi.BoolPtrInput
 }
 
 func (SecretBackendRootCertArgs) ElementType() reflect.Type {
@@ -767,6 +787,11 @@ func (o SecretBackendRootCertOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
+func (o SecretBackendRootCertOutput) KeyUsages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.KeyUsages }).(pulumi.StringArrayOutput)
+}
+
 // The locality
 func (o SecretBackendRootCertOutput) Locality() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Locality }).(pulumi.StringPtrOutput)
@@ -886,6 +911,11 @@ func (o SecretBackendRootCertOutput) Type() pulumi.StringOutput {
 // List of alternative URIs
 func (o SecretBackendRootCertOutput) UriSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.UriSans }).(pulumi.StringArrayOutput)
+}
+
+// When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
+func (o SecretBackendRootCertOutput) UsePss() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.BoolPtrOutput { return v.UsePss }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendRootCertArrayOutput struct{ *pulumi.OutputState }

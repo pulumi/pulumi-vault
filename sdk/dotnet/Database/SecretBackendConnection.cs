@@ -58,67 +58,6 @@ namespace Pulumi.Vault.Database
     /// });
     /// ```
     /// 
-    /// ### Oracle Connection with Self-Managed Mode (Rootless)
-    /// 
-    /// For Vault 1.18+ Enterprise, you can configure Oracle connections in self-managed mode,
-    /// which allows a static role to manage its own database credentials without requiring root access:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var db = new Vault.Mount("db", new()
-    ///     {
-    ///         Path = "database",
-    ///         Type = "database",
-    ///     });
-    /// 
-    ///     var oracle = new Vault.Database.SecretBackendConnection("oracle", new()
-    ///     {
-    ///         Backend = db.Path,
-    ///         Name = "oracle",
-    ///         AllowedRoles = new[]
-    ///         {
-    ///             "my-role",
-    ///         },
-    ///         Oracle = new Vault.Database.Inputs.SecretBackendConnectionOracleArgs
-    ///         {
-    ///             ConnectionUrl = "{{username}}/{{password}}@//host:port/service",
-    ///             SelfManaged = true,
-    ///             PluginName = "vault-plugin-database-oracle",
-    ///         },
-    ///     });
-    /// 
-    ///     var oracleRole = new Vault.Database.SecretBackendStaticRole("oracle_role", new()
-    ///     {
-    ///         Backend = db.Path,
-    ///         Name = "my-role",
-    ///         DbName = oracle.Name,
-    ///         Username = "vault_user",
-    ///         PasswordWo = "initial-password",
-    ///         PasswordWoVersion = 1,
-    ///         RotationPeriod = 3600,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Ephemeral Attributes Reference
-    /// 
-    /// The following write-only attributes are supported for all DBs that support username/password:
-    /// 
-    /// * `PasswordWo` - (Optional) The password for the user. Can be updated.
-    ///   **Note**: This property is write-only and will not be read from the API.
-    /// 
-    /// The following write-only attribute is supported only for Snowflake DB:
-    /// 
-    /// * `PrivateKeyWo` - (Optional) The private key associated with the Snowflake user.
-    ///   **Note**: This property is write-only and will not be read from the API.
-    /// 
     /// ## Import
     /// 
     /// Database secret backend connections can be imported using the `Backend`, `/config/`, and the `Name` e.g.
@@ -249,10 +188,22 @@ namespace Pulumi.Vault.Database
         public Output<Outputs.SecretBackendConnectionOracle?> Oracle { get; private set; } = null!;
 
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        [Output("passwordPolicy")]
+        public Output<string?> PasswordPolicy { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         [Output("pluginName")]
         public Output<string> PluginName { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        [Output("pluginVersion")]
+        public Output<string?> PluginVersion { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.
@@ -307,6 +258,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("rotationWindow")]
         public Output<int?> RotationWindow { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("skipStaticRoleImportRotation")]
+        public Output<bool> SkipStaticRoleImportRotation { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for Snowflake connections.
@@ -498,10 +455,22 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionOracleArgs>? Oracle { get; set; }
 
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.
@@ -562,6 +531,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
+
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("skipStaticRoleImportRotation")]
+        public Input<bool>? SkipStaticRoleImportRotation { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for Snowflake connections.
@@ -715,10 +690,22 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionOracleGetArgs>? Oracle { get; set; }
 
         /// <summary>
+        /// The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]
         public Input<string>? PluginName { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use for this connection.
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.
@@ -779,6 +766,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
+
+        /// <summary>
+        /// Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's SkipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("skipStaticRoleImportRotation")]
+        public Input<bool>? SkipStaticRoleImportRotation { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for Snowflake connections.

@@ -434,6 +434,9 @@ The `authLoginJwt` configuration block accepts the following arguments:
 * `role` - (Required) The name of the role against which the login is being attempted.
 
 * `jwt` - (Required) The signed JSON Web Token against which the login is being attempted.*Can be specified with the `TERRAFORM_VAULT_AUTH_JWT` environment variable.*
+
+* `distributedClaimAccessToken` - (Optional) A token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
+  *Can be specified with the `TERRAFORM_VAULT_AUTH_DISTRIBUTED_CLAIM_ACCESS_TOKEN` environment variable.*
 ### Azure
 
 Provides support for authenticating to Vault using the Azure Auth engine.
