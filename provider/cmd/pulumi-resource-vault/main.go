@@ -14,6 +14,7 @@
 
 //go:generate go run ./generate.go
 
+// Package main is the entry point for the Vault resource provider.
 package main
 
 import (
