@@ -1,6 +1,7 @@
 //go:build !go && !nodejs && !python && !dotnet
 // +build !go,!nodejs,!python,!dotnet
 
+// Package provider contains acceptance tests for the Vault provider.
 package provider
 
 import (
