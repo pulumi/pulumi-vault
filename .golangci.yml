@@ -10,7 +10,6 @@ linters:
   - govet
   - ineffassign
   - lll
-  - gosimple
   - staticcheck
   - misspell
   - nakedret
