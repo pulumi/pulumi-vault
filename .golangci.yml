@@ -5,9 +5,7 @@ version: "2"
 linters:
   enable:
   - errcheck
-  - gci
   - goconst
-  - gofmt
   - gosec
   - govet
   - ineffassign
@@ -20,6 +18,15 @@ linters:
   - unconvert
   - unused
   default: none
+  exclusions:
+    paths:
+    - pkg/vendored
+    - schema.go
+    - pulumiManifest.go
+formatters:
+  enable:
+  - gci
+  - gofmt
   settings:
     gci:
       sections:
@@ -29,10 +36,10 @@ linters:
         - prefix(github.com/pulumi/) # Custom section: groups all imports with the github.com/pulumi/ prefix.
         - prefix(github.com/pulumi/pulumi-vault) # Custom section: local imports
       custom-order: true
-exclusions:
-  paths:
-  - pkg/vendored
-  - schema.go
-  - pulumiManifest.go
+  exclusions:
+    paths:
+    - pkg/vendored
+    - schema.go
+    - pulumiManifest.go
 run:
   timeout: 20m
