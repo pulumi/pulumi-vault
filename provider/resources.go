@@ -591,11 +591,11 @@ var cleanUpSecretsWarnings = tfbridge.DocsEdit{
 
 		replacesDir := "provider/installation-replaces/"
 		for _, file := range files {
-			input, err := os.ReadFile(replacesDir + file + "-input.md")
+			input, err := os.ReadFile(replacesDir + file + "-input.md") // #nosec G304
 			if err != nil {
 				return nil, err
 			}
-			replace, err := os.ReadFile(replacesDir + file + "-desired.md")
+			replace, err := os.ReadFile(replacesDir + file + "-desired.md") // #nosec G304
 			if err != nil {
 				return nil, err
 			}
