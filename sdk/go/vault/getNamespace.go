@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.LookupNamespace(ctx, &vault.LookupNamespaceArgs{}, nil)
+//			_, err := vault.GetNamespace(ctx, &vault.LookupNamespaceArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -55,7 +55,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.LookupNamespace(ctx, &vault.LookupNamespaceArgs{
+//			_, err := vault.GetNamespace(ctx, &vault.LookupNamespaceArgs{
 //				Path: pulumi.StringRef("ns1"),
 //			}, nil)
 //			if err != nil {
@@ -81,7 +81,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			child, err := vault.LookupNamespace(ctx, &vault.LookupNamespaceArgs{
+//			child, err := vault.GetNamespace(ctx, &vault.LookupNamespaceArgs{
 //				Namespace: pulumi.StringRef("parent"),
 //				Path:      pulumi.StringRef("child"),
 //			}, nil)

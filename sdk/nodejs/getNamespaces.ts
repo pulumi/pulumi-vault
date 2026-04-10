@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
  *     path: __key,
- * }) }));
+ * }) }), {});
  * ```
  */
 export function getNamespaces(args?: GetNamespacesArgs, opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
@@ -133,7 +133,7 @@ export interface GetNamespacesResult {
  * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
  *     path: __key,
- * }) }));
+ * }) }), {});
  * ```
  */
 export function getNamespacesOutput(args?: GetNamespacesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNamespacesResult> {

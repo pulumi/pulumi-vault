@@ -78,6 +78,10 @@ export class MfaPingid extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly idpUrl: pulumi.Output<string>;
     /**
+     * `(string)` – ID computed by Vault
+     */
+    declare public readonly mfaPingidId: pulumi.Output<string>;
+    /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
@@ -141,6 +145,7 @@ export class MfaPingid extends pulumi.CustomResource {
             resourceInputs["adminUrl"] = state?.adminUrl;
             resourceInputs["authenticatorUrl"] = state?.authenticatorUrl;
             resourceInputs["idpUrl"] = state?.idpUrl;
+            resourceInputs["mfaPingidId"] = state?.mfaPingidId;
             resourceInputs["mountAccessor"] = state?.mountAccessor;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -158,6 +163,7 @@ export class MfaPingid extends pulumi.CustomResource {
             if (args?.settingsFileBase64 === undefined && !opts.urn) {
                 throw new Error("Missing required property 'settingsFileBase64'");
             }
+            resourceInputs["mfaPingidId"] = args?.mfaPingidId;
             resourceInputs["mountAccessor"] = args?.mountAccessor;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -192,6 +198,10 @@ export interface MfaPingidState {
      * `(string)` – IDP URL computed by Vault
      */
     idpUrl?: pulumi.Input<string>;
+    /**
+     * `(string)` – ID computed by Vault
+     */
+    mfaPingidId?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -245,6 +255,10 @@ export interface MfaPingidState {
  * The set of arguments for constructing a MfaPingid resource.
  */
 export interface MfaPingidArgs {
+    /**
+     * `(string)` – ID computed by Vault
+     */
+    mfaPingidId?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.

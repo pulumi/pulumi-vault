@@ -26,13 +26,13 @@ namespace Pulumi.Vault
     /// {
     ///     var config = new Config();
     ///     var settingsFile = config.RequireObject&lt;dynamic&gt;("settingsFile");
-    ///     var userpass = new Vault.AuthBackend("userpass", new()
+    ///     var userpass = new Vault.Index.AuthBackend("userpass", new()
     ///     {
     ///         Type = "userpass",
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myPingid = new Vault.MfaPingid("my_pingid", new()
+    ///     var myPingid = new Vault.Index.MfaPingid("my_pingid", new()
     ///     {
     ///         Name = "my_pingid",
     ///         MountAccessor = userpass.Accessor,
@@ -71,6 +71,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("idpUrl")]
         public Output<string> IdpUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string)` – ID computed by Vault
+        /// </summary>
+        [Output("mfaPingidId")]
+        public Output<string> MfaPingidId { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 
@@ -184,6 +190,12 @@ namespace Pulumi.Vault
     public sealed class MfaPingidArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// `(string)` – ID computed by Vault
+        /// </summary>
+        [Input("mfaPingidId")]
+        public Input<string>? MfaPingidId { get; set; }
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 
         /// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         /// </summary>
@@ -249,6 +261,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("idpUrl")]
         public Input<string>? IdpUrl { get; set; }
+
+        /// <summary>
+        /// `(string)` – ID computed by Vault
+        /// </summary>
+        [Input("mfaPingidId")]
+        public Input<string>? MfaPingidId { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 

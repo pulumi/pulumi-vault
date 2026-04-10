@@ -27,7 +27,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var xForwardedFor = new Vault.AuditRequestHeader("x_forwarded_for", new()
+    ///     var xForwardedFor = new Vault.Index.AuditRequestHeader("x_forwarded_for", new()
     ///     {
     ///         Name = "X-Forwarded-For",
     ///         Hmac = false,

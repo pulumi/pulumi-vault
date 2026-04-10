@@ -32,7 +32,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var jwt = new Vault.Plugin("jwt", new()
+    ///     var jwt = new Vault.Index.Plugin("jwt", new()
     ///     {
     ///         Type = "auth",
     ///         Name = "jwt",
@@ -45,7 +45,7 @@ namespace Pulumi.Vault
     ///         },
     ///     });
     /// 
-    ///     var jwtAuth = new Vault.AuthBackend("jwt_auth", new()
+    ///     var jwtAuth = new Vault.Index.AuthBackend("jwt_auth", new()
     ///     {
     ///         Type = jwt.Name,
     ///     });

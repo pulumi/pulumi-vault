@@ -73,8 +73,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			azureAccountName := cfg.RequireObject("azureAccountName")
-//			azureAccountKey := cfg.RequireObject("azureAccountKey")
+//			var azureAccountName interface{}
+//			cfg.RequireObject("azureAccountName", &azureAccountName)
+//			var azureAccountKey interface{}
+//			cfg.RequireObject("azureAccountKey", &azureAccountKey)
 //			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "azure_backups", &vault.RaftSnapshotAgentConfigArgs{
 //				Name:               pulumi.String("azure_backup"),
 //				IntervalSeconds:    pulumi.Int(86400),
@@ -112,8 +114,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			azureAccountName := cfg.RequireObject("azureAccountName")
-//			azureClientId := cfg.RequireObject("azureClientId")
+//			var azureAccountName interface{}
+//			cfg.RequireObject("azureAccountName", &azureAccountName)
+//			var azureClientId interface{}
+//			cfg.RequireObject("azureClientId", &azureClientId)
 //			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "azure_managed_identity", &vault.RaftSnapshotAgentConfigArgs{
 //				Name:               pulumi.String("azure_managed"),
 //				IntervalSeconds:    pulumi.Int(86400),

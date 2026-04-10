@@ -24,7 +24,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mountTransform = new Vault.Mount("mount_transform", new()
+    ///     var mountTransform = new Vault.Index.Mount("mount_transform", new()
     ///     {
     ///         Path = "transform",
     ///         Type = "transform",

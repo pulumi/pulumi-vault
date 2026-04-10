@@ -39,7 +39,7 @@ namespace Pulumi.Vault.Generic
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var userpass = new Vault.AuthBackend("userpass", new()
+    ///     var userpass = new Vault.Index.AuthBackend("userpass", new()
     ///     {
     ///         Type = "userpass",
     ///     });

@@ -25,7 +25,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var autopilot = new Vault.RaftAutopilot("autopilot", new()
+    ///     var autopilot = new Vault.Index.RaftAutopilot("autopilot", new()
     ///     {
     ///         CleanupDeadServers = true,
     ///         DeadServerLastContactThreshold = "24h0m0s",

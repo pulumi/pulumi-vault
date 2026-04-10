@@ -119,6 +119,20 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
         return this.idpUrl;
     }
     /**
+     * `(string)` – ID computed by Vault
+     * 
+     */
+    @Export(name="mfaPingidId", refs={String.class}, tree="[0]")
+    private Output<String> mfaPingidId;
+
+    /**
+     * @return `(string)` – ID computed by Vault
+     * 
+     */
+    public Output<String> mfaPingidId() {
+        return this.mfaPingidId;
+    }
+    /**
      * `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      * 

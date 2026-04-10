@@ -24,7 +24,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var allow_all = new Vault.EgpPolicy("allow-all", new()
+    ///     var allow_all = new Vault.Index.EgpPolicy("allow-all", new()
     ///     {
     ///         Name = "allow-all",
     ///         Paths = new[]

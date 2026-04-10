@@ -35,7 +35,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.OciAuthBackend("example", new()
+    ///     var example = new Vault.Index.OciAuthBackend("example", new()
     ///     {
     ///         Path = exampleVaultAuthBackend.Path,
     ///         HomeTenancyId = "ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq",

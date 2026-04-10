@@ -788,8 +788,10 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		cfg := config.New(ctx, "")
-		loginUsername := cfg.RequireObject("loginUsername")
-		loginPassword := cfg.RequireObject("loginPassword")
+		var loginUsername interface{}
+		cfg.RequireObject("loginUsername", &loginUsername)
+		var loginPassword interface{}
+		cfg.RequireObject("loginPassword", &loginPassword)
 		return nil
 	})
 }
@@ -929,8 +931,10 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		cfg := config.New(ctx, "")
-		loginApproleRoleId := cfg.RequireObject("loginApproleRoleId")
-		loginApproleSecretId := cfg.RequireObject("loginApproleSecretId")
+		var loginApproleRoleId interface{}
+		cfg.RequireObject("loginApproleRoleId", &loginApproleRoleId)
+		var loginApproleSecretId interface{}
+		cfg.RequireObject("loginApproleSecretId", &loginApproleSecretId)
 		return nil
 	})
 }

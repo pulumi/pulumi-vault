@@ -32,7 +32,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var config = new Vault.NomadSecretBackend("config", new()
+        ///     var config = new Vault.Index.NomadSecretBackend("config", new()
         ///     {
         ///         Backend = "nomad",
         ///         Description = "test description",
@@ -42,7 +42,7 @@ namespace Pulumi.Vault
         ///         Token = "ae20ceaa-...",
         ///     });
         /// 
-        ///     var test = new Vault.NomadSecretRole("test", new()
+        ///     var test = new Vault.Index.NomadSecretRole("test", new()
         ///     {
         ///         Backend = config.Backend,
         ///         Role = "test",
@@ -53,7 +53,7 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var token = Vault.GetNomadAccessToken.Invoke(new()
+        ///     var token = Vault.Index.GetNomadAccessToken.Invoke(new()
         ///     {
         ///         Backend = config.Backend,
         ///         Role = test.Role,
@@ -86,7 +86,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var config = new Vault.NomadSecretBackend("config", new()
+        ///     var config = new Vault.Index.NomadSecretBackend("config", new()
         ///     {
         ///         Backend = "nomad",
         ///         Description = "test description",
@@ -96,7 +96,7 @@ namespace Pulumi.Vault
         ///         Token = "ae20ceaa-...",
         ///     });
         /// 
-        ///     var test = new Vault.NomadSecretRole("test", new()
+        ///     var test = new Vault.Index.NomadSecretRole("test", new()
         ///     {
         ///         Backend = config.Backend,
         ///         Role = "test",
@@ -107,7 +107,7 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var token = Vault.GetNomadAccessToken.Invoke(new()
+        ///     var token = Vault.Index.GetNomadAccessToken.Invoke(new()
         ///     {
         ///         Backend = config.Backend,
         ///         Role = test.Role,
@@ -140,7 +140,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var config = new Vault.NomadSecretBackend("config", new()
+        ///     var config = new Vault.Index.NomadSecretBackend("config", new()
         ///     {
         ///         Backend = "nomad",
         ///         Description = "test description",
@@ -150,7 +150,7 @@ namespace Pulumi.Vault
         ///         Token = "ae20ceaa-...",
         ///     });
         /// 
-        ///     var test = new Vault.NomadSecretRole("test", new()
+        ///     var test = new Vault.Index.NomadSecretRole("test", new()
         ///     {
         ///         Backend = config.Backend,
         ///         Role = "test",
@@ -161,7 +161,7 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var token = Vault.GetNomadAccessToken.Invoke(new()
+        ///     var token = Vault.Index.GetNomadAccessToken.Invoke(new()
         ///     {
         ///         Backend = config.Backend,
         ///         Role = test.Role,

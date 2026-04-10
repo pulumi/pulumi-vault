@@ -97,6 +97,21 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * ID computed by Vault.
+     * 
+     */
+    @Import(name="mfaTotpId")
+    private @Nullable Output<String> mfaTotpId;
+
+    /**
+     * @return ID computed by Vault.
+     * 
+     */
+    public Optional<Output<String>> mfaTotpId() {
+        return Optional.ofNullable(this.mfaTotpId);
+    }
+
+    /**
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */
@@ -187,6 +202,7 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
         this.issuer = $.issuer;
         this.keySize = $.keySize;
         this.maxValidationAttempts = $.maxValidationAttempts;
+        this.mfaTotpId = $.mfaTotpId;
         this.name = $.name;
         this.namespace = $.namespace;
         this.period = $.period;
@@ -319,6 +335,27 @@ public final class MfaTotpArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder maxValidationAttempts(Integer maxValidationAttempts) {
             return maxValidationAttempts(Output.of(maxValidationAttempts));
+        }
+
+        /**
+         * @param mfaTotpId ID computed by Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaTotpId(@Nullable Output<String> mfaTotpId) {
+            $.mfaTotpId = mfaTotpId;
+            return this;
+        }
+
+        /**
+         * @param mfaTotpId ID computed by Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaTotpId(String mfaTotpId) {
+            return mfaTotpId(Output.of(mfaTotpId));
         }
 
         /**

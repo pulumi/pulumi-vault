@@ -24,13 +24,13 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var userpass = new Vault.AuthBackend("userpass", new()
+    ///     var userpass = new Vault.Index.AuthBackend("userpass", new()
     ///     {
     ///         Type = "userpass",
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myOkta = new Vault.MfaOkta("my_okta", new()
+    ///     var myOkta = new Vault.Index.MfaOkta("my_okta", new()
     ///     {
     ///         Name = "my_okta",
     ///         MountAccessor = userpass.Accessor,
@@ -65,6 +65,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("baseUrl")]
         public Output<string?> BaseUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// ID computed by Vault.
+        /// </summary>
+        [Output("mfaOktaId")]
+        public Output<string> MfaOktaId { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 
@@ -187,6 +193,12 @@ namespace Pulumi.Vault
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
+        /// ID computed by Vault.
+        /// </summary>
+        [Input("mfaOktaId")]
+        public Input<string>? MfaOktaId { get; set; }
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 
         /// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         /// </summary>
@@ -263,6 +275,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
+
+        /// <summary>
+        /// ID computed by Vault.
+        /// </summary>
+        [Input("mfaOktaId")]
+        public Input<string>? MfaOktaId { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings. 

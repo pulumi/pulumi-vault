@@ -30,7 +30,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var config = new Vault.NomadSecretBackend("config", new()
+    ///     var config = new Vault.Index.NomadSecretBackend("config", new()
     ///     {
     ///         Backend = "nomad",
     ///         Description = "test description",

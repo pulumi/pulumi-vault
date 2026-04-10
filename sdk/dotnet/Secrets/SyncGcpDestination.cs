@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Secrets
     ///     {
     ///         Name = "gcp-dest",
     ///         ProjectId = "gcp-project-id",
-    ///         Credentials = Std.File.Invoke(new()
+    ///         Credentials = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = credentialsFile,
     ///         }).Apply(invoke =&gt; invoke.Result),
@@ -67,7 +67,7 @@ namespace Pulumi.Vault.Secrets
     ///     {
     ///         Name = "gcp-dest-networking",
     ///         ProjectId = "gcp-project-id",
-    ///         Credentials = Std.File.Invoke(new()
+    ///         Credentials = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = credentialsFile,
     ///         }).Apply(invoke =&gt; invoke.Result),
@@ -107,7 +107,7 @@ namespace Pulumi.Vault.Secrets
     ///     {
     ///         Name = "gcp-dest-encryption",
     ///         ProjectId = "gcp-project-id",
-    ///         Credentials = Std.File.Invoke(new()
+    ///         Credentials = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = credentialsFile,
     ///         }).Apply(invoke =&gt; invoke.Result),
@@ -133,7 +133,7 @@ namespace Pulumi.Vault.Secrets
     ///     {
     ///         Name = "gcp-dest-replication-encryption",
     ///         ProjectId = "gcp-project-id",
-    ///         Credentials = Std.File.Invoke(new()
+    ///         Credentials = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = credentialsFile,
     ///         }).Apply(invoke =&gt; invoke.Result),

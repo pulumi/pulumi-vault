@@ -74,6 +74,10 @@ export class MfaOkta extends pulumi.CustomResource {
      */
     declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
+     * ID computed by Vault.
+     */
+    declare public readonly mfaOktaId: pulumi.Output<string>;
+    /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
@@ -124,6 +128,7 @@ export class MfaOkta extends pulumi.CustomResource {
             const state = argsOrState as MfaOktaState | undefined;
             resourceInputs["apiToken"] = state?.apiToken;
             resourceInputs["baseUrl"] = state?.baseUrl;
+            resourceInputs["mfaOktaId"] = state?.mfaOktaId;
             resourceInputs["mountAccessor"] = state?.mountAccessor;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -143,6 +148,7 @@ export class MfaOkta extends pulumi.CustomResource {
             }
             resourceInputs["apiToken"] = args?.apiToken ? pulumi.secret(args.apiToken) : undefined;
             resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["mfaOktaId"] = args?.mfaOktaId;
             resourceInputs["mountAccessor"] = args?.mountAccessor;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -170,6 +176,10 @@ export interface MfaOktaState {
      * `oktapreview.com`, and `okta-emea.com`.
      */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * ID computed by Vault.
+     */
+    mfaOktaId?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -220,6 +230,10 @@ export interface MfaOktaArgs {
      * `oktapreview.com`, and `okta-emea.com`.
      */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * ID computed by Vault.
+     */
+    mfaOktaId?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.

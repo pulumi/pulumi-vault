@@ -313,7 +313,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         import pulumi_std as std
         import pulumi_vault as vault
 
-        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
+        this = google.ServiceAccount("this", account_id=my-awesome-account)
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
             credentials=std.file(input="credentials.json").result)
@@ -371,7 +371,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         import pulumi_std as std
         import pulumi_vault as vault
 
-        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
+        this = google.ServiceAccount("this", account_id=my-awesome-account)
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
             credentials=std.file(input="credentials.json").result)

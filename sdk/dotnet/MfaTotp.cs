@@ -24,7 +24,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myTotp = new Vault.MfaTotp("my_totp", new()
+    ///     var myTotp = new Vault.Index.MfaTotp("my_totp", new()
     ///     {
     ///         Name = "my_totp",
     ///         Issuer = "hashicorp",
@@ -79,6 +79,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("maxValidationAttempts")]
         public Output<int?> MaxValidationAttempts { get; private set; } = null!;
+
+        /// <summary>
+        /// ID computed by Vault.
+        /// </summary>
+        [Output("mfaTotpId")]
+        public Output<string> MfaTotpId { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;required&gt;)` – Name of the MFA method.
@@ -193,6 +199,12 @@ namespace Pulumi.Vault
         public Input<int>? MaxValidationAttempts { get; set; }
 
         /// <summary>
+        /// ID computed by Vault.
+        /// </summary>
+        [Input("mfaTotpId")]
+        public Input<string>? MfaTotpId { get; set; }
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` – Name of the MFA method.
         /// </summary>
         [Input("name")]
@@ -265,6 +277,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("maxValidationAttempts")]
         public Input<int>? MaxValidationAttempts { get; set; }
+
+        /// <summary>
+        /// ID computed by Vault.
+        /// </summary>
+        [Input("mfaTotpId")]
+        public Input<string>? MfaTotpId { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` – Name of the MFA method.

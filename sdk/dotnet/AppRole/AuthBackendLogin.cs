@@ -26,7 +26,7 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var approle = new Vault.AuthBackend("approle", new()
+    ///     var approle = new Vault.Index.AuthBackend("approle", new()
     ///     {
     ///         Type = "approle",
     ///     });
@@ -69,7 +69,7 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var approle = new Vault.AuthBackend("approle", new()
+    ///     var approle = new Vault.Index.AuthBackend("approle", new()
     ///     {
     ///         Type = "approle",
     ///     });

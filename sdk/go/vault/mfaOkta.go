@@ -68,6 +68,8 @@ type MfaOkta struct {
 	// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
 	// `oktapreview.com`, and `okta-emea.com`.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
+	// ID computed by Vault.
+	MfaOktaId pulumi.StringOutput `pulumi:"mfaOktaId"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
@@ -144,6 +146,8 @@ type mfaOktaState struct {
 	// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
 	// `oktapreview.com`, and `okta-emea.com`.
 	BaseUrl *string `pulumi:"baseUrl"`
+	// ID computed by Vault.
+	MfaOktaId *string `pulumi:"mfaOktaId"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor *string `pulumi:"mountAccessor"`
@@ -175,6 +179,8 @@ type MfaOktaState struct {
 	// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
 	// `oktapreview.com`, and `okta-emea.com`.
 	BaseUrl pulumi.StringPtrInput
+	// ID computed by Vault.
+	MfaOktaId pulumi.StringPtrInput
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor pulumi.StringPtrInput
@@ -210,6 +216,8 @@ type mfaOktaArgs struct {
 	// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
 	// `oktapreview.com`, and `okta-emea.com`.
 	BaseUrl *string `pulumi:"baseUrl"`
+	// ID computed by Vault.
+	MfaOktaId *string `pulumi:"mfaOktaId"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor string `pulumi:"mountAccessor"`
@@ -242,6 +250,8 @@ type MfaOktaArgs struct {
 	// `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
 	// `oktapreview.com`, and `okta-emea.com`.
 	BaseUrl pulumi.StringPtrInput
+	// ID computed by Vault.
+	MfaOktaId pulumi.StringPtrInput
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor pulumi.StringInput
@@ -363,6 +373,11 @@ func (o MfaOktaOutput) ApiToken() pulumi.StringOutput {
 // `oktapreview.com`, and `okta-emea.com`.
 func (o MfaOktaOutput) BaseUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MfaOkta) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+// ID computed by Vault.
+func (o MfaOktaOutput) MfaOktaId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaOkta) pulumi.StringOutput { return v.MfaOktaId }).(pulumi.StringOutput)
 }
 
 // `(string: <required>)` - The mount to tie this method to for use in automatic mappings.

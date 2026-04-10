@@ -22,13 +22,13 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var scep = new Vault.AuthBackend("scep", new()
+    ///     var scep = new Vault.Index.AuthBackend("scep", new()
     ///     {
     ///         Path = "scep",
     ///         Type = "scep",
     ///     });
     /// 
-    ///     var scepScepAuthBackendRole = new Vault.ScepAuthBackendRole("scep", new()
+    ///     var scepScepAuthBackendRole = new Vault.Index.ScepAuthBackendRole("scep", new()
     ///     {
     ///         Backend = scep.Path,
     ///         Name = "scep_challenge",

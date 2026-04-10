@@ -107,6 +107,20 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.baseUrl);
     }
     /**
+     * ID computed by Vault.
+     * 
+     */
+    @Export(name="mfaOktaId", refs={String.class}, tree="[0]")
+    private Output<String> mfaOktaId;
+
+    /**
+     * @return ID computed by Vault.
+     * 
+     */
+    public Output<String> mfaOktaId() {
+        return this.mfaOktaId;
+    }
+    /**
      * `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      * 
