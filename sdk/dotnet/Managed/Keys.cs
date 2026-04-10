@@ -51,7 +51,7 @@ namespace Pulumi.Vault.Managed
     ///         },
     ///     });
     /// 
-    ///     var pki = new Vault.Mount("pki", new()
+    ///     var pki = new Vault.Index.Mount("pki", new()
     ///     {
     ///         Path = "pki",
     ///         Type = "pki",
@@ -86,7 +86,7 @@ namespace Pulumi.Vault.Managed
     ///             new Vault.Managed.Inputs.KeysGcpArgs
     ///             {
     ///                 Name = "gcp-key-1",
-    ///                 Credentials = Std.File.Invoke(new()
+    ///                 Credentials = Std.Index.File.Invoke(new()
     ///                 {
     ///                     Input = "sa-credentials.json",
     ///                 }).Apply(invoke =&gt; invoke.Result),
@@ -99,7 +99,7 @@ namespace Pulumi.Vault.Managed
     ///         },
     ///     });
     /// 
-    ///     var pki = new Vault.Mount("pki", new()
+    ///     var pki = new Vault.Index.Mount("pki", new()
     ///     {
     ///         Path = "pki",
     ///         Type = "pki",

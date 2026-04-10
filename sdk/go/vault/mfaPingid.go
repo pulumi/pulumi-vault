@@ -32,7 +32,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			settingsFile := cfg.RequireObject("settingsFile")
+//			var settingsFile interface{}
+//			cfg.RequireObject("settingsFile", &settingsFile)
 //			userpass, err := vault.NewAuthBackend(ctx, "userpass", &vault.AuthBackendArgs{
 //				Type: pulumi.String("userpass"),
 //				Path: pulumi.String("userpass"),
@@ -71,6 +72,8 @@ type MfaPingid struct {
 	AuthenticatorUrl pulumi.StringOutput `pulumi:"authenticatorUrl"`
 	// `(string)` – IDP URL computed by Vault
 	IdpUrl pulumi.StringOutput `pulumi:"idpUrl"`
+	// `(string)` – ID computed by Vault
+	MfaPingidId pulumi.StringOutput `pulumi:"mfaPingidId"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
@@ -144,6 +147,8 @@ type mfaPingidState struct {
 	AuthenticatorUrl *string `pulumi:"authenticatorUrl"`
 	// `(string)` – IDP URL computed by Vault
 	IdpUrl *string `pulumi:"idpUrl"`
+	// `(string)` – ID computed by Vault
+	MfaPingidId *string `pulumi:"mfaPingidId"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor *string `pulumi:"mountAccessor"`
@@ -182,6 +187,8 @@ type MfaPingidState struct {
 	AuthenticatorUrl pulumi.StringPtrInput
 	// `(string)` – IDP URL computed by Vault
 	IdpUrl pulumi.StringPtrInput
+	// `(string)` – ID computed by Vault
+	MfaPingidId pulumi.StringPtrInput
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor pulumi.StringPtrInput
@@ -218,6 +225,8 @@ func (MfaPingidState) ElementType() reflect.Type {
 }
 
 type mfaPingidArgs struct {
+	// `(string)` – ID computed by Vault
+	MfaPingidId *string `pulumi:"mfaPingidId"`
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor string `pulumi:"mountAccessor"`
@@ -243,6 +252,8 @@ type mfaPingidArgs struct {
 
 // The set of arguments for constructing a MfaPingid resource.
 type MfaPingidArgs struct {
+	// `(string)` – ID computed by Vault
+	MfaPingidId pulumi.StringPtrInput
 	// `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
 	// The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
 	MountAccessor pulumi.StringInput
@@ -366,6 +377,11 @@ func (o MfaPingidOutput) AuthenticatorUrl() pulumi.StringOutput {
 // `(string)` – IDP URL computed by Vault
 func (o MfaPingidOutput) IdpUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.IdpUrl }).(pulumi.StringOutput)
+}
+
+// `(string)` – ID computed by Vault
+func (o MfaPingidOutput) MfaPingidId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaPingid) pulumi.StringOutput { return v.MfaPingidId }).(pulumi.StringOutput)
 }
 
 // `(string: <required>)` - The mount to tie this method to for use in automatic mappings.

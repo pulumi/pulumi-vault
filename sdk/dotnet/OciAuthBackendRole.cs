@@ -26,13 +26,13 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var oci = new Vault.OciAuthBackend("oci", new()
+    ///     var oci = new Vault.Index.OciAuthBackend("oci", new()
     ///     {
     ///         Path = "oci",
     ///         HomeTenancyId = "ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq",
     ///     });
     /// 
-    ///     var example = new Vault.OciAuthBackendRole("example", new()
+    ///     var example = new Vault.Index.OciAuthBackendRole("example", new()
     ///     {
     ///         Backend = oci.Path,
     ///         Name = "test-role",

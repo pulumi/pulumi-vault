@@ -89,7 +89,7 @@ import (
 //				return err
 //			}
 //			ctx.Export("u1Id", u1Entity.WriteData.ApplyT(func(writeData map[string]string) (string, error) {
-//				return writeData.Id, nil
+//				return writeData["id"], nil
 //			}).(pulumi.StringOutput))
 //			return nil
 //		})

@@ -22,7 +22,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Vault.Audit("test", new()
+    ///     var test = new Vault.Index.Audit("test", new()
     ///     {
     ///         Type = "file",
     ///         Options = 
@@ -44,7 +44,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Vault.Audit("test", new()
+    ///     var test = new Vault.Index.Audit("test", new()
     ///     {
     ///         Type = "socket",
     ///         Path = "app_socket",

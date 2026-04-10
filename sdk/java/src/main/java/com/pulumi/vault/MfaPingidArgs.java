@@ -17,6 +17,21 @@ public final class MfaPingidArgs extends com.pulumi.resources.ResourceArgs {
     public static final MfaPingidArgs Empty = new MfaPingidArgs();
 
     /**
+     * `(string)` – ID computed by Vault
+     * 
+     */
+    @Import(name="mfaPingidId")
+    private @Nullable Output<String> mfaPingidId;
+
+    /**
+     * @return `(string)` – ID computed by Vault
+     * 
+     */
+    public Optional<Output<String>> mfaPingidId() {
+        return Optional.ofNullable(this.mfaPingidId);
+    }
+
+    /**
      * `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      * 
@@ -116,6 +131,7 @@ public final class MfaPingidArgs extends com.pulumi.resources.ResourceArgs {
     private MfaPingidArgs() {}
 
     private MfaPingidArgs(MfaPingidArgs $) {
+        this.mfaPingidId = $.mfaPingidId;
         this.mountAccessor = $.mountAccessor;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -139,6 +155,27 @@ public final class MfaPingidArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(MfaPingidArgs defaults) {
             $ = new MfaPingidArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param mfaPingidId `(string)` – ID computed by Vault
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaPingidId(@Nullable Output<String> mfaPingidId) {
+            $.mfaPingidId = mfaPingidId;
+            return this;
+        }
+
+        /**
+         * @param mfaPingidId `(string)` – ID computed by Vault
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaPingidId(String mfaPingidId) {
+            return mfaPingidId(Output.of(mfaPingidId));
         }
 
         /**

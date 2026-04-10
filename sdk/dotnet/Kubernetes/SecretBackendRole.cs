@@ -41,11 +41,11 @@ namespace Pulumi.Vault.Kubernetes
     ///         Path = "kubernetes",
     ///         Description = "kubernetes secrets engine description",
     ///         KubernetesHost = "https://127.0.0.1:61233",
-    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         KubernetesCaCert = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/cert",
     ///         }).Apply(invoke =&gt; invoke.Result),
-    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         ServiceAccountJwt = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/token",
     ///         }).Apply(invoke =&gt; invoke.Result),
@@ -98,11 +98,11 @@ namespace Pulumi.Vault.Kubernetes
     ///         Path = "kubernetes",
     ///         Description = "kubernetes secrets engine description",
     ///         KubernetesHost = "https://127.0.0.1:61233",
-    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         KubernetesCaCert = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/cert",
     ///         }).Apply(invoke =&gt; invoke.Result),
-    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         ServiceAccountJwt = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/token",
     ///         }).Apply(invoke =&gt; invoke.Result),
@@ -151,11 +151,11 @@ namespace Pulumi.Vault.Kubernetes
     ///         Path = "kubernetes",
     ///         Description = "kubernetes secrets engine description",
     ///         KubernetesHost = "https://127.0.0.1:61233",
-    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         KubernetesCaCert = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/cert",
     ///         }).Apply(invoke =&gt; invoke.Result),
-    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         ServiceAccountJwt = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/token",
     ///         }).Apply(invoke =&gt; invoke.Result),

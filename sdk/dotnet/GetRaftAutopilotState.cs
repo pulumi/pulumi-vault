@@ -28,7 +28,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = Vault.GetRaftAutopilotState.Invoke();
+        ///     var main = Vault.Index.GetRaftAutopilotState.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -57,7 +57,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = Vault.GetRaftAutopilotState.Invoke();
+        ///     var main = Vault.Index.GetRaftAutopilotState.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -86,7 +86,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = Vault.GetRaftAutopilotState.Invoke();
+        ///     var main = Vault.Index.GetRaftAutopilotState.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

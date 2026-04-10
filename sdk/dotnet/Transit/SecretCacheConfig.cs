@@ -22,7 +22,7 @@ namespace Pulumi.Vault.Transit
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var transit = new Vault.Mount("transit", new()
+    ///     var transit = new Vault.Index.Mount("transit", new()
     ///     {
     ///         Path = "transit",
     ///         Type = "transit",

@@ -50,6 +50,21 @@ public final class MfaOktaArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * ID computed by Vault.
+     * 
+     */
+    @Import(name="mfaOktaId")
+    private @Nullable Output<String> mfaOktaId;
+
+    /**
+     * @return ID computed by Vault.
+     * 
+     */
+    public Optional<Output<String>> mfaOktaId() {
+        return Optional.ofNullable(this.mfaOktaId);
+    }
+
+    /**
      * `(string: &lt;required&gt;)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      * 
@@ -166,6 +181,7 @@ public final class MfaOktaArgs extends com.pulumi.resources.ResourceArgs {
     private MfaOktaArgs(MfaOktaArgs $) {
         this.apiToken = $.apiToken;
         this.baseUrl = $.baseUrl;
+        this.mfaOktaId = $.mfaOktaId;
         this.mountAccessor = $.mountAccessor;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -234,6 +250,27 @@ public final class MfaOktaArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder baseUrl(String baseUrl) {
             return baseUrl(Output.of(baseUrl));
+        }
+
+        /**
+         * @param mfaOktaId ID computed by Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaOktaId(@Nullable Output<String> mfaOktaId) {
+            $.mfaOktaId = mfaOktaId;
+            return this;
+        }
+
+        /**
+         * @param mfaOktaId ID computed by Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mfaOktaId(String mfaOktaId) {
+            return mfaOktaId(Output.of(mfaOktaId));
         }
 
         /**

@@ -23,16 +23,16 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cert = new Vault.AuthBackend("cert", new()
+    ///     var cert = new Vault.Index.AuthBackend("cert", new()
     ///     {
     ///         Path = "cert",
     ///         Type = "cert",
     ///     });
     /// 
-    ///     var certCertAuthBackendRole = new Vault.CertAuthBackendRole("cert", new()
+    ///     var certCertAuthBackendRole = new Vault.Index.CertAuthBackendRole("cert", new()
     ///     {
     ///         Name = "foo",
-    ///         Certificate = Std.File.Invoke(new()
+    ///         Certificate = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/certs/ca-cert.pem",
     ///         }).Apply(invoke =&gt; invoke.Result),

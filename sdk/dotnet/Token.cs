@@ -27,7 +27,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.Token("example", new()
+    ///     var example = new Vault.Index.Token("example", new()
     ///     {
     ///         RoleName = "app",
     ///         Policies = new[]

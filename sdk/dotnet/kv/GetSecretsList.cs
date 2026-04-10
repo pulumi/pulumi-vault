@@ -36,7 +36,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kvv1 = new Vault.Mount("kvv1", new()
+        ///     var kvv1 = new Vault.Index.Mount("kvv1", new()
         ///     {
         ///         Path = "kvv1",
         ///         Type = "kv",
@@ -105,7 +105,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kvv1 = new Vault.Mount("kvv1", new()
+        ///     var kvv1 = new Vault.Index.Mount("kvv1", new()
         ///     {
         ///         Path = "kvv1",
         ///         Type = "kv",
@@ -174,7 +174,7 @@ namespace Pulumi.Vault.kv
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var kvv1 = new Vault.Mount("kvv1", new()
+        ///     var kvv1 = new Vault.Index.Mount("kvv1", new()
         ///     {
         ///         Path = "kvv1",
         ///         Type = "kv",

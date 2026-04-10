@@ -24,7 +24,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var kubernetes = new Vault.AuthBackend("kubernetes", new()
+    ///     var kubernetes = new Vault.Index.AuthBackend("kubernetes", new()
     ///     {
     ///         Type = "kubernetes",
     ///     });
@@ -54,7 +54,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var kubernetes = new Vault.AuthBackend("kubernetes", new()
+    ///     var kubernetes = new Vault.Index.AuthBackend("kubernetes", new()
     ///     {
     ///         Type = "kubernetes",
     ///     });

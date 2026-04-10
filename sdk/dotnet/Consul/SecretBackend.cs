@@ -80,11 +80,11 @@ namespace Pulumi.Vault.Consul
     ///         TokenWo = consulToken,
     ///         TokenWoVersion = 1,
     ///         Scheme = "https",
-    ///         CaCert = Std.File.Invoke(new()
+    ///         CaCert = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "ca.pem",
     ///         }).Apply(invoke =&gt; invoke.Result),
-    ///         ClientCert = Std.File.Invoke(new()
+    ///         ClientCert = Std.Index.File.Invoke(new()
     ///         {
     ///             Input = "client.pem",
     ///         }).Apply(invoke =&gt; invoke.Result),

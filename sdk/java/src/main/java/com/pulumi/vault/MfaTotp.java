@@ -144,6 +144,20 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.maxValidationAttempts);
     }
     /**
+     * ID computed by Vault.
+     * 
+     */
+    @Export(name="mfaTotpId", refs={String.class}, tree="[0]")
+    private Output<String> mfaTotpId;
+
+    /**
+     * @return ID computed by Vault.
+     * 
+     */
+    public Output<String> mfaTotpId() {
+        return this.mfaTotpId;
+    }
+    /**
      * `(string: &lt;required&gt;)` – Name of the MFA method.
      * 
      */

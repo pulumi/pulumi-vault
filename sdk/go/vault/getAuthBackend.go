@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.LookupAuthBackend(ctx, &vault.LookupAuthBackendArgs{
+//			_, err := vault.GetAuthBackend(ctx, &vault.LookupAuthBackendArgs{
 //				Path: "userpass",
 //			}, nil)
 //			if err != nil {

@@ -69,6 +69,8 @@ type MfaTotp struct {
 	KeySize pulumi.IntPtrOutput `pulumi:"keySize"`
 	// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
 	MaxValidationAttempts pulumi.IntPtrOutput `pulumi:"maxValidationAttempts"`
+	// ID computed by Vault.
+	MfaTotpId pulumi.StringOutput `pulumi:"mfaTotpId"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -130,6 +132,8 @@ type mfaTotpState struct {
 	KeySize *int `pulumi:"keySize"`
 	// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
 	MaxValidationAttempts *int `pulumi:"maxValidationAttempts"`
+	// ID computed by Vault.
+	MfaTotpId *string `pulumi:"mfaTotpId"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -159,6 +163,8 @@ type MfaTotpState struct {
 	KeySize pulumi.IntPtrInput
 	// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
 	MaxValidationAttempts pulumi.IntPtrInput
+	// ID computed by Vault.
+	MfaTotpId pulumi.StringPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -192,6 +198,8 @@ type mfaTotpArgs struct {
 	KeySize *int `pulumi:"keySize"`
 	// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
 	MaxValidationAttempts *int `pulumi:"maxValidationAttempts"`
+	// ID computed by Vault.
+	MfaTotpId *string `pulumi:"mfaTotpId"`
 	// `(string: <required>)` – Name of the MFA method.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -222,6 +230,8 @@ type MfaTotpArgs struct {
 	KeySize pulumi.IntPtrInput
 	// `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
 	MaxValidationAttempts pulumi.IntPtrInput
+	// ID computed by Vault.
+	MfaTotpId pulumi.StringPtrInput
 	// `(string: <required>)` – Name of the MFA method.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -350,6 +360,11 @@ func (o MfaTotpOutput) KeySize() pulumi.IntPtrOutput {
 // `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
 func (o MfaTotpOutput) MaxValidationAttempts() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MfaTotp) pulumi.IntPtrOutput { return v.MaxValidationAttempts }).(pulumi.IntPtrOutput)
+}
+
+// ID computed by Vault.
+func (o MfaTotpOutput) MfaTotpId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MfaTotp) pulumi.StringOutput { return v.MfaTotpId }).(pulumi.StringOutput)
 }
 
 // `(string: <required>)` – Name of the MFA method.

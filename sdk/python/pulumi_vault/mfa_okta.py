@@ -23,6 +23,7 @@ class MfaOktaArgs:
                  mount_accessor: pulumi.Input[_builtins.str],
                  org_name: pulumi.Input[_builtins.str],
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_okta_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  primary_email: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -36,6 +37,7 @@ class MfaOktaArgs:
         :param pulumi.Input[_builtins.str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
                `oktapreview.com`, and `okta-emea.com`.
+        :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -56,6 +58,8 @@ class MfaOktaArgs:
         pulumi.set(__self__, "org_name", org_name)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if mfa_okta_id is not None:
+            pulumi.set(__self__, "mfa_okta_id", mfa_okta_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -114,6 +118,18 @@ class MfaOktaArgs:
     @base_url.setter
     def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "base_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mfaOktaId")
+    def mfa_okta_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ID computed by Vault.
+        """
+        return pulumi.get(self, "mfa_okta_id")
+
+    @mfa_okta_id.setter
+    def mfa_okta_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mfa_okta_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -179,6 +195,7 @@ class _MfaOktaState:
     def __init__(__self__, *,
                  api_token: Optional[pulumi.Input[_builtins.str]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_okta_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -191,6 +208,7 @@ class _MfaOktaState:
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
         :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
                `oktapreview.com`, and `okta-emea.com`.
+        :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -213,6 +231,8 @@ class _MfaOktaState:
             pulumi.set(__self__, "api_token", api_token)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if mfa_okta_id is not None:
+            pulumi.set(__self__, "mfa_okta_id", mfa_okta_id)
         if mount_accessor is not None:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
@@ -250,6 +270,18 @@ class _MfaOktaState:
     @base_url.setter
     def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "base_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mfaOktaId")
+    def mfa_okta_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ID computed by Vault.
+        """
+        return pulumi.get(self, "mfa_okta_id")
+
+    @mfa_okta_id.setter
+    def mfa_okta_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mfa_okta_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
@@ -343,6 +375,7 @@ class MfaOkta(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_token: Optional[pulumi.Input[_builtins.str]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_okta_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -386,6 +419,7 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
         :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
                `oktapreview.com`, and `okta-emea.com`.
+        :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -458,6 +492,7 @@ class MfaOkta(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_token: Optional[pulumi.Input[_builtins.str]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_okta_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -477,6 +512,7 @@ class MfaOkta(pulumi.CustomResource):
                 raise TypeError("Missing required property 'api_token'")
             __props__.__dict__["api_token"] = None if api_token is None else pulumi.Output.secret(api_token)
             __props__.__dict__["base_url"] = base_url
+            __props__.__dict__["mfa_okta_id"] = mfa_okta_id
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
@@ -501,6 +537,7 @@ class MfaOkta(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             api_token: Optional[pulumi.Input[_builtins.str]] = None,
             base_url: Optional[pulumi.Input[_builtins.str]] = None,
+            mfa_okta_id: Optional[pulumi.Input[_builtins.str]] = None,
             mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -517,6 +554,7 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
         :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
                `oktapreview.com`, and `okta-emea.com`.
+        :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -541,6 +579,7 @@ class MfaOkta(pulumi.CustomResource):
 
         __props__.__dict__["api_token"] = api_token
         __props__.__dict__["base_url"] = base_url
+        __props__.__dict__["mfa_okta_id"] = mfa_okta_id
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -565,6 +604,14 @@ class MfaOkta(pulumi.CustomResource):
         `oktapreview.com`, and `okta-emea.com`.
         """
         return pulumi.get(self, "base_url")
+
+    @_builtins.property
+    @pulumi.getter(name="mfaOktaId")
+    def mfa_okta_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        ID computed by Vault.
+        """
+        return pulumi.get(self, "mfa_okta_id")
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")

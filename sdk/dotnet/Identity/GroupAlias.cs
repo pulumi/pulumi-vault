@@ -34,7 +34,7 @@ namespace Pulumi.Vault.Identity
     ///         },
     ///     });
     /// 
-    ///     var github = new Vault.AuthBackend("github", new()
+    ///     var github = new Vault.Index.AuthBackend("github", new()
     ///     {
     ///         Type = "github",
     ///         Path = "github",

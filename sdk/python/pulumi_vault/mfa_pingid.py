@@ -21,6 +21,7 @@ class MfaPingidArgs:
     def __init__(__self__, *,
                  mount_accessor: pulumi.Input[_builtins.str],
                  settings_file_base64: pulumi.Input[_builtins.str],
+                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  username_format: Optional[pulumi.Input[_builtins.str]] = None):
@@ -31,6 +32,7 @@ class MfaPingidArgs:
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
+        :param pulumi.Input[_builtins.str] mfa_pingid_id: `(string)` – ID computed by Vault
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -46,6 +48,8 @@ class MfaPingidArgs:
         """
         pulumi.set(__self__, "mount_accessor", mount_accessor)
         pulumi.set(__self__, "settings_file_base64", settings_file_base64)
+        if mfa_pingid_id is not None:
+            pulumi.set(__self__, "mfa_pingid_id", mfa_pingid_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -78,6 +82,18 @@ class MfaPingidArgs:
     @settings_file_base64.setter
     def settings_file_base64(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "settings_file_base64", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mfaPingidId")
+    def mfa_pingid_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` – ID computed by Vault
+        """
+        return pulumi.get(self, "mfa_pingid_id")
+
+    @mfa_pingid_id.setter
+    def mfa_pingid_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mfa_pingid_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -131,6 +147,7 @@ class _MfaPingidState:
                  admin_url: Optional[pulumi.Input[_builtins.str]] = None,
                  authenticator_url: Optional[pulumi.Input[_builtins.str]] = None,
                  idp_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -146,6 +163,7 @@ class _MfaPingidState:
         :param pulumi.Input[_builtins.str] admin_url: `(string)` – Admin URL computed by Vault
         :param pulumi.Input[_builtins.str] authenticator_url: `(string)` – Authenticator URL computed by Vault
         :param pulumi.Input[_builtins.str] idp_url: `(string)` – IDP URL computed by Vault
+        :param pulumi.Input[_builtins.str] mfa_pingid_id: `(string)` – ID computed by Vault
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -173,6 +191,8 @@ class _MfaPingidState:
             pulumi.set(__self__, "authenticator_url", authenticator_url)
         if idp_url is not None:
             pulumi.set(__self__, "idp_url", idp_url)
+        if mfa_pingid_id is not None:
+            pulumi.set(__self__, "mfa_pingid_id", mfa_pingid_id)
         if mount_accessor is not None:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
@@ -227,6 +247,18 @@ class _MfaPingidState:
     @idp_url.setter
     def idp_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "idp_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mfaPingidId")
+    def mfa_pingid_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` – ID computed by Vault
+        """
+        return pulumi.get(self, "mfa_pingid_id")
+
+    @mfa_pingid_id.setter
+    def mfa_pingid_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mfa_pingid_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
@@ -354,6 +386,7 @@ class MfaPingid(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -394,6 +427,7 @@ class MfaPingid(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] mfa_pingid_id: `(string)` – ID computed by Vault
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -464,6 +498,7 @@ class MfaPingid(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -478,6 +513,7 @@ class MfaPingid(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MfaPingidArgs.__new__(MfaPingidArgs)
 
+            __props__.__dict__["mfa_pingid_id"] = mfa_pingid_id
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
@@ -507,6 +543,7 @@ class MfaPingid(pulumi.CustomResource):
             admin_url: Optional[pulumi.Input[_builtins.str]] = None,
             authenticator_url: Optional[pulumi.Input[_builtins.str]] = None,
             idp_url: Optional[pulumi.Input[_builtins.str]] = None,
+            mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
             mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
@@ -526,6 +563,7 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] admin_url: `(string)` – Admin URL computed by Vault
         :param pulumi.Input[_builtins.str] authenticator_url: `(string)` – Authenticator URL computed by Vault
         :param pulumi.Input[_builtins.str] idp_url: `(string)` – IDP URL computed by Vault
+        :param pulumi.Input[_builtins.str] mfa_pingid_id: `(string)` – ID computed by Vault
         :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -554,6 +592,7 @@ class MfaPingid(pulumi.CustomResource):
         __props__.__dict__["admin_url"] = admin_url
         __props__.__dict__["authenticator_url"] = authenticator_url
         __props__.__dict__["idp_url"] = idp_url
+        __props__.__dict__["mfa_pingid_id"] = mfa_pingid_id
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -588,6 +627,14 @@ class MfaPingid(pulumi.CustomResource):
         `(string)` – IDP URL computed by Vault
         """
         return pulumi.get(self, "idp_url")
+
+    @_builtins.property
+    @pulumi.getter(name="mfaPingidId")
+    def mfa_pingid_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        `(string)` – ID computed by Vault
+        """
+        return pulumi.get(self, "mfa_pingid_id")
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")

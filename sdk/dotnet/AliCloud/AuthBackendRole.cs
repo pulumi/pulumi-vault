@@ -22,7 +22,7 @@ namespace Pulumi.Vault.AliCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var alicloud = new Vault.AuthBackend("alicloud", new()
+    ///     var alicloud = new Vault.Index.AuthBackend("alicloud", new()
     ///     {
     ///         Type = "alicloud",
     ///         Path = "alicloud",
