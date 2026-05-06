@@ -188,7 +188,7 @@ def get_backend_config_est(backend: Optional[_builtins.str] = None,
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    est_config = vault.pkiSecret.get_backend_config_est_output(backend=pki.path)
+    est_config = vault.pkisecret.get_backend_config_est_output(backend=pki.path)
     ```
 
 
@@ -241,7 +241,7 @@ def get_backend_config_est_output(backend: Optional[pulumi.Input[_builtins.str]]
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    est_config = vault.pkiSecret.get_backend_config_est_output(backend=pki.path)
+    est_config = vault.pkisecret.get_backend_config_est_output(backend=pki.path)
     ```
 
 

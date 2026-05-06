@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * const example = new vault.AuthBackend("example", {type: "aws"});
  * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("example", {
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
+ *     identityTokenTtl: Number("<TOKEN_TTL>"),
  *     roleArn: "<AWS_ROLE_ARN>",
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,

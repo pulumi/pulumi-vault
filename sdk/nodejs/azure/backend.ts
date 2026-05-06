@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *     tenantId: "11111111-2222-3333-4444-222222222222",
  *     clientId: "11111111-2222-3333-4444-333333333333",
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
+ *     identityTokenTtl: Number("<TOKEN_TTL>"),
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
  * });

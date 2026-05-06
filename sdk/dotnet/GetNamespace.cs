@@ -28,7 +28,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var current = Vault.Index.GetNamespace.Invoke();
+        ///     var current = Vault.GetNamespace.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +43,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ns1 = Vault.Index.GetNamespace.Invoke(new()
+        ///     var ns1 = Vault.GetNamespace.Invoke(new()
         ///     {
         ///         Path = "ns1",
         ///     });
@@ -61,7 +61,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var child = Vault.Index.GetNamespace.Invoke(new()
+        ///     var child = Vault.GetNamespace.Invoke(new()
         ///     {
         ///         Namespace = "parent",
         ///         Path = "child",
@@ -95,7 +95,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var current = Vault.Index.GetNamespace.Invoke();
+        ///     var current = Vault.GetNamespace.Invoke();
         /// 
         /// });
         /// ```
@@ -110,7 +110,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ns1 = Vault.Index.GetNamespace.Invoke(new()
+        ///     var ns1 = Vault.GetNamespace.Invoke(new()
         ///     {
         ///         Path = "ns1",
         ///     });
@@ -128,7 +128,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var child = Vault.Index.GetNamespace.Invoke(new()
+        ///     var child = Vault.GetNamespace.Invoke(new()
         ///     {
         ///         Namespace = "parent",
         ///         Path = "child",
@@ -162,7 +162,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var current = Vault.Index.GetNamespace.Invoke();
+        ///     var current = Vault.GetNamespace.Invoke();
         /// 
         /// });
         /// ```
@@ -177,7 +177,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ns1 = Vault.Index.GetNamespace.Invoke(new()
+        ///     var ns1 = Vault.GetNamespace.Invoke(new()
         ///     {
         ///         Path = "ns1",
         ///     });
@@ -195,7 +195,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var child = Vault.Index.GetNamespace.Invoke(new()
+        ///     var child = Vault.GetNamespace.Invoke(new()
         ///     {
         ///         Namespace = "parent",
         ///         Path = "child",

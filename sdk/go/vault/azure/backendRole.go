@@ -37,7 +37,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			azure, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+//			azure2, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
 //				SubscriptionId: pulumi.Any(subscriptionId),
 //				TenantId:       pulumi.Any(tenantId),
 //				ClientSecret:   pulumi.Any(clientSecret),
@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = azure.NewBackendRole(ctx, "generated_role", &azure.BackendRoleArgs{
-//				Backend:        azure.Path,
+//				Backend:        azure2.Path,
 //				Role:           pulumi.String("generated_role"),
 //				SignInAudience: pulumi.String("AzureADMyOrg"),
 //				Tags: pulumi.StringArray{
@@ -67,7 +67,7 @@ import (
 //				return err
 //			}
 //			_, err = azure.NewBackendRole(ctx, "existing_object_id", &azure.BackendRoleArgs{
-//				Backend:             azure.Path,
+//				Backend:             azure2.Path,
 //				Role:                pulumi.String("existing_object_id"),
 //				ApplicationObjectId: pulumi.String("11111111-2222-3333-4444-44444444444"),
 //				Ttl:                 pulumi.String("300"),

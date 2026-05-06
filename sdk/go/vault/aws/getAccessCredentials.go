@@ -41,7 +41,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//			aws2, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
 //				AccessKey: pulumi.String("AKIA....."),
 //				SecretKey: pulumi.String("SECRETKEYFROMAWS"),
 //			})
@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			role, err := aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
-//				Backend: aws.Path,
+//				Backend: aws2.Path,
 //				Name:    pulumi.String("test"),
 //				Policy: `{
 //	  \"Version\": \"2012-10-17\",
@@ -69,7 +69,7 @@ import (
 //				return err
 //			}
 //			// generally, these blocks would be in a different module
-//			_ = pulumi.All(aws.Path, role.Name).ApplyT(func(_args []interface{}) (aws.GetAccessCredentialsResult, error) {
+//			_ = pulumi.All(aws2.Path, role.Name).ApplyT(func(_args []interface{}) (aws.GetAccessCredentialsResult, error) {
 //				path := _args[0].(*string)
 //				name := _args[1].(string)
 //				return aws.GetAccessCredentialsResult(interface{}(aws.GetAccessCredentials(ctx, &aws.GetAccessCredentialsArgs{

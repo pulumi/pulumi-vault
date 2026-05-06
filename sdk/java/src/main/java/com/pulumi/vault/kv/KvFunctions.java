@@ -57,8 +57,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -133,8 +133,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -209,8 +209,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -285,8 +285,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -361,8 +361,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -437,8 +437,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -515,8 +515,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -593,8 +593,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -671,8 +671,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -749,8 +749,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -827,8 +827,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -906,8 +906,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -985,8 +985,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1064,8 +1064,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1143,8 +1143,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1222,8 +1222,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1305,8 +1305,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1388,8 +1388,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1471,8 +1471,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1554,8 +1554,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1637,8 +1637,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1736,8 +1736,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1835,8 +1835,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1934,8 +1934,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2033,8 +2033,8 @@ public final class KvFunctions {
      * import com.pulumi.vault.kv.KvFunctions;
      * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

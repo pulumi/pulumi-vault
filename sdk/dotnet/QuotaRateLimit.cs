@@ -27,7 +27,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @global = new Vault.Index.QuotaRateLimit("global", new()
+    ///     var @global = new Vault.QuotaRateLimit("global", new()
     ///     {
     ///         Name = "global",
     ///         Path = "",

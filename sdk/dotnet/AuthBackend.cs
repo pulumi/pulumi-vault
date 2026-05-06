@@ -22,7 +22,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.Index.AuthBackend("example", new()
+    ///     var example = new Vault.AuthBackend("example", new()
     ///     {
     ///         Type = "github",
     ///         Tune = new Vault.Inputs.AuthBackendTuneArgs

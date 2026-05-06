@@ -29,7 +29,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @global = new Vault.Index.QuotaLeaseCount("global", new()
+    ///     var @global = new Vault.QuotaLeaseCount("global", new()
     ///     {
     ///         Name = "global",
     ///         Path = "",

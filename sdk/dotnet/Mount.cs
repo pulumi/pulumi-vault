@@ -22,7 +22,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.Index.Mount("example", new()
+    ///     var example = new Vault.Mount("example", new()
     ///     {
     ///         Path = "dummy",
     ///         Type = "generic",
@@ -40,7 +40,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var kvv2_example = new Vault.Index.Mount("kvv2-example", new()
+    ///     var kvv2_example = new Vault.Mount("kvv2-example", new()
     ///     {
     ///         Path = "version2-example",
     ///         Type = "kv-v2",
@@ -63,7 +63,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var transit_example = new Vault.Index.Mount("transit-example", new()
+    ///     var transit_example = new Vault.Mount("transit-example", new()
     ///     {
     ///         Path = "transit-example",
     ///         Type = "transit",
@@ -85,7 +85,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pki_example = new Vault.Index.Mount("pki-example", new()
+    ///     var pki_example = new Vault.Mount("pki-example", new()
     ///     {
     ///         Path = "pki-example",
     ///         Type = "pki",

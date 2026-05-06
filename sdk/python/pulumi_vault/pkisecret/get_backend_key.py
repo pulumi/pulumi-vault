@@ -143,7 +143,7 @@ def get_backend_key(backend: Optional[_builtins.str] = None,
         key_name="example",
         key_type="rsa",
         key_bits=4096)
-    example = key.key_id.apply(lambda key_id: vault.pkiSecret.get_backend_key_output(backend=key_vault_mount["path"],
+    example = key.key_id.apply(lambda key_id: vault.pkisecret.get_backend_key_output(backend=key_vault_mount["path"],
         key_ref=key_id))
     ```
 
@@ -202,7 +202,7 @@ def get_backend_key_output(backend: Optional[pulumi.Input[_builtins.str]] = None
         key_name="example",
         key_type="rsa",
         key_bits=4096)
-    example = key.key_id.apply(lambda key_id: vault.pkiSecret.get_backend_key_output(backend=key_vault_mount["path"],
+    example = key.key_id.apply(lambda key_id: vault.pkisecret.get_backend_key_output(backend=key_vault_mount["path"],
         key_ref=key_id))
     ```
 

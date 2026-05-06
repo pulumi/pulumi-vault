@@ -22,7 +22,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetAuthBackends.Invoke();
+        ///     var example = Vault.GetAuthBackends.Invoke();
         /// 
         /// });
         /// ```
@@ -35,7 +35,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example_filter = Vault.Index.GetAuthBackends.Invoke(new()
+        ///     var example_filter = Vault.GetAuthBackends.Invoke(new()
         ///     {
         ///         Type = "kubernetes",
         ///     });
@@ -57,7 +57,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetAuthBackends.Invoke();
+        ///     var example = Vault.GetAuthBackends.Invoke();
         /// 
         /// });
         /// ```
@@ -70,7 +70,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example_filter = Vault.Index.GetAuthBackends.Invoke(new()
+        ///     var example_filter = Vault.GetAuthBackends.Invoke(new()
         ///     {
         ///         Type = "kubernetes",
         ///     });
@@ -92,7 +92,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetAuthBackends.Invoke();
+        ///     var example = Vault.GetAuthBackends.Invoke();
         /// 
         /// });
         /// ```
@@ -105,7 +105,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example_filter = Vault.Index.GetAuthBackends.Invoke(new()
+        ///     var example_filter = Vault.GetAuthBackends.Invoke(new()
         ///     {
         ///         Type = "kubernetes",
         ///     });

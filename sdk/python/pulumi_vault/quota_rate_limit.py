@@ -459,7 +459,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         global_ = vault.QuotaRateLimit("global",
             name="global",
             path="",
-            rate=100)
+            rate=float(100))
         ```
 
         ## Import
@@ -525,7 +525,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         global_ = vault.QuotaRateLimit("global",
             name="global",
             path="",
-            rate=100)
+            rate=float(100))
         ```
 
         ## Import

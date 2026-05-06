@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Transform
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var transform = new Vault.Index.Mount("transform", new()
+        ///     var transform = new Vault.Mount("transform", new()
         ///     {
         ///         Path = "transform",
         ///         Type = "transform",
@@ -89,7 +89,7 @@ namespace Pulumi.Vault.Transform
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var transform = new Vault.Index.Mount("transform", new()
+        ///     var transform = new Vault.Mount("transform", new()
         ///     {
         ///         Path = "transform",
         ///         Type = "transform",
@@ -152,7 +152,7 @@ namespace Pulumi.Vault.Transform
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var transform = new Vault.Index.Mount("transform", new()
+        ///     var transform = new Vault.Mount("transform", new()
         ///     {
         ///         Path = "transform",
         ///         Type = "transform",

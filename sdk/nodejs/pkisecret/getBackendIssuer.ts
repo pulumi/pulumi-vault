@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     ttl: "86400",
  *     issuerName: "example",
  * });
- * const example = root.issuerId.apply(issuerId => vault.pkiSecret.getBackendIssuerOutput({
+ * const example = root.issuerId.apply(issuerId => vault.pkisecret.getBackendIssuerOutput({
  *     backend: root.path,
  *     issuerRef: issuerId,
  * }));
@@ -202,7 +202,7 @@ export interface GetBackendIssuerResult {
  *     ttl: "86400",
  *     issuerName: "example",
  * });
- * const example = root.issuerId.apply(issuerId => vault.pkiSecret.getBackendIssuerOutput({
+ * const example = root.issuerId.apply(issuerId => vault.pkisecret.getBackendIssuerOutput({
  *     backend: root.path,
  *     issuerRef: issuerId,
  * }));

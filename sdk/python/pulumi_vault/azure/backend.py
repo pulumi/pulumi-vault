@@ -1267,7 +1267,7 @@ class Backend(pulumi.CustomResource):
             tenant_id="11111111-2222-3333-4444-222222222222",
             client_id="11111111-2222-3333-4444-333333333333",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
         ```
@@ -1402,7 +1402,7 @@ class Backend(pulumi.CustomResource):
             tenant_id="11111111-2222-3333-4444-222222222222",
             client_id="11111111-2222-3333-4444-333333333333",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
         ```

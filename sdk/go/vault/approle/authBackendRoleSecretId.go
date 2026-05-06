@@ -33,14 +33,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			approle, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
+//			approle2, err := vault.NewAuthBackend(ctx, "approle", &vault.AuthBackendArgs{
 //				Type: pulumi.String("approle"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			example, err := approle.NewAuthBackendRole(ctx, "example", &approle.AuthBackendRoleArgs{
-//				Backend:  approle.Path,
+//				Backend:  approle2.Path,
 //				RoleName: pulumi.String("test-role"),
 //				TokenPolicies: pulumi.StringArray{
 //					pulumi.String("default"),
@@ -59,7 +59,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = approle.NewAuthBackendRoleSecretId(ctx, "id", &approle.AuthBackendRoleSecretIdArgs{
-//				Backend:  approle.Path,
+//				Backend:  approle2.Path,
 //				RoleName: example.RoleName,
 //				Metadata: pulumi.String(pulumi.String(json0)),
 //			})

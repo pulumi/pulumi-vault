@@ -70,7 +70,7 @@ import * as utilities from "../utilities";
  *
  * const aws = new vault.aws.SecretBackend("aws", {
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
+ *     identityTokenTtl: Number("<TOKEN_TTL>"),
  *     roleArn: "<AWS_ROLE_ARN>",
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,

@@ -30,7 +30,7 @@ namespace Pulumi.Vault.Gcp
     ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
     ///         Path = "gcp",
-    ///         Credentials = Std.Index.File.Invoke(new()
+    ///         Credentials = Std.File.Invoke(new()
     ///         {
     ///             Input = "credentials.json",
     ///         }).Apply(invoke =&gt; invoke.Result),

@@ -82,7 +82,7 @@ import (
 //			for key0, _ := range childNamespaces {
 //				__res, err := vault.NewNamespace(ctx, fmt.Sprintf("children-%v", key0), &vault.NamespaceArgs{
 //					Namespace: parent.Path,
-//					Path:      pulumi.String(pulumi.Float64(key0)),
+//					Path:      pulumi.String(pulumi.Int(key0)),
 //				})
 //				if err != nil {
 //					return err

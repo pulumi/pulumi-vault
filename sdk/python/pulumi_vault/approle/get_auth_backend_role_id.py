@@ -101,7 +101,7 @@ def get_auth_backend_role_id(backend: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_vault as vault
 
-    role = vault.appRole.get_auth_backend_role_id(backend="my-approle-backend",
+    role = vault.approle.get_auth_backend_role_id(backend="my-approle-backend",
         role_name="my-role")
     pulumi.export("role-id", role.role_id)
     ```
@@ -141,7 +141,7 @@ def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_vault as vault
 
-    role = vault.appRole.get_auth_backend_role_id(backend="my-approle-backend",
+    role = vault.approle.get_auth_backend_role_id(backend="my-approle-backend",
         role_name="my-role")
     pulumi.export("role-id", role.role_id)
     ```

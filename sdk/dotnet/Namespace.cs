@@ -26,7 +26,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ns1 = new Vault.Index.Namespace("ns1", new()
+    ///     var ns1 = new Vault.Namespace("ns1", new()
     ///     {
     ///         Path = "ns1",
     ///     });
@@ -52,47 +52,55 @@ namespace Pulumi.Vault
     ///         "child_1",
     ///         "child_2",
     ///     };
-    ///     var parent = new Vault.Index.Namespace("parent", new()
+    ///     var parent = new Vault.Namespace("parent", new()
     ///     {
     ///         Path = "parent",
     ///     });
     /// 
-    ///     var children = new List&lt;Vault.Index.Namespace&gt;();
+    ///     var children = new List&lt;Vault.Namespace&gt;();
     ///     foreach (var range in childNamespaces.Select((v, k) =&gt; new { Key = k, Value = v }))
     ///     {
-    ///         children.Add(new Vault.Index.Namespace($"children-{range.Key}", new()
+    ///         children.Add(new Vault.Namespace($"children-{range.Key}", new()
     ///         {
     ///             TargetNamespace = parent.Path,
     ///             Path = range.Key,
     ///         }));
     ///     }
-    ///     var childrenMount = new List&lt;Vault.Index.Mount&gt;();
-    ///     foreach (var range in children.Select((v, k) =&gt; new { Key = k, Value = v }))
+    ///     var childrenMount = new List&lt;Vault.Mount&gt;();
+    ///     children.Apply(rangeBody =&gt;
     ///     {
-    ///         childrenMount.Add(new Vault.Index.Mount($"children-{range.Key}", new()
+    ///         foreach (var range in rangeBody.Select((v, k) =&gt; new { Key = k, Value = v }))
     ///         {
-    ///             Namespace = range.Value.PathFq,
-    ///             Path = "secrets",
-    ///             Type = "kv",
-    ///             Options = 
+    ///             childrenMount.Add(new Vault.Mount($"children-{range.Key}", new()
     ///             {
-    ///                 { "version", "1" },
-    ///             },
-    ///         }));
-    ///     }
+    ///                 Namespace = range.Value.PathFq,
+    ///                 Path = "secrets",
+    ///                 Type = "kv",
+    ///                 Options = 
+    ///                 {
+    ///                     { "version", "1" },
+    ///                 },
+    ///             }));
+    ///         }
+    ///         return 0;
+    ///     });
     ///     var childrenSecret = new List&lt;Vault.Generic.Secret&gt;();
-    ///     foreach (var range in childrenMount.Select((v, k) =&gt; new { Key = k, Value = v }))
+    ///     childrenMount.Apply(rangeBody =&gt;
     ///     {
-    ///         childrenSecret.Add(new Vault.Generic.Secret($"children-{range.Key}", new()
+    ///         foreach (var range in rangeBody.Select((v, k) =&gt; new { Key = k, Value = v }))
     ///         {
-    ///             Namespace = range.Value.Namespace,
-    ///             Path = $"{range.Value.Path}/secret",
-    ///             DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             childrenSecret.Add(new Vault.Generic.Secret($"children-{range.Key}", new()
     ///             {
-    ///                 ["ns"] = range.Key,
-    ///             }),
-    ///         }));
-    ///     }
+    ///                 Namespace = range.Value.Namespace,
+    ///                 Path = $"{range.Value.Path}/secret",
+    ///                 DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["ns"] = range.Key,
+    ///                 }),
+    ///             }));
+    ///         }
+    ///         return 0;
+    ///     });
     /// });
     /// ```
     /// 
@@ -118,7 +126,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example2 = new Vault.Index.Namespace("example2", new()
+    ///     var example2 = new Vault.Namespace("example2", new()
     ///     {
     ///         Path = "example2",
     ///     });

@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  *     minSecondsRemaining: 60,
  *     certMetadata: "dGVzdCBtZXRhZGF0YQ==",
  * });
- * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkiSecret.getBackendCertMetadataOutput({
+ * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkisecret.getBackendCertMetadataOutput({
  *     path: test_root.path,
  *     serial: serialNumber,
  * }));
@@ -173,7 +173,7 @@ export interface GetBackendCertMetadataResult {
  *     minSecondsRemaining: 60,
  *     certMetadata: "dGVzdCBtZXRhZGF0YQ==",
  * });
- * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkiSecret.getBackendCertMetadataOutput({
+ * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkisecret.getBackendCertMetadataOutput({
  *     path: test_root.path,
  *     serial: serialNumber,
  * }));

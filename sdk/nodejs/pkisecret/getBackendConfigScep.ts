@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const scepConfig = vault.pkiSecret.getBackendConfigScepOutput({
+ * const scepConfig = vault.pkisecret.getBackendConfigScepOutput({
  *     backend: pki.path,
  * });
  * ```
@@ -133,7 +133,7 @@ export interface GetBackendConfigScepResult {
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const scepConfig = vault.pkiSecret.getBackendConfigScepOutput({
+ * const scepConfig = vault.pkisecret.getBackendConfigScepOutput({
  *     backend: pki.path,
  * });
  * ```

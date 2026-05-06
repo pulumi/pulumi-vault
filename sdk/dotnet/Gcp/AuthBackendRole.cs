@@ -22,7 +22,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var gcp = new Vault.Index.AuthBackend("gcp", new()
+    ///     var gcp = new Vault.AuthBackend("gcp", new()
     ///     {
     ///         Path = "gcp",
     ///         Type = "gcp",

@@ -1543,7 +1543,7 @@ class SecretBackend(pulumi.CustomResource):
 
         aws = vault.aws.SecretBackend("aws",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             role_arn="<AWS_ROLE_ARN>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
@@ -1721,7 +1721,7 @@ class SecretBackend(pulumi.CustomResource):
 
         aws = vault.aws.SecretBackend("aws",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             role_arn="<AWS_ROLE_ARN>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)

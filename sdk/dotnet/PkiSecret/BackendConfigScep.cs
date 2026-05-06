@@ -22,13 +22,13 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var scep = new Vault.Index.AuthBackend("scep", new()
+    ///     var scep = new Vault.AuthBackend("scep", new()
     ///     {
     ///         Path = "scep-auth",
     ///         Type = "scep",
     ///     });
     /// 
-    ///     var scepChallenge = new Vault.Index.ScepAuthBackendRole("scep_challenge", new()
+    ///     var scepChallenge = new Vault.ScepAuthBackendRole("scep_challenge", new()
     ///     {
     ///         Backend = scep.Id,
     ///         Name = "scep-auth",
@@ -37,7 +37,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         Challenge = "ac7e4ada-c8ef-4393-9098-d69d08736833",
     ///     });
     /// 
-    ///     var pki = new Vault.Index.Mount("pki", new()
+    ///     var pki = new Vault.Mount("pki", new()
     ///     {
     ///         Path = "pki_scep",
     ///         Type = "pki",

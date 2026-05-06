@@ -24,7 +24,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -44,7 +44,7 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Index.Policy("example", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
         ///         Name = "example_policy",
         ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
@@ -69,7 +69,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -89,7 +89,7 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Index.Policy("example", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
         ///         Name = "example_policy",
         ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
@@ -114,7 +114,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -134,7 +134,7 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Index.Policy("example", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
         ///         Name = "example_policy",
         ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),

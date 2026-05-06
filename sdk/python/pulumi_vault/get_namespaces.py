@@ -128,8 +128,8 @@ def get_namespaces(namespace: Optional[_builtins.str] = None,
     import pulumi_vault as vault
 
     children = vault.get_namespaces(namespace="parent")
-    child = {__key: vault.get_namespace(namespace=children.namespace,
-        path=__key) for __key, __value in enumerate(children.paths)}
+    child = {str(__key): vault.get_namespace(namespace=children.namespace,
+        path=str(__key)) for __key, __value in enumerate(children.paths)}
     ```
 
 
@@ -187,8 +187,8 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[_builtins.st
     import pulumi_vault as vault
 
     children = vault.get_namespaces(namespace="parent")
-    child = {__key: vault.get_namespace(namespace=children.namespace,
-        path=__key) for __key, __value in enumerate(children.paths)}
+    child = {str(__key): vault.get_namespace(namespace=children.namespace,
+        path=str(__key)) for __key, __value in enumerate(children.paths)}
     ```
 
 

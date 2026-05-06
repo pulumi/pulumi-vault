@@ -133,7 +133,7 @@ def get_backend_issuers(backend: Optional[_builtins.str] = None,
         common_name="example",
         ttl="86400",
         issuer_name="example")
-    test = vault.pkiSecret.get_backend_issuers_output(backend=root.backend)
+    test = vault.pkisecret.get_backend_issuers_output(backend=root.backend)
     ```
 
 
@@ -187,7 +187,7 @@ def get_backend_issuers_output(backend: Optional[pulumi.Input[_builtins.str]] = 
         common_name="example",
         ttl="86400",
         issuer_name="example")
-    test = vault.pkiSecret.get_backend_issuers_output(backend=root.backend)
+    test = vault.pkisecret.get_backend_issuers_output(backend=root.backend)
     ```
 
 

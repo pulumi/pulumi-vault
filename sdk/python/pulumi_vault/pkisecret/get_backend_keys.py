@@ -133,7 +133,7 @@ def get_backend_keys(backend: Optional[_builtins.str] = None,
         common_name="example",
         ttl="86400",
         key_name="example")
-    example = vault.pkiSecret.get_backend_keys_output(backend=root.backend)
+    example = vault.pkisecret.get_backend_keys_output(backend=root.backend)
     ```
 
 
@@ -187,7 +187,7 @@ def get_backend_keys_output(backend: Optional[pulumi.Input[_builtins.str]] = Non
         common_name="example",
         ttl="86400",
         key_name="example")
-    example = vault.pkiSecret.get_backend_keys_output(backend=root.backend)
+    example = vault.pkisecret.get_backend_keys_output(backend=root.backend)
     ```
 
 

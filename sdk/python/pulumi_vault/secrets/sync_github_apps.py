@@ -218,7 +218,7 @@ class SyncGithubApps(pulumi.CustomResource):
 
         github_apps = vault.secrets.SyncGithubApps("github-apps",
             name="gh-apps",
-            app_id=app_id,
+            app_id=int(app_id),
             private_key=std.file(input=privatekey_file).result)
         ```
 
@@ -269,7 +269,7 @@ class SyncGithubApps(pulumi.CustomResource):
 
         github_apps = vault.secrets.SyncGithubApps("github-apps",
             name="gh-apps",
-            app_id=app_id,
+            app_id=int(app_id),
             private_key=std.file(input=privatekey_file).result)
         ```
 

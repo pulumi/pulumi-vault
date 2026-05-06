@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			gcp, err := vault.NewAuthBackend(ctx, "gcp", &vault.AuthBackendArgs{
+//			gcp2, err := vault.NewAuthBackend(ctx, "gcp", &vault.AuthBackendArgs{
 //				Path: pulumi.String("gcp"),
 //				Type: pulumi.String("gcp"),
 //			})
@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = gcp.NewAuthBackendRole(ctx, "test", &gcp.AuthBackendRoleArgs{
-//				Backend: gcp.Path,
+//				Backend: gcp2.Path,
 //				Role:    pulumi.String("test"),
 //				Type:    pulumi.String("iam"),
 //				BoundServiceAccounts: pulumi.StringArray{

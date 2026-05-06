@@ -680,8 +680,8 @@ import com.pulumi.core.Output;
 import com.pulumi.vault.generic.Secret;
 import com.pulumi.vault.generic.SecretArgs;
 import static com.pulumi.codegen.internal.Serialization.*;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -809,9 +809,9 @@ runtime: yaml
 ```yaml
 configuration:
   loginUsername:
-    type: dynamic
+    type: object
   loginPassword:
-    type: dynamic
+    type: object
 ```
 
 {{% /choosable %}}
@@ -829,8 +829,8 @@ package generated_program;
 import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;
@@ -952,9 +952,9 @@ runtime: yaml
 ```yaml
 configuration:
   loginApproleRoleId:
-    type: dynamic
+    type: object
   loginApproleSecretId:
-    type: dynamic
+    type: object
 ```
 
 {{% /choosable %}}
@@ -972,8 +972,8 @@ package generated_program;
 import com.pulumi.Context;
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

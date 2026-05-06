@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * for (const range of childNamespaces.map((v, k) => ({key: k, value: v}))) {
  *     children.push(new vault.Namespace(`children-${range.key}`, {
  *         namespace: parent.path,
- *         path: range.key,
+ *         path: String(range.key),
  *     }));
  * }
  * const childrenMount: vault.Mount[] = [];

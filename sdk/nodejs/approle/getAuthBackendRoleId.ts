@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * export = async () => {
- *     const role = await vault.appRole.getAuthBackendRoleId({
+ *     const role = await vault.approle.getAuthBackendRoleId({
  *         backend: "my-approle-backend",
  *         roleName: "my-role",
  *     });
@@ -81,7 +81,7 @@ export interface GetAuthBackendRoleIdResult {
  * import * as vault from "@pulumi/vault";
  *
  * export = async () => {
- *     const role = await vault.appRole.getAuthBackendRoleId({
+ *     const role = await vault.approle.getAuthBackendRoleId({
  *         backend: "my-approle-backend",
  *         roleName: "my-role",
  *     });

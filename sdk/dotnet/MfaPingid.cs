@@ -26,13 +26,13 @@ namespace Pulumi.Vault
     /// {
     ///     var config = new Config();
     ///     var settingsFile = config.RequireObject&lt;dynamic&gt;("settingsFile");
-    ///     var userpass = new Vault.Index.AuthBackend("userpass", new()
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
     ///         Type = "userpass",
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myPingid = new Vault.Index.MfaPingid("my_pingid", new()
+    ///     var myPingid = new Vault.MfaPingid("my_pingid", new()
     ///     {
     ///         Name = "my_pingid",
     ///         MountAccessor = userpass.Accessor,

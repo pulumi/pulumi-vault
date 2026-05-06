@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.vault.Namespace;
  * import com.pulumi.vault.NamespaceArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -72,8 +72,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.generic.SecretArgs;
  * import static com.pulumi.codegen.internal.Serialization.*;
  * import com.pulumi.codegen.internal.KeyedValue;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var childNamespaces = config.get("childNamespaces").orElse(List.of(        
+ *         final var childNamespaces = config.get("childNamespaces").orElse(Arrays.asList(        
  *             "child_0",
  *             "child_1",
  *             "child_2"));
@@ -149,8 +149,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.vault.Namespace;
  * import com.pulumi.vault.NamespaceArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;

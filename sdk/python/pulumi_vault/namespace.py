@@ -244,7 +244,7 @@ class Namespace(pulumi.CustomResource):
         for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
             children.append(vault.Namespace(f"children-{range['key']}",
                 namespace=parent.path,
-                path=range["key"]))
+                path=str(range["key"])))
         children_mount = []
         def create_children(range_body):
             for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
@@ -360,7 +360,7 @@ class Namespace(pulumi.CustomResource):
         for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
             children.append(vault.Namespace(f"children-{range['key']}",
                 namespace=parent.path,
-                path=range["key"]))
+                path=str(range["key"])))
         children_mount = []
         def create_children(range_body):
             for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:

@@ -27,7 +27,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Google.Index.ServiceAccount("this", new()
+    ///     var @this = new Google.ServiceAccount("this", new()
     ///     {
     ///         AccountId = "my-awesome-account",
     ///     });
@@ -35,7 +35,7 @@ namespace Pulumi.Vault.Gcp
     ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
     ///         Path = "gcp",
-    ///         Credentials = Std.Index.File.Invoke(new()
+    ///         Credentials = Std.File.Invoke(new()
     ///         {
     ///             Input = "credentials.json",
     ///         }).Apply(invoke =&gt; invoke.Result),

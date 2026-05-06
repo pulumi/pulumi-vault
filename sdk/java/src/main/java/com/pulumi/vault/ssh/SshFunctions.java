@@ -29,8 +29,8 @@ public final class SshFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.ssh.SshFunctions;
      * import com.pulumi.vault.ssh.inputs.GetSecretBackendSignArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -72,8 +72,8 @@ public final class SshFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.ssh.SshFunctions;
      * import com.pulumi.vault.ssh.inputs.GetSecretBackendSignArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -115,8 +115,8 @@ public final class SshFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.ssh.SshFunctions;
      * import com.pulumi.vault.ssh.inputs.GetSecretBackendSignArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -158,8 +158,8 @@ public final class SshFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.ssh.SshFunctions;
      * import com.pulumi.vault.ssh.inputs.GetSecretBackendSignArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -201,8 +201,8 @@ public final class SshFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.ssh.SshFunctions;
      * import com.pulumi.vault.ssh.inputs.GetSecretBackendSignArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

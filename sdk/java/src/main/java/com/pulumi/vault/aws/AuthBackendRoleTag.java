@@ -34,8 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.aws.AuthBackendRoleArgs;
  * import com.pulumi.vault.aws.AuthBackendRoleTag;
  * import com.pulumi.vault.aws.AuthBackendRoleTagArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *             .role("%s")
  *             .authType("ec2")
  *             .boundAccountId("123456789012")
- *             .policies(List.of(            
+ *             .policies(Arrays.asList(            
  *                 "dev",
  *                 "prod",
  *                 "qa",

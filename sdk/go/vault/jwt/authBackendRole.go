@@ -32,14 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			jwt, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
+//			jwt2, err := jwt.NewAuthBackend(ctx, "jwt", &jwt.AuthBackendArgs{
 //				Path: pulumi.String("jwt"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = jwt.NewAuthBackendRole(ctx, "example", &jwt.AuthBackendRoleArgs{
-//				Backend:  jwt.Path,
+//				Backend:  jwt2.Path,
 //				RoleName: pulumi.String("test-role"),
 //				TokenPolicies: pulumi.StringArray{
 //					pulumi.String("default"),

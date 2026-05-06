@@ -31,7 +31,7 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mongo = new Vault.Index.Mount("mongo", new()
+    ///     var mongo = new Vault.Mount("mongo", new()
     ///     {
     ///         Path = "mongodbatlas",
     ///         Type = "mongodbatlas",
@@ -60,7 +60,7 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mongo = new Vault.Index.Mount("mongo", new()
+    ///     var mongo = new Vault.Mount("mongo", new()
     ///     {
     ///         Path = "mongodbatlas",
     ///         Type = "mongodbatlas",

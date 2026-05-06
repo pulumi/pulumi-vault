@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transform, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
+//			transform2, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
 //				Path: pulumi.String("transform"),
 //				Type: pulumi.String("transform"),
 //			})
@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			ccn_fpe, err := transform.NewTransformation(ctx, "ccn-fpe", &transform.TransformationArgs{
-//				Path:        transform.Path,
+//				Path:        transform2.Path,
 //				Name:        pulumi.String("ccn-fpe"),
 //				Type:        pulumi.String("fpe"),
 //				Template:    pulumi.String("builtin/creditcardnumber"),

@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const estConfig = vault.pkiSecret.getBackendConfigEstOutput({
+ * const estConfig = vault.pkisecret.getBackendConfigEstOutput({
  *     backend: pki.path,
  * });
  * ```
@@ -124,7 +124,7 @@ export interface GetBackendConfigEstResult {
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const estConfig = vault.pkiSecret.getBackendConfigEstOutput({
+ * const estConfig = vault.pkisecret.getBackendConfigEstOutput({
  *     backend: pki.path,
  * });
  * ```

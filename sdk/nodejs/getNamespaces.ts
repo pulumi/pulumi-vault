@@ -42,9 +42,9 @@ import * as utilities from "./utilities";
  * const children = vault.getNamespaces({
  *     namespace: "parent",
  * });
- * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: vault.getNamespace({
+ * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
- *     path: __key,
+ *     path: String(__key),
  * }) }), {});
  * ```
  */
@@ -130,9 +130,9 @@ export interface GetNamespacesResult {
  * const children = vault.getNamespaces({
  *     namespace: "parent",
  * });
- * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: vault.getNamespace({
+ * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
- *     path: __key,
+ *     path: String(__key),
  * }) }), {});
  * ```
  */
